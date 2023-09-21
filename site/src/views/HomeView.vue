@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <Button type="primary">Hello</Button>
 </template>
+
+<script setup lang="ts">
+import { Button } from "@arco-design/web-vue";
+</script>
