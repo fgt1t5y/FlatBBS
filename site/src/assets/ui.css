@@ -8,6 +8,6 @@
   }
 
   .mob_hidden {
-    display: block;
+    display: block !important;
   }
 }
