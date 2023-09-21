@@ -21,7 +21,7 @@
           <Input type="password" v-model="form.password" />
         </FormItem>
         <FormItem>
-          <Button :loading="isDealing" html-type="submit" type="primary">
+          <Button long :loading="isDealing" html-type="submit" type="primary">
             下一步
           </Button>
         </FormItem>
@@ -46,7 +46,7 @@
           <Input type="password" v-model="form.password_again" />
         </FormItem>
         <FormItem>
-          <Button :loading="isDealing" html-type="submit" type="primary">
+          <Button long :loading="isDealing" html-type="submit" type="primary">
             下一步
           </Button>
         </FormItem>
