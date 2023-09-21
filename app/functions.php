@@ -1,5 +1,7 @@
 <?php
 
+use support\Response;
+
 function is_email(string $email)
 {
     if (preg_match('/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/', $email)) {
@@ -18,4 +20,9 @@ function all(array $value)
     }
 
     return true;
+}
+
+function error_json(int $code, mixed $json): Response
+{
+    return new Response($code, ['Content-Type' => 'application/json'], json_encode($json));
 }
