@@ -1,0 +1,13 @@
+.mob_hidden {
+  display: none !important;
+}
+
+@media (max-width: 576px) {
+  .nav-opt .arco-input-wrapper {
+    display: none;
+  }
+
+  .mob_hidden {
+    display: block;
+  }
+}
