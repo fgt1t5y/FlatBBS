@@ -42,4 +42,10 @@ class AuthController
             return error_json(400, '用户不存在');
         }
     }
+
+    public function test(Request $request)
+    {
+        $session = $request->session();
+        $session->set('test', 'ok');
+    }
 }
