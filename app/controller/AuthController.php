@@ -22,13 +22,14 @@ class AuthController
         }
 
         try {
-            User::newUser($email, $username, $password);
+            $user = User::newUser($email, $username, $password, true);
+            $user->saveOrFail();
             return json([
                 'code' => 0,
                 'message' => '完成'
             ]);
         } catch (PDOException $e) {
-            error_json(500, $e->getMessage());
+            return error_json(500, $e->getMessage());
         }
     }
 

@@ -28,18 +28,14 @@ class User extends Model
         string $email,
         string $username,
         string $password,
+        bool $allow_login,
     ) {
         $user = new self();
         $user->email = $email;
         $user->password = md5($password);
         $user->username = $username;
+        $user->allow_login = !!$allow_login;
 
-        try {
-            $user->save();
-            return true;
-        } catch (PDOException $e) {
-            throw $e;
-        }
-
+        return $user;
     }
 }
