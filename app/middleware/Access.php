@@ -15,9 +15,9 @@ class Access implements MiddlewareInterface
         $response->withHeaders([
             'Access-Control-Allow-Origin' =>            $request->header('Origin', '*'),
             'Access-Control-Allow-Credentials' =>       'true',
-            // 'Content-Type' =>                           'application/json;charset=UTF-8',
+            'Content-Type' =>                           'application/json;charset=UTF-8',
             'Access-Control-Allow-Methods' =>           '*',
-            'Access-Control-Allow-Headers' =>           '*'
+            'Access-Control-Allow-Headers' =>           'Content-Type,XFILENAME,XFILECATEGORY,XFILESIZE'
         ]);
         return $response;
     }
