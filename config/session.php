@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of webman.
  *
@@ -43,22 +44,22 @@ return [
     ],
 
     'session_name' => 'PHPSID',
-    
+
     'auto_update_timestamp' => false,
 
-    'lifetime' => 7*24*60*60,
+    'lifetime' => 7 * 24 * 60 * 30,
 
-    'cookie_lifetime' => 365*24*60*60,
+    'cookie_lifetime' => 365 * 24 * 60 * 60,
 
     'cookie_path' => '/',
 
     'domain' => '',
-    
+
     'http_only' => true,
 
     'secure' => false,
-    
-    'same_site' => '',
+
+    'same_site' => 'strict',
 
     'gc_probability' => [1, 1000],
 
