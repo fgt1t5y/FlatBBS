@@ -35,17 +35,35 @@ class AuthController
 
     public function login(Request $request)
     {
-        $email = $request->post('email');
-        $user = User::getUser($email);
+        $session = $request->session();
 
-        if (!all([$email]) || $user === false) {
+        if ($session->get('uid') !== null) {
+            return error_json(400, '你已经登录过了');
+        }
+
+        $email = $request->post('email', 'null');
+        $password = $request->post('password');
+        $user = User::getUser($email, ['id', 'password', 'allow_login']);
+
+        if (!all([$email, $password]) || $user === false) {
             return error_json(400, '用户不存在');
         }
-    }
+        if ($user->allow_login === 0) {
+            return error_json(403, '你不被允许登录你的账号');
+        }
+        if (!(md5($password) === $user->password)) {
+            return error_json(403, '账号或密码错误');
+        }
 
-    public function test(Request $request)
-    {
-        $session = $request->session();
-        $session->set('test', 'ok');
+        $token = random_string();
+        $session->put([
+            'uid' => $user->id,
+            'token' => $token
+        ]);
+        return json([
+            'code' => 0,
+            'message' => '完成',
+            'token' => $token
+        ])->cookie('flat_sess', $token);
     }
 }
