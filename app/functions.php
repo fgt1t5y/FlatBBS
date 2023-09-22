@@ -22,7 +22,14 @@ function all(array $value)
     return true;
 }
 
-function error_json(int $code, mixed $json): Response
+function error_json(int $code, string $message): Response
 {
-    return new Response($code, ['Content-Type' => 'application/json'], json_encode($json));
+    return new Response(
+        $code,
+        ['Content-Type' => 'application/json'],
+        json_encode([
+            'code' => $code,
+            'message' => $message
+        ])
+    );
 }
