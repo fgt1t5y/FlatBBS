@@ -1,4 +1,4 @@
-export interface LoginInfo {
+export interface LoginForm {
   email: string;
   password: string;
 }
