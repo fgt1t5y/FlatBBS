@@ -14,11 +14,11 @@ class AuthController
         $email = $request->post('email');
         $password = $request->post('password');
         if (!all([$username, $password, is_email($email)])) {
-            return error_json(400, '表单未完整填写');
+            return json_message(400, '表单未完整填写');
         }
 
         if (User::hasUser($email)) {
-            return error_json(400, '此邮箱已被注册');
+            return json_message(400, '此邮箱已被注册');
         }
 
         try {
@@ -29,7 +29,7 @@ class AuthController
                 'message' => '完成'
             ]);
         } catch (PDOException $e) {
-            return error_json(500, $e->getMessage());
+            return json_message(500, $e->getMessage());
         }
     }
 
@@ -38,7 +38,7 @@ class AuthController
         $session = $request->session();
 
         if ($session->get('uid') !== null) {
-            return error_json(400, '你已经登录过了');
+            return json_message(400, '你已经登录过了');
         }
 
         $email = $request->post('email', 'null');
@@ -46,13 +46,13 @@ class AuthController
         $user = User::getUser($email, ['id', 'password', 'allow_login']);
 
         if (!all([$email, $password]) || $user === false) {
-            return error_json(400, '用户不存在');
+            return json_message(400, '用户不存在');
         }
         if ($user->allow_login === 0) {
-            return error_json(403, '你不被允许登录你的账号');
+            return json_message(403, '你不被允许登录你的账号');
         }
         if (!(md5($password) === $user->password)) {
-            return error_json(403, '账号或密码错误');
+            return json_message(403, '账号或密码错误');
         }
 
         $token = random_string();

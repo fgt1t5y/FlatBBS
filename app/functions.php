@@ -22,10 +22,10 @@ function all(array $value)
     return true;
 }
 
-function error_json(int $code, string $message): Response
+function json_message(int $code, string $message): Response
 {
     return new Response(
-        $code,
+        200,
         ['Content-Type' => 'application/json'],
         json_encode([
             'code' => $code,
