@@ -43,7 +43,7 @@ return [
         ]
     ],
 
-    'session_name' => 'PHPSID',
+    'session_name' => '_flat_sid',
 
     'auto_update_timestamp' => false,
 
