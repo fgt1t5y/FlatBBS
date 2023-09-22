@@ -1,5 +1,9 @@
 export interface LoginInfo {
   email: string;
   password: string;
-  aaa: string;
+}
+
+export interface RequestResult {
+  code: number;
+  message: string;
 }
