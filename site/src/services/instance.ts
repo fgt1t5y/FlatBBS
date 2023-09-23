@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const requester = axios.create({
   baseURL: import.meta.env.VITE_FLAT_BASE,
   timeout: 2333,
@@ -19,7 +20,7 @@ requester.interceptors.request.use(
 requester.interceptors.response.use(
   (res) => {
     console.log(res);
-    return res.data;
+    return res;
   },
   (error) => {
     console.log(error);

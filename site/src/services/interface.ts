@@ -6,4 +6,6 @@ export interface LoginForm {
 export interface RequestResult {
   code: number;
   message: string;
+  data?: any;
+  token?: string;
 }

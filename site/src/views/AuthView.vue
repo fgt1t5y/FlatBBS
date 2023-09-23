@@ -13,9 +13,10 @@
         :model="form"
         layout="vertical"
         :disabled="isDealing"
+        @submit-success="actionLogin"
       >
         <FormItem label="电子邮箱地址" field="email">
-          <Input v-model="form.email" />
+          <Input autofocus v-model="form.email" />
         </FormItem>
         <FormItem label="密码" field="password">
           <Input type="password" v-model="form.password" />
@@ -56,6 +57,7 @@
 </template>
 
 <script setup lang="ts">
+import { login } from "@/services/auth";
 import {
   Card,
   Form,
@@ -65,9 +67,9 @@ import {
   Radio,
   RadioGroup,
   type FieldRule,
+  Message,
 } from "@arco-design/web-vue";
-import { ref } from "vue";
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
 
 const isLoginMode = ref<boolean>(true);
 const isDealing = ref<boolean>(false);
@@ -114,7 +116,6 @@ const registerRule: Record<string, FieldRule> = {
   },
   password_again: {
     required: true,
-    message: "请再次填写你的密码。",
     maxLength: 64,
     minLength: 8,
     validator: (v: string, cb) => {
@@ -124,6 +125,14 @@ const registerRule: Record<string, FieldRule> = {
       }
     },
   },
+};
+
+const actionLogin = () => {
+  login(form.email, form.password).then((res) => {
+    if (res.data.code > 0) {
+      Message.error(res.data.message);
+    }
+  });
 };
 </script>
 
