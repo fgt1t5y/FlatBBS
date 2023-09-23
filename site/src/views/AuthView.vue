@@ -53,11 +53,12 @@
         </FormItem>
       </Form>
     </div>
+    <Button @click="actionLogout">Logout</Button>
   </Card>
 </template>
 
 <script setup lang="ts">
-import { login } from "@/services/auth";
+import { login, logout } from "@/services/auth";
 import {
   Card,
   Form,
@@ -133,6 +134,10 @@ const actionLogin = () => {
       Message.error(res.data.message);
     }
   });
+};
+
+const actionLogout = () => {
+  logout();
 };
 </script>
 
