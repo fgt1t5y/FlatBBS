@@ -8,7 +8,5 @@ export const login = async (email: string, password: string) => {
     password: password,
   });
 
-  requester.post<RequestResult>("/auth/login", form).then((res) => {
-    return res.data;
-  });
+  return requester.post<RequestResult>("/auth/login", form);
 };
