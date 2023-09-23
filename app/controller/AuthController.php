@@ -37,7 +37,7 @@ class AuthController
     {
         $session = $request->session();
 
-        if ($session->get('uid') !== null) {
+        if (is_login($session, $request->cookie('flat_sess'))) {
             return json_message(400, '你已经登录过了');
         }
 
@@ -60,10 +60,23 @@ class AuthController
             'uid' => $user->id,
             'token' => $token
         ]);
+        $user->last_login_at = date('Y-m-d H:i:s');
+        $user->save();
+
         return json([
             'code' => 0,
             'message' => '完成',
             'token' => $token
-        ])->cookie('flat_sess', $token);
+        ])->cookie('flat_sess', $token, 14400, '/');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+
+        return json([
+            'code' => 0,
+            'message' => '完成',
+        ])->cookie('flat_sess', '', 0, '/');
     }
 }

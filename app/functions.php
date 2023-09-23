@@ -1,6 +1,7 @@
 <?php
 
 use support\Response;
+use Workerman\Protocols\Http\Session;
 
 function is_email(string $email)
 {
@@ -44,4 +45,19 @@ function random_string()
     }
 
     return $result;
+}
+
+function is_login(Session $session, $token)
+{
+    $server_token = $session->get('token');
+    if ($server_token === null) {
+        return false;
+    }
+
+    if ($server_token === $token) {
+        return true;
+    }
+
+    $session->flush();
+    return false;
 }
