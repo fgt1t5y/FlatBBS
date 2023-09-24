@@ -31,10 +31,10 @@ class User extends Model
         bool $allow_login,
     ) {
         $user = new self();
-        $user->email = $email;
+        $user->email = strtolower(trim($email));
         $user->password = md5($password);
         $user->username = $username;
-        $user->allow_login = !!$allow_login;
+        $user->allow_login = $allow_login ? 1 : 0;
 
         return $user;
     }

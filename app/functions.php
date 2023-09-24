@@ -5,6 +5,10 @@ use Workerman\Protocols\Http\Session;
 
 function is_email(string $email)
 {
+    if (strlen($email) > 64) {
+        return false;
+    }
+
     if (preg_match('/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/', $email)) {
         return true;
     }
