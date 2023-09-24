@@ -44,7 +44,7 @@ return [
 
     'auto_update_timestamp' => false,
 
-    'lifetime' => 7 * 24 * 60 * 30,
+    'lifetime' => 43200,
 
     'cookie_lifetime' => 365 * 24 * 60 * 60,
 

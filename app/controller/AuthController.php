@@ -67,7 +67,7 @@ class AuthController
             'code' => 0,
             'message' => '完成',
             'token' => $token
-        ])->cookie('flat_sess', $token, 14400, '/');
+        ])->cookie('flat_sess', $token, 43200, '/');
     }
 
     public function logout(Request $request)
