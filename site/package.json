@@ -13,7 +13,9 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.4",
     "axios": "^1.5.0",
+    "js-cookie": "^3.0.5",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"

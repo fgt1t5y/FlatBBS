@@ -68,7 +68,6 @@ import {
   Radio,
   RadioGroup,
   type FieldRule,
-  Message,
 } from "@arco-design/web-vue";
 import { ref, reactive } from "vue";
 
@@ -129,10 +128,9 @@ const registerRule: Record<string, FieldRule> = {
 };
 
 const actionLogin = () => {
-  login(form.email, form.password).then((res) => {
-    if (res.data.code > 0) {
-      Message.error(res.data.message);
-    }
+  isDealing.value = true;
+  login(form.email, form.password).then(() => {
+    isDealing.value = false;
   });
 };
 

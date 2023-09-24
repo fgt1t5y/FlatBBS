@@ -1,7 +1,7 @@
 {
   "folders": [
     {
-      "path": "site"
+      "path": "./site"
     }
   ],
   "settings": {

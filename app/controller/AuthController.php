@@ -58,7 +58,8 @@ class AuthController
         $token = random_string();
         $session->put([
             'uid' => $user->id,
-            'token' => $token
+            'token' => $token,
+            'email' => $email
         ]);
         $user->last_login_at = date('Y-m-d H:i:s');
         $user->save();

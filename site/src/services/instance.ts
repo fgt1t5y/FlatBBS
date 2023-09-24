@@ -1,5 +1,6 @@
-import axios from "axios";
-
+import axios, { type AxiosResponse } from "axios";
+import type { RequestResult } from "./interface";
+import { Message } from "@arco-design/web-vue";
 
 export const requester = axios.create({
   baseURL: import.meta.env.VITE_FLAT_BASE,
@@ -18,8 +19,11 @@ requester.interceptors.request.use(
 );
 
 requester.interceptors.response.use(
-  (res) => {
+  (res: AxiosResponse<RequestResult>) => {
     console.log(res);
+    if (res.data.code > 0) {
+      Message.error(res.data.message);
+    }
     return res;
   },
   (error) => {

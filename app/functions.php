@@ -44,7 +44,7 @@ function random_string()
     $unit = ['a', 'b', 'c', 'd', 'e', 'f', 'g', '1', '2', '3', '4', '5'];
     $result = '';
 
-    for ($i = 0; $i < 16; $i++) {
+    for ($i = 0; $i < 32; $i++) {
         $result = $result . $unit[random_int(0, 9)];
     }
 

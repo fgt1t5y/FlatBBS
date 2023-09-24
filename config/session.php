@@ -40,7 +40,7 @@ return [
         ]
     ],
 
-    'session_name' => '_flat_sid',
+    'session_name' => 'flat_sess_id',
 
     'auto_update_timestamp' => false,
 

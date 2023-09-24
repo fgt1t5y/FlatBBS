@@ -5,3 +5,5 @@
 .env
 /tests/tmp
 /tests/.phpunit.result.cache
+
+dump.rdb
