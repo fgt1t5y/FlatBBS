@@ -18,11 +18,9 @@ class Auth implements MiddlewareInterface
             $session = $request->session();
             if (!is_login($session, $request->cookie('flat_sess'))) {
                 return json_message(401, '请登录');
-            } else {
-                return $handle($request);
             }
-        } else {
-            return $handle($request);
         }
+
+        return $handle($request);
     }
 }

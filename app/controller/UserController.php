@@ -11,8 +11,8 @@ class UserController
     {
         $session = $request->session();
 
-        return User::getUser(
-            $session->get('email'),
+        return User::find(
+            $session->get('uid'),
             ['id', 'email', 'username', 'avatar_uri']
         );
     }
