@@ -14,7 +14,8 @@
           <IconSearch />
         </template>
       </Input>
-      <RouterLink to="/auth">
+      <Avatar :size="32" v-if="isLogin"></Avatar>
+      <RouterLink to="/auth" v-else>
         <Button type="primary">注册 / 登录</Button>
       </RouterLink>
     </Space>
@@ -22,9 +23,27 @@
 </template>
 
 <script setup lang="ts">
-import { TypographyTitle, Input, Button, Space } from "@arco-design/web-vue";
+import {
+  TypographyTitle,
+  Input,
+  Button,
+  Space,
+  Avatar,
+} from "@arco-design/web-vue";
 import { IconSearch } from "@arco-design/web-vue/es/icon";
 import { RouterLink } from "vue-router";
+
+defineOptions({
+  name: "Navbar",
+});
+
+interface NavbarProps {
+  isLogin: boolean;
+}
+
+const props = withDefaults(defineProps<NavbarProps>(), {
+  isLogin: false,
+});
 </script>
 
 <style>
