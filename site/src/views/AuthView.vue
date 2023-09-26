@@ -129,9 +129,13 @@ const registerRule: Record<string, FieldRule> = {
 
 const actionLogin = () => {
   isDealing.value = true;
-  login(form.email, form.password).then(() => {
-    isDealing.value = false;
-  });
+  login(form.email, form.password)
+    .then(() => {
+      isDealing.value = false;
+    })
+    .finally(() => {
+      isDealing.value = false;
+    });
 };
 
 const actionLogout = () => {

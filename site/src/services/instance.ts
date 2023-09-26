@@ -13,6 +13,7 @@ requester.interceptors.request.use(
     return config;
   },
   (error) => {
+    Message.error("出现错误：请求未发出。");
     console.log(error);
     return Promise.reject(error);
   }
@@ -27,6 +28,7 @@ requester.interceptors.response.use(
     return res;
   },
   (error) => {
+    Message.error("网络或服务器出现问题。");
     console.log(error);
     return Promise.reject(error);
   }
