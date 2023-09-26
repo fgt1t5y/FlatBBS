@@ -11,9 +11,15 @@ class UserController
     {
         $session = $request->session();
 
-        return User::find(
+        $userinfo = User::find(
             $session->get('uid'),
             ['id', 'email', 'username', 'avatar_uri']
         );
+
+        return json([
+            'code' => 0,
+            'data' => $userinfo,
+            'message' => '完成',
+        ]);
     }
 }

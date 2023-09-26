@@ -3,9 +3,9 @@ export interface LoginForm {
   password: string;
 }
 
-export interface RequestResult {
+export interface RequestResult<T = any> {
   code: number;
   message: string;
-  data?: any;
+  data?: T;
   token?: string;
 }

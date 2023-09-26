@@ -27,14 +27,15 @@ function all(array $value)
     return true;
 }
 
-function json_message(int $code, string $message): Response
+function json_message(int $code, string $message, mixed $data = null): Response
 {
     return new Response(
         200,
         ['Content-Type' => 'application/json'],
         json_encode([
             'code' => $code,
-            'message' => $message
+            'message' => $message,
+            'data' => $data
         ])
     );
 }
