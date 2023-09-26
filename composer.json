@@ -1,18 +1,18 @@
 {
-  "name": "workerman/webman",
+  "name": "flatbbs/backend",
   "type": "project",
   "keywords": [
-    "high performance",
-    "http service"
+    "forum",
+    "discussion"
   ],
-  "homepage": "https://www.workerman.net",
+  "homepage": "https://github.com/fgt1t5y/FlatBBS",
   "license": "MIT",
-  "description": "High performance HTTP Service Framework.",
+  "description": "A fast and modern forum application",
   "authors": [
     {
-      "name": "walkor",
-      "email": "walkor@workerman.net",
-      "homepage": "https://www.workerman.net",
+      "name": "fgt1t5y",
+      "email": "fgt1t5y@163.com",
+      "homepage": "https://github.com/fgt1t5y",
       "role": "Developer"
     }
   ],
@@ -24,10 +24,12 @@
     "source": "https://github.com/walkor/webman"
   },
   "require": {
-    "php": ">=7.2",
+    "php": ">=8.0",
     "workerman/webman-framework": "^1.5.0",
     "monolog/monolog": "^2.0",
-    "illuminate/database": "^10.24"
+    "illuminate/database": "^10.24",
+    "illuminate/support": "^10.24",
+    "intervention/image": "^2.7"
   },
   "suggest": {
     "ext-event": "For better performance. "
