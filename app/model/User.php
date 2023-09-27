@@ -28,6 +28,7 @@ class User extends Model
         string $email,
         string $username,
         string $password,
+        string $avatar_uri,
         bool $allow_login,
     ) {
         $user = new self();

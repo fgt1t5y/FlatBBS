@@ -4,7 +4,9 @@ namespace app\controller;
 
 use support\Request;
 use app\model\User;
-use PDOException;
+use Exception;
+// use PDOException;
+use Intervention\Image\ImageManagerStatic as image;
 
 class AuthController
 {
@@ -22,13 +24,22 @@ class AuthController
         }
 
         try {
-            $user = User::newUser($email, $username, $password, true);
+            $avatar_filename = random_string() . '.png';
+            $avatar = image::make('public/DefaultAvatar.png');
+            $avatar->save("public/usercontent/avatar/{$avatar_filename}", 60);
+            $user = User::newUser(
+                $email,
+                $username,
+                $password,
+                $avatar_filename,
+                true
+            );
             $user->saveOrFail();
             return json([
                 'code' => 0,
                 'message' => '完成'
             ]);
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             return json_message(500, $e->getMessage());
         }
     }
