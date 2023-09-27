@@ -35,6 +35,7 @@ class User extends Model
         $user->email = strtolower(trim($email));
         $user->password = md5($password);
         $user->username = $username;
+        $user->avatar_uri = $avatar_uri;
         $user->allow_login = $allow_login ? 1 : 0;
 
         return $user;
