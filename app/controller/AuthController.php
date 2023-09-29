@@ -59,11 +59,11 @@ class AuthController
         if (!all([$email, $password]) || $user === false) {
             return json_message(400, '用户不存在');
         }
-        if ($user->allow_login === 0) {
-            return json_message(403, '你不被允许登录你的账号');
-        }
         if (!(md5($password) === $user->password)) {
             return json_message(403, '账号或密码错误');
+        }
+        if ($user->allow_login === 0) {
+            return json_message(403, '你不被允许登录你的账号');
         }
 
         $token = random_string();
