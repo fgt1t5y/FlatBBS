@@ -14,10 +14,14 @@
           <template #prefix>
             <IconSearch />
           </template>
+          <template #suffix>
+            <kbd>/</kbd>
+          </template>
         </Input>
-        <Avatar :size="32" v-if="user.isLogin">
-          <img :src="user.info.avatar_uri" alt="avatar"
-        /></Avatar>
+        <Popover v-if="user.isLogin" position="br" trigger="click">
+          <Avatar :size="32" :image-url="user.info.avatar_uri" />
+          <template #content>欢迎你，{{ user.info.username }} </template>
+        </Popover>
         <RouterLink to="/auth" v-else>
           <Button type="primary">注册 / 登录</Button>
         </RouterLink>
@@ -34,6 +38,7 @@ import {
   Button,
   Space,
   Avatar,
+  Popover,
 } from "@arco-design/web-vue";
 import { IconSearch } from "@arco-design/web-vue/es/icon";
 import { RouterLink } from "vue-router";
@@ -56,6 +61,7 @@ const user = useUserStore();
 <style>
 .nav-container {
   border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-bg-2);
 }
 
 .nav {
@@ -65,7 +71,6 @@ const user = useUserStore();
   align-items: center;
   position: sticky;
   top: 0px;
-  background-color: var(--color-bg-2);
   justify-content: space-between;
   max-width: var(--page-max-width);
   margin: 0px auto;

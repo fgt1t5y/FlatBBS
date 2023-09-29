@@ -1,8 +1,22 @@
 .mob_hidden {
   display: none !important;
 }
+
 :root {
   --page-max-width: 960px;
+}
+
+.arco-avatar {
+  cursor: pointer;
+}
+
+kbd {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-neutral-3);
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
 }
 
 @media (max-width: 576px) {
