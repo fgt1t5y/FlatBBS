@@ -10,7 +10,7 @@
             <IconSearch />
           </template>
         </Button>
-        <Input placeholder="搜索...">
+        <Input ref="inputRef" :max-length="64" placeholder="搜索...">
           <template #prefix>
             <IconSearch />
           </template>
@@ -41,10 +41,24 @@ import {
   Popover,
 } from "@arco-design/web-vue";
 import { IconSearch } from "@arco-design/web-vue/es/icon";
+import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
 defineOptions({
   name: "Navbar",
+});
+
+let inputRef = ref<InstanceType<typeof Input>>();
+
+const focusInput = (ev: KeyboardEvent) => {
+  if (ev.key === "/") {
+    ev.preventDefault();
+    inputRef.value?.focus();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("keydown", focusInput);
 });
 
 interface NavbarProps {
