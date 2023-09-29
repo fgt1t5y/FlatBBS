@@ -12,8 +12,9 @@ import { useUserStore } from "./stores/user";
 
 const user = useUserStore();
 
-console.log(1);
-user.loadUserInfo();
+if (user.hasToken) {
+  user.loadUserInfo();
+}
 </script>
 
 <style>

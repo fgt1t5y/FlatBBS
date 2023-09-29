@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 import { login, logout } from "@/services/auth";
+import { useUserStore } from "@/stores/user";
 import {
   Card,
   Form,
@@ -127,11 +128,16 @@ const registerRule: Record<string, FieldRule> = {
   },
 };
 
+const user = useUserStore();
+
 const actionLogin = () => {
   isDealing.value = true;
   login(form.email, form.password)
-    .then(() => {
+    .then((res) => {
       isDealing.value = false;
+      if (res.data.code === 0) {
+        user.loadUserInfo();
+      }
     })
     .finally(() => {
       isDealing.value = false;

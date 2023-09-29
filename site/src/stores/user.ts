@@ -1,6 +1,6 @@
 import { getUserInfo } from "@/services/userinfo";
 import { defineStore } from "pinia";
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import Cookies from "js-cookie";
 
 interface UserInfo {
@@ -17,6 +17,7 @@ export const useUserStore = defineStore("user", () => {
     email: undefined,
     uid: undefined,
   });
+
   const isLogin = ref<boolean>(false);
 
   const hasToken = computed(() => {
