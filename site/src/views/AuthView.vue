@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { login, logout } from "@/services/auth";
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@/stores";
 import {
   Card,
   Form,

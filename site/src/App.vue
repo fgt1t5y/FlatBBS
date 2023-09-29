@@ -8,9 +8,10 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
-import { useUserStore } from "./stores/user";
+import { useUserStore, useTheme } from "./stores";
 
 const user = useUserStore();
+useTheme();
 
 if (user.hasToken) {
   user.loadUserInfo();

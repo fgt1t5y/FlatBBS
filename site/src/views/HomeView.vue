@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "@/stores/user";
+import { useUserStore } from "@/stores";
 import { Button } from "@arco-design/web-vue";
 
 const user = useUserStore();
