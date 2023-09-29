@@ -1,6 +1,9 @@
 .mob_hidden {
   display: none !important;
 }
+:root {
+  --page-max-width: 960px;
+}
 
 @media (max-width: 576px) {
   .nav-opt .arco-input-wrapper {

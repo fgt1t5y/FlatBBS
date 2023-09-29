@@ -25,6 +25,6 @@ body {
 
 #_flat {
   margin: 16px auto;
-  max-width: 960px;
+  max-width: var(--page-max-width);
 }
 </style>
