@@ -14,7 +14,9 @@
           <IconSearch />
         </template>
       </Input>
-      <Avatar :size="32" v-if="isLogin"></Avatar>
+      <Avatar :size="32" v-if="user.isLogin">
+        <img :src="user.info.avatar_uri" alt="avatar"
+      /></Avatar>
       <RouterLink to="/auth" v-else>
         <Button type="primary">注册 / 登录</Button>
       </RouterLink>
@@ -23,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from "@/stores/user";
 import {
   TypographyTitle,
   Input,
@@ -44,6 +47,8 @@ interface NavbarProps {
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
 });
+
+const user = useUserStore();
 </script>
 
 <style>
