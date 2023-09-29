@@ -1,5 +1,5 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar :is-login="user.isLogin"></Navbar>
   <main id="_flat">
     <RouterView />
   </main>

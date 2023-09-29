@@ -18,7 +18,7 @@
             <kbd>/</kbd>
           </template>
         </Input>
-        <Popover v-if="user.isLogin" position="br" trigger="click">
+        <Popover v-if="isLogin" position="br" trigger="click">
           <Avatar :size="32" :image-url="user.info.avatar_uri" />
           <template #content>欢迎你，{{ user.info.username }} </template>
         </Popover>
