@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import TopicList from "@/components/TopicList.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,20 @@ const router = createRouter({
       meta: {
         title: "首页",
       },
+      children: [
+        {
+          path: "",
+          component: TopicList,
+        },
+        {
+          path: "brand",
+          name: "brand",
+          component: TopicList,
+          meta: {
+            title: "论坛版块",
+          },
+        },
+      ],
     },
     {
       path: "/auth",

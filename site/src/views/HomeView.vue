@@ -1,13 +1,22 @@
 <template>
   <CommonGrid>
-    <template #sider>123</template>
-    <template #content>456</template>
+    <template #sider>
+      <Button type="primary">新主题</Button>
+      <RouterLink to="/brand">
+        <a href="#">版块</a>
+      </RouterLink>
+    </template>
+    <template #content>
+      <RouterView />
+    </template>
   </CommonGrid>
 </template>
 
 <script setup lang="ts">
 import CommonGrid from "@/components/CommonGrid.vue";
+import TopicList from "@/components/TopicList.vue";
 import { useUserStore } from "@/stores";
+import { Button } from "@arco-design/web-vue";
 
 const user = useUserStore();
 </script>

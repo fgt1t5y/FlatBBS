@@ -27,4 +27,8 @@ kbd {
   .mob_hidden {
     display: block !important;
   }
+
+  .grid-sider {
+    display: none;
+  }
 }
