@@ -1,14 +1,13 @@
 <template>
-  <Button type="primary" @click="test">Hello</Button>
+  <CommonGrid>
+    <template #sider>123</template>
+    <template #content>456</template>
+  </CommonGrid>
 </template>
 
 <script setup lang="ts">
+import CommonGrid from "@/components/CommonGrid.vue";
 import { useUserStore } from "@/stores";
-import { Button } from "@arco-design/web-vue";
 
 const user = useUserStore();
-
-const test = () => {
-  console.log(user.info.avatar_uri);
-};
 </script>
