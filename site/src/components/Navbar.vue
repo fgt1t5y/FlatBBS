@@ -18,18 +18,14 @@
             <kbd>/</kbd>
           </template>
         </Input>
-        <Popover
+        <Dropdown
           v-if="isLogin"
-          :popup-visible="userMenuShow"
           position="br"
           trigger="click"
+          class="user-menu"
           content-class="user-menu"
         >
-          <Avatar
-            :size="32"
-            :image-url="user.info.avatar_uri"
-            @click="userMenuShow = true"
-          />
+          <Avatar :size="32" :image-url="user.info.avatar_uri" />
           <template #content>
             <header>
               <Avatar :size="56" :image-url="user.info.avatar_uri" />
@@ -52,7 +48,7 @@
               </Doption>
             </main>
           </template>
-        </Popover>
+        </Dropdown>
         <RouterLink to="/auth" v-else>
           <Button type="primary">注册 / 登录</Button>
         </RouterLink>
@@ -70,7 +66,7 @@ import {
   Button,
   Space,
   Avatar,
-  Popover,
+  Dropdown,
   Doption,
   Divider,
 } from "@arco-design/web-vue";
@@ -109,14 +105,12 @@ const props = withDefaults(defineProps<NavbarProps>(), {
 });
 
 const user = useUserStore();
-const userMenuShow = ref<boolean>(false);
 
 const userMenuOptions = [
   {
     text: "设置",
     action: () => {
       console.log("click");
-      userMenuShow.value = !userMenuShow.value;
     },
   },
   {
@@ -153,7 +147,7 @@ const userMenuOptions = [
   margin: unset;
 }
 
-.user-menu {
+.user-menu .arco-dropdown {
   min-width: 300px;
   max-width: 40vw;
   padding: 8px !important;
@@ -165,7 +159,7 @@ const userMenuOptions = [
 
 .user-menu header {
   display: flex;
-  padding: 0px 12px;
+  padding: 8px 12px 0px 12px;
 }
 
 .user-menu main {
