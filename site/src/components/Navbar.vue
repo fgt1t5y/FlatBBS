@@ -43,6 +43,8 @@
               <Doption
                 v-for="options in userMenuOptions"
                 @click="options.action"
+                @keydown.enter="options.action"
+                tabindex="0"
               >
                 <div>{{ options.text }}</div>
               </Doption>
