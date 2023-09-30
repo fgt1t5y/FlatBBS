@@ -80,6 +80,14 @@ defineOptions({
   name: "Navbar",
 });
 
+interface NavbarProps {
+  isLogin: boolean;
+}
+interface UserMenuOptionsProps {
+  text: string;
+  action: (ev?: MouseEvent) => void;
+}
+
 const inputRef = ref<InstanceType<typeof Input>>();
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
@@ -107,14 +115,6 @@ const focusInput = (ev: KeyboardEvent) => {
 onMounted(() => {
   document.addEventListener("keydown", focusInput);
 });
-
-interface NavbarProps {
-  isLogin: boolean;
-}
-interface UserMenuOptionsProps {
-  text: string;
-  action: (ev?: MouseEvent) => void;
-}
 </script>
 
 <style>

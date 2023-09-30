@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import CommonGrid from "@/components/CommonGrid.vue";
-import TopicList from "@/components/TopicList.vue";
 import { useUserStore } from "@/stores";
 import { Button } from "@arco-design/web-vue";
 

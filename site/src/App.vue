@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar.vue";
 import { useUserStore, useTheme } from "./stores";
 
 const user = useUserStore();
-// useTheme();
+useTheme();
 
 if (user.hasToken) {
   user.loadUserInfo();
