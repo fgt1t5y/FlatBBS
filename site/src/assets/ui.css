@@ -29,6 +29,6 @@ kbd {
   }
 
   .grid-sider {
-    display: none;
+    display: none !important;
   }
 }

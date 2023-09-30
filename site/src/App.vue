@@ -2,6 +2,9 @@
   <Navbar :is-login="user.isLogin"></Navbar>
   <main id="_flat">
     <RouterView />
+    <div class="edit-window">
+      <TopicEditor v-model="topicDraft.content" />
+    </div>
   </main>
 </template>
 
@@ -9,8 +12,14 @@
 import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 import { useUserStore, useTheme } from "./stores";
+import TopicEditor from "./components/TopicEditor.vue";
+import { reactive } from "vue";
 
 const user = useUserStore();
+const topicDraft = reactive({
+  title: "",
+  content: "",
+});
 useTheme();
 
 if (user.hasToken) {
@@ -27,5 +36,15 @@ body {
 #_flat {
   margin: 16px auto;
   max-width: var(--page-max-width);
+}
+
+.edit-window {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  max-width: var(--page-max-width);
+  z-index: 100;
+  margin: 0px auto;
 }
 </style>
