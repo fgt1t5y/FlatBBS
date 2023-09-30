@@ -25,7 +25,7 @@
           class="user-menu"
           content-class="user-menu"
         >
-          <Avatar :size="32" :image-url="user.info.avatar_uri" />
+          <Avatar :size="32" :image-url="user.info.avatar_uri" tabindex="0" />
           <template #content>
             <header>
               <Avatar :size="56" :image-url="user.info.avatar_uri" />
@@ -78,7 +78,22 @@ defineOptions({
   name: "Navbar",
 });
 
-let inputRef = ref<InstanceType<typeof Input>>();
+const inputRef = ref<InstanceType<typeof Input>>();
+const props = withDefaults(defineProps<NavbarProps>(), {
+  isLogin: false,
+});
+const user = useUserStore();
+const userMenuOptions = [
+  {
+    text: "设置",
+    action: () => {
+      console.log("click");
+    },
+  },
+  {
+    text: "退出登录",
+  },
+] as UserMenuOptionsProps[];
 
 const focusInput = (ev: KeyboardEvent) => {
   if (ev.key === "/") {
@@ -94,29 +109,10 @@ onMounted(() => {
 interface NavbarProps {
   isLogin: boolean;
 }
-
 interface UserMenuOptionsProps {
   text: string;
   action: (ev?: MouseEvent) => void;
 }
-
-const props = withDefaults(defineProps<NavbarProps>(), {
-  isLogin: false,
-});
-
-const user = useUserStore();
-
-const userMenuOptions = [
-  {
-    text: "设置",
-    action: () => {
-      console.log("click");
-    },
-  },
-  {
-    text: "退出登录",
-  },
-] as UserMenuOptionsProps[];
 </script>
 
 <style>
