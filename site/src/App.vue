@@ -13,7 +13,7 @@ import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 import { useUserStore, useTheme } from "./stores";
 import TopicEditor from "./components/TopicEditor.vue";
-import { reactive } from "vue";
+import { reactive, ref, provide } from "vue";
 
 const user = useUserStore();
 const topicDraft = reactive({

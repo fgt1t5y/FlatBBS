@@ -52,7 +52,7 @@ watch(
   { deep: true }
 );
 
-defineExpose([wrapper.value]);
+defineExpose(wrapper.value);
 </script>
 
 <style></style>
