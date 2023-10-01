@@ -5,7 +5,6 @@ namespace app\controller;
 use support\Request;
 use app\model\User;
 use Exception;
-// use PDOException;
 use Intervention\Image\ImageManagerStatic as image;
 
 class AuthController
@@ -35,10 +34,7 @@ class AuthController
                 true
             );
             $user->saveOrFail();
-            return json([
-                'code' => 0,
-                'message' => '完成'
-            ]);
+            return json_message(0, '完成');
         } catch (Exception $e) {
             return json_message(500, $e->getMessage());
         }
@@ -75,20 +71,15 @@ class AuthController
         $user->last_login_at = date('Y-m-d H:i:s');
         $user->save();
 
-        return json([
-            'code' => 0,
-            'message' => '完成',
-            'token' => $token
-        ])->cookie('flat_sess', $token, 43200, '/');
+        return json_message(0, '完成')
+            ->cookie('flat_sess', $token, 43200, '/');
     }
 
     public function logout(Request $request)
     {
         $request->session()->flush();
 
-        return json([
-            'code' => 0,
-            'message' => '完成',
-        ])->cookie('flat_sess', '', 0, '/');
+        return json_message(0, '完成')
+            ->cookie('flat_sess', '', 0, '/');
     }
 }

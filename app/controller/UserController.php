@@ -16,10 +16,6 @@ class UserController
             ['id', 'email', 'username', 'avatar_uri']
         );
 
-        return json([
-            'code' => 0,
-            'data' => $userinfo,
-            'message' => '完成',
-        ]);
+        return json_message(0, '完成', $userinfo);
     }
 }

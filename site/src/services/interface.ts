@@ -7,5 +7,4 @@ export interface RequestResult<T = any> {
   code: number;
   message: string;
   data?: T;
-  token?: string;
 }
