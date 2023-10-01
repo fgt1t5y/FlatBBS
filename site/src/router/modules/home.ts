@@ -12,6 +12,7 @@ export const homeRoutes = [
     children: [
       {
         path: "",
+        name: "topics",
         component: TopicList,
       },
       {

@@ -3,7 +3,7 @@
   <main id="_flat">
     <RouterView />
     <div class="edit-window">
-      <TopicEditor v-model="topicDraft.content" />
+      <TopicEditor v-model:value="topicDraft.content" />
     </div>
   </main>
 </template>
