@@ -114,17 +114,17 @@
   color: #00f;
 }
 .cm-s-default .cm-variable-2 {
-  color: #05a;
+  color: rgb(49, 138, 228);
 }
 .cm-s-default .cm-variable-3,
 .cm-s-default .cm-type {
   color: #085;
 }
 .cm-s-default .cm-comment {
-  color: #a50;
+  color: rgb(209, 33, 209);
 }
 .cm-s-default .cm-string {
-  color: #a11;
+  color: rgb(226, 41, 41);
 }
 .cm-s-default .cm-string-2 {
   color: #f50;
@@ -149,7 +149,7 @@
   color: #999;
 }
 .cm-s-default .cm-link {
-  color: #00c;
+  color: rgb(48, 29, 219);
 }
 .cm-s-default .cm-error,
 .cm-invalidchar {
@@ -334,10 +334,10 @@ div.CodeMirror-dragcursors,
   visibility: visible;
 }
 .CodeMirror-selected {
-  background: #d9d9d9;
+  background: rgb(72, 75, 65);
 }
 .CodeMirror-focused .CodeMirror-selected {
-  background: #d7d4f0;
+  background: rgb(79, 82, 72);
 }
 .CodeMirror-crosshair {
   cursor: crosshair;
