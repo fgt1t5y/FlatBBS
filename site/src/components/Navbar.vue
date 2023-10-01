@@ -15,7 +15,7 @@
             <IconSearch />
           </template>
           <template #suffix>
-            <kbd>/</kbd>
+            <kbd>^K</kbd>
           </template>
         </Input>
         <Dropdown
@@ -106,7 +106,7 @@ const userMenuOptions = [
 ] as UserMenuOptionsProps[];
 
 const focusInput = (ev: KeyboardEvent) => {
-  if (ev.key === "/") {
+  if (ev.key === "k" && ev.ctrlKey) {
     ev.preventDefault();
     inputRef.value?.focus();
   }
