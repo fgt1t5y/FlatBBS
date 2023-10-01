@@ -689,3 +689,28 @@ span.CodeMirror-selectedtext {
 .tippy-box {
   font-size: 12px;
 }
+
+
+/* Block Style */
+
+.bytemd-body blockquote {
+	color: var(--color-text-1);
+	padding: 1px 23px;
+	margin: 22px 0;
+	border-left: 5px solid var(--color-neutral-4);
+	background-color: var(--color-neutral-3);
+}
+
+.bytemd-body hr {
+  margin: 2rem 0px;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.bytemd-body a {
+  color: rgb(48, 111, 255);
+}
+
+.bytemd-body a:visited {
+  color: rgb(104, 159, 255);
+}
