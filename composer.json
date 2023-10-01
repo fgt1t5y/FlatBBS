@@ -29,7 +29,9 @@
     "monolog/monolog": "^2.0",
     "illuminate/database": "^10.24",
     "illuminate/support": "^10.24",
-    "intervention/image": "^2.7"
+    "intervention/image": "^2.7",
+    "shopwwi/laravel-cache": "^1.0",
+    "illuminate/redis": "^10.25"
   },
   "suggest": {
     "ext-event": "For better performance. "
