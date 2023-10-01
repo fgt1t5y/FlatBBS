@@ -1,27 +1,26 @@
 <template>
-  <Editor :value="modelValue" @change="onValueChange" :locale="zh_Hans" />
+  <div ref="editor" class="editor"></div>
 </template>
 
 <script setup lang="ts">
-// @ts-expect-error
-import { Editor } from "@bytemd/vue-next";
+import { Editor } from "bytemd";
 import zh_Hans from "bytemd/locales/zh_Hans.json";
+import { ref } from "vue";
 
 defineOptions({
   name: "TopicEditor",
 });
-const emits = defineEmits<{
-  (e: "update:modelValue", v: string): void;
-}>();
 
 interface TopicEditorProps {
   modelValue: string;
 }
 
+const emits = defineEmits<{
+  (e: "update:modelValue", v: string): void;
+}>();
 const props = withDefaults(defineProps<TopicEditorProps>(), {
   modelValue: "",
 });
-
 const onValueChange = (value: string) => {
   emits("update:modelValue", value);
 };

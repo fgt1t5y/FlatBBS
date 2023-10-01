@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@bytemd/vue-next':
-    specifier: ^1.21.0
-    version: 1.21.0(vue@3.3.4)
   '@types/js-cookie':
     specifier: ^3.0.4
     version: 3.0.4
@@ -140,17 +137,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-
-  /@bytemd/vue-next@1.21.0(vue@3.3.4):
-    resolution: {integrity: sha512-0T60Pr6gJDxX7B44zli7kelGvLXogmskJL8H7iSUH1cRf1EJOmx+WbR/kS8A2we+BoqlcLmzAuCdvE+eeffW5w==}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      bytemd: 1.21.0
-      vue: 3.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@colors/colors@1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
