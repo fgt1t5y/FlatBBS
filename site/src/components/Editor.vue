@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<EditorProps>(), {
   value: "",
   sanitize: undefined,
   plugins: () => [],
-  mode: "split",
+  mode: "auto",
   locale: () => zh_Hans,
   placeholder: "输入话题内容...",
   editorConfig: () => {

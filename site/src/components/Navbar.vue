@@ -5,11 +5,9 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <Space class="nav-opt">
-        <Button class="mob_hidden">
-          <template #icon>
-            <IconSearch />
-          </template>
-        </Button>
+        <RouterLink to="/search" class="mob_hidden">
+          <IconSearch :size="20" />
+        </RouterLink>
         <Input ref="inputRef" :max-length="64" placeholder="搜索...">
           <template #prefix>
             <IconSearch />
@@ -53,7 +51,7 @@
               >
                 <div>{{ options.text }}</div>
               </Doption>
-              <Doption v-else>
+              <Doption v-else class="a-link">
                 <RouterLink to="/auth">登录 / 注册</RouterLink>
               </Doption>
             </main>
@@ -182,8 +180,17 @@ onMounted(() => {
   margin: unset;
 }
 
-.arco-dropdown-option-content a {
+.a-link .arco-dropdown-option-content {
+  width: 100%;
+}
+
+.a-link a {
   color: var(--color-text-1);
   text-decoration: none;
+  display: block;
+}
+
+a svg {
+  color: var(--color-text-1) !important;
 }
 </style>
