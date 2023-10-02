@@ -186,6 +186,10 @@ onMounted(() => {
   margin: unset;
 }
 
+.arco-avatar {
+  aspect-ratio: 1 / 1;
+}
+
 .a-link .arco-dropdown-option-content {
   width: 100%;
 }

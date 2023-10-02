@@ -1,16 +1,43 @@
 import { defineStore } from "pinia";
-import { get, getOrSet } from "./utils";
+import { getOrSet } from "./utils";
+import { ref } from "vue";
 
 const KEY_THEME_MODE = "flat_theme";
 type ThemeMode = "auto" | "light" | "dark";
 
 export const useTheme = defineStore("theme", () => {
-  const currentTheme = getOrSet(KEY_THEME_MODE, "auto") as ThemeMode;
-  const systemIsDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
+  const currentTheme = ref<ThemeMode>(
+    getOrSet(KEY_THEME_MODE, "auto") as ThemeMode
+  );
+  const sysMedia = window.matchMedia("(prefers-color-scheme: dark)");
+  let systemIsDark = sysMedia.matches;
 
-  if ((systemIsDark && currentTheme === "auto") || currentTheme === "dark") {
-    document.body.setAttribute("arco-theme", "dark");
-  }
+  const apply = (ev?: MediaQueryListEvent) => {
+    systemIsDark = ev?.matches ?? systemIsDark;
+    if (
+      (systemIsDark && currentTheme.value === "auto") ||
+      currentTheme.value === "dark"
+    ) {
+      document.body.setAttribute("arco-theme", "dark");
+    } else {
+      document.body.removeAttribute("arco-theme");
+    }
+  };
+
+  const toggleTheme = () => {
+    if (currentTheme.value === "auto") {
+      currentTheme.value = "light";
+    }
+    if (currentTheme.value === "light") {
+      currentTheme.value = "dark";
+    }
+
+    currentTheme.value = "auto";
+    apply();
+  };
+
+  sysMedia.addEventListener("change", apply);
+  apply();
+
+  return { toggleTheme };
 });
