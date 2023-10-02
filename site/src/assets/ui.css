@@ -1,5 +1,5 @@
-.mob_hidden {
-  display: none !important;
+.mob-hidden {
+  display: none;
 }
 
 :root {
@@ -24,8 +24,8 @@ kbd {
     display: none;
   }
 
-  .mob_hidden {
-    display: block !important;
+  .mob-hidden {
+    display: inherit !important;
   }
 
   .grid-sider {

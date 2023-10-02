@@ -2,7 +2,7 @@
   <Navbar :is-login="user.isLogin"></Navbar>
   <main id="_flat">
     <RouterView />
-    <div class="edit-window">
+    <div v-if="false" class="edit-window">
       <Editor v-model:value="topicDraft.content" />
     </div>
   </main>

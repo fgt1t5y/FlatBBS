@@ -4,8 +4,8 @@
       <RouterLink to="/" class="nav-brand">
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
-      <Space class="nav-opt">
-        <RouterLink to="/search" class="mob_hidden">
+      <div class="nav-opt" size="medium">
+        <RouterLink to="/search" class="mob-hidden">
           <IconSearch :size="20" />
         </RouterLink>
         <Input ref="inputRef" :max-length="64" placeholder="搜索...">
@@ -16,6 +16,9 @@
             <kbd>^K</kbd>
           </template>
         </Input>
+        <a href="#" class="a-link">
+          <IconSunFill :size="20" />
+        </a>
         <Dropdown
           position="br"
           trigger="click"
@@ -57,7 +60,7 @@
             </main>
           </template>
         </Dropdown>
-      </Space>
+      </div>
     </nav>
   </header>
 </template>
@@ -68,14 +71,11 @@ import {
   TypographyTitle,
   TypographyText,
   Input,
-  Button,
-  Space,
   Avatar,
   Dropdown,
   Doption,
-  Divider,
 } from "@arco-design/web-vue";
-import { IconSearch } from "@arco-design/web-vue/es/icon";
+import { IconSearch, IconSunFill } from "@arco-design/web-vue/es/icon";
 import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
@@ -146,6 +146,12 @@ onMounted(() => {
 
 .nav-brand h5 {
   margin: unset;
+}
+
+.nav-opt {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .user-menu .arco-dropdown {
