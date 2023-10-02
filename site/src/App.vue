@@ -3,7 +3,7 @@
   <main id="_flat">
     <RouterView />
     <div class="edit-window">
-      <TopicEditor v-model:value="topicDraft.content" />
+      <Editor v-model:value="topicDraft.content" />
     </div>
   </main>
 </template>
@@ -12,7 +12,7 @@
 import { RouterView } from "vue-router";
 import Navbar from "./components/Navbar.vue";
 import { useUserStore, useTheme } from "./stores";
-import TopicEditor from "./components/TopicEditor.vue";
+import Editor from "./components/Editor.vue";
 import { reactive } from "vue";
 
 const user = useUserStore();

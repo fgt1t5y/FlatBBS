@@ -8,7 +8,7 @@ import zh_Hans from "bytemd/locales/zh_Hans.json";
 import { ref, onMounted, watch } from "vue";
 
 defineOptions({
-  name: "TopicEditor",
+  name: "Editor",
 });
 
 const wrapper = ref<HTMLElement>();
