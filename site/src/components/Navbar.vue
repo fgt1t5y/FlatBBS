@@ -16,7 +16,7 @@
             <kbd>^K</kbd>
           </template>
         </Input>
-        <a class="icon-link">
+        <a class="icon-link" @click="toggleTheme">
           <IconSunFill :size="20" />
         </a>
         <Dropdown
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from "@/stores";
+import { useTheme, useUserStore } from "@/stores";
 import {
   TypographyTitle,
   TypographyText,
@@ -91,6 +91,7 @@ interface UserMenuOptionsProps {
   action: (ev?: MouseEvent) => void;
 }
 
+const { toggleTheme } = useTheme();
 const inputRef = ref<InstanceType<typeof Input>>();
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,

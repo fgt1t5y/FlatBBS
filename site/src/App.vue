@@ -1,5 +1,5 @@
 <template>
-  <Navbar :is-login="user.isLogin"></Navbar>
+  <Navbar :is-login="user.isLogin" />
   <main id="_flat">
     <RouterView />
     <div v-if="false" class="edit-window">

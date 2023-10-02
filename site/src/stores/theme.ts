@@ -6,6 +6,7 @@ const KEY_THEME_MODE = "flat_theme";
 type ThemeMode = "auto" | "light" | "dark";
 
 export const useTheme = defineStore("theme", () => {
+  const isInited = ref<boolean>(false);
   const currentTheme = ref<ThemeMode>(
     getOrSet(KEY_THEME_MODE, "auto") as ThemeMode
   );
@@ -24,21 +25,33 @@ export const useTheme = defineStore("theme", () => {
     }
   };
 
-  const toggleTheme = () => {
-    if (currentTheme.value === "auto") {
-      currentTheme.value = "light";
-    }
-    if (currentTheme.value === "light") {
-      currentTheme.value = "dark";
-    }
-    currentTheme.value = "auto";
-
+  const applyAndSava = () => {
     set(KEY_THEME_MODE, currentTheme.value);
+    console.log(currentTheme.value);
     apply();
   };
 
-  sysMedia.addEventListener("change", apply);
-  apply();
+  !isInited.value && sysMedia.addEventListener("change", apply);
+  !isInited.value && apply();
+  isInited.value = true;
+
+  const toggleTheme = () => {
+    if (currentTheme.value === "auto") {
+      currentTheme.value = "light";
+      applyAndSava();
+      return;
+    }
+    if (currentTheme.value === "light") {
+      currentTheme.value = "dark";
+      applyAndSava();
+      return;
+    }
+    if (currentTheme.value === "dark") {
+      currentTheme.value = "auto";
+      applyAndSava();
+      return;
+    }
+  };
 
   return { toggleTheme };
 });
