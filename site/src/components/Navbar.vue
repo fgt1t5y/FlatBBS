@@ -19,13 +19,18 @@
           </template>
         </Input>
         <Dropdown
-          v-if="isLogin"
           position="br"
           trigger="click"
           class="user-menu"
           content-class="user-menu"
         >
-          <Avatar :size="32" :image-url="user.info.avatar_uri" tabindex="0" />
+          <Avatar
+            v-if="isLogin"
+            :size="32"
+            :image-url="user.info.avatar_uri"
+            tabindex="0"
+          />
+          <Avatar v-else :size="32">登录</Avatar>
           <template #content>
             <header>
               <Avatar :size="56" :image-url="user.info.avatar_uri" />
@@ -38,9 +43,9 @@
                 }}</TypographyText>
               </div>
             </header>
-            <Divider />
             <main>
               <Doption
+                v-if="isLogin"
                 v-for="options in userMenuOptions"
                 @click="options.action"
                 @keydown.enter="options.action"
@@ -48,12 +53,12 @@
               >
                 <div>{{ options.text }}</div>
               </Doption>
+              <Doption v-else>
+                <RouterLink to="/auth">登录 / 注册</RouterLink>
+              </Doption>
             </main>
           </template>
         </Dropdown>
-        <RouterLink to="/auth" v-else>
-          <Button type="primary">注册 / 登录</Button>
-        </RouterLink>
       </Space>
     </nav>
   </header>
@@ -158,6 +163,7 @@ onMounted(() => {
 .user-menu header {
   display: flex;
   padding: 8px 12px 0px 12px;
+  margin-bottom: 12px;
 }
 
 .user-menu main {
@@ -174,5 +180,10 @@ onMounted(() => {
 
 .user-menu-info h5 {
   margin: unset;
+}
+
+.arco-dropdown-option-content a {
+  color: var(--color-text-1);
+  text-decoration: none;
 }
 </style>
