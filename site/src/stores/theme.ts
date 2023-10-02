@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getOrSet } from "./utils";
+import { getOrSet, set } from "./utils";
 import { ref } from "vue";
 
 const KEY_THEME_MODE = "flat_theme";
@@ -31,8 +31,9 @@ export const useTheme = defineStore("theme", () => {
     if (currentTheme.value === "light") {
       currentTheme.value = "dark";
     }
-
     currentTheme.value = "auto";
+
+    set(KEY_THEME_MODE, currentTheme.value);
     apply();
   };
 

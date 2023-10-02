@@ -16,7 +16,7 @@
             <kbd>^K</kbd>
           </template>
         </Input>
-        <a href="#" class="a-link">
+        <a class="icon-link">
           <IconSunFill :size="20" />
         </a>
         <Dropdown
@@ -54,7 +54,7 @@
               >
                 <div>{{ options.text }}</div>
               </Doption>
-              <Doption v-else class="a-link">
+              <Doption v-else class="menu-link">
                 <RouterLink to="/auth">登录 / 注册</RouterLink>
               </Doption>
             </main>
@@ -190,17 +190,28 @@ onMounted(() => {
   aspect-ratio: 1 / 1;
 }
 
-.a-link .arco-dropdown-option-content {
+.icon-link {
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon-link:hover {
+  background-color: var(--color-fill-2);
+}
+
+.menu-link .arco-dropdown-option-content {
   width: 100%;
 }
 
-.a-link a {
+.menu-link a,
+.icon-link a {
   color: var(--color-text-1);
   text-decoration: none;
   display: block;
 }
 
-a svg {
+.icon-link svg {
   color: var(--color-text-1) !important;
 }
 </style>
