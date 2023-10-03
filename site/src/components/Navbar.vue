@@ -17,7 +17,9 @@
           </template>
         </Input>
         <a class="icon-link" @click="toggleTheme">
-          <IconSunFill :size="20" />
+          <IconComputer v-if="theme === 'auto'" :size="20" />
+          <IconSun v-else-if="theme === 'light'" :size="20" />
+          <IconMoon v-else :size="20" />
         </a>
         <Dropdown
           position="br"
@@ -75,8 +77,13 @@ import {
   Dropdown,
   Doption,
 } from "@arco-design/web-vue";
-import { IconSearch, IconSunFill } from "@arco-design/web-vue/es/icon";
-import { onMounted, ref } from "vue";
+import {
+  IconSearch,
+  IconSun,
+  IconComputer,
+  IconMoon,
+} from "@arco-design/web-vue/es/icon";
+import { onMounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 
 defineOptions({
@@ -91,7 +98,7 @@ interface UserMenuOptionsProps {
   action: (ev?: MouseEvent) => void;
 }
 
-const { toggleTheme } = useTheme();
+const { theme, toggleTheme } = useTheme();
 const inputRef = ref<InstanceType<typeof Input>>();
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
@@ -119,6 +126,13 @@ const focusInput = (ev: KeyboardEvent) => {
 onMounted(() => {
   document.addEventListener("keydown", focusInput);
 });
+
+watch(
+  () => theme,
+  (v) => {
+    console.log(v);
+  }
+);
 </script>
 
 <style>
