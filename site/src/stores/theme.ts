@@ -42,18 +42,15 @@ export const useTheme = defineStore("theme", () => {
   const toggleTheme = () => {
     if (currentTheme.value === "auto") {
       currentTheme.value = "light";
-      applyAndSava();
-      return;
+      return applyAndSava();
     }
     if (currentTheme.value === "light") {
       currentTheme.value = "dark";
-      applyAndSava();
-      return;
+      return applyAndSava();
     }
     if (currentTheme.value === "dark") {
       currentTheme.value = "auto";
-      applyAndSava();
-      return;
+      return applyAndSava();
     }
   };
 

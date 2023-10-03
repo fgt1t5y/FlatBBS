@@ -30,19 +30,19 @@
           <Avatar
             v-if="isLogin"
             :size="32"
-            :image-url="user.info.avatar_uri"
+            :image-url="info.avatar_uri"
             tabindex="0"
           />
           <Avatar v-else :size="32">登录</Avatar>
           <template #content>
             <header>
-              <Avatar :size="56" :image-url="user.info.avatar_uri" />
+              <Avatar :size="56" :image-url="info.avatar_uri" />
               <div class="user-menu-info">
                 <TypographyTitle :heading="5">{{
-                  user.info.username
+                  info.username
                 }}</TypographyTitle>
                 <TypographyText type="secondary">{{
-                  user.info.email
+                  info.email
                 }}</TypographyText>
               </div>
             </header>
@@ -103,7 +103,7 @@ const inputRef = ref<InstanceType<typeof Input>>();
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
 });
-const user = useUserStore();
+const { info } = useUserStore();
 const userMenuOptions = [
   {
     text: "设置",
