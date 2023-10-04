@@ -17,6 +17,6 @@ class UserController
             return User::find($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
         });
 
-        return json_message(0, '完成', $userinfo);
+        return json_message(STATUS_OK, '完成', $userinfo);
     }
 }

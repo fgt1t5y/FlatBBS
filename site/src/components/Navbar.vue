@@ -147,7 +147,7 @@ watch(
 }
 
 .nav {
-  height: 45px;
+  height: 48px;
   padding: 0px 16px;
   display: flex;
   align-items: center;

@@ -15,11 +15,11 @@ class AuthController
         $email = $request->post('email');
         $password = $request->post('password');
         if (!all([$username, $password, is_email($email)])) {
-            return json_message(400, '表单未完整填写');
+            return json_message(STATUS_BAD_REQUEST, '表单未完整填写');
         }
 
         if (User::hasUser($email)) {
-            return json_message(400, '此邮箱已被注册');
+            return json_message(STATUS_BAD_REQUEST, '此邮箱已被注册');
         }
 
         try {
@@ -34,9 +34,9 @@ class AuthController
                 true
             );
             $user->saveOrFail();
-            return json_message(0, '完成');
+            return json_message(STATUS_OK, '完成');
         } catch (Exception $e) {
-            return json_message(500, $e->getMessage());
+            return json_message(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ class AuthController
         $session = $request->session();
 
         if (is_login($session, $request->cookie('flat_sess'))) {
-            return json_message(400, '你已经登录过了');
+            return json_message(STATUS_BAD_REQUEST, '你已经登录过了');
         }
 
         $email = $request->post('email', 'null');
@@ -53,13 +53,13 @@ class AuthController
         $user = User::getUser($email, ['id', 'password', 'allow_login']);
 
         if (!all([$email, $password]) || $user === false) {
-            return json_message(400, '用户不存在');
+            return json_message(STATUS_BAD_REQUEST, '用户不存在');
         }
         if (!(md5($password) === $user->password)) {
-            return json_message(403, '账号或密码错误');
+            return json_message(STATUS_FORBIDDEN, '账号或密码错误');
         }
         if ($user->allow_login === 0) {
-            return json_message(403, '你不被允许登录你的账号');
+            return json_message(STATUS_FORBIDDEN, '你不被允许登录你的账号');
         }
 
         $token = random_string();
@@ -71,7 +71,7 @@ class AuthController
         $user->last_login_at = date('Y-m-d H:i:s');
         $user->save();
 
-        return json_message(0, '完成')
+        return json_message(STATUS_OK, '完成')
             ->cookie('flat_sess', $token, 43200, '/');
     }
 
@@ -79,7 +79,7 @@ class AuthController
     {
         $request->session()->flush();
 
-        return json_message(0, '完成')
+        return json_message(STATUS_OK, '完成')
             ->cookie('flat_sess', '', 0, '/');
     }
 }
