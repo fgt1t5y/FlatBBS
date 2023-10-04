@@ -16,7 +16,11 @@
             <kbd>^K</kbd>
           </template>
         </Input>
-        <a class="icon-link" @click="toggleTheme">
+        <a
+          class="icon-link"
+          title="主题模式：跟随系统/浅色/暗色"
+          @click="toggleTheme"
+        >
           <IconComputer v-if="theme === 'auto'" :size="20" />
           <IconSun v-else-if="theme === 'light'" :size="20" />
           <IconMoon v-else :size="20" />
@@ -32,6 +36,7 @@
             :size="32"
             :image-url="info.avatar_uri"
             tabindex="0"
+            title="用户菜单"
           />
           <Avatar v-else :size="32">登录</Avatar>
           <template #content>
