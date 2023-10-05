@@ -5,7 +5,7 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <div class="nav-opt" size="medium">
-        <RouterLink to="/search" class="mob-hidden icon-link">
+        <RouterLink to="/" class="mob-hidden icon-link">
           <IconSearch :size="20" />
         </RouterLink>
         <Input ref="inputRef" :max-length="64" placeholder="搜索...">
@@ -35,7 +35,6 @@
             v-if="isLogin"
             :size="32"
             :image-url="info.avatar_uri"
-            tabindex="0"
             title="用户菜单"
           />
           <Avatar v-else :size="32">登录</Avatar>
@@ -55,14 +54,17 @@
               <Doption
                 v-if="isLogin"
                 v-for="options in userMenuOptions"
-                @click="options.action"
-                @keydown.enter="options.action"
                 tabindex="0"
+                class="menu-link"
               >
-                <div>{{ options.text }}</div>
+                <RouterLink :to="options.to">{{ options.text }}</RouterLink>
               </Doption>
-              <Doption v-else class="menu-link">
-                <RouterLink to="/auth">登录 / 注册</RouterLink>
+              <Doption
+                v-else
+                v-for="options in guestMenuOptions"
+                class="menu-link"
+              >
+                <RouterLink :to="options.to">{{ options.text }}</RouterLink>
               </Doption>
             </main>
           </template>
@@ -100,7 +102,7 @@ interface NavbarProps {
 }
 interface UserMenuOptionsProps {
   text: string;
-  action: (ev?: MouseEvent) => void;
+  to: string;
 }
 
 const { theme, toggleTheme } = useTheme();
@@ -112,12 +114,17 @@ const { info } = useUserStore();
 const userMenuOptions = [
   {
     text: "设置",
-    action: () => {
-      console.log("click");
-    },
+    to: "/settings",
   },
   {
     text: "退出登录",
+    to: "/",
+  },
+] as UserMenuOptionsProps[];
+const guestMenuOptions = [
+  {
+    text: "登录 / 注册",
+    to: "/auth",
   },
 ] as UserMenuOptionsProps[];
 
@@ -131,13 +138,6 @@ const focusInput = (ev: KeyboardEvent) => {
 onMounted(() => {
   document.addEventListener("keydown", focusInput);
 });
-
-watch(
-  () => theme,
-  (v) => {
-    console.log(v);
-  }
-);
 </script>
 
 <style>
