@@ -1,6 +1,6 @@
 <template>
   <Row>
-    <Col flex="200px" class="grid-sider">
+    <Col flex="200px" :class="siderClass">
       <slot name="sider" />
     </Col>
     <Col flex="auto">
@@ -11,19 +11,34 @@
 
 <script setup lang="ts">
 import { Row, Col } from "@arco-design/web-vue";
+import { computed } from "vue";
 
 defineOptions({
   name: "CommonGrid",
 });
+
+interface CommonGridProps {
+  siderPosition: "left" | "right";
+}
+
+const props = withDefaults(defineProps<CommonGridProps>(), {
+  siderPosition: "left",
+});
+const siderClass = computed(() => {
+  return {
+    "grid-sider": true,
+    "grid-revert": props.siderPosition === "right",
+  };
+});
 </script>
 
 <style>
-.arco-col:first-child {
-  padding-right: 8px;
+.arco-col {
+  padding: 0px 8px;
 }
 
-.arco-col:last-child {
-  padding-left: 8px;
+.grid-revert {
+  order: 1;
 }
 
 .grid-sider {

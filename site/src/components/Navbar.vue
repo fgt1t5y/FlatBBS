@@ -90,7 +90,7 @@ import {
   IconComputer,
   IconMoon,
 } from "@arco-design/web-vue/es/icon";
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { RouterLink } from "vue-router";
 
 defineOptions({
