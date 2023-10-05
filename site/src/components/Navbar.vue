@@ -5,7 +5,7 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <div class="nav-opt" size="medium">
-        <RouterLink to="/search" class="mob-hidden">
+        <RouterLink to="/search" class="mob-hidden icon-link">
           <IconSearch :size="20" />
         </RouterLink>
         <Input ref="inputRef" :max-length="64" placeholder="搜索...">
