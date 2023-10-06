@@ -1,5 +1,6 @@
-.mob-hidden {
-  display: none;
+body {
+  background-color: var(--color-bg-1);
+  color: var(--color-text-1);
 }
 
 :root {
@@ -10,6 +11,10 @@
   cursor: pointer;
 }
 
+.mob-hidden {
+  display: none;
+}
+
 kbd {
   width: 1rem;
   height: 1rem;
@@ -17,6 +22,15 @@ kbd {
   border-radius: 4px;
   padding: 2px;
   text-align: center;
+}
+
+fieldset {
+  border: 1px solid var(--color-neutral-3);
+}
+
+legend {
+  font-size: 1rem;
+  color: var(--color-text-1);
 }
 
 @media (max-width: 576px) {

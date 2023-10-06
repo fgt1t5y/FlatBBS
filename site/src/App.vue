@@ -28,11 +28,6 @@ if (user.hasToken) {
 </script>
 
 <style>
-body {
-  background-color: var(--color-bg-1);
-  color: var(--color-text-2);
-}
-
 #_flat {
   margin: 16px auto;
   max-width: var(--page-max-width);

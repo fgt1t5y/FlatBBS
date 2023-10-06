@@ -33,8 +33,8 @@ const siderClass = computed(() => {
 </script>
 
 <style>
-.arco-col {
-  padding: 0px 8px;
+.arco-row {
+  gap: 16px;
 }
 
 .grid-revert {
