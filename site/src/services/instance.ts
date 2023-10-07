@@ -1,6 +1,6 @@
-import axios, { type AxiosResponse } from "axios";
-import type { RequestResult } from "./interface";
-import { Message } from "@arco-design/web-vue";
+import axios, { type AxiosResponse } from 'axios';
+import type { RequestResult } from './interface';
+import { Message } from '@arco-design/web-vue';
 
 export const requester = axios.create({
   baseURL: import.meta.env.VITE_FLAT_BASE,
@@ -13,10 +13,10 @@ requester.interceptors.request.use(
     return config;
   },
   (error) => {
-    Message.error("出现错误：请求未发出。");
+    Message.error('出现错误：请求未发出。');
     console.log(error);
     return Promise.reject(error);
-  }
+  },
 );
 
 requester.interceptors.response.use(
@@ -28,8 +28,8 @@ requester.interceptors.response.use(
     return res;
   },
   (error) => {
-    Message.error("网络或服务器出现问题。");
+    Message.error('网络或服务器出现问题。');
     console.log(error);
     return Promise.reject(error);
-  }
+  },
 );

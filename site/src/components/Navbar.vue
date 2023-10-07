@@ -42,30 +42,33 @@
             <header>
               <Avatar :size="56" :image-url="info.avatar_uri" />
               <div class="user-menu-info">
-                <TypographyTitle :heading="5">{{
-                  info.username ?? "未登录"
-                }}</TypographyTitle>
-                <TypographyText type="secondary">{{
-                  info.email
-                }}</TypographyText>
+                <TypographyTitle :heading="5">
+                  {{ info.username ?? '未登录' }}
+                </TypographyTitle>
+                <TypographyText type="secondary">
+                  {{ info.email }}
+                </TypographyText>
               </div>
             </header>
             <main>
-              <Doption
-                v-if="isLogin"
-                v-for="options in userMenuOptions"
-                tabindex="0"
-                class="menu-link"
-              >
-                <RouterLink :to="options.to">{{ options.text }}</RouterLink>
-              </Doption>
-              <Doption
-                v-else
-                v-for="options in guestMenuOptions"
-                class="menu-link"
-              >
-                <RouterLink :to="options.to">{{ options.text }}</RouterLink>
-              </Doption>
+              <div v-if="isLogin">
+                <Doption
+                  v-for="options in userMenuOptions"
+                  :key="options.i"
+                  class="menu-link"
+                >
+                  <RouterLink :to="options.to">{{ options.text }}</RouterLink>
+                </Doption>
+              </div>
+              <div v-else>
+                <Doption
+                  v-for="options in guestMenuOptions"
+                  :key="options.i"
+                  class="menu-link"
+                >
+                  <RouterLink :to="options.to">{{ options.text }}</RouterLink>
+                </Doption>
+              </div>
             </main>
           </template>
         </Dropdown>
@@ -75,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme, useUserStore } from "@/stores";
+import { useTheme, useUserStore } from '@/stores'
 import {
   TypographyTitle,
   TypographyText,
@@ -83,61 +86,64 @@ import {
   Avatar,
   Dropdown,
   Doption,
-} from "@arco-design/web-vue";
+} from '@arco-design/web-vue'
 import {
   IconSearch,
   IconSun,
   IconComputer,
   IconMoon,
-} from "@arco-design/web-vue/es/icon";
-import { onMounted, ref } from "vue";
-import { RouterLink } from "vue-router";
+} from '@arco-design/web-vue/es/icon'
+import { onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 defineOptions({
-  name: "Navbar",
-});
+  name: 'Navbar',
+})
 
 interface NavbarProps {
-  isLogin: boolean;
+  isLogin: boolean
 }
 interface UserMenuOptionsProps {
-  text: string;
-  to: string;
+  i: number
+  text: string
+  to: string
 }
 
-const { theme, toggleTheme } = useTheme();
-const inputRef = ref<InstanceType<typeof Input>>();
+const { theme, toggleTheme } = useTheme()
+const inputRef = ref<InstanceType<typeof Input>>()
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
-});
-const { info } = useUserStore();
+})
+const { info } = useUserStore()
 const userMenuOptions = [
   {
-    text: "设置",
-    to: "/settings",
+    i: 0,
+    text: '设置',
+    to: '/settings',
   },
   {
-    text: "退出登录",
-    to: "/",
+    i: 1,
+    text: '退出登录',
+    to: '/',
   },
-] as UserMenuOptionsProps[];
+] as UserMenuOptionsProps[]
 const guestMenuOptions = [
   {
-    text: "登录 / 注册",
-    to: "/auth",
+    text: '登录 / 注册',
+    to: '/auth',
   },
-] as UserMenuOptionsProps[];
+] as UserMenuOptionsProps[]
 
 const focusInput = (ev: KeyboardEvent) => {
-  if (ev.key === "k" && ev.ctrlKey) {
-    ev.preventDefault();
-    inputRef.value?.focus();
+  if (ev.key === 'k' && ev.ctrlKey) {
+    ev.preventDefault()
+    inputRef.value?.focus()
   }
-};
+}
 
 onMounted(() => {
-  document.addEventListener("keydown", focusInput);
-});
+  document.addEventListener('keydown', focusInput)
+})
 </script>
 
 <style>

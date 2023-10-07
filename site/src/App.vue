@@ -9,21 +9,21 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import Navbar from "./components/Navbar.vue";
-import { useUserStore, useTheme } from "./stores";
-import Editor from "./components/Editor.vue";
-import { reactive } from "vue";
+import { RouterView } from 'vue-router'
+import Navbar from './components/Navbar.vue'
+import { useUserStore, useTheme } from './stores'
+import Editor from './components/Editor.vue'
+import { reactive } from 'vue'
 
-const user = useUserStore();
+const user = useUserStore()
 const topicDraft = reactive({
-  title: "",
-  content: "",
-});
-useTheme();
+  title: '',
+  content: '',
+})
+useTheme()
 
 if (user.hasToken) {
-  user.loadUserInfo();
+  user.loadUserInfo()
 }
 </script>
 

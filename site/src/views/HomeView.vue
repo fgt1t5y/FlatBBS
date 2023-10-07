@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import CommonGrid from "@/components/CommonGrid.vue";
-import { useUserStore } from "@/stores";
-import { Button } from "@arco-design/web-vue";
+import CommonGrid from '@/components/CommonGrid.vue'
+import { useUserStore } from '@/stores'
+import { Button } from '@arco-design/web-vue'
 
-const user = useUserStore();
+const user = useUserStore()
 </script>

@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { login, logout } from "@/services/auth";
-import { useUserStore } from "@/stores";
+import { login, logout } from '@/services/auth'
+import { useUserStore } from '@/stores'
 import {
   Card,
   Form,
@@ -69,49 +69,49 @@ import {
   Radio,
   RadioGroup,
   type FieldRule,
-} from "@arco-design/web-vue";
-import { ref, reactive } from "vue";
+} from '@arco-design/web-vue'
+import { ref, reactive } from 'vue'
 
-const isLoginMode = ref<boolean>(true);
-const isDealing = ref<boolean>(false);
+const isLoginMode = ref<boolean>(true)
+const isDealing = ref<boolean>(false)
 
 const form = reactive({
-  email: "",
-  username: "",
-  password: "",
-  password_again: "",
-});
+  email: '',
+  username: '',
+  password: '',
+  password_again: '',
+})
 
 const loginRule: Record<string, FieldRule> = {
   email: {
     required: true,
-    type: "email",
-    message: "请填写有效的电子邮箱地址。",
+    type: 'email',
+    message: '请填写有效的电子邮箱地址。',
     maxLength: 64,
   },
   password: {
     required: true,
-    message: "请填写你的密码。",
+    message: '请填写你的密码。',
     maxLength: 64,
     minLength: 8,
   },
-};
+}
 
 const registerRule: Record<string, FieldRule> = {
   email: {
     required: true,
-    type: "email",
-    message: "请填写有效的电子邮箱地址。",
+    type: 'email',
+    message: '请填写有效的电子邮箱地址。',
     maxLength: 64,
   },
   username: {
     required: true,
     maxLength: 32,
-    message: "请填写你的用户名。",
+    message: '请填写你的用户名。',
   },
   password: {
     required: true,
-    message: "请填写你的密码。",
+    message: '请填写你的密码。',
     maxLength: 64,
     minLength: 8,
   },
@@ -121,32 +121,32 @@ const registerRule: Record<string, FieldRule> = {
     minLength: 8,
     validator: (v: string, cb) => {
       if (v !== form.password) {
-        cb("确认密码必须与密码一致。");
-        return;
+        cb('确认密码必须与密码一致。')
+        return
       }
     },
   },
-};
+}
 
-const user = useUserStore();
+const user = useUserStore()
 
 const actionLogin = () => {
-  isDealing.value = true;
+  isDealing.value = true
   login(form.email, form.password)
     .then((res) => {
-      isDealing.value = false;
+      isDealing.value = false
       if (res.data.code === 0) {
-        user.loadUserInfo();
+        user.loadUserInfo()
       }
     })
     .finally(() => {
-      isDealing.value = false;
-    });
-};
+      isDealing.value = false
+    })
+}
 
 const actionLogout = () => {
-  logout();
-};
+  logout()
+}
 </script>
 
 <style>

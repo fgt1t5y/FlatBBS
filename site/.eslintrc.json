@@ -56,7 +56,7 @@
   ],
 
   // 使用的插件
-  "plugins": ["@typescript-eslint", "unused-imports"],
+  "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
 
   // 自定义规则配置
   "rules": {

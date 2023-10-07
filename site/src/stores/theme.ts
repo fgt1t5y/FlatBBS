@@ -1,35 +1,35 @@
-import { defineStore } from "pinia";
-import { getOrSet, set } from "./utils";
-import { computed, ref } from "vue";
+import { defineStore } from 'pinia';
+import { getOrSet, set } from './utils';
+import { computed, ref } from 'vue';
 
-const KEY_THEME_MODE = "flat_theme";
-type ThemeMode = "auto" | "light" | "dark";
+const KEY_THEME_MODE = 'flat_theme';
+type ThemeMode = 'auto' | 'light' | 'dark';
 
-export const useTheme = defineStore("theme", () => {
+export const useTheme = defineStore('theme', () => {
   const isInited = ref<boolean>(false);
   const currentTheme = ref<ThemeMode>(
-    getOrSet(KEY_THEME_MODE, "auto") as ThemeMode
+    getOrSet(KEY_THEME_MODE, 'auto') as ThemeMode,
   );
   const theme = computed(() => {
     return currentTheme;
   });
-  const sysMedia = window.matchMedia("(prefers-color-scheme: dark)");
+  const sysMedia = window.matchMedia('(prefers-color-scheme: dark)');
   let systemIsDark = sysMedia.matches;
 
   const apply = (ev?: MediaQueryListEvent) => {
     systemIsDark = ev?.matches ?? systemIsDark;
     if (
-      (systemIsDark && currentTheme.value === "auto") ||
-      currentTheme.value === "dark"
+      (systemIsDark && currentTheme.value === 'auto') ||
+      currentTheme.value === 'dark'
     ) {
-      document.body.setAttribute("arco-theme", "dark");
+      document.body.setAttribute('arco-theme', 'dark');
     } else {
-      document.body.removeAttribute("arco-theme");
+      document.body.removeAttribute('arco-theme');
     }
   };
 
   if (!isInited.value) {
-    sysMedia.addEventListener("change", apply);
+    sysMedia.addEventListener('change', apply);
     apply();
   }
   isInited.value = true;
@@ -40,16 +40,16 @@ export const useTheme = defineStore("theme", () => {
   };
 
   const toggleTheme = () => {
-    if (currentTheme.value === "auto") {
-      currentTheme.value = "light";
+    if (currentTheme.value === 'auto') {
+      currentTheme.value = 'light';
       return applyAndSava();
     }
-    if (currentTheme.value === "light") {
-      currentTheme.value = "dark";
+    if (currentTheme.value === 'light') {
+      currentTheme.value = 'dark';
       return applyAndSava();
     }
-    if (currentTheme.value === "dark") {
-      currentTheme.value = "auto";
+    if (currentTheme.value === 'dark') {
+      currentTheme.value = 'auto';
       return applyAndSava();
     }
   };

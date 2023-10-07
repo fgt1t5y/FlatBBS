@@ -10,13 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import CommonGrid from "@/components/CommonGrid.vue";
-import {
-  TypographyTitle,
-  TypographyText,
-  Divider,
-  Button,
-} from "@arco-design/web-vue";
+import CommonGrid from '@/components/CommonGrid.vue'
+import { TypographyTitle } from '@arco-design/web-vue'
 </script>
 
 <style>
