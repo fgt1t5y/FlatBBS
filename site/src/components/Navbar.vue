@@ -43,7 +43,7 @@
               <Avatar :size="56" :image-url="info.avatar_uri" />
               <div class="user-menu-info">
                 <TypographyTitle :heading="5">{{
-                  info.username
+                  info.username ?? "未登录"
                 }}</TypographyTitle>
                 <TypographyText type="secondary">{{
                   info.email
