@@ -45,4 +45,8 @@ legend {
   .grid-sider {
     display: none !important;
   }
+
+  .grid-content {
+    padding: 0px 1rem;
+  }
 }

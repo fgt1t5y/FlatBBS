@@ -3,7 +3,7 @@
     <Col flex="200px" :class="siderClass">
       <slot name="sider" />
     </Col>
-    <Col flex="auto">
+    <Col flex="auto" class="grid-content">
       <slot name="content" />
     </Col>
   </Row>
