@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { Input, Button } from '@arco-design/web-vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 defineOptions({
   name: 'InputField',
@@ -49,6 +49,13 @@ const onCancle = () => {
 const onFocus = () => {
   showOptions.value = true
 }
+
+watch(
+  () => props.inputValue,
+  (v) => {
+    valueNow.value = v
+  },
+)
 </script>
 
 <style>
