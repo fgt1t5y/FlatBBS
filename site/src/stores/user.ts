@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 interface UserInfo {
   avatar_uri?: string;
   username?: string;
-  uid?: number;
+  id?: number;
   email?: string;
 }
 
@@ -15,7 +15,7 @@ export const useUserStore = defineStore('user', () => {
     avatar_uri: undefined,
     username: undefined,
     email: undefined,
-    uid: undefined,
+    id: undefined,
   });
 
   const isLogin = ref<boolean>(false);
@@ -28,13 +28,13 @@ export const useUserStore = defineStore('user', () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
         isLogin.value = true;
-        const avatar_prefix = import.meta.env.VITE_USER_AVATAR_PATH;
-        const { avatar_uri, username, uid, email } = res.data.data as UserInfo;
+        const { avatar_uri, username, id, email } = res.data.data as UserInfo;
         info.avatar_uri =
           'http://localhost:3900/public/usercontent/' + avatar_uri;
         info.username = username;
-        info.uid = uid;
+        info.id = id;
         info.email = email;
+        console.warn(info);
       }
     });
   };
