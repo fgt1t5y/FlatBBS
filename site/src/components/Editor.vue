@@ -54,5 +54,3 @@ watch(
 
 defineExpose(wrapper.value)
 </script>
-
-<style></style>

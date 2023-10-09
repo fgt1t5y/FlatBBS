@@ -57,10 +57,3 @@ watch(
   },
 )
 </script>
-
-<style>
-.input-field-opt {
-  display: flex;
-  gap: 8px;
-}
-</style>

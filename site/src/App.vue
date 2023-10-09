@@ -27,20 +27,3 @@ if (Cookies.get('flat_sess')) {
   user.login()
 }
 </script>
-
-<style>
-#_flat {
-  margin: 16px auto;
-  max-width: var(--page-max-width);
-}
-
-.edit-window {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  max-width: var(--page-max-width);
-  z-index: 100;
-  margin: 0px auto;
-}
-</style>

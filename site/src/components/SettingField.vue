@@ -23,13 +23,3 @@ const props = withDefaults(defineProps<SettingFieldProps>(), {
   subtitle: '',
 })
 </script>
-
-<style>
-.settings-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 1rem 0px;
-  border-top: 1px solid var(--color-neutral-3);
-}
-</style>

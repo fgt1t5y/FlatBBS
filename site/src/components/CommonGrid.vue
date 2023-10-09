@@ -31,18 +31,3 @@ const siderClass = computed(() => {
   }
 })
 </script>
-
-<style>
-.arco-row {
-  gap: 16px;
-}
-
-.grid-revert {
-  order: 1;
-}
-
-.grid-sider {
-  display: flex;
-  flex-direction: column;
-}
-</style>

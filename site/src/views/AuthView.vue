@@ -148,10 +148,3 @@ const actionLogout = () => {
   logout()
 }
 </script>
-
-<style>
-.auth-form {
-  max-width: 450px;
-  margin: 0px auto;
-}
-</style>

@@ -39,18 +39,3 @@ import { IconEdit } from '@arco-design/web-vue/es/icon'
 
 const { info } = useUserStore()
 </script>
-
-<style>
-.settings-title {
-  font-size: 24px;
-}
-
-.setting-group-title {
-  font-size: 16px;
-  margin-bottom: 1rem;
-}
-
-.settings-field:last-child {
-  border-bottom: 1px solid var(--color-neutral-3);
-}
-</style>

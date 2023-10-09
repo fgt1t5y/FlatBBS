@@ -32,25 +32,3 @@ const placeholderTopics = [
   },
 ] as TopicProps[]
 </script>
-
-<style>
-.topic-item {
-  padding: 8px;
-  border-radius: var(--border-radius-small);
-  transition: background 0.1s;
-}
-
-.topic-item:hover {
-  background-color: var(--color-neutral-2);
-  cursor: pointer;
-}
-
-.topic-item .topic-title {
-  font-size: 1rem;
-  color: var(--color-text-1);
-}
-
-.topic-item .topic-preview {
-  color: var(--color-text-3);
-}
-</style>
