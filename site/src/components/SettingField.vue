@@ -1,13 +1,15 @@
 <template>
   <section class="settings-field">
-    <TypographyText>{{ title }}</TypographyText>
-    <TypographyText type="secondary">{{ subtitle }}</TypographyText>
+    <Space direction="vertical" :size="0">
+      <TypographyText>{{ title }}</TypographyText>
+      <TypographyText type="secondary">{{ subtitle }}</TypographyText>
+    </Space>
     <slot name="content" />
   </section>
 </template>
 
 <script setup lang="ts">
-import { TypographyText } from '@arco-design/web-vue'
+import { TypographyText, Space } from '@arco-design/web-vue'
 
 defineOptions({
   name: 'SettingField',
