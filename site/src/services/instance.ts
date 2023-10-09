@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { RequestResult } from './interface';
-import { Message } from '@arco-design/web-vue';
+import { Modal } from '@arco-design/web-vue';
 
 export const requester = axios.create({
   baseURL: '/backend',
@@ -8,12 +8,19 @@ export const requester = axios.create({
   withCredentials: true,
 });
 
+const complainError = (content: string) => {
+  Modal.error({
+    title: '错误',
+    content: content,
+  });
+};
+
 requester.interceptors.request.use(
   (config) => {
     return config;
   },
   (error) => {
-    Message.error('出现错误：请求未发出。');
+    complainError('出现错误：请求未发出。');
     console.log(error);
     return Promise.reject(error);
   },
@@ -23,12 +30,12 @@ requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
     console.log(res);
     if (res.data.code > 0) {
-      Message.error(res.data.message);
+      complainError(res.data.message);
     }
     return res;
   },
   (error) => {
-    Message.error('网络或服务器出现问题。');
+    complainError('网络或服务器出现问题。');
     console.log(error);
     return Promise.reject(error);
   },
