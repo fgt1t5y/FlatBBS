@@ -25,7 +25,7 @@ export const useUserStore = defineStore('user', () => {
         isLogin.value = true;
         const { avatar_uri, username, id, email } = res.data.data as UserInfo;
         info.avatar_uri =
-          'http://localhost:3900/public/usercontent/' + avatar_uri;
+          `${import.meta.env.VITE_FLAT_BASE}/public/usercontent/` + avatar_uri;
         info.username = username;
         info.id = id;
         info.email = email;
