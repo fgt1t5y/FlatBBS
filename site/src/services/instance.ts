@@ -3,7 +3,7 @@ import type { RequestResult } from './interface';
 import { Message } from '@arco-design/web-vue';
 
 export const requester = axios.create({
-  baseURL: import.meta.env.VITE_FLAT_BASE,
+  baseURL: '/backend',
   timeout: 5000,
   withCredentials: true,
 });
