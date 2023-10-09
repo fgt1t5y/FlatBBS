@@ -10,8 +10,19 @@
       </div>
       <div class="settings-group">
         <h5 class="setting-group-title">用户资料</h5>
-        <section>123</section>
-        <InputField label="用户名" :input-value="info.username" />
+        <section class="settings-field">
+          <TypographyText>头像</TypographyText>
+          <Avatar :image-url="info.avatar_uri" :size="64">
+            <template #trigger-icon>
+              <IconEdit />
+            </template>
+          </Avatar>
+        </section>
+        <InputField
+          class="settings-field"
+          label="用户名"
+          :input-value="info.username"
+        />
       </div>
     </template>
   </CommonGrid>
@@ -21,7 +32,8 @@
 import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import { useUserStore } from '@/stores'
-import { TypographyText } from '@arco-design/web-vue'
+import { TypographyText, Avatar, Space } from '@arco-design/web-vue'
+import { IconEdit } from '@arco-design/web-vue/es/icon'
 
 const { info } = useUserStore()
 </script>
@@ -36,12 +48,15 @@ const { info } = useUserStore()
   margin-bottom: 1rem;
 }
 
-.settings-group section {
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   padding: 1rem 0px;
   border-top: 1px solid var(--color-neutral-3);
 }
 
-.settings-group section:last-child {
+.settings-field:last-child {
   border-bottom: 1px solid var(--color-neutral-3);
 }
 </style>
