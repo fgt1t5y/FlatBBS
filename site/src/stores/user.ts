@@ -25,7 +25,6 @@ export const useUserStore = defineStore('user', () => {
         isLogin.value = true;
         const { avatar_uri, username, id, email } = res.data.data as UserInfo;
         info.avatar_uri = `/backend/public/usercontent/${avatar_uri}`;
-        console.log(info.avatar_uri);
         info.username = username;
         info.id = id;
         info.email = email;

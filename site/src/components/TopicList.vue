@@ -8,9 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-
 defineOptions({
   name: 'TopicList',
 })
@@ -34,18 +31,6 @@ const placeholderTopics = [
     content: '这是第三条主题的内容。',
   },
 ] as TopicProps[]
-const route = useRoute()
-
-watch(
-  () => route.path,
-  (v) => {
-    console.log(v)
-  },
-)
-
-onMounted(() => {
-  console.log('Be Mounted.')
-})
 </script>
 
 <style>

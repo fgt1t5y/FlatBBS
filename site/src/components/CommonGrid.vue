@@ -18,7 +18,7 @@ defineOptions({
 })
 
 interface CommonGridProps {
-  siderPosition: 'left' | 'right'
+  siderPosition?: 'left' | 'right'
 }
 
 const props = withDefaults(defineProps<CommonGridProps>(), {
