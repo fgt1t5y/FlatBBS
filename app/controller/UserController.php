@@ -8,7 +8,7 @@ use Shopwwi\LaravelCache\Cache;
 
 class UserController
 {
-    public function userbasicinfo(Request $request)
+    public function userinfo(Request $request)
     {
         $session = $request->session();
         $uid = $session->get('uid');
