@@ -30,10 +30,6 @@ const { info } = useUserStore()
   font-size: 24px;
 }
 
-.settings-page {
-  margin-bottom: 2rem;
-}
-
 .setting-group-title {
   font-size: 16px;
   margin-bottom: 1rem;

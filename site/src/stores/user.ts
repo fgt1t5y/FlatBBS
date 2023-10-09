@@ -1,7 +1,6 @@
 import { getUserInfo } from '@/services/userinfo';
 import { defineStore } from 'pinia';
 import { computed, reactive, ref } from 'vue';
-import Cookies from 'js-cookie';
 
 interface UserInfo {
   avatar_uri?: string;
@@ -20,11 +19,7 @@ export const useUserStore = defineStore('user', () => {
 
   const isLogin = ref<boolean>(false);
 
-  const hasToken = computed(() => {
-    return !!Cookies.get('flat_sess');
-  });
-
-  const loadUserInfo = () => {
+  const login = () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
         isLogin.value = true;
@@ -39,5 +34,5 @@ export const useUserStore = defineStore('user', () => {
     });
   };
 
-  return { info, isLogin, loadUserInfo, hasToken };
+  return { info, isLogin, login };
 });

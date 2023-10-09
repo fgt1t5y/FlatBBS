@@ -14,6 +14,7 @@ import Navbar from './components/Navbar.vue'
 import { useUserStore, useTheme } from './stores'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'
+import Cookies from 'js-cookie'
 
 const user = useUserStore()
 const topicDraft = reactive({
@@ -22,8 +23,8 @@ const topicDraft = reactive({
 })
 useTheme()
 
-if (user.hasToken) {
-  user.loadUserInfo()
+if (Cookies.get('flat_sess')) {
+  user.login()
 }
 </script>
 

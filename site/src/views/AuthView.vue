@@ -136,7 +136,7 @@ const actionLogin = () => {
     .then((res) => {
       isDealing.value = false
       if (res.data.code === 0) {
-        user.loadUserInfo()
+        user.login()
       }
     })
     .finally(() => {
