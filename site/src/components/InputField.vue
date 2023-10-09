@@ -1,5 +1,5 @@
 <template>
-  <div class="input-field">
+  <section class="input-field">
     <span class="input-field-label">{{ label }}</span>
     <Input
       style="max-width: 240px"
@@ -11,7 +11,7 @@
       <Button @click="onConfirm" type="primary">保存</Button>
       <Button @click="onCancle">取消</Button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

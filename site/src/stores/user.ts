@@ -1,6 +1,6 @@
 import { getUserInfo } from '@/services/userinfo';
 import { defineStore } from 'pinia';
-import { computed, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 interface UserInfo {
   avatar_uri?: string;
@@ -28,7 +28,6 @@ export const useUserStore = defineStore('user', () => {
         info.username = username;
         info.id = id;
         info.email = email;
-        console.warn(info);
       }
     });
   };
