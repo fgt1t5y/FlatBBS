@@ -13,7 +13,13 @@
         <div class="cropper-mask"></div>
       </div>
     </div>
-    <Slider v-model="scale" :min="1.0" :max="2.0" :step="0.01" />
+    <Slider
+      v-model="scale"
+      :min="minScale"
+      :max="1.0"
+      :step="0.01"
+      :format-tooltip="displayScale"
+    />
   </section>
 </template>
 
@@ -21,6 +27,7 @@
 import { Slider } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
 import './AvatarCropper.css'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'AvatarCropper',
@@ -44,11 +51,15 @@ const renderStatus = {
   deltaX: 0,
   deltaY: 0,
 }
-const scale = ref<number>(1.0)
+let minScale = 0
+const scale = ref<number>(0.5)
+const displayScale = (n: number) => {
+  return n.toFixed(2)
+}
 const imageSizeException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
-let borderDistanceX = 0
-let borderDistanceY = 0
+let imgHeight = 0
+let imgWidth = 0
 const renderErrorMessage = (message: string) => {
   imageSizeException.value = true
   ctx!.font = 'bold 16px serif'
@@ -58,36 +69,38 @@ const renderErrorMessage = (message: string) => {
 const initCanvas = () => {
   imageSrc.value!.src =
     'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp'
-  imageSrc.value!.onload = () => {
-    if (
-      imageSrc.value!.width < props.size ||
-      imageSrc.value!.height < props.size
-    ) {
-      renderErrorMessage(`图像高宽至少为 ${props.size}`)
-      return
-    }
-  }
   imageSrc.value!.onerror = () => {
     renderErrorMessage('渲染错误：没有图像源。')
     return
   }
-  borderDistanceX = imageSrc.value!.width - props.size
-  borderDistanceY = imageSrc.value!.height - props.size
-  ctx?.drawImage(
-    imageSrc.value!,
-    0,
-    0,
-    imageSrc.value!.width,
-    imageSrc.value!.height,
-  )
+  imageSrc.value!.onload = () => {
+    imgHeight = imageSrc.value!.height
+    imgWidth = imageSrc.value!.width
+    if (imgWidth < props.size || imgHeight < props.size) {
+      renderErrorMessage(`图像高宽至少为 ${props.size}`)
+      return
+    }
+  }
+
+  minScale = Math.min(props.size / imageSrc.value!.height, 1)
+  scale.value = minScale
+
+  drawAt(0, 0)
 }
+const borderDistanceX = computed(() => {
+  return imgWidth * scale.value - props.size
+})
+const borderDistanceY = computed(() => {
+  return imgHeight * scale.value - props.size
+})
 const drawAt = (x: number, y: number) => {
+  console.log(scale.value)
   ctx?.drawImage(
     imageSrc.value!,
     x,
     y,
-    imageSrc.value!.width,
-    imageSrc.value!.height,
+    imageSrc.value!.width * scale.value,
+    imageSrc.value!.height * scale.value,
   )
 }
 const draw = () => {
@@ -101,14 +114,14 @@ const checkOverBorder = () => {
   if (renderStatus.clientX > 0) {
     renderStatus.clientX = 0
   }
-  if (renderStatus.clientX < -borderDistanceX) {
-    renderStatus.clientX = -borderDistanceX
+  if (renderStatus.clientX < -borderDistanceX.value) {
+    renderStatus.clientX = -borderDistanceX.value
   }
   if (renderStatus.clientY > 0) {
     renderStatus.clientY = 0
   }
-  if (renderStatus.clientY < -borderDistanceY) {
-    renderStatus.clientY = -borderDistanceY
+  if (renderStatus.clientY < -borderDistanceY.value) {
+    renderStatus.clientY = -borderDistanceY.value
   }
   drawAt(renderStatus.clientX, renderStatus.clientY)
 }
