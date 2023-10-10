@@ -1,9 +1,3 @@
-.cropper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .cropper-container {
   position: relative;
   cursor: move;

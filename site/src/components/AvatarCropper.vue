@@ -1,5 +1,5 @@
 <template>
-  <section class="cropper" :style="{ width: `${size}px` }">
+  <Space direction="vertical" :style="{ width: `${size}px` }" fill>
     <div
       class="cropper-container"
       :style="{ height: `${size}px` }"
@@ -13,6 +13,7 @@
         <div class="cropper-mask"></div>
       </div>
     </div>
+    <TypographyText>显示比例（最小 - 最大）</TypographyText>
     <Slider
       v-model="scale"
       :min="minScale"
@@ -21,11 +22,11 @@
       :format-tooltip="displayScale"
       @change="onScaleChange"
     />
-  </section>
+  </Space>
 </template>
 
 <script setup lang="ts">
-import { Slider } from '@arco-design/web-vue'
+import { Slider, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
 import './AvatarCropper.css'
 import { computed } from 'vue'
@@ -39,7 +40,7 @@ interface AvatarCropperProps {
 }
 
 const props = withDefaults(defineProps<AvatarCropperProps>(), {
-  size: 256,
+  size: 320,
 })
 const imageSrc = ref<HTMLImageElement>()
 const canvasRef = ref<HTMLCanvasElement>()
@@ -69,7 +70,7 @@ const renderErrorMessage = (message: string) => {
 }
 const initCanvas = () => {
   imageSrc.value!.src =
-    'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/6480dbc69be1b5de95010289787d64f1.png~tplv-uwbnlip3yd-webp.webp'
+    'https://picx.zhimg.com/v2-772e4ef6e18b25161a0fd1e0f26d6572_xl.jpg'
   imageSrc.value!.onerror = () => {
     renderErrorMessage('渲染错误：没有图像源。')
     return
