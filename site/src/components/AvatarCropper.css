@@ -1,6 +1,7 @@
 .cropper-container {
   position: relative;
   cursor: move;
+  user-select: none;
 }
 
 .cropper-wrapper {

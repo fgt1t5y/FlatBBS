@@ -141,9 +141,18 @@ const mouseup = (ev: MouseEvent) => {
   renderStatus.deltaY = 0
   checkOverBorder()
 }
+const destoryCropper = () => {
+  URL.revokeObjectURL(imageURL.value)
+}
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
+  window.addEventListener('mouseup', () => {
+    if (renderStatus.isDraging) {
+      renderStatus.isDraging = false
+      checkOverBorder()
+    }
+  })
   imageSrc.value!.addEventListener('load', () => {
     if (
       imageSrc.value!.width < props.size ||
@@ -162,8 +171,11 @@ watch(
   () => props.image,
   (file) => {
     if (file) {
+      console.log(file)
       imageURL.value = window.URL.createObjectURL(props.image!)
     }
   },
 )
+
+defineExpose({ destoryCropper })
 </script>
