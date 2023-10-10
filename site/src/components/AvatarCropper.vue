@@ -7,7 +7,7 @@
       @mousemove="mousemove"
       @mouseup="mouseup"
     >
-      <img :src="imageURL" ref="imageSrc" alt="src" style="display: none" />
+      <img ref="imageSrc" :src="imageURL" alt="src" style="display: none" />
       <canvas ref="canvasRef" :width="size" :height="size"></canvas>
       <div class="cropper-wrapper">
         <div class="cropper-mask"></div>
@@ -28,9 +28,8 @@
 
 <script setup lang="ts">
 import { Slider, TypographyText, Space, Message } from '@arco-design/web-vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import './AvatarCropper.css'
-import { computed, watch } from 'vue'
 
 defineOptions({
   name: 'AvatarCropper',
@@ -43,6 +42,7 @@ interface AvatarCropperProps {
 
 const props = withDefaults(defineProps<AvatarCropperProps>(), {
   size: 320,
+  image: undefined,
 })
 const imageURL = ref<string>('')
 const imageSrc = ref<HTMLImageElement>()
