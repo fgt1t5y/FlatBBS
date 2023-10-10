@@ -15,7 +15,7 @@ import { useUserStore, useTheme } from './stores'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'
 import Cookies from 'js-cookie'
-import '@/style/App.css'
+import './App.css'
 
 const user = useUserStore()
 const topicDraft = reactive({

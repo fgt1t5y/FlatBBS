@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { Slider } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
-import '@/style/AvatarCropper.css'
+import './AvatarCropper.css'
 
 defineOptions({
   name: 'AvatarCropper',

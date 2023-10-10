@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { Input, Button, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, watch } from 'vue'
-import '@/style/InputField.css'
+import './InputField.css'
 
 defineOptions({
   name: 'InputField',

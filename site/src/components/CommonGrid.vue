@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { Row, Col } from '@arco-design/web-vue'
 import { computed } from 'vue'
-import '@/style/CommonGrid.css'
+import './CommonGrid.css'
 
 defineOptions({
   name: 'CommonGrid',
