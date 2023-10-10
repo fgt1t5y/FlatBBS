@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { Slider, TypographyText, Space } from '@arco-design/web-vue'
+import { Slider, TypographyText, Space, Message } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
 import './AvatarCropper.css'
 import { computed, watch } from 'vue'
@@ -63,13 +63,6 @@ const displayScale = (n: number) => {
 }
 const imageException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
-const renderErrorMessage = (message: string) => {
-  imageException.value = true
-  ctx!.clearRect(0, 0, props.size, props.size)
-  ctx!.font = 'bold 16px serif'
-  ctx!.fillStyle = 'red'
-  ctx!.fillText(message, 64, 128)
-}
 const initCanvas = () => {
   if (imageSrc.value!.height > imageSrc.value!.width) {
     minScale = Math.min(props.size / imageSrc.value!.width, 1)
@@ -156,7 +149,7 @@ onMounted(() => {
       imageSrc.value!.width < props.size ||
       imageSrc.value!.height < props.size
     ) {
-      renderErrorMessage(`图像高宽至少为 ${props.size}`)
+      Message.error(`图像高宽至少为 ${props.size}`)
       return
     } else {
       imageException.value = false
