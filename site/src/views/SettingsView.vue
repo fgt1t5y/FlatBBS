@@ -38,6 +38,7 @@ import SettingField from '@/components/SettingField.vue'
 import { useUserStore } from '@/stores'
 import { TypographyText, Avatar } from '@arco-design/web-vue'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
+import '@/style/SettingView.css'
 
 const { info } = useUserStore()
 </script>

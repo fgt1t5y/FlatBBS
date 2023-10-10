@@ -95,6 +95,7 @@ import {
 } from '@arco-design/web-vue/es/icon'
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import '@/style/Navbar.css'
 
 defineOptions({
   name: 'Navbar',

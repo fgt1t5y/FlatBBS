@@ -8,6 +8,8 @@
 </template>
 
 <script setup lang="ts">
+import '@/style/TopicList.css'
+
 defineOptions({
   name: 'TopicList',
 })
