@@ -19,6 +19,7 @@
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
+      @change="onScaleChange"
     />
   </section>
 </template>
@@ -94,7 +95,6 @@ const borderDistanceY = computed(() => {
   return imgHeight * scale.value - props.size
 })
 const drawAt = (x: number, y: number) => {
-  console.log(scale.value)
   ctx?.drawImage(
     imageSrc.value!,
     x,
@@ -109,6 +109,10 @@ const draw = () => {
   const currentY = renderStatus.clientY + renderStatus.deltaY
 
   drawAt(currentX, currentY)
+}
+const onScaleChange = () => {
+  // check over-border and redraw
+  checkOverBorder()
 }
 const checkOverBorder = () => {
   if (renderStatus.clientX > 0) {
