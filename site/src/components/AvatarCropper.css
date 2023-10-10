@@ -6,6 +6,7 @@
 
 .cropper-container {
   position: relative;
+  cursor: move;
 }
 
 .cropper-wrapper {
