@@ -20,7 +20,7 @@
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
-      :disabled="imageSizeException"
+      :disabled="imageException"
       @change="onScaleChange"
     />
   </Space>
@@ -38,6 +38,7 @@ defineOptions({
 
 interface AvatarCropperProps {
   size?: number
+  image?: File
 }
 
 const props = withDefaults(defineProps<AvatarCropperProps>(), {
@@ -59,30 +60,16 @@ const scale = ref<number>(0.5)
 const displayScale = (n: number) => {
   return n.toFixed(2)
 }
-const imageSizeException = ref<boolean>(false)
+const imageException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
 const renderErrorMessage = (message: string) => {
-  imageSizeException.value = true
+  imageException.value = true
+  ctx!.clearRect(0, 0, props.size, props.size)
   ctx!.font = 'bold 16px serif'
   ctx!.fillStyle = 'red'
   ctx!.fillText(message, 64, 128)
 }
 const initCanvas = () => {
-  imageSrc.value!.src =
-    'https://pic2.zhimg.com/v2-a9b88628a845ff6b25d47511acf0a8df_r.jpg'
-  imageSrc.value!.onerror = () => {
-    renderErrorMessage('渲染错误：没有图像源。')
-    return
-  }
-  imageSrc.value!.onload = () => {
-    if (
-      imageSrc.value!.width < props.size ||
-      imageSrc.value!.height < props.size
-    ) {
-      renderErrorMessage(`图像高宽至少为 ${props.size}`)
-      return
-    }
-  }
   if (imageSrc.value!.height > imageSrc.value!.width) {
     minScale = Math.min(props.size / imageSrc.value!.width, 1)
   } else {
@@ -134,7 +121,7 @@ const checkOverBorder = () => {
   drawAt(renderStatus.clientX, renderStatus.clientY)
 }
 const mousedown = (ev: MouseEvent) => {
-  if (imageSizeException.value) return
+  if (imageException.value) return
 
   const { clientX, clientY } = ev
   renderStatus.isDraging = true
@@ -163,6 +150,22 @@ const mouseup = (ev: MouseEvent) => {
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
-  initCanvas()
+  imageSrc.value!.src =
+    'https://pic1.zhimg.com/v2-f3be7ccde3eb9240c7f0c44ec56a6cbf_1440w.jpg?source=7e7ef6e2'
+  imageSrc.value!.onerror = () => {
+    renderErrorMessage('渲染错误：没有图像源。')
+    return
+  }
+  imageSrc.value!.onload = () => {
+    if (
+      imageSrc.value!.width < props.size ||
+      imageSrc.value!.height < props.size
+    ) {
+      renderErrorMessage(`图像高宽至少为 ${props.size}`)
+      return
+    } else {
+      initCanvas()
+    }
+  }
 })
 </script>
