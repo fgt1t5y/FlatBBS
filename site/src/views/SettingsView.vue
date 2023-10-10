@@ -17,6 +17,7 @@
                 <IconEdit />
               </template>
             </Avatar>
+            <AvatarCropper />
           </template>
         </SettingField>
         <InputField
@@ -30,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import AvatarCropper from '@/components/AvatarCropper.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingField from '@/components/SettingField.vue'
