@@ -20,6 +20,7 @@
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
+      :disabled="imageSizeException"
       @change="onScaleChange"
     />
   </Space>
@@ -60,8 +61,6 @@ const displayScale = (n: number) => {
 }
 const imageSizeException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
-let imgHeight = 0
-let imgWidth = 0
 const renderErrorMessage = (message: string) => {
   imageSizeException.value = true
   ctx!.font = 'bold 16px serif'
@@ -70,30 +69,34 @@ const renderErrorMessage = (message: string) => {
 }
 const initCanvas = () => {
   imageSrc.value!.src =
-    'https://picx.zhimg.com/v2-772e4ef6e18b25161a0fd1e0f26d6572_xl.jpg'
+    'https://pic2.zhimg.com/v2-a9b88628a845ff6b25d47511acf0a8df_r.jpg'
   imageSrc.value!.onerror = () => {
     renderErrorMessage('渲染错误：没有图像源。')
     return
   }
   imageSrc.value!.onload = () => {
-    imgHeight = imageSrc.value!.height
-    imgWidth = imageSrc.value!.width
-    if (imgWidth < props.size || imgHeight < props.size) {
+    if (
+      imageSrc.value!.width < props.size ||
+      imageSrc.value!.height < props.size
+    ) {
       renderErrorMessage(`图像高宽至少为 ${props.size}`)
       return
     }
   }
-
-  minScale = Math.min(props.size / imageSrc.value!.height, 1)
+  if (imageSrc.value!.height > imageSrc.value!.width) {
+    minScale = Math.min(props.size / imageSrc.value!.width, 1)
+  } else {
+    minScale = Math.min(props.size / imageSrc.value!.height, 1)
+  }
   scale.value = minScale
 
   drawAt(0, 0)
 }
 const borderDistanceX = computed(() => {
-  return imgWidth * scale.value - props.size
+  return imageSrc.value!.width * scale.value - props.size
 })
 const borderDistanceY = computed(() => {
-  return imgHeight * scale.value - props.size
+  return imageSrc.value!.height * scale.value - props.size
 })
 const drawAt = (x: number, y: number) => {
   ctx?.drawImage(
@@ -155,7 +158,6 @@ const mouseup = (ev: MouseEvent) => {
   renderStatus.clientY += deltaY
   renderStatus.deltaX = 0
   renderStatus.deltaY = 0
-  console.error(renderStatus)
   checkOverBorder()
 }
 
