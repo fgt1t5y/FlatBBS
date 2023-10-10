@@ -7,7 +7,7 @@
       @mousemove="mousemove"
       @mouseup="mouseup"
     >
-      <img ref="imageSrc" src="" alt="src" style="display: none" />
+      <img :src="imageURL" ref="imageSrc" alt="src" style="display: none" />
       <canvas ref="canvasRef" :width="size" :height="size"></canvas>
       <div class="cropper-wrapper">
         <div class="cropper-mask"></div>
@@ -20,7 +20,7 @@
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
-      :disabled="imageException"
+      :disabled="!imageURL || imageException"
       @change="onScaleChange"
     />
   </Space>
@@ -30,7 +30,7 @@
 import { Slider, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
 import './AvatarCropper.css'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 defineOptions({
   name: 'AvatarCropper',
@@ -44,6 +44,7 @@ interface AvatarCropperProps {
 const props = withDefaults(defineProps<AvatarCropperProps>(), {
   size: 320,
 })
+const imageURL = ref<string>('')
 const imageSrc = ref<HTMLImageElement>()
 const canvasRef = ref<HTMLCanvasElement>()
 const renderStatus = {
@@ -150,13 +151,7 @@ const mouseup = (ev: MouseEvent) => {
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
-  imageSrc.value!.src =
-    'https://pic1.zhimg.com/v2-f3be7ccde3eb9240c7f0c44ec56a6cbf_1440w.jpg?source=7e7ef6e2'
-  imageSrc.value!.onerror = () => {
-    renderErrorMessage('渲染错误：没有图像源。')
-    return
-  }
-  imageSrc.value!.onload = () => {
+  imageSrc.value!.addEventListener('load', () => {
     if (
       imageSrc.value!.width < props.size ||
       imageSrc.value!.height < props.size
@@ -164,8 +159,18 @@ onMounted(() => {
       renderErrorMessage(`图像高宽至少为 ${props.size}`)
       return
     } else {
+      imageException.value = false
       initCanvas()
     }
-  }
+  })
 })
+
+watch(
+  () => props.image,
+  (file) => {
+    if (file) {
+      imageURL.value = window.URL.createObjectURL(props.image!)
+    }
+  },
+)
 </script>
