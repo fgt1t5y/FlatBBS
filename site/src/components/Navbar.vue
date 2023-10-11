@@ -16,7 +16,7 @@
             <kbd>^K</kbd>
           </template>
         </Input>
-        <a
+        <button
           class="icon-link"
           title="主题模式：跟随系统/浅色/暗色"
           @click="toggleTheme"
@@ -24,7 +24,7 @@
           <IconComputer v-if="theme === 'auto'" :size="20" />
           <IconSun v-else-if="theme === 'light'" :size="20" />
           <IconMoon v-else :size="20" />
-        </a>
+        </button>
         <Dropdown
           position="br"
           trigger="click"

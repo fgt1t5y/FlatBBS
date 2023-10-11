@@ -71,10 +71,15 @@
   padding: 4px;
   border-radius: 50%;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
-.icon-link:hover {
+.icon-link:hover,
+.icon-link:focus-within,
+.icon-link:focus-visible {
   background-color: var(--color-fill-2);
+  outline: none;
 }
 
 .menu-link .arco-dropdown-option-content {
