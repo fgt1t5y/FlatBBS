@@ -48,6 +48,7 @@ const emits = defineEmits<{
   (e: 'load'): void
   (e: 'error', message: string): void
 }>()
+const supportedType = ['image/jpeg', 'image/png', 'image/webp']
 const imageURL = ref<string>('')
 const imageSrc = ref<HTMLImageElement>()
 const canvasRef = ref<HTMLCanvasElement>()
@@ -176,6 +177,9 @@ watch(
   () => props.image,
   (file) => {
     if (file) {
+      if (supportedType.indexOf(file.type) === -1) {
+        emits('error', '不支持的格式')
+      }
       imageURL.value = window.URL.createObjectURL(props.image!)
     }
   },
