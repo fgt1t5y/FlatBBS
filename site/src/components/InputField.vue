@@ -1,21 +1,20 @@
 <template>
-  <section direction="vertical" fill>
-    <TypographyText>{{ label }}</TypographyText>
+  <Space direction="vertical" fill>
     <Input
+      v-model="valueNow"
       style="max-width: 240px"
       :max-length="maxLength"
-      v-model="valueNow"
       @focus="onFocus"
     />
-    <div class="input-field-opt" v-if="showOptions">
-      <Button @click="onConfirm" type="primary">保存</Button>
+    <div v-if="showOptions" class="input-field-opt">
+      <Button type="primary" @click="onConfirm">保存</Button>
       <Button @click="onCancle">取消</Button>
     </div>
-  </section>
+  </Space>
 </template>
 
 <script setup lang="ts">
-import { Input, Button, TypographyText, Space } from '@arco-design/web-vue'
+import { Input, Button, Space } from '@arco-design/web-vue'
 import { ref, watch } from 'vue'
 import './InputField.css'
 

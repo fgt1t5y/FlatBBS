@@ -2,14 +2,16 @@
   <CommonGrid sider-position="right">
     <template #sider></template>
     <template #content>
-      <div>
-        <div class="settings-title">设置</div>
+      <Space direction="vertical" :size="0">
+        <TypographyTitle :heading="4" style="margin: unset">
+          设置
+        </TypographyTitle>
         <TypographyText type="secondary">
           在此页面调整用户名、密码、主题模式等设置。
         </TypographyText>
-      </div>
+      </Space>
       <div class="settings-group">
-        <h5 class="setting-group-title">用户资料</h5>
+        <TypographyTitle :heading="6">用户资料</TypographyTitle>
         <SettingField title="头像" subtitle="点击以更改。">
           <template #content>
             <Avatar
@@ -31,11 +33,11 @@
             />
           </template>
         </SettingField>
-        <InputField
-          class="settings-field"
-          label="用户名"
-          :input-value="info.username"
-        />
+        <SettingField title="用户名">
+          <template #content>
+            <InputField :input-value="info.username" />
+          </template>
+        </SettingField>
       </div>
     </template>
   </CommonGrid>
@@ -62,7 +64,14 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingField from '@/components/SettingField.vue'
 import { useUserStore } from '@/stores'
-import { TypographyText, Avatar, Modal, Message } from '@arco-design/web-vue'
+import {
+  TypographyText,
+  TypographyTitle,
+  Avatar,
+  Modal,
+  Message,
+  Space,
+} from '@arco-design/web-vue'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 import './SettingView.css'
 import { ref } from 'vue'
