@@ -25,6 +25,7 @@
               ref="avatarInput"
               type="file"
               name="avatar"
+              accept=".jpg,.png,.webp"
               style="display: none"
               @change="giveAvatarFile"
             />
@@ -39,13 +40,18 @@
     </template>
   </CommonGrid>
   <Modal
-    :visible="showAvatarCropper"
+    :visible="isShowCropper"
     :width="360"
     title="编辑头像"
     @cancel="cancleAvatarCrop"
   >
     <div>
-      <AvatarCropper ref="cropper" :image="avatarFile" />
+      <AvatarCropper
+        ref="cropper"
+        :image="avatarFile"
+        @load="showCropper"
+        @error="showCropperMessage"
+      />
     </div>
   </Modal>
 </template>
@@ -56,14 +62,14 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingField from '@/components/SettingField.vue'
 import { useUserStore } from '@/stores'
-import { TypographyText, Avatar, Modal } from '@arco-design/web-vue'
+import { TypographyText, Avatar, Modal, Message } from '@arco-design/web-vue'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 import './SettingView.css'
 import { ref } from 'vue'
 
 const { info } = useUserStore()
 const cropper = ref<InstanceType<typeof AvatarCropper>>()
-const showAvatarCropper = ref<boolean>(false)
+const isShowCropper = ref<boolean>(false)
 const avatarInput = ref<HTMLInputElement>()
 const avatarFile = ref<File>()
 const openAvatarSelector = () => {
@@ -72,11 +78,16 @@ const openAvatarSelector = () => {
 const giveAvatarFile = () => {
   if (avatarInput.value?.files) {
     avatarFile.value = avatarInput.value!.files[0]
-    showAvatarCropper.value = true
   }
 }
+const showCropper = () => {
+  isShowCropper.value = true
+}
+const showCropperMessage = (message: string) => {
+  Message.error(message)
+}
 const cancleAvatarCrop = () => {
-  showAvatarCropper.value = false
+  isShowCropper.value = false
   cropper.value?.destoryCropper()
 }
 </script>

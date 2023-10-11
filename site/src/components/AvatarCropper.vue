@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { Slider, TypographyText, Space, Message } from '@arco-design/web-vue'
+import { Slider, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, onMounted, computed, watch } from 'vue'
 import './AvatarCropper.css'
 
@@ -44,6 +44,10 @@ const props = withDefaults(defineProps<AvatarCropperProps>(), {
   size: 320,
   image: undefined,
 })
+const emits = defineEmits<{
+  (e: 'load'): void
+  (e: 'error', message: string): void
+}>()
 const imageURL = ref<string>('')
 const imageSrc = ref<HTMLImageElement>()
 const canvasRef = ref<HTMLCanvasElement>()
@@ -158,11 +162,12 @@ onMounted(() => {
       imageSrc.value!.width < props.size ||
       imageSrc.value!.height < props.size
     ) {
-      Message.error(`图像高宽至少为 ${props.size}`)
+      emits('error', `图像高宽至少为 ${props.size} px`)
       return
     } else {
       imageException.value = false
       initCanvas()
+      emits('load')
     }
   })
 })
