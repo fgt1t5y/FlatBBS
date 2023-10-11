@@ -179,6 +179,7 @@ watch(
     if (file) {
       if (supportedType.indexOf(file.type) === -1) {
         emits('error', '不支持的格式')
+        return
       }
       imageURL.value = window.URL.createObjectURL(props.image!)
     }
