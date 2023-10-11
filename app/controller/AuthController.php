@@ -23,7 +23,7 @@ class AuthController
         }
 
         try {
-            $avatar_filename = random_string() . '.png';
+            $avatar_filename = random_string() . '.jpg';
             $avatar = image::make('public/DefaultAvatar.png');
             $avatar->save("public/usercontent/{$avatar_filename}", 60);
             $user = User::newUser(

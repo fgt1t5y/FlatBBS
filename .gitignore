@@ -5,6 +5,6 @@
 .env
 /tests/tmp
 /tests/.phpunit.result.cache
-public/usercontent/*.png
+public/usercontent/*
 
 dump.rdb

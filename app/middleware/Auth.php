@@ -9,7 +9,8 @@ use Webman\http\Response;
 class Auth implements MiddlewareInterface
 {
     static $needAuthActionList = [
-        'app\controller\UserController\userinfo'
+        'app\controller\UserController\userinfo',
+        'app\controller\FileController\upload'
     ];
 
     public function process(Request $request, callable $handle): Response

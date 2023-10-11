@@ -12,6 +12,9 @@ class Access implements MiddlewareInterface
     public function process(Request $request, callable $handle): Response
     {
         $response = $request->method() == 'OPTIONS' ? response('') : $handle($request);
+        if ($request->method() === 'GET') {
+            return $response;
+        }
         $response->withHeaders([
             'Access-Control-Allow-Origin' =>            $request->header('Origin', '*'),
             'Access-Control-Allow-Credentials' =>       'true',
