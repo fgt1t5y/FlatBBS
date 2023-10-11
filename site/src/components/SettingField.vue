@@ -4,7 +4,7 @@
       <TypographyText>{{ title }}</TypographyText>
       <TypographyText type="secondary">{{ subtitle }}</TypographyText>
     </Space>
-    <slot name="content" />
+    <slot />
   </section>
 </template>
 

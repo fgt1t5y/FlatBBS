@@ -13,30 +13,26 @@
       <div class="settings-group">
         <TypographyTitle :heading="6">用户资料</TypographyTitle>
         <SettingField title="头像" subtitle="点击以更改。">
-          <template #content>
-            <Avatar
-              :image-url="info.avatar_uri"
-              :size="64"
-              @click="openAvatarSelector"
-            >
-              <template #trigger-icon>
-                <IconEdit />
-              </template>
-            </Avatar>
-            <input
-              ref="avatarInput"
-              type="file"
-              name="avatar"
-              accept=".jpg,.png,.webp"
-              style="display: none"
-              @change="giveAvatarFile"
-            />
-          </template>
+          <Avatar
+            :image-url="info.avatar_uri"
+            :size="64"
+            @click="openAvatarSelector"
+          >
+            <template #trigger-icon>
+              <IconEdit />
+            </template>
+          </Avatar>
+          <input
+            ref="avatarInput"
+            type="file"
+            name="avatar"
+            accept=".jpg,.png,.webp"
+            style="display: none"
+            @change="giveAvatarFile"
+          />
         </SettingField>
         <SettingField title="用户名">
-          <template #content>
-            <InputField :input-value="info.username" />
-          </template>
+          <InputField :input-value="info.username" />
         </SettingField>
       </div>
     </template>
