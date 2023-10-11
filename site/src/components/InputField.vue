@@ -1,11 +1,6 @@
 <template>
   <Space direction="vertical" fill>
-    <Input
-      v-model="valueNow"
-      style="max-width: 240px"
-      :max-length="maxLength"
-      @focus="onFocus"
-    />
+    <Input v-model="valueNow" :max-length="maxLength" @focus="onFocus" />
     <div v-if="showOptions" class="input-field-opt">
       <Button type="primary" @click="onConfirm">保存</Button>
       <Button @click="onCancle">取消</Button>
@@ -23,13 +18,11 @@ defineOptions({
 })
 
 interface InputFieldProps {
-  label: string
   inputValue: string
   maxLength?: number
 }
 
 const props = withDefaults(defineProps<InputFieldProps>(), {
-  label: '',
   inputValue: '',
   maxLength: 32,
 })

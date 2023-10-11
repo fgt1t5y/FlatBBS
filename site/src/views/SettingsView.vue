@@ -31,6 +31,9 @@
             @change="giveAvatarFile"
           />
         </SettingField>
+        <SettingField title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
+          <Input v-model="info.email" readonly />
+        </SettingField>
         <SettingField title="用户名">
           <InputField :input-value="info.username" />
         </SettingField>
@@ -67,6 +70,7 @@ import {
   Modal,
   Message,
   Space,
+  Input,
 } from '@arco-design/web-vue'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 import './SettingView.css'
