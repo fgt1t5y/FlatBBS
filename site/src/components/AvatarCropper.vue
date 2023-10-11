@@ -176,7 +176,6 @@ watch(
   () => props.image,
   (file) => {
     if (file) {
-      console.log(file)
       imageURL.value = window.URL.createObjectURL(props.image!)
     }
   },
