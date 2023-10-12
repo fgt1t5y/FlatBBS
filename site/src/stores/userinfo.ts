@@ -9,7 +9,7 @@ interface UserInfo {
   email?: string;
 }
 
-export const useUserStore = defineStore('user', () => {
+export const useUserInfoStore = defineStore('user', () => {
   const info = reactive<UserInfo>({
     avatar_uri: undefined,
     username: undefined,
@@ -19,7 +19,7 @@ export const useUserStore = defineStore('user', () => {
 
   const isLogin = ref<boolean>(false);
 
-  const login = () => {
+  const fetch = () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
         isLogin.value = true;
@@ -32,5 +32,9 @@ export const useUserStore = defineStore('user', () => {
     });
   };
 
-  return { info, isLogin, login };
+  const clear = () => {
+    return
+  }
+
+  return { info, isLogin, fetch, clear };
 });
