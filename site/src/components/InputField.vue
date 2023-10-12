@@ -1,6 +1,11 @@
 <template>
-  <Space direction="vertical" fill>
-    <Input v-model="valueNow" :max-length="maxLength" @focus="onFocus" />
+  <Space fill>
+    <Input
+      v-model="valueNow"
+      :readonly="readonly"
+      :max-length="maxLength"
+      @focus="onFocus"
+    />
     <div v-if="showOptions" class="input-field-opt">
       <Button type="primary" @click="onConfirm">保存</Button>
       <Button @click="onCancle">取消</Button>
@@ -20,6 +25,7 @@ defineOptions({
 interface InputFieldProps {
   inputValue: string
   maxLength?: number
+  readonly?: boolean
 }
 
 const props = withDefaults(defineProps<InputFieldProps>(), {
@@ -40,7 +46,7 @@ const onCancle = () => {
   showOptions.value = false
 }
 const onFocus = () => {
-  showOptions.value = true
+  if (!props.readonly) showOptions.value = true
 }
 
 watch(
