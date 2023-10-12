@@ -11,13 +11,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
-import { useUserInfoStore, useTheme } from './stores'
+import { useUserStore, useTheme } from './stores'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'
 import Cookies from 'js-cookie'
 import './App.css'
 
-const user = useUserInfoStore()
+const user = useUserStore()
 const topicDraft = reactive({
   title: '',
   content: '',

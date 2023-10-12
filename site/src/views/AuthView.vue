@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { login, logout } from '@/services/auth'
-import { useSettingsStore } from '@/stores'
+import { useUserStore } from '@/stores'
 import {
   Card,
   Form,
@@ -129,7 +129,7 @@ const registerRule: Record<string, FieldRule> = {
   },
 }
 
-const user = useSettingsStore()
+const user = useUserStore()
 
 const actionLogin = () => {
   isDealing.value = true

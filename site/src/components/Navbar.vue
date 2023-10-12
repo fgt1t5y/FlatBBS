@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { useTheme, useUserInfoStore } from '@/stores'
+import { useTheme, useUserStore } from '@/stores'
 import {
   TypographyTitle,
   TypographyText,
@@ -115,7 +115,7 @@ const inputRef = ref<InstanceType<typeof Input>>()
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
 })
-const { info } = useUserInfoStore()
+const { info } = useUserStore()
 const userMenuOptions = [
   {
     i: 0,

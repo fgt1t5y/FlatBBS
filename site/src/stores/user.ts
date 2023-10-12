@@ -9,13 +9,14 @@ interface UserInfo {
   email?: string;
 }
 
-export const useSettingsStore = defineStore('user', () => {
+export const useUserStore = defineStore('user', () => {
   const info = reactive<UserInfo>({
     avatar_uri: undefined,
     username: undefined,
     email: undefined,
     id: undefined,
   });
+  const emptyInfo = info;
 
   const isLogin = ref<boolean>(false);
 
