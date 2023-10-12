@@ -1,2 +1,2 @@
-export * from './userinfo';
+export * from './settings';
 export * from './theme';

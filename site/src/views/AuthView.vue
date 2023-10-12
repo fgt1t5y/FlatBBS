@@ -1,7 +1,7 @@
 <template>
   <Card title="注册或登录" :bordered="false">
     <div style="display: flex; justify-content: center">
-      <RadioGroup type="button" v-model="isLoginMode" size="large">
+      <RadioGroup v-model="isLoginMode" type="button" size="large">
         <Radio :value="true">登录</Radio>
         <Radio :value="false">注册</Radio>
       </RadioGroup>
@@ -16,10 +16,10 @@
         @submit-success="actionLogin"
       >
         <FormItem label="电子邮箱地址" field="email">
-          <Input autofocus v-model="form.email" />
+          <Input v-model="form.email" autofocus />
         </FormItem>
         <FormItem label="密码" field="password">
-          <Input type="password" v-model="form.password" />
+          <Input v-model="form.password" type="password" />
         </FormItem>
         <FormItem>
           <Button long :loading="isDealing" html-type="submit" type="primary">
@@ -41,10 +41,10 @@
           <Input v-model="form.username" />
         </FormItem>
         <FormItem label="密码" field="password">
-          <Input type="password" v-model="form.password" />
+          <Input v-model="form.password" type="password" />
         </FormItem>
         <FormItem v-if="!isLoginMode" label="确认密码" field="password_again">
-          <Input type="password" v-model="form.password_again" />
+          <Input v-model="form.password_again" type="password" />
         </FormItem>
         <FormItem>
           <Button long :loading="isDealing" html-type="submit" type="primary">
@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { login, logout } from '@/services/auth'
-import { useUserStore } from '@/stores'
+import { useSettingsStore } from '@/stores'
 import {
   Card,
   Form,
@@ -129,7 +129,7 @@ const registerRule: Record<string, FieldRule> = {
   },
 }
 
-const user = useUserStore()
+const user = useSettingsStore()
 
 const actionLogin = () => {
   isDealing.value = true
@@ -137,7 +137,7 @@ const actionLogin = () => {
     .then((res) => {
       isDealing.value = false
       if (res.data.code === 0) {
-        user.login()
+        user.fetch()
       }
     })
     .finally(() => {

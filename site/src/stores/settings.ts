@@ -9,7 +9,7 @@ interface UserInfo {
   email?: string;
 }
 
-export const useUserInfoStore = defineStore('user', () => {
+export const useSettingsStore = defineStore('user', () => {
   const info = reactive<UserInfo>({
     avatar_uri: undefined,
     username: undefined,
@@ -19,6 +19,9 @@ export const useUserInfoStore = defineStore('user', () => {
 
   const isLogin = ref<boolean>(false);
 
+  /**
+   * 从后端获取用户和网站的配置
+   */
   const fetch = () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
@@ -33,8 +36,8 @@ export const useUserInfoStore = defineStore('user', () => {
   };
 
   const clear = () => {
-    return
-  }
+    return;
+  };
 
   return { info, isLogin, fetch, clear };
 });
