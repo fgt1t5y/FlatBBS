@@ -4,7 +4,6 @@ namespace app\model;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use support\Model;
-use PDOException;
 
 class User extends Model
 {
