@@ -6,5 +6,8 @@ return [
     'prefix' => [
       'userinfo' => 'userinfo_'
     ]
+  ],
+  'backend' => [
+    'path' => '/backend/'
   ]
 ];

@@ -29,14 +29,17 @@ class FileController
     }
 
     $filename = random_string() . '.jpg';
+    $path = "public/usercontent/{$filename}";
 
     try {
       $image = image::make($file->getPathname());
     } catch (NotReadableException $e) {
       return json_message(STATUS_BAD_REQUEST, '损坏的文件');
     }
-    $image->save("public/usercontent/{$filename}", 60, 'jpg');
+    $image->save($path, 60, 'jpg');
 
-    return json_message(STATUS_OK, '完成');
+    return json_message(STATUS_OK, '完成', [
+      'uri' => config('flatbbs.backend.path') . $path
+    ]);
   }
 }
