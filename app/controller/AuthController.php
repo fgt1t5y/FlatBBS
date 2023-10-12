@@ -6,6 +6,7 @@ use support\Request;
 use app\model\User;
 use Exception;
 use Intervention\Image\ImageManagerStatic as image;
+use Shopwwi\LaravelCache\Cache;
 
 class AuthController
 {
@@ -64,7 +65,7 @@ class AuthController
 
         $token = random_string();
         $session->put([
-            'uid' => $user->id,
+            'id' => $user->id,
             'token' => $token,
             'email' => $email
         ]);
@@ -77,7 +78,9 @@ class AuthController
 
     public function logout(Request $request)
     {
-        $request->session()->flush();
+        $session = $request->session();
+        Cache::forget(PREFIX_USERINFO . $session->get('id'));
+        $session->flush();
 
         return json_message(STATUS_OK, '完成')
             ->cookie('flat_sess', '', 0, '/');
