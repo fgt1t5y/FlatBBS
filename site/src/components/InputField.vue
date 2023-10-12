@@ -1,5 +1,5 @@
 <template>
-  <Space fill>
+  <Space>
     <Input
       v-model="valueNow"
       :readonly="readonly"

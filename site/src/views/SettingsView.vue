@@ -32,7 +32,7 @@
           />
         </SettingField>
         <SettingField title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
-          <InputField :input-value="info.email" readonly />
+          <TypographyText>{{ info.email }}</TypographyText>
         </SettingField>
         <SettingField title="用户名">
           <InputField :input-value="info.username" />
