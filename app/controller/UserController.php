@@ -12,10 +12,15 @@ class UserController
     {
         $session = $request->session();
         $uid = $session->get('id');
+        $cache_prefix = config('flatbbs.cache.prefix.userinfo');
 
-        $userinfo = Cache::remember(PREFIX_USERINFO . $uid, 1800, function () use ($uid) {
-            return User::find($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
-        });
+        $userinfo = Cache::remember(
+            "{$cache_prefix}{$uid}",
+            config('flatbbs.cache.ttl'),
+            function () use ($uid) {
+                return User::find($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
+            }
+        );
 
         return json_message(STATUS_OK, '完成', $userinfo);
     }

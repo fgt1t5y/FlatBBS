@@ -19,7 +19,7 @@ function is_email(string $email)
 function all(array $value)
 {
     foreach ($value as $v) {
-        if ($v === "" || !$v || is_null($v)) {
+        if ($v === '' || !$v || is_null($v)) {
             return false;
         }
     }
