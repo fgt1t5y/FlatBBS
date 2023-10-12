@@ -12,7 +12,6 @@ class FileController
 
   public function index(Request $request)
   {
-    var_dump($request->host());
     return view('test');
   }
 
@@ -33,7 +32,7 @@ class FileController
 
     try {
       $image = image::make($file->getPathname());
-    } catch (NotReadableException $e) {
+    } catch (NotReadableException) {
       return json_message(STATUS_BAD_REQUEST, '损坏的文件');
     }
     $image->save($path, 60, 'jpg');
