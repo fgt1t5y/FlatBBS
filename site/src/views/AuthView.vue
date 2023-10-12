@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { login, logout } from '@/services/auth'
+import { login, logout } from '@/services'
 import { useUserStore } from '@/stores'
 import {
   Card,
