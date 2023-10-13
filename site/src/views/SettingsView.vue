@@ -48,8 +48,10 @@
     @cancel="closeAvatarCrop"
   >
     <div>
-      <AvatarCropper
+      <Cropper
         ref="cropper"
+        :height="320"
+        :width="320"
         :image="avatarFile"
         @load="showCropper"
         @error="showCropperMessage"
@@ -59,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import AvatarCropper from '@/components/AvatarCropper.vue'
+import Cropper from '@/components/Cropper.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingField from '@/components/SettingField.vue'
@@ -78,7 +80,7 @@ import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 
 const { info } = useUserStore()
-const cropper = ref<InstanceType<typeof AvatarCropper>>()
+const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)
 const avatarInput = ref<HTMLInputElement>()
 const avatarFile = ref<File>()

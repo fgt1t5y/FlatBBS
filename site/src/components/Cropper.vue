@@ -1,15 +1,15 @@
 <template>
-  <Space direction="vertical" :style="{ width: `${size}px` }" fill>
+  <Space direction="vertical" :style="{ width: `${width}px` }" fill>
     <div
       class="cropper-container"
-      :style="{ height: `${size}px` }"
+      :style="{ height: `${height}px` }"
       @mousedown="mousedown"
       @mousemove="mousemove"
       @mouseup="mouseup"
     >
       <img ref="imageSrc" :src="imageURL" alt="src" style="display: none" />
-      <canvas ref="canvasRef" :width="size" :height="size"></canvas>
-      <div class="cropper-wrapper">
+      <canvas ref="canvasRef" :width="width" :height="height"></canvas>
+      <div v-show="cropMask" class="cropper-wrapper">
         <div class="cropper-mask"></div>
       </div>
     </div>
@@ -20,7 +20,7 @@
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
-      :disabled="!imageURL || imageException"
+      :disabled="!imageURL || imageException || ratioException"
       @change="onScaleChange"
     />
   </Space>
@@ -29,20 +29,24 @@
 <script setup lang="ts">
 import { Slider, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, onMounted, computed, watch } from 'vue'
-import './AvatarCropper.css'
+import './Cropper.css'
 
 defineOptions({
-  name: 'AvatarCropper',
+  name: 'Cropper',
 })
 
-interface AvatarCropperProps {
-  size?: number
+interface CropperProps {
+  height: number
+  width: number
   image?: File
+  cropMask?: boolean
 }
 
-const props = withDefaults(defineProps<AvatarCropperProps>(), {
-  size: 320,
+const props = withDefaults(defineProps<CropperProps>(), {
+  height: 320,
+  width: 320,
   image: undefined,
+  cropMask: true,
 })
 const emits = defineEmits<{
   (e: 'load'): void
@@ -67,22 +71,34 @@ const displayScale = (n: number) => {
   return n.toFixed(2)
 }
 const imageException = ref<boolean>(false)
+const ratioException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
 const initCanvas = () => {
-  if (imageSrc.value!.height > imageSrc.value!.width) {
-    minScale = Math.min(props.size / imageSrc.value!.width, 1)
+  if (props.width > props.height) {
+    if (imageSrc.value!.height > imageSrc.value!.width) {
+      minScale = Math.min(props.width / imageSrc.value!.width, 1)
+    } else {
+      minScale = Math.min(props.width / imageSrc.value!.height, 1)
+    }
   } else {
-    minScale = Math.min(props.size / imageSrc.value!.height, 1)
+    if (imageSrc.value!.height > imageSrc.value!.width) {
+      minScale = Math.min(props.height / imageSrc.value!.width, 1)
+    } else {
+      minScale = Math.min(props.height / imageSrc.value!.height, 1)
+    }
+  }
+  if (displayScale(minScale) === '1.00') {
+    ratioException.value = true
   }
   scale.value = minScale
 
   drawAt(0, 0)
 }
 const borderDistanceX = computed(() => {
-  return imageSrc.value!.width * scale.value - props.size
+  return imageSrc.value!.width * scale.value - props.width
 })
 const borderDistanceY = computed(() => {
-  return imageSrc.value!.height * scale.value - props.size
+  return imageSrc.value!.height * scale.value - props.height
 })
 const drawAt = (x: number, y: number) => {
   ctx?.drawImage(
@@ -94,7 +110,7 @@ const drawAt = (x: number, y: number) => {
   )
 }
 const draw = () => {
-  ctx?.clearRect(0, 0, props.size, props.size)
+  ctx?.clearRect(0, 0, props.width, props.height)
   const currentX = renderStatus.clientX + renderStatus.deltaX
   const currentY = renderStatus.clientY + renderStatus.deltaY
 
@@ -175,10 +191,10 @@ onMounted(() => {
   })
   imageSrc.value!.addEventListener('load', () => {
     if (
-      imageSrc.value!.width < props.size ||
-      imageSrc.value!.height < props.size
+      imageSrc.value!.width < props.width ||
+      imageSrc.value!.height < props.height
     ) {
-      emits('error', `图像高宽至少为 ${props.size} px`)
+      emits('error', `图像高宽至少为 ${props.height}x${props.width} px`)
       return
     } else {
       imageException.value = false
