@@ -149,6 +149,21 @@ const mouseup = (ev: MouseEvent) => {
 const destoryCropper = () => {
   URL.revokeObjectURL(imageURL.value)
 }
+const getBlobAsync = (): Promise<Blob | null> => {
+  return new Promise(function (resolve, reject) {
+    canvasRef.value!.toBlob(
+      function (blob) {
+        if (!blob) {
+          emits('error', '失败，请重试。')
+          reject(blob)
+        }
+        resolve(blob)
+      },
+      'image/jpeg',
+      0.8,
+    )
+  })
+}
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
@@ -186,5 +201,8 @@ watch(
   },
 )
 
-defineExpose({ destoryCropper })
+defineExpose({
+  destoryCropper,
+  getBlobAsync,
+})
 </script>

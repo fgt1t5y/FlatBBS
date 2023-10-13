@@ -20,3 +20,8 @@ export const genForm = <T>(data: T) => {
 
   return form;
 };
+
+export function blobToFile(blob: Blob, fileName: string) {
+  const file = new File([blob], fileName, { type: blob.type });
+  return file;
+}

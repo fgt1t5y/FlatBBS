@@ -44,7 +44,8 @@
     :visible="isShowCropper"
     :width="360"
     title="编辑头像"
-    @cancel="cancleAvatarCrop"
+    @ok="uploadAvatar"
+    @cancel="closeAvatarCrop"
   >
     <div>
       <AvatarCropper
@@ -63,6 +64,7 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingField from '@/components/SettingField.vue'
 import { useUserStore } from '@/stores'
+import { blobToFile } from '@/utils'
 import {
   TypographyText,
   TypographyTitle,
@@ -93,8 +95,17 @@ const showCropper = () => {
 const showCropperMessage = (message: string) => {
   Message.error(message)
 }
-const cancleAvatarCrop = () => {
+const closeAvatarCrop = () => {
   isShowCropper.value = false
   cropper.value?.destoryCropper()
+}
+const uploadAvatar = () => {
+  cropper.value!.getBlobAsync().then((blob) => {
+    if (blob) {
+      const file = blobToFile(blob, '_.jpg')
+    }
+  })
+
+  closeAvatarCrop()
 }
 </script>

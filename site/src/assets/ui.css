@@ -33,7 +33,7 @@ legend {
   color: var(--color-text-1);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 810px) {
   .nav-opt .arco-input-wrapper {
     display: none;
   }
