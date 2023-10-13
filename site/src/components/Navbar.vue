@@ -5,10 +5,15 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <div class="nav-opt" size="medium">
-        <RouterLink to="/" class="mob-hidden icon-link">
+        <RouterLink to="/" class="mob-show icon-link">
           <IconSearch :size="20" />
         </RouterLink>
-        <Input ref="inputRef" :max-length="64" placeholder="搜索...">
+        <Input
+          ref="inputRef"
+          class="mob-hidden"
+          :max-length="64"
+          placeholder="搜索..."
+        >
           <template #prefix>
             <IconSearch />
           </template>

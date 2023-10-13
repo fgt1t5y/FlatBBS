@@ -11,7 +11,7 @@ body {
   cursor: pointer;
 }
 
-.mob-hidden {
+.mob-show {
   display: none;
 }
 
@@ -24,21 +24,12 @@ kbd {
   text-align: center;
 }
 
-fieldset {
-  border: 1px solid var(--color-neutral-3);
-}
-
-legend {
-  font-size: 1rem;
-  color: var(--color-text-1);
-}
-
 @media (max-width: 810px) {
-  .nav-opt .arco-input-wrapper {
-    display: none;
+  .mob-hidden {
+    display: none !important;
   }
 
-  .mob-hidden {
+  .mob-show {
     display: inherit !important;
   }
 
