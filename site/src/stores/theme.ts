@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getOrSet, set } from './utils';
+import { getOrSet, set } from '@/utils';
 import { computed, ref } from 'vue';
 
 const KEY_THEME_MODE = 'flat_theme';
