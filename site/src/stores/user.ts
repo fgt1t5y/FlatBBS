@@ -16,7 +16,6 @@ export const useUserStore = defineStore('user', () => {
     email: undefined,
     id: undefined,
   });
-  const emptyInfo = info;
 
   const isLogin = ref<boolean>(false);
 

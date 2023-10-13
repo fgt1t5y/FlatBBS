@@ -104,7 +104,9 @@ const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
-      uploadAsAvatar(file)
+      uploadAsAvatar(file).then((res) => {
+        console.log(res.data.data!.uri)
+      })
     }
   })
 

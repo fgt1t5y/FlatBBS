@@ -1,6 +1,6 @@
 import { requester } from './instance';
 import { genForm } from '@/utils';
-import type { UploadForm, UploadAs } from './interface';
+import type { UploadForm, UploadAs, RequestResult } from './interface';
 
 export const upload = (file: File, as: UploadAs | undefined) => {
   const form = genForm<UploadForm>({
@@ -8,7 +8,7 @@ export const upload = (file: File, as: UploadAs | undefined) => {
     as: as,
   });
 
-  return requester.post('/file/upload', form);
+  return requester.post<RequestResult<{ uri: string }>>('/file/upload', form);
 };
 
 export const uploadAsAvatar = (avatarFile: File) => {
