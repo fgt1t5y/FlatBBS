@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\model\User;
 use Intervention\Image\Exception\NotReadableException;
 use support\Request;
 use Intervention\Image\ImageManagerStatic as image;
@@ -29,6 +30,8 @@ class FileController
 
     $filename = random_string() . '.jpg';
     $path = "public/usercontent/{$filename}";
+    $as = $request->post('as');
+    $full_path = config('flatbbs.backend.path') . $path;
 
     try {
       $image = image::make($file->getPathname());
@@ -37,8 +40,16 @@ class FileController
     }
     $image->save($path, 60, 'jpg');
 
+    if ($as === 'avatar') {
+      User::modifyUser(
+        $request->session()->get('id'),
+        'avatar_uri',
+        $filename
+      );
+    }
+
     return json_message(STATUS_OK, '完成', [
-      'uri' => config('flatbbs.backend.path') . $path
+      'uri' => $full_path
     ]);
   }
 }

@@ -7,6 +7,8 @@ use support\Model;
 
 class User extends Model
 {
+    static $allowModifyColumn = ['avatar_uri'];
+
     protected $table = 'user';
 
     public static function hasUser(string $email)
@@ -18,6 +20,15 @@ class User extends Model
     {
         try {
             return self::where('email', $email)->firstOrFail($columns);
+        } catch (ModelNotFoundException $e) {
+            return false;
+        }
+    }
+
+    public static function getUserById(int $uid, array $columns = ['id'])
+    {
+        try {
+            return self::where('id', $uid)->firstOrFail($columns);
         } catch (ModelNotFoundException $e) {
             return false;
         }
@@ -38,5 +49,20 @@ class User extends Model
         $user->allow_login = $allow_login ? 1 : 0;
 
         return $user;
+    }
+
+    public static function modifyUser(
+        int $uid,
+        string $info_key,
+        string $info_value
+    ) {
+        if (!in_array($info_key, self::$allowModifyColumn)) {
+            return null;
+        }
+
+        $user = self::getUserById($uid);
+        $user->$info_key = $info_value;
+
+        $user->save();
     }
 }
