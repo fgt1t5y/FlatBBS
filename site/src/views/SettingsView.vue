@@ -75,6 +75,7 @@ import {
 } from '@arco-design/web-vue'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 import { ref } from 'vue'
+import { uploadAsAvatar } from '@/services'
 
 const { info } = useUserStore()
 const cropper = ref<InstanceType<typeof AvatarCropper>>()
@@ -103,6 +104,7 @@ const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
+      uploadAsAvatar(file)
     }
   })
 

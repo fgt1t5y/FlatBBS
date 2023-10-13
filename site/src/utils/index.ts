@@ -15,6 +15,7 @@ export const genForm = <T>(data: T) => {
   const form = new FormData();
 
   for (const item in data) {
+    if (!item) continue;
     form.append(item, data[item] as string);
   }
 
