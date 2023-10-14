@@ -11,8 +11,8 @@
         </TypographyText>
       </Space>
       <div class="settings-group">
-        <TypographyTitle :heading="6">用户资料</TypographyTitle>
-        <SettingField title="头像" subtitle="点击以更改。">
+        <TypographyTitle :heading="6">头像</TypographyTitle>
+        <SettingField title="我的头像" subtitle="点击以更改。">
           <Avatar
             :image-url="info.avatar_uri"
             :size="64"
@@ -31,6 +31,9 @@
             @change="giveAvatarFile"
           />
         </SettingField>
+      </div>
+      <div class="settings-group">
+        <TypographyTitle :heading="6">用户资料</TypographyTitle>
         <SettingField title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
           <TypographyText>{{ info.email }}</TypographyText>
         </SettingField>
