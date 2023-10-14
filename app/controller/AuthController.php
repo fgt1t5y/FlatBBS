@@ -79,7 +79,7 @@ class AuthController
     public function logout(Request $request)
     {
         $session = $request->session();
-        Cache::forget(PREFIX_USERINFO . $session->get('id'));
+        Cache::forget(config_with('flatbbs.cache.prefix.userinfo', $session->get('id')));
         $session->flush();
 
         return json_message(STATUS_OK, '完成')

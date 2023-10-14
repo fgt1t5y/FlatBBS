@@ -31,7 +31,7 @@ class FileController
     $filename = random_string() . '.jpg';
     $path = "public/usercontent/{$filename}";
     $as = $request->post('as');
-    $full_path = config('flatbbs.backend.path') . $path;
+    $full_path = config_with('flatbbs.backend.path', $path);
 
     try {
       $image = image::make($file->getPathname());

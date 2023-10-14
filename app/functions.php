@@ -66,3 +66,8 @@ function is_login(Session $session, $token)
     $session->flush();
     return false;
 }
+
+function config_with(string $key, mixed $suffix)
+{
+    return config($key) . $suffix;
+}

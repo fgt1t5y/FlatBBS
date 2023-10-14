@@ -9,7 +9,7 @@ use Webman\http\Response;
 class Auth implements MiddlewareInterface
 {
     static $needAuthActionList = [
-        'app\controller\UserController\userinfo',
+        'app\controller\UserController\info',
         'app\controller\FileController\upload'
     ];
 
