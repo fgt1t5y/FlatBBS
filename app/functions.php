@@ -42,7 +42,7 @@ function json_message(int $code, string $message, mixed $data = null): Response
 
 function random_string()
 {
-    $unit = ['a', 'b', 'c', 'd', 'e', 'f', 'g', '1', '2', '3', '4', '5'];
+    $unit = ['a', 'b', 'c', 'd', 'e', 'f', 'g', '6', '7', '8', '9', '0'];
     $result = '';
 
     for ($i = 0; $i < 32; $i++) {

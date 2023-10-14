@@ -10,6 +10,7 @@ class Auth implements MiddlewareInterface
 {
     static $needAuthActionList = [
         'app\controller\UserController\info',
+        'app\controller\UserController\modify',
         'app\controller\FileController\upload'
     ];
 
