@@ -51,9 +51,9 @@ class AuthController
 
         $email = $request->post('email', 'null');
         $password = $request->post('password');
-        $user = User::getUser($email, ['id', 'password', 'allow_login']);
+        $user = User::getUser('email', $email, ['id', 'password', 'allow_login']);
 
-        if (!all([$email, $password]) || $user === false) {
+        if (!all([$email, $password]) || !$user) {
             return json_message(STATUS_BAD_REQUEST, '用户不存在');
         }
         if (!(md5($password) === $user->password)) {

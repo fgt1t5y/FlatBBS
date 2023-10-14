@@ -7,7 +7,7 @@ use support\Model;
 
 class User extends Model
 {
-    static $allowModifyColumn = ['avatar_uri'];
+    static $allowModifyColumn = ['avatar_uri', 'username'];
 
     protected $table = 'user';
 
@@ -16,10 +16,10 @@ class User extends Model
         return self::where('email', $email)->count();
     }
 
-    public static function getUser(string $email, array $columns = ['id'])
+    public static function getUser(string $column, string $value, array $need = ['id'])
     {
         try {
-            return self::where('email', $email)->firstOrFail($columns);
+            return self::where($column, $value)->firstOrFail($need);
         } catch (ModelNotFoundException $e) {
             return false;
         }
@@ -27,11 +27,7 @@ class User extends Model
 
     public static function getUserById(int $uid, array $columns = ['id'])
     {
-        try {
-            return self::where('id', $uid)->firstOrFail($columns);
-        } catch (ModelNotFoundException $e) {
-            return false;
-        }
+        return self::getUser('id', $uid, $columns);
     }
 
     public static function newUser(
@@ -53,16 +49,21 @@ class User extends Model
 
     public static function modifyUser(
         int $uid,
-        string $info_key,
-        string $info_value
-    ) {
-        if (!in_array($info_key, self::$allowModifyColumn)) {
-            return null;
+        string $field,
+        string $value
+    ): bool {
+        if (
+            !all([$field, $value])
+            || !in_array($field, self::$allowModifyColumn)
+        ) {
+            return false;
         }
 
         $user = self::getUserById($uid);
-        $user->$info_key = $info_value;
+        if (!$user) return false;
+        $user->$field = $value;
 
         $user->save();
+        return true;
     }
 }

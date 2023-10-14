@@ -18,10 +18,25 @@ class UserController
             "{$cache_prefix}{$uid}",
             config('flatbbs.cache.ttl'),
             function () use ($uid) {
-                return User::find($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
+                return User::getUserById($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
             }
         );
 
         return json_message(STATUS_OK, '完成', $userinfo);
+    }
+
+    public function modify(Request $request)
+    {
+        $field = $request->post('field', '');
+        $value = $request->post('value', '');
+        $uid = $request->session()->get('id');
+
+        if (User::modifyUser($uid, $field, $value)) {
+            return json_message(STATUS_OK, '完成', [
+                'changed' => $value
+            ]);
+        } else {
+            return json_message(STATUS_BAD_REQUEST, '失败，信息未更新。');
+        }
     }
 }
