@@ -8,6 +8,14 @@ use Shopwwi\LaravelCache\Cache;
 
 class UserController
 {
+    static $userInfo = [
+        'id',
+        'email',
+        'username',
+        'avatar_uri',
+        'introduction'
+    ];
+
     public function info(Request $request)
     {
         $session = $request->session();
@@ -18,7 +26,7 @@ class UserController
             "{$cache_prefix}{$uid}",
             config('flatbbs.cache.ttl'),
             function () use ($uid) {
-                return User::getUserById($uid, ['id', 'email', 'username', 'avatar_uri'])->toArray();
+                return User::getUserById($uid, self::$userInfo)->toArray();
             }
         );
 
