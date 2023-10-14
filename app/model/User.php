@@ -62,6 +62,7 @@ class User extends Model
         $user = self::getUserById($uid);
         if (!$user) return false;
         $user->$field = $value;
+        $user->updated_at = date('Y-m-d H:i:s');
 
         $user->save();
         return true;
