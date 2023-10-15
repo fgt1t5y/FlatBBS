@@ -7,7 +7,7 @@
     </div>
   </Space>
   <Space v-show="!isEditing">
-    <TypographyText>{{ valueNow }}</TypographyText>
+    <TypographyText>{{ valueNow || '未填写' }}</TypographyText>
     <button class="icon-link" title="更改此栏" @click="startEdit">
       <IconEdit :size="18" />
     </button>

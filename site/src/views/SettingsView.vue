@@ -36,6 +36,9 @@
         <SettingField title="用户名">
           <InputField :input-value="info.username" />
         </SettingField>
+        <SettingField title="简短介绍" subtitle="使用简短的言语介绍自己。">
+          <InputField :input-value="info.introduction" />
+        </SettingField>
       </div>
     </template>
   </CommonGrid>
