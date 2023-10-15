@@ -31,7 +31,7 @@
       <div class="settings-group">
         <TypographyTitle :heading="6">用户资料</TypographyTitle>
         <SettingField title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
-          <TypographyText>{{ info.email }}</TypographyText>
+          <InputField :input-value="info.email" readonly />
         </SettingField>
         <SettingField title="用户名">
           <InputField :input-value="info.username" />

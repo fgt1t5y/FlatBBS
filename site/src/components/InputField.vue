@@ -8,7 +8,12 @@
   </Space>
   <Space v-show="!isEditing">
     <TypographyText>{{ valueNow || '未填写' }}</TypographyText>
-    <button class="icon-link" title="更改此栏" @click="startEdit">
+    <button
+      v-if="!readonly"
+      class="icon-link"
+      title="更改此栏"
+      @click="startEdit"
+    >
       <IconEdit :size="18" />
     </button>
   </Space>
@@ -16,7 +21,7 @@
 
 <script setup lang="ts">
 import { Input, Button, Space, TypographyText } from '@arco-design/web-vue'
-import { ref, watch } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import './InputField.css'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 
@@ -27,11 +32,13 @@ defineOptions({
 interface InputFieldProps {
   inputValue: string
   maxLength?: number
+  readonly?: boolean
 }
 
 const props = withDefaults(defineProps<InputFieldProps>(), {
   inputValue: '',
   maxLength: 32,
+  readonly: false,
 })
 const valueNow = ref<string>(props.inputValue)
 const isEditing = ref<boolean>(false)
@@ -49,10 +56,10 @@ const onCancle = () => {
 }
 const startEdit = () => {
   isEditing.value = true
-  const timer = setTimeout(() => {
-    inputRef.value!.inputRef!.focus()
-    clearTimeout(timer)
-  }, 0)
+
+  nextTick(() => {
+    inputRef.value!.focus()
+  })
 }
 
 watch(
