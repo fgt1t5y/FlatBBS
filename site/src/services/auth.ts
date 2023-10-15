@@ -1,5 +1,5 @@
 import { requester } from './instance';
-import type { RequestResult, LoginForm } from './interface';
+import type { RequestResult, LoginForm } from '@/types';
 import { genForm } from '@/utils';
 
 export const login = (email: string, password: string) => {

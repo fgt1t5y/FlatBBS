@@ -11,6 +11,11 @@ export interface LoginForm {
   password: string;
 }
 
+export interface UserModifyForm {
+  field: string;
+  vlaue: string;
+}
+
 /**
  * 上传的文件的用途：
  * 'avatar' - 用作用户的新头像，
@@ -27,7 +32,7 @@ export interface RequestResult {
   code: number;
   message: string;
   data?: {
-    uri: string
+    uri: string;
   };
 }
 
