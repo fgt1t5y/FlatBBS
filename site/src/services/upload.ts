@@ -8,7 +8,7 @@ export const upload = (file: File, as: UploadAs | undefined) => {
     as: as,
   });
 
-  return requester.post<RequestResult<{ uri: string }>>('/file/upload', form);
+  return requester.post<RequestResult>('/file/upload', form);
 };
 
 export const uploadAsAvatar = (avatarFile: File) => {

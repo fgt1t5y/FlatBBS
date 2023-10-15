@@ -15,8 +15,10 @@ export interface UploadForm {
   as?: UploadAs;
 }
 
-export interface RequestResult<T = any> {
+export interface RequestResult {
   code: number;
   message: string;
-  data?: T;
+  data?: {
+    uri: string
+  };
 }
