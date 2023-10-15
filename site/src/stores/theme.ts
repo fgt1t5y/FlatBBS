@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { getOrSet, set } from '@/utils';
 import { computed, ref } from 'vue';
+import type { ThemeMode } from '@/types';
 
 const KEY_THEME_MODE = 'flat_theme';
-type ThemeMode = 'auto' | 'light' | 'dark';
 
 export const useTheme = defineStore('theme', () => {
   const isInited = ref<boolean>(false);

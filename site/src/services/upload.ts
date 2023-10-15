@@ -1,6 +1,6 @@
 import { requester } from './instance';
 import { genForm } from '@/utils';
-import type { UploadForm, UploadAs, RequestResult } from './interface';
+import type { UploadForm, UploadAs, RequestResult } from '@/types';
 
 export const upload = (file: File, as: UploadAs | undefined) => {
   const form = genForm<UploadForm>({

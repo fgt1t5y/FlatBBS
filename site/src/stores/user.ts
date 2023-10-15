@@ -1,14 +1,7 @@
 import { getUserInfo } from '@/services/userinfo';
 import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
-
-interface UserInfo {
-  avatar_uri?: string;
-  username?: string;
-  id?: number;
-  email?: string;
-  introduction?: string;
-}
+import type { UserInfo } from '@/types';
 
 export const useUserStore = defineStore('user', () => {
   const info = reactive<UserInfo>({

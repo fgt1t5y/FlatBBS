@@ -1,3 +1,11 @@
+export interface UserInfo {
+  avatar_uri?: string;
+  username?: string;
+  id?: number;
+  email?: string;
+  introduction?: string;
+}
+
 export interface LoginForm {
   email: string;
   password: string;
@@ -22,3 +30,5 @@ export interface RequestResult {
     uri: string
   };
 }
+
+export type ThemeMode = 'auto' | 'light' | 'dark';

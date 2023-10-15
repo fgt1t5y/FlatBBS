@@ -1,5 +1,5 @@
 import { requester } from './instance';
-import type { RequestResult } from './interface';
+import type { RequestResult } from '@/types';
 
 export const getUserInfo = () => {
   return requester.post<RequestResult>('user/info');

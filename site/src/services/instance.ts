@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
-import type { RequestResult } from './interface';
+import type { RequestResult } from '@/types';
 import { Modal } from '@arco-design/web-vue';
 
 export const requester = axios.create({
