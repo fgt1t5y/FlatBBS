@@ -17,11 +17,7 @@
             :image-url="info.avatar_uri"
             :size="64"
             @click="openAvatarSelector"
-          >
-            <template #trigger-icon>
-              <IconEdit />
-            </template>
-          </Avatar>
+          />
           <input
             ref="avatarInput"
             type="file"
@@ -78,7 +74,6 @@ import {
   Message,
   Space,
 } from '@arco-design/web-vue'
-import { IconEdit } from '@arco-design/web-vue/es/icon'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 

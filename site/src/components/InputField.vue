@@ -1,5 +1,5 @@
 <template>
-  <Space v-show="isEditing">
+  <Space v-show="isEditing" direction="vertical">
     <Input ref="inputRef" v-model="valueNow" :max-length="maxLength" />
     <div class="input-field-opt">
       <Button type="primary" @click="onConfirm">保存</Button>
