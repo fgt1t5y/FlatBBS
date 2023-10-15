@@ -9,7 +9,7 @@ export const getUserInfo = () => {
 export const modifyUserInfo = (field: string, value: string) => {
   const form = genForm<UserModifyForm>({
     field: field,
-    vlaue: value,
+    value: value,
   });
 
   return requester.post<RequestResult>('user/modify', form);

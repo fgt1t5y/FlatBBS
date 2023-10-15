@@ -7,7 +7,7 @@ use support\Model;
 
 class User extends Model
 {
-    static $allowModifyColumn = ['avatar_uri', 'username'];
+    static $allowModifyColumn = ['avatar_uri', 'username', 'introduction'];
 
     protected $table = 'users';
 
@@ -56,6 +56,7 @@ class User extends Model
             !all([$field, $value])
             || !in_array($field, self::$allowModifyColumn)
         ) {
+            var_dump(1);
             return false;
         }
 
