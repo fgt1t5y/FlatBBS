@@ -9,7 +9,7 @@ class User extends Model
 {
     static $allowModifyColumn = ['avatar_uri', 'username'];
 
-    protected $table = 'user';
+    protected $table = 'users';
 
     public static function hasUser(string $email)
     {
@@ -39,7 +39,7 @@ class User extends Model
     ) {
         $user = new self();
         $user->email = strtolower(trim($email));
-        $user->password = md5($password);
+        $user->password = password_hash($password, PASSWORD_DEFAULT);
         $user->username = $username;
         $user->avatar_uri = $avatar_uri;
         $user->allow_login = $allow_login ? 1 : 0;

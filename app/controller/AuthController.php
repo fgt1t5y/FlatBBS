@@ -56,7 +56,7 @@ class AuthController
         if (!all([$email, $password]) || !$user) {
             return json_message(STATUS_BAD_REQUEST, '用户不存在');
         }
-        if (!(md5($password) === $user->password)) {
+        if (!password_verify($password, $user->password)) {
             return json_message(STATUS_FORBIDDEN, '账号或密码错误');
         }
         if ($user->allow_login === 0) {
