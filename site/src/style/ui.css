@@ -15,6 +15,12 @@ body {
   display: none;
 }
 
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 kbd {
   width: 1rem;
   height: 1rem;

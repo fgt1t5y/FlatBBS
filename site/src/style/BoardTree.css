@@ -1,0 +1,11 @@
+.board-tree {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-item {
+  padding: 8px 0px;
+  display: block;
+  border: 1px solid;
+  text-align: left;
+}

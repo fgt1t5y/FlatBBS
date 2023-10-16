@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { TypographyText, Space } from '@arco-design/web-vue'
-import './SettingItem.css'
+import '@/style/SettingItem.css'
 
 defineOptions({
   name: 'SettingItem',

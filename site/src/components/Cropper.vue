@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { Slider, TypographyText, Space } from '@arco-design/web-vue'
 import { ref, onMounted, computed, watch } from 'vue'
-import './Cropper.css'
+import '@/style/Cropper.css'
 
 defineOptions({
   name: 'Cropper',

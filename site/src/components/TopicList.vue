@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import './TopicList.css'
+import '@/style/TopicList.css'
 
 defineOptions({
   name: 'TopicList',

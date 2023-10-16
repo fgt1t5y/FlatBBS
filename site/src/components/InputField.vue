@@ -28,7 +28,7 @@ import {
   Message,
 } from '@arco-design/web-vue'
 import { ref, watch, nextTick } from 'vue'
-import './InputField.css'
+import '@/style/InputField.css'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
 import { modifyUserInfo } from '@/services'
 

@@ -71,7 +71,7 @@ import {
   type FieldRule,
 } from '@arco-design/web-vue'
 import { ref, reactive } from 'vue'
-import './AuthView.css'
+import '@/style/AuthView.css'
 
 const isLoginMode = ref<boolean>(true)
 const isDealing = ref<boolean>(false)
