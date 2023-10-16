@@ -12,7 +12,7 @@
       </Space>
       <div class="settings-group">
         <TypographyTitle :heading="6">头像</TypographyTitle>
-        <SettingField title="我的头像" subtitle="点击以更改。">
+        <SettingItem title="我的头像" subtitle="点击以更改。">
           <Avatar
             :image-url="info.avatar_uri"
             :size="64"
@@ -26,19 +26,19 @@
             style="display: none"
             @change="giveAvatarFile"
           />
-        </SettingField>
+        </SettingItem>
       </div>
       <div class="settings-group">
         <TypographyTitle :heading="6">用户资料</TypographyTitle>
-        <SettingField title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
+        <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
           <InputField :input-value="info.email" readonly />
-        </SettingField>
-        <SettingField title="用户名">
+        </SettingItem>
+        <SettingItem title="用户名">
           <InputField field="username" :input-value="info.username" />
-        </SettingField>
-        <SettingField title="简短介绍" subtitle="使用简短的言语介绍自己。">
+        </SettingItem>
+        <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己。">
           <InputField field="introduction" :input-value="info.introduction" />
-        </SettingField>
+        </SettingItem>
       </div>
     </template>
   </CommonGrid>
@@ -66,7 +66,7 @@
 import Cropper from '@/components/Cropper.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
-import SettingField from '@/components/SettingField.vue'
+import SettingItem from '@/components/SettingItem.vue'
 import { useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
 import {

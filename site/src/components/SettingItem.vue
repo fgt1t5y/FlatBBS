@@ -10,18 +10,18 @@
 
 <script setup lang="ts">
 import { TypographyText, Space } from '@arco-design/web-vue'
-import './SettingField.css'
+import './SettingItem.css'
 
 defineOptions({
-  name: 'SettingField',
+  name: 'SettingItem',
 })
 
-interface SettingFieldProps {
+interface SettingItemProps {
   title?: string
   subtitle?: string
 }
 
-const props = withDefaults(defineProps<SettingFieldProps>(), {
+const props = withDefaults(defineProps<SettingItemProps>(), {
   title: '',
   subtitle: '',
 })
