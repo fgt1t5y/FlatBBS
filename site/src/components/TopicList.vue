@@ -1,6 +1,6 @@
 <template>
   <div class="topic-list">
-    <div v-for="item in placeholderTopics" class="topic-item">
+    <div v-for="item in placeholderTopics" class="topic-item hover-card">
       <div class="topic-title">{{ item.title }}</div>
       <div class="topic-preview">{{ item.content }}</div>
     </div>

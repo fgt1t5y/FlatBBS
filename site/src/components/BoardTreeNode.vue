@@ -3,11 +3,19 @@
     <button class="board-group-item" @click="loadBoards">
       <IconRight v-if="!isOpen" />
       <IconDown v-else />
-      <TypographyText>{{ groupName }}</TypographyText>
+      <TypographyText bold>{{ groupName }}</TypographyText>
       <IconLoading v-show="isLoading" />
     </button>
     <div v-if="isLoaded && isOpen" class="board-item">
-      <span v-for="i in data" :style="{ color: i.color }">{{ i.name }}</span>
+      <span v-for="i in data">
+        <RouterLink
+          class="board-link hover-card"
+          :style="{ color: i.color }"
+          :to="idToUri(i.id)"
+        >
+          {{ i.name }}
+        </RouterLink>
+      </span>
     </div>
   </div>
 </template>
@@ -36,6 +44,9 @@ const data = ref<Board[] | null>(null)
 const isOpen = ref<boolean>(false)
 const isLoading = ref<boolean>(false)
 const isLoaded = ref<boolean>(false)
+const idToUri = (id: number) => {
+  return '/board/' + String(id)
+}
 const loadBoards = () => {
   if (isLoaded.value) {
     isOpen.value = !isOpen.value

@@ -16,8 +16,8 @@ export const homeRoutes = [
         component: TopicList,
       },
       {
-        path: 'brand',
-        name: 'brand',
+        path: 'board/:id',
+        name: 'board',
         component: TopicList,
         meta: {
           title: '论坛版块',

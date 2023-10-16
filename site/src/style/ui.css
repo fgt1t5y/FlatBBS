@@ -15,6 +15,21 @@ body {
   display: none;
 }
 
+.hover-card {
+  padding: 8px;
+  border-radius: var(--border-radius-small);
+  transition: background 0.1s;
+}
+
+.hover-card:hover {
+  background-color: var(--color-neutral-2);
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
 button {
   border: none;
   background-color: transparent;
