@@ -1,14 +1,20 @@
-.board-tree {
+.board-group {
   display: flex;
   flex-direction: column;
 }
 
-.board-item {
+.board-group-item {
   padding: 8px 0px;
   display: block;
   text-align: left;
 }
 
-.board-item svg {
+.board-group-item svg {
   margin-right: 4px;
+}
+
+.board-item {
+  padding: 8px 0px;
+  display: block;
+  margin-left: 18px;
 }

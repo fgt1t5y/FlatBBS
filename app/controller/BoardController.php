@@ -13,4 +13,13 @@ class BoardController
 
         return json_message(0, '完成', $board_groups);
     }
+
+    public function boards(Request $request)
+    {
+        $board_id = $request->post('id');
+        $boards = BoardGroup::find($board_id)
+            ->boards()->get(['id', 'name', 'color']);
+
+        return  json_message(0, '完成', $boards);
+    }
 }

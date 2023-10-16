@@ -41,6 +41,7 @@ export interface RequestResult<T = any> {
 export interface Board {
   id: number;
   name: string;
+  color: string;
 }
 
 export interface BoardGroups {
