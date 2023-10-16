@@ -6,7 +6,7 @@
       <TypographyText bold>{{ groupName }}</TypographyText>
       <IconLoading v-show="isLoading" />
     </button>
-    <div v-if="isLoaded && isOpen" class="board-item">
+    <div v-show="isLoaded && isOpen">
       <div v-for="i in data">
         <RouterLink class="board-link hover-card" :to="idToUri(i.id)">
           <span class="board-dot" :style="{ backgroundColor: i.color }"></span>

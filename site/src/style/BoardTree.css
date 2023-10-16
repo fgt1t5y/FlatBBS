@@ -14,13 +14,9 @@
   margin-right: 4px;
 }
 
-.board-item {
-  margin-left: 13px;
-}
-
 .board-link {
-  display: block;
   padding: 8px;
+  margin-left: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
