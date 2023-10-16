@@ -13,7 +13,7 @@ export interface LoginForm {
 
 export interface UserModifyForm {
   field: string;
-  vlaue: string;
+  value: string;
 }
 
 /**
@@ -28,12 +28,25 @@ export interface UploadForm {
   as?: UploadAs;
 }
 
-export interface RequestResult {
+export interface UploadResult {
+  uri: string;
+}
+
+export interface RequestResult<T = any> {
   code: number;
   message: string;
-  data?: {
-    uri: string;
-  };
+  data?: T;
+}
+
+export interface Board {
+  id: number;
+  name: string;
+}
+
+export interface BoardGroups {
+  id: number;
+  name: string;
+  board: Board[];
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';

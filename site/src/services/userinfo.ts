@@ -1,9 +1,9 @@
 import { genForm } from '@/utils';
 import { requester } from './instance';
-import type { RequestResult, UserModifyForm } from '@/types';
+import type { RequestResult, UserModifyForm, UserInfo } from '@/types';
 
 export const getUserInfo = () => {
-  return requester.post<RequestResult>('user/info');
+  return requester.post<RequestResult<UserInfo>>('/user/info');
 };
 
 export const modifyUserInfo = (field: string, value: string) => {
@@ -12,5 +12,5 @@ export const modifyUserInfo = (field: string, value: string) => {
     value: value,
   });
 
-  return requester.post<RequestResult>('user/modify', form);
+  return requester.post<RequestResult>('/user/modify', form);
 };
