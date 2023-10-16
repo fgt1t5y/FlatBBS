@@ -56,7 +56,6 @@ class User extends Model
             !all([$field, $value])
             || !in_array($field, self::$allowModifyColumn)
         ) {
-            var_dump(1);
             return false;
         }
 
