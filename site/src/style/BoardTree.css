@@ -21,4 +21,14 @@
 .board-link {
   display: block;
   padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.board-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
 }

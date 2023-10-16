@@ -7,15 +7,12 @@
       <IconLoading v-show="isLoading" />
     </button>
     <div v-if="isLoaded && isOpen" class="board-item">
-      <span v-for="i in data">
-        <RouterLink
-          class="board-link hover-card"
-          :style="{ color: i.color }"
-          :to="idToUri(i.id)"
-        >
+      <div v-for="i in data">
+        <RouterLink class="board-link hover-card" :to="idToUri(i.id)">
+          <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
           {{ i.name }}
         </RouterLink>
-      </span>
+      </div>
     </div>
   </div>
 </template>
