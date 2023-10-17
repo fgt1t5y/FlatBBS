@@ -1,7 +1,7 @@
 import MainView from '@/views/MainView.vue';
 import TopicList from '@/components/TopicList.vue';
 
-export const homeRoutes = [
+export const mainRoutes = [
   {
     path: '/',
     name: 'home',
