@@ -70,6 +70,7 @@ const scale = ref<number>(0.5)
 const displayScale = (n: number) => {
   return n.toFixed(2)
 }
+const hasFile = ref<boolean>(false)
 const imageException = ref<boolean>(false)
 const ratioException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
@@ -189,6 +190,9 @@ onMounted(() => {
       checkOverBorder()
     }
   })
+  imageSrc.value!.addEventListener('error', () => {
+    hasFile.value && emits('error', '无法加载此文件')
+  })
   imageSrc.value!.addEventListener('load', () => {
     if (
       imageSrc.value!.width < props.width ||
@@ -212,6 +216,7 @@ watch(
         emits('error', '不支持的格式')
         return
       }
+      hasFile.value = true
       imageURL.value = window.URL.createObjectURL(props.image!)
     }
   },

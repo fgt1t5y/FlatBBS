@@ -22,7 +22,7 @@
             ref="avatarInput"
             type="file"
             name="avatar"
-            accept=".jpg,.png,.webp"
+            accept=".jpg,.png,.jpeg"
             style="display: none"
             @change="giveAvatarFile"
           />

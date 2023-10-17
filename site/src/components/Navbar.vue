@@ -130,7 +130,7 @@ const userMenuOptions = [
   {
     i: 1,
     text: '退出登录',
-    to: '/',
+    to: '/logout',
   },
 ] as UserMenuOptionsProps[]
 const guestMenuOptions = [

@@ -1,11 +1,11 @@
-import HomeView from '@/views/HomeView.vue';
+import MainView from '@/views/MainView.vue';
 import TopicList from '@/components/TopicList.vue';
 
 export const homeRoutes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: MainView,
     meta: {
       title: '首页',
     },

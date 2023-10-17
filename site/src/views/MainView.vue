@@ -1,12 +1,14 @@
 <template>
   <CommonGrid>
     <template #sider>
-      <RouterLink to="/" class="sider-link">
+      <RouterLink to="/" class="sider-link link">
         <IconHome />
         <span>所有帖子</span>
       </RouterLink>
       <Divider :margin="12" />
-      <TypographyText type="secondary">论坛版块</TypographyText>
+      <TypographyText type="secondary" class="sider-group">
+        论坛版块
+      </TypographyText>
       <BoardTree />
     </template>
     <template #content>

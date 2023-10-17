@@ -31,11 +31,11 @@
 }
 
 /* 路由高亮 */
-.router-link-exact-active {
+.link.router-link-exact-active {
   color: rgb(var(--primary-5)) !important;
 }
 
-/* 侧边栏链接 */
+/* 侧边栏 */
 .sider-link {
   font-size: 1rem;
   padding: 8px 0px;
@@ -43,6 +43,10 @@
 
 .sider-link svg {
   margin-right: 4px;
+}
+
+.sider-group {
+  padding: 4px 0px;
 }
 
 @media (max-width: 810px) {
