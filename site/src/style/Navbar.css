@@ -14,7 +14,6 @@
 }
 
 .nav-brand {
-  text-decoration: none;
   display: flex;
   align-self: center;
 }
@@ -68,13 +67,6 @@
 .icon-link {
   padding: 4px;
   border-radius: 50%;
-}
-
-.icon-link:hover,
-.icon-link:focus-within,
-.icon-link:focus-visible {
-  background-color: var(--color-fill-2);
-  outline: none;
 }
 
 .menu-link .arco-dropdown-option-content {

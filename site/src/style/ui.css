@@ -21,7 +21,9 @@ body {
   transition: background 0.1s;
 }
 
-.hover-card:hover {
+.hover-card:hover,
+.hover-card:focus-visible,
+.hover-card:focus {
   background-color: var(--color-neutral-2);
   cursor: pointer;
 }

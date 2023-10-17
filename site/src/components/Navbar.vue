@@ -5,7 +5,7 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <div class="nav-opt" size="medium">
-        <RouterLink to="/" class="mob-show icon-link">
+        <RouterLink to="/" class="mob-show icon-link hover-card">
           <IconSearch :size="20" />
         </RouterLink>
         <Input
@@ -22,7 +22,7 @@
           </template>
         </Input>
         <button
-          class="icon-link"
+          class="icon-link hover-card"
           title="主题模式：跟随系统/浅色/暗色"
           @click="toggleTheme"
         >
