@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.nav-opt .arco-avatar {
+  cursor: pointer;
+}
+
 .user-menu .arco-dropdown {
   min-width: 300px;
   max-width: 40vw;

@@ -7,27 +7,6 @@ body {
   color: var(--color-text-1);
 }
 
-.arco-avatar {
-  cursor: pointer;
-}
-
-.mob-show {
-  display: none;
-}
-
-.hover-card {
-  padding: 8px;
-  border-radius: var(--border-radius-small);
-  transition: background 0.1s;
-}
-
-.hover-card:hover,
-.hover-card:focus-visible,
-.hover-card:focus {
-  background-color: var(--color-neutral-2);
-  cursor: pointer;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -49,20 +28,3 @@ kbd {
   text-align: center;
 }
 
-@media (max-width: 810px) {
-  .mob-hidden {
-    display: none !important;
-  }
-
-  .mob-show {
-    display: inherit !important;
-  }
-
-  .grid-sider {
-    display: none !important;
-  }
-
-  .grid-content {
-    padding: 0px 1rem;
-  }
-}

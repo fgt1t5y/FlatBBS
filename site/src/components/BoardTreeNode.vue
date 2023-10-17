@@ -6,13 +6,11 @@
       <TypographyText bold>{{ groupName }}</TypographyText>
       <IconLoading v-show="isLoading" />
     </button>
-    <div v-show="isLoaded && isOpen">
-      <div v-for="i in data">
-        <RouterLink class="board-link hover-card" :to="idToUri(i.id)">
-          <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
-          {{ i.name }}
-        </RouterLink>
-      </div>
+    <div v-for="i in data" v-show="isLoaded && isOpen">
+      <RouterLink class="board-link hover-card" :to="idToUri(i.id)">
+        <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
+        {{ i.name }}
+      </RouterLink>
     </div>
   </div>
 </template>
