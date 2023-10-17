@@ -4,19 +4,11 @@
 }
 
 .board-group-item {
-  padding: 0px;
+  padding: 4px 0px;
   margin-bottom: 4px;
   display: block;
   text-align: left;
   font-size: 1rem;
-}
-
-.board-group-item svg {
-  margin-right: 4px;
-}
-
-.board-link.router-link-active {
-  color: rgb(var(--primary-5));
 }
 
 .board-link {

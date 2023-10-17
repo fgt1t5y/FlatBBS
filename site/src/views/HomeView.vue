@@ -1,9 +1,11 @@
 <template>
   <CommonGrid>
     <template #sider>
-      <Button type="primary">新主题</Button>
+      <RouterLink to="/" class="sider-link">
+        <IconHome />
+        首页
+      </RouterLink>
       <Divider :margin="12" />
-      <div class="sider-menu">23</div>
       <BoardTree />
     </template>
     <template #content>
@@ -15,5 +17,7 @@
 <script setup lang="ts">
 import BoardTree from '@/components/BoardTree.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
-import { Button, Divider } from '@arco-design/web-vue'
+import { Divider } from '@arco-design/web-vue'
+import { IconHome } from '@arco-design/web-vue/es/icon'
+import { RouterLink } from 'vue-router'
 </script>

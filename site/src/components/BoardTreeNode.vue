@@ -3,7 +3,7 @@
     <button class="board-group-item" @click="loadBoards">
       <IconRight v-if="!isOpen" />
       <IconDown v-else />
-      <TypographyText bold>{{ groupName }}</TypographyText>
+      {{ groupName }}
       <IconLoading v-show="isLoading" />
     </button>
     <div v-for="i in data" v-show="isLoaded && isOpen">
@@ -18,7 +18,6 @@
 <script setup lang="ts">
 import { getBoardById } from '@/services'
 import type { Board } from '@/types'
-import { TypographyText } from '@arco-design/web-vue'
 import { IconRight, IconDown, IconLoading } from '@arco-design/web-vue/es/icon'
 import { ref } from 'vue'
 

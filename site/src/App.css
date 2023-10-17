@@ -30,6 +30,15 @@
   cursor: pointer;
 }
 
+.router-link-active {
+  color: rgb(var(--primary-5)) !important;
+}
+
+.sider-link {
+  font-size: 1rem;
+  padding: 8px 0px;
+}
+
 @media (max-width: 810px) {
   .mob-hidden {
     display: none !important;
