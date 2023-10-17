@@ -334,10 +334,10 @@ div.CodeMirror-dragcursors,
   visibility: visible;
 }
 .CodeMirror-selected {
-  background: rgb(72, 75, 65);
+  background: var(--color-primary-light-2);
 }
 .CodeMirror-focused .CodeMirror-selected {
-  background: rgb(79, 82, 72);
+  background: var(--color-primary-light-2);
 }
 .CodeMirror-crosshair {
   cursor: crosshair;
@@ -365,12 +365,12 @@ div.CodeMirror-dragcursors,
   }
 }
 .cm-tab-wrap-hack:after {
-  content: "";
+  content: '';
 }
 span.CodeMirror-selectedtext {
   background: none;
 }
-.tippy-box[data-animation="fade"][data-state="hidden"] {
+.tippy-box[data-animation='fade'][data-state='hidden'] {
   opacity: 0;
 }
 [data-tippy-root] {
@@ -399,7 +399,7 @@ span.CodeMirror-selectedtext {
   border-top-color: initial;
   transform-origin: center top;
 }
-.tippy-box[data-inertia][data-state="visible"] {
+.tippy-box[data-inertia][data-state='visible'] {
   transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
 }
 .tippy-arrow {
@@ -408,7 +408,7 @@ span.CodeMirror-selectedtext {
   color: #333;
 }
 .tippy-arrow:before {
-  content: "";
+  content: '';
   position: absolute;
   border-color: transparent;
   border-style: solid;
@@ -423,7 +423,7 @@ span.CodeMirror-selectedtext {
 }
 .tippy-box > .tippy-arrow:after,
 .tippy-box > .tippy-svg-arrow:after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: -1;
 }
@@ -462,7 +462,12 @@ span.CodeMirror-selectedtext {
 .bytemd .CodeMirror,
 .bytemd code,
 .bytemd kbd {
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-family:
+    SFMono-Regular,
+    Consolas,
+    Liberation Mono,
+    Menlo,
+    monospace;
 }
 .bytemd-toolbar {
   padding: 4px 12px;
@@ -690,15 +695,14 @@ span.CodeMirror-selectedtext {
   font-size: 12px;
 }
 
-
 /* Block Style */
 
 .bytemd-body blockquote {
-	color: var(--color-text-1);
-	padding: 1px 23px;
-	margin: 22px 0;
-	border-left: 5px solid var(--color-neutral-4);
-	background-color: var(--color-neutral-3);
+  color: var(--color-text-1);
+  padding: 1px 23px;
+  margin: 22px 0;
+  border-left: 5px solid var(--color-neutral-4);
+  background-color: var(--color-neutral-3);
 }
 
 .bytemd-body hr {
