@@ -69,8 +69,8 @@
 }
 
 .icon-link {
-  padding: 4px;
-  border-radius: 50%;
+  padding: 4px !important;
+  border-radius: 50% !important;
 }
 
 .menu-link .arco-dropdown-option-content {

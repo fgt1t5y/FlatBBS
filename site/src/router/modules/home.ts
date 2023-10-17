@@ -12,12 +12,12 @@ export const homeRoutes = [
     children: [
       {
         path: '',
-        name: 'topics',
+        name: 'all_topics',
         component: TopicList,
       },
       {
         path: 'board/:id',
-        name: 'board',
+        name: 'board_topics',
         component: TopicList,
         meta: {
           title: '论坛版块',

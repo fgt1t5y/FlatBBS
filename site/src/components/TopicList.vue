@@ -9,6 +9,8 @@
 
 <script setup lang="ts">
 import '@/style/TopicList.css'
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 defineOptions({
   name: 'TopicList',
@@ -33,4 +35,12 @@ const placeholderTopics = [
     content: '这是第三条主题的内容。',
   },
 ] as TopicProps[]
+const route = useRoute()
+
+watch(
+  () => route.params.id,
+  (board_id) => {
+    console.log(board_id)
+  },
+)
 </script>

@@ -17,10 +17,10 @@
   display: none;
 }
 
+/* 通用 hover 效果 */
 .hover-card {
   padding: 8px;
   border-radius: var(--border-radius-small);
-  transition: background 0.1s;
 }
 
 .hover-card:hover,
@@ -30,13 +30,19 @@
   cursor: pointer;
 }
 
-.router-link-active {
+/* 路由高亮 */
+.router-link-exact-active {
   color: rgb(var(--primary-5)) !important;
 }
 
+/* 侧边栏链接 */
 .sider-link {
   font-size: 1rem;
   padding: 8px 0px;
+}
+
+.sider-link svg {
+  margin-right: 4px;
 }
 
 @media (max-width: 810px) {
