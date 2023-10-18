@@ -20,7 +20,7 @@ export const mainRoutes = [
         name: 'board_topics',
         component: TopicList,
         meta: {
-          title: '论坛版块',
+          title: '版块',
         },
       },
     ],

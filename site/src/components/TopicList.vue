@@ -9,7 +9,9 @@
 
 <script setup lang="ts">
 import '@/style/TopicList.css'
-import { watch } from 'vue'
+import { useTitle } from '@/utils/useTitle'
+import { onMounted, watch } from 'vue'
+
 import { useRoute } from 'vue-router'
 
 defineOptions({
@@ -36,6 +38,7 @@ const placeholderTopics = [
   },
 ] as TopicProps[]
 const route = useRoute()
+const { setTitle } = useTitle('版块')
 
 watch(
   () => route.params.id,
@@ -43,4 +46,8 @@ watch(
     console.log(board_id)
   },
 )
+
+onMounted(() => {
+  console.log(route.params.id)
+})
 </script>

@@ -24,8 +24,7 @@
 }
 
 .hover-card:hover,
-.hover-card:focus-visible,
-.hover-card:focus {
+.hover-card:focus-visible {
   background-color: var(--color-neutral-2);
   cursor: pointer;
 }
