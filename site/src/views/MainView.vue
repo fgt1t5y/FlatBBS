@@ -9,7 +9,7 @@
       <TypographyText type="secondary" class="sider-group">
         论坛版块
       </TypographyText>
-      <BoardTree />
+      <BoardList />
     </template>
     <template #content>
       <RouterView />
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import BoardTree from '@/components/BoardTree.vue'
+import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import { Divider, TypographyText } from '@arco-design/web-vue'
 import { IconHome } from '@arco-design/web-vue/es/icon'

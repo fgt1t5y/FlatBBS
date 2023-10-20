@@ -1,0 +1,12 @@
+.board-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 4px;
+}
