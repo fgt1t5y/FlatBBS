@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\model\Board;
 use app\model\BoardGroup;
 use support\Request;
 
