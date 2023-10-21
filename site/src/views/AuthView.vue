@@ -23,7 +23,7 @@
         </FormItem>
         <FormItem>
           <Button long :loading="isDealing" html-type="submit" type="primary">
-            下一步
+            登录
           </Button>
         </FormItem>
       </Form>
@@ -48,7 +48,7 @@
         </FormItem>
         <FormItem>
           <Button long :loading="isDealing" html-type="submit" type="primary">
-            下一步
+            注册
           </Button>
         </FormItem>
       </Form>
