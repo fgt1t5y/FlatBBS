@@ -10,7 +10,7 @@
     <TypographyText>{{ valueNow || '未填写' }}</TypographyText>
     <button
       v-if="!readonly"
-      class="icon-link"
+      class="icon-link hover-card"
       title="更改此栏"
       @click="startEdit"
     >
