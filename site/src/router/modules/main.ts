@@ -14,6 +14,9 @@ export const mainRoutes = [
         path: '',
         name: 'all_topics',
         component: TopicList,
+        meta: {
+          title: '所有话题',
+        },
       },
       {
         path: 'board/:id',

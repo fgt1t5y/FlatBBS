@@ -1,6 +1,6 @@
 export const siteName = 'Flat BBS';
 
-export const purnSetTitle = (title: string) => {
+export const pureSetTitle = (title: string) => {
   document.title = `${title} - ${siteName}`;
 };
 

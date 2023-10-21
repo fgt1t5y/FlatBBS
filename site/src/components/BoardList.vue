@@ -23,9 +23,7 @@ defineOptions({
 })
 
 const boards = ref<Board[] | null>(null)
-const idToUri = (id: number) => {
-  return '/board/' + String(id)
-}
+const idToUri = (id: number) => '/board/' + String(id)
 
 onMounted(() => {
   getBoards().then((res) => {
