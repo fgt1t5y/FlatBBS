@@ -14,9 +14,6 @@ export const useUserStore = defineStore('user', () => {
 
   const isLogin = ref<boolean>(false);
 
-  /**
-   * 从后端获取用户和网站的配置
-   */
   const fetch = () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
