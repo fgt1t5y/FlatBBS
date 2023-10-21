@@ -6,9 +6,6 @@ export const mainRoutes = [
     path: '/',
     name: 'home',
     component: MainView,
-    meta: {
-      title: '首页',
-    },
     children: [
       {
         path: '',

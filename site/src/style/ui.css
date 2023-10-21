@@ -28,3 +28,76 @@ kbd {
   text-align: center;
 }
 
+#_flat {
+  margin: 16px auto;
+  max-width: var(--page-max-width);
+}
+
+.edit-window {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  max-width: var(--page-max-width);
+  z-index: 100;
+  margin: 0px auto;
+}
+
+.mob-show {
+  display: none;
+}
+
+/* 通用 hover 效果 */
+.hover-card {
+  padding: 8px;
+  border-radius: var(--border-radius-small);
+}
+
+.hover-card:hover,
+.hover-card:focus-visible {
+  background-color: var(--color-primary-light-1);
+  cursor: pointer;
+}
+
+/* 路由高亮 */
+.link.router-link-exact-active {
+  color: rgb(var(--primary-5)) !important;
+}
+
+/* 侧边栏 */
+.sider-link {
+  font-size: 1rem;
+  padding: 8px 0px;
+}
+
+.sider-link svg {
+  margin-right: 4px;
+}
+
+.sider-group {
+  padding: 4px 0px;
+}
+
+/* 原子类 */
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 810px) {
+  .mob-hidden {
+    display: none !important;
+  }
+
+  .mob-show {
+    display: inherit !important;
+  }
+
+  .grid-sider {
+    display: none !important;
+  }
+
+  .grid-content {
+    padding: 0px 1rem;
+  }
+}

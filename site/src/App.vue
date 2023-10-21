@@ -14,7 +14,6 @@ import Navbar from './components/Navbar.vue'
 import { useUserStore, useTheme } from './stores'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'
-import './App.css'
 import { hasToken } from './utils'
 
 const user = useUserStore()

@@ -14,9 +14,11 @@ const router = createRouter({
   routes: [...mainRoutes, ...authRoutes, ...settingsRoutes],
 });
 
+const authorizedBlacklist = ['auth'];
+
 router.beforeEach((to) => {
-  if (to.name === 'auth' && hasToken()) {
-    return false;
+  if (to.name! in authorizedBlacklist && hasToken()) {
+    return { path: '/', replace: true };
   }
 });
 

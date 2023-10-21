@@ -139,7 +139,6 @@ const guestMenuOptions = [
     to: '/auth',
   },
 ] as UserMenuOptionsProps[]
-
 const focusInput = (ev: KeyboardEvent) => {
   if (ev.key === 'k' && ev.ctrlKey) {
     ev.preventDefault()
