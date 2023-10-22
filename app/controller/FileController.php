@@ -11,11 +11,6 @@ class FileController
 {
   static $supportedFile = ['image/png', 'image/jpeg'];
 
-  public function index(Request $request)
-  {
-    return view('test');
-  }
-
   public function upload(Request $request)
   {
     $file = $request->file('avgfile');
