@@ -43,10 +43,11 @@ function json_message(int $code, string $message, mixed $data = null): Response
 function random_string()
 {
     $unit = 'abcdefghijklmnopqrstuvwxyz1234567890[]';
+    $len = strlen($unit) - 1;
     $result = '';
 
     for ($i = 0; $i < 32; $i++) {
-        $result = $result . $unit[random_int(0, strlen($unit) - 1)];
+        $result = $result . $unit[random_int(0, $len)];
     }
 
     return $result;
