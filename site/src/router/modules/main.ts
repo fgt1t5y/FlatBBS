@@ -4,20 +4,20 @@ import TopicList from '@/components/TopicList.vue';
 export const mainRoutes = [
   {
     path: '/',
-    name: 'home',
+    name: 'root',
     component: MainView,
     children: [
       {
         path: '',
-        name: 'all_topics',
+        name: 'home',
         component: TopicList,
         meta: {
-          title: '所有话题',
+          title: '首页',
         },
       },
       {
         path: 'board/:id',
-        name: 'board_topics',
+        name: 'board',
         component: TopicList,
         meta: {
           title: '版块',
