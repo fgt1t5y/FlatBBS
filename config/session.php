@@ -13,12 +13,10 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-use Webman\Session\FileSessionHandler;
 use Webman\Session\RedisSessionHandler;
 use Webman\Session\RedisClusterSessionHandler;
 
 return [
-
     'type' => 'redis', // or redis or redis_cluster
 
     'handler' => RedisSessionHandler::class,
@@ -59,5 +57,4 @@ return [
     'same_site' => 'strict',
 
     'gc_probability' => [1, 1000],
-
 ];

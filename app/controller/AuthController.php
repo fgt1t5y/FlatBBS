@@ -49,7 +49,7 @@ class AuthController
             return json_message(STATUS_BAD_REQUEST, '你已经登录过了');
         }
 
-        $email = $request->post('email', 'null');
+        $email = $request->post('email');
         $password = $request->post('password');
         $user = User::getUser('email', $email, ['id', 'password', 'allow_login']);
 
