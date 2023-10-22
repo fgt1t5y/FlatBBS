@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "devsense.phptools-vscode",
+    "vue.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
