@@ -1,6 +1,9 @@
 <template>
   <div class="board-list">
-    <div v-if="isLoading" class="align-center">
+    <div v-if="isFailed" class="row-center">
+      <Button type="primary" @click="fetchBoards">重试</Button>
+    </div>
+    <div v-if="isLoading" class="row-center">
       <Spin :size="32" />
     </div>
     <RouterLink
@@ -20,7 +23,7 @@ import { getBoards } from '@/services'
 import type { Board } from '@/types'
 import { onMounted, ref } from 'vue'
 import '@/style/BoardList.css'
-import { Spin } from '@arco-design/web-vue'
+import { Spin, Button } from '@arco-design/web-vue'
 
 defineOptions({
   name: 'BoardList',
@@ -28,14 +31,27 @@ defineOptions({
 
 const boards = ref<Board[] | null>(null)
 const idToUri = (id: number) => '/board/' + String(id)
-const isLoading = ref<boolean>(true)
+const isLoading = ref<boolean>(false)
+const isFailed = ref<boolean>(false)
+
+const fetchBoards = () => {
+  isLoading.value = true
+  isFailed.value = false
+  getBoards()
+    .then((res) => {
+      if (res.data.code === 0) {
+        boards.value = res.data.data!
+      }
+    })
+    .catch(() => {
+      isFailed.value = true
+    })
+    .finally(() => {
+      isLoading.value = false
+    })
+}
 
 onMounted(() => {
-  getBoards().then((res) => {
-    if (res.data.code === 0) {
-      boards.value = res.data.data!
-      isLoading.value = false
-    }
-  })
+  fetchBoards()
 })
 </script>

@@ -79,9 +79,16 @@ kbd {
 }
 
 /* 原子类 */
-.align-center {
+.row-center {
   display: flex;
   justify-content: center;
+}
+
+.column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 @media (max-width: 810px) {

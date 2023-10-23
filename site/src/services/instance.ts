@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { RequestResult } from '@/types';
-import { Modal } from '@arco-design/web-vue';
+import { Message } from '@arco-design/web-vue';
 
 export const requester = axios.create({
   baseURL: '/backend',
@@ -9,10 +9,7 @@ export const requester = axios.create({
 });
 
 const complainError = (content: string) => {
-  Modal.error({
-    title: '错误',
-    content: content,
-  });
+  Message.error(content);
 };
 
 requester.interceptors.request.use(
