@@ -13,4 +13,9 @@ class Topic extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function last_reply(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'last_reply_id');
+    }
 }
