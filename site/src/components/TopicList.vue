@@ -4,14 +4,16 @@
       <div class="topic-title">{{ item.title }}</div>
       <div class="topic-preview">{{ item.content }}</div>
     </div>
+    <Button @click="fetch">TEST</Button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { getTopicList } from '@/services/topics'
 import '@/style/TopicList.css'
 import { useTitle } from '@/utils/useTitle'
+import { Button } from '@arco-design/web-vue'
 import { onMounted, watch } from 'vue'
-
 import { useRoute } from 'vue-router'
 
 defineOptions({
@@ -39,6 +41,11 @@ const placeholderTopics = [
 ] as TopicProps[]
 const route = useRoute()
 const { setTitle } = useTitle('版块')
+const fetch = () => {
+  getTopicList(0, 2).then((res) => {
+    console.log(res.data)
+  })
+}
 
 watch(
   () => route.params.id,

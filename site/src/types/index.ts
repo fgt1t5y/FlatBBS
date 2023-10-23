@@ -28,6 +28,11 @@ export interface UploadForm {
   as?: UploadAs;
 }
 
+export interface TopicListForm {
+  last: number;
+  limit: number;
+}
+
 export interface UploadResult {
   uri: string;
 }
@@ -42,12 +47,6 @@ export interface Board {
   id: number;
   name: string;
   color: string;
-}
-
-export interface BoardGroups {
-  id: number;
-  name: string;
-  board: Board[];
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
