@@ -42,7 +42,7 @@ function json_message(int $code, string $message, mixed $data = null): Response
 
 function random_string()
 {
-    $unit = 'abcdefghijklmnopqrstuvwxyz1234567890[]';
+    $unit = 'abcdefghijklmnopqrstuvwxyz1234567890';
     $len = strlen($unit) - 1;
     $result = '';
 

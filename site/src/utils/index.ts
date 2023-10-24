@@ -33,6 +33,6 @@ export const blobToFile = (blob: Blob, fileName: string) => {
   return file;
 };
 
-export const getAvatarPaht = (avatar_file: string) => {
-  return `/backend/public/usercontent/${avatar_file}`;
+export const getAvatarPath = (avatar_file: string) => {
+  return `/backend/usercontent/${avatar_file}`;
 };

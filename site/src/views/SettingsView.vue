@@ -68,7 +68,7 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import { useUserStore } from '@/stores'
-import { blobToFile } from '@/utils'
+import { blobToFile, getAvatarPath } from '@/utils'
 import {
   TypographyText,
   TypographyTitle,
@@ -109,7 +109,7 @@ const uploadAvatar = () => {
       const file = blobToFile(blob, '_.jpg')
       uploadAsAvatar(file).then((res) => {
         if (res.data.code === 0) {
-          info.avatar_uri = res.data.data!.uri
+          info.avatar_uri = getAvatarPath(res.data.data!.uri)
           Modal.success({
             content: '头像已上传。因为缓存的存在，生效时间可能延后。',
           })
