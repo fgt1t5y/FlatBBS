@@ -7,7 +7,10 @@ return [
       'userinfo' => 'userinfo_'
     ]
   ],
-  'path' => [
-    'usercontent' => '/backend/usercontent'
-  ]
+  'backend_path' => [
+    'usercontent' => 'public/usercontent/'
+  ],
+  'frontend_path' => [
+    'usercontent' => 'backend/usercontent/'
+  ],
 ];

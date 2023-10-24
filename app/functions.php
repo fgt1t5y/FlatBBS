@@ -46,7 +46,7 @@ function random_string()
     $len = strlen($unit) - 1;
     $result = '';
 
-    for ($i = 0; $i < 32; $i++) {
+    for ($i = 0; $i < 16; $i++) {
         $result = $result . $unit[random_int(0, $len)];
     }
 
