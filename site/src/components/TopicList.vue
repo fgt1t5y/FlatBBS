@@ -3,6 +3,7 @@
     <List :bordered="false">
       <ListItem v-for="item in topicsRaw" :key="item.id">
         <div class="topic-title">{{ item.title }}</div>
+        <span>{{ dayjs(item.last_reply_at).fromNow() }}</span>
       </ListItem>
     </List>
   </div>
@@ -15,6 +16,7 @@ import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute } from 'vue-router'
 import { List, ListItem } from '@arco-design/web-vue'
+import dayjs from 'dayjs'
 
 defineOptions({
   name: 'TopicList',
