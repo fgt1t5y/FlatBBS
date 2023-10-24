@@ -7,7 +7,7 @@ return [
       'userinfo' => 'userinfo_'
     ]
   ],
-  'backend' => [
-    'path' => '/backend/'
+  'path' => [
+    'usercontent' => '/backend/usercontent'
   ]
 ];
