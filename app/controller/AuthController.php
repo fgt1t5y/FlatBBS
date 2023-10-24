@@ -45,7 +45,7 @@ class AuthController
     {
         $session = $request->session();
 
-        if (is_login($session, $request->cookie('flat_sess'))) {
+        if (is_login($request->cookie('flat_sess'))) {
             return json_message(STATUS_BAD_REQUEST, '你已经登录过了');
         }
 

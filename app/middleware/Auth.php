@@ -17,8 +17,7 @@ class Auth implements MiddlewareInterface
     public function process(Request $request, callable $handle): Response
     {
         if (in_array("$request->controller\\$request->action", self::$needAuthActionList)) {
-            $session = $request->session();
-            if (!is_login($session, $request->cookie('flat_sess'))) {
+            if (!is_login($request->cookie('flat_sess'))) {
                 return json_message(STATUS_UNAUTHORIZED, '请登录');
             }
         }

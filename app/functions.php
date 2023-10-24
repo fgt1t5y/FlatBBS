@@ -53,9 +53,9 @@ function random_string()
     return $result;
 }
 
-function is_login(Session $session, $token)
+function is_login($token)
 {
-    $server_token = $session->get('token');
+    $server_token = session('token');
     if ($server_token === null) {
         return false;
     }
@@ -64,7 +64,7 @@ function is_login(Session $session, $token)
         return true;
     }
 
-    $session->flush();
+    session()->flush();
     return false;
 }
 
