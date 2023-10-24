@@ -49,4 +49,16 @@ export interface Board {
   color: string;
 }
 
+export type TopicAuthor = Pick<UserInfo, 'id' | 'username'>;
+
+export interface Topic {
+  id: number;
+  title: string;
+  content?: string;
+  author: TopicAuthor;
+  last_reply: TopicAuthor;
+  reply_count: number;
+  last_reply_at: string;
+}
+
 export type ThemeMode = 'auto' | 'light' | 'dark';

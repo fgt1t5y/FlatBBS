@@ -1,8 +1,4 @@
-.topic-item .topic-title {
+.topic-title {
   font-size: 1rem;
   color: var(--color-text-1);
-}
-
-.topic-item .topic-preview {
-  color: var(--color-text-3);
 }

@@ -1,12 +1,12 @@
 import { genForm } from '@/utils';
 import { requester } from './instance';
-import type { TopicListForm } from '@/types';
+import type { RequestResult, Topic, TopicListForm } from '@/types';
 
 export const getTopicList = (last: number, limit: number) => {
   const form = genForm<TopicListForm>({
-    last: last ?? 0,
+    last: last,
     limit: limit,
   });
 
-  return requester.post('/topic/list', form);
+  return requester.post<RequestResult<Topic[]>>('/topic/list', form);
 };

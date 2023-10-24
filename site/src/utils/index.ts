@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 export const get = (key: string): string | null => {
   return localStorage.getItem(key);
@@ -15,7 +15,7 @@ export const getOrSet = (key: string, if_no: string) => {
 
 export const has = (key: string) => get(key) !== null;
 
-export const hasToken = () => !!Cookies.get('flat_sess')
+export const hasToken = () => !!Cookies.get('flat_sess');
 
 export const genForm = <T>(data: T) => {
   const form = new FormData();
@@ -28,7 +28,11 @@ export const genForm = <T>(data: T) => {
   return form;
 };
 
-export function blobToFile(blob: Blob, fileName: string) {
+export const blobToFile = (blob: Blob, fileName: string) => {
   const file = new File([blob], fileName, { type: blob.type });
   return file;
-}
+};
+
+export const getAvatarPaht = (avatar_file: string) => {
+  return `/backend/public/usercontent/${avatar_file}`;
+};

@@ -92,6 +92,9 @@ kbd {
 }
 
 @media (max-width: 810px) {
+  .nav {
+    padding: 0px 1rem;
+  }
   .mob-hidden {
     display: none !important;
   }
@@ -106,5 +109,10 @@ kbd {
 
   .grid-content {
     padding: 0px 1rem;
+  }
+
+  .arco-list-item {
+    padding-left: unset !important;
+    padding-right: unset !important;
   }
 }

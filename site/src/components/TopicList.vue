@@ -1,49 +1,30 @@
 <template>
   <div class="topic-list">
-    <div v-for="item in placeholderTopics" class="topic-item hover-card">
-      <div class="topic-title">{{ item.title }}</div>
-      <div class="topic-preview">{{ item.content }}</div>
-    </div>
-    <Button @click="fetch">TEST</Button>
+    <List :bordered="false">
+      <ListItem v-for="item in topicsRaw" :key="item.id">
+        <div class="topic-title">{{ item.title }}</div>
+      </ListItem>
+    </List>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getTopicList } from '@/services/topics'
 import '@/style/TopicList.css'
-import { useTitle } from '@/utils/useTitle'
-import { Button } from '@arco-design/web-vue'
-import { onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import type { Topic } from '@/types'
 import { useRoute } from 'vue-router'
+import { List, ListItem } from '@arco-design/web-vue'
 
 defineOptions({
   name: 'TopicList',
 })
 
-interface TopicProps {
-  title: string
-  content: string
-}
-
-const placeholderTopics = [
-  {
-    title: '这是第一条主题',
-    content: '这是第一条主题的内容。',
-  },
-  {
-    title: '这是第二条主题',
-    content: '这是第二条主题的内容。',
-  },
-  {
-    title: '这是第三条主题',
-    content: '这是第三条主题的内容。',
-  },
-] as TopicProps[]
+const topicsRaw = ref<Topic[] | null>(null)
 const route = useRoute()
-const { setTitle } = useTitle('版块')
-const fetch = () => {
+const fetchTopics = () => {
   getTopicList(0, 2).then((res) => {
-    console.log(res.data)
+    topicsRaw.value = res.data.data!
   })
 }
 
@@ -55,6 +36,6 @@ watch(
 )
 
 onMounted(() => {
-  console.log(route.params.id)
+  fetchTopics()
 })
 </script>

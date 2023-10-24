@@ -19,8 +19,8 @@ class TopicController
         $topics = Topic::orderBy('last_reply_at')
             ->limit(max($_limit, 10))
             ->with(['author:id,username', 'last_reply:id,username'])
-            ->where('id', '>', $last_id)
-            ->get(['id', 'title', 'author_id', 'last_reply_id', 'reply_count']);
+            ->where('id', '>', $last_id, 'and', '')
+            ->get(['id', 'title', 'author_id', 'last_reply_id', 'reply_count', 'last_reply_at']);
 
         return json_message(STATUS_OK, '完成', $topics);
     }
