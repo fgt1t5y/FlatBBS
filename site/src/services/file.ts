@@ -7,9 +7,9 @@ import type {
   RequestResult,
 } from '@/types';
 
-export const upload = (file: File, as: UploadAs | undefined) => {
+export const upload = (files: File[], as: UploadAs | undefined) => {
   const form = genForm<UploadForm>({
-    avgfile: file,
+    avgfile: files,
     as: as,
   });
 
@@ -17,5 +17,5 @@ export const upload = (file: File, as: UploadAs | undefined) => {
 };
 
 export const uploadAsAvatar = (avatarFile: File) => {
-  return upload(avatarFile, 'avatar');
+  return upload([avatarFile], 'avatar');
 };

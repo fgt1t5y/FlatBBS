@@ -16,6 +16,12 @@ class FileController
         $files = $request->file('avgfile');
         $as = $request->post('as');
         $filepath = [];
+        $filename = '';
+
+        // 单个文件时 file 是 object，将其转换为 array 才可以 foreach
+        if (is_object($files)) {
+            $files = [$files];
+        }
 
         foreach ($files as $file) {
             if (

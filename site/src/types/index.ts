@@ -24,7 +24,7 @@ export interface UserModifyForm {
 export type UploadAs = 'avatar' | 'attachment';
 
 export interface UploadForm {
-  avgfile: File;
+  avgfile: File[];
   as?: UploadAs;
 }
 

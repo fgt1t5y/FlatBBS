@@ -36,3 +36,8 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 export const getAvatarPath = (avatar_file: string) => {
   return `/backend/usercontent/${avatar_file}`;
 };
+
+
+export const mergeFiles = (files: File[]) => {
+  
+}

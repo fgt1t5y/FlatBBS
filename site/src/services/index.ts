@@ -1,4 +1,4 @@
 export * from './auth';
-export * from './upload';
+export * from './file';
 export * from './userinfo';
 export * from './boards';
