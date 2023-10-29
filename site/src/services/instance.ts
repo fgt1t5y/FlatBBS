@@ -26,7 +26,7 @@ requester.interceptors.request.use(
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
     console.log(res);
-    if (res.data.code > 0) {
+    if (res.data.code > 0 && res.data.message !== '') {
       complainError(res.data.message);
     }
     return res;
