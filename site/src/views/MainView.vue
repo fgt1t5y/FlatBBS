@@ -3,7 +3,7 @@
     <template #sider>
       <RouterLink to="/" class="sider-link link">
         <IconHome />
-        <span>所有帖子</span>
+        <span>首页</span>
       </RouterLink>
       <Divider :margin="12" />
       <TypographyText type="secondary" class="sider-group">
@@ -24,4 +24,4 @@ import { Divider, TypographyText } from '@arco-design/web-vue'
 import { IconHome } from '@arco-design/web-vue/es/icon'
 import { RouterLink } from 'vue-router'
 </script>
-w
+
