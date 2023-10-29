@@ -23,7 +23,15 @@ export const genForm = <T>(data: T) => {
 
   for (const item in data) {
     if (!item) continue;
-    form.append(item, data[item] as string);
+    const value = data[item] as any;
+    // 遇到文件数组 合并到一个 field
+    if (Array.isArray(value)) {
+      (value as File[]).map((file) => {
+        form.append('avgfile[]', file);
+      });
+      continue;
+    }
+    form.append(item, value);
   }
 
   return form;

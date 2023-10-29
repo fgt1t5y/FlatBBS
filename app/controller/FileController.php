@@ -18,17 +18,19 @@ class FileController
         $filepath = [];
         $filename = '';
 
+        if (
+            !$files
+        ) {
+            return json_message(STATUS_BAD_REQUEST, '没有文件');
+        }
+
         // 单个文件时 file 是 object，将其转换为 array 才可以 foreach
         if (is_object($files)) {
             $files = [$files];
         }
 
         foreach ($files as $file) {
-            if (
-                !$file
-                || !$file->isValid()
-                || !in_array($file->getUploadMimeType(), self::$supportedFile)
-            ) {
+            if (!in_array($file->getUploadMimeType(), self::$supportedFile)) {
                 return json_message(STATUS_BAD_REQUEST, '无效文件 ' . $file->getUploadName());
             }
 
