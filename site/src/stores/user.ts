@@ -1,4 +1,4 @@
-import { getUserInfo } from '@/services/userinfo';
+import { getUserInfo } from '@/services';
 import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
 import type { UserInfo } from '@/types';

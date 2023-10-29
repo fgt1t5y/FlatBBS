@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { getTopicList } from '@/services/topics'
+import { getTopicList } from '@/services'
 import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
