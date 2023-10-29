@@ -5,13 +5,12 @@ import {
 } from 'vue-router';
 import { mainRoutes } from './modules/main';
 import { authRoutes } from './modules/auth';
-import { settingsRoutes } from './modules/settings';
 import { pureSetTitle } from '@/utils/useTitle';
 import { hasToken } from '@/utils';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...mainRoutes, ...authRoutes, ...settingsRoutes],
+  routes: [...mainRoutes, ...authRoutes],
 });
 
 router.beforeEach((to) => {

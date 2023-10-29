@@ -1,47 +1,40 @@
 <template>
-  <CommonGrid sider-position="right">
-    <template #sider></template>
-    <template #content>
-      <Space direction="vertical" :size="0">
-        <TypographyTitle :heading="4" style="margin: unset">
-          设置
-        </TypographyTitle>
-        <TypographyText type="secondary">
-          在此页面调整用户名、密码、主题模式等设置。
-        </TypographyText>
-      </Space>
-      <div class="settings-group">
-        <TypographyTitle :heading="6">头像</TypographyTitle>
-        <SettingItem title="我的头像" subtitle="点击以更改。">
-          <Avatar
-            :image-url="info.avatar_uri"
-            :size="64"
-            @click="openAvatarSelector"
-          />
-          <input
-            ref="avatarInput"
-            type="file"
-            name="avatar"
-            accept=".jpg,.png,.jpeg"
-            style="display: none"
-            @change="giveAvatarFile"
-          />
-        </SettingItem>
-      </div>
-      <div class="settings-group">
-        <TypographyTitle :heading="6">用户资料</TypographyTitle>
-        <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
-          <InputField :input-value="info.email" readonly />
-        </SettingItem>
-        <SettingItem title="用户名">
-          <InputField field="username" :input-value="info.username" />
-        </SettingItem>
-        <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己。">
-          <InputField field="introduction" :input-value="info.introduction" />
-        </SettingItem>
-      </div>
-    </template>
-  </CommonGrid>
+  <div class="page-header">
+    <TypographyTitle :heading="4" style="margin: unset">设置</TypographyTitle>
+    <TypographyText type="secondary">
+      在此页面调整用户名、密码、主题模式等设置。
+    </TypographyText>
+  </div>
+  <div class="settings-group">
+    <TypographyTitle :heading="6">头像</TypographyTitle>
+    <SettingItem title="我的头像" subtitle="点击以更改。">
+      <Avatar
+        :image-url="info.avatar_uri"
+        :size="64"
+        @click="openAvatarSelector"
+      />
+      <input
+        ref="avatarInput"
+        type="file"
+        name="avatar"
+        accept=".jpg,.png,.jpeg"
+        style="display: none"
+        @change="giveAvatarFile"
+      />
+    </SettingItem>
+  </div>
+  <div class="settings-group">
+    <TypographyTitle :heading="6">用户资料</TypographyTitle>
+    <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
+      <InputField :input-value="info.email" readonly />
+    </SettingItem>
+    <SettingItem title="用户名">
+      <InputField field="username" :input-value="info.username" />
+    </SettingItem>
+    <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己。">
+      <InputField field="introduction" :input-value="info.introduction" />
+    </SettingItem>
+  </div>
   <Modal
     :visible="isShowCropper"
     :width="360"
@@ -64,7 +57,6 @@
 
 <script setup lang="ts">
 import Cropper from '@/components/Cropper.vue'
-import CommonGrid from '@/components/CommonGrid.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import { useUserStore } from '@/stores'
@@ -75,10 +67,10 @@ import {
   Avatar,
   Modal,
   Message,
-  Space,
 } from '@arco-design/web-vue'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
+import '@/style/SettingsView.css'
 
 const { info } = useUserStore()
 const cropper = ref<InstanceType<typeof Cropper>>()

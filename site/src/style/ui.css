@@ -78,6 +78,11 @@ kbd {
   padding: 4px 0px;
 }
 
+/* 页头 */
+.page-header {
+  padding: 0px 12px;
+}
+
 /* 原子类 */
 .row-center {
   display: flex;

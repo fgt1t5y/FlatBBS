@@ -23,6 +23,14 @@ export const mainRoutes = [
           title: '版块',
         },
       },
+      {
+        path: 'settings',
+        name: 'settings',
+        component: () => import('@/views/SettingsView.vue'),
+        meta: {
+          title: '设置',
+        },
+      },
     ],
   },
 ];
