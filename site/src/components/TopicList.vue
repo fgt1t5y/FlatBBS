@@ -1,11 +1,13 @@
 <template>
   <div class="topic-list">
-    <List :bordered="false">
-      <ListItem v-for="item in topicsRaw" :key="item.id">
-        <div class="topic-title">{{ item.title }}</div>
-        <span>{{ dayjs(item.last_reply_at).fromNow() }}</span>
-      </ListItem>
-    </List>
+    <div v-for="item in topics" class="topic-list-item">
+      <div class="topic-header">
+        <span>{{ item.title }}</span>
+        <span class="topic-board" :style="{backgroundColor: item.board.color}">
+          {{ item.board.name }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,18 +17,18 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute } from 'vue-router'
-import { List, ListItem } from '@arco-design/web-vue'
-import dayjs from 'dayjs'
 
 defineOptions({
   name: 'TopicList',
 })
 
-const topicsRaw = ref<Topic[] | null>(null)
+const topics = ref<Topic[] | null>(null)
+const limit = 10
+const offset = 0
 const route = useRoute()
 const fetchTopics = () => {
-  getTopicList(0, 2).then((res) => {
-    topicsRaw.value = res.data.data!
+  getTopicList(offset, limit).then((res) => {
+    topics.value = res.data.data!
   })
 }
 

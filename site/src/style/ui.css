@@ -23,7 +23,7 @@ kbd {
   width: 1rem;
   height: 1rem;
   background-color: var(--color-neutral-3);
-  border-radius: 4px;
+  border-radius: var(--border-radius-medium);
   padding: 2px;
   text-align: center;
 }

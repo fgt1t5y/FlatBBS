@@ -56,7 +56,7 @@ export interface Topic {
   title: string;
   content?: string;
   author: TopicAuthor;
-  last_reply: TopicAuthor;
+  board: Board;
   reply_count: number;
   last_reply_at: string;
 }

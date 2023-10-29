@@ -20,7 +20,7 @@ class TopicController
             ->limit(max($_limit, 10))
             ->with([
                 'author:id,username',
-                'last_reply:id,username'
+                'board:id,name,color',
             ])
             ->where('id', '>', $last_id, 'and', '')
             ->get([
@@ -28,6 +28,7 @@ class TopicController
                 'title',
                 'author_id',
                 'last_reply_id',
+                'board_id',
                 'reply_count',
                 'last_reply_at'
             ]);
