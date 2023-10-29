@@ -1,10 +1,21 @@
 .topic-list {
   display: flex;
   flex-direction: column;
+}
+
+.topic-list-item {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-neutral-3);
+  padding: 8px;
   gap: 8px;
 }
 
-.topic-header {
+.topic-list-item:last-child {
+  border-bottom: 1px solid var(--color-neutral-3);
+}
+
+.topic-title {
   font-size: 1rem;
   color: var(--color-text-1);
 }
@@ -14,4 +25,15 @@
   padding: 2px 4px;
   border-radius: var(--border-radius-medium);
   margin-left: 4px;
+}
+
+.topic-opt {
+  display: flex;
+  gap: 2rem;
+  padding-top: 8px;
+  color: var(--color-text-2);
+}
+
+.topic-opt button {
+  padding: unset;
 }

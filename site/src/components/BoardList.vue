@@ -3,9 +3,7 @@
     <div v-if="isFailed" class="row-center">
       <Button type="primary" @click="fetchBoards">重试</Button>
     </div>
-    <div v-if="isLoading" class="row-center">
-      <Spin :size="32" />
-    </div>
+    <Spin v-if="isLoading" :size="32" tip="加载..." />
     <RouterLink
       v-for="i in boards"
       :key="i.id"

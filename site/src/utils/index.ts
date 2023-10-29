@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
 
 export const get = (key: string): string | null => {
@@ -37,7 +38,6 @@ export const getAvatarPath = (avatar_file: string) => {
   return `/backend/usercontent/${avatar_file}`;
 };
 
-
-export const mergeFiles = (files: File[]) => {
-  
-}
+export const fromNow = (datetime: string) => {
+  return dayjs(datetime).fromNow();
+};
