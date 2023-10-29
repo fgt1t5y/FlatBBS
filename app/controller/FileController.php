@@ -43,7 +43,7 @@ class FileController
             }
             array_push($filepath, $filename);
 
-            if ($as === 'avatar') {
+            if ($as !== 'attachment') {
                 User::modifyUser(
                     $request->session()->get('id'),
                     'avatar_uri',
