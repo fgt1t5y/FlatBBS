@@ -106,13 +106,8 @@ kbd {
   .grid-sider {
     display: none !important;
   }
-
+/*
   .grid-content {
     padding: 0px 1rem;
-  }
-
-  .arco-list-item {
-    padding-left: unset !important;
-    padding-right: unset !important;
-  }
+  } */
 }

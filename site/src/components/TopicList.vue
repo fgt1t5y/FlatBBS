@@ -1,6 +1,5 @@
 <template>
   <div class="topic-list">
-    <Spin v-if="isLoading" :size="32" tip="加载..." />
     <div v-for="item in topics" class="topic-list-item">
       <div class="topic-header">
         <TypographyText type="secondary">
@@ -17,6 +16,7 @@
         </button>
       </div>
     </div>
+    <Spin v-if="isLoading" :size="32" tip="加载..." />
   </div>
 </template>
 
