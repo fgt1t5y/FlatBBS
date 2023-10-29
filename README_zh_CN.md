@@ -1,5 +1,7 @@
 [English](README.md) | 简体中文
 
+![Logo](flatbbs_pro.png)
+
 # Flat BBS
 
 ### 简介

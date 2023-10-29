@@ -8,4 +8,8 @@ English | [简体中文](README_zh_CN.md)
 
 A fast and modern forum application, based on Webman and Vue 3.
 
-### Tech Stack
+### Technology Stack
+
+- Vue.js 3
+- Pinia
+- Webman
