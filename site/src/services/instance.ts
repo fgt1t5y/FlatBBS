@@ -1,9 +1,10 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { RequestResult } from '@/types';
 import { Message } from '@arco-design/web-vue';
+import { config } from '@/global';
 
 export const requester = axios.create({
-  baseURL: '/backend',
+  baseURL: config.api_base,
   timeout: 5000,
   withCredentials: true,
 });

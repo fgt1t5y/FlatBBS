@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url';
-
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { config } from './src/global';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
       '/backend': {
         target: 'http://192.168.1.108:3900',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/backend/, ''),
+        rewrite: (path) => path.replace(config.api_base, ''),
       },
     },
   },
