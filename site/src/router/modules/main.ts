@@ -1,5 +1,5 @@
 import MainView from '@/views/MainView.vue';
-import TopicList from '@/components/TopicList.vue';
+import TopicListView from '@/views/TopicListView.vue';
 
 export const mainRoutes = [
   {
@@ -10,7 +10,7 @@ export const mainRoutes = [
       {
         path: '',
         name: 'home',
-        component: TopicList,
+        component: TopicListView,
         meta: {
           title: '首页',
         },
@@ -18,7 +18,7 @@ export const mainRoutes = [
       {
         path: 'board/:id',
         name: 'board',
-        component: TopicList,
+        component: TopicListView,
         meta: {
           title: '版块',
         },

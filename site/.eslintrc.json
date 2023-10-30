@@ -10,12 +10,6 @@
     "browser": true
   },
 
-  // 全局变量定义
-  "globals": {
-    // 定义一个全局变量 defineModel
-    "defineModel": true
-  },
-
   // 指定代码解析器和选项
   // 使用 vue-eslint-parser 解析 Vue 文件
   "parser": "vue-eslint-parser",
