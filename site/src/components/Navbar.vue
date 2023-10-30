@@ -5,7 +5,7 @@
         <TypographyTitle :heading="5">Flat BBS</TypographyTitle>
       </RouterLink>
       <div class="nav-opt" size="medium">
-        <RouterLink to="/" class="mob-show icon-link hover-card">
+        <RouterLink to="/search" class="icon-link hover-card">
           <IconSearch :size="20" />
         </RouterLink>
         <Input

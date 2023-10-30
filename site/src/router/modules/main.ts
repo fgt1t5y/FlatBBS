@@ -31,6 +31,14 @@ export const mainRoutes = [
           title: '设置',
         },
       },
+      {
+        path: 'search',
+        name: 'search',
+        component: () => import('@/views/SearchView.vue'),
+        meta: {
+          title: '搜索',
+        },
+      },
     ],
   },
 ];

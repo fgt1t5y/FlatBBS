@@ -78,8 +78,17 @@ kbd {
   padding: 4px 0px;
 }
 
-/* 页头 */
+/* 页面元素 */
 .page-header {
+  padding: 0px 12px;
+  margin-bottom: 12px;
+}
+
+.page-header h4 {
+  margin: unset !important;
+}
+
+.page-chunk {
   padding: 0px 12px;
 }
 
@@ -98,7 +107,7 @@ kbd {
 
 @media (max-width: 810px) {
   .nav {
-    padding: 0px 1rem;
+    padding: 0px 12px;
   }
   .mob-hidden {
     display: none !important;
@@ -111,8 +120,8 @@ kbd {
   .grid-sider {
     display: none !important;
   }
-/*
-  .grid-content {
-    padding: 0px 1rem;
-  } */
+
+  .grid-panels {
+    display: none;
+  }
 }

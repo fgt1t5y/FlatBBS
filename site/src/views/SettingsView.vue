@@ -1,6 +1,6 @@
 <template>
   <div class="page-header">
-    <TypographyTitle :heading="4" style="margin: unset">设置</TypographyTitle>
+    <TypographyTitle :heading="4">设置</TypographyTitle>
     <TypographyText type="secondary">
       在此页面调整用户名、密码、主题模式等设置。
     </TypographyText>
