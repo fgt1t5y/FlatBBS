@@ -31,13 +31,13 @@ const props = withDefaults(defineProps<EditorProps>(), {
 })
 
 onMounted(() => {
-  // @ts-expect-error fdfd
+  // @ts-expect-error No type file
   editor.value = new Editor({
     target: wrapper.value,
     props,
   })
 
-  // @ts-expect-error dfdf
+  // @ts-expect-error No type file
   editor.value.$on('change', (ev: CustomEvent<{ value: string }>) => {
     emits('update:value', ev.detail.value)
   })
@@ -46,7 +46,7 @@ onMounted(() => {
 watch(
   () => props,
   (newValue) => {
-    // @ts-expect-error dfdf
+    // @ts-expect-error No type file
     editor.value?.$set(newValue)
   },
   { deep: true },
