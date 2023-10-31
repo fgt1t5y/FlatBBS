@@ -386,7 +386,7 @@ span.CodeMirror-selectedtext {
   transition-property: transform, visibility, opacity;
   background-color: var(--color-bg-popup);
   background-clip: padding-box;
-  border: 1px solid var(--color-fill-3);
+  border: 1px solid var(--color-border);
   color: var(--color-text-1);
 }
 .tippy-box > .tippy-arrow {
@@ -405,7 +405,7 @@ span.CodeMirror-selectedtext {
 .tippy-arrow {
   width: 16px;
   height: 16px;
-  color: #333;
+  color: red;
 }
 .tippy-arrow:before {
   content: '';
@@ -501,7 +501,7 @@ span.CodeMirror-selectedtext {
   color: var(--color-text-1);
 }
 .bytemd-toolbar-icon:hover {
-  background-color: var(--color-bg-1);
+  background-color: var(--color-fill-3);
 }
 .bytemd-toolbar-icon-active {
   color: #0366d6;
@@ -526,6 +526,9 @@ span.CodeMirror-selectedtext {
   padding: 4px 12px;
   height: 32px;
   cursor: pointer;
+}
+.bytemd-dropdown-item:hover {
+  background-color: var(--color-fill-3);
 }
 .bytemd-dropdown-item-icon {
   display: inline-block;
