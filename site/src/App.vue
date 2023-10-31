@@ -1,8 +1,8 @@
 <template>
   <Navbar :is-login="user.isLogin" />
-  <main id="_flat">
+  <main id="flatbbs">
     <RouterView />
-    <div v-if="true" class="edit-window">
+    <div v-if="false" class="edit-window">
       <Editor v-model:value="topicDraft.content" />
     </div>
   </main>
