@@ -3,6 +3,7 @@
 namespace app\controller;
 
 use app\model\Topic;
+use PDOException;
 use support\Request;
 
 class TopicController
@@ -39,5 +40,22 @@ class TopicController
         ]);
 
         return json_message(STATUS_OK, '完成', $result);
+    }
+
+    public function query(Request $request)
+    {
+        $keyword = $request->post('q');
+
+        if (!all([$keyword])) {
+            return json_message(STATUS_BAD_REQUEST, '参数错误');
+        }
+
+        try {
+            $topics = Topic::whereRaw("MATCH(`title`) AGAINST(?)", [$keyword])->get();
+        } catch (PDOException) {
+            return json_message(STATUS_INTERNAL_ERROR, '内部错误');
+        }
+
+        return json_message(STATUS_OK, '完成', $topics);
     }
 }
