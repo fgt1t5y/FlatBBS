@@ -459,15 +459,10 @@ span.CodeMirror-selectedtext {
 .bytemd .CodeMirror-linenumber {
   box-sizing: content-box;
 }
-.bytemd .CodeMirror,
+/* .bytemd .CodeMirror, */
 .bytemd code,
 .bytemd kbd {
-  font-family:
-    SFMono-Regular,
-    Consolas,
-    Liberation Mono,
-    Menlo,
-    monospace;
+  font-family: monospace;
 }
 .bytemd-toolbar {
   padding: 4px 12px;

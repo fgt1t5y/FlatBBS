@@ -10,6 +10,8 @@ export const requester = axios.create({
 });
 
 const complainError = (content: string) => {
+  if (content === '') return;
+
   Message.error(content);
 };
 
@@ -27,7 +29,7 @@ requester.interceptors.request.use(
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
     console.log(res);
-    if (res.data.code > 0 && res.data.message !== '') {
+    if (res.data.code > 0) {
       complainError(res.data.message);
     }
     return res;
