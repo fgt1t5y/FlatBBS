@@ -24,4 +24,3 @@ import { Divider, TypographyText } from '@arco-design/web-vue'
 import { IconHome } from '@arco-design/web-vue/es/icon'
 import { RouterLink } from 'vue-router'
 </script>
-

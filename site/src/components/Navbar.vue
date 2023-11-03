@@ -14,9 +14,6 @@
           :max-length="64"
           placeholder="搜索..."
         >
-          <template #prefix>
-            <IconSearch />
-          </template>
           <template #suffix>
             <kbd>^K</kbd>
           </template>
