@@ -1,6 +1,6 @@
 .page-title {
-  padding: 0px 12px;
-  margin-bottom: 12px;
+  padding: 0px var(--gap);
+  margin-bottom: var(--gap);
 }
 
 .page-header {

@@ -24,7 +24,7 @@ import { TypographyText, TypographyTitle } from '@arco-design/web-vue'
 import '@/style/PageTitle.css'
 import { IconArrowLeft } from '@arco-design/web-vue/es/icon'
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 
 defineOptions({
   name: 'PageTitle',
@@ -41,6 +41,11 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
 })
 const router = useRouter()
 const showBackButton = computed(() => {
+  console.log('computed')
   return history.length > 1 && history.state.back !== null
+})
+
+onMounted(() => {
+  console.log('PageTitle Mounted!')
 })
 </script>

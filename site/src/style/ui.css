@@ -1,5 +1,7 @@
 :root {
-  --page-max-width: 1024px;
+  --page-max-width: 1100px;
+  --page-min-width: 950px;
+  --gap: 12px;
 }
 
 body {
@@ -29,8 +31,9 @@ kbd {
 }
 
 #flatbbs {
-  margin: 12px auto;
+  margin: var(--gap) auto;
   max-width: var(--page-max-width);
+  min-width: var(--page-min-width);
 }
 
 .edit-window {
@@ -76,11 +79,12 @@ kbd {
 
 .sider-group {
   padding: 4px 0px;
+  margin-top: var(--gap);
 }
 
 /* 页面元素 */
 .page-chunk {
-  padding: 0px 12px;
+  padding: 0px var(--gap);
 }
 
 /* 原子类 */
@@ -96,10 +100,13 @@ kbd {
   gap: 4px;
 }
 
+/* PC 导航栏 */
+.site-brand {
+  margin-top: 0px !important;
+  margin-bottom: var(--gap);
+}
+
 @media (max-width: 810px) {
-  .nav {
-    padding: 0px 12px;
-  }
   .mob-hidden {
     display: none !important;
   }

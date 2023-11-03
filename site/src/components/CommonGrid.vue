@@ -6,14 +6,14 @@
     <Col flex="auto" class="grid-content">
       <slot name="content" />
     </Col>
-    <Col flex="200px" class="grid-panels">
-      <TypographyText type="secondary">欢迎使用 FlatBBS</TypographyText>
+    <Col flex="250px" class="grid-panels">
+      <slot name="panels" />
     </Col>
   </Row>
 </template>
 
 <script setup lang="ts">
-import { Row, Col, TypographyText } from '@arco-design/web-vue'
+import { Row, Col } from '@arco-design/web-vue'
 import '@/style/CommonGrid.css'
 
 defineOptions({

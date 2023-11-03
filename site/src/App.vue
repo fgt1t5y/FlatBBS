@@ -1,5 +1,4 @@
 <template>
-  <Navbar :is-login="user.isLogin" />
   <main id="flatbbs">
     <RouterView />
     <div v-if="false" class="edit-window">
@@ -10,7 +9,6 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Navbar from './components/Navbar.vue'
 import { useUserStore, useTheme } from './stores'
 import Editor from './components/Editor.vue'
 import { reactive } from 'vue'

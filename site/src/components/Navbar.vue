@@ -8,16 +8,6 @@
         <RouterLink to="/search" class="icon-link hover-card">
           <IconSearch :size="20" />
         </RouterLink>
-        <Input
-          ref="inputRef"
-          class="mob-hidden"
-          :max-length="64"
-          placeholder="搜索..."
-        >
-          <template #suffix>
-            <kbd>^K</kbd>
-          </template>
-        </Input>
         <button
           class="icon-link hover-card"
           title="主题模式：跟随系统/浅色/暗色"
@@ -84,7 +74,6 @@ import { useTheme, useUserStore } from '@/stores'
 import {
   TypographyTitle,
   TypographyText,
-  Input,
   Avatar,
   Dropdown,
   Doption,
@@ -95,7 +84,6 @@ import {
   IconComputer,
   IconMoon,
 } from '@arco-design/web-vue/es/icon'
-import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import '@/style/Navbar.css'
 
@@ -113,7 +101,6 @@ interface UserMenuOptionsProps {
 }
 
 const { theme, toggleTheme } = useTheme()
-const inputRef = ref<InstanceType<typeof Input>>()
 const props = withDefaults(defineProps<NavbarProps>(), {
   isLogin: false,
 })
@@ -136,14 +123,4 @@ const guestMenuOptions = [
     to: '/auth',
   },
 ] as UserMenuOptionsProps[]
-const focusInput = (ev: KeyboardEvent) => {
-  if (ev.key === 'k' && ev.ctrlKey) {
-    ev.preventDefault()
-    inputRef.value?.focus()
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('keydown', focusInput)
-})
 </script>
