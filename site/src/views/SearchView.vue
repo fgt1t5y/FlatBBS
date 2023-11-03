@@ -1,7 +1,5 @@
 <template>
-  <div class="page-header">
-    <TypographyTitle :heading="4">搜索</TypographyTitle>
-  </div>
+  <PageTitle title="搜索" />
   <div class="page-chunk search-bar">
     <InputSearch
       ref="inputRef"
@@ -13,10 +11,11 @@
 </template>
 
 <script setup lang="ts">
-import { InputSearch, TypographyTitle } from '@arco-design/web-vue'
+import { InputSearch } from '@arco-design/web-vue'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import '@/style/SearchView.css'
+import PageTitle from '@/components/PageTitle.vue'
 
 const route = useRoute()
 const searchValue = ref<string>((route.query.q as string) ?? '')

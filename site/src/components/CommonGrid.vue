@@ -7,7 +7,7 @@
       <slot name="content" />
     </Col>
     <Col flex="200px" class="grid-panels">
-      <TypographyText type="secondary">欢迎使用 Flatbbs</TypographyText>
+      <TypographyText type="secondary">欢迎使用 FlatBBS</TypographyText>
     </Col>
   </Row>
 </template>

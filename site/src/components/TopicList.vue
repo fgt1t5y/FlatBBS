@@ -5,7 +5,9 @@
         <Avatar :image-url="getAvatarPath(item.author.avatar_uri!)" />
       </div>
       <div class="topic-right">
-        <TypographyText>{{ item.author.username }}</TypographyText>
+        <TypographyText>
+          {{ item.author.username }}
+        </TypographyText>
         <TypographyText type="secondary">
           {{ fromNow(item.last_reply_at) }}
         </TypographyText>

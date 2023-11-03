@@ -1,10 +1,8 @@
 <template>
-  <div class="page-header">
-    <TypographyTitle :heading="4">设置</TypographyTitle>
-    <TypographyText type="secondary">
-      在此页面调整用户名、密码、主题模式等设置。
-    </TypographyText>
-  </div>
+  <PageTitle
+    title="设置"
+    subtitle="在此页面调整用户名、密码、主题模式等设置。"
+  />
   <div class="settings-group">
     <TypographyTitle :heading="6">头像</TypographyTitle>
     <SettingItem title="我的头像" subtitle="点击以更改。">
@@ -59,15 +57,10 @@
 import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
+import PageTitle from '@/components/PageTitle.vue'
 import { useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'
-import {
-  TypographyText,
-  TypographyTitle,
-  Avatar,
-  Modal,
-  Message,
-} from '@arco-design/web-vue'
+import { TypographyTitle, Avatar, Modal, Message } from '@arco-design/web-vue'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 import '@/style/SettingsView.css'

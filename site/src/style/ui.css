@@ -79,15 +79,6 @@ kbd {
 }
 
 /* 页面元素 */
-.page-header {
-  padding: 0px 12px;
-  margin-bottom: 12px;
-}
-
-.page-header h4 {
-  margin: unset !important;
-}
-
 .page-chunk {
   padding: 0px 12px;
 }

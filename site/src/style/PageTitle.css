@@ -1,0 +1,19 @@
+.page-title {
+  padding: 0px 12px;
+  margin-bottom: 12px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-header div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-title h5 {
+  margin: unset !important;
+}
