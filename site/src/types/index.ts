@@ -49,7 +49,7 @@ export interface Board {
   color: string;
 }
 
-export type TopicAuthor = Pick<UserInfo, 'id' | 'username'>;
+export type TopicAuthor = Pick<UserInfo, 'id' | 'username' | 'avatar_uri'>;
 
 export interface Topic {
   id: number;

@@ -21,7 +21,7 @@ class TopicController
         $builder = Topic::orderBy('last_reply_at')
             ->limit(max($_limit, 10))
             ->with([
-                'author:id,username',
+                'author:id,username,avatar_uri',
                 'board:id,name,color',
             ])
             ->where('id', '>', $last_id);

@@ -38,8 +38,7 @@ export const genForm = <T>(data: T) => {
 };
 
 export const blobToFile = (blob: Blob, fileName: string) => {
-  const file = new File([blob], fileName, { type: blob.type });
-  return file;
+  return new File([blob], fileName, { type: blob.type });
 };
 
 export const getAvatarPath = (avatar_file: string) => {

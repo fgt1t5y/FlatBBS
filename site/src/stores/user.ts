@@ -2,6 +2,7 @@ import { getUserInfo } from '@/services';
 import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
 import type { UserInfo } from '@/types';
+import { getAvatarPath } from '@/utils';
 
 export const useUserStore = defineStore('user', () => {
   const info = reactive<UserInfo>({
@@ -20,7 +21,7 @@ export const useUserStore = defineStore('user', () => {
         isLogin.value = true;
         const { avatar_uri, username, id, email, introduction } = res.data
           .data as UserInfo;
-        info.avatar_uri = `/backend/usercontent/${avatar_uri}`;
+        info.avatar_uri = getAvatarPath(avatar_uri!);
         info.username = username;
         info.id = id;
         info.email = email;
