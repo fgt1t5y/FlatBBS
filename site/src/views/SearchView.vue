@@ -1,27 +1,31 @@
 <template>
-  <PageTitle title="搜索" />
-  <div class="page-chunk search-bar">
+  <PageTitle title="搜索">
     <InputSearch
       ref="inputRef"
-      :default-value="searchValue"
+      :default-value="searchKeyword"
       placeholder="搜索帖子、用户"
       size="large"
     />
-  </div>
+  </PageTitle>
+  <span>123</span>
 </template>
 
 <script setup lang="ts">
 import { InputSearch } from '@arco-design/web-vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onActivated } from 'vue'
 import { useRoute } from 'vue-router'
 import '@/style/SearchView.css'
 import PageTitle from '@/components/PageTitle.vue'
 
 const route = useRoute()
-const searchValue = ref<string>((route.query.q as string) ?? '')
+const searchKeyword = ref<string>((route.query.q as string) ?? '')
 const inputRef = ref<InstanceType<typeof InputSearch>>()
 
+onActivated(() => {
+  inputRef.value!.focus()
+})
+
 onMounted(() => {
-  // inputRef.value!.focus()
+  inputRef.value!.focus()
 })
 </script>

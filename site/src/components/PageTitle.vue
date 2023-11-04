@@ -1,17 +1,14 @@
 <template>
-  <div class="page-title">
-    <div class="page-header">
-      <div>
-        <button
-          v-show="showBackButton"
-          class="icon-link hover-card"
-          @click="backPage"
-        >
-          <IconArrowLeft :size="20" />
-        </button>
-        <span>{{ title }}</span>
-      </div>
-      <slot name="extra" />
+  <div class="page-header">
+    <button
+      v-show="showBackButton"
+      class="icon-link hover-card"
+      @click="backPage"
+    >
+      <IconArrowLeft :size="20" />
+    </button>
+    <div>
+      <slot>{{ title }}</slot>
     </div>
   </div>
 </template>

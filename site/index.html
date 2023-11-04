@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="/flat_logo_new.svg">
+  <link rel="icon" href="/flat_icon_theme.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flat BBS</title>
 </head>
@@ -16,14 +16,16 @@
 
     #splash {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
 
     #splash img {
-      height: 7rem;
-      width: 7rem;
+      height: 5rem;
+      width: 5rem;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -34,7 +36,7 @@
   </style>
   <div id="app">
     <div id="splash">
-      <img src="/flat_logo_new.svg" alt="">
+      <img src="/flat_icon_theme.svg" alt="">
     </div>
   </div>
   <script type="module" src="/src/main.ts"></script>

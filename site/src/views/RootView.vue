@@ -2,7 +2,7 @@
   <CommonGrid>
     <template #sider>
       <RouterLink to="/" class="site-brand">
-        <img src="/flat_logo_new.svg" alt="" />
+        <SiteLogo />
         <span>Flat BBS</span>
       </RouterLink>
       <RouterLink to="/" class="sider-link link">
@@ -25,14 +25,19 @@
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">
-        <KeepAlive exclude="SettingsView">
+        <KeepAlive exclude="SettingsView" :max="10">
           <component :is="Component" />
         </KeepAlive>
       </RouterView>
     </template>
     <template #panels>
       <div class="global-search-bar">
-        <Input ref="inputRef" :max-length="64" placeholder="搜索...">
+        <Input
+          ref="inputRef"
+          :max-length="64"
+          placeholder="搜索..."
+          size="large"
+        >
           <template #suffix>
             <kbd>^K</kbd>
           </template>
@@ -45,6 +50,7 @@
 <script setup lang="ts">
 import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
+import SiteLogo from '@/components/SiteLogo.vue'
 import { TypographyText, Input } from '@arco-design/web-vue'
 import {
   IconHome,

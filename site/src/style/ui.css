@@ -115,7 +115,8 @@ kbd {
   align-items: center;
 }
 
-.site-brand img {
+.site-logo {
+  fill: var(--color-text-1);
   height: 28px;
   aspect-ratio: 1 / 1;
   margin-right: 8px;
