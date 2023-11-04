@@ -8,6 +8,10 @@
         <IconHome />
         <span>首页</span>
       </RouterLink>
+      <RouterLink to="/settings" class="sider-link link">
+        <IconHome />
+        <span>首页</span>
+      </RouterLink>
       <TypographyText type="secondary" class="sider-group">
         论坛版块
       </TypographyText>

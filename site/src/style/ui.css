@@ -33,7 +33,6 @@ kbd {
 #flatbbs {
   margin: var(--gap) auto;
   max-width: var(--page-max-width);
-  min-width: var(--page-min-width);
 }
 
 .edit-window {
@@ -52,7 +51,7 @@ kbd {
 
 /* 通用 hover 效果 */
 .hover-card {
-  padding: 8px;
+  padding: 3px;
   border-radius: var(--border-radius-small);
 }
 
@@ -98,6 +97,10 @@ kbd {
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+}
+
+.icon-link {
+  border-radius: 50%;
 }
 
 /* PC 导航栏 */

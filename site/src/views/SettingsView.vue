@@ -1,8 +1,5 @@
 <template>
-  <PageTitle
-    title="设置"
-    subtitle="在此页面调整用户名、密码、主题模式等设置。"
-  />
+  <PageTitle title="设置" />
   <div class="settings-group">
     <TypographyTitle :heading="6">头像</TypographyTitle>
     <SettingItem title="我的头像" subtitle="点击以更改。">

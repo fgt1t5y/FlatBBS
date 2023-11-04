@@ -5,7 +5,7 @@
         <button
           v-show="showBackButton"
           class="icon-link hover-card"
-          @click="router.back()"
+          @click="backPage"
         >
           <IconArrowLeft :size="20" />
         </button>
@@ -13,18 +13,15 @@
       </div>
       <slot name="extra" />
     </div>
-    <TypographyText type="secondary">
-      {{ subtitle }}
-    </TypographyText>
   </div>
 </template>
 
 <script setup lang="ts">
-import { TypographyText, TypographyTitle } from '@arco-design/web-vue'
+import { TypographyTitle } from '@arco-design/web-vue'
 import '@/style/PageTitle.css'
 import { IconArrowLeft } from '@arco-design/web-vue/es/icon'
-import { useRouter } from 'vue-router'
-import { computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { ref, onMounted, watch } from 'vue'
 
 defineOptions({
   name: 'PageTitle',
@@ -32,20 +29,33 @@ defineOptions({
 
 interface PageTitleProps {
   title: string
-  subtitle?: string
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '',
-  subtitle: '',
 })
+const route = useRoute()
 const router = useRouter()
-const showBackButton = computed(() => {
-  console.log('computed')
-  return history.length > 1 && history.state.back !== null
-})
+const backPage = () => {
+  if (!history.state.back || !canBack()) {
+    router.push({ path: '/' })
+    return
+  }
+  router.back()
+}
+const canBack = () => {
+  return route.path !== '/'
+}
+const showBackButton = ref<boolean>(false)
+
+watch(
+  () => route.fullPath,
+  () => {
+    showBackButton.value = canBack()
+  },
+)
 
 onMounted(() => {
-  console.log('PageTitle Mounted!')
+  showBackButton.value = canBack()
 })
 </script>
