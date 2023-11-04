@@ -1,8 +1,19 @@
 <template>
   <main id="flatbbs">
     <RouterView />
-    <div v-if="false" class="edit-window">
-      <Editor v-model:value="topicDraft.content" />
+    <div v-if="true" class="edit-window">
+      <input
+        v-model="topicDraft.title"
+        type="text"
+        name="title"
+        class="editor-title-input"
+        placeholder="话题标题"
+        maxlength="63"
+      />
+      <Editor
+        v-model:value="topicDraft.content"
+        placeholder="输入话题内容...（选填）"
+      />
     </div>
   </main>
 </template>

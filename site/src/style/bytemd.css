@@ -442,9 +442,8 @@ span.CodeMirror-selectedtext {
 }
 .bytemd {
   box-sizing: border-box;
-  border: 1px solid var(--color-border);
   background-color: var(--color-bg-2);
-  height: 400px;
+  height: 350px;
 }
 .bytemd * {
   box-sizing: border-box;
@@ -465,7 +464,7 @@ span.CodeMirror-selectedtext {
   font-family: monospace;
 }
 .bytemd-toolbar {
-  padding: 4px 12px;
+  padding: 4px 0px;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-bg-2);
   user-select: none;

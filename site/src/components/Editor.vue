@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<EditorProps>(), {
   plugins: () => [],
   mode: 'auto',
   locale: () => zh_Hans,
-  placeholder: '输入话题内容...',
+  placeholder: '',
   editorConfig: () => {
     return {
       autofocus: true,

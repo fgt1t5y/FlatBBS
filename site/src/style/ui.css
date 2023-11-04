@@ -30,19 +30,37 @@ kbd {
   text-align: center;
 }
 
+input {
+  border: none;
+  outline: none;
+  color: inherit;
+  background: transparent;
+}
+
 #flatbbs {
   margin: 0px auto;
   max-width: var(--page-max-width);
 }
 
+/* 话题编辑器 */
 .edit-window {
   position: absolute;
-  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  bottom: var(--gap);
   left: 0px;
   right: 0px;
   max-width: var(--page-max-width);
   z-index: 100;
   margin: 0px auto;
+  padding: var(--gap);
+  border: 1px solid rgb(var(--primary-5));
+}
+
+.editor-title-input {
+  width: 100%;
+  font-size: 18px;
 }
 
 .mob-show {
