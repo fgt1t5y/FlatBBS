@@ -31,7 +31,7 @@ kbd {
 }
 
 #flatbbs {
-  margin: var(--gap) auto;
+  margin: 0px auto;
   max-width: var(--page-max-width);
 }
 
@@ -83,7 +83,7 @@ kbd {
 
 /* 页面元素 */
 .page-chunk {
-  padding: 0px var(--gap);
+  padding: var(--gap);
 }
 
 /* 原子类 */
@@ -103,10 +103,13 @@ kbd {
   border-radius: 50%;
 }
 
-/* PC 导航栏 */
+.search-bar {
+  padding: var(--gap) 0px;
+}
+
+/* 导航栏Logo */
 .site-brand {
-  margin-top: 0px !important;
-  margin-bottom: var(--gap);
+  padding: var(--gap) 0px;
   font-size: 20px;
   display: flex;
   align-items: center;

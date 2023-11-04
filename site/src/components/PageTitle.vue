@@ -9,7 +9,7 @@
         >
           <IconArrowLeft :size="20" />
         </button>
-        <TypographyTitle :heading="5">{{ title }}</TypographyTitle>
+        <span>{{ title }}</span>
       </div>
       <slot name="extra" />
     </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { TypographyTitle } from '@arco-design/web-vue'
 import '@/style/PageTitle.css'
 import { IconArrowLeft } from '@arco-design/web-vue/es/icon'
 import { useRouter, useRoute } from 'vue-router'

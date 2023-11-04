@@ -18,6 +18,10 @@
         <IconSettings />
         <span>设置</span>
       </RouterLink>
+      <RouterLink to="/search" class="sider-link link">
+        <IconSearch />
+        <span>搜索</span>
+      </RouterLink>
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">
@@ -27,16 +31,13 @@
       </RouterView>
     </template>
     <template #panels>
-      <Input
-        ref="inputRef"
-        class="mob-hidden"
-        :max-length="64"
-        placeholder="搜索..."
-      >
-        <template #suffix>
-          <kbd>^K</kbd>
-        </template>
-      </Input>
+      <div class="search-bar">
+        <Input ref="inputRef" :max-length="64" placeholder="搜索...">
+          <template #suffix>
+            <kbd>^K</kbd>
+          </template>
+        </Input>
+      </div>
     </template>
   </CommonGrid>
 </template>
@@ -45,9 +46,12 @@
 import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import { TypographyText, Input } from '@arco-design/web-vue'
-import { IconHome, IconSettings } from '@arco-design/web-vue/es/icon'
+import {
+  IconHome,
+  IconSettings,
+  IconSearch,
+} from '@arco-design/web-vue/es/icon'
 import { onActivated, onMounted, ref } from 'vue'
-
 import { RouterLink } from 'vue-router'
 
 const inputRef = ref<InstanceType<typeof Input>>()
