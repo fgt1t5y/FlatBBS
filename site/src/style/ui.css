@@ -103,7 +103,7 @@ kbd {
   border-radius: 50%;
 }
 
-.search-bar {
+.global-search-bar {
   padding: var(--gap) 0px;
 }
 

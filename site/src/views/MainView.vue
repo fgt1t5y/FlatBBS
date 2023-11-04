@@ -31,7 +31,7 @@
       </RouterView>
     </template>
     <template #panels>
-      <div class="search-bar">
+      <div class="global-search-bar">
         <Input ref="inputRef" :max-length="64" placeholder="搜索...">
           <template #suffix>
             <kbd>^K</kbd>
