@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   t="1699072177350"
+   class="icon"
+   viewBox="0 0 1024 1024"
+   version="1.1"
+   p-id="4738"
+   width="32"
+   height="32"
+   id="svg8"
+   sodipodi:docname="flat_logo_new.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="25.65625"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <path
+     d="M0 0m256 0l512 0q256 0 256 256l0 512q0 256-256 256l-512 0q-256 0-256-256l0-512q0-256 256-256Z"
+     fill="#6A30F5"
+     p-id="4739"
+     data-spm-anchor-id="a313x.search_index.0.i1.48673a8102Hd03"
+     class=""
+     id="path1"
+     style="fill:#3491fa;fill-opacity:1" />
+  <path
+     d="M128 310.6688m51.2 0l537.6 0q51.2 0 51.2 51.2l0 320q0 51.2-51.2 51.2l-537.6 0q-51.2 0-51.2-51.2l0-320q0-51.2 51.2-51.2Z"
+     fill="#FFFFFF"
+     p-id="4740"
+     id="path2" />
+  <path
+     d="M256 528.2688m-51.2 0a51.2 51.2 0 1 0 102.4 0 51.2 51.2 0 1 0-102.4 0Z"
+     fill="#6A30F5"
+     p-id="4741"
+     id="path3"
+     style="fill:#3491fa;fill-opacity:1" />
+  <path
+     d="M448 528.2688m-51.2 0a51.2 51.2 0 1 0 102.4 0 51.2 51.2 0 1 0-102.4 0Z"
+     fill="#6A30F5"
+     p-id="4742"
+     id="path4"
+     style="fill:#3491fa;fill-opacity:1" />
+  <path
+     d="M640 528.2688m-51.2 0a51.2 51.2 0 1 0 102.4 0 51.2 51.2 0 1 0-102.4 0Z"
+     fill="#6A30F5"
+     p-id="4743"
+     id="path5"
+     style="fill:#3491fa;fill-opacity:1" />
+  <path
+     d="M425.3056 803.1616a25.6 25.6 0 0 1-44.0832 0v-69.8752A25.6 25.6 0 0 1 403.2 694.6688h76.8a25.6 25.6 0 0 1 21.9776 38.6176z"
+     fill="#FFFFFF"
+     p-id="4744"
+     id="path6" />
+  <path
+     d="M307.2 208.2688m32 0l499.2 0q32 0 32 32l0 0q0 32-32 32l-499.2 0q-32 0-32-32l0 0q0-32 32-32Z"
+     fill="#FFFFFF"
+     p-id="4745"
+     id="path7" />
+  <path
+     d="M870.4 214.6688m0 32l0 384q0 32-32 32l0 0q-32 0-32-32l0-384q0-32 32-32l0 0q32 0 32 32Z"
+     fill="#FFFFFF"
+     p-id="4746"
+     id="path8" />
+</svg>

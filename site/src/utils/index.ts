@@ -1,3 +1,4 @@
+import { config } from '@/global';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
 
@@ -42,7 +43,7 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 };
 
 export const getAvatarPath = (avatar_file: string) => {
-  return `/backend/usercontent/${avatar_file}`;
+  return `${config.api_base}/usercontent/${avatar_file}`;
 };
 
 export const fromNow = (datetime: string) => {

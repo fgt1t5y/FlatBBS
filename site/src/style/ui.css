@@ -107,6 +107,15 @@ kbd {
 .site-brand {
   margin-top: 0px !important;
   margin-bottom: var(--gap);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.site-brand img {
+  height: 28px;
+  aspect-ratio: 1 / 1;
+  margin-right: 8px;
 }
 
 @media (max-width: 810px) {
