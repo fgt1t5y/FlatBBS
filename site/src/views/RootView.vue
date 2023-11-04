@@ -9,19 +9,22 @@
         <IconHome />
         <span>首页</span>
       </RouterLink>
-      <TypographyText type="secondary" class="sider-group">
-        论坛版块
-      </TypographyText>
-      <BoardList />
-      <TypographyText type="secondary" class="sider-group">工具</TypographyText>
-      <RouterLink to="/settings" class="sider-link link">
-        <IconSettings />
-        <span>设置</span>
-      </RouterLink>
       <RouterLink to="/search" class="sider-link link">
         <IconSearch />
         <span>搜索</span>
       </RouterLink>
+      <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
+        <IconSettings />
+        <span>设置</span>
+      </RouterLink>
+      <RouterLink v-else to="/auth" class="sider-link link">
+        <IconUser />
+        <span>注册 / 登录</span>
+      </RouterLink>
+      <TypographyText type="secondary" class="sider-group">
+        论坛版块
+      </TypographyText>
+      <BoardList />
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">
@@ -51,15 +54,18 @@
 import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
+import { useUserStore } from '@/stores'
 import { TypographyText, Input } from '@arco-design/web-vue'
 import {
   IconHome,
   IconSettings,
   IconSearch,
+  IconUser,
 } from '@arco-design/web-vue/es/icon'
-import { onActivated, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
+const user = useUserStore()
 const inputRef = ref<InstanceType<typeof Input>>()
 const focusInput = (ev: KeyboardEvent) => {
   if (ev.key === 'k' && ev.ctrlKey) {
@@ -68,9 +74,6 @@ const focusInput = (ev: KeyboardEvent) => {
   }
 }
 
-onActivated(() => {
-  console.log('onActivated')
-})
 onMounted(() => {
   document.addEventListener('keydown', focusInput)
 })

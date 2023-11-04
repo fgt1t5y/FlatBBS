@@ -12,9 +12,7 @@ export const useUserStore = defineStore('user', () => {
     id: undefined,
     introduction: undefined,
   });
-
   const isLogin = ref<boolean>(false);
-
   const fetch = () => {
     getUserInfo().then((res) => {
       if (res.data.code === 0) {
@@ -30,9 +28,5 @@ export const useUserStore = defineStore('user', () => {
     });
   };
 
-  const clear = () => {
-    return;
-  };
-
-  return { info, isLogin, fetch, clear };
+  return { info, isLogin, fetch };
 });

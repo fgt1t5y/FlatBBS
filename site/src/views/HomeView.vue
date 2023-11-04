@@ -1,5 +1,5 @@
 <template>
-  <PageTitle>
+  <PageTitle title="">
     <span class="mob-hidden">全部话题</span>
     <SiteLogo class="mob-show" />
   </PageTitle>

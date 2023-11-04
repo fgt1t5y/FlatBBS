@@ -1,3 +1,5 @@
+import type { Component } from 'vue';
+
 export interface UserInfo {
   avatar_uri?: string;
   username?: string;
@@ -59,6 +61,16 @@ export interface Topic {
   board: Board;
   reply_count: number;
   last_reply_at: string;
+}
+
+export interface SiderMenuItem {
+  name: string;
+  icon: Component;
+}
+
+export interface SiderMenuGroup {
+  name: string;
+  children: SiderMenuItem[];
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
