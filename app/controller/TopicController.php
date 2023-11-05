@@ -18,7 +18,7 @@ class TopicController
             return json_message(STATUS_BAD_REQUEST, '参数错误');
         }
 
-        $builder = Topic::orderBy('last_reply_at')
+        $builder = Topic::orderByDesc('created_at')
             ->limit(max($_limit, 10))
             ->with([
                 'author:id,username,avatar_uri',
@@ -36,7 +36,7 @@ class TopicController
             'author_id',
             'board_id',
             'reply_count',
-            'last_reply_at'
+            'created_at'
         ]);
 
         return json_message(STATUS_OK, '完成', $result);
