@@ -54,18 +54,18 @@ input {
   z-index: 100;
   margin: 0px auto;
   padding: var(--gap);
-  border: 2px solid rgb(var(--primary-5));
+  border: 1px solid rgb(var(--primary-5));
   background-color: var(--color-bg-2);
 }
 
-.editor-header {
+.editor-window-header {
   display: flex;
   align-items: center;
   margin-bottom: 4px;
   gap: 8px;
 }
 
-.editor-header input {
+.editor-window-header input {
   font-size: 18px;
   flex-grow: 1;
 }
