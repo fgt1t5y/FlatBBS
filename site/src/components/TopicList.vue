@@ -15,7 +15,7 @@
         <div class="topic-opt">
           <button>
             <IconMessage :size="18" />
-            {{ item.reply_count }}
+            {{ item.reply_count }} 评论
           </button>
         </div>
       </div>

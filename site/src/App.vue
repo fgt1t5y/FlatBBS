@@ -9,16 +9,16 @@
           placeholder="话题标题"
           maxlength="63"
         />
-        <Button type="primary">
+        <Button type="primary" title="发布话题">
           <template #icon>
             <IconCheck />
           </template>
           发布
         </Button>
-        <button class="icon-link hover-card">
+        <button class="icon-link hover-card" title="隐藏编辑器">
           <IconDown :size="18" />
         </button>
-        <button class="icon-link hover-card">
+        <button class="icon-link hover-card" title="保存草稿并关闭编辑器">
           <IconClose :size="18" />
         </button>
       </div>

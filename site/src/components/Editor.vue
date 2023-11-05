@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+import { mentionPlugin } from '@/utils/mentionPlugin'
 import { Editor, type EditorProps } from 'bytemd'
 import zh_Hans from 'bytemd/locales/zh_Hans.json'
 import { ref, onMounted, watch } from 'vue'
@@ -19,13 +20,14 @@ const emits = defineEmits<{
 const props = withDefaults(defineProps<EditorProps>(), {
   value: '',
   sanitize: undefined,
-  plugins: () => [],
+  plugins: () => [mentionPlugin()],
   mode: 'auto',
   locale: () => zh_Hans,
   placeholder: '',
+  maxLength: 2048,
   editorConfig: () => {
     return {
-      autofocus: true,
+      autofocus: false,
     }
   },
 })

@@ -21,7 +21,7 @@
         <IconUser />
         <span>注册 / 登录</span>
       </RouterLink>
-      <TypographyText type="secondary" class="sider-group">
+      <TypographyText type="secondary" class="sider-group" title="论坛版块列表">
         论坛版块
       </TypographyText>
       <BoardList />

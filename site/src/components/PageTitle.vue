@@ -1,8 +1,9 @@
 <template>
-  <div class="page-header">
+  <div class="page-header" :title="title">
     <button
-      v-show="showBackButton"
+      v-show="showBackButton && showBack"
       class="icon-link hover-card"
+      title="返回上一级页面或回到首页"
       @click="backPage"
     >
       <IconArrowLeft :size="20" />
@@ -25,10 +26,12 @@ defineOptions({
 
 interface PageTitleProps {
   title: string
+  showBack?: boolean
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '',
+  showBack: true,
 })
 const route = useRoute()
 const router = useRouter()
