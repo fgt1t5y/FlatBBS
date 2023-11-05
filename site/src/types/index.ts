@@ -60,6 +60,7 @@ export interface Topic {
   author: TopicAuthor;
   board: Board;
   reply_count: number;
+  created_at: string;
   last_reply_at: string;
 }
 

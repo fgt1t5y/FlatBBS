@@ -9,7 +9,7 @@
           {{ item.author.username }}
         </TypographyText>
         <TypographyText type="secondary">
-          {{ fromNow(item.last_reply_at) }}
+          {{ fromNow(item.created_at) }}
         </TypographyText>
         <div class="topic-title">{{ item.title }}</div>
         <div class="topic-opt">
