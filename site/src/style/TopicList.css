@@ -24,7 +24,7 @@
 
 .topic-reply-count {
   background-color: var(--color-fill-3);
-  padding: 2px 12px;
+  padding: 2px var(--gap);
   border-radius: var(--border-radius-medium);
 }
 
