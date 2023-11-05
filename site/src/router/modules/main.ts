@@ -1,5 +1,6 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
+import TopicView from '@/views/TopicView.vue';
 
 export const mainRoutes = [
   {
@@ -9,7 +10,7 @@ export const mainRoutes = [
     children: [
       {
         path: '',
-        name: 'home',
+        name: 'home_page',
         component: HomeView,
         meta: {
           title: '首页',
@@ -17,10 +18,18 @@ export const mainRoutes = [
       },
       {
         path: 'board/:id',
-        name: 'board',
+        name: 'board_page',
         component: HomeView,
         meta: {
           title: '版块',
+        },
+      },
+      {
+        path: 'topic/:id',
+        name: 'topic_detail_page',
+        component: TopicView,
+        meta: {
+          title: '话题',
         },
       },
       {

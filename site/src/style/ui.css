@@ -111,6 +111,10 @@ input {
   padding: var(--gap);
 }
 
+.panel-chunk {
+  margin: var(--gap) 0px;
+}
+
 /* 原子类 */
 .row-center {
   display: flex;
@@ -126,10 +130,6 @@ input {
 
 .icon-link {
   border-radius: 50%;
-}
-
-.global-search-bar {
-  padding: var(--gap) 0px;
 }
 
 /* 导航栏Logo */
