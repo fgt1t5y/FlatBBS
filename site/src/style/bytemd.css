@@ -694,8 +694,8 @@ span.CodeMirror-selectedtext {
   color: var(--color-text-1);
   padding: 1px 23px;
   margin: 22px 0;
-  border-left: 5px solid var(--color-neutral-4);
-  background-color: var(--color-neutral-3);
+  border-left: 5px solid var(--color-fill-4);
+  background-color: var(--color-fill-3);
 }
 
 .bytemd-body hr {

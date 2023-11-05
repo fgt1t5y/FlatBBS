@@ -47,6 +47,7 @@
         </Input>
       </div>
       <Button type="primary" @click="editorWindow.showWindow">发布话题</Button>
+      <Button type="primary" @click="theme.toggleTheme">switch</Button>
     </template>
   </CommonGrid>
 </template>
@@ -55,7 +56,7 @@
 import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
-import { useUserStore, useEditorWindow } from '@/stores'
+import { useUserStore, useEditorWindow, useTheme } from '@/stores'
 import { TypographyText, Input, Button } from '@arco-design/web-vue'
 import {
   IconHome,
@@ -68,6 +69,7 @@ import { RouterLink } from 'vue-router'
 
 const user = useUserStore()
 const editorWindow = useEditorWindow()
+const theme = useTheme()
 const inputRef = ref<InstanceType<typeof Input>>()
 const focusInput = (ev: KeyboardEvent) => {
   if (ev.key === 'k' && ev.ctrlKey) {

@@ -4,14 +4,12 @@
       <div class="topic-left">
         <Avatar :image-url="getAvatarPath(item.author.avatar_uri!)" />
       </div>
-      <div class="topic-right">
-        <TypographyText>
-          {{ item.author.username }}
-        </TypographyText>
+      <div>
+        <TypographyText>{{ item.author.username }}</TypographyText>
         <TypographyText type="secondary">
-          {{ fromNow(item.created_at) }}
+          发布于 {{ fromNow(item.created_at) }}
         </TypographyText>
-        <div class="topic-title">{{ item.title }}</div>
+        <RouterLink to="/" class="topic-title">{{ item.title }}</RouterLink>
         <div class="topic-opt">
           <button>
             <IconMessage :size="18" />
@@ -29,7 +27,7 @@ import { getTopicList } from '@/services'
 import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
-import { useRoute } from 'vue-router'
+import { useRoute, RouterLink } from 'vue-router'
 import { TypographyText, Spin, Avatar } from '@arco-design/web-vue'
 import { fromNow, getAvatarPath } from '@/utils'
 import { IconMessage } from '@arco-design/web-vue/es/icon'
