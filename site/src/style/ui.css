@@ -43,11 +43,10 @@ input {
 }
 
 /* 话题编辑器 */
-.edit-window {
+.editor-window {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   bottom: var(--gap);
   left: 0px;
   right: 0px;
@@ -55,12 +54,20 @@ input {
   z-index: 100;
   margin: 0px auto;
   padding: var(--gap);
-  border: 1px solid rgb(var(--primary-5));
+  border: 2px solid rgb(var(--primary-5));
+  background-color: var(--color-bg-2);
 }
 
-.editor-title-input {
-  width: 100%;
+.editor-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 8px;
+}
+
+.editor-header input {
   font-size: 18px;
+  flex-grow: 1;
 }
 
 .mob-show {
@@ -91,7 +98,7 @@ input {
 }
 
 .sider-link svg {
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 .sider-group {

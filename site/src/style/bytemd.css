@@ -443,7 +443,7 @@ span.CodeMirror-selectedtext {
 .bytemd {
   box-sizing: border-box;
   background-color: var(--color-bg-2);
-  height: 350px;
+  height: 300px;
 }
 .bytemd * {
   box-sizing: border-box;
@@ -667,14 +667,10 @@ span.CodeMirror-selectedtext {
   display: flex;
   justify-content: space-between;
 }
-.bytemd-status-right label,
-.bytemd-status-right span {
-  margin-right: 16px;
-  cursor: pointer;
-}
-.bytemd-status-right input {
-  vertical-align: middle;
-  margin-right: 3px;
+.bytemd-status-left,
+.bytemd-status-right {
+  display: flex;
+  gap: 8px;
 }
 .bytemd-status-error {
   color: #d73a49;
