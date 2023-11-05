@@ -1,21 +1,17 @@
 <template>
   <div class="topic-list">
     <article v-for="item in topics" class="topic-list-item">
-      <div class="topic-left">
-        <Avatar :image-url="getAvatarPath(item.author.avatar_uri!)" />
+      <div class="topic-title">
+        <RouterLink to="/">{{ item.title }}</RouterLink>
+        <div class="topic-reply-count">{{ item.reply_count }}</div>
       </div>
-      <div>
+      <div class="topic-info">
+        <Avatar
+          :image-url="getAvatarPath(item.author.avatar_uri!)"
+          :size="20"
+        />
         <TypographyText>{{ item.author.username }}</TypographyText>
-        <TypographyText type="secondary">
-          发布于 {{ fromNow(item.created_at) }}
-        </TypographyText>
-        <RouterLink to="/" class="topic-title">{{ item.title }}</RouterLink>
-        <div class="topic-opt">
-          <button>
-            <IconMessage :size="18" />
-            {{ item.reply_count }} 评论
-          </button>
-        </div>
+        <TypographyText type="secondary">发布于 {{ fromNow(item.created_at) }}</TypographyText>
       </div>
     </article>
     <Spin v-if="isLoading" :size="32" tip="加载..." />
@@ -28,9 +24,8 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
-import { TypographyText, Spin, Avatar } from '@arco-design/web-vue'
+import { Spin, Avatar, TypographyText } from '@arco-design/web-vue'
 import { fromNow, getAvatarPath } from '@/utils'
-import { IconMessage } from '@arco-design/web-vue/es/icon'
 
 defineOptions({
   name: 'TopicList',

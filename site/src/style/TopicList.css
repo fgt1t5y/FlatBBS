@@ -5,6 +5,7 @@
 
 .topic-list-item {
   display: flex;
+  flex-direction: column;
   border-bottom: 1px solid var(--color-neutral-3);
   padding: var(--gap);
   gap: 8px;
@@ -12,7 +13,8 @@
 
 .topic-title {
   font-size: 1rem;
-  display: block;
+  display: flex;
+  justify-content: space-between;
   color: var(--color-text-1);
 }
 
@@ -20,24 +22,14 @@
   color: rgb(var(--primary-6));
 }
 
-.topic-left {
-  max-width: 40px;
-}
-
-.topic-board {
-  font-size: 14px;
-  padding: 2px 4px;
+.topic-reply-count {
+  background-color: var(--color-fill-3);
+  padding: 2px 12px;
   border-radius: var(--border-radius-medium);
-  margin-left: 4px;
 }
 
-.topic-opt {
+.topic-info {
   display: flex;
-  gap: 2rem;
-  padding-top: 6px;
-  color: var(--color-text-2);
-}
-
-.topic-opt button {
-  padding: unset;
+  align-items: center;
+  gap: 8px;
 }
