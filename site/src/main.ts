@@ -7,12 +7,11 @@ import '@/style/bytemd.css';
 import 'dayjs/locale/zh-cn';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import App from './App.vue';
+import router from './router';
 
 dayjs.locale('zh-cn');
 dayjs.extend(relativeTime);
-
-import App from './App.vue';
-import router from './router';
 
 const app = createApp(App);
 
