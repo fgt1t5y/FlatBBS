@@ -5,10 +5,6 @@
   --theme-color: #63e2b7;
 }
 
-body {
-  color: inherit;
-}
-
 a {
   text-decoration: none;
   color: inherit;
@@ -19,15 +15,6 @@ button {
   background-color: transparent;
   cursor: pointer;
   color: inherit;
-}
-
-kbd {
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--color-neutral-3);
-  border-radius: var(--border-radius-medium);
-  padding: 2px;
-  text-align: center;
 }
 
 input {
@@ -103,7 +90,6 @@ input {
 }
 
 .sider-group {
-  padding: 4px 0px;
   margin-top: var(--gap);
 }
 

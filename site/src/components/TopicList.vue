@@ -1,5 +1,5 @@
 <template>
-  <NList>
+  <NList clickable hoverable>
     <NListItem v-for="item in topics" :key="item.id" class="topic-list-item">
       <div class="topic-title">
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>

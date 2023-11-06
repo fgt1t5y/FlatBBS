@@ -1,4 +1,5 @@
 .settings-group h6 {
   padding: 0px var(--gap);
-  font-weight: bolder;
+  margin-top: 1rem !important;
+  margin-bottom: unset;
 }

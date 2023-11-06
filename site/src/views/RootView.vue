@@ -20,9 +20,7 @@
         <NIcon :size="20"><PersonRound /></NIcon>
         <span>注册 / 登录</span>
       </RouterLink>
-      <NText type="secondary" class="sider-group" title="论坛版块列表">
-        论坛版块
-      </NText>
+      <NText depth="3" class="sider-group" title="论坛版块列表">论坛版块</NText>
       <BoardList />
       <NButton type="primary" @click="editorWindow.showWindow">
         发布话题
@@ -40,7 +38,7 @@
         <NInput
           ref="inputRef"
           :max-length="64"
-          placeholder="搜索..."
+          placeholder="搜索...（^K）"
           size="large"
         />
       </div>

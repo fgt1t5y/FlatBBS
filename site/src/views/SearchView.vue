@@ -2,12 +2,11 @@
   <PageTitle title="搜索">
     <NInput
       ref="inputRef"
-      :default-value="searchKeyword"
+      :value="searchKeyword"
       placeholder="搜索帖子、用户"
       size="large"
     />
   </PageTitle>
-  <span>123</span>
 </template>
 
 <script setup lang="ts">

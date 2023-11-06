@@ -1,7 +1,9 @@
 <template>
   <PageTitle title="设置" />
   <div class="settings-group">
-    <NH6>头像</NH6>
+    <NH6>
+      <NText type="primary">头像</NText>
+    </NH6>
     <SettingItem title="我的头像" subtitle="点击以更改。">
       <NAvatar
         :src="info.avatar_uri"
@@ -20,7 +22,9 @@
     </SettingItem>
   </div>
   <div class="settings-group">
-    <NH6 :heading="6">用户资料</NH6>
+    <NH6>
+      <NText type="primary">用户资料</NText>
+    </NH6>
     <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
       <InputField :input-value="info.email" readonly />
     </SettingItem>
@@ -57,11 +61,10 @@ import SettingItem from '@/components/SettingItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'
-import { NAvatar, NH6, useMessage } from 'naive-ui'
+import { NAvatar, NH6, useMessage, NText } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 import UserWindow from '@/components/UserWindow.vue'
-
 import '@/style/SettingsView.css'
 
 const { info } = useUserStore()
