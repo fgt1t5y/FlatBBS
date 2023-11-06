@@ -6,24 +6,21 @@
       <NButton @click="onCancle">取消</NButton>
     </div>
   </NSpace>
-  <NSpace v-show="!isEditing">
+  <NSpace v-show="!isEditing" align="center">
     <NText>{{ valueNow || '未填写' }}</NText>
-    <button
-      v-if="!readonly"
-      class="icon-link hover-card"
-      title="更改此栏"
-      @click="startEdit"
-    >
-      <IconEdit :size="18" />
-    </button>
+    <NButton secondary circle title="更改此栏" @click="startEdit">
+      <NIcon :size="18">
+        <EditRound />
+      </NIcon>
+    </NButton>
   </NSpace>
 </template>
 
 <script setup lang="ts">
-import { NInput, NSpace, NButton, NText, useMessage } from 'naive-ui'
+import { NInput, NSpace, NButton, NText, useMessage, NIcon } from 'naive-ui'
+import { EditRound } from '@vicons/material'
 import { ref, watch, nextTick } from 'vue'
 import '@/style/InputField.css'
-import { IconEdit } from '@arco-design/web-vue/es/icon'
 import { modifyUserInfo } from '@/services'
 
 defineOptions({

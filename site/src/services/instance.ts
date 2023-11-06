@@ -1,6 +1,5 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { RequestResult } from '@/types';
-import { Message } from '@arco-design/web-vue';
 import { config } from '@/global';
 
 export const requester = axios.create({
@@ -12,7 +11,7 @@ export const requester = axios.create({
 const complainError = (content: string) => {
   if (content === '') return;
 
-  Message.error(content);
+  window.$message.error(content);
 };
 
 requester.interceptors.request.use(
