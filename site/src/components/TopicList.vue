@@ -2,7 +2,7 @@
   <div class="topic-list">
     <article v-for="item in topics" class="topic-list-item">
       <div class="topic-title">
-        <RouterLink to="/">{{ item.title }}</RouterLink>
+        <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
         <div class="topic-reply-count">{{ item.reply_count }}</div>
       </div>
       <div class="topic-info">
@@ -11,7 +11,9 @@
           :size="20"
         />
         <TypographyText>{{ item.author.username }}</TypographyText>
-        <TypographyText type="secondary">发布于 {{ fromNow(item.created_at) }}</TypographyText>
+        <TypographyText type="secondary">
+          发布于 {{ fromNow(item.created_at) }}
+        </TypographyText>
       </div>
     </article>
     <Spin v-if="isLoading" :size="32" tip="加载..." />
@@ -36,6 +38,7 @@ const isLoading = ref<boolean>(false)
 const limit = 10
 const offset = 0
 const route = useRoute()
+const idToUri = (id: number) => '/topic/' + String(id)
 const fetchTopics = () => {
   isLoading.value = true
   getTopicList(offset, limit)

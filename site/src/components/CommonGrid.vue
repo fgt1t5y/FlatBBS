@@ -1,5 +1,5 @@
 <template>
-  <Row>
+  <Row :wrap="false">
     <Col flex="200px" class="grid-sider">
       <slot name="sider" />
     </Col>
