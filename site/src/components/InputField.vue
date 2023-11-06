@@ -1,18 +1,18 @@
 <template>
-  <NSpace v-show="isEditing" vertical>
-    <NInput ref="inputRef" v-model:value="valueNow" :maxlength="maxLength" />
-    <div class="input-field-opt">
-      <NButton type="primary" @click="onConfirm">保存</NButton>
-      <NButton @click="onCancle">取消</NButton>
-    </div>
-  </NSpace>
-  <NSpace v-show="!isEditing" align="center">
+  <NSpace v-if="!isEditing" align="center">
     <NText>{{ valueNow || '未填写' }}</NText>
     <NButton secondary circle title="更改此栏" @click="startEdit">
       <NIcon :size="18">
         <EditRound />
       </NIcon>
     </NButton>
+  </NSpace>
+  <NSpace v-else vertical>
+    <NInput ref="inputRef" v-model:value="valueNow" :maxlength="maxLength" />
+    <div class="input-field-opt">
+      <NButton type="primary" @click="onConfirm">保存</NButton>
+      <NButton @click="onCancle">取消</NButton>
+    </div>
   </NSpace>
 </template>
 

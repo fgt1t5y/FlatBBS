@@ -35,7 +35,7 @@
     :visible="isShowCropper"
     title="编辑头像"
     @ok="uploadAvatar"
-    @cancel="closeAvatarCrop"
+    @cancle="closeAvatarCrop"
   >
     <div>
       <Cropper
@@ -75,7 +75,6 @@ const openAvatarSelector = () => {
 }
 const giveAvatarFile = () => {
   if (avatarInput.value?.files) {
-    console.log('here')
     avatarFile.value = avatarInput.value!.files[0]
   }
 }

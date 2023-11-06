@@ -14,6 +14,21 @@
 }
 
 .user-window-inner {
-  background-color: white;
+  background-color: var(--color-bg-2);
   padding: var(--gap);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-window-header {
+  margin-bottom: var(--gap);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-window-header span {
+  font-size: 18px;
+  font-weight: bolder;
 }

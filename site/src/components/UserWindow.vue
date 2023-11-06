@@ -1,7 +1,18 @@
 <template>
   <div class="user-window" :style="viewStyle">
     <div class="user-window-inner">
+      <div class="user-window-header">
+        <NButton circle secondary title="返回" @click="emits('cancle')">
+          <template #icon>
+            <NIcon :size="22">
+              <ArrowBackRound />
+            </NIcon>
+          </template>
+        </NButton>
+        <span>{{ title }}</span>
+      </div>
       <slot />
+      <NButton type="primary" block @click="emits('ok')">确定</NButton>
     </div>
   </div>
 </template>
@@ -9,6 +20,8 @@
 <script setup lang="ts">
 import '@/style/UserWindow.css'
 import { computed } from 'vue'
+import { NButton, NIcon } from 'naive-ui'
+import { ArrowBackRound } from '@vicons/material'
 
 defineOptions({
   name: 'UserWindow',
@@ -16,13 +29,17 @@ defineOptions({
 
 interface UserWindowProps {
   visible: boolean
-  width: number
+  title?: string
 }
 
 const props = withDefaults(defineProps<UserWindowProps>(), {
   visible: false,
-  width: 350,
+  title: '',
 })
+const emits = defineEmits<{
+  (e: 'ok'): void
+  (e: 'cancle'): void
+}>()
 const viewStyle = computed(() => {
   return {
     display: props.visible ? 'flex' : 'none',

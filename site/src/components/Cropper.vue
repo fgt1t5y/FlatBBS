@@ -183,7 +183,6 @@ const getBlobAsync = (): Promise<Blob | null> => {
 }
 
 onMounted(() => {
-  console.log('mo')
   ctx = canvasRef.value!.getContext('2d')
   window.addEventListener('mouseup', () => {
     if (renderStatus.isDraging) {
