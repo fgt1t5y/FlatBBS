@@ -6,17 +6,16 @@
         <div class="topic-reply-count">{{ item.reply_count }}</div>
       </div>
       <div class="topic-info">
-        <Avatar
-          :image-url="getAvatarPath(item.author.avatar_uri!)"
+        <NAvatar
+          :src="getAvatarPath(item.author.avatar_uri!)"
           :size="20"
+          round
         />
-        <TypographyText>{{ item.author.username }}</TypographyText>
-        <TypographyText type="secondary">
-          发布于 {{ fromNow(item.created_at) }}
-        </TypographyText>
+        <NText>{{ item.author.username }}</NText>
+        <NText depth="3">发布于 {{ fromNow(item.created_at) }}</NText>
       </div>
     </article>
-    <Spin v-if="isLoading" :size="32" tip="加载..." />
+    <NSpin v-if="isLoading" :size="32" description="加载..." />
   </div>
 </template>
 
@@ -26,7 +25,7 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
-import { Spin, Avatar, TypographyText } from '@arco-design/web-vue'
+import { NSpin, NAvatar, NText } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 
 defineOptions({

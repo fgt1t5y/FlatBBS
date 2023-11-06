@@ -1,5 +1,5 @@
 <template>
-  <Space direction="vertical" :style="{ width: `${width}px` }" fill>
+  <NSpace vertical :style="{ width: `${width}px` }" fill>
     <div
       class="cropper-container"
       :style="{ height: `${height}px` }"
@@ -13,21 +13,21 @@
         <div class="cropper-mask"></div>
       </div>
     </div>
-    <TypographyText>显示比例（最小 - 最大）</TypographyText>
-    <Slider
-      v-model="scale"
+    <NText>显示比例（最小 - 最大）</NText>
+    <NSlider
+      v-model:value="scale"
       :min="minScale"
       :max="1.0"
       :step="0.01"
       :format-tooltip="displayScale"
       :disabled="!imageURL || imageException || ratioException"
-      @change="onScaleChange"
+      @update:value="onScaleChange"
     />
-  </Space>
+  </NSpace>
 </template>
 
 <script setup lang="ts">
-import { Slider, TypographyText, Space } from '@arco-design/web-vue'
+import { NText, NSlider, NSpace } from 'naive-ui'
 import { ref, onMounted, computed, watch } from 'vue'
 import '@/style/Cropper.css'
 
@@ -183,6 +183,7 @@ const getBlobAsync = (): Promise<Blob | null> => {
 }
 
 onMounted(() => {
+  console.log('mo')
   ctx = canvasRef.value!.getContext('2d')
   window.addEventListener('mouseup', () => {
     if (renderStatus.isDraging) {

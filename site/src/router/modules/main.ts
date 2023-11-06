@@ -34,7 +34,7 @@ export const mainRoutes = [
       },
       {
         path: 'settings',
-        name: 'settings',
+        name: 'settings_page',
         component: () => import('@/views/SettingsView.vue'),
         meta: {
           title: '设置',
@@ -42,7 +42,7 @@ export const mainRoutes = [
       },
       {
         path: 'search',
-        name: 'search',
+        name: 'search_page',
         component: () => import('@/views/SearchView.vue'),
         meta: {
           title: '搜索',

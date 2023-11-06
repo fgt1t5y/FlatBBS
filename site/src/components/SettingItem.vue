@@ -1,15 +1,15 @@
 <template>
   <section class="settings-field">
-    <Space direction="vertical" :size="0">
-      <TypographyText>{{ title }}</TypographyText>
-      <TypographyText type="secondary">{{ subtitle }}</TypographyText>
-    </Space>
+    <NSpace vertical :size="0">
+      <NText>{{ title }}</NText>
+      <NText depth="3">{{ subtitle }}</NText>
+    </NSpace>
     <slot />
   </section>
 </template>
 
 <script setup lang="ts">
-import { TypographyText, Space } from '@arco-design/web-vue'
+import { NText, NSpace } from 'naive-ui'
 import '@/style/SettingItem.css'
 
 defineOptions({

@@ -2,11 +2,16 @@
   gap: 16px;
 }
 
-.grid-revert {
-  order: 1;
-}
-
 .grid-sider {
   display: flex;
   flex-direction: column;
+  width: 200px;
+}
+
+.grid-content {
+  flex-grow: 1;
+}
+
+.grid-panels {
+  width: 250px;
 }

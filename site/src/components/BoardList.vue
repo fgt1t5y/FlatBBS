@@ -1,9 +1,9 @@
 <template>
   <div class="board-list">
     <div v-if="isFailed" class="row-center">
-      <Button type="primary" @click="fetchBoards">重试</Button>
+      <NButton type="primary" @click="fetchBoards">重试</NButton>
     </div>
-    <Spin v-if="isLoading" :size="32" tip="加载..." />
+    <NSpin v-if="isLoading" :size="32" description="加载..." />
     <RouterLink
       v-for="i in boards"
       :key="i.id"
@@ -21,7 +21,7 @@ import { getBoards } from '@/services'
 import type { Board } from '@/types'
 import { onMounted, ref } from 'vue'
 import '@/style/BoardList.css'
-import { Spin, Button } from '@arco-design/web-vue'
+import { NSpin, NButton } from 'naive-ui'
 
 defineOptions({
   name: 'BoardList',

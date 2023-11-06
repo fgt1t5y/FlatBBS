@@ -1,0 +1,19 @@
+.user-window {
+  width: 100%;
+  height: 100%;
+  background-color: #0005;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 199;
+}
+
+.user-window-inner {
+  background-color: white;
+  padding: var(--gap);
+}

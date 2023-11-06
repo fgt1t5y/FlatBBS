@@ -40,6 +40,7 @@ input {
 #flatbbs {
   margin: 0px auto;
   max-width: var(--page-max-width);
+  display: flex;
 }
 
 /* 话题编辑器 */

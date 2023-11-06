@@ -1,13 +1,18 @@
 <template>
   <div class="page-header" :title="title">
-    <button
+    <NButton
       v-show="showBackButton && showBack"
-      class="icon-link hover-card"
+      circle
+      secondary
       title="返回上一级页面或回到首页"
       @click="backPage"
     >
-      <IconArrowLeft :size="20" />
-    </button>
+      <template #icon>
+        <NIcon :size="22">
+          <ArrowBackRound />
+        </NIcon>
+      </template>
+    </NButton>
     <div>
       <slot>{{ title }}</slot>
     </div>
@@ -16,7 +21,8 @@
 
 <script setup lang="ts">
 import '@/style/PageTitle.css'
-import { IconArrowLeft } from '@arco-design/web-vue/es/icon'
+import { ArrowBackRound } from '@vicons/material'
+import { NIcon, NButton } from 'naive-ui'
 import { useRouter, useRoute } from 'vue-router'
 import { ref, onMounted, watch } from 'vue'
 

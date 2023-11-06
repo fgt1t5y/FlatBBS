@@ -1,11 +1,12 @@
 <template>
   <PageTitle title="设置" />
   <div class="settings-group">
-    <TypographyTitle :heading="6">头像</TypographyTitle>
+    <NH6>头像</NH6>
     <SettingItem title="我的头像" subtitle="点击以更改。">
-      <Avatar
-        :image-url="info.avatar_uri"
+      <NAvatar
+        :src="info.avatar_uri"
         :size="64"
+        round
         @click="openAvatarSelector"
       />
       <input
@@ -19,7 +20,7 @@
     </SettingItem>
   </div>
   <div class="settings-group">
-    <TypographyTitle :heading="6">用户资料</TypographyTitle>
+    <NH6 :heading="6">用户资料</NH6>
     <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
       <InputField :input-value="info.email" readonly />
     </SettingItem>
@@ -30,9 +31,8 @@
       <InputField field="introduction" :input-value="info.introduction" />
     </SettingItem>
   </div>
-  <Modal
+  <UserWindow
     :visible="isShowCropper"
-    :width="360"
     title="编辑头像"
     @ok="uploadAvatar"
     @cancel="closeAvatarCrop"
@@ -47,7 +47,7 @@
         @error="showCropperMessage"
       />
     </div>
-  </Modal>
+  </UserWindow>
 </template>
 
 <script setup lang="ts">
@@ -57,12 +57,15 @@ import SettingItem from '@/components/SettingItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'
-import { TypographyTitle, Avatar, Modal, Message } from '@arco-design/web-vue'
+import { NAvatar, NH6, useMessage } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
+import UserWindow from '@/components/UserWindow.vue'
+
 import '@/style/SettingsView.css'
 
 const { info } = useUserStore()
+const message = useMessage()
 const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)
 const avatarInput = ref<HTMLInputElement>()
@@ -72,14 +75,15 @@ const openAvatarSelector = () => {
 }
 const giveAvatarFile = () => {
   if (avatarInput.value?.files) {
+    console.log('here')
     avatarFile.value = avatarInput.value!.files[0]
   }
 }
 const showCropper = () => {
   isShowCropper.value = true
 }
-const showCropperMessage = (message: string) => {
-  Message.error(message)
+const showCropperMessage = (content: string) => {
+  message.error(content)
 }
 const closeAvatarCrop = () => {
   isShowCropper.value = false
@@ -92,9 +96,7 @@ const uploadAvatar = () => {
       uploadAsAvatar(file).then((res) => {
         if (res.data.code === 0) {
           info.avatar_uri = getAvatarPath(res.data.data!.uri)
-          Modal.success({
-            content: '头像已上传。因为缓存的存在，生效时间可能延后。',
-          })
+          message.success('头像已上传。因为缓存的存在，生效时间可能延后。')
         }
       })
     }

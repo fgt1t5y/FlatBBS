@@ -1,13 +1,13 @@
 <template>
-  <Space v-show="isEditing" direction="vertical">
-    <Input ref="inputRef" v-model="valueNow" :max-length="maxLength" />
+  <NSpace v-show="isEditing" vertical>
+    <NInput ref="inputRef" v-model:value="valueNow" :maxlength="maxLength" />
     <div class="input-field-opt">
-      <Button type="primary" @click="onConfirm">保存</Button>
-      <Button @click="onCancle">取消</Button>
+      <NButton type="primary" @click="onConfirm">保存</NButton>
+      <NButton @click="onCancle">取消</NButton>
     </div>
-  </Space>
-  <Space v-show="!isEditing">
-    <TypographyText>{{ valueNow || '未填写' }}</TypographyText>
+  </NSpace>
+  <NSpace v-show="!isEditing">
+    <NText>{{ valueNow || '未填写' }}</NText>
     <button
       v-if="!readonly"
       class="icon-link hover-card"
@@ -16,17 +16,11 @@
     >
       <IconEdit :size="18" />
     </button>
-  </Space>
+  </NSpace>
 </template>
 
 <script setup lang="ts">
-import {
-  Input,
-  Button,
-  Space,
-  TypographyText,
-  Message,
-} from '@arco-design/web-vue'
+import { NInput, NSpace, NButton, NText, useMessage } from 'naive-ui'
 import { ref, watch, nextTick } from 'vue'
 import '@/style/InputField.css'
 import { IconEdit } from '@arco-design/web-vue/es/icon'
@@ -49,9 +43,10 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
   readonly: false,
   field: '',
 })
+const message = useMessage()
 const valueNow = ref<string>(props.inputValue)
 const isEditing = ref<boolean>(false)
-const inputRef = ref<InstanceType<typeof Input>>()
+const inputRef = ref<InstanceType<typeof NInput>>()
 const onConfirm = () => {
   if (valueNow.value.trim() === '' || valueNow.value === props.inputValue) {
     valueNow.value = props.inputValue
@@ -60,7 +55,7 @@ const onConfirm = () => {
   }
   modifyUserInfo(props.field, valueNow.value).then((res) => {
     if (res.data.code === 0) {
-      Message.success('信息已更新。')
+      message.success('信息已更新。')
       isEditing.value = false
     }
   })
