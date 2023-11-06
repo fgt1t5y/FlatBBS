@@ -1,13 +1,8 @@
-.topic-list {
-  display: flex;
-  flex-direction: column;
-}
-
 .topic-list-item {
   display: flex;
-  flex-direction: column;
   border-bottom: 1px solid var(--color-neutral-3);
-  padding: var(--gap);
+  padding-left: var(--gap) !important;
+  padding-right: var(--gap) !important;
   gap: 8px;
 }
 

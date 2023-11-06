@@ -1,12 +1,15 @@
 <template>
   <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null">
-    <main id="flatbbs">
-      <NDialogProvider>
-        <NMessageProvider>
-          <RouterView />
-        </NMessageProvider>
-      </NDialogProvider>
-    </main>
+    <NThemeEditor>
+      <main id="flatbbs">
+        <NDialogProvider>
+          <NMessageProvider>
+            <RouterView />
+            <NGlobalStyle />
+          </NMessageProvider>
+        </NDialogProvider>
+      </main>
+    </NThemeEditor>
   </NConfigProvider>
 </template>
 
@@ -19,6 +22,8 @@ import {
   NDialogProvider,
   NConfigProvider,
   darkTheme,
+  NGlobalStyle,
+  NThemeEditor,
 } from 'naive-ui'
 
 const user = useUserStore()

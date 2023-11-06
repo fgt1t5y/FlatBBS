@@ -1,6 +1,6 @@
 <template>
-  <div class="topic-list">
-    <article v-for="item in topics" class="topic-list-item">
+  <NList>
+    <NListItem v-for="item in topics" :key="item.id" class="topic-list-item">
       <div class="topic-title">
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
         <div class="topic-reply-count">{{ item.reply_count }}</div>
@@ -14,9 +14,9 @@
         <NText>{{ item.author.username }}</NText>
         <NText depth="3">发布于 {{ fromNow(item.created_at) }}</NText>
       </div>
-    </article>
-    <NSpin v-if="isLoading" :size="32" description="加载..." />
-  </div>
+    </NListItem>
+  </NList>
+  <NSpin v-if="isLoading" :size="32" description="加载..." />
 </template>
 
 <script setup lang="ts">
@@ -25,7 +25,7 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
-import { NSpin, NAvatar, NText } from 'naive-ui'
+import { NSpin, NAvatar, NText, NList, NListItem } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 
 defineOptions({
