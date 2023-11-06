@@ -23,10 +23,10 @@ export const useTheme = defineStore('theme', () => {
       (systemIsDark && currentTheme.value === 'auto') ||
       currentTheme.value === 'dark'
     ) {
-      document.body.setAttribute('arco-theme', 'dark');
+      document.body.setAttribute('flat-theme', 'dark');
       naiveuiDark.value = true;
     } else {
-      document.body.removeAttribute('arco-theme');
+      document.body.removeAttribute('flat-theme');
       naiveuiDark.value = false;
     }
   };

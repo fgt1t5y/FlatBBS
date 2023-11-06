@@ -1,15 +1,16 @@
 <template>
-  <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null">
-    <NThemeEditor>
-      <main id="flatbbs">
-        <NDialogProvider>
-          <NMessageProvider>
-            <RouterView />
-            <NGlobalStyle />
-          </NMessageProvider>
-        </NDialogProvider>
-      </main>
-    </NThemeEditor>
+  <NConfigProvider
+    :theme="theme.naiveuiDark ? darkTheme : null"
+    :theme-overrides="overrideTheme"
+  >
+    <main id="flatbbs">
+      <NDialogProvider>
+        <NMessageProvider>
+          <RouterView />
+          <NGlobalStyle />
+        </NMessageProvider>
+      </NDialogProvider>
+    </main>
   </NConfigProvider>
 </template>
 
@@ -23,11 +24,15 @@ import {
   NConfigProvider,
   darkTheme,
   NGlobalStyle,
-  NThemeEditor,
 } from 'naive-ui'
 
 const user = useUserStore()
 const theme = useTheme()
+const overrideTheme = {
+  List: {
+    color: 'rgba(255, 255, 255, 0)',
+  },
+}
 
 if (hasToken()) {
   user.fetch()

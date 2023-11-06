@@ -1,6 +1,8 @@
 :root {
   --page-max-width: 1100px;
   --gap: 12px;
+
+  --theme-color: #63e2b7;
 }
 
 body {
@@ -88,7 +90,7 @@ input {
 
 /* 路由高亮 */
 .link.router-link-exact-active {
-  color: rgb(var(--primary-5)) !important;
+  color: var(--theme-color) !important;
 }
 
 /* 侧边栏 */

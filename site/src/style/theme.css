@@ -1,8 +1,6 @@
-/* Arco Design - ArcoBlue 配色方案 */
+/* FlatBBS Color Scheme */
 
 body {
-  --color-white: #ffffff;
-  --color-black: #000000;
   --color-border: rgb(var(--gray-3));
   --color-bg-popup: var(--color-bg-5);
   --color-bg-1: #fff;
@@ -10,7 +8,6 @@ body {
   --color-bg-3: #fff;
   --color-bg-4: #fff;
   --color-bg-5: #fff;
-  --color-bg-white: #fff;
   --color-neutral-1: rgb(var(--gray-1));
   --color-neutral-2: rgb(var(--gray-2));
   --color-neutral-3: rgb(var(--gray-3));
@@ -59,16 +56,6 @@ body {
   --gray-8: 78, 89, 105;
   --gray-9: 39, 46, 59;
   --gray-10: 29, 33, 41;
-  --success-1: var(--green-1);
-  --success-2: var(--green-2);
-  --success-3: var(--green-3);
-  --success-4: var(--green-4);
-  --success-5: var(--green-5);
-  --success-6: var(--green-6);
-  --success-7: var(--green-7);
-  --success-8: var(--green-8);
-  --success-9: var(--green-9);
-  --success-10: var(--green-10);
   --primary-1: var(--arcoblue-1);
   --primary-2: var(--arcoblue-2);
   --primary-3: var(--arcoblue-3);
@@ -80,19 +67,16 @@ body {
   --primary-9: var(--arcoblue-9);
   --primary-10: var(--arcoblue-10);
 }
-body[arco-theme='dark'] {
-  --color-white: rgba(255, 255, 255, 0.9);
-  --color-black: #000000;
+body[flat-theme='dark'] {
   --color-border: #333335;
   --color-bg-1: #17171a;
   --color-bg-2: #232324;
   --color-bg-3: #2a2a2b;
   --color-bg-4: #313132;
   --color-bg-5: #373739;
-  --color-bg-white: #f6f6f6;
   --color-text-1: rgba(255, 255, 255, 0.9);
   --color-text-2: rgba(255, 255, 255, 0.7);
-  --color-text-3: rgba(255, 255, 255, 0.5);
+  --color-text-3: rgba(53, 24, 24, 0.9);
   --color-text-4: rgba(255, 255, 255, 0.3);
   --color-fill-1: rgba(255, 255, 255, 0.04);
   --color-fill-2: rgba(255, 255, 255, 0.08);

@@ -15,7 +15,7 @@
 }
 
 .topic-title:hover {
-  color: rgb(var(--primary-6));
+  color: var(--theme-color);
 }
 
 .topic-reply-count {
