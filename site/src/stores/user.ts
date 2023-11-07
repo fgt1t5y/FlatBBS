@@ -15,7 +15,7 @@ export const useUserStore = defineStore('user', () => {
   const isLogin = ref<boolean>(false);
   const fetch = () => {
     getUserInfo().then((res) => {
-      if (res.data.code === 0) {
+      if (res.data.code === window.$code.OK) {
         isLogin.value = true;
         const { avatar_uri, username, id, email, introduction } = res.data
           .data as UserInfo;

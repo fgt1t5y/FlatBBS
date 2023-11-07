@@ -37,7 +37,7 @@ const fetchBoards = () => {
   isFailed.value = false
   getBoards()
     .then((res) => {
-      if (res.data.code === 0) {
+      if (res.data.code === window.$code.OK) {
         boards.value = res.data.data!
       }
     })

@@ -85,7 +85,7 @@ const actionLogin = () => {
   login(inputForm.email, inputForm.password)
     .then((res) => {
       isDealing.value = false
-      if (res.data.code === 0) {
+      if (res.data.code === window.$code.OK) {
         user.fetch()
         page.goHome(true)
       }

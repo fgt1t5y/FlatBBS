@@ -1,6 +1,7 @@
 import axios, { type AxiosResponse } from 'axios';
 import type { RequestResult } from '@/types';
 import { config } from '@/global';
+import router from '@/router';
 
 export const requester = axios.create({
   baseURL: config.api_base,
@@ -28,7 +29,10 @@ requester.interceptors.request.use(
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
     console.log(res);
-    if (res.data.code > 0) {
+    if (res.data.code > window.$code.OK) {
+      if (res.data.code === window.$code.UNAUTHORIZED) {
+        router.replace({ path: '/auth' });
+      }
       complainError(res.data.message);
     }
     return res;

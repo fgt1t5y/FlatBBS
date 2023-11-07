@@ -18,7 +18,7 @@ class Auth implements MiddlewareInterface
     {
         if (in_array("$request->controller\\$request->action", self::$needAuthActionList)) {
             if (!is_login($request->cookie('flat_sess'))) {
-                return json_message(STATUS_UNAUTHORIZED, '请登录');
+                return json_message(STATUS_UNAUTHORIZED, '令牌过期，请登录');
             }
         }
 

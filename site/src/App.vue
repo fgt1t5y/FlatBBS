@@ -4,16 +4,14 @@
     :theme-overrides="overrideTheme"
     :locale="zhCN"
   >
-    <NThemeEditor>
-      <main id="flatbbs">
-        <NDialogProvider>
-          <NMessageProvider>
-            <RouterView />
-            <NGlobalStyle />
-          </NMessageProvider>
-        </NDialogProvider>
-      </main>
-    </NThemeEditor>
+    <main id="flatbbs">
+      <NDialogProvider>
+        <NMessageProvider>
+          <RouterView />
+          <NGlobalStyle />
+        </NMessageProvider>
+      </NDialogProvider>
+    </main>
   </NConfigProvider>
 </template>
 
@@ -28,7 +26,6 @@ import {
   darkTheme,
   NGlobalStyle,
   zhCN,
-  NThemeEditor,
 } from 'naive-ui'
 
 const user = useUserStore()

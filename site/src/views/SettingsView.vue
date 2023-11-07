@@ -96,7 +96,7 @@ const uploadAvatar = () => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
       uploadAsAvatar(file).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === window.$code.OK) {
           info.avatar_uri = getAvatarPath(res.data.data!.uri)
           message.success('头像已上传。因为缓存的存在，生效时间可能延后。')
         }
