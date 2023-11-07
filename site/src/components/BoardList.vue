@@ -3,7 +3,7 @@
     <div v-if="isFailed" class="row-center">
       <NButton type="primary" @click="fetchBoards">重试</NButton>
     </div>
-    <NSpin v-if="isLoading" :size="32" description="加载..." />
+    <NSpin v-if="isLoading" class="row-center" :size="32" />
     <RouterLink
       v-for="i in boards"
       :key="i.id"

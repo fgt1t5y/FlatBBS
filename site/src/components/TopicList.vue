@@ -16,7 +16,7 @@
       </div>
     </NListItem>
   </NList>
-  <NSpin v-if="isLoading" :size="32" description="加载..." />
+  <NSpin v-if="isLoading" class="row-center" :size="32" />
 </template>
 
 <script setup lang="ts">
