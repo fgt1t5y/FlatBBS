@@ -12,6 +12,10 @@
         <SearchIcon size="20px" />
         <span>搜索</span>
       </RouterLink>
+      <RouterLink to="/people" class="sider-link link">
+        <Houses2Icon size="20px" />
+        <span>我的空间</span>
+      </RouterLink>
       <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
         <SettingIcon size="20px" />
         <span>设置</span>
@@ -97,6 +101,7 @@ import {
   SettingIcon,
   UserIcon,
   CloseIcon,
+  Houses2Icon,
 } from 'tdesign-icons-vue-next'
 import { onMounted, ref, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
