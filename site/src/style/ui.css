@@ -103,6 +103,7 @@ input {
 .row-center {
   display: flex;
   justify-content: center;
+  margin-top: 12px;
 }
 
 .column-center {

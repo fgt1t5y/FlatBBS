@@ -1,9 +1,5 @@
 <template>
   <div class="board-list">
-    <div v-if="isFailed" class="row-center">
-      <NButton type="primary" @click="fetchBoards">重试</NButton>
-    </div>
-    <NSpin v-if="isLoading" class="row-center" :size="32" />
     <RouterLink
       v-for="i in boards"
       :key="i.id"
@@ -13,6 +9,12 @@
       <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
       {{ i.name }}
     </RouterLink>
+    <div class="row-center">
+      <NSpin v-if="isLoading" :size="32" />
+      <NButton v-if="isFailed" type="primary" @click="fetchBoards">
+        重试
+      </NButton>
+    </div>
   </div>
 </template>
 

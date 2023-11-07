@@ -16,7 +16,10 @@
       </div>
     </NListItem>
   </NList>
-  <NSpin v-if="isLoading" class="row-center" :size="32" />
+  <div class="row-center">
+    <NSpin v-if="isLoading" :size="32" />
+    <NButton v-if="isFailed" type="primary" @click="fetchTopics">重试</NButton>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +28,7 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
-import { NSpin, NAvatar, NText, NList, NListItem } from 'naive-ui'
+import { NSpin, NAvatar, NText, NList, NListItem, NButton } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 
 defineOptions({
@@ -34,15 +37,20 @@ defineOptions({
 
 const topics = ref<Topic[] | null>(null)
 const isLoading = ref<boolean>(false)
+const isFailed = ref<boolean>(false)
 const limit = 10
 const offset = 0
 const route = useRoute()
 const idToUri = (id: number) => '/topic/' + String(id)
 const fetchTopics = () => {
   isLoading.value = true
+  isFailed.value = false
   getTopicList(offset, limit)
     .then((res) => {
       topics.value = res.data.data!
+    })
+    .catch(() => {
+      isFailed.value = true
     })
     .finally(() => {
       isLoading.value = false
