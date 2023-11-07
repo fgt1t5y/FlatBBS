@@ -6,6 +6,14 @@ export const usePage = () => {
   const path = computed(() => {
     return router.currentRoute.value.fullPath;
   });
+  const goHome = (replace: boolean) => {
+    if (replace) {
+      router.replace({ path: '/' });
+      return;
+    }
+    router.push({ path: '/' });
+    return;
+  };
   const back = () => {
     if (!history.state.back) {
       router.push({ path: '/' });
@@ -14,5 +22,5 @@ export const usePage = () => {
     router.back();
   };
 
-  return { back, path };
+  return { back, goHome, path };
 };

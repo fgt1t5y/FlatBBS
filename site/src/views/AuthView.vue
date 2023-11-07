@@ -8,7 +8,12 @@
         <NText type="primary">登录</NText>
       </NH3>
     </div>
-    <NForm :model="inputForm" :rules="loginRule">
+    <NForm
+      ref="formRef"
+      :model="inputForm"
+      :rules="loginRule"
+      :disabled="isDealing"
+    >
       <NFormItem path="email" label="电子邮箱地址">
         <NInput v-model:value="inputForm.email" />
       </NFormItem>
@@ -16,7 +21,9 @@
         <NInput v-model:value="inputForm.password" type="password" />
       </NFormItem>
       <NFormItem>
-        <NButton attr-type="button" type="primary" block>提交</NButton>
+        <NButton attr-type="button" type="primary" block @click="validateForf">
+          提交
+        </NButton>
       </NFormItem>
     </NForm>
   </div>
@@ -33,6 +40,7 @@ import {
   NButton,
   NH3,
   NText,
+  type FormInst,
 } from 'naive-ui'
 import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
@@ -44,6 +52,7 @@ const inputForm = reactive({
   email: '',
   password: '',
 })
+const formRef = ref<FormInst | null>(null)
 const page = usePage()
 const loginRule: FormRules = {
   email: [
@@ -57,11 +66,20 @@ const loginRule: FormRules = {
   password: [
     {
       required: true,
+      message: '请输入密码',
       trigger: ['blur'],
     },
   ],
 }
 const user = useUserStore()
+const validateForf = (ev: MouseEvent) => {
+  ev.preventDefault()
+  formRef.value!.validate((errors) => {
+    if (!errors) {
+      actionLogin()
+    }
+  })
+}
 const actionLogin = () => {
   isDealing.value = true
   login(inputForm.email, inputForm.password)
@@ -69,6 +87,7 @@ const actionLogin = () => {
       isDealing.value = false
       if (res.data.code === 0) {
         user.fetch()
+        page.goHome(true)
       }
     })
     .finally(() => {
