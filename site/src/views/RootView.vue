@@ -40,6 +40,7 @@
           :max-length="64"
           placeholder="搜索...（^K）"
           size="large"
+          round
         />
       </div>
     </template>

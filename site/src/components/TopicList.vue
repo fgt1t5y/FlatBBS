@@ -3,7 +3,7 @@
     <NListItem v-for="item in topics" :key="item.id" class="topic-list-item">
       <div class="topic-title">
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
-        <div class="topic-reply-count">{{ item.reply_count }}</div>
+        <NText class="topic-reply-count">{{ item.reply_count }}</NText>
       </div>
       <div class="topic-info">
         <NAvatar
