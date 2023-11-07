@@ -5,20 +5,19 @@
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: currentColor;
 }
 
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: inherit;
 }
 
 input {
   border: none;
   outline: none;
-  color: inherit;
+  color: currentColor;
   background: transparent;
 }
 
@@ -41,7 +40,7 @@ input {
   z-index: 100;
   margin: 0px auto;
   padding: var(--gap);
-  border: 1px solid var(--color-neutral-3);
+  border: 1px solid var(--color-border);
   background-color: var(--color-bg-2);
 }
 

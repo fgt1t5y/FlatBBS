@@ -1,6 +1,5 @@
 .CodeMirror {
   height: 300px;
-  color: var(--color-text-1);
   direction: ltr;
 }
 .CodeMirror-lines {
@@ -33,7 +32,7 @@
   color: #999;
 }
 .CodeMirror-cursor {
-  border-left: 2px solid var(--color-text-1);
+  border-left: 2px solid currentColor;
   border-right: none;
   width: 0;
 }
@@ -387,7 +386,6 @@ span.CodeMirror-selectedtext {
   background-color: var(--color-bg-popup);
   background-clip: padding-box;
   border: 1px solid var(--color-border);
-  color: var(--color-text-1);
 }
 .tippy-box > .tippy-arrow {
   bottom: 0;
@@ -497,7 +495,6 @@ span.CodeMirror-selectedtext {
   padding: 4px;
   width: 24px;
   height: 24px;
-  color: var(--color-text-1);
 }
 .bytemd-toolbar-icon:hover {
   background-color: var(--color-fill-3);
@@ -519,7 +516,6 @@ span.CodeMirror-selectedtext {
   font-weight: 500;
   border-bottom: 1px solid var(--color-border);
   line-height: 32px;
-  color: var(--color-text-1);
 }
 .bytemd-dropdown-item {
   padding: 4px 12px;
@@ -575,7 +571,6 @@ span.CodeMirror-selectedtext {
   vertical-align: top;
   height: 100%;
   overflow: auto;
-  color: var(--color-text-1);
 }
 .bytemd-preview .markdown-body {
   max-width: 800px;
@@ -663,7 +658,6 @@ span.CodeMirror-selectedtext {
   line-height: 24px;
   border-top: 1px solid var(--color-border);
   user-select: none;
-  color: var(--color-text-1);
   display: flex;
   justify-content: space-between;
 }
@@ -689,9 +683,7 @@ span.CodeMirror-selectedtext {
 }
 
 /* Block Style */
-
 .bytemd-body blockquote {
-  color: var(--color-text-1);
   padding: 1px 23px;
   margin: 22px 0;
   border-left: 5px solid var(--color-fill-4);
@@ -714,13 +706,13 @@ span.CodeMirror-selectedtext {
 
 .bytemd-body p code {
   background-color: var(--color-fill-2);
-  border-radius: var(--border-radius-medium);
+  border-radius: 4px;
   padding: 4px;
 }
 
 .bytemd-body pre {
   padding: 8px;
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-medium);
+  border-radius: 4px;
   background-color: var(--color-fill-2);
 }
