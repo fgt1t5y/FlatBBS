@@ -5,7 +5,7 @@
       circle
       secondary
       title="返回上一级页面或回到首页"
-      @click="backPage"
+      @click="page.back"
     >
       <ArrowLeftIcon size="18px" />
     </NButton>
@@ -19,8 +19,8 @@
 import '@/style/PageTitle.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { NButton } from 'naive-ui'
-import { useRouter, useRoute } from 'vue-router'
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import { usePage } from '@/utils/usePage'
 
 defineOptions({
   name: 'PageTitle',
@@ -35,28 +35,16 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '',
   showBack: true,
 })
-const route = useRoute()
-const router = useRouter()
-const backPage = () => {
-  if (!history.state.back || !canBack()) {
-    router.push({ path: '/' })
-    return
-  }
-  router.back()
-}
-const canBack = () => {
-  return route.path !== '/'
-}
-const showBackButton = ref<boolean>(false)
-
-watch(
-  () => route.fullPath,
-  () => {
-    showBackButton.value = canBack()
-  },
+const page = usePage()
+const currentFullPath = ref<string>(page.path.value)
+const showBackButton = computed(
+  () => props.showBack && currentFullPath.value !== '/',
 )
 
-onMounted(() => {
-  showBackButton.value = canBack()
-})
+watch(
+  () => page.path.value,
+  (v) => {
+    currentFullPath.value = v
+  },
+)
 </script>

@@ -1,76 +1,70 @@
 <template>
-  <NForm></NForm>
+  <div class="auth-page">
+    <div class="auth-page-header">
+      <NButton circle secondary @click="page.back">
+        <ArrowLeftIcon size="18px" />
+      </NButton>
+      <NH3>
+        <NText type="primary">登录</NText>
+      </NH3>
+    </div>
+    <NForm :model="inputForm" :rules="loginRule">
+      <NFormItem path="email" label="电子邮箱地址">
+        <NInput v-model:value="inputForm.email" />
+      </NFormItem>
+      <NFormItem path="password" label="密码">
+        <NInput v-model:value="inputForm.password" type="password" />
+      </NFormItem>
+      <NFormItem>
+        <NButton attr-type="button" type="primary" block>提交</NButton>
+      </NFormItem>
+    </NForm>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { login, logout } from '@/services'
+import { login } from '@/services'
 import { useUserStore } from '@/stores'
-import { type FieldRule } from '@arco-design/web-vue'
-import { NForm } from 'naive-ui'
+import {
+  NForm,
+  NFormItem,
+  NInput,
+  type FormRules,
+  NButton,
+  NH3,
+  NText,
+} from 'naive-ui'
 import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
+import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
+import { usePage } from '@/utils/usePage'
 
-const isLoginMode = ref<boolean>(true)
 const isDealing = ref<boolean>(false)
-
-const form = reactive({
+const inputForm = reactive({
   email: '',
-  username: '',
   password: '',
-  password_again: '',
 })
-
-const loginRule: Record<string, FieldRule> = {
-  email: {
-    required: true,
-    type: 'email',
-    message: '请填写有效的电子邮箱地址。',
-    maxLength: 64,
-  },
-  password: {
-    required: true,
-    message: '请填写你的密码。',
-    maxLength: 64,
-    minLength: 8,
-  },
-}
-
-const registerRule: Record<string, FieldRule> = {
-  email: {
-    required: true,
-    type: 'email',
-    message: '请填写有效的电子邮箱地址。',
-    maxLength: 64,
-  },
-  username: {
-    required: true,
-    maxLength: 32,
-    message: '请填写你的用户名。',
-  },
-  password: {
-    required: true,
-    message: '请填写你的密码。',
-    maxLength: 64,
-    minLength: 8,
-  },
-  password_again: {
-    required: true,
-    maxLength: 64,
-    minLength: 8,
-    validator: (v: string, cb) => {
-      if (v !== form.password) {
-        cb('确认密码必须与密码一致。')
-        return
-      }
+const page = usePage()
+const loginRule: FormRules = {
+  email: [
+    {
+      required: true,
+      type: 'email',
+      message: '请输入正确的电子邮箱地址',
+      trigger: ['blur'],
     },
-  },
+  ],
+  password: [
+    {
+      required: true,
+      trigger: ['blur'],
+    },
+  ],
 }
-
 const user = useUserStore()
-
 const actionLogin = () => {
   isDealing.value = true
-  login(form.email, form.password)
+  login(inputForm.email, inputForm.password)
     .then((res) => {
       isDealing.value = false
       if (res.data.code === 0) {

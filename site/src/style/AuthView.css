@@ -1,4 +1,21 @@
-.auth-form {
-  max-width: 450px;
+.auth-page {
+  height: 100vh;
+  padding: 0px var(--gap);
+  width: 400px;
+  max-width: 400px;
   margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-page-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 8px;
+}
+
+.auth-page-header h3 {
+  margin: unset;
 }

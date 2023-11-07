@@ -1,6 +1,7 @@
 /* FlatBBS Color Scheme */
 
 body {
+  --theme-color: #18a058;
   --color-border: rgb(var(--gray-3));
   --color-bg-popup: var(--color-bg-5);
   --color-bg-1: #fff;
@@ -68,6 +69,7 @@ body {
   --primary-10: var(--arcoblue-10);
 }
 body[flat-theme='dark'] {
+  --theme-color: #63e2b7;
   --color-border: #333335;
   --color-bg-1: #17171a;
   --color-bg-2: #232324;

@@ -2,6 +2,7 @@
   <NConfigProvider
     :theme="theme.naiveuiDark ? darkTheme : null"
     :theme-overrides="overrideTheme"
+    :locale="zhCN"
   >
     <main id="flatbbs">
       <NDialogProvider>
@@ -24,6 +25,7 @@ import {
   NConfigProvider,
   darkTheme,
   NGlobalStyle,
+  zhCN,
 } from 'naive-ui'
 
 const user = useUserStore()
