@@ -1,75 +1,12 @@
 <template>
-  <Card title="注册或登录" :bordered="false">
-    <div style="display: flex; justify-content: center">
-      <RadioGroup v-model="isLoginMode" type="button" size="large">
-        <Radio :value="true">登录</Radio>
-        <Radio :value="false">注册</Radio>
-      </RadioGroup>
-    </div>
-    <div class="auth-form">
-      <Form
-        v-if="isLoginMode"
-        :rules="loginRule"
-        :model="form"
-        layout="vertical"
-        :disabled="isDealing"
-        @submit-success="actionLogin"
-      >
-        <FormItem label="电子邮箱地址" field="email">
-          <Input v-model="form.email" autofocus />
-        </FormItem>
-        <FormItem label="密码" field="password">
-          <Input v-model="form.password" type="password" />
-        </FormItem>
-        <FormItem>
-          <Button long :loading="isDealing" html-type="submit" type="primary">
-            登录
-          </Button>
-        </FormItem>
-      </Form>
-      <Form
-        v-else
-        :rules="registerRule"
-        :model="form"
-        layout="vertical"
-        :disabled="isDealing"
-      >
-        <FormItem label="电子邮箱地址" field="email">
-          <Input v-model="form.email" />
-        </FormItem>
-        <FormItem v-if="!isLoginMode" label="用户名" field="username">
-          <Input v-model="form.username" />
-        </FormItem>
-        <FormItem label="密码" field="password">
-          <Input v-model="form.password" type="password" />
-        </FormItem>
-        <FormItem v-if="!isLoginMode" label="确认密码" field="password_again">
-          <Input v-model="form.password_again" type="password" />
-        </FormItem>
-        <FormItem>
-          <Button long :loading="isDealing" html-type="submit" type="primary">
-            注册
-          </Button>
-        </FormItem>
-      </Form>
-    </div>
-    <Button @click="actionLogout">Logout</Button>
-  </Card>
+  <NForm></NForm>
 </template>
 
 <script setup lang="ts">
 import { login, logout } from '@/services'
 import { useUserStore } from '@/stores'
-import {
-  Card,
-  Form,
-  FormItem,
-  Input,
-  Button,
-  Radio,
-  RadioGroup,
-  type FieldRule,
-} from '@arco-design/web-vue'
+import { type FieldRule } from '@arco-design/web-vue'
+import { NForm } from 'naive-ui'
 import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
 
@@ -143,9 +80,5 @@ const actionLogin = () => {
     .finally(() => {
       isDealing.value = false
     })
-}
-
-const actionLogout = () => {
-  logout()
 }
 </script>

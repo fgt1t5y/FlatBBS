@@ -7,11 +7,7 @@
       title="返回上一级页面或回到首页"
       @click="backPage"
     >
-      <template #icon>
-        <NIcon :size="22">
-          <ArrowBackRound />
-        </NIcon>
-      </template>
+      <ArrowLeftIcon size="18px" />
     </NButton>
     <div>
       <slot>{{ title }}</slot>
@@ -21,8 +17,8 @@
 
 <script setup lang="ts">
 import '@/style/PageTitle.css'
-import { ArrowBackRound } from '@vicons/material'
-import { NIcon, NButton } from 'naive-ui'
+import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
+import { NButton } from 'naive-ui'
 import { useRouter, useRoute } from 'vue-router'
 import { ref, onMounted, watch } from 'vue'
 

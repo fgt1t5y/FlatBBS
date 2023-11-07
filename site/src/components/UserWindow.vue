@@ -3,11 +3,7 @@
     <div class="user-window-inner">
       <div class="user-window-header">
         <NButton circle secondary title="返回" @click="emits('cancle')">
-          <template #icon>
-            <NIcon :size="22">
-              <ArrowBackRound />
-            </NIcon>
-          </template>
+          <ArrowLeftIcon size="18px" />
         </NButton>
         <span>{{ title }}</span>
       </div>
@@ -20,8 +16,8 @@
 <script setup lang="ts">
 import '@/style/UserWindow.css'
 import { computed } from 'vue'
-import { NButton, NIcon } from 'naive-ui'
-import { ArrowBackRound } from '@vicons/material'
+import { NButton } from 'naive-ui'
+import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({
   name: 'UserWindow',

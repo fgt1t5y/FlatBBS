@@ -2,9 +2,7 @@
   <NSpace v-if="!isEditing" align="center">
     <NText>{{ valueNow || '未填写' }}</NText>
     <NButton secondary circle title="更改此栏" @click="startEdit">
-      <NIcon :size="18">
-        <EditRound />
-      </NIcon>
+      <Edit1Icon />
     </NButton>
   </NSpace>
   <NSpace v-else vertical>
@@ -17,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { NInput, NSpace, NButton, NText, useMessage, NIcon } from 'naive-ui'
-import { EditRound } from '@vicons/material'
+import { NInput, NSpace, NButton, NText, useMessage } from 'naive-ui'
+import { Edit1Icon } from 'tdesign-icons-vue-next'
 import { ref, watch, nextTick } from 'vue'
 import '@/style/InputField.css'
 import { modifyUserInfo } from '@/services'

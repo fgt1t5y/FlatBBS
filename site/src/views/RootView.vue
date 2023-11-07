@@ -5,19 +5,19 @@
         <SiteLogo />
       </RouterLink>
       <RouterLink to="/" class="sider-link link">
-        <NIcon :size="20"><HomeRound /></NIcon>
+        <HomeIcon size="20px" />
         <span>首页</span>
       </RouterLink>
       <RouterLink to="/search" class="sider-link link">
-        <NIcon :size="20"><SearchRound /></NIcon>
+        <SearchIcon size="20px" />
         <span>搜索</span>
       </RouterLink>
       <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
-        <NIcon :size="20"><SettingsRound /></NIcon>
+        <SettingIcon size="20px" />
         <span>设置</span>
       </RouterLink>
       <RouterLink v-else to="/auth" class="sider-link link">
-        <NIcon :size="20"><PersonRound /></NIcon>
+        <UserIcon size="20px" />
         <span>注册 / 登录</span>
       </RouterLink>
       <NText depth="3" class="sider-group" title="论坛版块列表">论坛版块</NText>
@@ -60,7 +60,7 @@
         title="最小化编辑器"
         @click="editorWindow.minWindow"
       >
-        <NIcon :size="18"><ArrowDownwardRound /></NIcon>
+        <ChevronDownIcon size="18px" />
       </NButton>
       <NButton
         secondary
@@ -68,7 +68,7 @@
         title="保存草稿并关闭编辑器"
         @click="editorWindow.hiddenWindow"
       >
-        <NIcon :size="18"><CloseRound /></NIcon>
+        <CloseIcon size="18px" />
       </NButton>
     </div>
     <Editor
@@ -88,15 +88,15 @@ import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore, useEditorWindow } from '@/stores'
-import { NText, NButton, NInput, useMessage, NIcon } from 'naive-ui'
+import { NText, NButton, NInput, useMessage } from 'naive-ui'
 import {
-  ArrowDownwardRound,
-  HomeRound,
-  CloseRound,
-  SearchRound,
-  SettingsRound,
-  PersonRound,
-} from '@vicons/material'
+  ChevronDownIcon,
+  HomeIcon,
+  SearchIcon,
+  SettingIcon,
+  UserIcon,
+  CloseIcon,
+} from 'tdesign-icons-vue-next'
 import { onMounted, ref, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
 import Editor from '@/components/Editor.vue'

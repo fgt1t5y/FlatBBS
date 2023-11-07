@@ -46,9 +46,6 @@ devDependencies:
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.4.0
     version: 6.7.4(@typescript-eslint/parser@6.7.4)(eslint@8.50.0)(typescript@5.2.2)
-  '@vicons/material':
-    specifier: ^0.12.0
-    version: 0.12.0
   '@vitejs/plugin-vue':
     specifier: ^4.3.4
     version: 4.3.4(vite@4.4.9)(vue@3.3.4)
@@ -100,6 +97,9 @@ devDependencies:
   start-server-and-test:
     specifier: ^2.0.0
     version: 2.0.0
+  tdesign-icons-vue-next:
+    specifier: ^0.2.2
+    version: 0.2.2(vue@3.3.4)
   typescript:
     specifier: ~5.2.2
     version: 5.2.2
@@ -789,10 +789,6 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.7.4
       eslint-visitor-keys: 3.4.3
-    dev: true
-
-  /@vicons/material@0.12.0:
-    resolution: {integrity: sha512-chv1CYAl8P32P3Ycwgd5+vw/OFNc2mtkKdb1Rw4T5IJmKy6GVDsoUKV3N2l208HATn7CCQphZtuPDdsm7K2kmA==}
     dev: true
 
   /@vitejs/plugin-vue@4.3.4(vite@4.4.9)(vue@3.3.4):
@@ -4062,6 +4058,15 @@ packages:
     dependencies:
       '@pkgr/utils': 2.4.2
       tslib: 2.6.2
+    dev: true
+
+  /tdesign-icons-vue-next@0.2.2(vue@3.3.4):
+    resolution: {integrity: sha512-ZKleBME7ZF1IVgnRXmIBPjfNa2Mef1nrK56f2xwn1Aa5mvXxB3fSxEzwhObR7bhzf/K42mz/Knnbll5Y7vCBjg==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@babel/runtime': 7.23.2
+      vue: 3.3.4
     dev: true
 
   /text-table@0.2.0:
