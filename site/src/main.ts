@@ -18,3 +18,5 @@ window.$code = code;
 app.use(createPinia());
 app.use(router);
 app.mount('#app');
+
+// ok
