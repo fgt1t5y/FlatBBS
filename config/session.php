@@ -18,9 +18,7 @@ use Webman\Session\RedisClusterSessionHandler;
 
 return [
     'type' => 'redis', // or redis or redis_cluster
-
     'handler' => RedisSessionHandler::class,
-
     'config' => [
         'redis' => [
             'host' => '127.0.0.1',
@@ -37,24 +35,14 @@ return [
             'prefix' => 'redis_session_',
         ]
     ],
-
     'session_name' => 'flat_sess_id',
-
     'auto_update_timestamp' => false,
-
     'lifetime' => 43200,
-
     'cookie_lifetime' => 365 * 24 * 60 * 60,
-
     'cookie_path' => '/',
-
     'domain' => '',
-
     'http_only' => true,
-
     'secure' => false,
-
     'same_site' => 'strict',
-
     'gc_probability' => [1, 1000],
 ];
