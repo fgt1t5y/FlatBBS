@@ -1,7 +1,9 @@
 <template>
   <PageTitle title="全部话题">
     <span class="mob-hidden">全部话题</span>
-    <SiteLogo class="mob-show" />
+    <RouterLink to="/" class="mob-show">
+      <NText type="primary">FlatBBS</NText>
+    </RouterLink>
   </PageTitle>
   <TopicList />
 </template>
@@ -9,5 +11,5 @@
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import SiteLogo from '@/components/SiteLogo.vue'
+import { NText } from 'naive-ui'
 </script>
