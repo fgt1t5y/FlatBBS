@@ -59,8 +59,7 @@ class TopicController
     public function discussions(Request $request)
     {
         $topic = (int) $request->post('topic');
-        $discussions = Discussion::orderBy('created_at')
-            ->limit(10)
+        $discussions = Discussion::limit(10)
             ->where('topic_id', $topic)
             ->get([
                 'id',

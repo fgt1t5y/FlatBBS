@@ -51,24 +51,31 @@ export interface Board {
   color: string;
 }
 
-export type TopicAuthor = Pick<UserInfo, 'id' | 'username' | 'avatar_uri'>;
+export type Author = Pick<UserInfo, 'id' | 'username' | 'avatar_uri'>;
 
 export interface Topic {
   id: number;
   title: string;
   content?: string;
-  author: TopicAuthor;
+  author: Author;
   board: Board;
   reply_count: number;
   created_at: string;
   last_reply_at: string;
 }
 
+export interface Discussion {
+  id: number;
+  content: string;
+  created_at: string;
+  author: Author;
+  like_count: number;
+}
+
 export interface SiderMenuItem {
   name: string;
   icon: Component;
 }
-
 export interface SiderMenuGroup {
   name: string;
   children: SiderMenuItem[];

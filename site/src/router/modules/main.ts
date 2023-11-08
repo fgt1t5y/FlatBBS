@@ -1,6 +1,7 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
 import TopicView from '@/views/TopicView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 export const mainRoutes = [
   {
@@ -46,6 +47,14 @@ export const mainRoutes = [
         component: () => import('@/views/SearchView.vue'),
         meta: {
           title: '搜索',
+        },
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'not_found_page',
+        conponent: NotFoundView,
+        meta: {
+          title: '404',
         },
       },
     ],

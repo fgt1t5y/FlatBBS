@@ -2,7 +2,7 @@
   <header class="grid-sider">
     <slot name="sider" />
   </header>
-  <main flex="auto" class="grid-content">
+  <main class="grid-content">
     <slot name="content" />
   </main>
   <footer class="grid-panels">

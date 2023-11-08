@@ -1,29 +1,25 @@
 .topic-list-item {
-  display: flex;
   padding-left: var(--gap) !important;
   padding-right: var(--gap) !important;
+}
+
+.topic-header {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  margin-bottom: 4px;
 }
 
 .topic-title {
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .topic-title:hover {
   color: var(--theme-color);
 }
 
-.topic-reply-count {
-  background-color: var(--color-fill-3);
-  padding: 0px 8px;
-  border-radius: 4px;
-}
-
-.topic-info {
+.topic-footer {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  justify-content: space-between;
 }

@@ -1,18 +1,30 @@
 <template>
   <NList clickable hoverable>
     <NListItem v-for="item in topics" :key="item.id" class="topic-list-item">
-      <div class="topic-title">
-        <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
-        <NText class="topic-reply-count">{{ item.reply_count }}</NText>
-      </div>
-      <div class="topic-info">
+      <div class="topic-header">
         <NAvatar
           :src="getAvatarPath(item.author.avatar_uri!)"
           :size="20"
           round
         />
         <NText>{{ item.author.username }}</NText>
-        <NText depth="3">发布于 {{ fromNow(item.created_at) }}</NText>
+        <NText depth="3">{{ fromNow(item.created_at) }}</NText>
+      </div>
+      <div class="topic-title">
+        <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
+      </div>
+      <div class="topic-footer">
+        <NTag round :bordered="false">
+          {{ item.board.name }}
+        </NTag>
+        <div class="topic-info">
+          <NButton round secondary size="small" title="发表评论">
+            <template #icon>
+              <ChatMessageIcon size="16px" />
+            </template>
+            {{ item.reply_count }}
+          </NButton>
+        </div>
       </div>
     </NListItem>
   </NList>
@@ -28,8 +40,17 @@ import '@/style/TopicList.css'
 import { ref, onMounted, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
-import { NSpin, NAvatar, NText, NList, NListItem, NButton } from 'naive-ui'
+import {
+  NSpin,
+  NAvatar,
+  NText,
+  NList,
+  NListItem,
+  NButton,
+  NTag,
+} from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
+import { ChatMessageIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({
   name: 'TopicList',
