@@ -4,15 +4,16 @@ import { ref } from 'vue';
 export const useFetchData = <T>(
   fetcher: (...arg: any) => Promise<AxiosResponse>,
   onfinish: (data: T) => any,
-  ...argv: any[]
 ) => {
   const isLoading = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
   const isEmpty = ref<boolean>(false);
+  let lastArgv = [] as any[];
   let data = null as T;
-  const fetch = () => {
+  const fetch = (...argv: any[]) => {
     isLoading.value = true;
     isFailed.value = false;
+    lastArgv = [...argv];
     fetcher(...argv)
       .then((res) => {
         if (res.data.code === window.$code.OK) {
@@ -31,7 +32,7 @@ export const useFetchData = <T>(
       });
   };
   const retry = () => {
-    fetch();
+    fetch(...lastArgv);
   };
 
   return { isFailed, isLoading, data, fetch, retry };

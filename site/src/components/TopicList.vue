@@ -59,7 +59,7 @@ defineOptions({
 
 const topics = ref<Topic[] | null>(null)
 const limit = 10
-const offset = 0
+const last = 0
 const route = useRoute()
 const idToUri = (id: number) => '/topic/' + String(id)
 const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
@@ -68,8 +68,6 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
     console.log(data)
     topics.value = data
   },
-  offset,
-  limit,
 )
 
 watch(
@@ -80,6 +78,6 @@ watch(
 )
 
 onMounted(() => {
-  fetch()
+  fetch(last, limit)
 })
 </script>

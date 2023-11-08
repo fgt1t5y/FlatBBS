@@ -23,10 +23,9 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
   (data) => {
     discussions.value = data
   },
-  Number(route.params.id),
 )
 
 onMounted(() => {
-  fetch()
+  fetch(Number(route.params.id))
 })
 </script>
