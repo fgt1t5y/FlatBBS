@@ -6,7 +6,6 @@ use support\Request;
 use app\model\User;
 use Exception;
 use Intervention\Image\ImageManagerStatic as image;
-use Shopwwi\LaravelCache\Cache;
 
 class AuthController
 {

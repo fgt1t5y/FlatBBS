@@ -91,10 +91,6 @@ input {
 }
 
 /* 页面元素 */
-.page-chunk {
-  padding: var(--gap);
-}
-
 .panel-chunk {
   margin: var(--gap) 0px;
 }
@@ -105,18 +101,6 @@ input {
   justify-content: center;
   margin-top: 12px;
 }
-
-.column-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-}
-
-.icon-link {
-  border-radius: 50%;
-}
-
 /* 导航栏Logo */
 .site-brand {
   height: 53px;
@@ -142,6 +126,11 @@ input {
 
   .grid-sider {
     display: none !important;
+  }
+
+  .grid-content {
+    border-left: unset !important;
+    border-right: unset !important;
   }
 
   .grid-panels {

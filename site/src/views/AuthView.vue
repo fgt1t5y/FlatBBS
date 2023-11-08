@@ -1,5 +1,6 @@
 <template>
   <div class="auth-page">
+    <SiteLogo />
     <div class="auth-page-header">
       <NButton circle secondary @click="page.back">
         <ArrowLeftIcon size="18px" />
@@ -46,6 +47,7 @@ import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { usePage } from '@/utils/usePage'
+import SiteLogo from '@/components/SiteLogo.vue'
 
 const isDealing = ref<boolean>(false)
 const inputForm = reactive({
