@@ -30,7 +30,7 @@
   </NList>
   <div class="row-center">
     <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="fetchTopics">重试</NButton>
+    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
   </div>
 </template>
 
@@ -51,32 +51,25 @@ import {
 } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
+import { useFetchData } from '@/utils/useFetchData'
 
 defineOptions({
   name: 'TopicList',
 })
 
 const topics = ref<Topic[] | null>(null)
-const isLoading = ref<boolean>(false)
-const isFailed = ref<boolean>(false)
 const limit = 10
 const offset = 0
 const route = useRoute()
 const idToUri = (id: number) => '/topic/' + String(id)
-const fetchTopics = () => {
-  isLoading.value = true
-  isFailed.value = false
-  getTopicList(offset, limit)
-    .then((res) => {
-      topics.value = res.data.data!
-    })
-    .catch(() => {
-      isFailed.value = true
-    })
-    .finally(() => {
-      isLoading.value = false
-    })
-}
+const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
+  getTopicList,
+  (data) => {
+    topics.value = data
+  },
+  limit,
+  offset,
+)
 
 watch(
   () => route.params.id,
@@ -86,6 +79,6 @@ watch(
 )
 
 onMounted(() => {
-  fetchTopics()
+  fetch()
 })
 </script>

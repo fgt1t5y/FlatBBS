@@ -11,9 +11,7 @@
     </RouterLink>
     <div class="row-center">
       <NSpin v-if="isLoading" :size="32" />
-      <NButton v-if="isFailed" type="primary" @click="fetchBoards">
-        重试
-      </NButton>
+      <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
     </div>
   </div>
 </template>
@@ -24,6 +22,7 @@ import type { Board } from '@/types'
 import { onMounted, ref } from 'vue'
 import '@/style/BoardList.css'
 import { NSpin, NButton } from 'naive-ui'
+import { useFetchData } from '@/utils/useFetchData'
 
 defineOptions({
   name: 'BoardList',
@@ -31,27 +30,14 @@ defineOptions({
 
 const boards = ref<Board[] | null>(null)
 const idToUri = (id: number) => '/board/' + String(id)
-const isLoading = ref<boolean>(false)
-const isFailed = ref<boolean>(false)
-
-const fetchBoards = () => {
-  isLoading.value = true
-  isFailed.value = false
-  getBoards()
-    .then((res) => {
-      if (res.data.code === window.$code.OK) {
-        boards.value = res.data.data!
-      }
-    })
-    .catch(() => {
-      isFailed.value = true
-    })
-    .finally(() => {
-      isLoading.value = false
-    })
-}
+const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(
+  getBoards,
+  (data) => {
+    boards.value = data
+  },
+)
 
 onMounted(() => {
-  fetchBoards()
+  fetch()
 })
 </script>
