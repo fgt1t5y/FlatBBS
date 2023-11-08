@@ -42,7 +42,7 @@
       </RouterView>
     </template>
     <template #panels>
-      <div class="panel-chunk">
+      <div class="grid-panels-inner">
         <NInput
           ref="inputRef"
           :max-length="64"
