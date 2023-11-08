@@ -62,13 +62,8 @@ const limit = 10
 const last = 0
 const route = useRoute()
 const idToUri = (id: number) => '/topic/' + String(id)
-const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
-  getTopicList,
-  (data) => {
-    console.log(data)
-    topics.value = data
-  },
-)
+const { isFailed, isLoading, fetch, retry } =
+  useFetchData<Topic[]>(getTopicList)
 
 watch(
   () => route.params.id,
@@ -78,6 +73,12 @@ watch(
 )
 
 onMounted(() => {
-  fetch(last, limit)
+  fetch(
+    (data) => {
+      topics.value = data
+    },
+    last,
+    limit,
+  )
 })
 </script>

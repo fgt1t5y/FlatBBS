@@ -3,21 +3,24 @@ import { ref } from 'vue';
 
 export const useFetchData = <T>(
   fetcher: (...arg: any) => Promise<AxiosResponse>,
-  onfinish: (data: T) => any,
 ) => {
   const isLoading = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
   const isEmpty = ref<boolean>(false);
-  let lastArgv = [] as any[];
   let data = null as T;
-  const fetch = (...argv: any[]) => {
+  let lastArgv = [] as any[];
+  let lastOnSuccess = (data: T) => data;
+  const fetch = (onsuccess: (data: T) => any, ...argv: any[]) => {
     isLoading.value = true;
     isFailed.value = false;
     lastArgv = [...argv];
+    console.log(lastArgv, argv, onsuccess.toString());
+    lastOnSuccess = onsuccess;
     fetcher(...argv)
       .then((res) => {
         if (res.data.code === window.$code.OK) {
           data = res.data.data!;
+          onsuccess(data);
           if (Array.isArray(data) && !data.length) {
             isEmpty.value = true;
           }
@@ -27,12 +30,11 @@ export const useFetchData = <T>(
         isFailed.value = true;
       })
       .finally(() => {
-        onfinish(data);
         isLoading.value = false;
       });
   };
   const retry = () => {
-    fetch(...lastArgv);
+    fetch(lastOnSuccess, ...lastArgv);
   };
 
   return { isFailed, isLoading, data, fetch, retry };

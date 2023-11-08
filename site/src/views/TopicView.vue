@@ -18,14 +18,12 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const discussions = ref<Discussion[]>()
-const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
-  getDiscussions,
-  (data) => {
-    discussions.value = data
-  },
-)
+const { isFailed, isLoading, fetch, retry } =
+  useFetchData<Discussion[]>(getDiscussions)
 
 onMounted(() => {
-  fetch(Number(route.params.id))
+  fetch((data) => {
+    discussions.value = data
+  }, Number(route.params.id))
 })
 </script>

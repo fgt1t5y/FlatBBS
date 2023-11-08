@@ -30,14 +30,11 @@ defineOptions({
 
 const boards = ref<Board[] | null>(null)
 const idToUri = (id: number) => '/board/' + String(id)
-const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(
-  getBoards,
-  (data) => {
-    boards.value = data
-  },
-)
-
+const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(getBoards)
 onMounted(() => {
-  fetch()
+  fetch((data) => {
+    boards.value = data
+  }),
+    []
 })
 </script>
