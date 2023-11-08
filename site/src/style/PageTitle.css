@@ -1,13 +1,17 @@
-.page-header {
+.page-title {
+  position: sticky;
+  top: 0px;
   padding: 0px var(--gap);
   height: 52px;
+  background-color: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
   gap: 8px;
   display: flex;
   align-items: center;
+  z-index: 50;
 }
 
-.page-header div {
+.page-title div {
   font-size: 18px;
   margin: unset !important;
   font-weight: bolder;

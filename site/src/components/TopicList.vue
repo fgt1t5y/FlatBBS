@@ -65,10 +65,11 @@ const idToUri = (id: number) => '/topic/' + String(id)
 const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
+    console.log(data)
     topics.value = data
   },
-  limit,
   offset,
+  limit,
 )
 
 watch(

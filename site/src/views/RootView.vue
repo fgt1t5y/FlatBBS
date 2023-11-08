@@ -1,34 +1,38 @@
 <template>
   <CommonGrid>
     <template #sider>
-      <RouterLink to="/" class="site-brand">
-        <SiteLogo />
-      </RouterLink>
-      <RouterLink to="/" class="sider-link link">
-        <HomeIcon size="20px" />
-        <span>首页</span>
-      </RouterLink>
-      <RouterLink to="/search" class="sider-link link">
-        <SearchIcon size="20px" />
-        <span>搜索</span>
-      </RouterLink>
-      <RouterLink to="/people" class="sider-link link">
-        <Houses2Icon size="20px" />
-        <span>我的空间</span>
-      </RouterLink>
-      <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
-        <SettingIcon size="20px" />
-        <span>设置</span>
-      </RouterLink>
-      <RouterLink v-else to="/auth" class="sider-link link">
-        <UserIcon size="20px" />
-        <span>注册 / 登录</span>
-      </RouterLink>
-      <NText depth="3" class="sider-group" title="论坛版块列表">论坛版块</NText>
-      <BoardList />
-      <NButton type="primary" @click="editorWindow.showWindow">
-        发布话题
-      </NButton>
+      <div class="grid-sider-inner">
+        <RouterLink to="/" class="site-brand">
+          <SiteLogo />
+        </RouterLink>
+        <RouterLink to="/" class="sider-link link">
+          <HomeIcon size="20px" />
+          <span>首页</span>
+        </RouterLink>
+        <RouterLink to="/search" class="sider-link link">
+          <SearchIcon size="20px" />
+          <span>搜索</span>
+        </RouterLink>
+        <RouterLink to="/people" class="sider-link link">
+          <Houses2Icon size="20px" />
+          <span>我的空间</span>
+        </RouterLink>
+        <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
+          <SettingIcon size="20px" />
+          <span>设置</span>
+        </RouterLink>
+        <RouterLink v-else to="/auth" class="sider-link link">
+          <UserIcon size="20px" />
+          <span>注册 / 登录</span>
+        </RouterLink>
+        <NText depth="3" class="sider-group" title="论坛版块列表">
+          论坛版块
+        </NText>
+        <BoardList />
+        <NButton type="primary" @click="editorWindow.showWindow">
+          发布话题
+        </NButton>
+      </div>
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">

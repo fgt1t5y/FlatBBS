@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header" :title="title">
+  <div class="page-title" :title="title">
     <NButton
       v-show="showBackButton && showBack"
       circle
