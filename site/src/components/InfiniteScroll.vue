@@ -26,7 +26,7 @@ const observer = new IntersectionObserver(
   (entries) => {
     if (entries[0].isIntersecting) emits('loadmore')
   },
-  { rootMargin: '10px' },
+  { rootMargin: '40px' },
 )
 
 watch(
