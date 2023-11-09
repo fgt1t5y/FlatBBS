@@ -22,25 +22,25 @@ const emits = defineEmits<{
   (e: 'loadmore'): void
 }>()
 const obTarget = ref<HTMLElement>()
-const observer = ref<IntersectionObserver | null>(null)
+const observer = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) emits('loadmore')
+  },
+  { rootMargin: '10px' },
+)
 
 watch(
   () => props.disabled,
   (nv) => {
     if (!nv) {
-      observer.value!.observe(obTarget.value!)
+      observer.observe(obTarget.value!)
     } else {
-      observer.value!.disconnect()
+      observer.disconnect()
     }
   },
 )
 
 onMounted(() => {
-  observer.value = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) emits('loadmore')
-    }, { rootMargin: '10px' }
-  )
-  if (!props.disabled) observer.value.observe(obTarget.value!)
+  if (!props.disabled) observer.observe(obTarget.value!)
 })
 </script>
