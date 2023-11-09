@@ -125,9 +125,6 @@ const closeAvatarCrop = () => {
   isShowCropper.value = false
   cropper.value?.destoryCropper()
 }
-const test = () => {
-  switchTo('light')
-}
 const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
