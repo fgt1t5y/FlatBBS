@@ -30,6 +30,7 @@ import {
 
 const user = useUserStore()
 const theme = useTheme()
+theme.init()
 const overrideTheme = {
   List: {
     color: 'rgba(255, 255, 255, 0)',

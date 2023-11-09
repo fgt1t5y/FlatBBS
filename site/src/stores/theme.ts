@@ -6,7 +6,6 @@ import type { ThemeMode } from '@/types';
 const KEY_THEME_MODE = 'flat_theme';
 
 export const useTheme = defineStore('theme', () => {
-  const isInited = ref<boolean>(false);
   const currentTheme = ref<ThemeMode>(
     getOrSet(KEY_THEME_MODE, 'auto') as ThemeMode,
   );
@@ -31,31 +30,20 @@ export const useTheme = defineStore('theme', () => {
     }
   };
 
-  if (!isInited.value) {
+  const init = () => {
     sysMedia.addEventListener('change', apply);
     apply();
-  }
-  isInited.value = true;
+  };
 
   const applyAndSava = () => {
     set(KEY_THEME_MODE, currentTheme.value);
     apply();
   };
 
-  const toggleTheme = () => {
-    if (currentTheme.value === 'auto') {
-      currentTheme.value = 'light';
-      return applyAndSava();
-    }
-    if (currentTheme.value === 'light') {
-      currentTheme.value = 'dark';
-      return applyAndSava();
-    }
-    if (currentTheme.value === 'dark') {
-      currentTheme.value = 'auto';
-      return applyAndSava();
-    }
+  const switchTo = (name: ThemeMode) => {
+    currentTheme.value = name;
+    return applyAndSava();
   };
 
-  return { theme, toggleTheme, naiveuiDark };
+  return { theme, init, switchTo, naiveuiDark };
 });

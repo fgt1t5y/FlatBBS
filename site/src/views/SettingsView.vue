@@ -4,7 +4,7 @@
     <NH6>
       <NText type="primary">头像</NText>
     </NH6>
-    <SettingItem title="我的头像" subtitle="点击以更改。">
+    <SettingItem title="我的头像" subtitle="点击以更改">
       <NAvatar
         :src="info.avatar_uri"
         :size="64"
@@ -25,14 +25,42 @@
     <NH6>
       <NText type="primary">用户资料</NText>
     </NH6>
-    <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改。">
+    <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改">
       <InputField :input-value="info.email" readonly />
     </SettingItem>
     <SettingItem title="用户名">
       <InputField field="username" :input-value="info.username" />
     </SettingItem>
-    <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己。">
+    <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己">
       <InputField field="introduction" :input-value="info.introduction" />
+    </SettingItem>
+  </div>
+  <div class="settings-group">
+    <NH6>
+      <NText type="primary">显示</NText>
+    </NH6>
+    <SettingItem title="颜色主题" subtitle="网站全局显示的颜色主题">
+      <CardRadio
+        label="跟随系统模式"
+        :checked="theme === 'auto'"
+        @click="switchTo('auto')"
+      >
+        <Brightness1Icon size="18px" />
+      </CardRadio>
+      <CardRadio
+        label="浅色模式"
+        :checked="theme === 'light'"
+        @click="switchTo('light')"
+      >
+        <ModeLightIcon size="18px" />
+      </CardRadio>
+      <CardRadio
+        label="暗色模式"
+        :checked="theme === 'dark'"
+        @click="switchTo('dark')"
+      >
+        <ModeDarkIcon size="18px" />
+      </CardRadio>
     </SettingItem>
   </div>
   <UserWindow
@@ -59,16 +87,22 @@ import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { useUserStore } from '@/stores'
+import CardRadio from '@/components/CardRadio.vue'
+import { useTheme, useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'
-import { NAvatar, NH6, useMessage, NText } from 'naive-ui'
+import { NAvatar, NH6, NText } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 import UserWindow from '@/components/UserWindow.vue'
 import '@/style/SettingsView.css'
+import {
+  Brightness1Icon,
+  ModeLightIcon,
+  ModeDarkIcon,
+} from 'tdesign-icons-vue-next'
 
 const { info } = useUserStore()
-const message = useMessage()
+const { switchTo, theme } = useTheme()
 const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)
 const avatarInput = ref<HTMLInputElement>()
@@ -85,11 +119,14 @@ const showCropper = () => {
   isShowCropper.value = true
 }
 const showCropperMessage = (content: string) => {
-  message.error(content)
+  window.$message.error(content)
 }
 const closeAvatarCrop = () => {
   isShowCropper.value = false
   cropper.value?.destoryCropper()
+}
+const test = () => {
+  switchTo('light')
 }
 const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
@@ -98,7 +135,9 @@ const uploadAvatar = () => {
       uploadAsAvatar(file).then((res) => {
         if (res.data.code === window.$code.OK) {
           info.avatar_uri = getAvatarPath(res.data.data!.uri)
-          message.success('头像已上传。因为缓存的存在，生效时间可能延后。')
+          window.$message.success(
+            '头像已上传。因为缓存的存在，生效时间可能延后。',
+          )
         }
       })
     }

@@ -1,0 +1,19 @@
+.card-radio {
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.card-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-radio-seleted {
+  color: var(--theme-color);
+  border-color: var(--theme-color);
+}

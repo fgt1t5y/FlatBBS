@@ -1,7 +1,13 @@
 <template>
   <NSpace v-if="!isEditing" align="center">
     <NText>{{ valueNow || '未填写' }}</NText>
-    <NButton secondary circle title="更改此栏" @click="startEdit">
+    <NButton
+      v-if="!readonly"
+      secondary
+      circle
+      title="更改此栏"
+      @click="startEdit"
+    >
       <Edit1Icon />
     </NButton>
   </NSpace>
