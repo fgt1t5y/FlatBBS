@@ -11,6 +11,7 @@ export const useFetchData = <T>(
   let lastArgv = [] as any[];
   let lastOnSuccess = (data: T) => data;
   const fetch = (onsuccess: (data: T) => any, ...argv: any[]) => {
+    if (isLoading.value) return;
     isLoading.value = true;
     isFailed.value = false;
     lastArgv = [...argv];
@@ -36,5 +37,5 @@ export const useFetchData = <T>(
     fetch(lastOnSuccess, ...lastArgv);
   };
 
-  return { isFailed, isLoading, data, fetch, retry };
+  return { isFailed, isLoading, isEmpty, data, fetch, retry };
 };

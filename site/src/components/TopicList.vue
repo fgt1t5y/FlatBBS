@@ -14,7 +14,7 @@
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
       </div>
       <div class="topic-footer">
-        <NTag round :bordered="false">
+        <NTag round size="small" :bordered="false">
           {{ item.board.name }}
         </NTag>
         <div class="topic-info">
@@ -32,12 +32,14 @@
     <NSpin v-if="isLoading" :size="32" />
     <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
   </div>
+  <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
+  <NH5 v-if="noMore" class="text-center" :align-text="true">没有更多了</NH5>
 </template>
 
 <script setup lang="ts">
 import { getTopicList } from '@/services'
 import '@/style/TopicList.css'
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch } from 'vue'
 import type { Topic } from '@/types'
 import { useRoute, RouterLink } from 'vue-router'
 import {
@@ -48,22 +50,39 @@ import {
   NListItem,
   NButton,
   NTag,
+  NH5,
 } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
 import { useFetchData } from '@/utils/useFetchData'
+import InfiniteScroll from '@/components/InfiniteScroll.vue'
 
 defineOptions({
   name: 'TopicList',
 })
 
-const topics = ref<Topic[] | null>(null)
+const topics = ref<Topic[]>([])
 const limit = 10
-const last = 0
+let last = 0
 const route = useRoute()
+const noMore = ref<boolean>(false)
 const idToUri = (id: number) => '/topic/' + String(id)
 const { isFailed, isLoading, fetch, retry } =
   useFetchData<Topic[]>(getTopicList)
+const getTopic = () => {
+  if (noMore.value) return
+  fetch(
+    (data) => {
+      if (data.length < limit) {
+        noMore.value = true
+      }
+      topics.value?.push(...data)
+      !noMore.value && (last = data[data.length - 1].id)
+    },
+    last,
+    limit,
+  )
+}
 
 watch(
   () => route.params.id,
@@ -71,14 +90,4 @@ watch(
     console.log(board_id)
   },
 )
-
-onMounted(() => {
-  fetch(
-    (data) => {
-      topics.value = data
-    },
-    last,
-    limit,
-  )
-})
 </script>

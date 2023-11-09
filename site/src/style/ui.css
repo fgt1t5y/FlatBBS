@@ -105,6 +105,11 @@ input {
   justify-content: center;
   margin-top: 12px;
 }
+
+.text-center {
+  text-align: center;
+}
+
 /* 导航栏Logo */
 .site-brand {
   height: 53px;

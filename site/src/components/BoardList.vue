@@ -28,7 +28,7 @@ defineOptions({
   name: 'BoardList',
 })
 
-const boards = ref<Board[] | null>(null)
+const boards = ref<Board[]>([])
 const idToUri = (id: number) => '/board/' + String(id)
 const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(getBoards)
 onMounted(() => {

@@ -54,7 +54,7 @@ const inputForm = reactive({
   email: '',
   password: '',
 })
-const formRef = ref<FormInst | null>(null)
+const formRef = ref<FormInst>()
 const page = usePage()
 const loginRule: FormRules = {
   email: [
