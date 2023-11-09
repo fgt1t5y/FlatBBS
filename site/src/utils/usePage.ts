@@ -6,7 +6,6 @@ export const usePage = () => {
     return router.currentRoute.value.fullPath;
   });
   const go = (path: string, replace?: boolean) => {
-    console.log(router);
     if (replace) {
       router.replace({ path: path });
       return;

@@ -28,7 +28,6 @@ requester.interceptors.request.use(
 
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
-    console.log(res);
     if (res.data.code > window.$code.OK) {
       if (res.data.code === window.$code.UNAUTHORIZED) {
         router.replace({ path: '/auth' });

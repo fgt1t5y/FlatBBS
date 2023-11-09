@@ -14,7 +14,6 @@ export const useFetchData = <T>(
     isLoading.value = true;
     isFailed.value = false;
     lastArgv = [...argv];
-    console.log(lastArgv, argv, onsuccess.toString());
     lastOnSuccess = onsuccess;
     fetcher(...argv)
       .then((res) => {
