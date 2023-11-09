@@ -11,31 +11,36 @@ defineOptions({
 
 interface InfiniteScrollProps {
   disabled?: boolean
+  root?: string
 }
 
 const props = withDefaults(defineProps<InfiniteScrollProps>(), {
   disabled: true,
+  root: '',
 })
 const emits = defineEmits<{
   (e: 'loadmore'): void
 }>()
 const obTarget = ref<HTMLElement>()
-const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) emits('loadmore')
-})
+const observer = ref<IntersectionObserver | null>(null)
 
 watch(
   () => props.disabled,
   (nv) => {
     if (!nv) {
-      observer.observe(obTarget.value!)
+      observer.value!.observe(obTarget.value!)
     } else {
-      observer.disconnect()
+      observer.value!.disconnect()
     }
   },
 )
 
 onMounted(() => {
-  if (!props.disabled) observer.observe(obTarget.value!)
+  observer.value = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) emits('loadmore')
+    }, { rootMargin: '10px' }
+  )
+  if (!props.disabled) observer.value.observe(obTarget.value!)
 })
 </script>

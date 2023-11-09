@@ -1,6 +1,13 @@
+.topic-list {
+  /* 解决无限滚动组件在移动端异常 */
+  margin-bottom: 30px;
+}
+
 .topic-list-item {
   padding-left: var(--gap) !important;
   padding-right: var(--gap) !important;
+  padding: var(--gap);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .topic-header {

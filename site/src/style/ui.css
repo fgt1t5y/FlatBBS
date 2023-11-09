@@ -64,6 +64,11 @@ input {
   display: none;
 }
 
+.observe-target {
+  height: 6px;
+  width: 100%;
+}
+
 /* 通用 hover 效果 */
 .hover-card {
   padding: 3px;
