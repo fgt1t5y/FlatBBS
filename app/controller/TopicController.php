@@ -15,13 +15,13 @@ class TopicController
         $limit = (int) $request->post('limit');
         $board = (int) $request->post('board');
 
-        if ($limit > 20 || $last_id < 0) {
+        if ($last_id < 0) {
             return json_message(STATUS_BAD_REQUEST, '参数错误');
         }
 
-        $builder = Topic::orderByDesc('created_at')
-            ->limit(max($limit, 10))
-            ->where('id', '>', $last_id);
+        $builder = Topic::orderByDesc('last_reply_at')
+            ->limit(min($limit, 50))
+            ->where('id', $last_id === 0 ? '>' : '<', $last_id);
 
         if ($board) {
             $builder = $builder->where('board_id', $board);
