@@ -96,7 +96,7 @@
       首页
     </RouterLink>
     <RouterLink class="mobile-nav-item link" to="/boards">
-      <SearchIcon size="20px" />
+      <AppIcon size="20px" />
       版块
     </RouterLink>
     <RouterLink class="mobile-nav-item link" to="/search">
@@ -124,6 +124,7 @@ import {
   UserIcon,
   CloseIcon,
   Houses2Icon,
+  AppIcon
 } from 'tdesign-icons-vue-next'
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'

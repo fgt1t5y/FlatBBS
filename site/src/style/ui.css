@@ -167,6 +167,7 @@ input {
   .grid-content {
     border-left: unset !important;
     border-right: unset !important;
+    margin-bottom: 53px;
   }
 
   .grid-panels {

@@ -11,13 +11,17 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<ViewerProps>(), {
-  value: '# Nothing',
+  value: '',
   plugins: () => [],
   sanitize: (t: any) => t,
 })
 const parsedText = ref<string>('')
 
 onMounted(() => {
-  parsedText.value = getProcessor(props).processSync(props.value).value
+  try {
+    parsedText.value = getProcessor(props).processSync(props.value).value
+  } catch (error) {
+    parsedText.value = '<b>Markdown 解释器错误</b>'
+  }
 })
 </script>

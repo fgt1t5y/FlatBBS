@@ -48,6 +48,8 @@ import '@/style/AuthView.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { usePage } from '@/utils/usePage'
 import SiteLogo from '@/components/SiteLogo.vue'
+import { useRoute } from 'vue-router'
+import router from '@/router'
 
 const isDealing = ref<boolean>(false)
 const inputForm = reactive({
@@ -74,6 +76,7 @@ const loginRule: FormRules = {
   ],
 }
 const user = useUserStore()
+const route = useRoute()
 const validateForf = (ev: MouseEvent) => {
   ev.preventDefault()
   formRef.value!.validate((errors) => {
@@ -89,7 +92,7 @@ const actionLogin = () => {
       isDealing.value = false
       if (res.data.code === window.$code.OK) {
         user.fetch()
-        page.goHome(true)
+        router.replace({ path: (route.query.next as string) ?? '/' })
       }
     })
     .finally(() => {

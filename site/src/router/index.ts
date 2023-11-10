@@ -10,10 +10,7 @@ import { hasToken } from '@/utils';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    ...mainRoutes,
-    ...authRoutes,
-  ],
+  routes: [...mainRoutes, ...authRoutes],
 });
 
 router.beforeEach((to) => {

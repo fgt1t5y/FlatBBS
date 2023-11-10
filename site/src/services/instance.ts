@@ -30,7 +30,7 @@ requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
     if (res.data.code > window.$code.OK) {
       if (res.data.code === window.$code.UNAUTHORIZED) {
-        router.replace({ path: '/auth' });
+        router.replace({ path: '/auth', query: { 'next': router.currentRoute.value.path } });
       }
       complainError(res.data.message);
     }
