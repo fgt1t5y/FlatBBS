@@ -3,9 +3,9 @@
     <div
       class="cropper-container"
       :style="{ height: `${height}px` }"
-      @mousedown="mousedown"
-      @mousemove="mousemove"
-      @mouseup="mouseup"
+      @pointerdown="mousedown"
+      @pointermove="mousemove"
+      @pointerup="mouseup"
     >
       <img ref="imageSrc" :src="imageURL" alt="src" style="display: none" />
       <canvas ref="canvasRef" :width="width" :height="height"></canvas>
@@ -110,6 +110,9 @@ const drawAt = (x: number, y: number) => {
     imageSrc.value!.height * scale.value,
   )
 }
+const test = (ev: PointerEvent) => {
+  console.log(ev)
+}
 const draw = () => {
   ctx?.clearRect(0, 0, props.width, props.height)
   const currentX = renderStatus.clientX + renderStatus.deltaX
@@ -137,6 +140,7 @@ const checkOverBorder = () => {
   drawAt(renderStatus.clientX, renderStatus.clientY)
 }
 const mousedown = (ev: MouseEvent) => {
+  console.log(ev)
   if (imageException.value) return
 
   const { clientX, clientY } = ev
