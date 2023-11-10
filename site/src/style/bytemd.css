@@ -500,7 +500,7 @@ span.CodeMirror-selectedtext {
   background-color: var(--color-fill-3);
 }
 .bytemd-toolbar-icon-active {
-  color: #0366d6;
+  color: var(--theme-color);
 }
 .bytemd-toolbar .tippy-content {
   padding-left: 0;
