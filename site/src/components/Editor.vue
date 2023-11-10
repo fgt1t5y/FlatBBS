@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { mentionPlugin } from '@/utils/mentionPlugin'
 import { Editor, type EditorProps } from 'bytemd'
 import zh_Hans from 'bytemd/locales/zh_Hans.json'
 import { ref, onMounted, watch } from 'vue'
@@ -20,7 +19,7 @@ const emits = defineEmits<{
 const props = withDefaults(defineProps<EditorProps>(), {
   value: '',
   sanitize: undefined,
-  plugins: () => [mentionPlugin()],
+  plugins: () => [],
   mode: 'auto',
   locale: () => zh_Hans,
   placeholder: '',
@@ -48,7 +47,6 @@ onMounted(() => {
 watch(
   () => props,
   (newValue) => {
-    console.log(newValue.value)
     // @ts-expect-error No type file
     editor.value?.$set(newValue)
   },

@@ -697,11 +697,7 @@ span.CodeMirror-selectedtext {
 }
 
 .bytemd-body a {
-  color: rgb(48, 111, 255);
-}
-
-.bytemd-body a:visited {
-  color: rgb(104, 159, 255);
+  color: var(--theme-color);
 }
 
 .bytemd-body p code {
