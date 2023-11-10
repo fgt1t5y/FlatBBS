@@ -18,19 +18,6 @@
   background-color: #f7f7f7;
   white-space: nowrap;
 }
-.CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
-  min-width: 20px;
-  text-align: right;
-  color: #999;
-  white-space: nowrap;
-}
-.CodeMirror-guttermarker {
-  color: #000;
-}
-.CodeMirror-guttermarker-subtle {
-  color: #999;
-}
 .CodeMirror-cursor {
   border-left: 2px solid currentColor;
   border-right: none;
@@ -301,14 +288,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror-code {
   outline: none;
 }
-.CodeMirror-scroll,
-.CodeMirror-sizer,
-.CodeMirror-gutter,
-.CodeMirror-gutters,
-.CodeMirror-linenumber {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
 .CodeMirror-measure {
   position: absolute;
   width: 100%;
@@ -357,11 +336,6 @@ div.CodeMirror-dragcursors,
 }
 .cm-force-border {
   padding-right: 0.1px;
-}
-@media print {
-  .CodeMirror div.CodeMirror-cursors {
-    visibility: hidden;
-  }
 }
 .cm-tab-wrap-hack:after {
   content: '';
@@ -443,9 +417,6 @@ span.CodeMirror-selectedtext {
   background-color: var(--color-bg-2);
   height: 300px;
 }
-.bytemd * {
-  box-sizing: border-box;
-}
 .bytemd-hidden {
   display: none !important;
 }
@@ -465,8 +436,6 @@ span.CodeMirror-selectedtext {
   padding: 4px 0px;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-bg-2);
-  user-select: none;
-  overflow: hidden;
   display: flex;
   justify-content: space-between;
 }
@@ -481,20 +450,22 @@ span.CodeMirror-selectedtext {
 .bytemd-toolbar-tab-active {
   color: #0366d6;
 }
+.bytemd-toolbar-left,
+.bytemd-toolbar-right {
+  display: flex;
+  gap: 4px;
+}
 .bytemd-toolbar-icon {
-  display: inline-block;
-  vertical-align: top;
   cursor: pointer;
   border-radius: 3px;
-  margin-left: 6px;
-  margin-right: 6px;
+  height: 20px;
+  width: 20px;
+  padding: 3px;
 }
 .bytemd-toolbar-icon svg,
 .bytemd-toolbar-icon img {
-  display: block;
-  padding: 4px;
-  width: 24px;
-  height: 24px;
+  height: 18px;
+  width: 18px;
 }
 .bytemd-toolbar-icon:hover {
   background-color: var(--color-fill-3);
@@ -519,20 +490,21 @@ span.CodeMirror-selectedtext {
 }
 .bytemd-dropdown-item {
   padding: 4px 12px;
-  height: 32px;
+  height: 20px;
+  display: flex;
   cursor: pointer;
+}
+.bytemd-dropdown-item-icon svg {
+  height: 16px !important;
+  width: 16px !important;
+  display: block;
+  padding: 4px;
 }
 .bytemd-dropdown-item:hover {
   background-color: var(--color-fill-3);
 }
 .bytemd-dropdown-item-icon {
   display: inline-block;
-}
-.bytemd-dropdown-item-icon svg {
-  display: block;
-  padding: 4px;
-  width: 24px;
-  height: 24px;
 }
 .bytemd-dropdown-item-title {
   display: inline-block;
@@ -542,6 +514,7 @@ span.CodeMirror-selectedtext {
 .bytemd-body {
   height: calc(100% - 58px);
   overflow: auto;
+  display: flex;
 }
 .bytemd-editor {
   display: inline-block;
@@ -555,7 +528,7 @@ span.CodeMirror-selectedtext {
   line-height: 1.5;
 }
 .bytemd-editor .CodeMirror pre.CodeMirror-placeholder {
-  color: var(--color-text-3);
+  color: var(--color-text-2);
 }
 .bytemd-editor .CodeMirror .CodeMirror-lines {
   max-width: 800px;
@@ -594,9 +567,6 @@ span.CodeMirror-selectedtext {
   top: 0;
   right: 0;
   cursor: pointer;
-}
-.bytemd-sidebar-close:hover {
-  color: #0366d6;
 }
 .bytemd-sidebar h2 {
   font-size: 16px;
