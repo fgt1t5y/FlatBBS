@@ -1,7 +1,6 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
 import TopicView from '@/views/TopicView.vue';
-import NotFoundView from '@/views/NotFoundView.vue';
 
 export const mainRoutes = [
   {
@@ -50,9 +49,9 @@ export const mainRoutes = [
         },
       },
       {
-        path: '/:pathMatch(.*)*',
+        path: ':pathMatch(.*)*',
         name: 'not_found_page',
-        conponent: NotFoundView,
+        component: () => import('@/views/NotFoundView.vue'),
         meta: {
           title: '404',
         },
