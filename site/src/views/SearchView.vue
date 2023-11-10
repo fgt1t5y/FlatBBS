@@ -2,6 +2,7 @@
   <PageTitle title="搜索">
     <NInput
       ref="inputRef"
+      :input-props="{ type: 'search' }"
       :value="searchKeyword"
       placeholder="搜索帖子、用户"
       size="large"

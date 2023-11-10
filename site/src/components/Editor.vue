@@ -48,6 +48,7 @@ onMounted(() => {
 watch(
   () => props,
   (newValue) => {
+    console.log(newValue.value)
     // @ts-expect-error No type file
     editor.value?.$set(newValue)
   },

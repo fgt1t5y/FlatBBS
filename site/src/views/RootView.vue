@@ -53,11 +53,11 @@
       </div>
     </template>
   </CommonGrid>
-  <div v-show="editorWindow.show" class="editor-window mob-hidden">
+  <div v-if="editorWindow.show" class="editor-window mob-hidden">
     <div class="editor-window-header">
       <input
         id="topic-title-input"
-        v-model="topicDraft.title"
+        v-model="editorWindow.draft.title"
         type="text"
         placeholder="话题标题"
         maxlength="63"
@@ -81,14 +81,32 @@
       </NButton>
     </div>
     <Editor
-      v-model:value="topicDraft.content"
+      v-model:value="editorWindow.draft.content"
       placeholder="输入话题内容...（选填）"
     />
   </div>
-  <div v-show="editorWindow.isMin" class="editor-window">
+  <div v-if="editorWindow.isMin" class="editor-window">
     <button @click="editorWindow.showWindow">
       正在编辑话题，点击展开编辑器
     </button>
+  </div>
+  <div class="mobile-nav mob-show">
+    <RouterLink class="mobile-nav-item link" to="/">
+      <HomeIcon size="20px" />
+      首页
+    </RouterLink>
+    <RouterLink class="mobile-nav-item link" to="/boards">
+      <SearchIcon size="20px" />
+      版块
+    </RouterLink>
+    <RouterLink class="mobile-nav-item link" to="/search">
+      <SearchIcon size="20px" />
+      搜索
+    </RouterLink>
+    <RouterLink class="mobile-nav-item link" to="/people">
+      <NAvatar :size="20" :src="user.info.avatar_uri" round />
+      我
+    </RouterLink>
   </div>
 </template>
 
@@ -97,7 +115,7 @@ import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore, useEditorWindow } from '@/stores'
-import { NText, NButton, NInput, useMessage } from 'naive-ui'
+import { NText, NButton, NInput, useMessage, NAvatar } from 'naive-ui'
 import {
   ChevronDownIcon,
   HomeIcon,
@@ -107,14 +125,10 @@ import {
   CloseIcon,
   Houses2Icon,
 } from 'tdesign-icons-vue-next'
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import Editor from '@/components/Editor.vue'
 
-const topicDraft = reactive({
-  title: '',
-  content: '',
-})
 const user = useUserStore()
 const editorWindow = useEditorWindow()
 window.$message = useMessage()

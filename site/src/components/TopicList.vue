@@ -1,6 +1,6 @@
 <template>
   <div class="topic-list">
-    <div v-for="item in topics" :key="item.id" class="topic-list-item">
+    <div v-for="item in topics" class="topic-list-item">
       <div class="topic-header">
         <NAvatar
           :src="getAvatarPath(item.author.avatar_uri!)"

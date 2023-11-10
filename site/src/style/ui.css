@@ -28,6 +28,7 @@ input {
 
 #flatbbs {
   margin: 0px auto;
+  position: relative;
   max-width: var(--page-max-width);
   display: flex;
   gap: var(--gap);
@@ -35,7 +36,7 @@ input {
 
 /* 话题编辑器 */
 .editor-window {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   bottom: var(--gap);
@@ -62,7 +63,7 @@ input {
 }
 
 .mob-show {
-  display: none;
+  display: none !important;
 }
 
 .observe-target {
@@ -114,6 +115,26 @@ input {
 
 .text-center {
   text-align: center;
+}
+
+/* 移动端导航栏 */
+.mobile-nav {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 53px;
+  background-color: var(--color-bg-2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
 }
 
 /* 导航栏Logo */
