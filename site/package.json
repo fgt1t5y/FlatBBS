@@ -15,7 +15,6 @@
     "@types/js-cookie": "^3.0.4",
     "@vueuse/core": "^10.5.0",
     "axios": "^1.5.0",
-    "bytemd": "^1.21.0",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.6",

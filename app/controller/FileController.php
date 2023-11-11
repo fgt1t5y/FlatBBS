@@ -18,9 +18,7 @@ class FileController
         $filepath = [];
         $filename = '';
 
-        if (
-            !$files
-        ) {
+        if (!$files) {
             return json_message(STATUS_BAD_REQUEST, '没有文件');
         }
 
