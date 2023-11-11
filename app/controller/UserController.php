@@ -40,7 +40,7 @@ class UserController
         $uid = $request->session()->get('id');
 
         if (User::modifyUser($uid, $field, $value)) {
-            return json_message(STATUS_OK, '完成');
+            return ok();
         } else {
             return json_message(STATUS_BAD_REQUEST, '失败，信息未更新。');
         }

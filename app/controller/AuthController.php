@@ -34,7 +34,7 @@ class AuthController
                 true
             );
             $user->saveOrFail();
-            return json_message(STATUS_OK, '完成');
+            return ok();
         } catch (Exception $e) {
             return json_message(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
@@ -71,7 +71,7 @@ class AuthController
         $user->last_login_at = date('Y-m-d H:i:s');
         $user->save();
 
-        return json_message(STATUS_OK, '完成')
+        return ok()
             ->cookie('flat_sess', $token, 43200, '/');
     }
 
@@ -80,7 +80,7 @@ class AuthController
         $session = $request->session();
         $session->flush();
 
-        return json_message(STATUS_OK, '完成')
+        return ok()
             ->cookie('flat_sess', '', 0, '/');
     }
 }
