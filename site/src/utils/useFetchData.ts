@@ -6,11 +6,10 @@ export const useFetchData = <T>(
 ) => {
   const isLoading = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
-  const isEmpty = ref<boolean>(false);
   let data = null as T;
   let lastArgv = [] as any[];
   let lastOnSuccess = (data: T) => data;
-  const fetch = (onsuccess: (data: T) => any, ...argv: any[]) => {
+  const fetch = (onsuccess: (data: T) => any, ...argv?: any[]) => {
     if (isLoading.value) return;
     isLoading.value = true;
     isFailed.value = false;
@@ -21,9 +20,6 @@ export const useFetchData = <T>(
         if (res.data.code === window.$code.OK) {
           data = res.data.data!;
           onsuccess(data);
-          if (Array.isArray(data) && !data.length) {
-            isEmpty.value = true;
-          }
         }
       })
       .catch(() => {
@@ -37,5 +33,5 @@ export const useFetchData = <T>(
     fetch(lastOnSuccess, ...lastArgv);
   };
 
-  return { isFailed, isLoading, isEmpty, data, fetch, retry };
+  return { isFailed, isLoading, fetch, retry };
 };

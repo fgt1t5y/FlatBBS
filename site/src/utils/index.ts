@@ -1,4 +1,5 @@
 import { config } from '@/global';
+import { useBreakpoints } from '@vueuse/core';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
 
@@ -49,3 +50,12 @@ export const getAvatarPath = (avatar_file: string) => {
 export const fromNow = (datetime: string) => {
   return dayjs(datetime).fromNow();
 };
+
+export const breakpoint = useBreakpoints({
+  mobile: 640,
+  pad: 810,
+});
+
+export const isMobile = breakpoint.smaller('mobile');
+export const isPad = breakpoint.greater('mobile');
+export const isDesktop = breakpoint.greater('pad');

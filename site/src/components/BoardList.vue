@@ -34,7 +34,6 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(getBoards)
 onMounted(() => {
   fetch((data) => {
     boards.value = data
-  }),
-    []
+  })
 })
 </script>
