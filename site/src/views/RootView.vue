@@ -50,7 +50,7 @@
       </div>
     </template>
   </CommonGrid>
-  <div class="mobile-nav mob-show">
+  <div v-if="isMobile" class="mobile-nav">
     <RouterLink class="mobile-nav-item link" to="/">
       <HomeIcon size="20px" />
       首页
@@ -75,6 +75,7 @@ import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
+import { isMobile } from '@/utils'
 import { NText, NInput, useMessage, NAvatar } from 'naive-ui'
 import {
   HomeIcon,
