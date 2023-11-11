@@ -1,7 +1,6 @@
 <?php
 
 return [
-  'jwt_key' => '$yun98o4g89hdgHH8HhHhh98$',
   'cache' => [
     'ttl' => 1800,
     'prefix' => [
