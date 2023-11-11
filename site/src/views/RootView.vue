@@ -1,7 +1,7 @@
 <template>
   <CommonGrid>
     <template #sider>
-      <div class="grid-sider-inner">
+      <div v-if="isDesktop" class="grid-sider-inner">
         <RouterLink to="/" class="site-brand">
           <SiteLogo />
         </RouterLink>
@@ -39,7 +39,7 @@
       </RouterView>
     </template>
     <template #panels>
-      <div class="grid-panels-inner">
+      <div v-if="!isMobile" class="grid-panels-inner">
         <NInput
           ref="inputRef"
           :max-length="64"
@@ -50,7 +50,7 @@
       </div>
     </template>
   </CommonGrid>
-  <div v-if="isMobile" class="mobile-nav">
+  <div v-if="!isDesktop" class="mobile-nav">
     <RouterLink class="mobile-nav-item link" to="/">
       <HomeIcon size="20px" />
       首页
@@ -75,7 +75,7 @@ import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
-import { isMobile } from '@/utils'
+import { isDesktop, isMobile } from '@/utils'
 import { NText, NInput, useMessage, NAvatar } from 'naive-ui'
 import {
   HomeIcon,

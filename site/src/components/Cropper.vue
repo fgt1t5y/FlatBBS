@@ -110,9 +110,6 @@ const drawAt = (x: number, y: number) => {
     imageSrc.value!.height * scale.value,
   )
 }
-const test = (ev: PointerEvent) => {
-  console.log(ev)
-}
 const draw = () => {
   ctx?.clearRect(0, 0, props.width, props.height)
   const currentX = renderStatus.clientX + renderStatus.deltaX

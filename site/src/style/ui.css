@@ -152,6 +152,10 @@ input {
 }
 
 @media (max-width: 810px) {
+  #flatbbs {
+    gap: unset;
+  }
+
   .mob-hidden {
     display: none !important;
   }
@@ -160,17 +164,15 @@ input {
     display: inherit !important;
   }
 
-  .grid-sider {
-    display: none !important;
+  .grid-content {
+    border-left: unset !important;
+    margin-bottom: 53px;
   }
+}
 
+@media (max-width: 640px) {
   .grid-content {
     border-left: unset !important;
     border-right: unset !important;
-    margin-bottom: 53px;
-  }
-
-  .grid-panels {
-    display: none;
   }
 }

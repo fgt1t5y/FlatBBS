@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import '@/style/ui.css';
 import '@/style/theme.css';
-import '@/style/bytemd.css';
 import 'dayjs/locale/zh-cn';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
