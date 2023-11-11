@@ -16,7 +16,7 @@ class TopicController
         $board_id = (int) $request->post('board');
 
         if ($last_id < 0) {
-            return json_message(STATUS_BAD_REQUEST, '参数错误');
+            return no(STATUS_BAD_REQUEST);
         }
 
         $builder = Topic::orderByDesc('last_reply_at')
@@ -48,7 +48,7 @@ class TopicController
         $author_id = session('id');
 
         if (!all([$topic_title, $at_board])) {
-            return json_message(STATUS_BAD_REQUEST, '参数错误');
+            return no(STATUS_BAD_REQUEST);
         }
 
         $result_topic = Topic::createTopic(
@@ -58,7 +58,7 @@ class TopicController
             $author_id,
         );
         if (!$result_topic) {
-            json_message(STATUS_OK, '创建话题失败');
+            no(STATUS_INTERNAL_ERROR);
         }
 
         return json_message(STATUS_OK, '完成', $result_topic);
@@ -69,13 +69,13 @@ class TopicController
         $keyword = $request->post('q');
 
         if (!all([$keyword])) {
-            return json_message(STATUS_BAD_REQUEST, '参数错误');
+            return no(STATUS_BAD_REQUEST);
         }
 
         try {
             $topics = Topic::whereRaw("MATCH(`title`) AGAINST(?)", [$keyword])->get();
         } catch (PDOException) {
-            return json_message(STATUS_INTERNAL_ERROR, '内部错误');
+            return no(STATUS_INTERNAL_ERROR);
         }
 
         return json_message(STATUS_OK, '完成', $topics);
@@ -94,7 +94,7 @@ class TopicController
             ]);
 
         if (!$discussions) {
-            return json_message(STATUS_BAD_REQUEST, '话题不存在');
+            return no(STATUS_NOT_FOUND);
         }
 
         return json_message(STATUS_OK, '完成', $discussions);

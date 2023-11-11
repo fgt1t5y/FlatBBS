@@ -40,15 +40,23 @@ function json_message(int $code, string $message, mixed $data = null): Response
     );
 }
 
-function ok(): Response
+function _json(mixed $kvs): Response
 {
     return new Response(
         200,
         ['Content-Type' => 'application/json'],
-        json_encode([
-            'code' => STATUS_OK,
-        ])
+        json_encode($kvs)
     );
+}
+
+function ok(): Response
+{
+    return _json(['code' => STATUS_OK]);
+}
+
+function no(int $code): Response
+{
+    return _json(['code' => $code]);
 }
 
 function random_string()

@@ -42,7 +42,7 @@ class UserController
         if (User::modifyUser($uid, $field, $value)) {
             return ok();
         } else {
-            return json_message(STATUS_BAD_REQUEST, '失败，信息未更新。');
+            return json_message(STATUS_INTERNAL_ERROR, '失败，信息未更新。');
         }
     }
 }

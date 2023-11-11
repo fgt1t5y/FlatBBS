@@ -15,7 +15,7 @@ class AuthController
         $email = $request->post('email');
         $password = $request->post('password');
         if (!all([$username, $password, is_email($email)])) {
-            return json_message(STATUS_BAD_REQUEST, '表单未完整填写');
+            return no(STATUS_BAD_REQUEST);
         }
 
         if (User::hasUser($email)) {
@@ -36,7 +36,7 @@ class AuthController
             $user->saveOrFail();
             return ok();
         } catch (Exception $e) {
-            return json_message(STATUS_INTERNAL_ERROR, $e->getMessage());
+            return no(STATUS_INTERNAL_ERROR);
         }
     }
 
@@ -68,7 +68,7 @@ class AuthController
             'token' => $token,
             'email' => $email
         ]);
-        $user->last_login_at = date('Y-m-d H:i:s');
+        $user->last_login_at = date('Y-m-d\TH:i:s.u');
         $user->save();
 
         return ok()

@@ -19,7 +19,7 @@ class FileController
         $filename = '';
 
         if (!$files) {
-            return json_message(STATUS_BAD_REQUEST, '没有文件');
+            return no(STATUS_BAD_REQUEST);
         }
 
         // 单个文件时 file 是 object，将其转换为 array 才可以 foreach
@@ -29,7 +29,7 @@ class FileController
 
         foreach ($files as $file) {
             if (!in_array($file->getUploadMimeType(), self::$supportedFile)) {
-                return json_message(STATUS_BAD_REQUEST, '无效文件 ' . $file->getUploadName());
+                return no(STATUS_BAD_REQUEST);
             }
 
             $filename = random_string() . '.jpg';
@@ -39,7 +39,7 @@ class FileController
                 $image = image::make($file->getPathname());
                 $image->save($path, 60, 'jpg');
             } catch (ImageException) {
-                return json_message(STATUS_BAD_REQUEST, '保存失败');
+                return no(STATUS_BAD_REQUEST);
             }
             array_push($filepath, $filename);
 
