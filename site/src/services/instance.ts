@@ -28,9 +28,15 @@ requester.interceptors.request.use(
 
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
+    if (typeof res.data.code !== 'number') {
+      complainError('服务器内部错误');
+    }
     if (res.data.code > window.$code.OK) {
       if (res.data.code === window.$code.UNAUTHORIZED) {
-        router.replace({ path: '/auth', query: { 'next': router.currentRoute.value.path } });
+        router.replace({
+          path: '/auth',
+          query: { next: router.currentRoute.value.path },
+        });
       }
       complainError(res.data.message);
     }
