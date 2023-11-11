@@ -11,7 +11,8 @@ class Auth implements MiddlewareInterface
     static $needAuthActionList = [
         'app\controller\UserController\info',
         'app\controller\UserController\modify',
-        'app\controller\FileController\upload'
+        'app\controller\FileController\upload',
+        'app\controller\TopicController\create'
     ];
 
     public function process(Request $request, callable $handle): Response

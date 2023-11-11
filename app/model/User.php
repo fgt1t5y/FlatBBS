@@ -2,6 +2,7 @@
 
 namespace app\model;
 
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use support\Model;
 
@@ -60,10 +61,16 @@ class User extends Model
         }
 
         $user = self::getUserById($uid);
-        if (!$user) return false;
+        if (!$user)
+            return false;
         $user->$field = $value;
 
-        $user->save();
+        try {
+            $user->save();
+        } catch (Exception) {
+            return false;
+        }
+
         return true;
     }
 }

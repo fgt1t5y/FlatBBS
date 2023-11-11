@@ -15,6 +15,8 @@ class Topic extends Model
         'board:id,name,color',
     ];
 
+    protected $fillable = ['author_id', 'title', 'last_reply_at'];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -33,5 +35,30 @@ class Topic extends Model
     public function discussions(): HasMany
     {
         return $this->hasMany(Discussion::class, 'topic_id');
+    }
+
+    public static function createTopic(
+        string $title,
+        string $content,
+        int $board_id,
+        int $author_id,
+    ): bool|\Illuminate\Database\Eloquent\Model {
+        $now = date('Y-m-d\TH:i:s.u');
+        $board = Board::find($board_id);
+        if (!$board)
+            return false;
+
+        $created_topic = $board->topics()->create([
+            'author_id' => $author_id,
+            'title' => $title,
+            'last_reply_at' => $now
+        ]);
+        $host_discussion = new Discussion();
+        $host_discussion->topic_id = $created_topic->id;
+        $host_discussion->author_id = $author_id;
+        $host_discussion->content = $content;
+        $host_discussion->save();
+
+        return $created_topic;
     }
 }

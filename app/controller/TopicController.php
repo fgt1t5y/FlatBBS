@@ -2,8 +2,10 @@
 
 namespace app\controller;
 
+use app\model\Board;
 use app\model\Discussion;
 use app\model\Topic;
+use DateTime;
 use PDOException;
 use support\Request;
 
@@ -37,6 +39,31 @@ class TopicController
         ]);
 
         return json_message(STATUS_OK, '完成', $result);
+    }
+
+    public function create(Request $request)
+    {
+        $topic_title = $request->post('title');
+        $topic_content = $request->post('content', '');
+        // $topic_attach = $request->post('attachment', '');
+        $at_board = (int) $request->post('board', 0);
+        $author_id = session('id');
+
+        if (!all([$topic_title, $at_board])) {
+            return json_message(STATUS_BAD_REQUEST, '参数错误');
+        }
+
+        $result_topic = Topic::createTopic(
+            $topic_title,
+            $topic_content,
+            $at_board,
+            $author_id,
+        );
+        if (!$result_topic) {
+            json_message(STATUS_OK, '创建话题失败');
+        }
+
+        return json_message(STATUS_OK, '完成', $result_topic);
     }
 
     public function query(Request $request)
