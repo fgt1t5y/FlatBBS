@@ -1,5 +1,3 @@
-import type { Component } from 'vue';
-
 export interface UserInfo {
   avatar_uri?: string;
   username?: string;
@@ -33,6 +31,7 @@ export interface UploadForm {
 export interface TopicListForm {
   last: number;
   limit: number;
+  board: number;
 }
 
 export interface UploadResult {
@@ -70,15 +69,6 @@ export interface Discussion {
   created_at: string;
   author: Author;
   like_count: number;
-}
-
-export interface SiderMenuItem {
-  name: string;
-  icon: Component;
-}
-export interface SiderMenuGroup {
-  name: string;
-  children: SiderMenuItem[];
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';

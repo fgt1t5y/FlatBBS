@@ -11,9 +11,9 @@ class TopicController
 {
     public function list(Request $request)
     {
-        $last_id = (int) $request->post('last', 0);
+        $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $board = (int) $request->post('board');
+        $board_id = (int) $request->post('board');
 
         if ($last_id < 0) {
             return json_message(STATUS_BAD_REQUEST, '参数错误');
@@ -23,8 +23,8 @@ class TopicController
             ->limit(min($limit, 50))
             ->where('id', $last_id === 0 ? '>' : '<', $last_id);
 
-        if ($board) {
-            $builder = $builder->where('board_id', $board);
+        if ($board_id != 0) {
+            $builder = $builder->where('board_id', $board_id);
         }
 
         $result = $builder->get([
