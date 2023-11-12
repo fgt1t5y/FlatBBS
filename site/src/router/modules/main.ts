@@ -16,7 +16,7 @@ export const mainRoutes = [
         },
       },
       {
-        path: 'board/:id',
+        path: 'board/:id/:name',
         name: 'board_page',
         component: HomeView,
         meta: {

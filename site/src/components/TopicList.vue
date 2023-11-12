@@ -50,5 +50,5 @@ const props = withDefaults(defineProps<TopicListProps>(), {
   topics: () => [],
 })
 
-const idToUri = (id: number) => '/topic/' + String(id)
+const idToUri = (id: number) => `/topic/${id}`
 </script>

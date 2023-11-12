@@ -3,7 +3,7 @@
     <RouterLink
       v-for="i in boards"
       :key="i.id"
-      :to="idToUri(i.id)"
+      :to="idToUri(i.id, i.name)"
       class="sider-link link"
     >
       <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
@@ -29,7 +29,8 @@ defineOptions({
 })
 
 const boards = ref<Board[]>([])
-const idToUri = (id: number) => '/board/' + String(id)
+const idToUri = (id: number, name: string) => `/board/${id}/${name}`
+
 const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(getBoards)
 onMounted(() => {
   fetch((data) => {
