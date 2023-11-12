@@ -41,7 +41,7 @@ import { getTopicList } from '@/services'
 import '@/style/TopicList.css'
 import { ref, watch } from 'vue'
 import type { Topic } from '@/types'
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import { NSpin, NAvatar, NText, NButton, NTag, NH5 } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
@@ -52,10 +52,16 @@ defineOptions({
   name: 'TopicList',
 })
 
+interface TopicListProps {
+  board: number
+}
+
+const props = withDefaults(defineProps<TopicListProps>(), {
+  board: 0,
+})
+
 const topics = ref<Topic[]>([])
-const route = useRoute()
 const limit = 10
-let board: number = Number(route.params.id) ?? 0
 let last = 0
 const noMore = ref<boolean>(false)
 const idToUri = (id: number) => '/topic/' + String(id)
@@ -73,18 +79,22 @@ const getTopic = () => {
     },
     last,
     limit,
-    board,
+    props.board,
   )
+}
+const refresh = () => {
+  topics.value = []
+  last = 0
+  noMore.value = false
+  getTopic()
 }
 
 watch(
-  () => route.params.id,
-  (v) => {
-    board = Number(v ?? '0')
-    topics.value = []
-    last = 0
-    noMore.value = false
-    getTopic()
+  () => props.board,
+  () => {
+    refresh()
   },
 )
+
+defineExpose({ refresh })
 </script>

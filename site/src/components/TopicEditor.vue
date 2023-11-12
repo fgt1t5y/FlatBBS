@@ -1,7 +1,7 @@
 <template>
   <div class="topic-editor">
     <NInput
-      v-model:value="topicTitle"
+      v-model:value="topicDraft.title"
       :minlength="minLength"
       :maxlength="64"
       placeholder="话题标题..."
@@ -44,8 +44,9 @@
         <NButton
           title="发布话题"
           type="primary"
-          :disabled="disabledSubmitButton"
+          :disabled="disabledSubmitButton || isLoading"
           round
+          @click="sumbitTopic"
         >
           发布
         </NButton>
@@ -55,17 +56,26 @@
 </template>
 
 <script setup lang="ts">
+import { createTopic } from '@/services'
 import '@/style/TopicEditor.css'
+import { useFetchData } from '@/utils/useFetchData'
 import { NInput, NButton, type InputInst } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 defineOptions({
   name: 'TopicEditor',
 })
 
 const minLength = 5
-const topicTitle = ref<string>('')
+const topicDraft = reactive({
+  title: '',
+  content: '',
+})
+
+const emits = defineEmits<{
+  (e: 'success'): void
+}>()
 const mainInputRef = ref<InputInst>()
 const disabledSubmitButton = ref<boolean>(true)
 // 是否展开完整编辑器
@@ -74,10 +84,27 @@ const onTitleInputFocus = () => {
   isShowFull.value = true
 }
 const onTitleInputChange = () => {
-  if (topicTitle.value.length >= minLength) {
+  if (topicDraft.title.length >= minLength) {
     disabledSubmitButton.value = false
   } else {
     disabledSubmitButton.value = true
   }
+}
+const { isLoading, fetch } = useFetchData(createTopic)
+const clear = () => {
+  topicDraft.title = ''
+  topicDraft.content = ''
+}
+const sumbitTopic = () => {
+  fetch(
+    () => {
+      emits('success')
+      window.$message.success('话题已发布！')
+      clear()
+      isShowFull.value = false
+    },
+    topicDraft.title,
+    topicDraft.content,
+  )
 }
 </script>

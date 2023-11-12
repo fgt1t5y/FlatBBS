@@ -34,6 +34,12 @@ export interface TopicListForm {
   board: number;
 }
 
+export interface CreateTopicForm {
+  title: string,
+  content: string;
+  board: number;
+}
+
 export interface UploadResult {
   uri: string;
 }
