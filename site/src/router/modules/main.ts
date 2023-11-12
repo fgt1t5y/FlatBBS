@@ -1,6 +1,5 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
-import TopicView from '@/views/TopicView.vue';
 
 export const mainRoutes = [
   {
@@ -27,7 +26,7 @@ export const mainRoutes = [
       {
         path: 'topic/:id',
         name: 'topic_detail_page',
-        component: TopicView,
+        component: () => import('@/views/TopicView.vue'),
         meta: {
           title: '话题',
         },

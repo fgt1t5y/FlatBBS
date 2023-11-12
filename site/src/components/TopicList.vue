@@ -27,74 +27,28 @@
         </div>
       </div>
     </div>
-    <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
-    <div class="row-center">
-      <NSpin v-if="isLoading" :size="32" />
-      <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
-    </div>
-    <NH5 v-if="noMore" class="text-center" :align-text="true">没有更多了</NH5>
   </div>
 </template>
 
 <script setup lang="ts">
-import { getTopicList } from '@/services'
 import '@/style/TopicList.css'
-import { ref, watch } from 'vue'
 import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
-import { NSpin, NAvatar, NText, NButton, NTag, NH5 } from 'naive-ui'
+import { NAvatar, NText, NButton, NTag } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
-import { useFetchData } from '@/utils/useFetchData'
-import InfiniteScroll from '@/components/InfiniteScroll.vue'
 
 defineOptions({
   name: 'TopicList',
 })
 
 interface TopicListProps {
-  board: number
+  topics: Topic[]
 }
 
 const props = withDefaults(defineProps<TopicListProps>(), {
-  board: 0,
+  topics: () => [],
 })
 
-const topics = ref<Topic[]>([])
-const limit = 10
-let last = 0
-const noMore = ref<boolean>(false)
 const idToUri = (id: number) => '/topic/' + String(id)
-const { isFailed, isLoading, fetch, retry } =
-  useFetchData<Topic[]>(getTopicList)
-const getTopic = () => {
-  if (noMore.value) return
-  fetch(
-    (data) => {
-      if (data.length < limit) {
-        noMore.value = true
-      }
-      topics.value?.push(...data)
-      !noMore.value && (last = data[data.length - 1].id)
-    },
-    last,
-    limit,
-    props.board,
-  )
-}
-const refresh = () => {
-  topics.value = []
-  last = 0
-  noMore.value = false
-  getTopic()
-}
-
-watch(
-  () => props.board,
-  () => {
-    refresh()
-  },
-)
-
-defineExpose({ refresh })
 </script>
