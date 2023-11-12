@@ -61,7 +61,7 @@ function no(int $code): Response
 
 function random_string()
 {
-    $unit = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    $unit = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
     $len = strlen($unit) - 1;
     $result = '';
 

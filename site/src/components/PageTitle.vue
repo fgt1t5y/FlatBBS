@@ -3,7 +3,7 @@
     <NButton
       v-show="showBackButton && showBack"
       circle
-      secondary
+      quaternary
       title="返回上一级页面或回到首页"
       @click="page.back"
     >

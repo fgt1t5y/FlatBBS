@@ -11,12 +11,10 @@ defineOptions({
 
 interface InfiniteScrollProps {
   disabled?: boolean
-  root?: string
 }
 
 const props = withDefaults(defineProps<InfiniteScrollProps>(), {
   disabled: true,
-  root: '',
 })
 const emits = defineEmits<{
   (e: 'loadmore'): void

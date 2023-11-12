@@ -28,7 +28,6 @@ input {
 
 #flatbbs {
   margin: 0px auto;
-  position: relative;
   max-width: var(--page-max-width);
   display: flex;
   gap: var(--gap);

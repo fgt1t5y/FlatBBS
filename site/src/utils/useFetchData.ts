@@ -8,8 +8,8 @@ export const useFetchData = <T>(
   const isFailed = ref<boolean>(false);
   let data = null as T;
   let lastArgv = [] as any[];
-  let lastOnSuccess: (data: T) => data;
-  const fetch = (onsuccess: (data: T) => any, ...argv?: any[]) => {
+  let lastOnSuccess: (data: T) => T;
+  const fetch = (onsuccess: (data: T) => any, ...argv: any[]) => {
     if (isLoading.value) return;
     isLoading.value = true;
     isFailed.value = false;

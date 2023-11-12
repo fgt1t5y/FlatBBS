@@ -2,7 +2,7 @@
   <div class="user-window" :style="viewStyle">
     <div class="user-window-inner">
       <div class="user-window-header">
-        <NButton circle secondary title="返回" @click="emits('cancle')">
+        <NButton circle quaternary title="返回" @click="emits('cancle')">
           <ArrowLeftIcon size="18px" />
         </NButton>
         <span>{{ title }}</span>

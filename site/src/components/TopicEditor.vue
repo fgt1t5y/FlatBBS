@@ -72,7 +72,6 @@ const topicDraft = reactive({
   title: '',
   content: '',
 })
-
 const emits = defineEmits<{
   (e: 'success'): void
 }>()
