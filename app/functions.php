@@ -49,9 +49,9 @@ function _json(mixed $kvs): Response
     );
 }
 
-function ok(): Response
+function ok(mixed $data = null): Response
 {
-    return _json(['code' => STATUS_OK]);
+    return _json(['code' => STATUS_OK, 'data' => $data]);
 }
 
 function no(int $code): Response

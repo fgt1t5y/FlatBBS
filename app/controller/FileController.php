@@ -54,7 +54,7 @@ class FileController
             }
         }
 
-        return json_message(STATUS_OK, '完成', [
+        return ok([
             'uri' => count($filepath) > 1 ? $filepath : $filename
         ]);
     }

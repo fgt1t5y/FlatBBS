@@ -30,7 +30,7 @@ class UserController
             }
         );
 
-        return json_message(STATUS_OK, '完成', $userinfo);
+        return ok($userinfo);
     }
 
     public function modify(Request $request)

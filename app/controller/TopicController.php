@@ -36,7 +36,7 @@ class TopicController
             'created_at'
         ]);
 
-        return json_message(STATUS_OK, '完成', $result);
+        return ok($result);
     }
 
     public function create(Request $request)
@@ -61,7 +61,7 @@ class TopicController
             no(STATUS_INTERNAL_ERROR);
         }
 
-        return json_message(STATUS_OK, '完成', $result_topic);
+        return ok($result_topic);
     }
 
     public function query(Request $request)
@@ -78,7 +78,7 @@ class TopicController
             return no(STATUS_INTERNAL_ERROR);
         }
 
-        return json_message(STATUS_OK, '完成', $topics);
+        return ok($topics);
     }
 
     public function discussions(Request $request)
@@ -97,6 +97,6 @@ class TopicController
             return no(STATUS_NOT_FOUND);
         }
 
-        return json_message(STATUS_OK, '完成', $discussions);
+        return ok($discussions);
     }
 }

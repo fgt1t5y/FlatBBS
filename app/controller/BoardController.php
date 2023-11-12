@@ -14,6 +14,6 @@ class BoardController
             return Board::orderByDesc('id')->get(['id', 'name', 'color'])->toArray();
         });
 
-        return json_message(STATUS_OK, '完成', $boards);
+        return ok($boards);
     }
 }
