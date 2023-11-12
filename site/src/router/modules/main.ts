@@ -19,9 +19,6 @@ export const mainRoutes = [
         path: 'board/:id/:name',
         name: 'board_page',
         component: HomeView,
-        meta: {
-          title: '版块',
-        },
       },
       {
         path: 'topic/:id',

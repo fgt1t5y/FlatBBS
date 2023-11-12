@@ -8,7 +8,7 @@
   <TopicEditor
     v-if="route.params.id"
     :board-id="currentBoardId"
-    @success="refreshTopicList"
+    @success="refresh"
   />
   <TopicList ref="topicListRef" :topics="topics" />
   <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
@@ -30,15 +30,19 @@ import { useRoute } from 'vue-router'
 import { useFetchData } from '@/utils/useFetchData'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
+import { useTitle } from '@/utils/useTitle'
 
 const route = useRoute()
 const topicListRef = ref<InstanceType<typeof TopicList>>()
-const refreshTopicList = () => {
-  refresh()
-}
 const currentBoardId = computed(() => {
-  return Number(route.params.id ?? '0')
+  const boardId = Number(route.params.id ?? '0')
+  if (boardId !== 0) {
+    setTitle(route.params.name as string)
+  }
+
+  return boardId
 })
+const { setTitle } = useTitle('版块')
 const topics = ref<Topic[]>([])
 const limit = 10
 let last = 0
