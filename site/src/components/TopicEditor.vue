@@ -13,6 +13,7 @@
     <NInput
       v-if="isShowFull"
       ref="mainInputRef"
+      v-model:value="topicDraft.content"
       type="textarea"
       placeholder="在此输入话题正文，支持 Markdown（选填）"
       :rows="3"
@@ -67,6 +68,13 @@ defineOptions({
   name: 'TopicEditor',
 })
 
+interface TopicEditorProps {
+  boardId: number
+}
+
+const props = withDefaults(defineProps<TopicEditorProps>(), {
+  boardId: 0,
+})
 const minLength = 5
 const topicDraft = reactive({
   title: '',
@@ -104,6 +112,7 @@ const sumbitTopic = () => {
     },
     topicDraft.title,
     topicDraft.content,
+    props.boardId,
   )
 }
 </script>

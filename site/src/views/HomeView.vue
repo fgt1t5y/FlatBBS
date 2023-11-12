@@ -5,7 +5,11 @@
       <NText type="primary">FlatBBS</NText>
     </RouterLink>
   </PageTitle>
-  <TopicEditor v-if="route.params.id" @success="refreshTopicList" />
+  <TopicEditor
+    v-if="route.params.id"
+    :board-id="currentBoardId"
+    @success="refreshTopicList"
+  />
   <TopicList ref="topicListRef" :topics="topics" />
   <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
   <div class="row-center">
