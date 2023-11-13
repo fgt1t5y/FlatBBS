@@ -36,16 +36,13 @@ const currentBoardId = computed(() => {
 })
 const limit = 10
 let last = 0
-const noMore = ref<boolean>(false)
-const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
+const { isFailed, isLoading, noMore, fetch, retry } = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
-    if (data.length < limit) {
-      noMore.value = true
-    }
     topics.value?.push(...data)
     !noMore.value && (last = data[data.length - 1].id)
   },
+  { limit: limit },
 )
 const getTopic = () => {
   if (noMore.value) return

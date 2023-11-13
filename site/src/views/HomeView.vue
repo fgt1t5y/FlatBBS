@@ -27,8 +27,7 @@ import type { Topic } from '@/types'
 const topics = ref<Topic[]>([])
 const limit = 10
 let last = 0
-const noMore = ref<boolean>(false)
-const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
+const { isFailed, isLoading, noMore, fetch, retry } = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
     if (data.length < limit) {
@@ -37,6 +36,7 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
     topics.value?.push(...data)
     !noMore.value && (last = data[data.length - 1].id)
   },
+  { limit: limit },
 )
 const getTopic = () => {
   if (noMore.value) return
