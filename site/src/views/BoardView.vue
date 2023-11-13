@@ -2,11 +2,18 @@
   <PageTitle :title="current" />
   <TopicEditor :board-id="currentBoardId" @success="refresh" />
   <TopicList :topics="topics" />
-  <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
+  <InfiniteScroll
+    :disabled="t.noMore.value || t.isFailed.value"
+    @loadmore="getTopic"
+  />
   <div class="row-center">
-    <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
-    <NH5 v-if="noMore" class="text-center" :align-text="true">没有更多了</NH5>
+    <NSpin v-if="t.isLoading.value" :size="32" />
+    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">
+      重试
+    </NButton>
+    <NH5 v-if="t.noMore.value" class="text-center" :align-text="true">
+      没有更多了
+    </NH5>
   </div>
 </template>
 
@@ -36,22 +43,22 @@ const currentBoardId = computed(() => {
 })
 const limit = 10
 let last = 0
-const { isFailed, isLoading, noMore, fetch, retry } = useFetchData<Topic[]>(
+const t = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
     topics.value?.push(...data)
-    !noMore.value && (last = data[data.length - 1].id)
+    !t.noMore.value && (last = data[data.length - 1].id)
   },
   { limit: limit },
 )
 const getTopic = () => {
-  if (noMore.value) return
-  fetch(last, limit, currentBoardId.value)
+  if (t.noMore.value) return
+  t.fetch(last, limit, currentBoardId.value)
 }
 const refresh = () => {
   topics.value = []
   last = 0
-  noMore.value = false
+  t.noMore.value = false
   getTopic()
 }
 

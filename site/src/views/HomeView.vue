@@ -6,11 +6,11 @@
     </RouterLink>
   </PageTitle>
   <TopicList :topics="topics" />
-  <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
+  <InfiniteScroll :disabled="t.noMore.value || t.isFailed.value" @loadmore="getTopic" />
   <div class="row-center">
-    <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
-    <NH5 v-if="noMore" class="text-center" :align-text="true">没有更多了</NH5>
+    <NSpin v-if="t.isLoading.value" :size="32" />
+    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">重试</NButton>
+    <NH5 v-if="t.noMore.value" class="text-center" :align-text="true">没有更多了</NH5>
   </div>
 </template>
 
@@ -27,19 +27,16 @@ import type { Topic } from '@/types'
 const topics = ref<Topic[]>([])
 const limit = 10
 let last = 0
-const { isFailed, isLoading, noMore, fetch, retry } = useFetchData<Topic[]>(
+const t = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
-    if (data.length < limit) {
-      noMore.value = true
-    }
     topics.value?.push(...data)
-    !noMore.value && (last = data[data.length - 1].id)
+    !t.noMore.value && (last = data[data.length - 1].id)
   },
   { limit: limit },
 )
 const getTopic = () => {
-  if (noMore.value) return
-  fetch(last, limit, 0)
+  if (t.noMore.value) return
+  t.fetch(last, limit, 0)
 }
 </script>

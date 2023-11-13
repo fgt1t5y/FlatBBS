@@ -56,7 +56,7 @@
       </RouterView>
     </template>
     <template #panels>
-      <div v-if="!isMobile" class="grid-panels-inner">
+      <div v-if="isDesktop" class="grid-panels-inner">
         <NInput
           ref="inputRef"
           :max-length="64"
@@ -92,7 +92,7 @@ import BoardList from '@/components/BoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
-import { isDesktop, isMobile } from '@/utils'
+import { isDesktop } from '@/utils'
 import { NText, NInput, useMessage, NAvatar, NPopover } from 'naive-ui'
 import {
   HomeIcon,
