@@ -109,7 +109,7 @@ input {
 .row-center {
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  margin: 12px 0px;
 }
 
 .text-center {

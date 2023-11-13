@@ -1,6 +1,6 @@
 <template>
   <PageTitle :title="current" />
-  <TopicEditor :board-id="currentBoardId" @success="refresh" />
+  <TopicEditor :disabled="d.isLoading.value" @submit="submitTopic" />
   <TopicList :topics="topics" />
   <InfiniteScroll
     :disabled="t.noMore.value || t.isFailed.value"
@@ -11,9 +11,7 @@
     <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">
       重试
     </NButton>
-    <NH5 v-if="t.noMore.value" class="text-center" :align-text="true">
-      没有更多了
-    </NH5>
+    <NText v-if="t.noMore.value" class="text-center">没有更多了</NText>
   </div>
 </template>
 
@@ -21,13 +19,13 @@
 import TopicList from '@/components/TopicList.vue'
 import TopicEditor from '@/components/TopicEditor.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { NSpin, NH5, NButton } from 'naive-ui'
+import { NSpin, NButton, NText } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchData } from '@/utils/useFetchData'
-import { getTopicList } from '@/services'
-import type { Topic } from '@/types'
+import { createTopic, getTopicList } from '@/services'
+import type { Topic, TopicDraft } from '@/types'
 import { useTitle } from '@/utils/useTitle'
 
 const topics = ref<Topic[]>([])
@@ -51,9 +49,16 @@ const t = useFetchData<Topic[]>(
   },
   { limit: limit },
 )
+const d = useFetchData(createTopic, () => {
+  refresh()
+  window.$message.success('话题已发布！')
+})
 const getTopic = () => {
   if (t.noMore.value) return
   t.fetch(last, limit, currentBoardId.value)
+}
+const submitTopic = (topicDraft: TopicDraft) => {
+  d.fetch(topicDraft.title, topicDraft.content, currentBoardId.value)
 }
 const refresh = () => {
   topics.value = []

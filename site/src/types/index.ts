@@ -71,7 +71,7 @@ export interface Topic {
   last_reply_at: string;
 }
 
-export type TopicDraft = Pick<Topic, 'title' | 'content' | 'board_id'>;
+export type TopicDraft = Pick<Topic, 'title' | 'content'>;
 
 export interface Discussion {
   id: number;

@@ -6,18 +6,23 @@
     </RouterLink>
   </PageTitle>
   <TopicList :topics="topics" />
-  <InfiniteScroll :disabled="t.noMore.value || t.isFailed.value" @loadmore="getTopic" />
+  <InfiniteScroll
+    :disabled="t.noMore.value || t.isFailed.value"
+    @loadmore="getTopic"
+  />
   <div class="row-center">
     <NSpin v-if="t.isLoading.value" :size="32" />
-    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">重试</NButton>
-    <NH5 v-if="t.noMore.value" class="text-center" :align-text="true">没有更多了</NH5>
+    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">
+      重试
+    </NButton>
+    <NText v-if="t.noMore.value" class="text-center">没有更多了</NText>
   </div>
 </template>
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { NText, NSpin, NH5, NButton } from 'naive-ui'
+import { NText, NSpin, NButton } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { ref } from 'vue'
 import { useFetchData } from '@/utils/useFetchData'

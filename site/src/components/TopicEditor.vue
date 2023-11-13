@@ -2,11 +2,10 @@
   <div class="topic-editor">
     <NInput
       v-model:value="topicDraft.title"
-      :minlength="minLength"
       :maxlength="64"
+      :disabled="disabled"
       placeholder="话题标题..."
       show-count
-      clearable
       @focus="onTitleInputFocus"
       @input="onTitleInputChange"
     />
@@ -45,7 +44,7 @@
         <NButton
           title="发布话题"
           type="primary"
-          :disabled="disabledSubmitButton || isLoading"
+          :disabled="disabled || disabledSubmitButton"
           round
           @click="sumbitTopic"
         >
@@ -57,10 +56,8 @@
 </template>
 
 <script setup lang="ts">
-import { createTopic } from '@/services'
 import '@/style/TopicEditor.css'
 import type { TopicDraft } from '@/types'
-import { useFetchData } from '@/utils/useFetchData'
 import { NInput, NButton, type InputInst } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
 import { reactive, ref } from 'vue'
@@ -70,20 +67,18 @@ defineOptions({
 })
 
 interface TopicEditorProps {
-  boardId: number
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<TopicEditorProps>(), {
-  boardId: 0,
+  disabled: false,
 })
 const minLength = 5
 const topicDraft = reactive({
   title: '',
   content: '',
-  board_id: props.boardId,
 })
 const emits = defineEmits<{
-  (e: 'success'): void
   (e: 'submit', v: TopicDraft): void
 }>()
 const mainInputRef = ref<InputInst>()
@@ -100,18 +95,13 @@ const onTitleInputChange = (value: string) => {
     disabledSubmitButton.value = true
   }
 }
-const { isLoading, fetch } = useFetchData(createTopic, () => {
-  emits('success')
-  window.$message.success('话题已发布！')
-  clear()
-  isShowFull.value = false
-})
 const clear = () => {
   topicDraft.title = ''
   topicDraft.content = ''
 }
 const sumbitTopic = () => {
-  emits('submit', topicDraft)
-  fetch(topicDraft.title, topicDraft.content, props.boardId)
+  !props.disabled && emits('submit', topicDraft)
 }
+
+defineExpose({ clear })
 </script>
