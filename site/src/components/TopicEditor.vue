@@ -97,22 +97,17 @@ const onTitleInputChange = () => {
     disabledSubmitButton.value = true
   }
 }
-const { isLoading, fetch } = useFetchData(createTopic)
+const { isLoading, fetch } = useFetchData(createTopic, () => {
+  emits('success')
+  window.$message.success('话题已发布！')
+  clear()
+  isShowFull.value = false
+})
 const clear = () => {
   topicDraft.title = ''
   topicDraft.content = ''
 }
 const sumbitTopic = () => {
-  fetch(
-    () => {
-      emits('success')
-      window.$message.success('话题已发布！')
-      clear()
-      isShowFull.value = false
-    },
-    topicDraft.title,
-    topicDraft.content,
-    props.boardId,
-  )
+  fetch(topicDraft.title, topicDraft.content, props.boardId)
 }
 </script>

@@ -47,22 +47,19 @@ const topics = ref<Topic[]>([])
 const limit = 10
 let last = 0
 const noMore = ref<boolean>(false)
-const { isFailed, isLoading, fetch, retry } =
-  useFetchData<Topic[]>(getTopicList)
+const { isFailed, isLoading, fetch, retry } = useFetchData<Topic[]>(
+  getTopicList,
+  (data) => {
+    if (data.length < limit) {
+      noMore.value = true
+    }
+    topics.value?.push(...data)
+    !noMore.value && (last = data[data.length - 1].id)
+  },
+)
 const getTopic = () => {
   if (noMore.value) return
-  fetch(
-    (data) => {
-      if (data.length < limit) {
-        noMore.value = true
-      }
-      topics.value?.push(...data)
-      !noMore.value && (last = data[data.length - 1].id)
-    },
-    last,
-    limit,
-    currentBoardId.value,
-  )
+  fetch(last, limit, currentBoardId.value)
 }
 const refresh = () => {
   topics.value = []
