@@ -1,5 +1,5 @@
 <template>
-  <NSpace v-if="!isEditing" align="center">
+  <NSpace v-if="!isEditing" align="center" justify="space-between">
     <NText>{{ valueNow || '未填写' }}</NText>
     <NButton
       v-if="!readonly"
@@ -12,7 +12,12 @@
     </NButton>
   </NSpace>
   <NSpace v-else vertical>
-    <NInput ref="inputRef" v-model:value="valueNow" :maxlength="maxLength" />
+    <NInput
+      ref="inputRef"
+      v-model:value="valueNow"
+      :maxlength="maxLength"
+      show-count
+    />
     <div class="input-field-opt">
       <NButton type="primary" @click="onConfirm">保存</NButton>
       <NButton @click="onCancle">取消</NButton>

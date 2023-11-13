@@ -4,13 +4,17 @@
     <NH6>
       <NText type="primary">头像</NText>
     </NH6>
-    <SettingItem title="我的头像" subtitle="点击以更改">
-      <NAvatar
-        :src="info.avatar_uri"
-        :size="64"
-        round
-        @click="openAvatarSelector"
-      />
+    <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
+      <NSpace align="end" justify="space-between">
+        <NAvatar :src="info.avatar_uri" :size="64" round />
+        <NButton
+          type="primary"
+          title="点击打开文件浏览器选择头像"
+          @click="openAvatarSelector"
+        >
+          更改...
+        </NButton>
+      </NSpace>
       <input
         ref="avatarInput"
         type="file"
@@ -90,7 +94,7 @@ import PageTitle from '@/components/PageTitle.vue'
 import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'
-import { NAvatar, NH6, NText } from 'naive-ui'
+import { NAvatar, NButton, NH6, NSpace, NText } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
 import UserWindow from '@/components/UserWindow.vue'

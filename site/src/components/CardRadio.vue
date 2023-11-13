@@ -1,5 +1,11 @@
 <template>
-  <div class="card-radio" :class="cardClass" @click="emits('click')">
+  <div
+    class="card-radio"
+    role="radio"
+    :title="label"
+    :class="cardClass"
+    @click="emits('click')"
+  >
     <div class="card-radio-label">
       <slot />
       {{ label }}
