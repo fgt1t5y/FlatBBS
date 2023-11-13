@@ -1,5 +1,6 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
+import BoardView from '@/views/BoardView.vue';
 
 export const mainRoutes = [
   {
@@ -18,7 +19,7 @@ export const mainRoutes = [
       {
         path: 'board/:board_id/:name',
         name: 'board_page',
-        component: HomeView,
+        component: BoardView,
       },
       {
         path: 'topic/:id',

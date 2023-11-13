@@ -59,6 +59,7 @@
 <script setup lang="ts">
 import { createTopic } from '@/services'
 import '@/style/TopicEditor.css'
+import type { TopicDraft } from '@/types'
 import { useFetchData } from '@/utils/useFetchData'
 import { NInput, NButton, type InputInst } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
@@ -79,9 +80,11 @@ const minLength = 5
 const topicDraft = reactive({
   title: '',
   content: '',
+  board_id: props.boardId,
 })
 const emits = defineEmits<{
   (e: 'success'): void
+  (e: 'submit', v: TopicDraft): void
 }>()
 const mainInputRef = ref<InputInst>()
 const disabledSubmitButton = ref<boolean>(true)
@@ -90,8 +93,8 @@ const isShowFull = ref<boolean>(false)
 const onTitleInputFocus = () => {
   isShowFull.value = true
 }
-const onTitleInputChange = () => {
-  if (topicDraft.title.length >= minLength) {
+const onTitleInputChange = (value: string) => {
+  if (value.length >= minLength) {
     disabledSubmitButton.value = false
   } else {
     disabledSubmitButton.value = true
@@ -108,6 +111,7 @@ const clear = () => {
   topicDraft.content = ''
 }
 const sumbitTopic = () => {
+  emits('submit', topicDraft)
   fetch(topicDraft.title, topicDraft.content, props.boardId)
 }
 </script>

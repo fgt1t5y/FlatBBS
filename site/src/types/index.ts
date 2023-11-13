@@ -35,7 +35,7 @@ export interface TopicListForm {
 }
 
 export interface CreateTopicForm {
-  title: string,
+  title: string;
   content: string;
   board: number;
 }
@@ -64,10 +64,14 @@ export interface Topic {
   content?: string;
   author: Author;
   board: Board;
+  board_id: number;
+  author_id: number;
   reply_count: number;
   created_at: string;
   last_reply_at: string;
 }
+
+export type TopicDraft = Pick<Topic, 'title' | 'content' | 'board_id'>;
 
 export interface Discussion {
   id: number;
