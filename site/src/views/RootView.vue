@@ -9,20 +9,37 @@
           <HomeIcon size="20px" />
           <span>首页</span>
         </RouterLink>
-        <RouterLink to="/search" class="sider-link link">
-          <SearchIcon size="20px" />
-          <span>搜索</span>
+        <RouterLink to="/notification" class="sider-link link">
+          <NotificationIcon size="20px" />
+          <span>通知</span>
+        </RouterLink>
+        <RouterLink to="/bookmark" class="sider-link link">
+          <BookmarkIcon size="20px" />
+          <span>书签</span>
         </RouterLink>
         <RouterLink to="/people" class="sider-link link">
           <Houses2Icon size="20px" />
           <span>我的空间</span>
         </RouterLink>
-        <RouterLink v-if="user.isLogin" to="/settings" class="sider-link link">
-          <SettingIcon size="20px" />
-          <span>设置</span>
-        </RouterLink>
+        <NPopover v-if="user.isLogin" trigger="click" placement="bottom-start">
+          <template #trigger>
+            <button class="sider-link link">
+              <NAvatar :size="20" :src="user.info.avatar_uri" round />
+              <span>{{ user.info.username }}</span>
+              <EllipsisIcon size="18px" />
+            </button>
+          </template>
+          <RouterLink to="/settings" class="sider-link link">
+            <SettingIcon size="20px" />
+            <span>设置</span>
+          </RouterLink>
+          <button class="sider-link link">
+            <LogoutIcon size="20px" />
+            <span>退出登录</span>
+          </button>
+        </NPopover>
         <RouterLink v-else to="/auth" class="sider-link link">
-          <UserIcon size="20px" />
+          <LoginIcon size="20px" />
           <span>注册 / 登录</span>
         </RouterLink>
         <NText depth="3" class="sider-group" title="论坛版块列表">
@@ -76,14 +93,18 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
 import { isDesktop, isMobile } from '@/utils'
-import { NText, NInput, useMessage, NAvatar } from 'naive-ui'
+import { NText, NInput, useMessage, NAvatar, NPopover } from 'naive-ui'
 import {
   HomeIcon,
   SearchIcon,
-  SettingIcon,
-  UserIcon,
   Houses2Icon,
   AppIcon,
+  NotificationIcon,
+  BookmarkIcon,
+  EllipsisIcon,
+  SettingIcon,
+  LogoutIcon,
+  LoginIcon,
 } from 'tdesign-icons-vue-next'
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'

@@ -35,7 +35,7 @@ import { useTitle } from '@/utils/useTitle'
 const route = useRoute()
 const topicListRef = ref<InstanceType<typeof TopicList>>()
 const currentBoardId = computed(() => {
-  const boardId = Number(route.params.id ?? '0')
+  const boardId = Number(route.params.board_id ?? '0')
   if (boardId !== 0) {
     setTitle(route.params.name as string)
   }
@@ -71,5 +71,5 @@ const refresh = () => {
   getTopic()
 }
 
-watch(() => route.params.id, refresh)
+watch(() => route.params.board_id, refresh)
 </script>
