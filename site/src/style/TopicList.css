@@ -1,8 +1,11 @@
 .topic-list-item {
-  padding-left: var(--gap) !important;
-  padding-right: var(--gap) !important;
   padding: var(--gap);
   border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.topic-list-item:hover {
+  background-color: var(--color-neutral-2);
 }
 
 .topic-header {
@@ -17,11 +20,8 @@
   margin-bottom: 4px;
 }
 
-.topic-title:hover {
-  color: var(--theme-color);
-}
-
 .topic-footer {
   display: flex;
+  gap: 8px;
   justify-content: space-between;
 }

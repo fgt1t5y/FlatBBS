@@ -14,17 +14,19 @@
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
       </div>
       <div class="topic-footer">
-        <NTag round :bordered="false">
+        <NTag
+          round
+          :bordered="false"
+          :color="{ color: item.board.color, textColor: 'white' }"
+        >
           {{ item.board.name }}
         </NTag>
-        <div class="topic-info">
-          <NButton round secondary size="small" title="发表评论">
-            <template #icon>
-              <ChatMessageIcon size="16px" />
-            </template>
-            {{ item.reply_count }}
-          </NButton>
-        </div>
+        <NButton round quaternary size="small" title="发表评论">
+          <template #icon>
+            <ChatMessageIcon size="16px" />
+          </template>
+          {{ item.reply_count }}
+        </NButton>
       </div>
     </div>
   </div>
