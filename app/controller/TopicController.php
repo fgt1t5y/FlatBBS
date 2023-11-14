@@ -2,7 +2,6 @@
 
 namespace app\controller;
 
-use app\model\Board;
 use app\model\Discussion;
 use app\model\Topic;
 use PDOException;

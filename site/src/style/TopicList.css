@@ -1,6 +1,4 @@
 .topic-list-item {
-  padding: var(--gap);
-  border-bottom: 1px solid var(--color-border);
   cursor: pointer;
 }
 
@@ -16,7 +14,7 @@
 }
 
 .topic-title {
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 4px;
 }
 

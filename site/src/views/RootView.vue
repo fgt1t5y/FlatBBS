@@ -33,7 +33,7 @@
             <SettingIcon size="20px" />
             <span>设置</span>
           </RouterLink>
-          <button class="sider-link link">
+          <button class="sider-link link" @click="user.quit">
             <LogoutIcon size="20px" />
             <span>退出登录</span>
           </button>

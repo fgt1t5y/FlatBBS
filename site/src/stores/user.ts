@@ -1,4 +1,4 @@
-import { getUserInfo } from '@/services';
+import { getUserInfo, logout } from '@/services';
 import { defineStore } from 'pinia';
 import { reactive, ref } from 'vue';
 import type { UserInfo } from '@/types';
@@ -27,6 +27,11 @@ export const useUserStore = defineStore('user', () => {
       }
     });
   };
+  const quit = () => {
+    logout().then(() => {
+      location.reload();
+    });
+  };
 
-  return { info, isLogin, fetch };
+  return { info, isLogin, fetch, quit };
 });

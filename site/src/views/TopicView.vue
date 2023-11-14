@@ -1,6 +1,6 @@
 <template>
   <PageTitle title="话题" />
-  <div v-for="i in discussions">{{ i.content }}</div>
+  <DiscussionList :discussions="discussions" />
   <div class="row-center">
     <NSpin v-if="isLoading" :size="32" />
     <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
@@ -15,13 +15,19 @@ import { onMounted, ref } from 'vue'
 import { useFetchData } from '@/utils/useFetchData'
 import { NSpin, NButton } from 'naive-ui'
 import { useRoute } from 'vue-router'
+import DiscussionList from '@/components/DiscussionList.vue'
 
 const route = useRoute()
-const discussions = ref<Discussion[]>()
+const discussions = ref<Discussion[]>([])
 const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
   getDiscussions,
   (data) => {
-    discussions.value = data
+    const parsed_content = data.map((discussion) => {
+      discussion.content = discussion.content.replace(/\\r\\n/gm, '</br>')
+      return discussion
+    })
+    console.log(parsed_content)
+    discussions.value.push(...parsed_content)
   },
 )
 
