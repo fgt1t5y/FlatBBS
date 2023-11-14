@@ -14,8 +14,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (to.name === 'auth' && hasToken()) {
-    return { path: '/', replace: false };
+  if (to.path === '/auth' && hasToken()) {
+    return { path: '/' };
   }
 });
 

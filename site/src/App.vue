@@ -37,9 +37,6 @@ const overrideTheme = {
     cubicBezierEaseOut: 'none',
     cubicBezierEaseIn: 'none',
   },
-  List: {
-    color: 'rgba(255, 255, 255, 0)',
-  },
 }
 
 if (hasToken()) {

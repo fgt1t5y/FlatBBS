@@ -4,6 +4,7 @@
     <NH2 align-text>
       <NText type="error">页面不存在</NText>
     </NH2>
+    <NText>这里似乎什么都没有</NText>
     <NButton type="error" round @click="page.goHome(false)">首页</NButton>
   </NSpace>
 </template>

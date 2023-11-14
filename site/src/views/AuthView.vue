@@ -2,7 +2,7 @@
   <div class="auth-page">
     <SiteLogo />
     <div class="auth-page-header">
-      <NButton circle secondary @click="page.back">
+      <NButton circle secondary @click="page.back()">
         <ArrowLeftIcon size="18px" />
       </NButton>
       <NH3>

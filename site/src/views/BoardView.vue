@@ -21,7 +21,7 @@ import TopicEditor from '@/components/TopicEditor.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { NSpin, NButton, NText } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchData } from '@/utils/useFetchData'
 import { createTopic, getTopicList } from '@/services'
@@ -66,6 +66,4 @@ const refresh = () => {
   t.noMore.value = false
   getTopic()
 }
-
-watch(() => route.params.board_id, refresh)
 </script>

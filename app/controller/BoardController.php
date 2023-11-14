@@ -16,4 +16,26 @@ class BoardController
 
         return ok($boards);
     }
+
+    public function topics(Request $request)
+    {
+        $board_id = (int) $request->post('board');
+
+        if ($board_id <= 0) {
+            return no(STATUS_BAD_REQUEST);
+        }
+
+        $board = Board::find($board_id);
+        var_dump($board);
+
+        if (!$board) {
+            return no(STATUS_NOT_FOUND);
+        }
+
+        $result = $board->topics()
+            ->limit(2)
+            ->get(['id', 'author_id', 'board_id']);
+
+        return ok($result);
+    }
 }

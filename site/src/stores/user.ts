@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', () => {
     introduction: undefined,
   });
   const isLogin = ref<boolean>(false);
-  const fetch = () => {
+  const fetch = async () => {
     getUserInfo().then((res) => {
       if (res.data.code === window.$code.OK) {
         isLogin.value = true;

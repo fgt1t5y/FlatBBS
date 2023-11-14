@@ -17,12 +17,12 @@ export const mainRoutes = [
         },
       },
       {
-        path: 'board/:board_id/:name',
+        path: 'board/:board_id(\\d+)/:name',
         name: 'board_page',
         component: BoardView,
       },
       {
-        path: 'topic/:id',
+        path: 'topic/:topic_id(\\d+)',
         name: 'topic_detail_page',
         component: () => import('@/views/TopicView.vue'),
         meta: {
@@ -43,6 +43,14 @@ export const mainRoutes = [
         component: () => import('@/views/SearchView.vue'),
         meta: {
           title: '搜索',
+        },
+      },
+      {
+        path: 'people',
+        name: 'user_space_page',
+        component: () => import('@/views/UserSpaceView.vue'),
+        meta: {
+          title: '我的空间',
         },
       },
       {
