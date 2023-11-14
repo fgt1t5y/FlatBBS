@@ -14,14 +14,12 @@
         <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
       </div>
       <div class="topic-footer">
-        <NTag
-          round
-          :bordered="false"
-          :color="{ color: item.board.color, textColor: 'white' }"
-        >
-          {{ item.board.name }}
-        </NTag>
-        <NButton round quaternary size="small" title="发表评论">
+        <NButton secondary round size="small">
+          <RouterLink :to="boardIdToUri(item.board.id, item.board.name)">
+            {{ item.board.name }}
+          </RouterLink>
+        </NButton>
+        <NButton round secondary size="small" title="发表评论">
           <template #icon>
             <ChatMessageIcon size="16px" />
           </template>
@@ -36,7 +34,7 @@
 import '@/style/TopicList.css'
 import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
-import { NAvatar, NText, NButton, NTag } from 'naive-ui'
+import { NAvatar, NText, NButton } from 'naive-ui'
 import { fromNow, getAvatarPath } from '@/utils'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
 
@@ -53,4 +51,5 @@ const props = withDefaults(defineProps<TopicListProps>(), {
 })
 
 const idToUri = (id: number) => `/topic/${id}`
+const boardIdToUri = (id: number, name: string) => `/board/${id}/${name}`
 </script>
