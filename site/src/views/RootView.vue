@@ -24,7 +24,7 @@
         <NPopover v-if="user.isLogin" trigger="click" placement="bottom-start">
           <template #trigger>
             <button class="sider-link link">
-              <NAvatar :size="20" :src="user.info.avatar_uri" round />
+              <NAvatar :size="18" :src="user.info.avatar_uri" round />
               <span>{{ user.info.username }}</span>
               <EllipsisIcon size="18px" />
             </button>

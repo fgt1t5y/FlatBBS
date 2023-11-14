@@ -90,10 +90,10 @@ input {
 /* 侧边栏 */
 .sider-link {
   font-size: 1rem;
-  height: 30px;
+  height: 33px;
   display: flex;
   align-items: center;
-  padding: 4px 0px;
+  /* padding: 4px 0px; */
   gap: 8px;
 }
 
