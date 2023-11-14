@@ -11,15 +11,17 @@
         <NText depth="3">{{ fromNow(item.created_at) }}</NText>
       </div>
       <div class="topic-title">
-        <RouterLink :to="idToUri(item.id)">{{ item.title }}</RouterLink>
+        <RouterLink :to="idToUri(item.id)" :title="item.title">
+          {{ item.title }}
+        </RouterLink>
       </div>
       <div class="topic-footer">
-        <NButton secondary round size="small">
+        <NButton secondary round size="small" title="前往话题所属版块">
           <RouterLink :to="boardIdToUri(item.board.id, item.board.name)">
             {{ item.board.name }}
           </RouterLink>
         </NButton>
-        <NButton round secondary size="small" title="发表评论">
+        <NButton round secondary size="small" title="发表讨论">
           <template #icon>
             <ChatMessageIcon size="16px" />
           </template>
