@@ -17,7 +17,7 @@ export const useTitle = (ns: string) => {
     } else {
       _title = `${ns} - ${siteName}`;
     }
-    current.value = title;
+    current.value = title ?? '';
     document.title = _title;
   };
 
