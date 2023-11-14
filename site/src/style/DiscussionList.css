@@ -17,6 +17,10 @@
   font-size: 1rem;
 }
 
+.discussion-content p:first-child {
+  margin-top: 0px;
+}
+
 .discussion-footer {
   display: flex;
   align-items: center;

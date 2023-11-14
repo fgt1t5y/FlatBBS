@@ -56,6 +56,10 @@ export const breakpoint = useBreakpoints({
   pad: 810,
 });
 
+export const resolveParagraph = (value: string) => {
+  return value.replace(/(.*)$/gm, '<p>$1</p>')
+}
+
 export const isMobile = breakpoint.smaller('mobile');
 export const isPad = breakpoint.greater('mobile');
 export const isDesktop = breakpoint.greater('pad');

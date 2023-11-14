@@ -16,6 +16,7 @@ import { useFetchData } from '@/utils/useFetchData'
 import { NSpin, NButton } from 'naive-ui'
 import { useRoute } from 'vue-router'
 import DiscussionList from '@/components/DiscussionList.vue'
+import { resolveParagraph } from '@/utils'
 
 const route = useRoute()
 const discussions = ref<Discussion[]>([])
@@ -23,10 +24,9 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
   getDiscussions,
   (data) => {
     const parsed_content = data.map((discussion) => {
-      discussion.content = discussion.content.replace(/\\r\\n/gm, '</br>')
+      discussion.content = resolveParagraph(discussion.content)
       return discussion
     })
-    console.log(parsed_content)
     discussions.value.push(...parsed_content)
   },
 )
