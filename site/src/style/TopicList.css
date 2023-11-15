@@ -3,7 +3,7 @@
 }
 
 .topic-list-item:hover {
-  background-color: var(--color-neutral-2);
+  background-color: var(--color-fill-2);
 }
 
 .topic-header {

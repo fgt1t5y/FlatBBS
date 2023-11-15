@@ -1,0 +1,34 @@
+.rich-textarea {
+  position: relative;
+  display: flex;
+  background-color: var(--color-fill-1);
+  font-family: ui-sans-serif;
+  overflow: hidden;
+}
+
+.rich-textarea textarea {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: transparent;
+  z-index: 1;
+}
+
+.rich-textarea-highlight {
+  position: absolute;
+  font-size: 1rem;
+  line-height: normal;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: var(--gap);
+  color: var(--color-text-1);
+}
+
+.mention {
+  color: var(--theme-color);
+}
+
+.p {
+  height: 20px;
+}

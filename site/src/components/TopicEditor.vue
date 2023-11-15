@@ -1,5 +1,6 @@
 <template>
   <div class="topic-editor">
+    <RichTextarea placeholder="在此输入话题正文，支持 Markdown（选填）" />
     <NInput
       v-model:value="topicDraft.title"
       :maxlength="64"
@@ -61,6 +62,7 @@ import type { TopicDraft } from '@/types'
 import { NInput, NButton, type InputInst } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
 import { reactive, ref } from 'vue'
+import RichTextarea from './RichTextarea.vue'
 
 defineOptions({
   name: 'TopicEditor',
