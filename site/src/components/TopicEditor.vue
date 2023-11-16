@@ -1,6 +1,5 @@
 <template>
   <div class="topic-editor">
-    <RichTextarea placeholder="在此输入话题正文，支持 Markdown（选填）" />
     <NInput
       v-model:value="topicDraft.title"
       :maxlength="64"
@@ -10,11 +9,10 @@
       @focus="onTitleInputFocus"
       @input="onTitleInputChange"
     />
-    <NInput
+    <RichTextarea
       v-if="isShowFull"
-      ref="mainInputRef"
-      v-model:value="topicDraft.content"
-      type="textarea"
+      ref="contentInputRef"
+      v-model="topicDraft.content"
       placeholder="在此输入话题正文，支持 Markdown（选填）"
       :rows="3"
     />
@@ -59,7 +57,7 @@
 <script setup lang="ts">
 import '@/style/TopicEditor.css'
 import type { TopicDraft } from '@/types'
-import { NInput, NButton, type InputInst } from 'naive-ui'
+import { NInput, NButton } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
 import { reactive, ref } from 'vue'
 import RichTextarea from './RichTextarea.vue'
@@ -75,6 +73,7 @@ interface TopicEditorProps {
 const props = withDefaults(defineProps<TopicEditorProps>(), {
   disabled: false,
 })
+const contentInputRef = ref<InstanceType<typeof RichTextarea>>()
 const minLength = 5
 const topicDraft = reactive({
   title: '',
@@ -83,7 +82,6 @@ const topicDraft = reactive({
 const emits = defineEmits<{
   (e: 'submit', v: TopicDraft): void
 }>()
-const mainInputRef = ref<InputInst>()
 const disabledSubmitButton = ref<boolean>(true)
 // 是否展开完整编辑器
 const isShowFull = ref<boolean>(false)

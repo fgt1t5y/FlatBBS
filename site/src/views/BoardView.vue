@@ -21,12 +21,13 @@ import TopicEditor from '@/components/TopicEditor.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { NSpin, NButton, NText } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchData } from '@/utils/useFetchData'
 import { createTopic, getTopicList } from '@/services'
 import type { Topic, TopicDraft } from '@/types'
 import { useTitle } from '@/utils/useTitle'
+import { resolveRichContent } from '@/utils'
 
 const topics = ref<Topic[]>([])
 const route = useRoute()
@@ -39,6 +40,7 @@ const currentBoardId = computed(() => {
 
   return boardId
 })
+let lastBoardId = currentBoardId.value
 const limit = 10
 let last = 0
 const t = useFetchData<Topic[]>(
@@ -58,12 +60,23 @@ const getTopic = () => {
   t.fetch(last, limit, currentBoardId.value)
 }
 const submitTopic = (topicDraft: TopicDraft) => {
-  d.fetch(topicDraft.title, topicDraft.content, currentBoardId.value)
+  const parsed = resolveRichContent(topicDraft.content ?? '')
+  d.fetch(topicDraft.title, parsed, currentBoardId.value)
 }
 const refresh = () => {
+  if (!currentBoardId.value) return
   topics.value = []
   last = 0
   t.noMore.value = false
   getTopic()
 }
+
+watch(
+  () => currentBoardId.value,
+  (to) => {
+    if (!to || to === lastBoardId) return
+    lastBoardId = to
+    refresh()
+  },
+)
 </script>

@@ -15,10 +15,6 @@ button {
   cursor: pointer;
 }
 
-p:empty {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
 input {
   border: none;

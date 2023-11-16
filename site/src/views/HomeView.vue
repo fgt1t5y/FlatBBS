@@ -1,7 +1,6 @@
 <template>
   <PageTitle title="全部话题">
-    <span class="mob-hidden">全部话题</span>
-    <RouterLink to="/" class="mob-show">
+    <RouterLink to="/">
       <NText type="primary">FlatBBS</NText>
     </RouterLink>
   </PageTitle>

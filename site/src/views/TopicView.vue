@@ -16,18 +16,13 @@ import { useFetchData } from '@/utils/useFetchData'
 import { NSpin, NButton } from 'naive-ui'
 import { useRoute } from 'vue-router'
 import DiscussionList from '@/components/DiscussionList.vue'
-import { resolveParagraph } from '@/utils'
 
 const route = useRoute()
 const discussions = ref<Discussion[]>([])
 const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
   getDiscussions,
   (data) => {
-    const parsed_content = data.map((discussion) => {
-      discussion.content = resolveParagraph(discussion.content)
-      return discussion
-    })
-    discussions.value.push(...parsed_content)
+    discussions.value.push(...data)
   },
 )
 

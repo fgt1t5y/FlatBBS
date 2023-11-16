@@ -39,11 +39,6 @@ const emits = defineEmits<{
 const parsedDOMString = ref<string>('')
 const highlightLayerRef = ref<HTMLDivElement>()
 const textareaRef = ref<HTMLTextAreaElement>()
-const resolveDOMString = (value: string) => {
-  return value
-    .replace(/^(.*)$/gm, '<p>$1</p>')
-    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
-}
 const resolveDisplayDOMString = (value: string) => {
   return value
     .replace(/\n/gm, ' </br>')
@@ -53,7 +48,7 @@ const syncText = () => {
   parsedDOMString.value = resolveDisplayDOMString(
     textareaRef.value?.value ?? '',
   )
-  emits('update:modelValue', parsedDOMString.value)
+  emits('update:modelValue', textareaRef.value!.value)
 }
 const syncScroll = () => {
   const { scrollTop, scrollLeft } = textareaRef.value!
@@ -62,7 +57,4 @@ const syncScroll = () => {
     `translate(${-scrollLeft}px, ${-scrollTop}px`,
   )
 }
-const getDOMString = () => resolveDOMString(textareaRef.value?.value ?? '')
-
-defineExpose({ getDOMString })
 </script>

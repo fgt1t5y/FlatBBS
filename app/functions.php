@@ -54,9 +54,9 @@ function ok(mixed $data = null): Response
     return _json(['code' => STATUS_OK, 'data' => $data]);
 }
 
-function no(int $code): Response
+function no(int $code, string $message = ''): Response
 {
-    return _json(['code' => $code]);
+    return _json(['code' => $code, 'message' => $message]);
 }
 
 function random_string()

@@ -1,0 +1,8 @@
+.emoji-item {
+  font-size: 1.5rem;
+  padding: 4px;
+}
+
+.emoji-item:hover {
+  background-color: var(--color-fill-2);
+}

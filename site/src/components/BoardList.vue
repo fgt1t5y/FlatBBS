@@ -34,7 +34,7 @@ const idToUri = (id: number, name: string) => `/board/${id}/${name}`
 const { isFailed, isLoading, fetch, retry } = useFetchData<Board[]>(
   getBoards,
   (data) => {
-    boards.value = data
+    boards.value.push(...data)
   },
 )
 

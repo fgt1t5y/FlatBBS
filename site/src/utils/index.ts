@@ -57,8 +57,15 @@ export const breakpoint = useBreakpoints({
 });
 
 export const resolveParagraph = (value: string) => {
-  return value.replace(/(.*)$/gm, '<p>$1</p>')
-}
+  return value.replace(/(.*)$/gm, '<p>$1</p>');
+};
+
+export const resolveRichContent = (value: string) => {
+  if (!value) return '';
+  return value
+    .replace(/^(.*)$/gm, '<p>$1</p>')
+    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>');
+};
 
 export const isMobile = breakpoint.smaller('mobile');
 export const isPad = breakpoint.greater('mobile');

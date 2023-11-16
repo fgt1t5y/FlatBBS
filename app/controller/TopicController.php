@@ -83,20 +83,20 @@ class TopicController
 
     public function discussions(Request $request)
     {
-        $topic = (int) $request->post('topic');
-        $discussions = Discussion::limit(10)
-            ->where('topic_id', $topic)
-            ->get([
-                'id',
-                'author_id',
-                'content',
-                'created_at'
-            ]);
+        $topic_id = (int) $request->post('topic');
+        $topic = Topic::find($topic_id);
 
-        if (!$discussions) {
+        if (!$topic) {
             return no(STATUS_NOT_FOUND);
         }
 
-        return ok($discussions);
+        $result = $topic->discussions()->limit(10)->get([
+            'id',
+            'author_id',
+            'content',
+            'created_at'
+        ]);
+
+        return ok($result);
     }
 }
