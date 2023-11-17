@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import '@/style/RichTextarea.css'
-import { resolveRichContent } from '@/utils'
 import { ref } from 'vue'
 
 defineOptions({
@@ -40,8 +39,15 @@ const emits = defineEmits<{
 const parsedDOMString = ref<string>('')
 const highlightLayerRef = ref<HTMLDivElement>()
 const textareaRef = ref<HTMLTextAreaElement>()
+const resolveDisplayDOMString = (value: string) => {
+  return value
+    .replace(/\n/gm, ' </br>')
+    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
+}
 const syncText = () => {
-  parsedDOMString.value = resolveRichContent(textareaRef.value?.value ?? '')
+  parsedDOMString.value = resolveDisplayDOMString(
+    textareaRef.value?.value ?? '',
+  )
   emits('update:modelValue', textareaRef.value!.value)
 }
 const syncScroll = () => {

@@ -32,10 +32,6 @@
   text-indent: 0;
 }
 
-.rich-textarea-highlight p:empty {
-  height: 21px;
-}
-
 .mention {
   color: var(--theme-color);
 }
