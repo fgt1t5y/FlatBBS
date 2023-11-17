@@ -40,34 +40,6 @@ textarea {
   gap: var(--gap);
 }
 
-/* 话题编辑器 */
-.editor-window {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  bottom: var(--gap);
-  left: 0px;
-  right: 0px;
-  max-width: var(--page-max-width);
-  z-index: 100;
-  margin: 0px auto;
-  padding: var(--gap);
-  border: 1px solid var(--color-border);
-  background-color: var(--color-bg-2);
-}
-
-.editor-window-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 4px;
-  gap: 8px;
-}
-
-.editor-window-header input {
-  font-size: 18px;
-  flex-grow: 1;
-}
-
 .mob-show {
   display: none !important;
 }
