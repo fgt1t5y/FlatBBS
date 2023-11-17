@@ -1,5 +1,6 @@
 .rich-textarea {
   position: relative;
+  flex-direction: column;
   display: flex;
   background-color: var(--color-fill-1);
   font-family: ui-sans-serif;
@@ -15,7 +16,8 @@
   z-index: 1;
 }
 
-.rich-textarea-highlight {
+.rich-textarea-highlight,
+.rich-textarea-placeholder {
   position: absolute;
   font-size: 1rem;
   line-height: normal;
@@ -27,9 +29,12 @@
   color: var(--color-text-1);
 }
 
+.rich-textarea-placeholder {
+  color: var(--color-text-3);
+}
+
 .rich-textarea-highlight p {
   margin: unset;
-  text-indent: 0;
 }
 
 .mention {

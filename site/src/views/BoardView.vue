@@ -1,6 +1,10 @@
 <template>
   <PageTitle :title="current" />
-  <TopicEditor :disabled="d.isLoading.value" @submit="submitTopic" />
+  <TopicEditor
+    ref="topicEditorRef"
+    :disabled="d.isLoading.value"
+    @submit="submitTopic"
+  />
   <TopicList :topics="topics" />
   <InfiniteScroll
     :disabled="t.noMore.value || t.isFailed.value"
@@ -32,6 +36,7 @@ import { resolveRichContent } from '@/utils'
 const topics = ref<Topic[]>([])
 const route = useRoute()
 const { setTitle, current } = useTitle('版块')
+const topicEditorRef = ref<InstanceType<typeof TopicEditor>>()
 const currentBoardId = computed(() => {
   const boardId = Number(route.params.board_id ?? '0')
   if (boardId !== 0) {
@@ -53,6 +58,7 @@ const t = useFetchData<Topic[]>(
 )
 const d = useFetchData(createTopic, () => {
   refresh()
+  topicEditorRef.value!.clear()
   window.$message.success('话题已发布！')
 })
 const getTopic = () => {

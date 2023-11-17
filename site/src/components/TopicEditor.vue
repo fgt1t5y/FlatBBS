@@ -12,8 +12,8 @@
     <RichTextarea
       v-if="isShowFull"
       ref="contentInputRef"
-      v-model="topicDraft.content"
-      placeholder="在此输入话题正文，支持 Markdown（选填）"
+      v-model:value="topicDraft.content"
+      placeholder="在此输入话题正文（选填）"
       :rows="3"
     />
     <div v-if="isShowFull" class="topic-editor-opt">
@@ -98,6 +98,7 @@ const onTitleInputChange = (value: string) => {
 const clear = () => {
   topicDraft.title = ''
   topicDraft.content = ''
+  isShowFull.value = false
 }
 const sumbitTopic = () => {
   !props.disabled && emits('submit', topicDraft)

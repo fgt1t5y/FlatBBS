@@ -3,8 +3,9 @@
     <textarea
       ref="textareaRef"
       rows="5"
-      :placeholder="placeholder"
       :maxlength="maxLength"
+      @focus="onTextareaFocus"
+      @blur="onTextareaBlur"
       @input="syncText"
       @scroll="syncScroll"
     ></textarea>
@@ -13,12 +14,15 @@
       class="rich-textarea-highlight"
       v-html="parsedDOMString"
     ></div>
+    <div v-show="!parsedDOMString.length" class="rich-textarea-placeholder">
+      {{ placeholder }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import '@/style/RichTextarea.css'
-import { resolveRichContent } from '@/utils';
+import { resolveRichContent } from '@/utils'
 import { ref } from 'vue'
 
 defineOptions({
@@ -35,16 +39,21 @@ const props = withDefaults(defineProps<RichTextareaProps>(), {
   maxLength: 4000,
 })
 const emits = defineEmits<{
-  (e: 'update:modelValue', v: string): void
+  (e: 'update:value', v: string): void
 }>()
+const isFocus = ref<boolean>(false)
 const parsedDOMString = ref<string>('')
 const highlightLayerRef = ref<HTMLDivElement>()
 const textareaRef = ref<HTMLTextAreaElement>()
+const onTextareaFocus = () => {
+  isFocus.value = true
+}
+const onTextareaBlur = () => {
+  isFocus.value = false
+}
 const syncText = () => {
-  parsedDOMString.value = resolveRichContent(
-    textareaRef.value?.value ?? '',
-  )
-  emits('update:modelValue', textareaRef.value!.value)
+  parsedDOMString.value = resolveRichContent(textareaRef.value?.value ?? '')
+  emits('update:value', textareaRef.value!.value)
 }
 const syncScroll = () => {
   const { scrollTop, scrollLeft } = textareaRef.value!

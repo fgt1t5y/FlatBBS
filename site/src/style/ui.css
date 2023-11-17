@@ -15,7 +15,6 @@ button {
   cursor: pointer;
 }
 
-
 input {
   border: none;
   outline: none;
@@ -31,6 +30,7 @@ textarea {
   color: inherit;
   font-family: ui-sans-serif;
   padding: var(--gap);
+  resize: none;
 }
 
 #flatbbs {
