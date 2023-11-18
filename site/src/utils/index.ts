@@ -69,7 +69,7 @@ export const resolveRichContent = (value: string) => {
     .replace(/^$/gm, '<p></br></p>')
     .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
     .replace(
-      /(https?:\/\/([-\w.]+)+(:\d+)?(\/[^\s^\n]*)?)\s/gm,
+      /(https?:\/\/([-\w.]+)+(:\d+)?(\/[^\s^\n]*)?)(?=\s)/gm,
       '<a class="ilink" href="$1">$1</a>',
     );
 };

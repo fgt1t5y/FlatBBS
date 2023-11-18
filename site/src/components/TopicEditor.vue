@@ -61,6 +61,7 @@ import { NInput, NButton } from 'naive-ui'
 import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
 import { reactive, ref } from 'vue'
 import RichTextarea from './RichTextarea.vue'
+import { resolveRichContent } from '@/utils'
 
 defineOptions({
   name: 'TopicEditor',
@@ -101,7 +102,9 @@ const clear = () => {
   isShowFull.value = false
 }
 const sumbitTopic = () => {
-  !props.disabled && emits('submit', topicDraft)
+  const paarsed = resolveRichContent(topicDraft.content)
+  console.log(paarsed)
+  // !props.disabled && emits('submit', topicDraft)
 }
 
 defineExpose({ clear })
