@@ -11,7 +11,7 @@
 import PageTitle from '@/components/PageTitle.vue'
 import { getDiscussions } from '@/services/discussions'
 import type { Discussion } from '@/types'
-import { onMounted, ref } from 'vue'
+import { onActivated, onMounted, ref } from 'vue'
 import { useFetchData } from '@/utils/useFetchData'
 import { NSpin, NButton } from 'naive-ui'
 import { useRoute } from 'vue-router'
@@ -28,5 +28,9 @@ const { isFailed, isLoading, fetch, retry } = useFetchData<Discussion[]>(
 
 onMounted(() => {
   fetch(Number(route.params.topic_id))
+})
+
+onActivated(() => {
+  console.log('active')
 })
 </script>

@@ -63,9 +63,15 @@ export const resolveParagraph = (value: string) => {
 export const resolveRichContent = (value: string) => {
   if (!value) return '';
   return value
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
     .replace(/^(.+)$/gm, '<p>$1</p>')
     .replace(/^$/gm, '<p></br></p>')
-    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>');
+    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
+    .replace(
+      /(https?:\/\/([-\w.]+)+(:\d+)?(\/[^\s^\n]*)?)\s/gm,
+      '<a class="ilink" href="$1">$1</a>',
+    );
 };
 
 export const isMobile = breakpoint.smaller('mobile');

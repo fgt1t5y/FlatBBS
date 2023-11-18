@@ -40,3 +40,8 @@
 .mention {
   color: var(--theme-color);
 }
+
+.ilink {
+  color: var(--theme-color);
+  text-decoration: underline;
+}
