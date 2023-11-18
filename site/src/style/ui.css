@@ -40,10 +40,6 @@ textarea {
   gap: var(--gap);
 }
 
-.mob-show {
-  display: none !important;
-}
-
 .observe-target {
   height: 6px;
   width: 100%;
@@ -139,23 +135,9 @@ textarea {
     gap: unset;
   }
 
-  .mob-hidden {
-    display: none !important;
-  }
-
-  .mob-show {
-    display: inherit !important;
-  }
-
-  .grid-content {
-    border-left: unset !important;
-    margin-bottom: 53px;
-  }
-}
-
-@media (max-width: 640px) {
   .grid-content {
     border-left: unset !important;
     border-right: unset !important;
+    margin-bottom: 53px;
   }
 }
