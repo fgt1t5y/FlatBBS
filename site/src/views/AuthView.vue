@@ -2,7 +2,7 @@
   <div class="auth-page">
     <SiteLogo />
     <div class="auth-page-header">
-      <NButton circle secondary @click="page.back()">
+      <NButton circle quaternary @click="page.back()">
         <ArrowLeftIcon size="18px" />
       </NButton>
       <NH3>
@@ -23,7 +23,7 @@
       </NFormItem>
       <NFormItem>
         <NButton attr-type="button" type="primary" block @click="validateForf">
-          提交
+          登录
         </NButton>
       </NFormItem>
     </NForm>

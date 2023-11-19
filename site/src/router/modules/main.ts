@@ -46,6 +46,14 @@ export const mainRoutes = [
         },
       },
       {
+        path: 'boards',
+        name: 'board_list_page',
+        component: () => import('@/views/BoardListView.vue'),
+        meta: {
+          title: '版块',
+        },
+      },
+      {
         path: 'people',
         name: 'user_space_page',
         component: () => import('@/views/UserSpaceView.vue'),

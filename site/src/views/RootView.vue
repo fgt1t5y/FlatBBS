@@ -67,24 +67,7 @@
       </div>
     </template>
   </CommonGrid>
-  <div v-if="!isDesktop" class="mobile-nav">
-    <RouterLink class="mobile-nav-item link" to="/">
-      <HomeIcon size="20px" />
-      首页
-    </RouterLink>
-    <RouterLink class="mobile-nav-item link" to="/boards">
-      <AppIcon size="20px" />
-      版块
-    </RouterLink>
-    <RouterLink class="mobile-nav-item link" to="/search">
-      <SearchIcon size="20px" />
-      搜索
-    </RouterLink>
-    <RouterLink class="mobile-nav-item link" to="/people">
-      <NAvatar :size="20" :src="user.info.avatar_uri" round />
-      我
-    </RouterLink>
-  </div>
+  <BottomNav v-if="!isDesktop" />
 </template>
 
 <script setup lang="ts">
@@ -93,12 +76,11 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
 import { isDesktop } from '@/utils'
+import BottomNav from '@/components/BottomNav.vue'
 import { NText, NInput, useMessage, NAvatar, NPopover } from 'naive-ui'
 import {
   HomeIcon,
-  SearchIcon,
   Houses2Icon,
-  AppIcon,
   NotificationIcon,
   BookmarkIcon,
   EllipsisIcon,
