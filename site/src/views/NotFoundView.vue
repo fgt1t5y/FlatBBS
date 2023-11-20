@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { NH2, NText, NSpace, NButton } from 'naive-ui'
 import '@/style/NotFound.css'
-import { usePage } from '@/utils/usePage'
+import { usePage } from '@/utils'
 
 const page = usePage()
 </script>

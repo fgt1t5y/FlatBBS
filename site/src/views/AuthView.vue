@@ -46,7 +46,7 @@ import {
 import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
-import { usePage } from '@/utils/usePage'
+import { usePage } from '@/utils'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'

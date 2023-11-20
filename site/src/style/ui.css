@@ -130,6 +130,20 @@ textarea {
   margin-right: 8px;
 }
 
+/* 话题内容相关 */
+.topic-content {
+  font-size: 1rem;
+}
+
+.topic-content .mention {
+  color: var(--theme-color);
+}
+
+.topic-content .ilink {
+  color: var(--theme-color);
+  text-decoration: underline;
+}
+
 @media (max-width: 810px) {
   #flatbbs {
     gap: unset;

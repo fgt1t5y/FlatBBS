@@ -9,59 +9,20 @@
       @focus="onTitleInputFocus"
       @input="onTitleInputChange"
     />
-    <RichTextarea
+    <ContentEditor
       v-if="isShowFull"
-      ref="contentInputRef"
       v-model:value="topicDraft.content"
       placeholder="在此输入话题正文（选填）"
-      :rows="3"
     />
-    <div v-if="isShowFull" class="topic-editor-opt">
-      <div class="topic-editor-tool">
-        <NButton
-          title="收起编辑器"
-          secondary
-          circle
-          @click="isShowFull = false"
-        >
-          <template #icon>
-            <ChevronUpIcon size="18px" />
-          </template>
-        </NButton>
-        <NButton title="插入 Emoji" secondary circle>
-          <template #icon>
-            <SmileIcon size="18px" />
-          </template>
-        </NButton>
-        <NButton title="插入图片到文末" secondary circle>
-          <template #icon>
-            <ImageIcon size="18px" />
-          </template>
-        </NButton>
-      </div>
-      <div class="topic-editor-submit">
-        <NButton
-          title="发布话题"
-          type="primary"
-          :disabled="disabled || disabledSubmitButton"
-          round
-          @click="sumbitTopic"
-        >
-          发布
-        </NButton>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import '@/style/TopicEditor.css'
 import type { TopicDraft } from '@/types'
-import { NInput, NButton } from 'naive-ui'
-import { SmileIcon, ImageIcon, ChevronUpIcon } from 'tdesign-icons-vue-next'
+import { NInput } from 'naive-ui'
 import { reactive, ref } from 'vue'
-import RichTextarea from './RichTextarea.vue'
-import { resolveRichContent } from '@/utils'
+import ContentEditor from './ContentEditor.vue'
 
 defineOptions({
   name: 'TopicEditor',
@@ -74,7 +35,6 @@ interface TopicEditorProps {
 const props = withDefaults(defineProps<TopicEditorProps>(), {
   disabled: false,
 })
-const contentInputRef = ref<InstanceType<typeof RichTextarea>>()
 const minLength = 5
 const topicDraft = reactive({
   title: '',
@@ -102,9 +62,7 @@ const clear = () => {
   isShowFull.value = false
 }
 const sumbitTopic = () => {
-  const paarsed = resolveRichContent(topicDraft.content)
-  console.log(paarsed)
-  // !props.disabled && emits('submit', topicDraft)
+  !props.disabled && emits('submit', topicDraft)
 }
 
 defineExpose({ clear })

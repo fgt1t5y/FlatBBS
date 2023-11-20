@@ -24,7 +24,7 @@ import PageTitle from '@/components/PageTitle.vue'
 import { NText, NSpin, NButton } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { ref } from 'vue'
-import { useFetchData } from '@/utils/useFetchData'
+import { useFetchData } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 

@@ -27,11 +27,9 @@ import { NSpin, NButton, NText } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useFetchData } from '@/utils/useFetchData'
+import { useFetchData, useTitle, resolveRichContent } from '@/utils'
 import { createTopic, getTopicList } from '@/services'
 import type { Topic, TopicDraft } from '@/types'
-import { useTitle } from '@/utils/useTitle'
-import { resolveRichContent } from '@/utils'
 
 const topics = ref<Topic[]>([])
 const route = useRoute()
