@@ -8,11 +8,5 @@
 
 .topic-editor-tool {
   display: flex;
-  gap: 4px;
-}
-
-.topic-editor-opt {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: end;
 }

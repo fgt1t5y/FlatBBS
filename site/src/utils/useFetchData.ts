@@ -23,12 +23,10 @@ export const useFetchData = <T>(
     lastArgv = [...argv];
     fetcher(...argv)
       .then((res) => {
-        if (res.data.code === window.$code.OK) {
-          data = res.data.data!;
-          if (Array.isArray(data) && data.length < limit) noMore.value = true;
-          onSuccess && onSuccess(data);
-          return data;
-        }
+        if (res.data.code > window.$code.OK) return;
+        data = res.data.data!;
+        if (Array.isArray(data) && data.length < limit) noMore.value = true;
+        onSuccess && onSuccess(data);
       })
       .catch(() => {
         isFailed.value = true;

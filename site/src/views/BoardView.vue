@@ -1,21 +1,12 @@
 <template>
   <PageTitle :title="current" />
-  <TopicEditor
-    ref="topicEditorRef"
-    :disabled="d.isLoading.value"
-    @submit="submitTopic"
-  />
+  <TopicEditor ref="topicEditorRef" />
   <TopicList :topics="topics" />
-  <InfiniteScroll
-    :disabled="t.noMore.value || t.isFailed.value"
-    @loadmore="getTopic"
-  />
+  <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
   <div class="row-center">
-    <NSpin v-if="t.isLoading.value" :size="32" />
-    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">
-      重试
-    </NButton>
-    <NText v-if="t.noMore.value" class="text-center">没有更多了</NText>
+    <NSpin v-if="isLoading" :size="32" />
+    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
+    <NText v-if="noMore" class="text-center">没有更多了</NText>
   </div>
 </template>
 
@@ -27,14 +18,13 @@ import { NSpin, NButton, NText } from 'naive-ui'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useFetchData, useTitle, resolveRichContent } from '@/utils'
-import { createTopic, getTopicList } from '@/services'
-import type { Topic, TopicDraft } from '@/types'
+import { useFetchData, useTitle } from '@/utils'
+import { getTopicList } from '@/services'
+import type { Topic } from '@/types'
 
 const topics = ref<Topic[]>([])
 const route = useRoute()
 const { setTitle, current } = useTitle('版块')
-const topicEditorRef = ref<InstanceType<typeof TopicEditor>>()
 const currentBoardId = computed(() => {
   const boardId = Number(route.params.board_id ?? '0')
   if (boardId !== 0) {
@@ -46,32 +36,23 @@ const currentBoardId = computed(() => {
 let lastBoardId = currentBoardId.value
 const limit = 10
 let last = 0
-const t = useFetchData<Topic[]>(
+const { isLoading, isFailed, noMore, fetch, retry } = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
     topics.value?.push(...data)
-    !t.noMore.value && (last = data[data.length - 1].id)
+    !noMore.value && (last = data[data.length - 1].id)
   },
   { limit: limit },
 )
-const d = useFetchData(createTopic, () => {
-  refresh()
-  topicEditorRef.value!.clear()
-  window.$message.success('话题已发布！')
-})
 const getTopic = () => {
-  if (t.noMore.value) return
-  t.fetch(last, limit, currentBoardId.value)
-}
-const submitTopic = (topicDraft: TopicDraft) => {
-  const parsed = resolveRichContent(topicDraft.content ?? '')
-  d.fetch(topicDraft.title, parsed, currentBoardId.value)
+  if (noMore.value) return
+  fetch(last, limit, currentBoardId.value)
 }
 const refresh = () => {
   if (!currentBoardId.value) return
   topics.value = []
   last = 0
-  t.noMore.value = false
+  noMore.value = false
   getTopic()
 }
 

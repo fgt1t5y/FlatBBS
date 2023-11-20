@@ -43,11 +43,10 @@ class TopicController
     {
         $topic_title = $request->post('title');
         $topic_content = $request->post('content', '');
-        // $topic_attach = $request->post('attachment', '');
         $at_board = (int) $request->post('board', 0);
         $author_id = session('id');
 
-        if (!all([$topic_title, $at_board])) {
+        if (!all([$topic_title, $at_board, $topic_content])) {
             return no(STATUS_BAD_REQUEST);
         }
 

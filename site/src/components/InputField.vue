@@ -60,10 +60,9 @@ const onConfirm = () => {
     return
   }
   modifyUserInfo(props.field, valueNow.value).then((res) => {
-    if (res.data.code === window.$code.OK) {
-      message.success('信息已更新。')
-      isEditing.value = false
-    }
+    if (res.data.code > window.$code.OK) return
+    message.success('信息已更新。')
+    isEditing.value = false
   })
 }
 const onCancle = () => {

@@ -15,16 +15,15 @@ export const useUserStore = defineStore('user', () => {
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
     getUserInfo().then((res) => {
-      if (res.data.code === window.$code.OK) {
-        isLogin.value = true;
-        const { avatar_uri, username, id, email, introduction } = res.data
-          .data as UserInfo;
-        info.avatar_uri = getAvatarPath(avatar_uri!);
-        info.username = username;
-        info.id = id;
-        info.email = email;
-        info.introduction = introduction;
-      }
+      if (res.data.code > window.$code.OK) return;
+      isLogin.value = true;
+      const { avatar_uri, username, id, email, introduction } = res.data
+        .data as UserInfo;
+      info.avatar_uri = getAvatarPath(avatar_uri!);
+      info.username = username;
+      info.id = id;
+      info.email = email;
+      info.introduction = introduction;
     });
   };
   const quit = () => {
