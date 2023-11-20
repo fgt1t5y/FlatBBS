@@ -1,7 +1,6 @@
 <template>
   <PageTitle :title="current" />
   <BoardDetail :board-id="currentBoardId" />
-  <TopicEditor ref="topicEditorRef" />
   <TopicList :topics="topics" />
   <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
   <div class="row-center">
@@ -13,7 +12,6 @@
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
-import TopicEditor from '@/components/TopicEditor.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { NSpin, NButton, NText } from 'naive-ui'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'

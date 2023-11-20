@@ -3,8 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
 defineOptions({
   name: 'BoardDetail',
 })
@@ -14,8 +12,4 @@ interface BoardDetailProps {
 }
 
 const props = defineProps<BoardDetailProps>()
-
-onMounted(() => {
-  console.log(props.boardId)
-})
 </script>

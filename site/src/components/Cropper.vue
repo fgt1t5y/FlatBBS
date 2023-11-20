@@ -137,7 +137,6 @@ const checkOverBorder = () => {
   drawAt(renderStatus.clientX, renderStatus.clientY)
 }
 const mousedown = (ev: MouseEvent) => {
-  console.log(ev)
   if (imageException.value) return
 
   const { clientX, clientY } = ev
