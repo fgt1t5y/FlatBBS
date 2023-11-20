@@ -65,13 +65,13 @@ export const resolveRichContent = async (value: string) => {
   return value
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/^(.+)$/gm, '<p>$1</p>')
-    .replace(/^$/gm, '<p></br></p>')
     .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
     .replace(
       /(https?:\/\/([-\w.]+)+(:\d+)?(\/[^\s^\n]*)?)(?=\s)/gm,
       '<a class="ilink" href="$1">$1</a>',
-    );
+    )
+    .replace(/^(.+)$/gm, '<p>$1</p>')
+    .replace(/^$/gm, '<p></br></p>');
 };
 
 export const isMobile = breakpoint.smaller('mobile');

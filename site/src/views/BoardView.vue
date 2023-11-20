@@ -1,8 +1,9 @@
 <template>
   <PageTitle :title="current" />
+  <BoardDetail :board-id="currentBoardId" />
   <TopicEditor ref="topicEditorRef" />
   <TopicList :topics="topics" />
-  <InfiniteScroll :disabled="noMore || isFailed" @loadmore="getTopic" />
+  <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
   <div class="row-center">
     <NSpin v-if="isLoading" :size="32" />
     <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
@@ -15,12 +16,13 @@ import TopicList from '@/components/TopicList.vue'
 import TopicEditor from '@/components/TopicEditor.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { NSpin, NButton, NText } from 'naive-ui'
-import InfiniteScroll from '@/components/InfiniteScroll.vue'
+import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchData, useTitle } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
+import BoardDetail from '@/components/BoardDetail.vue'
 
 const topics = ref<Topic[]>([])
 const route = useRoute()

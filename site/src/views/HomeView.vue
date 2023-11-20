@@ -5,9 +5,9 @@
     </RouterLink>
   </PageTitle>
   <TopicList :topics="topics" />
-  <InfiniteScroll
+  <IntersectionObserver
     :disabled="t.noMore.value || t.isFailed.value"
-    @loadmore="getTopic"
+    @reach="getTopic"
   />
   <div class="row-center">
     <NSpin v-if="t.isLoading.value" :size="32" />
@@ -22,7 +22,7 @@
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { NText, NSpin, NButton } from 'naive-ui'
-import InfiniteScroll from '@/components/InfiniteScroll.vue'
+import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { ref } from 'vue'
 import { useFetchData } from '@/utils'
 import { getTopicList } from '@/services'

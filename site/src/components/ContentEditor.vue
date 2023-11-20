@@ -17,6 +17,7 @@
         />
       </NTabPane>
       <NTabPane name="preview" tab="预览">
+        <NAlert type="info">发布前请查看预览效果</NAlert>
         <div class="topic-content" v-html="previewContent"></div>
       </NTabPane>
     </NTabs>
@@ -25,9 +26,8 @@
 
 <script setup lang="ts">
 import { resolveRichContent } from '@/utils'
-import { NInput, NTabPane, NTabs } from 'naive-ui'
+import { NAlert, NInput, NTabPane, NTabs } from 'naive-ui'
 import { ref } from 'vue'
-import '@/style/ContentEditor.css'
 
 defineOptions({
   name: 'ContentEditor',

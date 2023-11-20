@@ -6,23 +6,23 @@
 import { onMounted, ref, watch } from 'vue'
 
 defineOptions({
-  name: 'InfiniteScroll',
+  name: 'IntersectionObserver',
 })
 
-interface InfiniteScrollProps {
+interface IntersectionObserverProps {
   disabled?: boolean
 }
 
-const props = withDefaults(defineProps<InfiniteScrollProps>(), {
+const props = withDefaults(defineProps<IntersectionObserverProps>(), {
   disabled: true,
 })
 const emits = defineEmits<{
-  (e: 'loadmore'): void
+  (e: 'reach'): void
 }>()
 const obTarget = ref<HTMLElement>()
 const observer = new IntersectionObserver(
   (entries) => {
-    if (entries[0].isIntersecting) emits('loadmore')
+    if (entries[0].isIntersecting) emits('reach')
   },
   { rootMargin: '40px' },
 )

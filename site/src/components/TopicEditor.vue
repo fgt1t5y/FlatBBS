@@ -11,7 +11,9 @@
       placeholder="在此输入话题正文"
     />
     <div class="topic-editor-tool">
-      <NButton type="primary" round @click="submit">发布</NButton>
+      <NButton type="primary" :disabled="isLoading" round @click="submit">
+        发布
+      </NButton>
     </div>
   </div>
 </template>
@@ -26,5 +28,5 @@ defineOptions({
   name: 'TopicEditor',
 })
 
-const { draft, submit } = useTopic()
+const { draft, submit, isLoading } = useTopic()
 </script>
