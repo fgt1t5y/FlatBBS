@@ -1,0 +1,21 @@
+.board-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  height: 53px;
+}
+
+.board-detail-name {
+  font-size: 18px;
+  flex-grow: 1;
+  padding-left: var(--gap);
+}
+
+.board-detail-desc {
+  font-size: 14px;
+}
+
+.board-avatar {
+  width: 90px;
+  height: 90px;
+}

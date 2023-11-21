@@ -38,6 +38,12 @@ requester.interceptors.response.use(
           query: { next: router.currentRoute.value.path },
         });
       }
+      if (res.data.code === window.$code.NOT_FOUND) {
+        console.log(1);
+        router.replace({
+          name: 'not_found_page',
+        });
+      }
       complainError(res.data.message);
     }
     return res;

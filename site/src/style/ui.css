@@ -144,6 +144,10 @@ textarea {
   }
 }
 
+.n-image img {
+  max-width: 100vw;
+}
+
 @media (max-width: 810px) {
   #flatbbs {
     gap: unset;

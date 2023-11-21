@@ -5,23 +5,20 @@
     </RouterLink>
   </PageTitle>
   <TopicList :topics="topics" />
-  <IntersectionObserver
-    :disabled="t.noMore.value || t.isFailed.value"
-    @reach="getTopic"
+  <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
+  <RequestPlaceholder
+    :is-loading="isLoading"
+    :is-failed="isFailed"
+    :no-more="noMore"
+    @retry="retry"
   />
-  <div class="row-center">
-    <NSpin v-if="t.isLoading.value" :size="32" />
-    <NButton v-if="t.isFailed.value" type="primary" @click="t.retry">
-      重试
-    </NButton>
-    <NText v-if="t.noMore.value" class="text-center">没有更多了</NText>
-  </div>
 </template>
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { NText, NSpin, NButton } from 'naive-ui'
+import { NText } from 'naive-ui'
+import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { ref } from 'vue'
 import { useFetchData } from '@/utils'
@@ -31,16 +28,16 @@ import type { Topic } from '@/types'
 const topics = ref<Topic[]>([])
 const limit = 10
 let last = 0
-const t = useFetchData<Topic[]>(
+const { isLoading, isFailed, noMore, fetch, retry } = useFetchData<Topic[]>(
   getTopicList,
   (data) => {
     topics.value?.push(...data)
-    !t.noMore.value && (last = data[data.length - 1].id)
+    !noMore.value && (last = data[data.length - 1].id)
   },
   { limit: limit },
 )
 const getTopic = () => {
-  if (t.noMore.value) return
-  t.fetch(last, limit, 0)
+  if (noMore.value) return
+  fetch(last, limit, 0)
 }
 </script>

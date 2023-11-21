@@ -1,5 +1,5 @@
 <template>
-  <NSpace vertical align="center" class="error-page">
+  <NSpace vertical align="center" class="error-page" style="margin-top: 5rem">
     <div></div>
     <NH2 align-text>
       <NText type="error">页面不存在</NText>
@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import { NH2, NText, NSpace, NButton } from 'naive-ui'
-import '@/style/NotFound.css'
 import { usePage } from '@/utils'
 
 const page = usePage()

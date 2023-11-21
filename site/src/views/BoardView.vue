@@ -3,17 +3,18 @@
   <BoardDetail :board-id="currentBoardId" />
   <TopicList :topics="topics" />
   <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
-  <div class="row-center">
-    <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
-    <NText v-if="noMore" class="text-center">没有更多了</NText>
-  </div>
+  <RequestPlaceholder
+    :is-loading="isLoading"
+    :is-failed="isFailed"
+    :no-more="noMore"
+    @retry="retry"
+  />
 </template>
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { NSpin, NButton, NText } from 'naive-ui'
+import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
