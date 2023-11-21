@@ -4,20 +4,31 @@
   </div>
   <div v-else class="board-detail">
     <NImage :src="getAvatarPath(board_info?.header_img_uri!)" />
-    <div class="board-info-header item">
-      <NAvatar
-        class="board-avatar"
-        bordered
-        size="large"
-        :src="getAvatarPath(board_info?.avatar_uri!)"
-      />
-      <div class="board-detail-name">
-        {{ board_info?.name }}
-        <div class="board-detail-desc" :depth="3">
-          {{ board_info?.description }}
+    <div class="board-detail-main item">
+      <div class="board-detail-header">
+        <NAvatar
+          class="board-avatar"
+          round
+          size="large"
+          :src="getAvatarPath(board_info?.avatar_uri!)"
+        />
+        <div class="board-detail-opt">
+          <NButton circle secondary>
+            <template #icon>
+              <EllipsisIcon size="18px" />
+            </template>
+          </NButton>
+          <NButton type="primary" round>加入</NButton>
         </div>
       </div>
-      <NButton type="primary" round>加入</NButton>
+      <div class="board-detail-info">
+        <div class="board-detail-name">
+          {{ board_info?.name }}
+        </div>
+        <NText :depth="3">
+          {{ board_info?.description }}
+        </NText>
+      </div>
     </div>
   </div>
 </template>
@@ -27,8 +38,9 @@ import { useFetchData, getAvatarPath } from '@/utils'
 import { getBoardInfo } from '@/services'
 import { onMounted, ref } from 'vue'
 import type { Board } from '@/types'
-import { NSpin, NButton, NImage, NAvatar } from 'naive-ui'
+import { NSpin, NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/BoardDetail.css'
+import { EllipsisIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({
   name: 'BoardDetail',

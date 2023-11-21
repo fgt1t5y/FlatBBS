@@ -1,22 +1,28 @@
-.board-info-header {
+.board-detail-main {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board-detail-header {
+  display: flex;
+  height: 34px;
+  align-items: end;
   justify-content: space-between;
-  align-items: start;
-  height: 53px;
+}
+
+.board-detail-opt {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
 .board-detail-name {
   font-size: 18px;
-  flex-grow: 1;
-  padding-left: var(--gap);
-}
-
-.board-detail-desc {
-  font-size: 14px;
+  font-weight: bolder;
 }
 
 .board-avatar {
   width: 90px;
   height: 90px;
-  transform: translateY(-50%);
 }
