@@ -1,7 +1,7 @@
 .board-info-header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: start;
   height: 53px;
 }
 
@@ -18,4 +18,5 @@
 .board-avatar {
   width: 90px;
   height: 90px;
+  transform: translateY(-50%);
 }

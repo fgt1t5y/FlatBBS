@@ -1,13 +1,13 @@
 <template>
-  <div v-if="isLoading || isFailed" class="row-center">
+  <div v-if="isLoading" class="row-center">
     <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
   </div>
   <div v-else class="board-detail">
     <NImage :src="getAvatarPath(board_info?.header_img_uri!)" />
     <div class="board-info-header item">
       <NAvatar
         class="board-avatar"
+        bordered
         size="large"
         :src="getAvatarPath(board_info?.avatar_uri!)"
       />
@@ -40,13 +40,9 @@ interface BoardDetailProps {
 
 const props = defineProps<BoardDetailProps>()
 const board_info = ref<Board | undefined>(undefined)
-const { isLoading, isFailed, fetch, retry } = useFetchData<Board>(
-  getBoardInfo,
-  (data) => {
-    console.log(data)
-    board_info.value = data
-  },
-)
+const { isLoading, fetch } = useFetchData<Board>(getBoardInfo, (data) => {
+  board_info.value = data
+})
 
 onMounted(() => {
   fetch(props.boardId)
