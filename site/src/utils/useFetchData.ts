@@ -13,12 +13,14 @@ export const useFetchData = <T>(
   const { limit } = options ?? { limit: 1 };
   const noMore = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
+  const isSuccess = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
   let data = null as T;
   let lastArgv = [] as any[];
   const fetch = (...argv: Parameters<typeof fetcher>) => {
     if (isLoading.value) return;
     isLoading.value = true;
+    isSuccess.value = false;
     isFailed.value = false;
     lastArgv = [...argv];
     fetcher(...argv)
@@ -27,6 +29,7 @@ export const useFetchData = <T>(
           isFailed.value = true;
           return;
         }
+        isSuccess.value = true;
         data = res.data.data!;
         if (Array.isArray(data) && data.length < limit) noMore.value = true;
         onSuccess && onSuccess(data);
@@ -42,5 +45,5 @@ export const useFetchData = <T>(
     fetch(...lastArgv);
   };
 
-  return { isFailed, isLoading, noMore, fetch, retry };
+  return { isFailed, isLoading, isSuccess, noMore, fetch, retry };
 };

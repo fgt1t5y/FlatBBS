@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isLoading" class="row-center">
+  <div v-if="!isSuccess" class="row-center">
     <NSpin v-if="isLoading" :size="32" />
   </div>
   <div v-else class="board-detail">
@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { useFetchData, getAvatarPath } from '@/utils'
 import { getBoardInfo } from '@/services'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { Board } from '@/types'
 import { NSpin, NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/BoardDetail.css'
@@ -52,9 +52,19 @@ interface BoardDetailProps {
 
 const props = defineProps<BoardDetailProps>()
 const board_info = ref<Board | undefined>(undefined)
-const { isLoading, fetch } = useFetchData<Board>(getBoardInfo, (data) => {
-  board_info.value = data
-})
+const { isLoading, isSuccess, fetch } = useFetchData<Board>(
+  getBoardInfo,
+  (data) => {
+    board_info.value = data
+  },
+)
+
+watch(
+  () => props.boardId,
+  (board_id) => {
+    fetch(board_id)
+  },
+)
 
 onMounted(() => {
   fetch(props.boardId)
