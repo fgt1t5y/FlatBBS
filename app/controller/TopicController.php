@@ -13,7 +13,7 @@ class TopicController
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $board_id = (int) $request->post('board');
+        $board_id = (int) $request->post('id');
 
         if ($last_id < 0) {
             return no(STATUS_BAD_REQUEST);

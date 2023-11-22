@@ -14,7 +14,6 @@
 import { NInput } from 'naive-ui'
 import { ref, onMounted, onActivated } from 'vue'
 import { useRoute } from 'vue-router'
-import '@/style/SearchView.css'
 import PageTitle from '@/components/PageTitle.vue'
 
 const route = useRoute()
@@ -22,10 +21,10 @@ const searchKeyword = ref<string>((route.query.q as string) ?? '')
 const inputRef = ref<InstanceType<typeof NInput>>()
 
 onActivated(() => {
-  inputRef.value!.focus()
+  // inputRef.value!.focus()
 })
 
 onMounted(() => {
-  inputRef.value!.focus()
+  // inputRef.value!.focus()
 })
 </script>

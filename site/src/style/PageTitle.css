@@ -5,15 +5,28 @@
   height: 52px;
   background-color: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
-  gap: 8px;
+  z-index: 50;
   display: flex;
   align-items: center;
-  z-index: 50;
+  justify-content: space-between;
 }
 
-.page-title div {
-  font-size: 18px;
-  margin: unset !important;
-  font-weight: bolder;
+.page-title-main {
+  gap: 8px;
+  width: 100%;
+  display: flex;
   flex-grow: 1;
+  align-items: center;
+}
+
+.page-title-default {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.page-title-title {
+  font-size: 18px;
+  font-weight: bolder;
+  line-height: normal;
 }

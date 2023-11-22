@@ -1,13 +1,12 @@
 <template>
   <PageTitle :title="current" />
   <BoardDetail :board-id="currentBoardId" />
-  <TopicList :topics="topics" />
+  <TopicList :topics="data" />
   <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
   <RequestPlaceholder
     :is-loading="isLoading"
     :is-failed="isFailed"
     :no-more="noMore"
-    @retry="retry"
   />
 </template>
 
@@ -18,7 +17,7 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useFetchData, useTitle } from '@/utils'
+import { useFetchList, useTitle } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
@@ -35,24 +34,15 @@ const currentBoardId = computed(() => {
   return boardId
 })
 let lastBoardId = currentBoardId.value
-const limit = 10
-let last = 0
-const { isLoading, isFailed, noMore, fetch, retry } = useFetchData<Topic[]>(
-  getTopicList,
-  (data) => {
-    topics.value?.push(...data)
-    !noMore.value && (last = data[data.length - 1].id)
-  },
-  { limit: limit },
-)
+const { isLoading, isFailed, data, noMore, fetch } =
+  useFetchList<Topic>(getTopicList)
 const getTopic = () => {
   if (noMore.value) return
-  fetch(last, limit, currentBoardId.value)
+  fetch(currentBoardId.value)
 }
 const refresh = () => {
   if (!currentBoardId.value) return
   topics.value = []
-  last = 0
   noMore.value = false
   getTopic()
 }

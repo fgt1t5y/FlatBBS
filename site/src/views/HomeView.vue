@@ -3,6 +3,11 @@
     <RouterLink to="/">
       <NText type="primary">FlatBBS</NText>
     </RouterLink>
+    <template #extra>
+      <NButton circle quaternary>
+        <SearchIcon size="18px" />
+      </NButton>
+    </template>
   </PageTitle>
   <TopicList :topics="topics" />
   <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
@@ -17,13 +22,14 @@
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { NText } from 'naive-ui'
+import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { ref } from 'vue'
 import { useFetchData } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
+import { SearchIcon } from 'tdesign-icons-vue-next'
 
 const topics = ref<Topic[]>([])
 const limit = 10

@@ -28,6 +28,12 @@ export interface UploadForm {
   as?: UploadAs;
 }
 
+export interface CommonListForm {
+  last: number;
+  limit: number;
+  id: number;
+}
+
 export interface TopicListForm {
   last: number;
   limit: number;

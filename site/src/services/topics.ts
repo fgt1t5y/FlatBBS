@@ -1,17 +1,17 @@
 import { genForm } from '@/utils';
 import { requester } from './instance';
 import type {
+  CommonListForm,
   CreateTopicForm,
   RequestResult,
   Topic,
-  TopicListForm,
 } from '@/types';
 
 export const getTopicList = (last: number, limit: number, board_id: number) => {
-  const form = genForm<TopicListForm>({
+  const form = genForm<CommonListForm>({
     last: last,
     limit: limit,
-    board: board_id,
+    id: board_id,
   });
 
   return requester.post<RequestResult<Topic[]>>('/topic/list', form);
