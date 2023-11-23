@@ -1,5 +1,6 @@
+import type { RequestResult } from '@/types';
 import type { AxiosResponse } from 'axios';
-import { ref } from 'vue';
+import { isRef, ref, type Ref } from 'vue';
 
 interface FetchDataOptions {
   limit: number;
@@ -13,6 +14,7 @@ const defaultOptions: FetchDataOptions = {
 
 export const useFetchList = <T>(
   fetcher: (...arg: any[]) => Promise<AxiosResponse>,
+  unit_id: Ref<number> | number,
   options?: FetchDataOptions,
 ) => {
   const { limit } = options ?? defaultOptions;
@@ -20,25 +22,26 @@ export const useFetchList = <T>(
   const isLoading = ref<boolean>(false);
   const isSuccess = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
-  const data = ref<any>([]);
+  const data = ref<any[]>([]);
   let _successCount = 0;
-  let _unitId: number;
   let _lastId = 0;
-  const fetch = (unit_id: number) => {
+  const fetch = (clear: boolean = false) => {
+    const id = isRef(unit_id) ? unit_id.value : unit_id;
     if (isLoading.value) return;
-    _unitId = unit_id;
     isLoading.value = true;
     isSuccess.value = false;
     isFailed.value = false;
-    fetcher(_lastId, limit, unit_id)
+    if (clear) restore();
+    fetcher(_lastId, limit, id)
       .then((res) => {
-        if (res.data.code > window.$code.OK) {
+        const result = res.data as RequestResult<T[]>;
+        if (result.code > window.$code.OK) {
           isFailed.value = true;
           return;
         }
         isSuccess.value = true;
         _successCount += 1;
-        if ((res.data.data as T[]).length < limit) noMore.value = true;
+        if (result.data!.length < limit) noMore.value = true;
         data.value.push(...res.data.data!);
         _lastId = data.value[data.value.length - 1].id;
       })
@@ -51,7 +54,7 @@ export const useFetchList = <T>(
   };
   const next = () => {
     if (!_successCount || noMore.value) return;
-    fetch(_unitId);
+    fetch();
   };
   const restore = () => {
     data.value = [];
@@ -63,7 +66,7 @@ export const useFetchList = <T>(
     isFailed.value = false;
   };
   const refetch = () => {
-    fetch(_unitId);
+    fetch();
   };
 
   return {

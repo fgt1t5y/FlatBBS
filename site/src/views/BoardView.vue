@@ -34,26 +34,16 @@ const currentBoardId = computed(() => {
   return boardId
 })
 let lastBoardId = currentBoardId.value
-const {
-  isLoading,
-  isSuccess,
-  isFailed,
-  data,
-  noMore,
-  fetch,
-  next,
-  restore,
-  refetch,
-} = useFetchList<Topic>(getTopicList)
-fetch(currentBoardId.value)
+const { isLoading, isSuccess, isFailed, data, noMore, fetch, next, refetch } =
+  useFetchList<Topic>(getTopicList, currentBoardId)
+fetch()
 
 watch(
   () => currentBoardId.value,
   (to) => {
     if (!to || to === lastBoardId) return
     lastBoardId = to
-    restore()
-    fetch(to)
+    fetch(true)
   },
 )
 </script>
