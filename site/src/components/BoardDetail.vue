@@ -62,6 +62,7 @@ const { isLoading, isSuccess, fetch } = useFetchData<Board>(
 watch(
   () => props.boardId,
   (board_id) => {
+    if (!board_id) return
     fetch(board_id)
   },
 )

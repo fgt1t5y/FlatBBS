@@ -23,6 +23,11 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+
+  .n-text {
+    font-size: 18px;
+    font-weight: bolder;
+  }
 }
 
 .page-title-title {

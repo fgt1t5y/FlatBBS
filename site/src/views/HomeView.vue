@@ -4,7 +4,7 @@
       <NText type="primary">FlatBBS</NText>
     </RouterLink>
     <template #extra>
-      <NButton circle quaternary>
+      <NButton v-if="!isDesktop" circle quaternary>
         <SearchIcon size="18px" />
       </NButton>
     </template>
@@ -26,7 +26,7 @@ import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { ref } from 'vue'
-import { useFetchData } from '@/utils'
+import { isDesktop, useFetchData } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 import { SearchIcon } from 'tdesign-icons-vue-next'

@@ -62,7 +62,9 @@ export const useFetchList = <T>(
     isSuccess.value = false;
     isFailed.value = false;
   };
-  const clear = () => {};
+  const refetch = () => {
+    fetch(_unitId);
+  };
 
   return {
     isFailed,
@@ -73,5 +75,6 @@ export const useFetchList = <T>(
     fetch,
     next,
     restore,
+    refetch,
   };
 };
