@@ -7,7 +7,7 @@
     :is-loading="isLoading"
     :is-failed="isFailed"
     :no-more="noMore"
-    @retry="refetch"
+    @retry="fetch"
   />
 </template>
 
@@ -34,7 +34,7 @@ const currentBoardId = computed(() => {
   return boardId
 })
 let lastBoardId = currentBoardId.value
-const { isLoading, isSuccess, isFailed, data, noMore, fetch, next, refetch } =
+const { isLoading, isSuccess, isFailed, data, noMore, fetch, next } =
   useFetchList<Topic>(getTopicList, currentBoardId)
 fetch()
 

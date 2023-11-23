@@ -31,7 +31,7 @@ export const useFetchList = <T>(
     isLoading.value = true;
     isSuccess.value = false;
     isFailed.value = false;
-    if (clear) restore();
+    clear && restore();
     fetcher(_lastId, limit, id)
       .then((res) => {
         const result = res.data as RequestResult<T[]>;
@@ -65,9 +65,6 @@ export const useFetchList = <T>(
     isSuccess.value = false;
     isFailed.value = false;
   };
-  const refetch = () => {
-    fetch();
-  };
 
   return {
     isFailed,
@@ -78,6 +75,5 @@ export const useFetchList = <T>(
     fetch,
     next,
     restore,
-    refetch,
   };
 };
