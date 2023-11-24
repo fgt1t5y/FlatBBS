@@ -25,7 +25,7 @@ import { NSpin, NButton } from 'naive-ui'
 import { useFetchData } from '@/utils/useFetchData'
 
 defineOptions({
-  name: 'BoardList',
+  name: 'SiderBoardList',
 })
 
 const boards = ref<Board[]>([])

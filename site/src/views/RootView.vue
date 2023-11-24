@@ -45,7 +45,7 @@
         <NText depth="3" class="sider-group" title="论坛版块列表">
           论坛版块
         </NText>
-        <BoardList />
+        <SiderBoardList />
       </div>
     </template>
     <template #content>
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import BoardList from '@/components/BoardList.vue'
+import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
