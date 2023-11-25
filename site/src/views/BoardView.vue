@@ -1,19 +1,22 @@
 <template>
-  <PageTitle :title="current" />
-  <BoardDetail :board-id="currentBoardId" />
-  <TopicList :topics="data" />
-  <IntersectionObserver :disabled="noMore || isFailed" @reach="fetch" />
-  <RequestPlaceholder
-    :is-loading="isLoading"
-    :is-failed="isFailed"
-    :no-more="noMore"
-    @retry="fetch"
-  />
+  <MainContent>
+    <PageTitle :title="current" />
+    <BoardDetail :board-id="currentBoardId" />
+    <TopicList :topics="data" />
+    <IntersectionObserver :disabled="noMore || isFailed" @reach="fetch" />
+    <RequestPlaceholder
+      :is-loading="isLoading"
+      :is-failed="isFailed"
+      :no-more="noMore"
+      @retry="fetch"
+    />
+  </MainContent>
 </template>
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
 import PageTitle from '@/components/PageTitle.vue'
+import MainContent from '@/components/MainContent.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'

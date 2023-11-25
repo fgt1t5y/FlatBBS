@@ -1,14 +1,17 @@
 <template>
-  <PageTitle title="话题" />
-  <DiscussionList :discussions="discussions" />
-  <div class="row-center">
-    <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
-  </div>
+  <MainContent>
+    <PageTitle title="话题" />
+    <DiscussionList :discussions="discussions" />
+    <div class="row-center">
+      <NSpin v-if="isLoading" :size="32" />
+      <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
+    </div>
+  </MainContent>
 </template>
 
 <script setup lang="ts">
 import PageTitle from '@/components/PageTitle.vue'
+import MainContent from '@/components/MainContent.vue'
 import { getDiscussions } from '@/services/discussions'
 import type { Discussion } from '@/types'
 import { onMounted, ref } from 'vue'

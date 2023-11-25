@@ -55,27 +55,6 @@
         </KeepAlive>
       </RouterView>
     </template>
-    <template #panels>
-      <div class="grid-panels-inner">
-        <NPopover trigger="focus" :show-arrow="false">
-          <template #trigger>
-            <NInput
-              ref="inputRef"
-              :max-length="64"
-              placeholder="搜索...（^K）"
-              size="large"
-              clearable
-              round
-            >
-              <template #prefix>
-                <SearchIcon size="18px" />
-              </template>
-            </NInput>
-          </template>
-          <span>搜索话题、版块和用户</span>
-        </NPopover>
-      </div>
-    </template>
   </CommonGrid>
   <NBackTop />
   <BottomNav v-if="!isDesktop" />
@@ -105,7 +84,6 @@ import {
   SettingIcon,
   LogoutIcon,
   LoginIcon,
-  SearchIcon,
 } from 'tdesign-icons-vue-next'
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'

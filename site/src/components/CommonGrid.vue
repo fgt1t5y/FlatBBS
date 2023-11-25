@@ -5,9 +5,6 @@
   <main class="grid-content">
     <slot name="content" />
   </main>
-  <footer v-if="isDesktop" class="grid-panels">
-    <slot name="panels" />
-  </footer>
 </template>
 
 <script setup lang="ts">
