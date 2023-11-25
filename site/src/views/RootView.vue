@@ -57,7 +57,7 @@
     </template>
   </CommonGrid>
   <NBackTop />
-  <BottomNav v-if="!isDesktop" />
+  <BottomNav v-if="!isDesktop && route.meta.showBottomNav" />
 </template>
 
 <script setup lang="ts">
@@ -67,14 +67,7 @@ import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
 import { isDesktop } from '@/utils'
 import BottomNav from '@/components/BottomNav.vue'
-import {
-  NText,
-  NInput,
-  useMessage,
-  NAvatar,
-  NPopover,
-  NBackTop,
-} from 'naive-ui'
+import { NText, useMessage, NAvatar, NPopover, NBackTop } from 'naive-ui'
 import {
   HomeIcon,
   Houses2Icon,
@@ -85,20 +78,9 @@ import {
   LogoutIcon,
   LoginIcon,
 } from 'tdesign-icons-vue-next'
-import { onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 
 const user = useUserStore()
+const route = useRoute()
 window.$message = useMessage()
-const inputRef = ref<InstanceType<typeof NInput>>()
-const focusInput = (ev: KeyboardEvent) => {
-  if (ev.key === 'k' && ev.ctrlKey) {
-    ev.preventDefault()
-    inputRef.value?.focus()
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('keydown', focusInput)
-})
 </script>

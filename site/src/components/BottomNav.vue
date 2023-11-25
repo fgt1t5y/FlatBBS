@@ -23,6 +23,7 @@
 import { useUserStore } from '@/stores'
 import { NAvatar } from 'naive-ui'
 import { HomeIcon, AppIcon, SearchIcon } from 'tdesign-icons-vue-next'
+import '@/style/BottomNav.css'
 
 defineOptions({
   name: 'BottomNav',

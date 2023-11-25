@@ -14,6 +14,7 @@ export const mainRoutes = [
         component: HomeView,
         meta: {
           title: '首页',
+          showBottomNav: true,
         },
       },
       {
@@ -51,6 +52,7 @@ export const mainRoutes = [
         component: () => import('@/views/BoardListView.vue'),
         meta: {
           title: '版块',
+          showBottomNav: true,
         },
       },
       {
@@ -67,6 +69,7 @@ export const mainRoutes = [
         component: () => import('@/views/NotFoundView.vue'),
         meta: {
           title: '404',
+          showBottomNav: true,
         },
       },
     ],
