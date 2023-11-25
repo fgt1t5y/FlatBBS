@@ -18,26 +18,26 @@
       :no-more="noMore"
       @retry="fetch"
     />
+    <template #panels>
+      <NPopover trigger="focus" :show-arrow="false">
+        <template #trigger>
+          <NInput
+            ref="inputRef"
+            :max-length="64"
+            placeholder="搜索...（^K）"
+            size="large"
+            clearable
+            round
+          >
+            <template #prefix>
+              <SearchIcon size="18px" />
+            </template>
+          </NInput>
+        </template>
+        <span>搜索话题、版块和用户</span>
+      </NPopover>
+    </template>
   </MainContent>
-  <div class="grid-panels-inner">
-    <NPopover trigger="focus" :show-arrow="false">
-      <template #trigger>
-        <NInput
-          ref="inputRef"
-          :max-length="64"
-          placeholder="搜索...（^K）"
-          size="large"
-          clearable
-          round
-        >
-          <template #prefix>
-            <SearchIcon size="18px" />
-          </template>
-        </NInput>
-      </template>
-      <span>搜索话题、版块和用户</span>
-    </NPopover>
-  </div>
 </template>
 
 <script setup lang="ts">
