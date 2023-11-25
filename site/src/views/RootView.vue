@@ -1,7 +1,7 @@
 <template>
   <CommonGrid>
     <template #sider>
-      <div v-if="isDesktop" class="grid-sider-inner">
+      <div class="grid-sider-inner">
         <RouterLink to="/" class="site-brand">
           <SiteLogo />
         </RouterLink>
@@ -56,17 +56,28 @@
       </RouterView>
     </template>
     <template #panels>
-      <div v-if="isDesktop" class="grid-panels-inner">
-        <NInput
-          ref="inputRef"
-          :max-length="64"
-          placeholder="搜索...（^K）"
-          size="large"
-          round
-        />
+      <div class="grid-panels-inner">
+        <NPopover trigger="focus" :show-arrow="false">
+          <template #trigger>
+            <NInput
+              ref="inputRef"
+              :max-length="64"
+              placeholder="搜索...（^K）"
+              size="large"
+              clearable
+              round
+            >
+              <template #prefix>
+                <SearchIcon size="18px" />
+              </template>
+            </NInput>
+          </template>
+          <span>搜索话题、版块和用户</span>
+        </NPopover>
       </div>
     </template>
   </CommonGrid>
+  <NBackTop />
   <BottomNav v-if="!isDesktop" />
 </template>
 
@@ -77,7 +88,14 @@ import SiteLogo from '@/components/SiteLogo.vue'
 import { useUserStore } from '@/stores'
 import { isDesktop } from '@/utils'
 import BottomNav from '@/components/BottomNav.vue'
-import { NText, NInput, useMessage, NAvatar, NPopover } from 'naive-ui'
+import {
+  NText,
+  NInput,
+  useMessage,
+  NAvatar,
+  NPopover,
+  NBackTop,
+} from 'naive-ui'
 import {
   HomeIcon,
   Houses2Icon,
@@ -87,6 +105,7 @@ import {
   SettingIcon,
   LogoutIcon,
   LoginIcon,
+  SearchIcon,
 } from 'tdesign-icons-vue-next'
 import { onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'

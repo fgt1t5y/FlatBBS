@@ -9,13 +9,13 @@
       </NButton>
     </template>
   </PageTitle>
-  <TopicList :topics="topics" />
-  <IntersectionObserver :disabled="noMore || isFailed" @reach="getTopic" />
+  <TopicList :topics="data" />
+  <IntersectionObserver :disabled="noMore || isFailed" @reach="fetch" />
   <RequestPlaceholder
     :is-loading="isLoading"
     :is-failed="isFailed"
     :no-more="noMore"
-    @retry="retry"
+    @retry="fetch"
   />
 </template>
 
@@ -25,25 +25,13 @@ import PageTitle from '@/components/PageTitle.vue'
 import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { ref } from 'vue'
-import { isDesktop, useFetchData } from '@/utils'
+import { isDesktop, useFetchList } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 import { SearchIcon } from 'tdesign-icons-vue-next'
 
-const topics = ref<Topic[]>([])
-const limit = 10
-let last = 0
-const { isLoading, isFailed, noMore, fetch, retry } = useFetchData<Topic[]>(
+const { isLoading, isFailed, data, noMore, fetch } = useFetchList<Topic[]>(
   getTopicList,
-  (data) => {
-    topics.value?.push(...data)
-    !noMore.value && (last = data[data.length - 1].id)
-  },
-  { limit: limit },
+  0,
 )
-const getTopic = () => {
-  if (noMore.value) return
-  fetch(last, limit, 0)
-}
 </script>
