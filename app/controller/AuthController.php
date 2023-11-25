@@ -19,7 +19,7 @@ class AuthController
         }
 
         if (User::hasUser($email)) {
-            return json_message(STATUS_BAD_REQUEST, '此邮箱已被注册');
+            return no(STATUS_BAD_REQUEST, '此邮箱已被注册');
         }
 
         try {
@@ -45,7 +45,7 @@ class AuthController
         $session = $request->session();
 
         if (is_login($request->cookie('flat_sess'))) {
-            return json_message(STATUS_BAD_REQUEST, '你已经登录过了');
+            return no(STATUS_BAD_REQUEST, '你已经登录过了');
         }
 
         $email = $request->post('email');
@@ -53,13 +53,13 @@ class AuthController
         $user = User::getUser('email', $email, ['id', 'password', 'allow_login']);
 
         if (!all([$email, $password]) || !$user) {
-            return json_message(STATUS_BAD_REQUEST, '用户不存在');
+            return no(STATUS_BAD_REQUEST, '用户不存在');
         }
         if (!password_verify($password, $user->password)) {
-            return json_message(STATUS_FORBIDDEN, '账号或密码错误');
+            return no(STATUS_FORBIDDEN, '账号或密码错误');
         }
         if ($user->allow_login === 0) {
-            return json_message(STATUS_FORBIDDEN, '你不被允许登录你的账号');
+            return no(STATUS_FORBIDDEN, '你不被允许登录你的账号');
         }
 
         $token = random_string();
