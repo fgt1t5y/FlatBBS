@@ -2,7 +2,7 @@
   <PageTitle :title="current" />
   <BoardDetail :board-id="currentBoardId" />
   <TopicList :topics="data" />
-  <IntersectionObserver :disabled="!isSuccess" @reach="next" />
+  <IntersectionObserver :disabled="noMore || isFailed" @reach="fetch" />
   <RequestPlaceholder
     :is-loading="isLoading"
     :is-failed="isFailed"
@@ -34,9 +34,10 @@ const currentBoardId = computed(() => {
   return boardId
 })
 let lastBoardId = currentBoardId.value
-const { isLoading, isSuccess, isFailed, data, noMore, fetch, next } =
-  useFetchList<Topic>(getTopicList, currentBoardId)
-fetch()
+const { isLoading, isFailed, data, noMore, fetch } = useFetchList<Topic>(
+  getTopicList,
+  currentBoardId,
+)
 
 watch(
   () => currentBoardId.value,

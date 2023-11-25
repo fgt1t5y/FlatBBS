@@ -1,6 +1,6 @@
 import type { RequestResult } from '@/types';
 import type { AxiosResponse } from 'axios';
-import { isRef, ref, type Ref } from 'vue';
+import { isRef, ref, type MaybeRef } from 'vue';
 
 interface FetchDataOptions {
   limit: number;
@@ -14,7 +14,7 @@ const defaultOptions: FetchDataOptions = {
 
 export const useFetchList = <T>(
   fetcher: (...arg: any[]) => Promise<AxiosResponse>,
-  unit_id: Ref<number> | number,
+  unit_id: MaybeRef<number>,
   options?: FetchDataOptions,
 ) => {
   const { limit } = options ?? defaultOptions;

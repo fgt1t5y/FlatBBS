@@ -49,7 +49,6 @@ class BoardController
         }
 
         $board = Board::find($board_id);
-        var_dump($board);
 
         if (!$board) {
             return no(STATUS_NOT_FOUND);
