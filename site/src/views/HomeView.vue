@@ -22,8 +22,8 @@
       <NPopover trigger="focus" :show-arrow="false">
         <template #trigger>
           <NInput
-            ref="inputRef"
             :max-length="64"
+            style="width: 250px"
             placeholder="搜索...（^K）"
             size="large"
             clearable

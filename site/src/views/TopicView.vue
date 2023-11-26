@@ -6,6 +6,9 @@
       <NSpin v-if="isLoading" :size="32" />
       <NButton v-if="isFailed" type="primary" @click="retry">重试</NButton>
     </div>
+    <template #panels>
+      <div>{{ discussions[0]?.author.username }}</div>
+    </template>
   </MainContent>
 </template>
 
