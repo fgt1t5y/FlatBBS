@@ -7,7 +7,7 @@ import type {
   Topic,
 } from '@/types';
 
-export const getTopicList = (last: number, limit: number, board_id: number) => {
+export const getTopicList = (board_id: number, last: number, limit: number) => {
   const form = genForm<CommonListForm>({
     last: last,
     limit: limit,

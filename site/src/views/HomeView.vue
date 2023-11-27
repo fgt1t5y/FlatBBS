@@ -11,7 +11,7 @@
       </template>
     </PageTitle>
     <TopicList :topics="data" />
-    <IntersectionObserver :disabled="noMore || isFailed" @reach="fetch" />
+    <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
     <RequestPlaceholder
       :is-loading="isLoading"
       :is-failed="isFailed"
@@ -52,8 +52,7 @@ import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 import { SearchIcon } from 'tdesign-icons-vue-next'
 
-const { isLoading, isFailed, data, noMore, fetch } = useFetchList<Topic[]>(
-  getTopicList,
-  0,
-)
+const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<
+  Topic[]
+>(getTopicList, 0)
 </script>

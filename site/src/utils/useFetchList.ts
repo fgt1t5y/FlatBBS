@@ -26,13 +26,14 @@ export const useFetchList = <T>(
   let _successCount = 0;
   let _lastId = 0;
   const fetch = (clear: boolean = false) => {
+    console.log(1, isLoading);
     const id = isRef(unit_id) ? unit_id.value : unit_id;
     if (isLoading.value) return;
     isLoading.value = true;
     isSuccess.value = false;
     isFailed.value = false;
     clear && restore();
-    fetcher(_lastId, limit, id)
+    fetcher(id, _lastId, limit)
       .then((res) => {
         const result = res.data as RequestResult<T[]>;
         if (result.code > window.$code.OK) {
@@ -53,7 +54,7 @@ export const useFetchList = <T>(
       });
   };
   const next = () => {
-    if (!_successCount || noMore.value) return;
+    if (noMore.value) return;
     fetch();
   };
   const restore = () => {
@@ -61,7 +62,6 @@ export const useFetchList = <T>(
     _lastId = 0;
     _successCount = 0;
     noMore.value = false;
-    isLoading.value = false;
     isSuccess.value = false;
     isFailed.value = false;
   };
