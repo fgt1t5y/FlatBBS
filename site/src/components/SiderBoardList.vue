@@ -20,7 +20,7 @@
 import { getBoards } from '@/services'
 import type { Board } from '@/types'
 import { onMounted, ref } from 'vue'
-import '@/style/BoardList.css'
+import '@/style/SiderBoardList.css'
 import { NSpin, NButton } from 'naive-ui'
 import { useFetchData } from '@/utils/useFetchData'
 

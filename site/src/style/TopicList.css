@@ -2,7 +2,8 @@
   cursor: pointer;
 }
 
-.topic-list-item:hover {
+.topic-list-item:hover,
+.topic-list-item:focus-within {
   background-color: var(--color-fill-2);
 }
 
