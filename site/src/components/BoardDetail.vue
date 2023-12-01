@@ -3,9 +3,11 @@
     <NSpin v-if="isLoading" :size="32" />
   </div>
   <div v-else class="board-detail">
-    <NImage :src="getAvatarPath(board_info?.header_img_uri!)" />
+    <div class="board-detail-header">
+      <NImage :src="getAvatarPath(board_info?.header_img_uri!)" />
+    </div>
     <div class="board-detail-main item">
-      <div class="board-detail-header">
+      <div class="board-detail-intro">
         <NAvatar
           class="board-avatar"
           round

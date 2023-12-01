@@ -4,7 +4,7 @@
   gap: 8px;
 }
 
-.board-detail-header {
+.board-detail-intro {
   display: flex;
   height: 34px;
   align-items: end;
