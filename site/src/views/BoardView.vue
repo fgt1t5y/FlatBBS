@@ -1,6 +1,5 @@
 <template>
   <MainContent>
-    <PageTitle :title="current" />
     <BoardDetail :board-id="currentBoardId" />
     <TopicList :topics="data" />
     <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
@@ -15,7 +14,6 @@
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
-import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
@@ -27,7 +25,7 @@ import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
 
 const route = useRoute()
-const { setTitle, current } = useTitle('版块')
+const { setTitle } = useTitle('版块')
 const currentBoardId = computed(() => {
   const boardId = Number(route.params.board_id ?? '0')
   if (boardId !== 0) {

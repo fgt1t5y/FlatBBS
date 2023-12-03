@@ -20,7 +20,7 @@
 import Navbar from './components/Navbar.vue'
 import { RouterView } from 'vue-router'
 import { useUserStore, useTheme } from './stores'
-import { hasToken } from './utils'
+import { hasToken, useFetchData } from './utils'
 import {
   NMessageProvider,
   NDialogProvider,
@@ -44,4 +44,6 @@ const overrideTheme = {
 if (hasToken()) {
   user.fetch()
 }
+
+useFetchData
 </script>
