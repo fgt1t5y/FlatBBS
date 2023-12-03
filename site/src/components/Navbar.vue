@@ -6,15 +6,20 @@
         <NText>FlatBBS</NText>
       </RouterLink>
       <div v-if="isLoggined" class="navbar-options">
+        <NButton title="发布新话题" quaternary circle>
+          <template #icon>
+            <AddRectangleIcon />
+          </template>
+        </NButton>
         <NButton title="查看通知" quaternary circle>
           <template #icon>
             <NotificationIcon />
           </template>
         </NButton>
         <NAvatar
+          v-if="isDesktop"
           :src="user.info.avatar_uri"
           title="你的头像图片"
-          :bordered="true"
           round
         />
       </div>
@@ -30,7 +35,8 @@ import '@/style/Navbar.css'
 import SiteLogo from './SiteLogo.vue'
 import { NText, NButton, NAvatar } from 'naive-ui'
 import { useUserStore } from '@/stores'
-import { NotificationIcon } from 'tdesign-icons-vue-next'
+import { NotificationIcon, AddRectangleIcon } from 'tdesign-icons-vue-next'
+import { isDesktop } from '@/utils'
 
 defineOptions({
   name: 'Navbar',

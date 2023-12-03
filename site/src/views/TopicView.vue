@@ -26,7 +26,6 @@ import { computed } from 'vue'
 
 const route = useRoute()
 const currentTopicId = computed(() => Number(route.params.topic_id ?? '0'))
-const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<
-  Discussion[]
->(getDiscussions, currentTopicId.value)
+const { isLoading, isFailed, data, noMore, fetch, next } =
+  useFetchList<Discussion>(getDiscussions, currentTopicId.value)
 </script>

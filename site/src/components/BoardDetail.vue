@@ -4,7 +4,7 @@
   </div>
   <div v-else class="board-detail">
     <div class="board-detail-header">
-      <NImage :src="getAvatarPath(board_info?.header_img_uri!)" />
+      <NImage :src="getAvatarPath(data?.header_img_uri!)" />
     </div>
     <div class="board-detail-main item">
       <div class="board-detail-intro">
@@ -12,7 +12,7 @@
           class="board-avatar"
           round
           size="large"
-          :src="getAvatarPath(board_info?.avatar_uri!)"
+          :src="getAvatarPath(data?.avatar_uri!)"
         />
         <div class="board-detail-opt">
           <NButton circle secondary>
@@ -25,10 +25,10 @@
       </div>
       <div class="board-detail-info">
         <div class="board-detail-name">
-          {{ board_info?.name }}
+          {{ data?.name }}
         </div>
         <NText :depth="3">
-          {{ board_info?.description }}
+          {{ data?.description }}
         </NText>
       </div>
     </div>
@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { useFetchData, getAvatarPath } from '@/utils'
 import { getBoardInfo } from '@/services'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, watch } from 'vue'
 import type { Board } from '@/types'
 import { NSpin, NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/BoardDetail.css'
@@ -53,13 +53,7 @@ interface BoardDetailProps {
 }
 
 const props = defineProps<BoardDetailProps>()
-const board_info = ref<Board | undefined>(undefined)
-const { isLoading, isSuccess, fetch } = useFetchData<Board>(
-  getBoardInfo,
-  (data) => {
-    board_info.value = data
-  },
-)
+const { isLoading, isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
 
 watch(
   () => props.boardId,

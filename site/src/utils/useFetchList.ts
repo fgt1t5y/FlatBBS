@@ -14,17 +14,19 @@ const defaultOptions: FetchDataOptions = {
 
 export const useFetchList = <T>(
   fetcher: (...arg: any[]) => Promise<AxiosResponse>,
-  unit_id: MaybeRef<number>,
+  unit_id?: MaybeRef<number>,
   options?: FetchDataOptions,
 ) => {
+  type hasID = T & { id: number };
   const { limit } = options ?? defaultOptions;
   const noMore = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
   const isSuccess = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
-  const data = ref<any[]>([]);
+  const data = ref<hasID[]>([]);
   let _successCount = 0;
   let _lastId = 0;
+  let _lastIndex = 0;
   const fetch = (clear: boolean = false) => {
     const id = isRef(unit_id) ? unit_id.value : unit_id;
     if (isLoading.value) return;
@@ -43,7 +45,9 @@ export const useFetchList = <T>(
         _successCount += 1;
         if (result.data!.length < limit) noMore.value = true;
         data.value.push(...res.data.data!);
+
         _lastId = data.value[data.value.length - 1].id;
+        _lastIndex = data.value.length;
       })
       .catch(() => {
         isFailed.value = true;

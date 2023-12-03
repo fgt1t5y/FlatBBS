@@ -20,7 +20,8 @@ import { useFetchList } from '@/utils'
 import { getTopicList } from '@/services'
 import type { Topic } from '@/types'
 
-const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<
-  Topic[]
->(getTopicList, 0)
+const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
+  getTopicList,
+  0,
+)
 </script>

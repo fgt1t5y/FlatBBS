@@ -1,21 +1,13 @@
 import type { AxiosResponse } from 'axios';
 import { ref } from 'vue';
 
-interface FetchDataOptions {
-  limit: number;
-}
-
 export const useFetchData = <T>(
   fetcher: (...arg: any[]) => Promise<AxiosResponse>,
-  onSuccess: (data: T) => void,
-  options?: FetchDataOptions,
 ) => {
-  const { limit } = options ?? { limit: 1 };
-  const noMore = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
   const isSuccess = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
-  let data = null as T;
+  const data = ref<T>();
   let lastArgv = [] as any[];
   const fetch = (...argv: Parameters<typeof fetcher>) => {
     if (isLoading.value) return;
@@ -30,9 +22,7 @@ export const useFetchData = <T>(
           return;
         }
         isSuccess.value = true;
-        data = res.data.data!;
-        if (Array.isArray(data) && data.length < limit) noMore.value = true;
-        onSuccess && onSuccess(data);
+        data.value = res.data.data!;
       })
       .catch(() => {
         isFailed.value = true;
@@ -45,5 +35,5 @@ export const useFetchData = <T>(
     fetch(...lastArgv);
   };
 
-  return { isFailed, isLoading, isSuccess, noMore, fetch, retry };
+  return { isFailed, isLoading, isSuccess, data, fetch, retry };
 };
