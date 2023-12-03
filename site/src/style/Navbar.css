@@ -1,0 +1,30 @@
+.navbar {
+  z-index: 155;
+  position: sticky;
+  top: 0px;
+  height: 52px;
+  padding: 0px var(--gap);
+  background-color: var(--color-bg-1);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-inner {
+  height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-sitename {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .n-text {
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.navbar svg {
+  color: var(--theme-color);
+}

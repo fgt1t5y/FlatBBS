@@ -45,5 +45,5 @@ export const useTheme = defineStore('theme', () => {
     return applyAndSava();
   };
 
-  return { theme, init, switchTo, naiveuiDark };
+  return { theme, naiveuiDark, init, switchTo };
 });

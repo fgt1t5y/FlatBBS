@@ -35,7 +35,6 @@ import type { Topic } from '@/types'
 import { fromNow, getAvatarPath } from '@/utils'
 import { RouterLink } from 'vue-router'
 import { NAvatar, NText, NButton } from 'naive-ui'
-
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({

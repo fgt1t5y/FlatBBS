@@ -2,9 +2,6 @@
   <CommonGrid>
     <template #sider>
       <div class="grid-sider-inner">
-        <RouterLink to="/" class="site-brand">
-          <SiteLogo />
-        </RouterLink>
         <RouterLink to="/" class="sider-link link">
           <HomeIcon size="20px" />
           <span>首页</span>
@@ -16,31 +13,6 @@
         <RouterLink to="/bookmark" class="sider-link link">
           <BookmarkIcon size="20px" />
           <span>书签</span>
-        </RouterLink>
-        <RouterLink to="/people" class="sider-link link">
-          <Houses2Icon size="20px" />
-          <span>我的空间</span>
-        </RouterLink>
-        <NPopover v-if="user.isLogin" trigger="click" placement="bottom-start">
-          <template #trigger>
-            <button class="sider-link link">
-              <NAvatar :size="18" :src="user.info.avatar_uri" round />
-              <span>{{ user.info.username }}</span>
-              <EllipsisIcon size="18px" />
-            </button>
-          </template>
-          <RouterLink to="/settings" class="sider-link link">
-            <SettingIcon size="20px" />
-            <span>设置</span>
-          </RouterLink>
-          <button class="sider-link link" @click="user.quit">
-            <LogoutIcon size="20px" />
-            <span>退出登录</span>
-          </button>
-        </NPopover>
-        <RouterLink v-else to="/auth" class="sider-link link">
-          <LoginIcon size="20px" />
-          <span>注册 / 登录</span>
         </RouterLink>
         <NText depth="3" class="sider-group" title="论坛版块列表">
           论坛版块
@@ -57,30 +29,22 @@
     </template>
   </CommonGrid>
   <NBackTop />
-  <BottomNav v-if="!isDesktop && route.meta.showBottomNav" />
+  <NavbarMobile v-if="!isDesktop && route.meta.showBottomNav" />
 </template>
 
 <script setup lang="ts">
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
-import SiteLogo from '@/components/SiteLogo.vue'
-import { useUserStore } from '@/stores'
 import { isDesktop } from '@/utils'
-import BottomNav from '@/components/BottomNav.vue'
-import { NText, useMessage, NAvatar, NPopover, NBackTop } from 'naive-ui'
+import NavbarMobile from '@/components/NavbarMobile.vue'
+import { NText, useMessage, NBackTop } from 'naive-ui'
 import {
   HomeIcon,
-  Houses2Icon,
   NotificationIcon,
   BookmarkIcon,
-  EllipsisIcon,
-  SettingIcon,
-  LogoutIcon,
-  LoginIcon,
 } from 'tdesign-icons-vue-next'
 import { RouterLink, useRoute } from 'vue-router'
 
-const user = useUserStore()
 const route = useRoute()
 window.$message = useMessage()
 </script>

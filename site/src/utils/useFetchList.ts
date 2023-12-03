@@ -26,7 +26,6 @@ export const useFetchList = <T>(
   let _successCount = 0;
   let _lastId = 0;
   const fetch = (clear: boolean = false) => {
-    console.log(1, isLoading);
     const id = isRef(unit_id) ? unit_id.value : unit_id;
     if (isLoading.value) return;
     isLoading.value = true;
