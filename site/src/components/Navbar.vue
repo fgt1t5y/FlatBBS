@@ -6,7 +6,17 @@
         <NText>FlatBBS</NText>
       </RouterLink>
       <div v-if="isLoggined" class="navbar-options">
-        <NButton type="primary" round>OK</NButton>
+        <NButton title="查看通知" quaternary circle>
+          <template #icon>
+            <NotificationIcon />
+          </template>
+        </NButton>
+        <NAvatar
+          :src="user.info.avatar_uri"
+          title="你的头像图片"
+          :bordered="true"
+          round
+        />
       </div>
       <div v-else class="navbar-options">
         <NButton type="primary" round>注册 / 登录</NButton>
@@ -18,7 +28,9 @@
 <script setup lang="ts">
 import '@/style/Navbar.css'
 import SiteLogo from './SiteLogo.vue'
-import { NText, NButton } from 'naive-ui'
+import { NText, NButton, NAvatar } from 'naive-ui'
+import { useUserStore } from '@/stores'
+import { NotificationIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({
   name: 'Navbar',
@@ -29,4 +41,5 @@ interface NavbarProps {
 }
 
 const props = defineProps<NavbarProps>()
+const user = useUserStore()
 </script>

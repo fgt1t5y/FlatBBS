@@ -1,5 +1,7 @@
 .navbar {
   z-index: 155;
+  display: flex;
+  justify-content: center;
   position: sticky;
   top: 0px;
   height: 52px;
@@ -10,6 +12,8 @@
 
 .navbar-inner {
   height: 52px;
+  flex-grow: 1;
+  max-width: var(--page-max-width);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,11 +24,17 @@
   align-items: center;
 }
 
+.navbar-options {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
 .navbar .n-text {
   font-size: 18px;
   font-weight: bolder;
 }
 
-.navbar svg {
+.navbar .site-logo {
   color: var(--theme-color);
 }

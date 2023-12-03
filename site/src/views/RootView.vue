@@ -6,10 +6,6 @@
           <HomeIcon size="20px" />
           <span>首页</span>
         </RouterLink>
-        <RouterLink to="/notification" class="sider-link link">
-          <NotificationIcon size="20px" />
-          <span>通知</span>
-        </RouterLink>
         <RouterLink to="/bookmark" class="sider-link link">
           <BookmarkIcon size="20px" />
           <span>书签</span>
@@ -38,11 +34,7 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import { isDesktop } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
 import { NText, useMessage, NBackTop } from 'naive-ui'
-import {
-  HomeIcon,
-  NotificationIcon,
-  BookmarkIcon,
-} from 'tdesign-icons-vue-next'
+import { HomeIcon, BookmarkIcon } from 'tdesign-icons-vue-next'
 import { RouterLink, useRoute } from 'vue-router'
 
 const route = useRoute()
