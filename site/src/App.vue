@@ -4,7 +4,7 @@
     :theme-overrides="overrideTheme"
     :locale="zhCN"
   >
-    <Navbar :is-loggined="true" />
+    <Navbar :is-loggined="user.isLogin" />
     <main id="flatbbs">
       <NDialogProvider>
         <NMessageProvider>

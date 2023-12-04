@@ -77,3 +77,4 @@ export const resolveRichContent = async (value: string) => {
 export const isMobile = breakpoint.smaller('mobile');
 export const isPad = breakpoint.greater('mobile');
 export const isDesktop = breakpoint.greater('pad');
+export const isDev = import.meta.env.DEV;

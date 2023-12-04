@@ -13,7 +13,7 @@
       搜索
     </RouterLink>
     <RouterLink class="mobile-nav-item link" to="/people">
-      <NAvatar :size="20" :src="user.info.avatar_uri" round />
+      <NAvatar :size="20" :src="user.info?.avatar_uri" round />
       我
     </RouterLink>
   </div>
