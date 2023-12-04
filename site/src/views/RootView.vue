@@ -10,6 +10,10 @@
           <BookmarkIcon size="20px" />
           <span>书签</span>
         </RouterLink>
+        <RouterLink to="/publish" class="sider-link link">
+          <AddIcon size="20px" />
+          <span>发布</span>
+        </RouterLink>
         <NText depth="3" class="sider-group" title="论坛版块列表">
           论坛版块
         </NText>
@@ -34,7 +38,7 @@ import CommonGrid from '@/components/CommonGrid.vue'
 import { isDesktop } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
 import { NText, useMessage, NBackTop } from 'naive-ui'
-import { HomeIcon, BookmarkIcon } from 'tdesign-icons-vue-next'
+import { HomeIcon, BookmarkIcon, AddIcon } from 'tdesign-icons-vue-next'
 import { RouterLink, useRoute } from 'vue-router'
 
 const route = useRoute()

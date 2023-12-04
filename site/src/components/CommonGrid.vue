@@ -2,7 +2,7 @@
   <header v-if="isDesktop" class="grid-sider">
     <slot name="sider" />
   </header>
-  <main class="grid-content">
+  <main class="grid-main">
     <slot name="content" />
   </main>
 </template>

@@ -91,7 +91,7 @@ textarea {
   text-align: center;
 }
 
-.item {
+.chunk {
   padding: var(--gap);
   border-bottom: 1px solid var(--color-border);
 }
@@ -131,11 +131,5 @@ textarea {
 @media (width <= 810px) {
   #flatbbs {
     gap: unset;
-  }
-
-  .grid-content-inner {
-    border-left: unset !important;
-    border-right: unset !important;
-    margin-bottom: 52px;
   }
 }

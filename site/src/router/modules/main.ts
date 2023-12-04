@@ -64,6 +64,14 @@ export const mainRoutes = [
         },
       },
       {
+        path: 'publish',
+        name: 'publish_page',
+        component: () => import('@/views/PublishView.vue'),
+        meta: {
+          title: '发布',
+        },
+      },
+      {
         path: ':pathMatch(.*)*',
         name: 'not_found_page',
         component: () => import('@/views/NotFoundView.vue'),

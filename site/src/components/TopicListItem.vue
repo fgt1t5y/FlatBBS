@@ -1,5 +1,5 @@
 <template>
-  <div class="topic-list-item item">
+  <div class="topic-list-item chunk">
     <div class="topic-header">
       <NAvatar
         :src="getAvatarPath(topic.author.avatar_uri!)"

@@ -1,6 +1,9 @@
 <template>
   <div class="discussion-list">
-    <div v-for="(item, index) in discussions" class="discussion-list-item item">
+    <div
+      v-for="(item, index) in discussions"
+      class="discussion-list-item chunk"
+    >
       <div class="discussion-avatar">
         <NAvatar
           :size="40"
