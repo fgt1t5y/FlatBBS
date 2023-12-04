@@ -1,10 +1,10 @@
 import { getUserInfo, logout } from '@/services';
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, shallowRef } from 'vue';
 import type { UserInfo } from '@/types';
 
 export const useUserStore = defineStore('user', () => {
-  const info = ref<UserInfo>();
+  const info = shallowRef<UserInfo>();
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
     getUserInfo().then((res) => {
