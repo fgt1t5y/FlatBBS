@@ -3,7 +3,6 @@
     <NTabs
       type="bar"
       size="small"
-      :tabs-padding="12"
       @update:value="onTabChange"
     >
       <NTabPane name="edit" tab="编辑">

@@ -30,7 +30,6 @@ textarea {
   color: inherit;
   font-family: ui-sans-serif;
   padding: var(--gap);
-  resize: none;
 }
 
 #flatbbs {
@@ -94,6 +93,19 @@ textarea {
 .chunk {
   padding: var(--gap);
   border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: unset;
+  }
+}
+
+.title {
+  margin: var(--gap);
+  margin-bottom: unset;
+
+  h3 {
+    margin-bottom: unset;
+  }
 }
 
 /* 导航栏Logo */
