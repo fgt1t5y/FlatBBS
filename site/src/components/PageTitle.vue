@@ -11,13 +11,11 @@
       >
         <ArrowLeftIcon size="20px" />
       </NButton>
-      <div>
-        <div class="page-title-default">
-          <slot>
-            <div class="page-title-title">{{ title }}</div>
-            <NText :depth="3">{{ subtitle }}</NText>
-          </slot>
-        </div>
+      <div class="page-title-default">
+        <slot>
+          <div class="page-title-title">{{ title }}</div>
+          <NText :depth="3">{{ subtitle }}</NText>
+        </slot>
       </div>
     </div>
     <div class="page-title-extra">

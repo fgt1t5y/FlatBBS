@@ -2,6 +2,9 @@
   <CommonGrid>
     <template #sider>
       <div class="grid-sider-inner">
+        <RouterLink to="/" class="site-brand">
+          <SiteLogo />
+        </RouterLink>
         <RouterLink to="/" class="sider-link link">
           <HomeIcon size="20px" />
           <span>首页</span>
@@ -35,6 +38,7 @@
 <script setup lang="ts">
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
+import SiteLogo from '@/components/SiteLogo.vue'
 import { isDesktop } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
 import { NText, useMessage, NBackTop } from 'naive-ui'

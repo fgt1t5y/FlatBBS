@@ -1,5 +1,6 @@
 <template>
   <MainContent>
+    <PageTitle title="设置" />
     <div v-if="user.isLogin" class="settings-group">
       <NH6>
         <NText type="primary">头像</NText>
@@ -98,6 +99,7 @@
 import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
+import PageTitle from '@/components/PageTitle.vue'
 import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile, getAvatarPath } from '@/utils'

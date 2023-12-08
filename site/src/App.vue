@@ -4,7 +4,6 @@
     :theme-overrides="overrideTheme"
     :locale="zhCN"
   >
-    <Navbar :is-loggined="user.isLogin" />
     <main id="flatbbs">
       <NDialogProvider>
         <NMessageProvider>
@@ -17,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue'
 import { RouterView } from 'vue-router'
 import { useUserStore, useTheme } from './stores'
 import { hasToken } from './utils'

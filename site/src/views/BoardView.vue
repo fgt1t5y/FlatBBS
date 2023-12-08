@@ -1,5 +1,6 @@
 <template>
   <MainContent>
+    <PageTitle title="版块" />
     <BoardDetail :board-id="currentBoardId" />
     <TopicList :topics="data" />
     <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
@@ -14,6 +15,7 @@
 
 <script setup lang="ts">
 import TopicList from '@/components/TopicList.vue'
+import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'

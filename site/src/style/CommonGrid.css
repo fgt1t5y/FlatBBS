@@ -1,12 +1,11 @@
 .grid-sider,
 .grid-panels {
-  padding: var(--gap) 0px;
   position: relative;
 }
 
 .grid-sider-inner {
   position: sticky;
-  top: 60px;
+  top: 0px;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -27,7 +26,7 @@
 .grid-panels-inner {
   margin-top: var(--gap);
   position: sticky;
-  top: 60px;
+  top: 0px;
   min-width: 250px;
 }
 
