@@ -7,9 +7,6 @@
       :is-failed="isFailed"
       @retry="fetch"
     />
-    <template #panels>
-      <div>123</div>
-    </template>
   </MainContent>
 </template>
 

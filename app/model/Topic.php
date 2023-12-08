@@ -9,6 +9,11 @@ use support\Model;
 class Topic extends Model
 {
     protected $table = 'topics';
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s'
+    ];
+
 
     protected $with = [
         'author:id,username,avatar_uri',

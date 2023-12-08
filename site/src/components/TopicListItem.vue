@@ -7,7 +7,7 @@
         round
       />
       <NText>{{ topic.author.username }}</NText>
-      <NText depth="3">{{ fromNow(topic.created_at) }}</NText>
+      <RelativeTime :time="topic.created_at" />
     </div>
     <div class="topic-title">
       <RouterLink :to="idToUri(topic.id)" :title="topic.title">
@@ -32,10 +32,11 @@
 
 <script setup lang="ts">
 import type { Topic } from '@/types'
-import { fromNow, getAvatarPath } from '@/utils'
+import { getAvatarPath } from '@/utils'
 import { RouterLink } from 'vue-router'
 import { NAvatar, NText, NButton } from 'naive-ui'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
+import RelativeTime from './RelativeTime.vue'
 
 defineOptions({
   name: 'TopicListItem',
@@ -46,7 +47,6 @@ interface TopicListItemProps {
 }
 
 const props = defineProps<TopicListItemProps>()
-
 const idToUri = (id: number) => `/topic/${id}`
 const boardIdToUri = (id: number, name: string) => `/board/${id}/${name}`
 </script>

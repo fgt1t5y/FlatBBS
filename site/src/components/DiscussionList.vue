@@ -13,7 +13,7 @@
       </div>
       <div class="discussion-body">
         <NText>{{ item.author.username }}</NText>
-        <NText :depth="3">{{ fromNow(item.created_at) }}</NText>
+        <RelativeTime :time="item.created_at" />
         <div class="discussion-content" v-html="item.content"></div>
         <div class="discussion-footer">
           <NText :depth="3"># {{ !index ? '题主楼' : index }}</NText>
@@ -28,7 +28,8 @@
 import type { Discussion } from '@/types'
 import '@/style/DiscussionList.css'
 import { NAvatar, NButton, NText } from 'naive-ui'
-import { fromNow, getAvatarPath } from '@/utils'
+import { getAvatarPath } from '@/utils'
+import RelativeTime from './RelativeTime.vue'
 
 defineOptions({
   name: 'DiscussionList',
