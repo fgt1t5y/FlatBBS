@@ -15,6 +15,10 @@ button {
   cursor: pointer;
 }
 
+button.link {
+  padding: unset;
+}
+
 input {
   border: none;
   outline: none;
@@ -40,20 +44,7 @@ textarea {
 }
 
 .observe-target {
-  height: 6px;
   width: 100%;
-}
-
-/* 通用 hover 效果 */
-.hover-card {
-  padding: 3px;
-  border-radius: var(--border-radius-small);
-}
-
-.hover-card:hover,
-.hover-card:focus-visible {
-  background-color: var(--color-primary-light-1);
-  cursor: pointer;
 }
 
 /* 路由高亮 */
@@ -72,11 +63,6 @@ textarea {
 
 .sider-group {
   margin-top: var(--gap);
-}
-
-/* 页面元素 */
-.panel-chunk {
-  margin: var(--gap) 0px;
 }
 
 /* 原子类 */

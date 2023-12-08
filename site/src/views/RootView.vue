@@ -17,6 +17,47 @@
           <AddIcon size="20px" />
           <span>发布</span>
         </RouterLink>
+        <div v-if="user.isLogin">
+          <RouterLink to="/auth" class="sider-link link">
+            <NAvatar
+              :size="20"
+              :src="getAvatarPath(user.info?.avatar_uri!)"
+              round
+            />
+            <span>我的空间</span>
+          </RouterLink>
+          <RouterLink
+            v-if="isShowExtraMenuItems"
+            to="/settings"
+            class="sider-link link"
+          >
+            <Setting1Icon size="20px" />
+            <span>设置</span>
+          </RouterLink>
+          <button
+            v-if="isShowExtraMenuItems"
+            class="sider-link link"
+            @click="user.quit"
+          >
+            <LogoutIcon size="20px" />
+            <span>退出登录</span>
+          </button>
+          <NButton
+            title="展开或收起菜单"
+            secondary
+            round
+            @click="isShowExtraMenuItems = !isShowExtraMenuItems"
+          >
+            <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
+            <ChevronDownIcon v-else size="20px" />
+          </NButton>
+        </div>
+        <div v-else>
+          <RouterLink to="/auth" class="sider-link link">
+            <LoginIcon size="20px" />
+            <span>注册 / 登录</span>
+          </RouterLink>
+        </div>
         <NText depth="3" class="sider-group" title="论坛版块列表">
           论坛版块
         </NText>
@@ -39,12 +80,25 @@
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
-import { isDesktop } from '@/utils'
+import { isDesktop, getAvatarPath } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import { NText, useMessage, NBackTop } from 'naive-ui'
-import { HomeIcon, BookmarkIcon, AddIcon } from 'tdesign-icons-vue-next'
+import { NText, useMessage, NBackTop, NButton, NAvatar } from 'naive-ui'
+import {
+  HomeIcon,
+  BookmarkIcon,
+  AddIcon,
+  LoginIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+  Setting1Icon,
+  LogoutIcon,
+} from 'tdesign-icons-vue-next'
 import { RouterLink, useRoute } from 'vue-router'
+import { useUserStore } from '@/stores'
+import { ref } from 'vue'
 
+const isShowExtraMenuItems = ref<boolean>(false)
 const route = useRoute()
+const user = useUserStore()
 window.$message = useMessage()
 </script>
