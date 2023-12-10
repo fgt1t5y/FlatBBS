@@ -1,5 +1,6 @@
 <template>
   <MainContent>
+    <PageTitle title="话题" />
     <DiscussionList :discussions="data" />
     <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
     <RequestPlaceholder
@@ -12,6 +13,7 @@
 
 <script setup lang="ts">
 import MainContent from '@/components/MainContent.vue'
+import PageTitle from '@/components/PageTitle.vue'
 import { getDiscussions } from '@/services/discussions'
 import type { Discussion } from '@/types'
 import { useFetchList } from '@/utils'

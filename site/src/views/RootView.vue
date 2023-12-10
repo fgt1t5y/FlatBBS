@@ -44,8 +44,9 @@
           </button>
           <NButton
             title="展开或收起菜单"
-            secondary
-            round
+            quaternary
+            block
+            size="small"
             @click="isShowExtraMenuItems = !isShowExtraMenuItems"
           >
             <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
