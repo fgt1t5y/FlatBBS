@@ -83,7 +83,7 @@ class TopicController
     public function discussions(Request $request)
     {
         $topic_id = (int) $request->post('topic');
-        $topic = Topic::find($topic_id);
+        $topic = Topic::find($topic_id, ['title', 'id']);
 
         if (!$topic) {
             return no(STATUS_NOT_FOUND);
@@ -96,6 +96,6 @@ class TopicController
             'created_at'
         ]);
 
-        return ok($result);
+        return ok($result, $topic);
     }
 }

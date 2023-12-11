@@ -79,10 +79,6 @@ textarea {
 .chunk {
   padding: var(--gap);
   border-bottom: 1px solid var(--color-border);
-
-  &:last-child {
-    border-bottom: unset;
-  }
 }
 
 .title {

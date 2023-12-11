@@ -13,13 +13,10 @@ class Topic extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s'
     ];
-
-
     protected $with = [
         'author:id,username,avatar_uri',
         'board:id,name,color',
     ];
-
     protected $fillable = ['author_id', 'title', 'last_reply_at'];
 
     public function author(): BelongsTo

@@ -1,10 +1,6 @@
 <template>
   <MainContentVue>
-    <div class="title">
-      <NH3>
-        <NText type="primary">发布话题</NText>
-      </NH3>
-    </div>
+    <PageTitle title="发布" />
     <div class="chunk">
       <TopicEditor />
     </div>
@@ -14,5 +10,5 @@
 <script setup lang="ts">
 import MainContentVue from '@/components/MainContent.vue'
 import TopicEditor from '@/components/TopicEditor.vue'
-import { NH3, NText } from 'naive-ui'
+import PageTitle from '@/components/PageTitle.vue'
 </script>

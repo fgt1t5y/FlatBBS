@@ -12,7 +12,6 @@ class Discussion extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s'
     ];
-
     protected $with = ['author:id,username,avatar_uri'];
 
     public function author(): BelongsTo

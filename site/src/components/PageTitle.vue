@@ -42,7 +42,7 @@ interface PageTitleProps {
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
-  title: '',
+  title: '未命名页面',
   subtitle: '',
   showBack: true,
 })

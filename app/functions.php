@@ -1,7 +1,6 @@
 <?php
 
 use support\Response;
-use Workerman\Protocols\Http\Session;
 
 function is_email(string $email)
 {
@@ -36,9 +35,9 @@ function _json(mixed $kvs): Response
     );
 }
 
-function ok(mixed $data = null): Response
+function ok(mixed $data = null, mixed $context = null): Response
 {
-    return _json(['code' => STATUS_OK, 'data' => $data]);
+    return _json(['code' => STATUS_OK, 'data' => $data, 'context' => $context]);
 }
 
 function no(int $code, string $message = ''): Response

@@ -26,6 +26,15 @@
             />
             <span>我的空间</span>
           </RouterLink>
+          <NButton
+            title="展开或收起菜单"
+            round
+            block
+            @click="isShowExtraMenuItems = !isShowExtraMenuItems"
+          >
+            <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
+            <ChevronDownIcon v-else size="20px" />
+          </NButton>
           <RouterLink
             v-if="isShowExtraMenuItems"
             to="/settings"
@@ -42,16 +51,6 @@
             <LogoutIcon size="20px" />
             <span>退出登录</span>
           </button>
-          <NButton
-            title="展开或收起菜单"
-            quaternary
-            block
-            size="small"
-            @click="isShowExtraMenuItems = !isShowExtraMenuItems"
-          >
-            <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
-            <ChevronDownIcon v-else size="20px" />
-          </NButton>
         </div>
         <div v-else>
           <RouterLink to="/auth" class="sider-link link">
