@@ -1,9 +1,15 @@
 <template>
-  <div class="grid-content">
+  <div class="grid-main-content">
     <slot />
   </div>
-  <div v-if="isDesktop" class="grid-panels">
-    <div class="grid-panels-inner">
+  <div v-if="isDesktop" class="grid-main-panels">
+    <div class="grid-main-panels-inner">
+      <NButton size="large" round block>
+        <template #icon>
+          <SearchIcon />
+        </template>
+        搜索
+      </NButton>
       <slot name="panels" />
       <footer>
         <NText :depth="3">
@@ -20,7 +26,8 @@
 
 <script setup lang="ts">
 import { isDesktop } from '@/utils'
-import { NText, NA } from 'naive-ui'
+import { NText, NA, NButton } from 'naive-ui'
+import { SearchIcon } from 'tdesign-icons-vue-next'
 
 defineOptions({
   name: 'MainContent',
