@@ -44,7 +44,7 @@ class TopicController
         $result = $board
             ->topics()
             ->limit(min($limit, 50))
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
+            ->where('id', '>', $last_id)
             ->orderByDesc('last_reply_at')
             ->get($this->topicBasicFields);
 

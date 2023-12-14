@@ -27,7 +27,7 @@ class DiscussionController
         $result = $topic
             ->discussions()
             ->limit(min($limit, 50))
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
+            ->where('id', '>', $last_id)
             ->orderBy('created_at')
             ->get($this->discussionBasicFields);
 
