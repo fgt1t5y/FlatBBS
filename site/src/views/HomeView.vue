@@ -34,13 +34,13 @@ import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { isDesktop, useFetchList } from '@/utils'
-import { getTopicList } from '@/services'
+import { getAllTopics } from '@/services'
 import type { Topic } from '@/types'
 import { SearchIcon } from 'tdesign-icons-vue-next'
 import router from '@/router'
 
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
-  getTopicList,
+  getAllTopics,
   0,
 )
 </script>

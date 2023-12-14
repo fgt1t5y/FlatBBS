@@ -7,14 +7,29 @@ import type {
   Topic,
 } from '@/types';
 
-export const getTopicList = (board_id: number, last: number, limit: number) => {
+export const getAllTopics = (last: number, limit: number) => {
   const form = genForm<CommonListForm>({
     last: last,
     limit: limit,
-    id: board_id,
   });
 
-  return requester.post<RequestResult<Topic[]>>('/topic/list', form);
+  return requester.post<RequestResult<Topic[]>>('/topic/all', form);
+};
+
+export const getTopicsByBoardId = (
+  last: number,
+  limit: number,
+  board_id: number,
+) => {
+  const form = genForm<CommonListForm>({
+    last: last,
+    limit: limit,
+  });
+
+  return requester.post<RequestResult<Topic[]>>(
+    `/topic/list/${board_id}`,
+    form,
+  );
 };
 
 export const createTopic = (

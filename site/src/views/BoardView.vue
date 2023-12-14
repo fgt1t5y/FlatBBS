@@ -22,7 +22,7 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchList, useTitle } from '@/utils'
-import { getTopicList } from '@/services'
+import { getTopicsByBoardId } from '@/services'
 import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
 
@@ -38,7 +38,7 @@ const currentBoardId = computed(() => {
 })
 let lastBoardId = currentBoardId.value
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
-  getTopicList,
+  getTopicsByBoardId,
   currentBoardId,
 )
 

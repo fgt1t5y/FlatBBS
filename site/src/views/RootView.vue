@@ -4,6 +4,7 @@
       <div class="grid-sider-inner">
         <RouterLink to="/" class="site-brand">
           <SiteLogo />
+          <NTag v-if="isDev" type="warning" round>Dev</NTag>
         </RouterLink>
         <RouterLink to="/" class="sider-link link">
           <HomeIcon size="20px" />
@@ -29,7 +30,6 @@
           <NButton
             title="展开或收起菜单"
             round
-            block
             @click="isShowExtraMenuItems = !isShowExtraMenuItems"
           >
             <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
@@ -80,9 +80,9 @@
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
-import { isDesktop, getAvatarPath } from '@/utils'
+import { isDesktop, getAvatarPath, isDev } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import { NText, useMessage, NBackTop, NButton, NAvatar } from 'naive-ui'
+import { NText, useMessage, NBackTop, NButton, NAvatar, NTag } from 'naive-ui'
 import {
   HomeIcon,
   BookmarkIcon,

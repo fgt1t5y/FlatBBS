@@ -1,15 +1,10 @@
 import type { RequestResult, Board } from '@/types';
 import { requester } from './instance';
-import { genForm } from '@/utils';
 
 export const getBoards = () => {
-  return requester.post<RequestResult<Board[]>>('/board/boards');
+  return requester.post<RequestResult<Board[]>>('/board/all');
 };
 
 export const getBoardInfo = (board_id: number) => {
-  const form = genForm<{ board: number }>({
-    board: board_id,
-  });
-
-  return requester.post<RequestResult<Board>>('/board/info', form);
+  return requester.post<RequestResult<Board>>(`/board/info/${board_id}`);
 };

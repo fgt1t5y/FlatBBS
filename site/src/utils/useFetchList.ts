@@ -34,7 +34,7 @@ export const useFetchList = <T>(
     isSuccess.value = false;
     isFailed.value = false;
     clear && restore();
-    fetcher(id, _lastId, limit)
+    fetcher(_lastId, limit, id)
       .then((res) => {
         const result = res.data as RequestResult<T[]>;
         if (result.code > window.$code.OK) {

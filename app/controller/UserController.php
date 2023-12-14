@@ -37,7 +37,7 @@ class UserController
     {
         $field = $request->post('field', '');
         $value = $request->post('value', '');
-        $uid = $request->session()->get('id');
+        $uid = session('id');
 
         if (User::modifyUser($uid, $field, $value)) {
             return ok();

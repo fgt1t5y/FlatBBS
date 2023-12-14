@@ -31,7 +31,7 @@ export interface UploadForm {
 export interface CommonListForm {
   last: number;
   limit: number;
-  id: number;
+  id?: number;
 }
 
 export interface TopicListForm {

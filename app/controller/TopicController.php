@@ -2,39 +2,51 @@
 
 namespace app\controller;
 
-use app\model\Discussion;
+use app\model\Board;
 use app\model\Topic;
 use PDOException;
 use support\Request;
 
 class TopicController
 {
-    public function list(Request $request)
+    public $topicBasicFields = [
+        'id',
+        'title',
+        'author_id',
+        'board_id',
+        'reply_count',
+        'created_at'
+    ];
+
+    public function all(Request $request)
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $board_id = (int) $request->post('id');
 
-        if ($last_id < 0) {
-            return no(STATUS_BAD_REQUEST);
-        }
-
-        $builder = Topic::orderByDesc('last_reply_at')
+        $result = Topic::orderByDesc('last_reply_at')
             ->limit(min($limit, 50))
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id);
+            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
+            ->get($this->topicBasicFields);
 
-        if ($board_id != 0) {
-            $builder = $builder->where('board_id', $board_id);
+        return ok($result);
+    }
+
+    public function list(Request $request, int $bid)
+    {
+        $last_id = (int) $request->post('last');
+        $limit = (int) $request->post('limit');
+        $board = Board::find($bid);
+
+        if (!$board) {
+            return no(STATUS_NOT_FOUND);
         }
 
-        $result = $builder->get([
-            'id',
-            'title',
-            'author_id',
-            'board_id',
-            'reply_count',
-            'created_at'
-        ]);
+        $result = $board
+            ->topics()
+            ->limit(min($limit, 50))
+            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
+            ->orderByDesc('last_reply_at')
+            ->get($this->topicBasicFields);
 
         return ok($result);
     }
@@ -78,24 +90,5 @@ class TopicController
         }
 
         return ok($topics);
-    }
-
-    public function discussions(Request $request)
-    {
-        $topic_id = (int) $request->post('topic');
-        $topic = Topic::find($topic_id, ['title', 'id']);
-
-        if (!$topic) {
-            return no(STATUS_NOT_FOUND);
-        }
-
-        $result = $topic->discussions()->limit(10)->get([
-            'id',
-            'author_id',
-            'content',
-            'created_at'
-        ]);
-
-        return ok($result, $topic);
     }
 }
