@@ -58,7 +58,7 @@ class TopicController
         $at_board = (int) $request->post('board', 0);
         $author_id = session('id');
 
-        if (!all([$topic_title, $at_board, $topic_content])) {
+        if (!all([$topic_title, $at_board])) {
             return no(STATUS_BAD_REQUEST);
         }
 

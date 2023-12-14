@@ -58,7 +58,7 @@ class Topic extends Model
         $host_discussion = new Discussion();
         $host_discussion->topic_id = $created_topic->id;
         $host_discussion->author_id = $author_id;
-        $host_discussion->content = $content;
+        $host_discussion->content = $content ?? 'No Content';
         $host_discussion->save();
 
         return $created_topic;
