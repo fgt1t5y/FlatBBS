@@ -4,7 +4,6 @@ namespace app\controller;
 
 use app\model\Board;
 use app\model\Topic;
-use PDOException;
 use support\Request;
 
 class TopicController
@@ -75,19 +74,10 @@ class TopicController
         return ok($result_topic);
     }
 
-    public function query(Request $request)
+    public function search(Request $request)
     {
         $keyword = $request->post('q');
-
-        if (!all([$keyword])) {
-            return no(STATUS_BAD_REQUEST);
-        }
-
-        try {
-            $topics = Topic::whereRaw("MATCH(`title`) AGAINST(?)", [$keyword])->get();
-        } catch (PDOException) {
-            return no(STATUS_INTERNAL_ERROR);
-        }
+        $topics = search($keyword, Topic::class, 'title', $this->topicBasicFields);
 
         return ok($topics);
     }
