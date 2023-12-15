@@ -18,8 +18,7 @@ class UserController
 
     public function info(Request $request)
     {
-        $session = $request->session();
-        $uid = $session->get('id');
+        $uid = session('id');
         $cache_prefix = config('flatbbs.cache.prefix.userinfo');
 
         $userinfo = Cache::remember(

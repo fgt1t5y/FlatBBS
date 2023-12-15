@@ -1,8 +1,5 @@
 <template>
-  <div v-if="!isSuccess" class="row-center">
-    <NSpin v-if="isLoading" :size="32" />
-  </div>
-  <div v-else class="board-detail">
+  <div v-if="isSuccess" class="board-detail">
     <div class="board-detail-header">
       <NImage :src="getAvatarPath(data?.header_img_uri!)" />
     </div>
@@ -40,7 +37,7 @@ import { useFetchData, getAvatarPath } from '@/utils'
 import { getBoardInfo } from '@/services'
 import { onMounted, watch } from 'vue'
 import type { Board } from '@/types'
-import { NSpin, NButton, NImage, NAvatar, NText } from 'naive-ui'
+import { NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/BoardDetail.css'
 import { EllipsisIcon } from 'tdesign-icons-vue-next'
 
@@ -53,7 +50,7 @@ interface BoardDetailProps {
 }
 
 const props = defineProps<BoardDetailProps>()
-const { isLoading, isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
+const { isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
 
 watch(
   () => props.boardId,
