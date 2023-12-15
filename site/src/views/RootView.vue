@@ -74,11 +74,13 @@
   </CommonGrid>
   <NBackTop />
   <NavbarMobile v-if="!isDesktop && route.meta.showBottomNav" />
+  <SearchPanel />
 </template>
 
 <script setup lang="ts">
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
+import SearchPanel from '@/components/SearchPanel.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { isDesktop, getAvatarPath, isDev } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'

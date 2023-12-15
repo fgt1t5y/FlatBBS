@@ -33,7 +33,7 @@
 }
 
 @media (width <= 810px) {
-  .grid-content {
+  .grid-main-content {
     border-left: unset !important;
     border-right: unset !important;
     margin-bottom: 52px;
