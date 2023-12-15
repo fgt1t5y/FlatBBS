@@ -6,7 +6,7 @@
         :size="20"
         round
       />
-      <NText>{{ topic.author.username }}</NText>
+      <NText>{{ topic.author.display_name }}</NText>
       <RelativeTime :time="topic.created_at" />
     </div>
     <div class="topic-title">

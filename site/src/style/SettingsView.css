@@ -1,3 +1,7 @@
+.settings-group {
+  border-bottom: 1px solid var(--color-border);
+}
+
 .settings-group h6 {
   padding: 0px var(--gap);
   margin-top: 1rem !important;

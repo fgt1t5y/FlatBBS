@@ -8,9 +8,10 @@ use Shopwwi\LaravelCache\Cache;
 
 class UserController
 {
-    static $userInfo = [
+    public $userBasicFields = [
         'id',
         'email',
+        'display_name',
         'username',
         'avatar_uri',
         'introduction'
@@ -25,7 +26,7 @@ class UserController
             "{$cache_prefix}{$uid}",
             config('flatbbs.cache.ttl'),
             function () use ($uid) {
-                return User::getUserById($uid, self::$userInfo)->toArray();
+                return User::getUserById($uid, $this->userBasicFields)->toArray();
             }
         );
 

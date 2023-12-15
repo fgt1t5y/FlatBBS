@@ -14,7 +14,7 @@ class Topic extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s'
     ];
     protected $with = [
-        'author:id,username,avatar_uri',
+        'author:id,display_name,avatar_uri',
         'board:id,name,color',
     ];
     protected $fillable = ['author_id', 'title', 'last_reply_at'];

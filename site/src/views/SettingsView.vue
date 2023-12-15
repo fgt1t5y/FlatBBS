@@ -1,12 +1,12 @@
 <template>
   <MainContent>
     <PageTitle title="设置" />
-    <div v-if="user.isLogin" class="settings-group">
+    <div class="settings-group">
       <NH6>
         <NText type="primary">头像</NText>
       </NH6>
       <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
-        <NSpace align="end" justify="space-between">
+        <NSpace align="center" justify="space-between">
           <NAvatar
             :src="getAvatarPath(user.info?.avatar_uri!)"
             :size="64"
@@ -30,15 +30,25 @@
         />
       </SettingItem>
     </div>
-    <div v-if="user.isLogin" class="settings-group">
+    <div class="settings-group">
       <NH6>
         <NText type="primary">用户资料</NText>
       </NH6>
       <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改">
         <InputField :input-value="user.info?.email" readonly />
       </SettingItem>
-      <SettingItem title="用户名">
-        <InputField field="username" :input-value="user.info?.username" />
+      <SettingItem title="用户名" subtitle="用户名不允许修改">
+        <InputField
+          field="username"
+          :input-value="user.info?.username"
+          readonly
+        />
+      </SettingItem>
+      <SettingItem title="昵称" subtitle="昵称会显示在大多数地方">
+        <InputField
+          field="display_name"
+          :input-value="user.info?.display_name"
+        />
       </SettingItem>
       <SettingItem title="简短介绍" subtitle="使用简短的言语介绍自己">
         <InputField

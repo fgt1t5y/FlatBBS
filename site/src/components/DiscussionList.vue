@@ -12,7 +12,7 @@
         />
       </div>
       <div class="discussion-body">
-        <NText>{{ item.author.username }}</NText>
+        <NText>{{ item.author.display_name }}</NText>
         <RelativeTime :time="item.created_at" />
         <div class="discussion-content" v-html="item.content"></div>
         <div class="discussion-footer">

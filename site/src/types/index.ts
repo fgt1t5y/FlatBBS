@@ -1,8 +1,9 @@
-export interface UserInfo {
-  avatar_uri?: string;
-  username?: string;
+export interface User {
   id?: number;
+  display_name?: string;
+  username?: string;
   email?: string;
+  avatar_uri?: string;
   introduction?: string;
 }
 
@@ -65,7 +66,7 @@ export interface Board {
   color: string;
 }
 
-export type Author = Pick<UserInfo, 'id' | 'username' | 'avatar_uri'>;
+export type Author = Pick<User, 'id' | 'display_name' | 'avatar_uri'>;
 
 export interface Topic {
   id: number;

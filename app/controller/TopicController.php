@@ -21,7 +21,6 @@ class TopicController
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-
         $result = Topic::orderByDesc('last_reply_at')
             ->limit(min($limit, 50))
             ->where('id', $last_id === 0 ? '>' : '<', $last_id)

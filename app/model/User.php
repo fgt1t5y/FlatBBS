@@ -8,7 +8,11 @@ use support\Model;
 
 class User extends Model
 {
-    static $allowModifyColumn = ['avatar_uri', 'username', 'introduction'];
+    static $allowModifyColumn = [
+        'avatar_uri',
+        'display_name',
+        'introduction'
+    ];
 
     protected $table = 'users';
 
