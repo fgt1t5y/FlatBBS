@@ -59,6 +59,16 @@
     </div>
     <div class="settings-group">
       <NH6>
+        <NText type="primary">安全与隐私</NText>
+      </NH6>
+      <SettingItem title="密码" subtitle="登录时使用的密钥，请勿泄露">
+        <div>
+          <NButton type="primary" title="更改密码">更改</NButton>
+        </div>
+      </SettingItem>
+    </div>
+    <div class="settings-group">
+      <NH6>
         <NText type="primary">显示</NText>
       </NH6>
       <SettingItem title="颜色主题" subtitle="网站全局显示的颜色主题">
