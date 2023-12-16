@@ -13,8 +13,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (to.path === '/auth' && hasToken()) {
-    return { path: '/' };
+  if (hasToken()) {
+    if (to.path === '/auth') {
+      return { path: '/' };
+    }
+  } else {
+    if (to.meta.requireLogin) {
+      return { path: '/' };
+    }
   }
 });
 
