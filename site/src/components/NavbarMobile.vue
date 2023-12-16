@@ -13,7 +13,7 @@
       搜索
     </RouterLink>
     <RouterLink class="mobile-nav-item link" to="/people">
-      <NAvatar :size="20" :src="user.info?.avatar_uri" round />
+      <NAvatar :size="20" :src="getAvatarPath(user.info?.avatar_uri!)" round />
       我
     </RouterLink>
   </div>
@@ -24,6 +24,7 @@ import { useUserStore } from '@/stores'
 import { NAvatar } from 'naive-ui'
 import { HomeIcon, AppIcon, SearchIcon } from 'tdesign-icons-vue-next'
 import '@/style/NavbarMobile.css'
+import { getAvatarPath } from '@/utils'
 
 defineOptions({
   name: 'MobileNavbar',
