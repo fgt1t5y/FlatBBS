@@ -1,6 +1,6 @@
 <template>
   <MainContent>
-    <PageTitle title="全部话题">
+    <PageTitle title="首页">
       <RouterLink to="/">
         <NText type="primary">FlatBBS</NText>
       </RouterLink>

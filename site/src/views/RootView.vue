@@ -29,7 +29,9 @@
           </RouterLink>
           <NButton
             title="展开或收起菜单"
+            quaternary
             round
+            block
             @click="isShowExtraMenuItems = !isShowExtraMenuItems"
           >
             <ChevronUpIcon v-if="isShowExtraMenuItems" size="20px" />
