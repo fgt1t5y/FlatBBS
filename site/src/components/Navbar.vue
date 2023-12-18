@@ -28,7 +28,7 @@
           </template>
         </NButton>
         <NAvatar
-          :src="getAvatarPath(user.info?.avatar_uri!)"
+          :src="user.info?.avatar_uri"
           title="你的头像图片，点击打开菜单"
           round
         />
@@ -50,7 +50,7 @@ import {
   AddRectangleIcon,
   Setting1Icon,
 } from 'tdesign-icons-vue-next'
-import { isDev, getAvatarPath } from '@/utils'
+import { isDev } from '@/utils'
 import router from '@/router'
 
 defineOptions({

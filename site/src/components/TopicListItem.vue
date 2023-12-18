@@ -1,11 +1,7 @@
 <template>
   <div class="topic-list-item chunk">
     <div class="topic-header">
-      <NAvatar
-        :src="getAvatarPath(topic.author.avatar_uri!)"
-        :size="20"
-        round
-      />
+      <NAvatar :src="topic.author.avatar_uri" :size="20" round />
       <NText>{{ topic.author.display_name }}</NText>
       <RelativeTime :time="topic.created_at" />
     </div>
@@ -32,7 +28,6 @@
 
 <script setup lang="ts">
 import type { Topic } from '@/types'
-import { getAvatarPath } from '@/utils'
 import { RouterLink } from 'vue-router'
 import { NAvatar, NText, NButton } from 'naive-ui'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'

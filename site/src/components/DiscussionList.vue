@@ -5,11 +5,7 @@
       class="discussion-list-item chunk"
     >
       <div class="discussion-avatar">
-        <NAvatar
-          :size="40"
-          :src="getAvatarPath(item.author.avatar_uri!)"
-          round
-        />
+        <NAvatar :size="40" :src="item.author.avatar_uri" round />
       </div>
       <div class="discussion-body">
         <NText>{{ item.author.display_name }}</NText>
@@ -28,7 +24,6 @@
 import type { Discussion } from '@/types'
 import '@/style/DiscussionList.css'
 import { NAvatar, NButton, NText } from 'naive-ui'
-import { getAvatarPath } from '@/utils'
 import RelativeTime from './RelativeTime.vue'
 
 defineOptions({

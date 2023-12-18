@@ -7,11 +7,7 @@
       </NH6>
       <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
         <NSpace align="center" justify="space-between">
-          <NAvatar
-            :src="getAvatarPath(user.info?.avatar_uri!)"
-            :size="64"
-            round
-          />
+          <NAvatar :src="user.info?.avatar_uri" :size="64" round />
           <NButton
             type="primary"
             title="点击打开文件浏览器选择头像"
@@ -122,7 +118,7 @@ import SettingItem from '@/components/SettingItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
-import { blobToFile, getAvatarPath } from '@/utils'
+import { blobToFile } from '@/utils'
 import { NAvatar, NButton, NH6, NSpace, NText } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'

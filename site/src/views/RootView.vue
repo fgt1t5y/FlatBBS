@@ -20,11 +20,7 @@
         </RouterLink>
         <div v-if="user.isLogin">
           <RouterLink to="/auth" class="sider-link link">
-            <NAvatar
-              :size="20"
-              :src="getAvatarPath(user.info?.avatar_uri!)"
-              round
-            />
+            <NAvatar :size="20" :src="user.info?.avatar_uri" round />
             <span>我的空间</span>
           </RouterLink>
           <NButton
@@ -82,7 +78,7 @@
 import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
-import { isDesktop, getAvatarPath, isDev } from '@/utils'
+import { isDesktop, isDev } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
 import { NText, useMessage, NBackTop, NButton, NAvatar, NTag } from 'naive-ui'
 import {
