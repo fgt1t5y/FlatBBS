@@ -4,7 +4,6 @@
       <NInput
         ref="inputRef"
         :input-props="{ type: 'search' }"
-        :value="searchKeyword"
         placeholder="搜索帖子、用户"
         size="large"
       />
@@ -24,10 +23,10 @@ const searchKeyword = ref<string>((route.query.q as string) ?? '')
 const inputRef = ref<InstanceType<typeof NInput>>()
 
 onActivated(() => {
-  // inputRef.value!.focus()
+  inputRef.value!.focus()
 })
 
 onMounted(() => {
-  // inputRef.value!.focus()
+  inputRef.value!.focus()
 })
 </script>
