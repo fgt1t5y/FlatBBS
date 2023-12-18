@@ -2,6 +2,7 @@
 
 namespace app\model;
 
+use App\Casts\FullPath;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use support\Model;
@@ -12,6 +13,10 @@ class User extends Model
         'avatar_uri',
         'display_name',
         'introduction'
+    ];
+
+    protected $casts = [
+        'avatar_uri' => FullPath::class
     ];
 
     protected $table = 'users';
@@ -76,5 +81,11 @@ class User extends Model
         }
 
         return true;
+    }
+
+    public function setAvatarUriAttribute($value)
+    {
+        var_dump($value);
+        return $value;
     }
 }

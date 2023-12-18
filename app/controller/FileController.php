@@ -33,7 +33,7 @@ class FileController
             }
 
             $filename = random_string() . '.jpg';
-            $path = config_with('flatbbs.backend_path.usercontent', $filename);
+            $path = config_with('flatbbs.paths.usercontent', $filename);
 
             try {
                 $image = image::make($file->getPathname());

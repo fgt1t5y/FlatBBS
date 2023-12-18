@@ -3,6 +3,7 @@
     <PageTitle title="搜索">
       <NInput
         ref="inputRef"
+        v-model:value="searchKeyword"
         :input-props="{ type: 'search' }"
         placeholder="搜索帖子、用户"
         size="large"
