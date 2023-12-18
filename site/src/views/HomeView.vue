@@ -9,7 +9,7 @@
           circle
           quaternary
           title="搜索(Ctrl + K)"
-          @click="onSearchButtonClick"
+          @click="router.push({ path: '/search' })"
         >
           <SearchIcon size="18px" />
         </NButton>
@@ -33,24 +33,14 @@ import MainContent from '@/components/MainContent.vue'
 import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { isDesktop, useFetchList } from '@/utils'
+import { useFetchList } from '@/utils'
 import { getAllTopics } from '@/services'
 import type { Topic } from '@/types'
 import { SearchIcon } from 'tdesign-icons-vue-next'
 import router from '@/router'
-import { useStateStore } from '@/stores'
 
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
   getAllTopics,
   0,
 )
-const s = useStateStore()
-const onSearchButtonClick = () => {
-  if (isDesktop.value) {
-    s.showSearchPanel = true
-    return
-  }
-
-  router.push({ path: '/search' })
-}
 </script>

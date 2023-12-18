@@ -24,7 +24,7 @@
   flex-grow: 1;
   flex-direction: column;
 
-  .n-text {
+  .page-title-title {
     font-size: 18px;
     font-weight: bolder;
   }
