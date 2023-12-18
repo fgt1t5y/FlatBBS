@@ -14,6 +14,6 @@ class FullPath implements CastsAttributes
 
     public function set($model, $key, $value, $attributes)
     {
-        return json_encode($value);
+        return $value;
     }
 }
