@@ -2,7 +2,7 @@
   <MainContent>
     <PageTitle title="首页">
       <RouterLink to="/">
-        <NText type="primary">FlatBBS</NText>
+        <NText type="primary" class="page-title-title">FlatBBS</NText>
       </RouterLink>
       <template #extra>
         <NButton
