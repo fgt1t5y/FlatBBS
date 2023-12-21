@@ -33,6 +33,17 @@
 }
 
 @media (width <= 810px) {
+  .grid-main {
+    overflow-x: hidden;
+    flex-grow: unset;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: inherit;
+  }
+
   .grid-main-content {
     border-left: unset !important;
     border-right: unset !important;

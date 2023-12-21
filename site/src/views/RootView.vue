@@ -64,9 +64,11 @@
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">
-        <KeepAlive exclude="SettingsView" :max="10">
-          <component :is="Component" />
-        </KeepAlive>
+        <Transition :name="route.meta.transition" :css="!isDesktop">
+          <KeepAlive :max="10">
+            <component :is="Component" />
+          </KeepAlive>
+        </Transition>
       </RouterView>
     </template>
   </CommonGrid>

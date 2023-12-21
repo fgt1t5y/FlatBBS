@@ -2,17 +2,18 @@ import {
   createRouter,
   createWebHistory,
   isNavigationFailure,
+  type RouteRecordRaw,
 } from 'vue-router';
 import { mainRoutes } from './modules/main';
 import { authRoutes } from './modules/auth';
-import { pureSetTitle, hasToken } from '@/utils';
+import { pureSetTitle, hasToken, isDesktop } from '@/utils';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...mainRoutes, ...authRoutes],
+  routes: [...mainRoutes, ...authRoutes] as RouteRecordRaw[],
 });
 
-router.beforeEach((to) => {
+router.beforeEach((to, from) => {
   if (hasToken()) {
     if (to.path === '/auth') {
       return { path: '/' };
@@ -21,6 +22,11 @@ router.beforeEach((to) => {
     if (to.meta.requireLogin) {
       return { path: '/' };
     }
+  }
+  if (!isDesktop.value) {
+    const toDepth = to.path.split('/').length;
+    const fromDepth = from.path.split('/').length;
+    to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left';
   }
 });
 

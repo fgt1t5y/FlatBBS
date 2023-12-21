@@ -1,4 +1,5 @@
 import type { MessageApiInjection } from 'naive-ui/es/message/src/MessageProvider';
+import 'vue-router';
 
 declare global {
   interface Window {
@@ -11,5 +12,11 @@ declare global {
       NOT_FOUND: 404;
       INTERNAL_ERROR: 500;
     };
+  }
+}
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    transition: string;
   }
 }
