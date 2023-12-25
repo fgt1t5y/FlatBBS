@@ -60,6 +60,7 @@ export interface RequestResult<T = any> {
 export interface Board {
   id: number;
   name: string;
+  slug: string;
   description?: string;
   avatar_uri: string;
   header_img_uri: string;

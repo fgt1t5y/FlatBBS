@@ -11,6 +11,7 @@ class TopicController
     public $topicBasicFields = [
         'id',
         'title',
+        'content',
         'author_id',
         'board_id',
         'reply_count',
@@ -29,11 +30,12 @@ class TopicController
         return ok($result);
     }
 
-    public function list(Request $request, int $bid)
+    public function list(Request $request, string $slug)
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $board = Board::find($bid);
+        $board = Board::where('slug', $slug)
+            ->first();
 
         if (!$board) {
             return no(STATUS_NOT_FOUND);

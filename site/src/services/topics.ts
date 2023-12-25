@@ -16,10 +16,10 @@ export const getAllTopics = (last: number, limit: number) => {
   return requester.post<RequestResult<Topic[]>>('/topic/all', form);
 };
 
-export const getTopicsByBoardId = (
+export const getTopicsByBoardSlug = (
   last: number,
   limit: number,
-  board_id: number,
+  board_slug: number,
 ) => {
   const form = genForm<CommonListForm>({
     last: last,
@@ -27,7 +27,7 @@ export const getTopicsByBoardId = (
   });
 
   return requester.post<RequestResult<Topic[]>>(
-    `/topic/list/${board_id}`,
+    `/topic/list/${board_slug}`,
     form,
   );
 };

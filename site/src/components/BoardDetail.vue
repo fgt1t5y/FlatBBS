@@ -46,21 +46,21 @@ defineOptions({
 })
 
 interface BoardDetailProps {
-  boardId: number
+  slug: string
 }
 
 const props = defineProps<BoardDetailProps>()
 const { isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
 
 watch(
-  () => props.boardId,
-  (board_id) => {
-    if (!board_id) return
-    fetch(board_id)
+  () => props.slug,
+  (value) => {
+    if (!value) return
+    fetch(value)
   },
 )
 
 onMounted(() => {
-  fetch(props.boardId)
+  fetch(props.slug)
 })
 </script>

@@ -18,7 +18,7 @@ export const mainRoutes = [
         },
       },
       {
-        path: 'board/:board_id(\\d+)/:name',
+        path: 'board/:slug',
         name: 'board_page',
         component: BoardView,
       },

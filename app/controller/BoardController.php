@@ -7,7 +7,7 @@ use support\Request;
 
 class BoardController
 {
-    public $boardBasicFields = ['id', 'name', 'slug', 'color'];
+    public $boardBasicFields = ['id', 'name', 'slug', 'slug', 'color'];
     public $boardFields = [
         'id',
         'name',
@@ -19,14 +19,16 @@ class BoardController
 
     public function all(Request $request)
     {
-        $result = Board::orderByDesc('id')->get($this->boardBasicFields);
+        $result = Board::orderByDesc('id')
+            ->get($this->boardBasicFields);
 
         return ok($result);
     }
 
-    public function info(Request $request, string $bslug)
+    public function info(Request $request, string $slug)
     {
-        $result = Board::find($bslug, $this->boardFields);
+        $result = Board::where('slug', $slug)
+            ->first($this->boardFields);
 
         return $result ? ok($result) : no(STATUS_NOT_FOUND);
     }

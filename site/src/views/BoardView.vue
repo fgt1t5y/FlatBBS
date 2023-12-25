@@ -1,7 +1,7 @@
 <template>
   <MainContent>
     <PageTitle title="版块" />
-    <BoardDetail :board-id="currentBoardId" />
+    <BoardDetail :slug="currentSlug" />
     <TopicList :topics="data" />
     <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
     <RequestPlaceholder
@@ -22,31 +22,31 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useFetchList, useTitle } from '@/utils'
-import { getTopicsByBoardId } from '@/services'
+import { getTopicsByBoardSlug } from '@/services'
 import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
 
 const route = useRoute()
 const { setTitle } = useTitle('版块')
-const currentBoardId = computed(() => {
-  const boardId = Number(route.params.board_id ?? '0')
-  if (boardId !== 0) {
-    setTitle(route.params.name as string)
-  }
+const currentSlug = computed(() => {
+  const boardId = route.params.slug as string
+  // if (boardId !== 0) {
+  //   setTitle(route.params.name as string)
+  // }
 
   return boardId
 })
-let lastBoardId = currentBoardId.value
+let lastSlug = currentSlug.value
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
-  getTopicsByBoardId,
-  currentBoardId,
+  getTopicsByBoardSlug,
+  currentSlug,
 )
 
 watch(
-  () => currentBoardId.value,
+  () => currentSlug.value,
   (to) => {
-    if (!to || to === lastBoardId) return
-    lastBoardId = to
+    if (!to || to === lastSlug) return
+    lastSlug = to
     fetch(true)
   },
 )

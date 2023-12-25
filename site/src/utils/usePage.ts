@@ -1,14 +1,9 @@
 import router from '@/router';
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 
 export const usePage = () => {
-  const route = useRoute();
   const path = computed(() => {
     return router.currentRoute.value.fullPath;
-  });
-  const boardId = computed(() => {
-    return route.params.board_id ?? '0';
   });
   const go = (path: string, replace?: boolean) => {
     if (replace) {
@@ -29,5 +24,5 @@ export const usePage = () => {
     router.back();
   };
 
-  return { back, go, goHome, path, boardId };
+  return { back, go, goHome, path };
 };

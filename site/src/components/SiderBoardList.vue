@@ -3,7 +3,7 @@
     <RouterLink
       v-for="i in data"
       :key="i.id"
-      :to="idToUri(i.id, i.name)"
+      :to="`/board/${i.slug}`"
       class="sider-link link"
     >
       <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
@@ -29,8 +29,6 @@ import { useFetchList } from '@/utils'
 defineOptions({
   name: 'SiderBoardList',
 })
-
-const idToUri = (id: number, name: string) => `/board/${id}/${name}`
 
 const { isFailed, isLoading, data, fetch } = useFetchList<Board>(getBoards)
 

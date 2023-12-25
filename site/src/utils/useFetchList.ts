@@ -14,7 +14,7 @@ const defaultOptions: FetchDataOptions = {
 
 export const useFetchList = <T>(
   fetcher: (...arg: any[]) => Promise<AxiosResponse>,
-  unit_id?: MaybeRef<number>,
+  unit_id?: MaybeRef<number | string>,
   options?: FetchDataOptions,
 ) => {
   type hasID = T & { id: number };

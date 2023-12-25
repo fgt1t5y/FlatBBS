@@ -18,14 +18,14 @@ Route::group('/board', function () {
     // 获取论坛所有的版块
     Route::post('/all', [app\controller\BoardController::class, 'all']);
     // 通过 BoardID 获取指定版块的信息
-    Route::post('/info/{bid:\d+}', [app\controller\BoardController::class, 'info']);
+    Route::post('/info/{slug}', [app\controller\BoardController::class, 'info']);
 });
 
 Route::group('/topic', function () {
     // 获取所有话题
     Route::post('/all', [app\controller\TopicController::class, 'all']);
     // 通过 BoardID 获取指定版块下的话题
-    Route::post('/list/{bid:\d+}', [app\controller\TopicController::class, 'list']);
+    Route::post('/list/{slug}', [app\controller\TopicController::class, 'list']);
 });
 
 Route::group('/discussion', function () {
