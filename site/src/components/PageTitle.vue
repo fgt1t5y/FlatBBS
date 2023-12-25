@@ -28,7 +28,7 @@
 import '@/style/PageTitle.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { NButton, NText } from 'naive-ui'
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
 import { usePage } from '@/utils/usePage'
 
 defineOptions({
@@ -47,15 +47,5 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
   showBack: true,
 })
 const page = usePage()
-const currentFullPath = ref<string>(page.path.value)
-const showBackButton = computed(
-  () => props.showBack && currentFullPath.value !== '/',
-)
-
-watch(
-  () => page.path.value,
-  (v) => {
-    currentFullPath.value = v
-  },
-)
+const showBackButton = computed(() => props.showBack && page.path.value !== '/')
 </script>
