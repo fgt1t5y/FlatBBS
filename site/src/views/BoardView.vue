@@ -28,14 +28,7 @@ import BoardDetail from '@/components/BoardDetail.vue'
 
 const route = useRoute()
 const { setTitle } = useTitle('版块')
-const currentSlug = computed(() => {
-  const boardId = route.params.slug as string
-  // if (boardId !== 0) {
-  //   setTitle(route.params.name as string)
-  // }
-
-  return boardId
-})
+const currentSlug = computed(() => route.params.slug as string)
 let lastSlug = currentSlug.value
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
   getTopicsByBoardSlug,

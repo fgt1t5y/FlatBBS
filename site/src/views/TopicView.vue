@@ -21,10 +21,20 @@ import { useRoute } from 'vue-router'
 import DiscussionList from '@/components/DiscussionList.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const route = useRoute()
 const currentTopicId = computed(() => Number(route.params.topic_id ?? '0'))
+let lastTopicId = currentTopicId.value
 const { isLoading, isFailed, data, noMore, fetch, next } =
-  useFetchList<Discussion>(getDiscussions, currentTopicId.value)
+  useFetchList<Discussion>(getDiscussions, currentTopicId)
+
+watch(
+  () => currentTopicId.value,
+  (to) => {
+    if (!to || to === lastTopicId) return
+    lastTopicId = to
+    fetch(true)
+  },
+)
 </script>
