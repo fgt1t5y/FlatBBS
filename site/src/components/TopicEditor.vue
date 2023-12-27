@@ -10,17 +10,13 @@
       v-model:value="draft.content"
       placeholder="在此输入话题正文"
     />
-    <div class="topic-editor-tool">
-      <NButton type="primary" :disabled="isLoading" round @click="submit">
-        发布
-      </NButton>
-    </div>
+    <div class="topic-editor-tool"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import '@/style/TopicEditor.css'
-import { NButton, NInput } from 'naive-ui'
+import { NInput } from 'naive-ui'
 import ContentEditor from './ContentEditor.vue'
 import { useTopic } from '@/utils/useTopic'
 
