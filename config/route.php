@@ -14,6 +14,10 @@
 
 use Webman\Route;
 
+Route::fallback(function () {
+    return ok();
+});
+
 Route::group('/board', function () {
     // 获取论坛所有的版块
     Route::post('/all', [app\controller\BoardController::class, 'all']);
