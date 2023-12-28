@@ -34,13 +34,13 @@
 
 @media (width <= 810px) {
   .grid-main {
-    overflow-x: hidden;
     flex-grow: unset;
     position: absolute;
     top: 0px;
     left: 0px;
     width: 100vw;
-    background-color: inherit;
+    min-height: 100vh;
+    background-color: var(--color-bg);
   }
 
   .grid-main-content {

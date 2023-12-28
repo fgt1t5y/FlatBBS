@@ -4,6 +4,7 @@ body {
   --theme-color: #18a058;
   --color-border: rgb(var(--gray-3));
   --color-bg-popup: var(--color-bg-5);
+  --color-bg: #fff;
   --color-bg-1: #fff;
   --color-bg-2: #fff;
   --color-bg-3: #fff;
@@ -41,6 +42,7 @@ body {
 body[flat-theme='dark'] {
   --theme-color: #63e2b7;
   --color-border: #333335;
+  --color-bg: #101014ff;
   --color-bg-1: #18181c;
   --color-bg-2: #232324;
   --color-bg-3: #2a2a2b;

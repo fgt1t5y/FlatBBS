@@ -64,7 +64,7 @@
     </template>
     <template #content>
       <RouterView v-slot="{ Component }">
-        <Transition :name="route.meta.transition" :css="false">
+        <Transition :name="route.meta.transition" :css="!isDesktop">
           <KeepAlive :max="10">
             <component :is="Component" />
           </KeepAlive>
