@@ -21,13 +21,13 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { useFetchList, useTitle } from '@/utils'
+import { useFetchList } from '@/utils'
 import { getTopicsByBoardSlug } from '@/services'
 import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
 
 const route = useRoute()
-const { setTitle } = useTitle('版块')
+
 const currentSlug = computed(() => route.params.slug as string)
 let lastSlug = currentSlug.value
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(

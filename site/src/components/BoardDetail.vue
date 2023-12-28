@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFetchData, getAvatarPath } from '@/utils'
+import { useFetchData, getAvatarPath, useTitle } from '@/utils'
 import { getBoardInfo } from '@/services'
 import { onMounted, watch } from 'vue'
 import type { Board } from '@/types'
@@ -50,6 +50,7 @@ interface BoardDetailProps {
 }
 
 const props = defineProps<BoardDetailProps>()
+const { setTitle } = useTitle('版块')
 const { isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
 
 watch(
@@ -57,6 +58,15 @@ watch(
   (value) => {
     if (!value) return
     fetch(value)
+  },
+)
+
+watch(
+  () => isSuccess.value,
+  (value) => {
+    if (value) {
+      setTitle(data.value?.name)
+    }
   },
 )
 
