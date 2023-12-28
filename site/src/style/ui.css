@@ -149,11 +149,10 @@ textarea {
 
 .slide-right-enter-from {
   transform: translateX(-50%);
-  /* opacity: 0; */
 }
 
 .slide-right-leave-to {
-  z-index: 100;
+  z-index: 999;
   transform: translateX(100%);
 }
 
@@ -162,14 +161,13 @@ textarea {
 }
 
 .slide-left-enter-from {
-  z-index: 100;
+  z-index: 999;
   transform: translateX(100%);
   box-shadow: -20px 0 20px 0px rgba(0, 0, 0, 0.1);
 }
 
 .slide-left-leave-to {
   transform: translateX(-50%);
-  /* opacity: 0; */
 }
 
 @media (width <= 810px) {
