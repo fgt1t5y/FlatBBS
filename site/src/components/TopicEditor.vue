@@ -2,7 +2,11 @@
   <div class="topic-editor">
     <NInput
       v-model:value="draft.title"
+      type="textarea"
+      size="large"
+      :autosize="{ minRows: 1, maxRows: 2 }"
       :maxlength="64"
+      :allow-input="trimChangeRow"
       placeholder="话题标题..."
       show-count
     />
@@ -24,5 +28,6 @@ defineOptions({
   name: 'TopicEditor',
 })
 
+const trimChangeRow = (value: string) => !value.includes('\n')
 const { draft, submit, isLoading } = useTopic()
 </script>
