@@ -6,7 +6,7 @@
       <RelativeTime :time="topic.created_at" />
     </div>
     <div class="topic-title">
-      <RouterLink :to="idToUri(topic.id)" :title="topic.title">
+      <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
         {{ topic.title }}
       </RouterLink>
     </div>
@@ -42,5 +42,4 @@ interface TopicListItemProps {
 }
 
 const props = defineProps<TopicListItemProps>()
-const idToUri = (id: number) => `/topic/${id}`
 </script>
