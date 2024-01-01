@@ -43,5 +43,4 @@ interface TopicListItemProps {
 
 const props = defineProps<TopicListItemProps>()
 const idToUri = (id: number) => `/topic/${id}`
-const boardIdToUri = (id: number, name: string) => `/board/${id}/${name}`
 </script>
