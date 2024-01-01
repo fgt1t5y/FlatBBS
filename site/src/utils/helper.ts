@@ -1,4 +1,3 @@
-import { config } from '@/global';
 import { useBreakpoints } from '@vueuse/core';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
@@ -41,10 +40,6 @@ export const genForm = <T>(data: T) => {
 
 export const blobToFile = (blob: Blob, fileName: string) => {
   return new File([blob], fileName, { type: blob.type });
-};
-
-export const getAvatarPath = (avatar_file: string) => {
-  return `${config.api_base}/usercontent/${avatar_file}`;
 };
 
 export const fromNow = (datetime: string) => {
