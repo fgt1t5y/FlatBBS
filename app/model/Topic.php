@@ -15,7 +15,7 @@ class Topic extends Model
     ];
     protected $with = [
         'author:id,display_name,avatar_uri',
-        'board:id,name,color',
+        'board:id,name,color,slug',
     ];
     protected $fillable = ['author_id', 'title', 'last_reply_at'];
 

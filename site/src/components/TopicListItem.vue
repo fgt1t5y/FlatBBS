@@ -12,7 +12,7 @@
     </div>
     <div class="topic-footer">
       <NButton secondary round size="small" title="前往话题所属版块">
-        <RouterLink :to="boardIdToUri(topic.board.id, topic.board.name)">
+        <RouterLink :to="`/board/${topic.board.slug}`">
           {{ topic.board.name }}
         </RouterLink>
       </NButton>
