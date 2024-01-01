@@ -1,7 +1,7 @@
 <template>
   <div v-if="isSuccess" class="board-detail">
     <div class="board-detail-header">
-      <NImage :src="getAvatarPath(data?.header_img_uri!)" />
+      <NImage :src="data?.header_img_uri" />
     </div>
     <div class="board-detail-main chunk">
       <div class="board-detail-intro">
@@ -9,7 +9,7 @@
           class="board-avatar"
           round
           size="large"
-          :src="getAvatarPath(data?.avatar_uri!)"
+          :src="data?.avatar_uri"
         />
         <div class="board-detail-opt">
           <NButton circle secondary>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFetchData, getAvatarPath, useTitle } from '@/utils'
+import { useFetchData, useTitle } from '@/utils'
 import { getBoardInfo } from '@/services'
 import { onMounted, watch } from 'vue'
 import type { Board } from '@/types'
