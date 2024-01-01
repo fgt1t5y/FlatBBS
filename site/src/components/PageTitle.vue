@@ -2,7 +2,7 @@
   <div class="page-title" :title="title">
     <div class="page-title-main">
       <NButton
-        v-show="showBackButton && showBack"
+        v-show="showBackButton"
         class="page-title-back"
         circle
         quaternary
@@ -29,7 +29,8 @@ import '@/style/PageTitle.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { NButton, NText } from 'naive-ui'
 import { computed } from 'vue'
-import { usePage } from '@/utils/usePage'
+import { useRoute } from 'vue-router'
+import { usePage } from '@/utils'
 
 defineOptions({
   name: 'PageTitle',
@@ -47,5 +48,6 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
   showBack: true,
 })
 const page = usePage()
-const showBackButton = computed(() => props.showBack && page.path.value !== '/')
+const route = useRoute()
+const showBackButton = computed(() => props.showBack && route.fullPath !== '/')
 </script>

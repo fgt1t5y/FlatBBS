@@ -1,10 +1,6 @@
 import router from '@/router';
-import { computed } from 'vue';
 
 export const usePage = () => {
-  const path = computed(() => {
-    return router.currentRoute.value.fullPath;
-  });
   const go = (path: string, replace?: boolean) => {
     if (replace) {
       router.replace({ path: path });
@@ -24,5 +20,5 @@ export const usePage = () => {
     router.back();
   };
 
-  return { back, go, goHome, path };
+  return { back, go, goHome };
 };
