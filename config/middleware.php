@@ -15,7 +15,7 @@
 
 return [
   '' => [
-    app\middleware\Access::class,
+    // app\middleware\Access::class,
     app\middleware\Auth::class
   ]
 ];

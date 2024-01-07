@@ -11,7 +11,6 @@ class TopicController
     public $topicBasicFields = [
         'id',
         'title',
-        'content',
         'author_id',
         'board_id',
         'reply_count',

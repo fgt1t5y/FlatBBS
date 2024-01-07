@@ -38,7 +38,7 @@ function _json(mixed $kvs): Response
 
 function ok(mixed $data = null, mixed $context = null): Response
 {
-    return _json(['code' => STATUS_OK, 'data' => $data, 'context' => $context]);
+    return _json(['code' => STATUS_OK, 'data' => $data]);
 }
 
 function no(int $code, string $message = ''): Response

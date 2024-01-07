@@ -4,12 +4,10 @@ import { isRef, ref, type MaybeRef } from 'vue';
 
 interface FetchDataOptions {
   limit: number;
-  autoFetch: boolean;
 }
 
 const defaultOptions: FetchDataOptions = {
   limit: 10,
-  autoFetch: false,
 };
 
 export const useFetchList = <T>(
@@ -24,17 +22,15 @@ export const useFetchList = <T>(
   const isSuccess = ref<boolean>(false);
   const isFailed = ref<boolean>(false);
   const data = ref<hasID[]>([]);
-  let _successCount = 0;
-  let _lastId = 0;
-  let _lastIndex = 0;
+  let _lastItemId = 0;
   const fetch = (clear: boolean = false) => {
     const id = isRef(unit_id) ? unit_id.value : unit_id;
     if (isLoading.value) return;
     isLoading.value = true;
     isSuccess.value = false;
     isFailed.value = false;
-    clear && restore();
-    fetcher(_lastId, limit, id)
+    clear && _restore();
+    fetcher(_lastItemId, limit, id)
       .then((res) => {
         const result = res.data as RequestResult<T[]>;
         if (result.code > window.$code.OK) {
@@ -42,12 +38,9 @@ export const useFetchList = <T>(
           return;
         }
         isSuccess.value = true;
-        _successCount += 1;
         if (result.data!.length < limit) noMore.value = true;
-        data.value.push(...res.data.data!);
-
-        _lastId = data.value[data.value.length - 1].id;
-        _lastIndex = data.value.length;
+        data.value.push(...(result.data as any));
+        _lastItemId = data.value[data.value.length - 1].id;
       })
       .catch(() => {
         isFailed.value = true;
@@ -60,10 +53,9 @@ export const useFetchList = <T>(
     if (noMore.value) return;
     fetch();
   };
-  const restore = () => {
+  const _restore = () => {
     data.value = [];
-    _lastId = 0;
-    _successCount = 0;
+    _lastItemId = 0;
     noMore.value = false;
     isSuccess.value = false;
     isFailed.value = false;
@@ -77,6 +69,5 @@ export const useFetchList = <T>(
     data,
     fetch,
     next,
-    restore,
   };
 };

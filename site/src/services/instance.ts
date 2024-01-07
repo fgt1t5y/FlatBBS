@@ -28,9 +28,6 @@ requester.interceptors.request.use(
 
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
-    if (typeof res.data.code !== 'number') {
-      complainError('服务器内部错误');
-    }
     if (res.data.code > window.$code.OK) {
       if (res.data.code === window.$code.UNAUTHORIZED) {
         router.replace({
@@ -39,7 +36,6 @@ requester.interceptors.response.use(
         });
       }
       if (res.data.code === window.$code.NOT_FOUND) {
-        console.log(1);
         router.replace({
           name: 'not_found_page',
         });

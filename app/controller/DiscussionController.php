@@ -9,6 +9,7 @@ class DiscussionController
 {
     public $discussionBasicFields = [
         'id',
+        'topic_id',
         'author_id',
         'content',
         'created_at'
@@ -18,7 +19,7 @@ class DiscussionController
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $topic = Topic::find($tid, ['title', 'id']);
+        $topic = Topic::find($tid);
 
         if (!$topic) {
             return no(STATUS_NOT_FOUND);
@@ -31,6 +32,6 @@ class DiscussionController
             ->orderBy('created_at')
             ->get($this->discussionBasicFields);
 
-        return ok($result, $topic);
+        return ok($result);
     }
 }
