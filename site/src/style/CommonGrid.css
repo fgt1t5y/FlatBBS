@@ -34,7 +34,6 @@
 
 @media (width <= 810px) {
   .grid-main {
-    flex-grow: unset;
     position: absolute;
     top: 0px;
     left: 0px;

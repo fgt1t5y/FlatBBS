@@ -23,15 +23,12 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  height: 52px;
+  justify-content: center;
 
   .page-title-title {
-    font-size: 18px;
     font-weight: bolder;
+    font-size: 18px;
+    line-height: normal;
   }
-}
-
-.page-title-title {
-  font-size: 18px;
-  font-weight: bolder;
-  line-height: normal;
 }
