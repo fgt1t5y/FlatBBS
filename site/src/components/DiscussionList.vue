@@ -2,7 +2,7 @@
   <div class="discussion-list">
     <div
       v-for="(item, index) in discussions"
-      class="discussion-list-item chunk"
+      class="discussion-list-item list"
     >
       <div class="discussion-avatar">
         <NAvatar :size="40" :src="item.author.avatar_uri" round />

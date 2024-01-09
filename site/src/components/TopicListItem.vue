@@ -1,5 +1,5 @@
 <template>
-  <div class="topic-list-item chunk">
+  <div class="topic-list-item list">
     <div class="topic-header">
       <NAvatar :src="topic.author.avatar_uri" :size="20" round />
       <NText>{{ topic.author.display_name }}</NText>

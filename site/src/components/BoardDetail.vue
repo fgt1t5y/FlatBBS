@@ -3,7 +3,7 @@
     <div class="board-detail-header">
       <NImage :src="data?.header_img_uri" />
     </div>
-    <div class="board-detail-main chunk">
+    <div class="board-detail-main list">
       <div class="board-detail-intro">
         <NAvatar
           class="board-avatar"
