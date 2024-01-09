@@ -82,10 +82,4 @@ class User extends Model
 
         return true;
     }
-
-    public function setAvatarUriAttribute($value)
-    {
-        var_dump($value);
-        return $value;
-    }
 }
