@@ -33,7 +33,9 @@ const initToolbar = (editor: IDomEditor) => {
     editor: editor,
     selector: toolbarTargetRef.value,
     mode: props.mode,
-    config: {},
+    config: {
+      toolbarKeys: ['headerSelect', 'bold', 'italic', 'underline', 'blockquote'],
+    },
   })
 }
 

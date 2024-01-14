@@ -22,6 +22,7 @@ interface EditorProps {
   defaultHTML?: string
   defaultConfig?: IEditorConfig
   modelValue?: string
+  placeholder?: string
 }
 
 const props = withDefaults(defineProps<EditorProps>(), {
@@ -30,6 +31,7 @@ const props = withDefaults(defineProps<EditorProps>(), {
   defaultHTML: '',
   defaultConfig: {} as any,
   modelValue: '',
+  placeholder: '点击输入...',
 })
 const emits = defineEmits<{
   (e: 'created', ins: IDomEditor): void
@@ -54,6 +56,7 @@ const initEditor = () => {
     content: defaultContent ?? [],
     html: props.defaultHTML || props.modelValue,
     config: {
+      placeholder: props.placeholder,
       maxLength: 12000,
       onCreated(editor) {
         editorRef.value = editor
@@ -100,9 +103,4 @@ watch(
     setEditorHTML(newValue)
   },
 )
-
-defineExpose({
-  editorRef,
-  setEditorHTML
-})
 </script>

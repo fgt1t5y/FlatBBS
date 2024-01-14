@@ -24,9 +24,10 @@ export default defineConfig({
   },
   server: {
     port: 3901,
+    // 开发用反向代理
     proxy: {
       '/backend': {
-        target: 'http://192.168.1.108:3900',
+        target: 'http://192.168.0.59:3900',
         changeOrigin: true,
         rewrite: (path: string) => path.replace(config.api_base, ''),
       },

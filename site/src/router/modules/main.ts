@@ -23,6 +23,11 @@ export const mainRoutes = [
         component: BoardView,
       },
       {
+        path: 'board/:slug/publish',
+        name: 'board_publish_page',
+        component: () => import('@/views/BoardPublishView.vue'),
+      },
+      {
         path: 'topic/:topic_id(\\d+)',
         name: 'topic_detail_page',
         component: () => import('@/views/TopicView.vue'),
