@@ -10,6 +10,16 @@
       :no-more="noMore"
       @retry="fetch"
     />
+    <template #panels>
+      <RouterLink :to="`/board/${currentSlug}/publish`">
+        <NButton type="primary" round block>
+          <template #icon>
+            <PenIcon size="20px" />
+          </template>
+          发布话题
+        </NButton>
+      </RouterLink>
+    </template>
   </MainContent>
 </template>
 
@@ -25,6 +35,8 @@ import { useFetchList } from '@/utils'
 import { getTopicsByBoardSlug } from '@/services'
 import type { Topic } from '@/types'
 import BoardDetail from '@/components/BoardDetail.vue'
+import { NButton } from 'naive-ui'
+import { PenIcon } from 'tdesign-icons-vue-next'
 
 const route = useRoute()
 

@@ -23,6 +23,16 @@
       :no-more="noMore"
       @retry="fetch"
     />
+    <template #panels>
+      <RouterLink to="/publish">
+          <NButton type="primary" round block>
+            <template #icon>
+              <PenIcon size="20px" />
+            </template>
+            发布话题
+          </NButton>
+        </RouterLink>
+    </template>
   </MainContent>
 </template>
 
@@ -36,7 +46,7 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { useFetchList } from '@/utils'
 import { getAllTopics } from '@/services'
 import type { Topic } from '@/types'
-import { SearchIcon } from 'tdesign-icons-vue-next'
+import { SearchIcon, PenIcon } from 'tdesign-icons-vue-next'
 import router from '@/router'
 
 const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(

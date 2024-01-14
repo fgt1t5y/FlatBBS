@@ -14,10 +14,6 @@
           <BookmarkIcon size="20px" />
           <span>书签</span>
         </RouterLink>
-        <RouterLink to="/publish" class="sider-link link">
-          <AddIcon size="20px" />
-          <span>发布</span>
-        </RouterLink>
         <div v-if="user.isLogin">
           <RouterLink to="/auth" class="sider-link link">
             <NAvatar :size="20" :src="user.info?.avatar_uri" round />
@@ -86,7 +82,6 @@ import { NText, useMessage, NBackTop, NButton, NAvatar, NTag } from 'naive-ui'
 import {
   HomeIcon,
   BookmarkIcon,
-  AddIcon,
   LoginIcon,
   ChevronUpIcon,
   ChevronDownIcon,
