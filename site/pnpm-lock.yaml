@@ -14,9 +14,6 @@ dependencies:
   '@wangeditor/editor':
     specifier: ^5.1.23
     version: 5.1.23
-  '@wangeditor/editor-for-vue':
-    specifier: ^5.1.12
-    version: 5.1.12(@wangeditor/editor@5.1.23)(vue@3.4.3)
   axios:
     specifier: ^1.5.0
     version: 1.5.0
@@ -1094,16 +1091,6 @@ packages:
       slate: 0.72.8
       slate-history: 0.66.0(slate@0.72.8)
       snabbdom: 3.5.1
-    dev: false
-
-  /@wangeditor/editor-for-vue@5.1.12(@wangeditor/editor@5.1.23)(vue@3.4.3):
-    resolution: {integrity: sha512-0Ds3D8I+xnpNWezAeO7HmPRgTfUxHLMd9JKcIw+QzvSmhC5xUHbpCcLU+KLmeBKTR/zffnS5GQo6qi3GhTMJWQ==}
-    peerDependencies:
-      '@wangeditor/editor': '>=5.1.0'
-      vue: ^3.0.5
-    dependencies:
-      '@wangeditor/editor': 5.1.23
-      vue: 3.4.3(typescript@5.2.2)
     dev: false
 
   /@wangeditor/editor@5.1.23:
