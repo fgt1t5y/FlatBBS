@@ -26,7 +26,7 @@ interface EditorProps {
 }
 
 const props = withDefaults(defineProps<EditorProps>(), {
-  mode: 'default',
+  mode: 'simple',
   defaultContent: () => [],
   defaultHTML: '',
   defaultConfig: {} as any,
