@@ -62,7 +62,7 @@ export const mainRoutes = [
         },
       },
       {
-        path: 'people',
+        path: 'people/:username',
         name: 'user_space_page',
         component: () => import('@/views/UserSpaceView.vue'),
         meta: {

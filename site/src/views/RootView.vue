@@ -15,7 +15,10 @@
           <span>书签</span>
         </RouterLink>
         <div v-if="user.isLogin">
-          <RouterLink to="/auth" class="sider-link link">
+          <RouterLink
+            :to="`/people/${user.info?.username}`"
+            class="sider-link link"
+          >
             <NAvatar :size="20" :src="user.info?.avatar_uri" round />
             <span>我的空间</span>
           </RouterLink>
