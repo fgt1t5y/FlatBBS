@@ -78,15 +78,3 @@ function config_with(string $key, mixed $suffix)
 {
     return config($key) . $suffix;
 }
-
-function search(string $keyword, string $model, string $by, array $columns)
-{
-    if ($keyword == '' || $columns == [])
-        return null;
-    try {
-        return $model::whereRaw("MATCH(`$by`) AGAINST(?)", [$keyword])->get($columns);
-    } catch (PDOException $e) {
-        Log::channel('app.search')->error($e->getMessage());
-        return null;
-    }
-}

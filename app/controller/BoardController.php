@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\model\Board;
 use support\Request;
+use app\service\Search;
 
 class BoardController
 {
@@ -36,8 +37,7 @@ class BoardController
     public function search(Request $request)
     {
         $keyword = $request->post('q');
-        $boards = search($keyword, Board::class, 'name', $this->boardFields);
 
-        return ok($boards);
+        return ok(Search::board($keyword, $this->boardFields));
     }
 }

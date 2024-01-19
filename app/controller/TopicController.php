@@ -5,6 +5,7 @@ namespace app\controller;
 use app\model\Board;
 use app\model\Topic;
 use support\Request;
+use app\service\Search;
 
 class TopicController
 {
@@ -77,8 +78,7 @@ class TopicController
     public function search(Request $request)
     {
         $keyword = $request->post('q');
-        $topics = search($keyword, Topic::class, 'title', $this->topicBasicFields);
 
-        return ok($topics);
+        return ok(Search::topic($keyword, $this->topicBasicFields));
     }
 }
