@@ -160,7 +160,7 @@ const uploadAvatar = () => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
       uploadAsAvatar(file).then((res) => {
-        if (res.status > window.$code.OK) return
+        if (res.data.code > window.$code.OK) return
         window.$message.success(
           '头像已上传。因为缓存的存在，生效时间可能延后。',
         )

@@ -60,7 +60,7 @@ const onConfirm = () => {
     return
   }
   modifyUserInfo(props.field, valueNow.value).then((res) => {
-    if (res.status > window.$code.OK) return
+    if (res.data.code > window.$code.OK) return
     message.success('信息已更新。')
     isEditing.value = false
   })

@@ -17,7 +17,7 @@ export const useTopic = (callback?: (data: Topic) => any) => {
     isLoading.value = true;
     createTopic(draft.title, draft.content ?? '无正文', draft.board_id)
       .then((res) => {
-        if (res.status > window.$code.OK) return;
+        if (res.data.code > 0) return;
         result.value = res.data.data;
         if (result.value) {
           callback && callback(result.value);
