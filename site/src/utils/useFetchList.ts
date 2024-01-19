@@ -33,7 +33,8 @@ export const useFetchList = <T>(
     fetcher(_lastItemId, limit, id)
       .then((res) => {
         const result = res.data as RequestResult<T[]>;
-        if (result.code > window.$code.OK) {
+        if (res.status > window.$code.OK) {
+          console.log(res.status);
           isFailed.value = true;
           return;
         }

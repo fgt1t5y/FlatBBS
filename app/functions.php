@@ -27,10 +27,10 @@ function all(array $value)
     return true;
 }
 
-function _json(mixed $kvs): Response
+function _json(int $status, mixed $kvs): Response
 {
     return new Response(
-        200,
+        $status,
         ['Content-Type' => 'application/json'],
         json_encode($kvs)
     );
@@ -38,12 +38,12 @@ function _json(mixed $kvs): Response
 
 function ok(mixed $data = null): Response
 {
-    return _json(['code' => STATUS_OK, 'data' => $data]);
+    return _json(200, ['data' => $data]);
 }
 
 function no(int $code, string $message = ''): Response
 {
-    return _json(['code' => $code, 'message' => $message]);
+    return _json($code, ['message' => $message]);
 }
 
 function random_string()

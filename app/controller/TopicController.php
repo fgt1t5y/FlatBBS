@@ -37,7 +37,7 @@ class TopicController
             ->first();
 
         if (!$board) {
-            return no(STATUS_NOT_FOUND);
+            return no(STATUS_NOT_FOUND, '没有这个版块。');
         }
 
         $result = $board

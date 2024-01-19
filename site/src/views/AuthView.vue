@@ -90,7 +90,7 @@ const actionLogin = () => {
   login(inputForm.email, inputForm.password)
     .then((res) => {
       isDealing.value = false
-      if (res.data.code > window.$code.OK) return
+      if (res.status > window.$code.OK) return
       user.fetch()
       router.replace({ path: (route.query.next as string) ?? '/' })
     })

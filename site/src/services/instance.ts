@@ -28,24 +28,23 @@ requester.interceptors.request.use(
 
 requester.interceptors.response.use(
   (res: AxiosResponse<RequestResult>) => {
-    if (res.data.code > window.$code.OK) {
-      if (res.data.code === window.$code.UNAUTHORIZED) {
-        router.replace({
-          path: '/auth',
-          query: { next: router.currentRoute.value.path },
-        });
-      }
-      if (res.data.code === window.$code.NOT_FOUND) {
-        router.replace({
-          name: 'not_found_page',
-        });
-      }
-      complainError(res.data.message);
-    }
     return res;
   },
   (error) => {
-    complainError('网络或服务器出现问题。');
+    const status = error.response.status;
+    if (status === window.$code.UNAUTHORIZED) {
+      router.replace({
+        path: '/auth',
+        query: { next: router.currentRoute.value.path },
+      });
+    }
+    if (status === window.$code.NOT_FOUND) {
+      router.replace({
+        name: 'not_found_page',
+      });
+    }
+    complainError(error.response.data.message);
+
     console.log(error);
     return Promise.reject(error);
   },

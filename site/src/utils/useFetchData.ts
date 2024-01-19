@@ -17,7 +17,7 @@ export const useFetchData = <T>(
     lastArgv = [...argv];
     fetcher(...argv)
       .then((res) => {
-        if (res.data.code > window.$code.OK) {
+        if (res.status > window.$code.OK) {
           isFailed.value = true;
           return;
         }
