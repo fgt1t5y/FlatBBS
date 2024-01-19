@@ -7,5 +7,4 @@
 <script setup lang="ts">
 import MainContentVue from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import '@/style/PageSection.css'
 </script>

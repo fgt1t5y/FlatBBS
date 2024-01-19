@@ -23,6 +23,14 @@ export const mainRoutes = [
         component: BoardView,
       },
       {
+        path: 'publish',
+        name: 'publish_page',
+        component: () => import('@/views/PublishView.vue'),
+        meta: {
+          title: '发布',
+        },
+      },
+      {
         path: 'board/:slug/publish',
         name: 'board_publish_page',
         component: () => import('@/views/BoardPublishView.vue'),
