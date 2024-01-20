@@ -42,6 +42,7 @@ textarea {
   max-width: var(--page-max-width);
   display: flex;
   gap: var(--gap);
+  min-height: 100vh;
 }
 
 .observe-target {
@@ -179,5 +180,6 @@ textarea {
 @media (width <= 810px) {
   #flatbbs {
     gap: unset;
+    min-height: unset;
   }
 }
