@@ -42,7 +42,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "jsdom": "^22.1.0",
     "lightningcss": "^1.22.1",
-    "naive-ui": "^2.35.0",
+    "naive-ui": "^2.37.3",
     "npm-run-all2": "^6.0.6",
     "prettier": "^3.0.3",
     "start-server-and-test": "^2.0.0",
