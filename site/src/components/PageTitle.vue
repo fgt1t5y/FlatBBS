@@ -1,17 +1,18 @@
 <template>
-  <div class="page-title" :title="title">
+  <div :class="pageTitleClass" :title="title">
     <div class="page-title-main">
       <NButton
-        v-show="showBackButton"
-        class="page-title-back"
+        v-if="showBackButton"
         circle
-        quaternary
+        :text-color="float ? '#000000' : ''"
+        :quaternary="!float"
+        :bordered="false"
         title="返回上一级页面或回到首页"
         @click="page.back"
       >
         <ArrowLeftIcon size="20px" />
       </NButton>
-      <div class="page-title-default">
+      <div v-if="!float" class="page-title-default">
         <slot>
           <div class="page-title-title">{{ title }}</div>
           <NText :depth="3">{{ subtitle }}</NText>
@@ -40,14 +41,22 @@ interface PageTitleProps {
   title: string
   subtitle?: string
   showBack?: boolean
+  float?: boolean
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '未命名页面',
   subtitle: '',
   showBack: true,
+  float: false,
 })
 const page = usePage()
 const route = useRoute()
 const showBackButton = computed(() => props.showBack && route.fullPath !== '/')
+const pageTitleClass = computed(() => {
+  return {
+    'page-title': true,
+    'page-title-float': props.float,
+  }
+})
 </script>

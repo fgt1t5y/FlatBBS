@@ -1,7 +1,6 @@
 .page-title {
   position: sticky;
   top: 0px;
-  padding: 0px var(--gap);
   height: 52px;
   background-color: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
@@ -17,6 +16,11 @@
   display: flex;
   flex-grow: 1;
   align-items: center;
+  margin-left: var(--gap);
+}
+
+.page-title-extra {
+  margin-right: var(--gap);
 }
 
 .page-title-default {
@@ -31,4 +35,12 @@
     font-size: 18px;
     line-height: normal;
   }
+}
+
+.page-title-float {
+  background-color: unset !important;
+  border-bottom: unset !important;
+  position: fixed;
+  width: 100%;
+  z-index: 0;
 }
