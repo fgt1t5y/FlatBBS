@@ -14,9 +14,3 @@ declare global {
     };
   }
 }
-
-declare module 'vue-router' {
-  interface RouteMeta {
-    transition: string;
-  }
-}
