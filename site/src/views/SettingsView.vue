@@ -92,23 +92,25 @@
       </SettingItem>
     </div>
   </MainContent>
-  <UserWindow
-    :visible="isShowCropper"
-    title="编辑头像"
-    @ok="uploadAvatar"
-    @cancle="closeAvatarCrop"
+  <NModal
+    v-model:show="isShowCropper"
+    display-directive="show"
+    style="width: 368px"
+    title="裁剪头像"
+    preset="card"
+    @before-leave="closeAvatarCrop"
   >
-    <div>
-      <Cropper
-        ref="cropper"
-        :height="320"
-        :width="320"
-        :image="avatarFile"
-        @load="showCropper"
-        @error="showCropperMessage"
-      />
-    </div>
-  </UserWindow>
+    <Cropper
+      ref="cropper"
+      :height="320"
+      :width="320"
+      :image="avatarFile"
+      @error="showCropperMessage"
+    />
+    <NSpace :vertical="true">
+      <NButton type="primary" block @click="uploadAvatar">确定</NButton>
+    </NSpace>
+  </NModal>
 </template>
 
 <script setup lang="ts">
@@ -119,10 +121,9 @@ import PageTitle from '@/components/PageTitle.vue'
 import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
-import { NAvatar, NButton, NH6, NSpace, NText } from 'naive-ui'
+import { NAvatar, NButton, NH6, NSpace, NText, NModal } from 'naive-ui'
 import { ref } from 'vue'
 import { uploadAsAvatar } from '@/services'
-import UserWindow from '@/components/UserWindow.vue'
 import '@/style/SettingsView.css'
 import {
   Brightness1Icon,
@@ -143,17 +144,16 @@ const openAvatarSelector = () => {
 const giveAvatarFile = () => {
   if (avatarInput.value?.files) {
     avatarFile.value = avatarInput.value!.files[0]
+    isShowCropper.value = true
   }
 }
-const showCropper = () => {
-  isShowCropper.value = true
-}
 const showCropperMessage = (content: string) => {
+  isShowCropper.value = false
   window.$message.error(content)
 }
 const closeAvatarCrop = () => {
-  isShowCropper.value = false
   cropper.value?.destoryCropper()
+  isShowCropper.value = false
 }
 const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {

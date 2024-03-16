@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { NText, NSlider, NSpace } from 'naive-ui'
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import '@/style/Cropper.css'
 
 defineOptions({
@@ -70,7 +70,7 @@ const scale = ref<number>(0.5)
 const displayScale = (n: number) => {
   return n.toFixed(2)
 }
-const hasFile = ref<boolean>(false)
+const hasFile = ref<boolean>(!!props.image)
 const imageException = ref<boolean>(false)
 const ratioException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
@@ -165,6 +165,7 @@ const mouseup = (ev: MouseEvent) => {
 }
 const destoryCropper = () => {
   URL.revokeObjectURL(imageURL.value)
+  console.log('de')
 }
 const getBlobAsync = (): Promise<Blob | null> => {
   return new Promise(function (resolve, reject) {
@@ -181,45 +182,55 @@ const getBlobAsync = (): Promise<Blob | null> => {
     )
   })
 }
+const updateImage = (file: File | undefined) => {
+  if (file) {
+    if (supportedType.indexOf(file.type) === -1) {
+      emits('error', '不支持的格式')
+      return
+    }
+    hasFile.value = true
+    imageURL.value = window.URL.createObjectURL(props.image!)
+  } else {
+    hasFile.value = false
+  }
+}
+const checkImage = () => {
+  if (
+    imageSrc.value!.width < props.width ||
+    imageSrc.value!.height < props.height
+  ) {
+    imageException.value = true
+    emits('error', `图像高宽至少为 ${props.height}x${props.width} px`)
+  } else {
+    imageException.value = false
+    initCanvas()
+    emits('load')
+  }
+}
+const dealOutsideMousedown = () => {
+  if (renderStatus.isDraging) {
+    renderStatus.isDraging = false
+    checkOverBorder()
+  }
+}
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
-  window.addEventListener('mouseup', () => {
-    if (renderStatus.isDraging) {
-      renderStatus.isDraging = false
-      checkOverBorder()
-    }
-  })
+  window.addEventListener('mouseup', dealOutsideMousedown)
   imageSrc.value!.addEventListener('error', () => {
     hasFile.value && emits('error', '无法加载此文件')
   })
-  imageSrc.value!.addEventListener('load', () => {
-    if (
-      imageSrc.value!.width < props.width ||
-      imageSrc.value!.height < props.height
-    ) {
-      emits('error', `图像高宽至少为 ${props.height}x${props.width} px`)
-      return
-    } else {
-      imageException.value = false
-      initCanvas()
-      emits('load')
-    }
-  })
+  imageSrc.value!.addEventListener('load', checkImage)
+  updateImage(props.image)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mouseup', dealOutsideMousedown)
 })
 
 watch(
   () => props.image,
-  (file) => {
-    if (file) {
-      if (supportedType.indexOf(file.type) === -1) {
-        emits('error', '不支持的格式')
-        return
-      }
-      hasFile.value = true
-      imageURL.value = window.URL.createObjectURL(props.image!)
-    }
-  },
+  (file) => updateImage(file),
 )
 
 defineExpose({
