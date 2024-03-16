@@ -4,15 +4,14 @@
       <NButton
         v-if="showBackButton"
         circle
-        :text-color="float ? '#000000' : ''"
+        :type="float ? 'primary' : 'default'"
         :quaternary="!float"
-        :bordered="false"
         title="返回上一级页面或回到首页"
         @click="page.back"
       >
         <ArrowLeftIcon size="20px" />
       </NButton>
-      <div v-if="!float" class="page-title-default">
+      <div class="page-title-default">
         <slot>
           <div class="page-title-title">{{ title }}</div>
           <NText :depth="3">{{ subtitle }}</NText>

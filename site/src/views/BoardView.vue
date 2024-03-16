@@ -1,6 +1,6 @@
 <template>
   <MainContent>
-    <PageTitle title="版块" float />
+    <PageTitle title="版块" />
     <BoardDetail :slug="currentSlug" />
     <TopicList :topics="data" />
     <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
