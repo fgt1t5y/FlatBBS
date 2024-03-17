@@ -94,7 +94,6 @@
   </MainContent>
   <NModal
     v-model:show="isShowCropper"
-    display-directive="show"
     style="width: 368px"
     title="裁剪头像"
     preset="card"
