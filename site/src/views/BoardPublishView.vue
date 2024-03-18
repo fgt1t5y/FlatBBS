@@ -1,6 +1,6 @@
 <template>
   <MainContent>
-    <PageTitle title="发布" subtitle="发布到 我的想法" />
+    <PageTitle title="发布" />
     <div>
       <EditorToolbar :editor="editorRef" />
       <Editor @created="onEditorCreated" />

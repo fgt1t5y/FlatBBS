@@ -14,7 +14,6 @@
       <div class="page-title-default">
         <slot>
           <div class="page-title-title">{{ title }}</div>
-          <NText :depth="3">{{ subtitle }}</NText>
         </slot>
       </div>
     </div>
@@ -27,7 +26,7 @@
 <script setup lang="ts">
 import '@/style/PageTitle.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
-import { NButton, NText } from 'naive-ui'
+import { NButton } from 'naive-ui'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePage } from '@/utils'
@@ -38,14 +37,12 @@ defineOptions({
 
 interface PageTitleProps {
   title: string
-  subtitle?: string
   showBack?: boolean
   float?: boolean
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '未命名页面',
-  subtitle: '',
   showBack: true,
   float: false,
 })

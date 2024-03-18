@@ -1,7 +1,7 @@
 .page-title {
   position: sticky;
   top: 0px;
-  height: 52px;
+  height: 48px;
   background-color: var(--color-bg-1);
   border-bottom: 1px solid var(--color-border);
   z-index: 50;
@@ -27,7 +27,6 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  height: 52px;
   justify-content: center;
 
   .page-title-title {
