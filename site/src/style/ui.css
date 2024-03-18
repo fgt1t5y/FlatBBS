@@ -9,6 +9,7 @@ a {
 }
 
 button {
+  font-family: inherit;
   border: none;
   color: currentColor;
   background-color: transparent;
