@@ -3,7 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import { ref, watch } from 'vue'
 
 defineOptions({
   name: 'IntersectionObserver',
@@ -20,25 +21,19 @@ const emits = defineEmits<{
   (e: 'reach'): void
 }>()
 const obTarget = ref<HTMLElement>()
-const observer = new IntersectionObserver(
-  (entries) => {
-    if (entries[0].isIntersecting) emits('reach')
+
+const { pause, resume } = useIntersectionObserver(
+  obTarget,
+  ([{ isIntersecting }]) => {
+    isIntersecting && emits('reach')
   },
-  { rootMargin: '40px' },
+  {
+    rootMargin: '40px',
+  },
 )
 
 watch(
   () => props.disabled,
-  (nv) => {
-    if (!nv) {
-      observer.observe(obTarget.value!)
-    } else {
-      observer.disconnect()
-    }
-  },
+  (value) => (value ? pause() : resume()),
 )
-
-onMounted(() => {
-  if (!props.disabled) observer.observe(obTarget.value!)
-})
 </script>
