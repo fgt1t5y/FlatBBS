@@ -55,6 +55,7 @@ const {
   {
     append: true,
     initialPageSize: 10,
+    watchingStates: [currentSlug],
   },
 )
 
@@ -70,6 +71,7 @@ watch(
   (to) => {
     if (!to || to === lastSlug) return
     lastSlug = to
+    lastItemId = 0
   },
 )
 </script>

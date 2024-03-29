@@ -40,6 +40,7 @@ const {
   {
     append: true,
     initialPageSize: 10,
+    watchingStates: [currentTopicId],
   },
 )
 
@@ -55,6 +56,7 @@ watch(
   (to) => {
     if (!to || to === lastTopicId) return
     lastTopicId = to
+    lastItemId = 0
   },
 )
 </script>
