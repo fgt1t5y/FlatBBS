@@ -24,7 +24,7 @@ import { usePagination } from '@alova/scene-vue'
 
 const route = useRoute()
 
-const currentTopicId = computed(() => Number(route.params.topic_id ?? '0'))
+const currentTopicId = computed(() => Number(route.params.topic_id))
 let lastTopicId = currentTopicId.value
 let lastItemId = 0
 
@@ -35,12 +35,12 @@ const {
   error,
   onSuccess,
   send,
+  reload,
 } = usePagination(
   (page, limit) => getDiscussions(lastItemId, limit, currentTopicId.value),
   {
     append: true,
     initialPageSize: 10,
-    watchingStates: [currentTopicId],
   },
 )
 
@@ -57,6 +57,7 @@ watch(
     if (!to || to === lastTopicId) return
     lastTopicId = to
     lastItemId = 0
+    reload()
   },
 )
 </script>

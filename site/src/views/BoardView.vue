@@ -50,12 +50,12 @@ const {
   error,
   onSuccess,
   send,
+  reload,
 } = usePagination(
   (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug.value),
   {
     append: true,
     initialPageSize: 10,
-    watchingStates: [currentSlug],
   },
 )
 
@@ -72,6 +72,7 @@ watch(
     if (!to || to === lastSlug) return
     lastSlug = to
     lastItemId = 0
+    reload()
   },
 )
 </script>
