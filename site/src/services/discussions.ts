@@ -1,19 +1,13 @@
-import type { CommonListForm, Discussion, RequestResult } from '@/types';
-import { requester } from './instance';
-import { genForm } from '@/utils';
+import type { Discussions } from '@/types';
+import { alovaInstance } from './instance';
 
 export const getDiscussions = (
   last: number,
   limit: number,
   topic_id: number,
 ) => {
-  const form = genForm<CommonListForm>({
-    last: last,
-    limit: limit,
+  return alovaInstance.Post<Discussions>(`/discussion/list/${topic_id}`, {
+    last,
+    limit,
   });
-
-  return requester.post<RequestResult<Discussion[]>>(
-    `/discussion/list/${topic_id}`,
-    form,
-  );
 };

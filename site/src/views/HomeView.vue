@@ -15,23 +15,23 @@
         </NButton>
       </template>
     </PageTitle>
-    <TopicList :topics="data" />
-    <IntersectionObserver :disabled="noMore || isFailed" @reach="next" />
+    <TopicList :topics="topics" />
+    <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder
-      :is-loading="isLoading"
-      :is-failed="isFailed"
-      :no-more="noMore"
-      @retry="fetch"
+      :is-loading="loading"
+      :is-failed="!!error"
+      :no-more="isLastPage"
+      @retry="send"
     />
     <template #panels>
       <RouterLink to="/publish">
-          <NButton type="primary" round block>
-            <template #icon>
-              <PenIcon size="20px" />
-            </template>
-            发布话题
-          </NButton>
-        </RouterLink>
+        <NButton type="primary" round block>
+          <template #icon>
+            <PenIcon size="20px" />
+          </template>
+          发布话题
+        </NButton>
+      </RouterLink>
     </template>
   </MainContent>
 </template>
@@ -43,14 +43,28 @@ import MainContent from '@/components/MainContent.vue'
 import { NButton, NText } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { useFetchList } from '@/utils'
 import { getAllTopics } from '@/services'
-import type { Topic } from '@/types'
 import { SearchIcon, PenIcon } from 'tdesign-icons-vue-next'
 import router from '@/router'
+import { usePagination } from '@alova/scene-vue'
 
-const { isLoading, isFailed, data, noMore, fetch, next } = useFetchList<Topic>(
-  getAllTopics,
-  0,
-)
+let lastItemId = 0
+const {
+  loading,
+  data: topics,
+  isLastPage,
+  error,
+  onSuccess,
+  send,
+} = usePagination((page, limit) => getAllTopics(lastItemId, limit), {
+  append: true,
+  initialPageSize: 10,
+})
+
+onSuccess(() => {
+  const items = topics.value
+  if (!items) return
+
+  lastItemId = items[items.length - 1].id
+})
 </script>

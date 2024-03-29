@@ -12,10 +12,11 @@
     "lint": "eslint --ext .tsx,.ts ./src"
   },
   "dependencies": {
+    "@alova/scene-vue": "^1.4.5",
     "@types/js-cookie": "^3.0.4",
     "@vueuse/core": "^10.5.0",
     "@wangeditor/editor": "^5.1.23",
-    "axios": "^1.5.0",
+    "alova": "^2.18.0",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5",
     "pinia": "^2.1.6",

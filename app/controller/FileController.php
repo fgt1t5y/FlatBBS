@@ -2,7 +2,6 @@
 
 namespace app\controller;
 
-use app\model\User;
 use Intervention\Image\Exception\ImageException;
 use support\Request;
 use Intervention\Image\ImageManagerStatic as image;
@@ -14,7 +13,6 @@ class FileController
     public function upload(Request $request)
     {
         $files = $request->file('avgfile');
-        $as = $request->post('as');
         $filepath = [];
         $filename = '';
 
@@ -42,20 +40,8 @@ class FileController
                 return no(STATUS_BAD_REQUEST);
             }
             array_push($filepath, $filename);
-
-            if ($as !== 'attachment') {
-                User::modifyUser(
-                    session('id'),
-                    'avatar_uri',
-                    $filename
-                );
-
-                break;
-            }
         }
 
-        return ok([
-            'uri' => count($filepath) > 1 ? $filepath : $filename
-        ]);
+        return ok(count($filepath) > 1 ? $filepath : $filename);
     }
 }

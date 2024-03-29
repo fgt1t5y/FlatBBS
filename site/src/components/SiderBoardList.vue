@@ -1,7 +1,10 @@
 <template>
-  <div class="board-list">
+  <div v-if="loading" class="row-center">
+    <NSpin :size="32" />
+  </div>
+  <div v-else class="board-list">
     <RouterLink
-      v-for="i in data"
+      v-for="i in data.data"
       :key="i.id"
       :to="`/board/${i.slug}`"
       class="sider-link link"
@@ -9,28 +12,18 @@
       <span class="board-dot" :style="{ backgroundColor: i.color }"></span>
       {{ i.name }}
     </RouterLink>
-    <div class="row-center">
-      <NSpin v-if="isLoading" :size="32" />
-      <NButton v-if="isFailed" type="primary" @click="fetch(false)">
-        重试
-      </NButton>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getBoards } from '@/services'
-import type { Board } from '@/types'
-import { onMounted } from 'vue'
 import '@/style/SiderBoardList.css'
-import { NSpin, NButton } from 'naive-ui'
-import { useFetchList } from '@/utils'
+import { NSpin } from 'naive-ui'
+import { useRequest } from 'alova'
 
 defineOptions({
   name: 'SiderBoardList',
 })
 
-const { isFailed, isLoading, data, fetch } = useFetchList<Board>(getBoards)
-
-onMounted(fetch)
+const { data, loading } = useRequest(getBoards)
 </script>

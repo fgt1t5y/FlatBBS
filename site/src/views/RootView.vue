@@ -55,10 +55,6 @@
             <span>注册 / 登录</span>
           </RouterLink>
         </div>
-        <NText depth="3" class="sider-group" title="论坛版块列表">
-          论坛版块
-        </NText>
-        <SiderBoardList />
       </div>
     </template>
     <template #content>
@@ -74,12 +70,11 @@
 </template>
 
 <script setup lang="ts">
-import SiderBoardList from '@/components/SiderBoardList.vue'
 import CommonGrid from '@/components/CommonGrid.vue'
 import SiteLogo from '@/components/SiteLogo.vue'
 import { isDesktop, isDev } from '@/utils'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import { NText, useMessage, NBackTop, NButton, NAvatar, NTag } from 'naive-ui'
+import { useMessage, NBackTop, NButton, NAvatar, NTag } from 'naive-ui'
 import {
   HomeIcon,
   BookmarkIcon,

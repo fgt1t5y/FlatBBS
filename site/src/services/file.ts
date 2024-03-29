@@ -1,21 +1,11 @@
-import { requester } from './instance';
+import { alovaInstance } from './instance';
 import { genForm } from '@/utils';
-import type {
-  UploadForm,
-  UploadAs,
-  UploadResult,
-  RequestResult,
-} from '@/types';
+import type { UploadForm, UploadResult } from '@/types';
 
-export const upload = (files: File[], as: UploadAs | undefined) => {
+export const uploadFile = (files: File | File[]) => {
   const form = genForm<UploadForm>({
     avgfile: files,
-    as: as,
   });
 
-  return requester.post<RequestResult<UploadResult>>('/file/upload', form);
-};
-
-export const uploadAsAvatar = (avatarFile: File) => {
-  return upload([avatarFile], 'avatar');
+  return alovaInstance.Post<UploadResult>('/file/upload', form);
 };

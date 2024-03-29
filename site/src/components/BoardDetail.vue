@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isSuccess" class="board-detail">
+  <div v-if="!loading" class="board-detail">
     <div class="board-detail-header">
       <NImage :src="data?.header_img_uri" />
     </div>
@@ -33,13 +33,12 @@
 </template>
 
 <script setup lang="ts">
-import { useFetchData, useTitle } from '@/utils'
+import { useTitle } from '@/utils'
 import { getBoardInfo } from '@/services'
-import { onMounted, watch } from 'vue'
-import type { Board } from '@/types'
 import { NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/BoardDetail.css'
 import { EllipsisIcon } from 'tdesign-icons-vue-next'
+import { useWatcher } from 'alova'
 
 defineOptions({
   name: 'BoardDetail',
@@ -50,27 +49,19 @@ interface BoardDetailProps {
 }
 
 const props = defineProps<BoardDetailProps>()
+
 const { setTitle } = useTitle('版块')
-const { isSuccess, data, fetch } = useFetchData<Board>(getBoardInfo)
 
-watch(
-  () => props.slug,
-  (value) => {
-    if (!value) return
-    fetch(value)
+const { loading, data, onSuccess } = useWatcher(
+  () => getBoardInfo(props.slug),
+  [props],
+  {
+    immediate: true,
+    sendable: () => !!props.slug,
   },
 )
 
-watch(
-  () => isSuccess.value,
-  (value) => {
-    if (value) {
-      setTitle(data.value?.name)
-    }
-  },
-)
-
-onMounted(() => {
-  fetch(props.slug)
+onSuccess(() => {
+  setTitle(data.value.name)
 })
 </script>

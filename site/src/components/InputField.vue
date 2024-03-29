@@ -59,11 +59,16 @@ const onConfirm = () => {
     isEditing.value = false
     return
   }
-  modifyUserInfo(props.field, valueNow.value).then((res) => {
-    if (res.data.code > window.$code.OK) return
-    message.success('信息已更新。')
-    isEditing.value = false
-  })
+  modifyUserInfo(props.field, valueNow.value)
+    .then(() => {
+      message.success('信息已更新。')
+    })
+    .catch(() => {
+      message.error('信息更新失败。')
+    })
+    .finally(() => {
+      isEditing.value = false
+    })
 }
 const onCancle = () => {
   valueNow.value = props.inputValue

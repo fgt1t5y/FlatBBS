@@ -1,5 +1,5 @@
-import { requester } from './instance';
-import type { RequestResult, LoginForm } from '@/types';
+import { alovaInstance } from './instance';
+import type { Result, LoginForm } from '@/types';
 import { genForm } from '@/utils';
 
 export const login = (email: string, password: string) => {
@@ -8,9 +8,9 @@ export const login = (email: string, password: string) => {
     password: password,
   });
 
-  return requester.post<RequestResult>('/auth/login', form);
+  return alovaInstance.Post<Result>('/auth/login', form);
 };
 
 export const logout = () => {
-  return requester.post<RequestResult>('/auth/logout');
+  return alovaInstance.Post<Result>('/auth/logout');
 };

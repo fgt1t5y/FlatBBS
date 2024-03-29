@@ -25,6 +25,7 @@ const obTarget = ref<HTMLElement>()
 const { pause, resume } = useIntersectionObserver(
   obTarget,
   ([{ isIntersecting }]) => {
+    if (props.disabled) return
     isIntersecting && emits('reach')
   },
   {

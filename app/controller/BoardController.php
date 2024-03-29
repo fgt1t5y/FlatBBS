@@ -31,7 +31,7 @@ class BoardController
         $result = Board::where('slug', $slug)
             ->first($this->boardFields);
 
-        return $result ? ok($result) : no(STATUS_NOT_FOUND);
+        return $result ? $result : no(STATUS_NOT_FOUND);
     }
 
     public function search(Request $request)

@@ -8,9 +8,9 @@ export const useUserStore = defineStore('user', () => {
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
     getUserInfo().then((res) => {
-      if (res.data.code > window.$code.OK) return;
+      if (res.code > window.$code.OK) return;
       isLogin.value = true;
-      info.value = res.data.data;
+      info.value = res.data;
     });
   };
   const quit = () => {

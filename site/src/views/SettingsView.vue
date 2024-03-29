@@ -122,7 +122,7 @@ import { useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
 import { NAvatar, NButton, NH6, NSpace, NText, NModal } from 'naive-ui'
 import { ref } from 'vue'
-import { uploadAsAvatar } from '@/services'
+import { uploadFile } from '@/services'
 import '@/style/SettingsView.css'
 import {
   Brightness1Icon,
@@ -158,8 +158,8 @@ const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
-      uploadAsAvatar(file).then((res) => {
-        if (res.data.code > window.$code.OK) return
+      uploadFile(file).then((res) => {
+        if (res.code > window.$code.OK) return
         window.$message.success(
           '头像已上传。因为缓存的存在，生效时间可能延后。',
         )

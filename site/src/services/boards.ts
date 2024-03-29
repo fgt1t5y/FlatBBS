@@ -1,10 +1,10 @@
-import type { RequestResult, Board } from '@/types';
-import { requester } from './instance';
+import type { Boards, Board } from '@/types';
+import { alovaInstance } from './instance';
 
 export const getBoards = () => {
-  return requester.post<RequestResult<Board[]>>('/board/all');
+  return alovaInstance.Post<Boards>('/board/all');
 };
 
-export const getBoardInfo = (board_id: number) => {
-  return requester.post<RequestResult<Board>>(`/board/info/${board_id}`);
+export const getBoardInfo = (board_slug: string) => {
+  return alovaInstance.Post<Board>(`/board/info/${board_slug}`);
 };

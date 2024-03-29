@@ -1,3 +1,8 @@
+export interface Result {
+  code: number;
+  message?: string;
+}
+
 export interface User {
   id?: number;
   display_name?: string;
@@ -5,6 +10,10 @@ export interface User {
   email?: string;
   avatar_uri?: string;
   introduction?: string;
+}
+
+export interface UserInfo extends Result {
+  data: User;
 }
 
 export interface LoginForm {
@@ -17,16 +26,8 @@ export interface UserModifyForm {
   value: string;
 }
 
-/**
- * 上传的文件的用途：
- * 'avatar' - 用作用户的新头像，
- * 'attachment' - 用作话题内容的图片附件
- */
-export type UploadAs = 'avatar' | 'attachment';
-
 export interface UploadForm {
-  avgfile: File[];
-  as?: UploadAs;
+  avgfile: File | File[];
 }
 
 export interface CommonListForm {
@@ -47,14 +48,8 @@ export interface CreateTopicForm {
   board: number;
 }
 
-export interface UploadResult {
-  uri: string;
-}
-
-export interface RequestResult<T = any> {
-  code: number;
-  message: string;
-  data?: T;
+export interface UploadResult extends Result {
+  uri: string | string[];
 }
 
 export interface Board {
@@ -65,6 +60,10 @@ export interface Board {
   avatar_uri: string;
   header_img_uri: string;
   color: string;
+}
+
+export interface Boards extends Result {
+  data: Board[];
 }
 
 export type Author = Pick<User, 'id' | 'display_name' | 'avatar_uri'>;
@@ -82,6 +81,10 @@ export interface Topic {
   last_reply_at: string;
 }
 
+export interface Topics extends Result {
+  data: Topic[];
+}
+
 export type TopicDraft = Pick<Topic, 'title' | 'content' | 'board_id'>;
 
 export interface Discussion {
@@ -90,6 +93,10 @@ export interface Discussion {
   created_at: string;
   author: Author;
   like_count: number;
+}
+
+export interface Discussions extends Result {
+  data: Discussion[];
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
