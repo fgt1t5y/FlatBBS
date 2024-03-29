@@ -1,15 +1,15 @@
 <template>
-  <div class="row-center">
+  <NSpace vertical align="center" class="chunk">
     <NSpin v-if="isLoading" :size="32" />
-    <NButton v-if="isFailed" type="primary" round @click="emits('retry')">
+    <NButton v-else-if="isFailed" type="primary" round @click="emits('retry')">
       重试
     </NButton>
-    <NText v-if="noMore" class="text-center">没有更多了</NText>
-  </div>
+    <NText v-else class="text-center">没有更多了</NText>
+  </NSpace>
 </template>
 
 <script setup lang="ts">
-import { NButton, NSpin, NText } from 'naive-ui'
+import { NSpace, NButton, NSpin, NText } from 'naive-ui'
 
 defineOptions({
   name: 'RequestPlaceholder',
