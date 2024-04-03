@@ -4,6 +4,7 @@
     :theme-overrides="overrideTheme"
     :locale="zhCN"
   >
+    <Navbar v-if="isDesktop" :is-loggined="user.isLogin" />
     <main id="flatbbs">
       <NDialogProvider>
         <NMessageProvider>
@@ -18,7 +19,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useUserStore, useTheme } from './stores'
-import { hasToken } from './utils'
+import { hasToken, isDesktop } from './utils'
 import {
   NMessageProvider,
   NDialogProvider,
@@ -27,6 +28,7 @@ import {
   NGlobalStyle,
   zhCN,
 } from 'naive-ui'
+import Navbar from './components/Navbar.vue'
 
 const user = useUserStore()
 const theme = useTheme()

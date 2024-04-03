@@ -2,30 +2,22 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <RouterLink to="/" class="navbar-sitename">
-        <SiteLogo />
         <NText>FlatBBS</NText>
-        <NTag v-if="isDev" type="warning" round>Dev</NTag>
       </RouterLink>
+      <div v-if="isDesktop" class="navbar-search">
+        <NInput placeholder="搜索..." :input-props="{ type: 'search' }" round />
+      </div>
       <div v-if="isLoggined" class="navbar-options">
         <NButton title="发布新话题" quaternary circle>
-          <template #icon>
-            <AddRectangleIcon />
-          </template>
+          <AddRectangleIcon size="18px" />
         </NButton>
-        <NButton
-          title="设置"
-          quaternary
-          circle
-          @click="router.push({ path: '/settings' })"
-        >
-          <template #icon>
-            <Setting1Icon />
-          </template>
-        </NButton>
+        <RouterLink to="/settings">
+          <NButton title="设置" quaternary circle>
+            <Setting1Icon size="18px" />
+          </NButton>
+        </RouterLink>
         <NButton title="查看通知" quaternary circle>
-          <template #icon>
-            <NotificationIcon />
-          </template>
+          <NotificationIcon size="18px" />
         </NButton>
         <NAvatar
           :src="user.info?.avatar_uri"
@@ -34,7 +26,9 @@
         />
       </div>
       <div v-else class="navbar-options">
-        <NButton type="primary" round>注册 / 登录</NButton>
+        <RouterLink to="/auth">
+          <NButton type="primary" round>注册 / 登录</NButton>
+        </RouterLink>
       </div>
     </div>
   </nav>
@@ -42,16 +36,14 @@
 
 <script setup lang="ts">
 import '@/style/Navbar.css'
-import SiteLogo from './SiteLogo.vue'
-import { NText, NButton, NAvatar, NTag } from 'naive-ui'
+import { NText, NButton, NAvatar, NInput } from 'naive-ui'
 import { useUserStore } from '@/stores'
 import {
   NotificationIcon,
   AddRectangleIcon,
   Setting1Icon,
 } from 'tdesign-icons-vue-next'
-import { isDev } from '@/utils'
-import router from '@/router'
+import { isDesktop } from '@/utils'
 
 defineOptions({
   name: 'Navbar',

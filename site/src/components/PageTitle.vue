@@ -3,13 +3,12 @@
     <div class="page-title-main">
       <NButton
         v-if="showBackButton"
-        circle
-        :type="float ? 'primary' : 'default'"
-        :quaternary="!float"
         title="返回上一级页面或回到首页"
+        text
+        size="large"
         @click="page.back"
       >
-        <ArrowLeftIcon size="20px" />
+        <ArrowLeftIcon size="28px" />
       </NButton>
       <div class="page-title-default">
         <slot>
@@ -38,13 +37,11 @@ defineOptions({
 interface PageTitleProps {
   title: string
   showBack?: boolean
-  float?: boolean
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '未命名页面',
   showBack: true,
-  float: false,
 })
 const page = usePage()
 const route = useRoute()
@@ -52,7 +49,6 @@ const showBackButton = computed(() => props.showBack && route.fullPath !== '/')
 const pageTitleClass = computed(() => {
   return {
     'page-title': true,
-    'page-title-float': props.float,
   }
 })
 </script>

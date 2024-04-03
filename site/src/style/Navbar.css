@@ -1,19 +1,16 @@
 .navbar {
-  z-index: 155;
+  z-index: 150;
   display: flex;
   justify-content: center;
   position: sticky;
   top: 0px;
-  height: 52px;
+  height: var(--nav-height);
   padding: 0px var(--gap);
   background-color: var(--color-bg-1);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar-inner {
-  height: 52px;
   flex-grow: 1;
-  max-width: var(--page-max-width);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,6 +25,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.navbar-search {
+  width: 500px;
 }
 
 .navbar .n-text {

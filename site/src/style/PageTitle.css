@@ -1,10 +1,9 @@
 .page-title {
-  position: sticky;
+  position: static;
   top: 0px;
-  height: 48px;
-  background-color: var(--color-bg-1);
-  border-bottom: 1px solid var(--color-border);
-  z-index: 50;
+  height: var(--nav-height);
+  background-color: transparent;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,10 +35,10 @@
   }
 }
 
-.page-title-float {
-  background-color: unset !important;
-  border-bottom: unset !important;
-  position: fixed;
-  width: 100%;
-  z-index: 0;
+@media (width <= 810px) {
+  .page-title {
+    position: sticky;
+    background-color: var(--color-bg-1);
+    border-bottom: 1px solid var(--color-border);
+  }
 }

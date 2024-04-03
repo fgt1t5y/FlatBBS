@@ -1,7 +1,14 @@
 <template>
   <MainContent>
     <PageTitle title="话题" />
-    <DiscussionList :discussions="discussions" />
+    <CommonList>
+      <DiscussionItem
+        v-for="(item, index) in discussions"
+        :key="item.id"
+        :discussion="item"
+        :index="index"
+      />
+    </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder
       :is-loading="loading"
@@ -13,10 +20,11 @@
 
 <script setup lang="ts">
 import MainContent from '@/components/MainContent.vue'
+import CommonList from '@/components/CommonList.vue'
+import DiscussionItem from '@/components/DiscussionItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { getDiscussions } from '@/services/discussions'
 import { useRoute } from 'vue-router'
-import DiscussionList from '@/components/DiscussionList.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'
@@ -35,7 +43,7 @@ const {
   error,
   onSuccess,
   send,
-  reload,
+  update,
 } = usePagination(
   (page, limit) => getDiscussions(lastItemId, limit, currentTopicId.value),
   {
@@ -57,7 +65,8 @@ watch(
     if (!to || to === lastTopicId) return
     lastTopicId = to
     lastItemId = 0
-    reload()
+    update({ data: [] })
+    send()
   },
 )
 </script>

@@ -1,7 +1,6 @@
 <template>
   <MainContent>
     <NSpace vertical align="center" class="error-page" style="margin-top: 5rem">
-      <div></div>
       <NH2 align-text>
         <NText type="error">页面不存在</NText>
       </NH2>

@@ -2,7 +2,9 @@
   <MainContent>
     <PageTitle title="版块" />
     <BoardDetail :slug="currentSlug" />
-    <TopicList :topics="topics" />
+    <CommonList>
+      <TopicItem v-for="item in topics" :key="item.id" :topic="item" />
+    </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder
       :is-loading="loading"
@@ -24,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import TopicList from '@/components/TopicList.vue'
+import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
@@ -36,6 +38,7 @@ import BoardDetail from '@/components/BoardDetail.vue'
 import { NButton } from 'naive-ui'
 import { PenIcon } from 'tdesign-icons-vue-next'
 import { usePagination } from '@alova/scene-vue'
+import CommonList from '@/components/CommonList.vue'
 
 const route = useRoute()
 

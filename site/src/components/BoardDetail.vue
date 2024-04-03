@@ -1,8 +1,9 @@
 <template>
   <div v-if="!loading" class="board-detail">
-    <div class="board-detail-header">
-      <NImage :src="data?.header_img_uri" />
-    </div>
+    <NImage
+      :img-props="{ id: 'board-header-img' }"
+      :src="data?.header_img_uri"
+    />
     <div class="board-detail-main list">
       <div class="board-detail-intro">
         <NAvatar

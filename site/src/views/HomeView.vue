@@ -1,21 +1,9 @@
 <template>
   <MainContent>
-    <PageTitle title="首页">
-      <RouterLink to="/">
-        <NText type="primary" class="page-title-title">FlatBBS</NText>
-      </RouterLink>
-      <template #extra>
-        <NButton
-          circle
-          quaternary
-          title="搜索(Ctrl + K)"
-          @click="router.push({ path: '/search' })"
-        >
-          <SearchIcon size="18px" />
-        </NButton>
-      </template>
-    </PageTitle>
-    <TopicList :topics="topics" />
+    <PageTitle title="首页" />
+    <CommonList>
+      <TopicItem v-for="item in topics" :key="item.id" :topic="item" />
+    </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder
       :is-loading="loading"
@@ -37,15 +25,15 @@
 </template>
 
 <script setup lang="ts">
-import TopicList from '@/components/TopicList.vue'
+import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
-import { NButton, NText } from 'naive-ui'
+import { NButton } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
+import CommonList from '@/components/CommonList.vue'
 import { getAllTopics } from '@/services'
-import { SearchIcon, PenIcon } from 'tdesign-icons-vue-next'
-import router from '@/router'
+import { PenIcon } from 'tdesign-icons-vue-next'
 import { usePagination } from '@alova/scene-vue'
 
 let lastItemId = 0

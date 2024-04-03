@@ -1,5 +1,5 @@
 <template>
-  <div class="topic-list-item list">
+  <div class="item">
     <div class="topic-header">
       <NAvatar :src="topic.author.avatar_uri" :size="20" round />
       <NText>{{ topic.author.display_name }}</NText>
@@ -32,9 +32,10 @@ import { RouterLink } from 'vue-router'
 import { NAvatar, NText, NButton } from 'naive-ui'
 import { ChatMessageIcon } from 'tdesign-icons-vue-next'
 import RelativeTime from './RelativeTime.vue'
+import '@/style/TopicItem.css'
 
 defineOptions({
-  name: 'TopicListItem',
+  name: 'TopicItem',
 })
 
 interface TopicListItemProps {

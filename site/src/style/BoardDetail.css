@@ -1,3 +1,7 @@
+.board-detail .n-image {
+  width: 100%;
+}
+
 .board-detail-main {
   display: flex;
   flex-direction: column;
@@ -25,4 +29,8 @@
 .board-avatar {
   width: 90px;
   height: 90px;
+}
+
+#board-header-img {
+  width: 100%;
 }
