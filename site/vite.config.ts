@@ -27,7 +27,7 @@ export default defineConfig({
     // 开发用反向代理
     proxy: {
       '/backend': {
-        target: 'http://192.168.1.108:3900',
+        target: 'http://127.0.0.1:3900',
         changeOrigin: true,
         rewrite: (path: string) => path.replace(config.api_base, ''),
       },
