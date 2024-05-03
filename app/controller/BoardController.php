@@ -8,11 +8,12 @@ use app\service\Search;
 
 class BoardController
 {
-    public $boardBasicFields = ['id', 'name', 'slug', 'slug', 'color'];
+    public $boardBasicFields = ['id', 'name', 'slug', 'avatar_uri'];
     public $boardFields = [
         'id',
         'name',
         'slug',
+        'color',
         'description',
         'avatar_uri',
         'header_img_uri'

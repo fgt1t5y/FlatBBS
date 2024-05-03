@@ -1,7 +1,7 @@
 :root {
-  --page-max-width: 980px;
+  --page-max-width: 900px;
   --gap: 12px;
-  --nav-height: 52px
+  --nav-height: 52px;
 }
 
 a {
@@ -76,6 +76,11 @@ textarea {
 
 .chunk {
   padding: var(--gap);
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: unset;
+  }
 }
 
 .title {
@@ -85,6 +90,30 @@ textarea {
   h3 {
     margin-bottom: unset;
   }
+}
+
+.flex-v {
+  display: flex;
+}
+
+.gap {
+  gap: var(--gap);
+}
+
+.align-center {
+  align-items: center;
+}
+
+.f-s {
+  font-size: 14px;
+}
+
+.f-m {
+  font-size: 16px;
+}
+
+.f-l {
+  font-size: 18px;
 }
 
 /* 导航栏Logo */

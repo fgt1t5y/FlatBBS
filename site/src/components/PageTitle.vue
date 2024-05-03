@@ -35,7 +35,7 @@ defineOptions({
 })
 
 interface PageTitleProps {
-  title: string
+  title?: string
   showBack?: boolean
 }
 

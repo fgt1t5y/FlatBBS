@@ -165,7 +165,6 @@ const mouseup = (ev: MouseEvent) => {
 }
 const destoryCropper = () => {
   URL.revokeObjectURL(imageURL.value)
-  console.log('de')
 }
 const getBlobAsync = (): Promise<Blob | null> => {
   return new Promise(function (resolve, reject) {

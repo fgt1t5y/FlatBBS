@@ -1,9 +1,5 @@
 <template>
-  <NConfigProvider
-    :theme="theme.naiveuiDark ? darkTheme : null"
-    :theme-overrides="overrideTheme"
-    :locale="zhCN"
-  >
+  <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null" :locale="zhCN">
     <Navbar v-if="isDesktop" :is-loggined="user.isLogin" />
     <main id="flatbbs">
       <NDialogProvider>
@@ -33,13 +29,6 @@ import Navbar from './components/Navbar.vue'
 const user = useUserStore()
 const theme = useTheme()
 theme.init()
-const overrideTheme = {
-  common: {
-    cubicBezierEaseInOut: 'none',
-    cubicBezierEaseOut: 'none',
-    cubicBezierEaseIn: 'none',
-  },
-}
 
 if (hasToken()) {
   user.fetch()

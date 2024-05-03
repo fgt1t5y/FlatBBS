@@ -4,7 +4,7 @@
       :img-props="{ id: 'board-header-img' }"
       :src="data?.header_img_uri"
     />
-    <div class="board-detail-main list">
+    <div class="board-detail-main chunk">
       <div class="board-detail-intro">
         <NAvatar
           class="board-avatar"
