@@ -2,8 +2,10 @@
   <MainContent>
     <PageTitle title="版块" />
     <BoardDetail :slug="currentSlug" />
-    <CommonList>
-      <TopicItem v-for="item in topics" :key="item.id" :topic="item" />
+    <CommonList hoverable :items="topics">
+      <template #default="{ item }">
+        <TopicItem :topic="item" />
+      </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder

@@ -1,8 +1,10 @@
 <template>
   <MainContent>
     <PageTitle title="首页" />
-    <CommonList hoverable>
-      <TopicItem v-for="item in topics" :key="item.id" :topic="item" />
+    <CommonList hoverable :items="topics">
+      <template #default="{ item }">
+        <TopicItem :topic="item" />
+      </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder

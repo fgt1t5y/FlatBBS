@@ -1,13 +1,10 @@
 <template>
   <MainContent>
     <PageTitle title="话题" />
-    <CommonList>
-      <DiscussionItem
-        v-for="(item, index) in discussions"
-        :key="item.id"
-        :discussion="item"
-        :index="index"
-      />
+    <CommonList :items="discussions">
+      <template #default="{ item, index }">
+        <DiscussionItem :discussion="item" :index="index" />
+      </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder

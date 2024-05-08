@@ -1,20 +1,22 @@
 <template>
   <MainContent>
     <PageTitle title="所有板块" :show-back="false" />
-    <CommonList>
-      <div v-for="board in boards" class="item flex-v gap align-center">
-        <NAvatar :src="board.avatar_uri" :size="35" />
-        <RouterLink :to="`/board/${board.slug}`">
-          <div class="f-m">{{ board.name }}</div>
-        </RouterLink>
-      </div>
-      <RequestPlaceholder
-        :is-loading="loading"
-        :is-failed="!!error"
-        :no-more="true"
-        @retry="send"
-      />
+    <CommonList :items="boards">
+      <template #default="{ item }">
+        <div class="item flex-v gap align-center">
+          <NAvatar :src="item.avatar_uri" :size="35" />
+          <RouterLink :to="`/board/${item.slug}`">
+            <div class="f-m">{{ item.name }}</div>
+          </RouterLink>
+        </div>
+      </template>
     </CommonList>
+    <RequestPlaceholder
+      :is-loading="loading"
+      :is-failed="!!error"
+      :no-more="true"
+      @retry="send"
+    />
   </MainContent>
 </template>
 
