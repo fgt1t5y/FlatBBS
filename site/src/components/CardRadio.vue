@@ -11,7 +11,7 @@
       {{ label }}
     </div>
     <button class="card-radio-handle" @click="emits('click')">
-      <CheckIcon v-show="checked" size="18px" />
+      <CheckIcon v-show="checked" />
     </button>
   </div>
 </template>

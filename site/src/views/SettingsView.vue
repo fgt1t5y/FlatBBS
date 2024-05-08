@@ -73,21 +73,21 @@
           :checked="theme === 'auto'"
           @click="switchTo('auto')"
         >
-          <Brightness1Icon size="18px" />
+          <Brightness1Icon />
         </CardRadio>
         <CardRadio
           label="浅色模式"
           :checked="theme === 'light'"
           @click="switchTo('light')"
         >
-          <ModeLightIcon size="18px" />
+          <ModeLightIcon />
         </CardRadio>
         <CardRadio
           label="暗色模式"
           :checked="theme === 'dark'"
           @click="switchTo('dark')"
         >
-          <ModeDarkIcon size="18px" />
+          <ModeDarkIcon />
         </CardRadio>
       </SettingItem>
     </div>

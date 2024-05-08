@@ -15,7 +15,7 @@
         <div class="board-detail-opt">
           <NButton circle secondary>
             <template #icon>
-              <EllipsisIcon size="18px" />
+              <EllipsisIcon />
             </template>
           </NButton>
           <NButton type="primary" round>加入</NButton>

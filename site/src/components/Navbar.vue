@@ -9,15 +9,15 @@
       </div>
       <div v-if="isLoggined" class="navbar-options">
         <NButton title="发布新话题" quaternary circle>
-          <AddRectangleIcon size="18px" />
+          <AddRectangleIcon />
         </NButton>
         <RouterLink to="/settings">
           <NButton title="设置" quaternary circle>
-            <Setting1Icon size="18px" />
+            <Setting1Icon />
           </NButton>
         </RouterLink>
         <NButton title="查看通知" quaternary circle>
-          <NotificationIcon size="18px" />
+          <NotificationIcon />
         </NButton>
         <NAvatar
           :src="user.info?.avatar_uri"

@@ -3,7 +3,7 @@
     <SiteLogo />
     <div class="auth-page-header">
       <NButton circle quaternary @click="page.back()">
-        <ArrowLeftIcon size="18px" />
+        <ArrowLeftIcon />
       </NButton>
       <NH3>
         <NText type="primary">登录</NText>
