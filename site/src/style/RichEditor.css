@@ -1,0 +1,21 @@
+.editor {
+  padding: var(--gap);
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: var(--gap);
+}
+
+.tiptap {
+  outline: none;
+  font-size: 1rem;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
