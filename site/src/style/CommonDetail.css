@@ -1,36 +1,36 @@
-.board-detail .n-image {
+.common-detail .n-image {
   width: 100%;
 }
 
-.board-detail-main {
+.common-detail-main {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.board-detail-intro {
+.common-detail-intro {
   display: flex;
   height: 34px;
   align-items: end;
   justify-content: space-between;
 }
 
-.board-detail-opt {
+.common-detail-opt {
   display: flex;
   gap: 4px;
   align-items: center;
 }
 
-.board-detail-name {
+.common-detail-name {
   font-size: 18px;
   font-weight: bolder;
 }
 
-.board-avatar {
+.common-avatar {
   width: 90px;
   height: 90px;
 }
 
-#board-header-img {
+#common-header-img {
   width: 100%;
 }

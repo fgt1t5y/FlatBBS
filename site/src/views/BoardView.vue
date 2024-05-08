@@ -1,7 +1,13 @@
 <template>
   <MainContent>
     <PageTitle title="版块" />
-    <BoardDetail :slug="currentSlug" />
+    <CommonDetail
+      v-if="!boardInfoLoading"
+      :header-image-uri="boardInfo.header_img_uri"
+      :avatar-uri="boardInfo.avatar_uri"
+      :name="boardInfo.name"
+      :introduction="boardInfo.description"
+    />
     <CommonList hoverable :items="topics">
       <template #default="{ item }">
         <TopicItem :topic="item" />
@@ -35,18 +41,28 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { getTopicsByBoardSlug } from '@/services'
-import BoardDetail from '@/components/BoardDetail.vue'
+import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
+import CommonDetail from '@/components/CommonDetail.vue'
 import { NButton } from 'naive-ui'
 import { PenIcon } from 'tdesign-icons-vue-next'
 import { usePagination } from '@alova/scene-vue'
 import CommonList from '@/components/CommonList.vue'
+import { useRequest } from 'alova'
 
 const route = useRoute()
 
 const currentSlug = computed(() => route.params.slug as string)
 let lastSlug = currentSlug.value
 let lastItemId = 0
+
+const {
+  loading: boardInfoLoading,
+  data: boardInfo,
+  send: loadBoardInfo,
+} = useRequest(() => getBoardInfo(currentSlug.value), {
+  immediate: true,
+  sendable: () => !!currentSlug.value,
+})
 
 const {
   loading,
@@ -78,6 +94,7 @@ watch(
     lastSlug = to
     lastItemId = 0
     reload()
+    loadBoardInfo()
   },
 )
 </script>
