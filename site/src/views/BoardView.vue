@@ -1,8 +1,7 @@
 <template>
-  <MainContent>
+  <MainContent :loading="boardInfoLoading">
     <PageTitle title="版块" />
     <CommonDetail
-      v-if="!boardInfoLoading"
       :header-image-uri="boardInfo.header_img_uri"
       :avatar-uri="boardInfo.avatar_uri"
       :name="boardInfo.name"
@@ -48,8 +47,10 @@ import { PenIcon } from 'tdesign-icons-vue-next'
 import { usePagination } from '@alova/scene-vue'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest } from 'alova'
+import { useTitle } from '@/utils'
 
 const route = useRoute()
+const { setTitle } = useTitle('板块')
 
 const currentSlug = computed(() => route.params.slug as string)
 let lastSlug = currentSlug.value
@@ -58,6 +59,7 @@ let lastItemId = 0
 const {
   loading: boardInfoLoading,
   data: boardInfo,
+  onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
 } = useRequest(() => getBoardInfo(currentSlug.value), {
   immediate: true,
@@ -79,6 +81,10 @@ const {
     initialPageSize: 10,
   },
 )
+
+onBoardInfoSuccess(() => {
+  setTitle(boardInfo.value.name)
+})
 
 onSuccess(() => {
   const items = topics.value
