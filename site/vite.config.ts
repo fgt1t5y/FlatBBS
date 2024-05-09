@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import { config } from './src/global';
 import { browserslistToTargets } from 'lightningcss';
 import browserslist from 'browserslist';
+import VueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +17,7 @@ export default defineConfig({
       targets: browserslistToTargets(browserslist('>= 0.25%')),
     },
   },
-  plugins: [vue()],
+  plugins: [vue(), VueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
