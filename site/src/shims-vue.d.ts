@@ -14,3 +14,12 @@ declare global {
     };
   }
 }
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    title?: string;
+    memberOnly?: boolean;
+    guestOnly?: boolean;
+    showBottomNav?: boolean;
+  }
+}

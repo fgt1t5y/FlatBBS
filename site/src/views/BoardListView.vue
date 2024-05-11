@@ -1,7 +1,7 @@
 <template>
   <MainContent>
     <PageTitle title="所有板块" :show-back="false" />
-    <CommonList :items="boards">
+    <CommonList :items="boards" :is-end="true">
       <template #default="{ item }">
         <div class="item flex-v gap align-center">
           <NAvatar :src="item.avatar_uri" :size="35" />
@@ -14,7 +14,6 @@
     <RequestPlaceholder
       :is-loading="loading"
       :is-failed="!!error"
-      :no-more="true"
       @retry="send"
     />
   </MainContent>

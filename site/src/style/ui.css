@@ -44,7 +44,6 @@ textarea {
   max-width: var(--page-max-width);
   display: flex;
   gap: var(--gap);
-  min-height: 100vh;
 }
 
 .observe-target {

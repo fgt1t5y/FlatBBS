@@ -7,7 +7,7 @@
       <div v-if="isDesktop" class="navbar-search">
         <NInput placeholder="搜索..." :input-props="{ type: 'search' }" round />
       </div>
-      <div v-if="isLoggined" class="navbar-options">
+      <div v-if="user.isLogin" class="navbar-options">
         <NButton title="发布新话题" quaternary circle>
           <AddRectangleIcon />
         </NButton>
@@ -49,10 +49,5 @@ defineOptions({
   name: 'Navbar',
 })
 
-interface NavbarProps {
-  isLoggined: boolean
-}
-
-const props = defineProps<NavbarProps>()
 const user = useUserStore()
 </script>

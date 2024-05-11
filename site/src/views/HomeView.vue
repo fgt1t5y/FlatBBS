@@ -1,7 +1,7 @@
 <template>
   <MainContent>
     <PageTitle title="首页" />
-    <CommonList hoverable :items="topics">
+    <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>
@@ -10,7 +10,6 @@
     <RequestPlaceholder
       :is-loading="loading"
       :is-failed="!!error"
-      :no-more="isLastPage"
       @retry="send"
     />
     <template #panels>

@@ -1,5 +1,9 @@
 <template>
-  <MainContent :loading="boardInfoLoading">
+  <MainContent
+    :loading="boardInfoLoading"
+    :has-error="!!boardInfoError"
+    @retry="loadBoardInfo"
+  >
     <PageTitle title="版块" />
     <CommonDetail
       :header-image-uri="boardInfo.header_img_uri"
@@ -7,7 +11,7 @@
       :name="boardInfo.name"
       :introduction="boardInfo.description"
     />
-    <CommonList hoverable :items="topics">
+    <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>
@@ -16,7 +20,6 @@
     <RequestPlaceholder
       :is-loading="loading"
       :is-failed="!!error"
-      :no-more="isLastPage"
       @retry="send"
     />
     <template #panels>
@@ -59,6 +62,7 @@ let lastItemId = 0
 const {
   loading: boardInfoLoading,
   data: boardInfo,
+  error: boardInfoError,
   onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
 } = useRequest(() => getBoardInfo(currentSlug.value), {

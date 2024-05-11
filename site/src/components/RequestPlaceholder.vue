@@ -1,15 +1,14 @@
 <template>
-  <NSpace vertical align="center" class="chunk">
-    <NSpin v-if="isLoading" :size="32" />
-    <NButton v-else-if="isFailed" type="primary" round @click="emits('retry')">
-      重试
-    </NButton>
-    <NText v-else class="text-center">没有更多了</NText>
-  </NSpace>
+  <NFlex v-if="isLoading" vertical justify="center" align="center">
+    <NSpin :delay="200" description="加载中" />
+  </NFlex>
+  <NFlex v-if="isFailed" vertical justify="center" align="center">
+    <NButton type="primary" round @click="emits('retry')">重试</NButton>
+  </NFlex>
 </template>
 
 <script setup lang="ts">
-import { NSpace, NButton, NSpin, NText } from 'naive-ui'
+import { NFlex, NButton, NSpin } from 'naive-ui'
 
 defineOptions({
   name: 'RequestPlaceholder',
@@ -18,7 +17,6 @@ defineOptions({
 interface RequestPlaceholderProps {
   isLoading: boolean
   isFailed: boolean
-  noMore?: boolean
 }
 
 const props = defineProps<RequestPlaceholderProps>()

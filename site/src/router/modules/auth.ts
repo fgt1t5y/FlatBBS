@@ -7,6 +7,7 @@ export const authRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/AuthView.vue'),
     meta: {
       title: '注册或登录',
+      guestOnly: true,
     },
   },
-];
+] as RouteRecordRaw[];

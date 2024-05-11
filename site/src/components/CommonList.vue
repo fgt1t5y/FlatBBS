@@ -6,12 +6,14 @@
       :item="item"
       :index="index"
     />
+    <NDivider v-if="isEnd && items.length" dashed>没有更多了</NDivider>
   </div>
 </template>
 
 <script setup lang="ts" generic="T">
 import '@/style/CommonList.css'
 import { computed } from 'vue'
+import { NDivider } from 'naive-ui'
 
 defineOptions({
   name: 'CommonList',
@@ -25,11 +27,13 @@ interface CommonListProps {
   items: T[]
   hoverable?: boolean
   clickable?: boolean
+  isEnd?: boolean
 }
 
 const props = withDefaults(defineProps<CommonListProps>(), {
   hoverable: false,
   clickable: false,
+  isEnd: false,
 })
 
 const itemClass = computed(() => {

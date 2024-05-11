@@ -1,6 +1,7 @@
 import RootView from '@/views/RootView.vue';
 import HomeView from '@/views/HomeView.vue';
 import BoardView from '@/views/BoardView.vue';
+import type { RouteRecordRaw } from 'vue-router';
 
 export const mainRoutes = [
   {
@@ -34,6 +35,9 @@ export const mainRoutes = [
         path: 'board/:slug/publish',
         name: 'board_publish_page',
         component: () => import('@/views/BoardPublishView.vue'),
+        meta: {
+          memberOnly: true,
+        },
       },
       {
         path: 'topic/:topic_id(\\d+)',
@@ -49,7 +53,6 @@ export const mainRoutes = [
         component: () => import('@/views/SettingsView.vue'),
         meta: {
           title: '设置',
-          requireLogin: true,
         },
       },
       {
@@ -96,4 +99,4 @@ export const mainRoutes = [
       },
     ],
   },
-];
+] as RouteRecordRaw[];
