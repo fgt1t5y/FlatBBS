@@ -23,7 +23,6 @@ router.beforeEach((to) => {
     }
   } else {
     if (to.meta?.memberOnly) {
-      window.$message.error('请先登录。');
       return { path: authRoute, query: { next: to.fullPath } };
     }
   }
