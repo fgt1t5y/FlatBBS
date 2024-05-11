@@ -1,10 +1,16 @@
 .editor {
   padding: var(--gap);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .editor-toolbar {
   display: flex;
   gap: var(--gap);
+  padding: var(--gap) 0px;
+
+  .t-icon {
+    font-size: 1.5rem;
+  }
 }
 
 .tiptap {
@@ -13,9 +19,19 @@
 }
 
 .tiptap p.is-editor-empty:first-child::before {
-  color: #adb5bd;
+  color: var(--color-text-2);
   content: attr(data-placeholder);
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+blockquote {
+  padding: var(--gap);
+  margin-left: 10px;
+  border-left: 3px solid var(--theme-color);
+
+  p {
+    margin: unset;
+  }
 }

@@ -1,5 +1,7 @@
 <template>
   <div class="editor">
+    <EditorToolbar v-if="editor" :editor="editor" />
+    <div v-else>加载中</div>
     <EditorContent :editor="editor" />
   </div>
 </template>
@@ -10,6 +12,7 @@ import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import { onBeforeUnmount } from 'vue'
+import EditorToolbar from './EditorToolbar.vue'
 
 const editor = useEditor({
   content: '',
