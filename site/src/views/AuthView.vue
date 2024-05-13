@@ -1,6 +1,5 @@
 <template>
   <div class="auth-page">
-    <SiteLogo />
     <div class="auth-page-header">
       <NButton circle quaternary @click="page.back()">
         <ArrowLeftIcon />
@@ -47,7 +46,6 @@ import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
 import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
 import { usePage } from '@/utils'
-import SiteLogo from '@/components/SiteLogo.vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 

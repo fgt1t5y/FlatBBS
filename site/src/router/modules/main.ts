@@ -1,4 +1,4 @@
-import RootView from '@/views/RootView.vue';
+import Default from '@/layouts/Default.vue';
 import HomeView from '@/views/HomeView.vue';
 import BoardView from '@/views/BoardView.vue';
 import type { RouteRecordRaw } from 'vue-router';
@@ -7,7 +7,7 @@ export const mainRoutes = [
   {
     path: '/',
     name: 'root',
-    component: RootView,
+    component: Default,
     children: [
       {
         path: '',
@@ -95,6 +95,15 @@ export const mainRoutes = [
         meta: {
           title: '404',
           showBottomNav: true,
+        },
+      },
+      {
+        path: '/auth',
+        name: 'auth_page',
+        component: () => import('@/views/AuthView.vue'),
+        meta: {
+          title: '注册或登录',
+          guestOnly: true,
         },
       },
     ],
