@@ -8,6 +8,9 @@ dependencies:
   '@alova/scene-vue':
     specifier: ^1.5.0
     version: 1.5.0
+  '@tiptap/extension-link':
+    specifier: ^2.3.2
+    version: 2.3.2(@tiptap/core@2.3.1)(@tiptap/pm@2.3.1)
   '@tiptap/extension-placeholder':
     specifier: ^2.3.1
     version: 2.3.1(@tiptap/core@2.3.1)(@tiptap/pm@2.3.1)
@@ -1078,6 +1081,17 @@ packages:
       '@tiptap/core': ^2.0.0
     dependencies:
       '@tiptap/core': 2.3.1(@tiptap/pm@2.3.1)
+    dev: false
+
+  /@tiptap/extension-link@2.3.2(@tiptap/core@2.3.1)(@tiptap/pm@2.3.1):
+    resolution: {integrity: sha512-Bs3PbYmXj5bzUzPdFkcuflxZkdI2nCIJY2YO5TykANos68FrRtxyRKCxSxyZABzKjctT/UUVSap7JUVQ+i/bSw==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0
+      '@tiptap/pm': ^2.0.0
+    dependencies:
+      '@tiptap/core': 2.3.1(@tiptap/pm@2.3.1)
+      '@tiptap/pm': 2.3.1
+      linkifyjs: 4.1.3
     dev: false
 
   /@tiptap/extension-list-item@2.3.1(@tiptap/core@2.3.1):
@@ -3680,6 +3694,10 @@ packages:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
     dependencies:
       uc.micro: 2.1.0
+    dev: false
+
+  /linkifyjs@4.1.3:
+    resolution: {integrity: sha512-auMesunaJ8yfkHvK4gfg1K0SaKX/6Wn9g2Aac/NwX+l5VdmFZzo/hdPGxEOETj+ryRa4/fiOPjeeKURSAJx1sg==}
     dev: false
 
   /local-pkg@0.4.3:
