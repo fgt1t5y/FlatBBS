@@ -11,13 +11,13 @@
         <NSpin :delay="200" description="加载中" />
       </NFlex>
       <NFlex
-        v-else-if="hasError"
+        v-else-if="error"
         style="width: 100%; height: 300px"
         vertical
         justify="center"
         align="center"
       >
-        <NH3>加载失败</NH3>
+        <NH3>{{ error.message }}</NH3>
         <NButton type="primary" round @click="emits('retry')">重试</NButton>
       </NFlex>
       <slot v-else />
@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import { isDesktop } from '@/utils'
+import { watch } from 'vue'
 import { NFlex, NSpin, NButton, NH3 } from 'naive-ui'
 
 defineOptions({
@@ -41,16 +42,23 @@ defineOptions({
 interface MainContentProps {
   disablePanels?: boolean
   loading?: boolean
-  hasError?: boolean
+  error?: Error
 }
 
 const props = withDefaults(defineProps<MainContentProps>(), {
   disablePanels: false,
   loading: false,
-  hasError: false,
+  error: undefined,
 })
 
 const emits = defineEmits<{
   (e: 'retry'): void
 }>()
+
+watch(
+  () => props.error,
+  (v) => {
+    console.log(v?.message)
+  },
+)
 </script>

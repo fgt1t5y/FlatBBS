@@ -1,7 +1,7 @@
 <template>
   <MainContent
     :loading="boardInfoLoading"
-    :has-error="!!boardInfoError"
+    :error="boardInfoError"
     @retry="loadBoardInfo"
   >
     <PageTitle title="版块" />
