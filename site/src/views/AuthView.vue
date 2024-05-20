@@ -92,7 +92,7 @@ const actionLogin = () => {
         return
       }
       user.fetch()
-      router.replace({ path: (route.query.next as string) ?? '/' })
+      router.replace({ path: (route.query.next as string) || '/' })
     })
     .finally(() => {
       isDealing.value = false
