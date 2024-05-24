@@ -10,14 +10,17 @@ export const alovaInstance = createAlova({
   timeout: 10000,
   responded: {
     onSuccess: async (res) => {
+      if (res.status > window.$code.OK) {
+        throw new Error('服务器错误');
+      }
       const json = (await res.json()) as Result;
-      const code = json.code
+      const code = json.code;
 
       if (code && code !== window.$code.OK) {
         throw new Error(json.message || '网络错误');
       }
 
-      return json
+      return json;
     },
     onError: () => {
       window.$message.error('网络错误');
