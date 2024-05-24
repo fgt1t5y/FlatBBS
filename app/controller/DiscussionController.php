@@ -2,12 +2,12 @@
 
 namespace app\controller;
 
-use app\model\Topic;
+use app\service\DiscussionService;
 use support\Request;
 
 class DiscussionController
 {
-    public $discussionBasicFields = [
+    private $discussionBasicFields = [
         'id',
         'topic_id',
         'author_id',
@@ -15,23 +15,20 @@ class DiscussionController
         'created_at'
     ];
 
-    public function list(Request $request, int $tid)
+    protected DiscussionService $discussion;
+
+    public function __construct(DiscussionService $discussion)
+    {
+        $this->discussion = $discussion;
+    }
+
+    public function list(Request $request, int $topic_id)
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $topic = Topic::find($tid);
 
-        if (!$topic) {
-            return no(STATUS_NOT_FOUND);
-        }
+        $response = $this->discussion->list($topic_id, $last_id, $limit, $this->discussionBasicFields);
 
-        $result = $topic
-            ->discussions()
-            ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
-            ->orderBy('created_at')
-            ->get($this->discussionBasicFields);
-
-        return ok($result);
+        return $response->toJson();
     }
 }

@@ -29,12 +29,13 @@
     "monolog/monolog": "^2.0",
     "illuminate/database": "^10.24",
     "illuminate/support": "^10.24",
-    "intervention/image": "^2.7",
+    "intervention/image": "^3.6.4",
     "shopwwi/laravel-cache": "^1.0",
     "illuminate/redis": "^10.25",
-    "webman/console": "^1.2",
-    "firebase/php-jwt": "^6.9",
-    "symfony/translation": "^6.3"
+    "psr/container": "^2.0",
+    "php-di/php-di": "^7.0",
+    "doctrine/annotations": "^2.0",
+    "illuminate/events": "^10.48"
   },
   "suggest": {
     "ext-event": "For better performance. "

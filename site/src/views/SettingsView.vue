@@ -6,7 +6,7 @@
         <NText type="primary">头像</NText>
       </NH6>
       <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
-        <NSpace align="center" justify="space-between">
+        <NFlex align="center" justify="space-between">
           <NAvatar :src="user.info?.avatar_uri" :size="64" round />
           <NButton
             type="primary"
@@ -15,7 +15,7 @@
           >
             更改...
           </NButton>
-        </NSpace>
+        </NFlex>
         <input
           ref="avatarInput"
           type="file"
@@ -106,9 +106,10 @@
       :image="avatarFile"
       @error="showCropperMessage"
     />
-    <NSpace :vertical="true">
+    <NFlex :vertical="true">
       <NButton type="primary" block @click="uploadAvatar">确定</NButton>
-    </NSpace>
+      <NButton block @click="closeAvatarCrop">取消</NButton>
+    </NFlex>
   </NModal>
 </template>
 
@@ -120,9 +121,9 @@ import PageTitle from '@/components/PageTitle.vue'
 import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
-import { NAvatar, NButton, NH6, NSpace, NText, NModal } from 'naive-ui'
+import { NAvatar, NButton, NH6, NText, NModal, NFlex } from 'naive-ui'
 import { ref } from 'vue'
-import { uploadFile } from '@/services'
+import { modifyUserAvatar } from '@/services'
 import '@/style/SettingsView.css'
 import {
   Brightness1Icon,
@@ -158,11 +159,9 @@ const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
-      uploadFile(file).then((res) => {
+      modifyUserAvatar(file).then((res) => {
         if (res.code > window.$code.OK) return
-        window.$message.success(
-          '头像已上传。因为缓存的存在，生效时间可能延后。',
-        )
+        window.$message.success('头像已上传')
       })
     }
   })

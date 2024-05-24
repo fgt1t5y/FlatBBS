@@ -4,12 +4,13 @@ namespace app\controller;
 
 use app\model\Board;
 use app\model\Topic;
+use app\service\SearchService;
+use app\service\TopicService;
 use support\Request;
-use app\service\Search;
 
 class TopicController
 {
-    public $topicBasicFields = [
+    private $topicBasicFields = [
         'id',
         'title',
         'author_id',
@@ -18,67 +19,45 @@ class TopicController
         'created_at'
     ];
 
+    protected SearchService $search;
+    protected TopicService $topic;
+
+    public function __construct(SearchService $search, TopicService $topic)
+    {
+        $this->search = $search;
+        $this->topic = $topic;
+    }
+
     public function all(Request $request)
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $result = Topic::orderByDesc('last_reply_at')
-            ->limit(min($limit, 50))
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
-            ->get($this->topicBasicFields);
 
-        return ok($result);
+        $response = $this->topic->all($last_id, $limit, $this->topicBasicFields);
+
+        return $response->toJson();
     }
 
     public function list(Request $request, string $slug)
     {
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
-        $board = Board::where('slug', $slug)
-            ->first();
 
-        if (!$board) {
-            return no(STATUS_NOT_FOUND);
-        }
+        $response = $this->topic->list($slug, $last_id, $limit, $this->topicBasicFields);
 
-        $result = $board
-            ->topics()
-            ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
-            ->orderByDesc('last_reply_at')
-            ->get($this->topicBasicFields);
-
-        return ok($result);
-    }
-
-    public function create(Request $request)
-    {
-        $topic_title = $request->post('title');
-        $topic_content = $request->post('content', '');
-        $at_board = (int) $request->post('board', 0);
-        $author_id = session('id');
-
-        if (!all([$topic_title, $at_board])) {
-            return no(STATUS_BAD_REQUEST);
-        }
-
-        $result_topic = Topic::createTopic(
-            $topic_title,
-            $topic_content,
-            $at_board,
-            $author_id,
-        );
-        if (!$result_topic) {
-            no(STATUS_INTERNAL_ERROR);
-        }
-
-        return ok($result_topic);
+        return $response->toJson();
     }
 
     public function search(Request $request)
     {
         $keyword = $request->post('q');
 
-        return ok(Search::topic($keyword, $this->topicBasicFields));
+        $response = $this->search->search($keyword, Topic::class, 'title');
+
+        if (!$response->isSuccess()) {
+            no(STATUS_INTERNAL_ERROR);
+        }
+
+        return $response->toJson();
     }
 }

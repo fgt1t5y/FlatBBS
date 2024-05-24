@@ -2,46 +2,19 @@
 
 namespace app\controller;
 
-use Intervention\Image\Exception\ImageException;
 use support\Request;
-use Intervention\Image\ImageManagerStatic as image;
+use app\service\FileService;
 
 class FileController
 {
-    static $supportedFile = ['image/png', 'image/jpeg'];
+    protected FileService $file;
+    public function __construct(FileService $file)
+    {
+        $this->file = $file;
+    }
 
     public function upload(Request $request)
     {
-        $files = $request->file('avgfile');
-        $filepath = [];
-        $filename = '';
-
-        if (!$files) {
-            return no(STATUS_BAD_REQUEST);
-        }
-
-        // 单个文件时 file 是 object，将其转换为 array 才可以 foreach
-        if (is_object($files)) {
-            $files = [$files];
-        }
-
-        foreach ($files as $file) {
-            if (!in_array($file->getUploadMimeType(), self::$supportedFile)) {
-                return no(STATUS_BAD_REQUEST);
-            }
-
-            $filename = random_string() . '.jpg';
-            $path = config_with('flatbbs.paths.usercontent', $filename);
-
-            try {
-                $image = image::make($file->getPathname());
-                $image->save($path, 60, 'jpg');
-            } catch (ImageException) {
-                return no(STATUS_BAD_REQUEST);
-            }
-            array_push($filepath, $filename);
-        }
-
-        return ok(count($filepath) > 1 ? $filepath : $filename);
+        return $this->file->upload($request->file());
     }
 }

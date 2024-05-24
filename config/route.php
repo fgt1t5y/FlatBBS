@@ -18,21 +18,21 @@ Route::fallback(function () {
     return ok();
 });
 
-Route::group('/board', function () {
+Route::group('/board/{slug}', function () {
     // 获取论坛所有的版块
     Route::post('/all', [app\controller\BoardController::class, 'all']);
     // 通过 BoardID 获取指定版块的信息
-    Route::post('/info/{slug}', [app\controller\BoardController::class, 'info']);
+    Route::post('/info', [app\controller\BoardController::class, 'info']);
 });
 
-Route::group('/topic', function () {
+Route::group('/topic/{slug}', function () {
     // 获取所有话题
     Route::post('/all', [app\controller\TopicController::class, 'all']);
     // 通过 BoardID 获取指定版块下的话题
-    Route::post('/list/{slug}', [app\controller\TopicController::class, 'list']);
+    Route::post('/list', [app\controller\TopicController::class, 'list']);
 });
 
-Route::group('/discussion', function () {
+Route::group('/discussion/{tid:\d+}', function () {
     // 通过 TopicID 获取指定话题下的讨论
-    Route::post('/list/{tid:\d+}', [app\controller\DiscussionController::class, 'list']);
+    Route::post('/list', [app\controller\DiscussionController::class, 'list']);
 });

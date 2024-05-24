@@ -3,13 +3,14 @@
 namespace app\controller;
 
 use app\model\Board;
+use app\service\SearchService;
+use app\service\BoardService;
 use support\Request;
-use app\service\Search;
 
 class BoardController
 {
-    public $boardBasicFields = ['id', 'name', 'slug', 'avatar_uri'];
-    public $boardFields = [
+    private $boardBasicFields = ['id', 'name', 'slug', 'avatar_uri'];
+    private $boardFields = [
         'id',
         'name',
         'slug',
@@ -19,26 +20,39 @@ class BoardController
         'header_img_uri'
     ];
 
+    protected SearchService $search;
+    protected BoardService $board;
+
+    public function __construct(SearchService $search, BoardService $board)
+    {
+        $this->search = $search;
+        $this->board = $board;
+    }
+
     public function all(Request $request)
     {
-        $result = Board::orderByDesc('id')
-            ->get($this->boardBasicFields);
+        $response = $this->board->all($this->boardBasicFields);
 
-        return ok($result);
+        return $response->toJson();
     }
 
     public function info(Request $request, string $slug)
     {
-        $result = Board::where('slug', $slug)
-            ->first($this->boardFields);
+        $response = $this->board->info($slug, $this->boardFields);
 
-        return $result ? $result : no(STATUS_NOT_FOUND);
+        return $response->getData();
     }
 
     public function search(Request $request)
     {
         $keyword = $request->post('q');
 
-        return ok(Search::board($keyword, $this->boardFields));
+        $response = $this->search->search($keyword, Board::class, 'name');
+
+        if (!$response->isSuccess()) {
+            no(STATUS_INTERNAL_ERROR);
+        }
+
+        return $response->toJson();
     }
 }

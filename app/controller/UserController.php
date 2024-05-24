@@ -3,12 +3,14 @@
 namespace app\controller;
 
 use app\model\User;
+use app\service\FileService;
+use app\service\UserService;
 use support\Request;
 use Shopwwi\LaravelCache\Cache;
 
 class UserController
 {
-    public $userBasicFields = [
+    private $userBasicFields = [
         'id',
         'email',
         'display_name',
@@ -16,6 +18,15 @@ class UserController
         'avatar_uri',
         'introduction'
     ];
+
+    protected FileService $fileService;
+    protected UserService $userService;
+
+    public function __construct(FileService $fileService, UserService $userService)
+    {
+        $this->fileService = $fileService;
+        $this->userService = $userService;
+    }
 
     public function info(Request $request)
     {
@@ -26,7 +37,7 @@ class UserController
             "{$cache_prefix}{$uid}",
             config('flatbbs.cache.ttl'),
             function () use ($uid) {
-                return User::getUserById($uid, $this->userBasicFields)->toArray();
+                return User::find($uid, $this->userBasicFields)->toArray();
             }
         );
 
@@ -37,12 +48,33 @@ class UserController
     {
         $field = $request->post('field', '');
         $value = $request->post('value', '');
-        $uid = session('id');
 
-        if (User::modifyUser($uid, $field, $value)) {
-            return ok();
-        } else {
-            return no(STATUS_INTERNAL_ERROR, '失败，信息未更新。');
+        $response = $this->userService->modify($field, $value);
+
+        if (!$response->isSuccess()) {
+            return no(STATUS_INTERNAL_ERROR);
         }
+
+        return ok();
+    }
+
+    public function avatar(Request $request)
+    {
+        $response = $this->fileService->upload($request->file());
+
+        if (!$response->isSuccess()) {
+            return no(STATUS_BAD_REQUEST);
+        }
+        $newAvatarName = $response->getData();
+
+        $response = $this->userService->modify('avatar_uri', $newAvatarName);
+
+        if ($response->isSuccess()) {
+            $response->success();
+        } else {
+            $response->failed(STATUS_INTERNAL_ERROR);
+        }
+
+        return $response;
     }
 }

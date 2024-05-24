@@ -6,5 +6,5 @@ export const getBoards = () => {
 };
 
 export const getBoardInfo = (board_slug: string) => {
-  return alovaInstance.Post<Board>(`/board/info/${board_slug}`);
+  return alovaInstance.Post<Board>(`/board/${board_slug}/info`);
 };

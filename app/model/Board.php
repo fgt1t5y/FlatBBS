@@ -4,7 +4,7 @@ namespace app\model;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\Model;
-use App\Casts\FullPath;
+use App\casts\FullPath;
 
 class Board extends Model
 {
@@ -18,6 +18,6 @@ class Board extends Model
 
     public function topics(): HasMany
     {
-        return $this->hasMany(Topic::class, 'board_id');
+        return $this->hasMany(Topic::class);
     }
 }

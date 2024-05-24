@@ -10,7 +10,7 @@ export const getTopicsByBoardSlug = (
   limit: number,
   board_slug: string,
 ) => {
-  return alovaInstance.Post<Topics>(`/topic/list/${board_slug}`, {
+  return alovaInstance.Post<Topics>(`/topic/${board_slug}/list`, {
     last,
     limit,
   });

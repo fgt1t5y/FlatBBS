@@ -12,4 +12,8 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-return new Webman\Container;
+use DI\ContainerBuilder;
+
+$build = new ContainerBuilder;
+$build->useAttributes(true);
+return $build->build();

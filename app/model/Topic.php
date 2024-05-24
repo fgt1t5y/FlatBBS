@@ -21,22 +21,22 @@ class Topic extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'author_id');
+        return $this->belongsTo(User::class);
     }
 
     public function last_reply(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'last_reply_id');
+        return $this->belongsTo(User::class);
     }
 
     public function board(): BelongsTo
     {
-        return $this->belongsTo(Board::class, 'board_id');
+        return $this->belongsTo(Board::class);
     }
 
     public function discussions(): HasMany
     {
-        return $this->hasMany(Discussion::class, 'topic_id');
+        return $this->hasMany(Discussion::class);
     }
 
     public static function createTopic(

@@ -4,42 +4,9 @@ namespace app\controller;
 
 use support\Request;
 use app\model\User;
-use Exception;
-use Intervention\Image\ImageManagerStatic as image;
 
 class AuthController
 {
-    public function register(Request $request)
-    {
-        $username = $request->post('username');
-        $email = $request->post('email');
-        $password = $request->post('password');
-        if (!all([$username, $password, is_email($email)])) {
-            return no(STATUS_BAD_REQUEST);
-        }
-
-        if (User::hasUser($email)) {
-            return no(STATUS_BAD_REQUEST, '此邮箱已被注册');
-        }
-
-        try {
-            $avatar_filename = random_string() . '.jpg';
-            $avatar = image::make('public/DefaultAvatar.png');
-            $avatar->save("public/usercontent/{$avatar_filename}", 60);
-            $user = User::newUser(
-                $email,
-                $username,
-                $password,
-                $avatar_filename,
-                true
-            );
-            $user->saveOrFail();
-            return ok();
-        } catch (Exception $e) {
-            return no(STATUS_INTERNAL_ERROR);
-        }
-    }
-
     public function login(Request $request)
     {
         $session = $request->session();
@@ -50,7 +17,7 @@ class AuthController
 
         $email = $request->post('email');
         $password = $request->post('password');
-        $user = User::getUser('email', $email, ['id', 'password', 'allow_login']);
+        $user = User::where('email', $email)->first();
 
         if (!all([$email, $password]) || !$user) {
             return no(STATUS_BAD_REQUEST, '用户不存在');
