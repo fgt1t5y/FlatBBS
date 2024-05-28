@@ -12,25 +12,24 @@ class UserService
         'introduction'
     ];
 
-    public function modify(string $field, string $value)
+    public function modify(string $field, string $value): bool
     {
         $uid = session('id');
-        $response = response();
 
         if (
             !all([$value])
             || !in_array($field, $this->allowModifyColumn)
         ) {
-            return $response;
+            return false;
         }
 
         $user = User::find($uid);
         $user->$field = $value;
 
-        if ($user->save()) {
-            return $response->success();
-        } else {
-            return $response;
+        if (!$user->isDirty()) {
+            return false;
         }
+
+        return $user->save();
     }
 }

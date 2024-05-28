@@ -2,7 +2,6 @@
 
 namespace app\controller;
 
-use app\model\Board;
 use app\model\Topic;
 use app\service\SearchService;
 use app\service\TopicService;
@@ -33,9 +32,9 @@ class TopicController
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
 
-        $response = $this->topic->all($last_id, $limit, $this->topicBasicFields);
+        $result = $this->topic->all($last_id, $limit, $this->topicBasicFields);
 
-        return $response->toJson();
+        return ok($result);
     }
 
     public function list(Request $request, string $slug)
@@ -43,21 +42,17 @@ class TopicController
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
 
-        $response = $this->topic->list($slug, $last_id, $limit, $this->topicBasicFields);
+        $result = $this->topic->list($slug, $last_id, $limit, $this->topicBasicFields);
 
-        return $response->toJson();
+        return ok($result);
     }
 
     public function search(Request $request)
     {
         $keyword = $request->post('q');
 
-        $response = $this->search->search($keyword, Topic::class, 'title');
+        $result = $this->search->search($keyword, Topic::class, 'title');
 
-        if (!$response->isSuccess()) {
-            no(STATUS_INTERNAL_ERROR);
-        }
-
-        return $response->toJson();
+        return ok($result);
     }
 }

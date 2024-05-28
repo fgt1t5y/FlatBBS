@@ -11,10 +11,9 @@ class SearchService
         if ($keyword == '' || $columns == []) {
             return null;
         }
-        $response = response();
 
-        $result = $model::whereRaw("MATCH(`$by`) AGAINST(?)", [$keyword])
-            ->get($columns);
-        return $response->setData($result)->success();
+        $builder = $model::whereFullText($by, $keyword);
+
+        return $builder->get($columns);
     }
 }

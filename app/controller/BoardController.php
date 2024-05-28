@@ -31,28 +31,28 @@ class BoardController
 
     public function all(Request $request)
     {
-        $response = $this->board->all($this->boardBasicFields);
+        $result = $this->board->all($this->boardBasicFields);
 
-        return $response->toJson();
+        return ok($result);
     }
 
     public function info(Request $request, string $slug)
     {
-        $response = $this->board->info($slug, $this->boardFields);
+        $result = $this->board->info($slug, $this->boardFields);
 
-        return $response->getData();
+        if (!$result) {
+            return no(STATUS_NOT_FOUND);
+        }
+
+        return $result;
     }
 
     public function search(Request $request)
     {
         $keyword = $request->post('q');
 
-        $response = $this->search->search($keyword, Board::class, 'name');
+        $result = $this->search->search($keyword, Board::class, 'name');
 
-        if (!$response->isSuccess()) {
-            no(STATUS_INTERNAL_ERROR);
-        }
-
-        return $response->toJson();
+        return ok($result);
     }
 }

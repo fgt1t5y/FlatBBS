@@ -8,18 +8,11 @@ class BoardService
 {
     public function all(?array $columns = null)
     {
-        $response = response();
-        $result = Board::orderBy('id')->get($columns);
-
-        return $response->setData($result)->success();
+        return Board::orderBy('id')->get($columns);
     }
 
     public function info(string $value, ?array $columns = null)
     {
-        $response = response();
-        $result = Board::where('slug', $value)
-            ->first($columns);
-
-        return $response->setData($result)->success();
+        return Board::where('slug', $value)->first($columns);
     }
 }

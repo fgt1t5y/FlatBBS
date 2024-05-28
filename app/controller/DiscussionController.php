@@ -27,8 +27,8 @@ class DiscussionController
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
 
-        $response = $this->discussion->list($topic_id, $last_id, $limit, $this->discussionBasicFields);
+        $result = $this->discussion->list($topic_id, $last_id, $limit, $this->discussionBasicFields);
 
-        return $response->toJson();
+        return ok($result);
     }
 }

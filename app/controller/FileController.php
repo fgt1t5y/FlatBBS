@@ -15,6 +15,12 @@ class FileController
 
     public function upload(Request $request)
     {
-        return $this->file->upload($request->file());
+        $result = $this->file->upload($request->file());
+
+        if (!$result) {
+            no(STATUS_INTERNAL_ERROR);
+        }
+
+        ok($result);
     }
 }

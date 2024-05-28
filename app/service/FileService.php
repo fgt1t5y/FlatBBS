@@ -10,14 +10,13 @@ class FileService
 {
     private $supportedFile = ['image/png', 'image/jpeg'];
 
-    public function upload(UploadFile|array $files)
+    public function upload(UploadFile|array $files): array|null
     {
         $filenames = [];
         $filename = '';
-        $response = response();
 
         if (!$files) {
-            return $response;
+            return null;
         }
 
         // 单个文件时 file 是 object，将其转换为 array 才可以 foreach
@@ -27,7 +26,7 @@ class FileService
 
         foreach ($files as $file) {
             if (!in_array($file->getUploadMimeType(), $this->supportedFile)) {
-                return $response;
+                return null;
             }
 
             $filename = random_string() . '.jpg';
@@ -37,13 +36,11 @@ class FileService
                 $image = (ImageManager::gd())->read($file->getPathname());
                 $image->save($path, 60, 'jpg');
             } catch (ImageException) {
-                return $response;
+                return null;
             }
             $filenames[] = $filename;
         }
 
-        return $response
-            ->setData(count($filenames) > 1 ? $filenames : $filename)
-            ->success();
+        return $filenames;
     }
 }

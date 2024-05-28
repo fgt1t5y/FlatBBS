@@ -49,9 +49,9 @@ class UserController
         $field = $request->post('field', '');
         $value = $request->post('value', '');
 
-        $response = $this->userService->modify($field, $value);
+        $result = $this->userService->modify($field, $value);
 
-        if (!$response->isSuccess()) {
+        if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
         }
 
@@ -60,21 +60,19 @@ class UserController
 
     public function avatar(Request $request)
     {
-        $response = $this->fileService->upload($request->file());
+        $file_array = $this->fileService->upload($request->file());
 
-        if (!$response->isSuccess()) {
+        if (!$file_array) {
             return no(STATUS_BAD_REQUEST);
         }
-        $newAvatarName = $response->getData();
+        $newAvatarName = $file_array[0];
 
-        $response = $this->userService->modify('avatar_uri', $newAvatarName);
+        $result = $this->userService->modify('avatar_uri', $newAvatarName);
 
-        if ($response->isSuccess()) {
-            $response->success();
+        if (!$result) {
+            return no(STATUS_INTERNAL_ERROR);
         } else {
-            $response->failed(STATUS_INTERNAL_ERROR);
+            return ok();
         }
-
-        return $response;
     }
 }
