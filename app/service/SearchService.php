@@ -13,12 +13,8 @@ class SearchService
         }
         $response = response();
 
-        try {
-            $result = $model::whereRaw("MATCH(`$by`) AGAINST(?)", [$keyword])
-                ->get($columns);
-            return $response->setData($result)->success();
-        } catch (\PDOException $e) {
-            return $response;
-        }
+        $result = $model::whereRaw("MATCH(`$by`) AGAINST(?)", [$keyword])
+            ->get($columns);
+        return $response->setData($result)->success();
     }
 }
