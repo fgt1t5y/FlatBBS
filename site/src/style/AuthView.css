@@ -1,24 +1,5 @@
 .auth-page {
-  height: 100vh;
-  padding: 0px var(--gap);
-  width: 400px;
-  max-width: 400px;
+  padding: var(--gap);
   margin: 0px auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.auth-page .site-logo {
-  margin: var(--gap) 0px;
-}
-
-.auth-page-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--gap);
-  gap: 8px;
-}
-
-.auth-page-header h3 {
-  margin: unset;
+  max-width: 400px;
 }

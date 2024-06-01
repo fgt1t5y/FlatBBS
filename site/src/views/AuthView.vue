@@ -1,32 +1,25 @@
 <template>
-  <div class="auth-page">
-    <div class="auth-page-header">
-      <NButton circle quaternary @click="page.back()">
-        <ArrowLeftIcon />
-      </NButton>
-      <NH3>
-        <NText type="primary">登录</NText>
-      </NH3>
+  <MainContent disable-panels>
+    <PageTitle title="登录" />
+    <div class="auth-page">
+      <NForm
+        ref="formRef"
+        :model="inputForm"
+        :rules="loginRule"
+        :disabled="isDealing"
+      >
+        <NFormItem path="email" label="电子邮箱地址">
+          <NInput v-model:value="inputForm.email" />
+        </NFormItem>
+        <NFormItem path="password" label="密码">
+          <NInput v-model:value="inputForm.password" type="password" />
+        </NFormItem>
+        <NFormItem>
+          <NButton type="primary" round block size="large" @click="validateForm">登录</NButton>
+        </NFormItem>
+      </NForm>
     </div>
-    <NForm
-      ref="formRef"
-      :model="inputForm"
-      :rules="loginRule"
-      :disabled="isDealing"
-    >
-      <NFormItem path="email" label="电子邮箱地址">
-        <NInput v-model:value="inputForm.email" />
-      </NFormItem>
-      <NFormItem path="password" label="密码">
-        <NInput v-model:value="inputForm.password" type="password" />
-      </NFormItem>
-      <NFormItem>
-        <NButton attr-type="button" type="primary" block @click="validateForf">
-          登录
-        </NButton>
-      </NFormItem>
-    </NForm>
-  </div>
+  </MainContent>
 </template>
 
 <script setup lang="ts">
@@ -38,16 +31,14 @@ import {
   NInput,
   type FormRules,
   NButton,
-  NH3,
-  NText,
   type FormInst,
 } from 'naive-ui'
 import { ref, reactive } from 'vue'
 import '@/style/AuthView.css'
-import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
-import { usePage } from '@/utils'
 import { useRoute } from 'vue-router'
 import router from '@/router'
+import MainContent from '@/components/MainContent.vue'
+import PageTitle from '@/components/PageTitle.vue'
 
 const isDealing = ref<boolean>(false)
 const inputForm = reactive({
@@ -55,7 +46,6 @@ const inputForm = reactive({
   password: '',
 })
 const formRef = ref<FormInst>()
-const page = usePage()
 const loginRule: FormRules = {
   email: [
     {
@@ -70,12 +60,13 @@ const loginRule: FormRules = {
       required: true,
       message: '请输入密码',
       trigger: ['blur'],
+      min: 8,
     },
   ],
 }
 const user = useUserStore()
 const route = useRoute()
-const validateForf = (ev: MouseEvent) => {
+const validateForm = (ev: MouseEvent) => {
   ev.preventDefault()
   formRef.value!.validate((errors) => {
     if (!errors) {
