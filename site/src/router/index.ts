@@ -7,9 +7,6 @@ import {
 import { mainRoutes } from './modules/main';
 import { pureSetTitle, hasToken } from '@/utils';
 
-const rootRoute = '/';
-const authRoute = '/auth';
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...mainRoutes] as RouteRecordRaw[],
@@ -18,12 +15,12 @@ const router = createRouter({
 router.beforeEach((to) => {
   if (hasToken()) {
     if (to.meta?.guestOnly) {
-      return { path: rootRoute };
+      return { name: 'root' };
     }
   } else {
     if (to.meta?.memberOnly) {
       window?.$message?.error('请先登录');
-      return { path: authRoute, query: { next: to.fullPath } };
+      return { name: 'auth_page', query: { next: to.fullPath } };
     }
   }
 });
