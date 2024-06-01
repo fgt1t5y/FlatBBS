@@ -40,3 +40,17 @@
 .navbar .site-logo {
   color: var(--theme-color);
 }
+
+.user-panel {
+  width: 300px;
+}
+
+.user-panel-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--gap);
+
+  b {
+    font-size: 1rem;
+  }
+}

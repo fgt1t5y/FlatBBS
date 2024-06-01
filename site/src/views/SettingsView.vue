@@ -68,27 +68,15 @@
         <NText type="primary">显示</NText>
       </NH6>
       <SettingItem title="颜色主题" subtitle="网站全局显示的颜色主题">
-        <CardRadio
-          label="跟随系统模式"
-          :checked="theme === 'auto'"
-          @click="switchTo('auto')"
+        <NRadioGroup
+          class="n-radio-block"
+          :value="theme"
+          @update:value="switchTo"
         >
-          <Brightness1Icon />
-        </CardRadio>
-        <CardRadio
-          label="浅色模式"
-          :checked="theme === 'light'"
-          @click="switchTo('light')"
-        >
-          <ModeLightIcon />
-        </CardRadio>
-        <CardRadio
-          label="暗色模式"
-          :checked="theme === 'dark'"
-          @click="switchTo('dark')"
-        >
-          <ModeDarkIcon />
-        </CardRadio>
+          <NRadioButton value="auto">跟随系统</NRadioButton>
+          <NRadioButton value="light">浅色</NRadioButton>
+          <NRadioButton value="dark">暗色</NRadioButton>
+        </NRadioGroup>
       </SettingItem>
     </div>
   </MainContent>
@@ -118,18 +106,22 @@ import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import CardRadio from '@/components/CardRadio.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
-import { NAvatar, NButton, NH6, NText, NModal, NFlex } from 'naive-ui'
+import {
+  NAvatar,
+  NButton,
+  NH6,
+  NText,
+  NModal,
+  NFlex,
+  NRadioGroup,
+  NRadioButton,
+} from 'naive-ui'
 import { ref } from 'vue'
 import { modifyUserAvatar } from '@/services'
 import '@/style/SettingsView.css'
-import {
-  Brightness1Icon,
-  ModeLightIcon,
-  ModeDarkIcon,
-} from 'tdesign-icons-vue-next'
+
 import MainContent from '@/components/MainContent.vue'
 
 const user = useUserStore()

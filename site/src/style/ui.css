@@ -104,15 +104,15 @@ textarea {
 }
 
 .f-s {
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 .f-m {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .f-l {
-  font-size: 18px;
+  font-size: 1.2rem;
 }
 
 /* 导航栏Logo */
@@ -145,4 +145,13 @@ textarea {
 
 .t-icon {
   font-size: 1.2rem;
+}
+
+.n-radio-block {
+  display: flex;
+
+  .n-radio-button {
+    text-align: center;
+    flex-grow: 1;
+  }
 }
