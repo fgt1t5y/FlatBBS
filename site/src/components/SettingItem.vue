@@ -21,8 +21,5 @@ interface SettingItemProps {
   subtitle?: string
 }
 
-const props = withDefaults(defineProps<SettingItemProps>(), {
-  title: '',
-  subtitle: '',
-})
+const props = defineProps<SettingItemProps>()
 </script>

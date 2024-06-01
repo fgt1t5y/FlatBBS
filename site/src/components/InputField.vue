@@ -49,7 +49,6 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
   readonly: false,
   field: '',
 })
-const message = useMessage()
 const valueNow = ref<string>(props.inputValue)
 const isEditing = ref<boolean>(false)
 const inputRef = ref<InstanceType<typeof NInput>>()
@@ -61,10 +60,10 @@ const onConfirm = () => {
   }
   modifyUserInfo(props.field, valueNow.value)
     .then(() => {
-      message.success('信息已更新。')
+      window.$message.success('信息已更新。')
     })
     .catch(() => {
-      message.error('信息更新失败。')
+      window.$message.error('信息更新失败。')
     })
     .finally(() => {
       isEditing.value = false

@@ -1,10 +1,7 @@
 <template>
   <MainContent>
     <PageTitle title="设置" />
-    <div class="settings-group">
-      <NH6>
-        <NText type="primary">头像</NText>
-      </NH6>
+    <SettingGroup title="头像">
       <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
         <NFlex align="center" justify="space-between">
           <NAvatar :src="user.info?.avatar_uri" :size="64" round />
@@ -25,11 +22,8 @@
           @change="giveAvatarFile"
         />
       </SettingItem>
-    </div>
-    <div class="settings-group">
-      <NH6>
-        <NText type="primary">用户资料</NText>
-      </NH6>
+    </SettingGroup>
+    <SettingGroup title="用户资料">
       <SettingItem title="电子邮箱地址" subtitle="电子邮箱地址不允许修改">
         <InputField :input-value="user.info?.email" readonly />
       </SettingItem>
@@ -52,21 +46,15 @@
           :input-value="user.info?.introduction"
         />
       </SettingItem>
-    </div>
-    <div class="settings-group">
-      <NH6>
-        <NText type="primary">安全与隐私</NText>
-      </NH6>
+    </SettingGroup>
+    <SettingGroup title="安全与隐私">
       <SettingItem title="密码" subtitle="登录时使用的密钥，请勿泄露">
         <div>
           <NButton type="primary" title="更改密码">更改</NButton>
         </div>
       </SettingItem>
-    </div>
-    <div class="settings-group">
-      <NH6>
-        <NText type="primary">显示</NText>
-      </NH6>
+    </SettingGroup>
+    <SettingGroup title="显示">
       <SettingItem title="颜色主题" subtitle="网站全局显示的颜色主题">
         <NRadioGroup
           class="n-radio-block"
@@ -78,7 +66,7 @@
           <NRadioButton value="dark">暗色</NRadioButton>
         </NRadioGroup>
       </SettingItem>
-    </div>
+    </SettingGroup>
   </MainContent>
   <NModal
     v-model:show="isShowCropper"
@@ -105,14 +93,13 @@
 import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
+import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
 import {
   NAvatar,
   NButton,
-  NH6,
-  NText,
   NModal,
   NFlex,
   NRadioGroup,
@@ -120,8 +107,6 @@ import {
 } from 'naive-ui'
 import { ref } from 'vue'
 import { modifyUserAvatar } from '@/services'
-import '@/style/SettingsView.css'
-
 import MainContent from '@/components/MainContent.vue'
 
 const user = useUserStore()
