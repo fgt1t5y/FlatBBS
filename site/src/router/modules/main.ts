@@ -53,6 +53,7 @@ export const mainRoutes = [
         component: () => import('@/views/SettingsView.vue'),
         meta: {
           title: '设置',
+          memberOnly: true,
         },
       },
       {
