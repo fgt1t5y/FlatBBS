@@ -19,6 +19,8 @@ export const has = (key: string) => get(key) !== null;
 
 export const hasToken = () => !!Cookies.get('flat_sess');
 
+export const clearToken = () => Cookies.remove('flat_sess');
+
 export const genForm = <T>(data: T) => {
   const form = new FormData();
 

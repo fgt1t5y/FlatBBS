@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { NInput, NSpace, NButton, NText, useMessage } from 'naive-ui'
+import { NInput, NSpace, NButton, NText } from 'naive-ui'
 import { Edit1Icon } from 'tdesign-icons-vue-next'
 import { ref, watch, nextTick } from 'vue'
 import '@/style/InputField.css'

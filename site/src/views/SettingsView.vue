@@ -136,10 +136,13 @@ const uploadAvatar = () => {
   cropper.value!.getBlobAsync().then((blob) => {
     if (blob) {
       const file = blobToFile(blob, '_.jpg')
-      modifyUserAvatar(file).then((res) => {
-        if (res.code > window.$code.OK) return
-        window.$message.success('头像已上传')
-      })
+      modifyUserAvatar(file)
+        .then(() => {
+          window.$message.success('头像已上传')
+        })
+        .catch(() => {
+          window.$message.error('头像更新失败')
+        })
     }
   })
 

@@ -7,11 +7,14 @@ export const useUserStore = defineStore('user', () => {
   const info = shallowRef<User>();
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
-    getUserInfo().then((res) => {
-      if (res.code > window.$code.OK) return;
-      isLogin.value = true;
-      info.value = res.data;
-    });
+    getUserInfo()
+      .then((res) => {
+        isLogin.value = true;
+        info.value = res.data;
+      })
+      .catch(() => {
+        window.$message.error('获取用户信息失败');
+      });
   };
   const quit = () => {
     logout().then(() => {

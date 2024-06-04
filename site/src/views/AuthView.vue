@@ -15,7 +15,15 @@
           <NInput v-model:value="inputForm.password" type="password" />
         </NFormItem>
         <NFormItem>
-          <NButton type="primary" round block size="large" @click="validateForm">登录</NButton>
+          <NButton
+            type="primary"
+            round
+            block
+            size="large"
+            @click="validateForm"
+          >
+            登录
+          </NButton>
         </NFormItem>
       </NForm>
     </div>
@@ -77,13 +85,12 @@ const validateForm = (ev: MouseEvent) => {
 const actionLogin = () => {
   isDealing.value = true
   login(inputForm.email, inputForm.password)
-    .then((res) => {
-      if (res.code > window.$code.OK) {
-        window.$message.error(res.message!)
-        return
-      }
+    .then(() => {
       user.fetch()
       router.replace({ path: (route.query.next as string) || '/' })
+    })
+    .catch((error: Error) => {
+      window.$message.error(error.message)
     })
     .finally(() => {
       isDealing.value = false
