@@ -14,11 +14,11 @@ class Exception extends \Webman\Exception\ExceptionHandler
         Log::error($exception->getMessage());
 
         if ($exception instanceof PDOException) {
-            return json(['code' => 500, 'message' => 'Database Internal Error']);
+            return no(STATUS_INTERNAL_ERROR, 'Database Internal Error');
         }
 
         if ($exception instanceof Throwable) {
-            return json(['code' => 500, 'message' => 'Backend Error']);
+            return no(STATUS_INTERNAL_ERROR, 'Backend Error');
         }
 
         return parent::render($request, $exception);
