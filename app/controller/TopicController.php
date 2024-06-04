@@ -5,6 +5,7 @@ namespace app\controller;
 use app\model\Topic;
 use app\service\SearchService;
 use app\service\TopicService;
+use DI\Attribute\Inject;
 use support\Request;
 
 class TopicController
@@ -18,14 +19,10 @@ class TopicController
         'created_at'
     ];
 
+    #[Inject]
     protected SearchService $search;
+    #[Inject]
     protected TopicService $topic;
-
-    public function __construct(SearchService $search, TopicService $topic)
-    {
-        $this->search = $search;
-        $this->topic = $topic;
-    }
 
     public function all(Request $request)
     {

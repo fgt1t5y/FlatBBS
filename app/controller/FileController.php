@@ -2,17 +2,17 @@
 
 namespace app\controller;
 
+use DI\Attribute\Inject;
+use support\Gate;
 use support\Request;
 use app\service\FileService;
 
 class FileController
 {
+    #[Inject]
     protected FileService $file;
-    public function __construct(FileService $file)
-    {
-        $this->file = $file;
-    }
 
+    #[Gate]
     public function upload(Request $request)
     {
         $result = $this->file->upload($request->file());

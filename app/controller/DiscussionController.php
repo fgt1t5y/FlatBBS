@@ -3,6 +3,7 @@
 namespace app\controller;
 
 use app\service\DiscussionService;
+use DI\Attribute\Inject;
 use support\Request;
 
 class DiscussionController
@@ -15,12 +16,8 @@ class DiscussionController
         'created_at'
     ];
 
+    #[Inject]
     protected DiscussionService $discussion;
-
-    public function __construct(DiscussionService $discussion)
-    {
-        $this->discussion = $discussion;
-    }
 
     public function list(Request $request, int $topic_id)
     {

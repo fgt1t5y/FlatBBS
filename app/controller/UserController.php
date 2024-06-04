@@ -7,6 +7,8 @@ use app\service\FileService;
 use app\service\UserService;
 use app\service\AuthService;
 use support\Request;
+use DI\Attribute\Inject;
+use support\Gate;
 
 class UserController
 {
@@ -19,20 +21,14 @@ class UserController
         'introduction'
     ];
 
+    #[Inject]
     protected FileService $file;
+    #[Inject]
     protected UserService $user;
+    #[Inject]
     protected AuthService $auth;
 
-    public function __construct(
-        FileService $file,
-        UserService $user,
-        AuthService $auth
-    ) {
-        $this->file = $file;
-        $this->user = $user;
-        $this->auth = $auth;
-    }
-
+    #[Gate]
     public function info(Request $request)
     {
         $uid = session('id');
@@ -42,6 +38,7 @@ class UserController
         return ok($userinfo);
     }
 
+    #[Gate]
     public function modify(Request $request)
     {
         $field = $request->post('field', '');
@@ -56,6 +53,7 @@ class UserController
         return ok();
     }
 
+    #[Gate]
     public function avatar(Request $request)
     {
         $file_array = $this->file->upload($request->file());
@@ -74,6 +72,7 @@ class UserController
         }
     }
 
+    #[Gate]
     public function password(Request $request)
     {
         $old_password = $request->post('old_password');

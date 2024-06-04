@@ -5,6 +5,7 @@ namespace app\controller;
 use app\model\Board;
 use app\service\SearchService;
 use app\service\BoardService;
+use DI\Attribute\Inject;
 use support\Request;
 
 class BoardController
@@ -20,14 +21,10 @@ class BoardController
         'header_img_uri'
     ];
 
+    #[Inject]
     protected SearchService $search;
+    #[Inject]
     protected BoardService $board;
-
-    public function __construct(SearchService $search, BoardService $board)
-    {
-        $this->search = $search;
-        $this->board = $board;
-    }
 
     public function all(Request $request)
     {
