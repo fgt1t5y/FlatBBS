@@ -30,7 +30,6 @@
     "illuminate/database": "^10.24",
     "illuminate/support": "^10.24",
     "intervention/image": "^3.6.4",
-    "shopwwi/laravel-cache": "^1.0",
     "illuminate/redis": "^10.25",
     "psr/container": "^2.0",
     "php-di/php-di": "^7.0",

@@ -7,7 +7,6 @@ use app\service\FileService;
 use app\service\UserService;
 use app\service\AuthService;
 use support\Request;
-use Shopwwi\LaravelCache\Cache;
 
 class UserController
 {
@@ -37,15 +36,8 @@ class UserController
     public function info(Request $request)
     {
         $uid = session('id');
-        $cache_prefix = config('flatbbs.cache.prefix.userinfo');
 
-        $userinfo = Cache::remember(
-            "{$cache_prefix}{$uid}",
-            config('flatbbs.cache.ttl'),
-            function () use ($uid) {
-                return User::find($uid, $this->userBasicFields)->toArray();
-            }
-        );
+        $userinfo = User::find($uid, $this->userBasicFields);
 
         return ok($userinfo);
     }
