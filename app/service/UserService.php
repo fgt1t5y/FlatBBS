@@ -9,7 +9,8 @@ class UserService
     private $allowModifyColumn = [
         'avatar_uri',
         'display_name',
-        'introduction'
+        'introduction',
+        'password'
     ];
 
     public function modify(string $field, string $value): bool
@@ -27,7 +28,7 @@ class UserService
         $user->$field = $value;
 
         if (!$user->isDirty()) {
-            return false;
+            return true;
         }
 
         return $user->save();

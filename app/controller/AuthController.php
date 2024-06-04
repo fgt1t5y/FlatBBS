@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use support\Redis;
 use support\Request;
 use app\model\User;
 
@@ -37,6 +38,7 @@ class AuthController
         ]);
         $user->last_login_at = date('Y-m-d\TH:i:s.u');
         $user->save();
+        Redis::rPush('flat_sess_' . $user->id, $session->getId());
 
         return ok()
             ->cookie('flat_sess', $token, 43200, '/');
@@ -45,6 +47,7 @@ class AuthController
     public function logout(Request $request)
     {
         $session = $request->session();
+        Redis::lRem('flat_sess_' . $session->get('id'), 1, $session->getId());
         $session->flush();
 
         return ok()
