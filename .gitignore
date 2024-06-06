@@ -4,6 +4,7 @@
 .env
 /tests/tmp
 /tests/.phpunit.result.cache
-public/usercontent/*
+/public/usercontent/*
+/plugin
 
 dump.rdb
