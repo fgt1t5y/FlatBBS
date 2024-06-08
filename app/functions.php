@@ -1,7 +1,6 @@
 <?php
 
 use support\Response;
-use support\Log;
 
 function is_email(string $email)
 {
@@ -27,23 +26,14 @@ function all(array $value)
     return true;
 }
 
-function _json(mixed $kvs): Response
-{
-    return new Response(
-        200,
-        ['Content-Type' => 'application/json'],
-        json_encode($kvs)
-    );
-}
-
 function ok(mixed $data = null): Response
 {
-    return _json(['code' => STATUS_OK, 'data' => $data]);
+    return json(['code' => STATUS_OK, 'data' => $data]);
 }
 
 function no(int $code, string $message = ''): Response
 {
-    return _json(['code' => $code, 'message' => $message]);
+    return json(['code' => $code, 'message' => $message]);
 }
 
 function random_string()
