@@ -3,9 +3,9 @@
 namespace app\model;
 
 use App\casts\FullPath;
-use support\Model;
+use support\AbstractModel;
 
-class User extends Model
+class User extends AbstractModel
 {
     protected $casts = [
         'avatar_uri' => FullPath::class

@@ -12,4 +12,10 @@
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-return [];
+use support\PluginManager;
+use support\EventManager;
+
+return [
+    PluginManager::class => PluginManager::getInstance(),
+    EventManager::class => EventManager::getInstance(),
+];

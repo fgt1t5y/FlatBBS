@@ -21,6 +21,7 @@ use Webman\Route;
 use Webman\Util;
 
 $worker = $worker ?? null;
+$config_plugin = config('plugin', []);
 
 set_error_handler(function ($level, $message, $file = '', $line = 0) {
     if (error_reporting() & $level) {
@@ -36,13 +37,13 @@ if ($worker) {
     }, time());
 }
 
-if (class_exists('Dotenv\Dotenv') && file_exists(base_path(false) . '/.env')) {
-    if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
-        Dotenv::createUnsafeMutable(base_path(false))->load();
-    } else {
-        Dotenv::createMutable(base_path(false))->load();
-    }
-}
+// if (class_exists('Dotenv\Dotenv') && file_exists(base_path(false) . '/.env')) {
+//     if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
+//         Dotenv::createUnsafeMutable(base_path(false))->load();
+//     } else {
+//         Dotenv::createMutable(base_path(false))->load();
+//     }
+// }
 
 Config::clear();
 support\App::loadAllConfig(['route']);
@@ -53,7 +54,7 @@ if ($timezone = config('app.default_timezone')) {
 foreach (config('autoload.files', []) as $file) {
     include_once $file;
 }
-foreach (config('plugin', []) as $firm => $projects) {
+foreach ($config_plugin as $firm => $projects) {
     foreach ($projects as $name => $project) {
         if (!is_array($project)) {
             continue;
@@ -63,6 +64,10 @@ foreach (config('plugin', []) as $firm => $projects) {
         }
     }
     foreach ($projects['autoload']['files'] ?? [] as $file) {
+        if (str_ends_with($file, 'extend.php')) {
+            require_once $file;
+            continue;
+        }
         include_once $file;
     }
 }
@@ -77,10 +82,10 @@ foreach (config('plugin', []) as $firm => $projects) {
     }
     Middleware::load($projects['middleware'] ?? [], $firm);
     if ($staticMiddlewares = config("plugin.$firm.static.middleware")) {
-        Middleware::load(['__static__' => $staticMiddlewares], $firm);
+        // Middleware::load(['__static__' => $staticMiddlewares], $firm);
     }
 }
-Middleware::load(['__static__' => config('static.middleware', [])]);
+// Middleware::load(['__static__' => config('static.middleware', [])]);
 
 foreach (config('bootstrap', []) as $className) {
     if (!class_exists($className)) {
@@ -93,7 +98,7 @@ foreach (config('bootstrap', []) as $className) {
     $className::start($worker);
 }
 
-foreach (config('plugin', []) as $firm => $projects) {
+foreach ($config_plugin as $firm => $projects) {
     foreach ($projects as $name => $project) {
         if (!is_array($project)) {
             continue;
@@ -127,9 +132,6 @@ $paths = [config_path()];
 foreach (Util::scanDir($directory) as $path) {
     if (is_dir($config_path = "$path/config")) {
         $paths[] = $config_path;
-    }
-    if (is_file($extend_file = "$path/extend.php")) {
-        require_once $extend_file;
     }
 }
 

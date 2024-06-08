@@ -3,10 +3,10 @@
 namespace app\model;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use support\Model;
+use support\AbstractModel;
 use App\casts\FullPath;
 
-class Board extends Model
+class Board extends AbstractModel
 {
     protected $table = 'boards';
     protected $casts = [

@@ -3,9 +3,9 @@
 namespace app\model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use support\Model;
+use support\AbstractModel;
 
-class Discussion extends Model
+class Discussion extends AbstractModel
 {
     protected $table = 'discussions';
     protected $casts = [

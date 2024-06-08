@@ -4,9 +4,9 @@ namespace app\model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use support\Model;
+use support\AbstractModel;
 
-class Topic extends Model
+class Topic extends AbstractModel
 {
     protected $table = 'topics';
     protected $casts = [

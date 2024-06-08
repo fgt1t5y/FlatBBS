@@ -16,4 +16,5 @@ use DI\ContainerBuilder;
 
 $build = new ContainerBuilder;
 $build->useAttributes(true);
+$build->addDefinitions(config('dependence'), []);
 return $build->build();
