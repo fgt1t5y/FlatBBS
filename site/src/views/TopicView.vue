@@ -8,8 +8,8 @@
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
     <RequestPlaceholder
-      :is-loading="loading"
-      :is-failed="!!error"
+      :loading="loading"
+      :error="error"
       @retry="send"
     />
   </MainContent>

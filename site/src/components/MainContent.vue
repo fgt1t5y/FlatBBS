@@ -1,25 +1,12 @@
 <template>
   <div class="grid-main">
     <div class="grid-main-content">
-      <NFlex
-        v-if="loading"
-        style="width: 100%; height: 300px"
-        vertical
-        justify="center"
-        align="center"
-      >
-        <NSpin :delay="200" description="加载中" />
-      </NFlex>
-      <NFlex
-        v-else-if="error"
-        style="width: 100%; height: 300px"
-        vertical
-        justify="center"
-        align="center"
-      >
-        <NH3>{{ error.message }}</NH3>
-        <NButton type="primary" round @click="emits('retry')">重试</NButton>
-      </NFlex>
+      <RequestPlaceholder
+        v-if="loading || error"
+        :loading="loading"
+        :error="error"
+        @retry="emits('retry')"
+      />
       <slot v-else />
     </div>
     <div v-if="isDesktop && !disablePanels" class="grid-main-panels">
@@ -32,8 +19,7 @@
 
 <script setup lang="ts">
 import { isDesktop } from '@/utils'
-import { watch } from 'vue'
-import { NFlex, NSpin, NButton, NH3 } from 'naive-ui'
+import RequestPlaceholder from './RequestPlaceholder.vue'
 
 defineOptions({
   name: 'MainContent',
@@ -54,11 +40,4 @@ const props = withDefaults(defineProps<MainContentProps>(), {
 const emits = defineEmits<{
   (e: 'retry'): void
 }>()
-
-watch(
-  () => props.error,
-  (v) => {
-    console.log(v?.message)
-  },
-)
 </script>
