@@ -64,10 +64,6 @@ foreach ($config_plugin as $firm => $projects) {
         }
     }
     foreach ($projects['autoload']['files'] ?? [] as $file) {
-        if (str_ends_with($file, 'extend.php')) {
-            require_once $file;
-            continue;
-        }
         include_once $file;
     }
 }

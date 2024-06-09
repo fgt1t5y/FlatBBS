@@ -20,7 +20,15 @@ class EventManager
     public static function addListener(string $event, callable $callback)
     {
         if (empty($event) || !is_callable($callback)) return;
+
         static::$callbacks[$event][] = $callback;
+    }
+
+    public static function dispatchListener(string $event, mixed $data)
+    {
+        foreach (static::$callbacks[$event] ?? [] as $callback) {
+            $callback($data);
+        }
     }
 
     public static function addModelListener(string $ns, string $event, callable $callback)
@@ -30,9 +38,7 @@ class EventManager
 
     public static function dispatchModelEvent(string $ns, string $event, mixed $model)
     {
-        foreach (static::$callbacks["$ns:$event"] ?? [] as $callback) {
-            $callback($model);
-        }
+        static::dispatchListener("$ns:$event", $model);
     }
 
     private function __construct()

@@ -34,4 +34,14 @@ class AbstractModel extends Model
             EventManager::dispatchModelEvent(static::class, 'deleted', $model);
         });
     }
+
+    public static function listen(string $event, callable $callback): void
+    {
+        EventManager::addModelListener(static::class, $event, $callback);
+    }
+
+    public static function dispatch(string $event, $model)
+    {
+        EventManager::dispatchModelEvent(static::class, $event, $model);
+    }
 }
