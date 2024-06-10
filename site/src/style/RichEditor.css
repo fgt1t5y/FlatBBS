@@ -29,7 +29,7 @@
 blockquote {
   padding: var(--gap);
   margin-left: 10px;
-  border-left: 3px solid var(--theme-color);
+  border-left: 3px solid var(--color-fill-4);
 
   p {
     margin: unset;

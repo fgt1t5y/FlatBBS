@@ -37,10 +37,6 @@
   font-weight: bolder;
 }
 
-.navbar .site-logo {
-  color: var(--theme-color);
-}
-
 .user-panel {
   width: 300px;
 }

@@ -1,9 +1,7 @@
 /* FlatBBS Color Scheme */
 
 body {
-  --theme-color: #18a058;
   --color-border: rgb(var(--gray-3));
-  --color-bg-popup: var(--color-bg-5);
   --color-bg: #fff;
   --color-bg-1: #fff;
   --color-bg-2: #fff;
@@ -39,8 +37,8 @@ body {
   --gray-9: 39, 46, 59;
   --gray-10: 29, 33, 41;
 }
+
 body[flat-theme='dark'] {
-  --theme-color: #63e2b7;
   --color-border: #333335;
   --color-bg: #101014ff;
   --color-bg-1: #18181c;

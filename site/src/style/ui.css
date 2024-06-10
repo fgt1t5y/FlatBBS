@@ -33,7 +33,7 @@ textarea {
   border: none;
   outline: none;
   background: transparent;
-  caret-color: var(--theme-color);
+  caret-color: inherit;
   color: inherit;
   font-family: ui-sans-serif;
   padding: var(--gap);
@@ -48,11 +48,6 @@ textarea {
 
 .observe-target {
   width: 100%;
-}
-
-/* 路由高亮 */
-.link.router-link-exact-active {
-  color: var(--theme-color) !important;
 }
 
 /* 侧边栏 */
@@ -127,20 +122,6 @@ textarea {
   height: 28px;
   aspect-ratio: 1 / 1;
   margin-right: 8px;
-}
-
-/* 话题内容相关 */
-.topic-content {
-  font-size: 1rem;
-
-  .mention {
-    color: var(--theme-color);
-  }
-
-  .ilink {
-    color: var(--theme-color);
-    text-decoration: underline;
-  }
 }
 
 .t-icon {

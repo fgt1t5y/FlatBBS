@@ -7,11 +7,7 @@
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder
-      :loading="loading"
-      :error="error"
-      @retry="send"
-    />
+    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
     <template #panels>
       <RouterLink to="/publish">
         <NButton type="primary" round block>
