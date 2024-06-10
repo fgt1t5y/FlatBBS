@@ -13,6 +13,11 @@ class UserService
         'password'
     ];
 
+    public function info(int $useer_id, array $columns)
+    {
+        return User::find($useer_id, $columns);
+    }
+
     public function modify(string $field, string $value): bool
     {
         $uid = session('id');

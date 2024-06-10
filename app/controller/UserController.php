@@ -33,7 +33,7 @@ class UserController
     {
         $uid = session('id');
 
-        $userinfo = User::find($uid, $this->userBasicFields);
+        $userinfo = $this->user->info($uid, $this->userBasicFields);
 
         return ok($userinfo);
     }
