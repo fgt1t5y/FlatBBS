@@ -36,6 +36,7 @@ export const mainRoutes = [
         name: 'board_publish_page',
         component: () => import('@/views/BoardPublishView.vue'),
         meta: {
+          title: '发布',
           memberOnly: true,
         },
       },
