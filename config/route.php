@@ -15,7 +15,7 @@
 use Webman\Route;
 
 Route::fallback(function () {
-    return ok();
+    return no(STATUS_NOT_FOUND, 'Route Not Found.');
 });
 
 Route::group('/board/{slug}', function () {

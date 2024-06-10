@@ -1,6 +1,7 @@
 <?php
 
 use support\Response;
+use Illuminate\Support\Str;
 
 function is_email(string $email)
 {
@@ -38,15 +39,7 @@ function no(int $code, string $message = ''): Response
 
 function random_string()
 {
-    $unit = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-    $len = strlen($unit) - 1;
-    $result = '';
-
-    for ($i = 0; $i < 16; $i++) {
-        $result = $result . $unit[random_int(0, $len)];
-    }
-
-    return $result;
+    return Str::random();
 }
 
 function is_login($token)
