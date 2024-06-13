@@ -50,19 +50,6 @@ textarea {
   width: 100%;
 }
 
-/* 侧边栏 */
-.sider-link {
-  font-size: 1rem;
-  height: 33px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.sider-group {
-  margin-top: var(--gap);
-}
-
 /* 原子类 */
 .text-center {
   text-align: center;
@@ -70,20 +57,10 @@ textarea {
 
 .chunk {
   padding: var(--gap);
-  border-bottom: 1px solid var(--color-border);
-
-  &:last-child {
-    border-bottom: unset;
-  }
 }
 
-.title {
-  margin: var(--gap);
-  margin-bottom: unset;
-
-  h3 {
-    margin-bottom: unset;
-  }
+.underline {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .flex-v {
@@ -110,20 +87,7 @@ textarea {
   font-size: 1.2rem;
 }
 
-/* 导航栏Logo */
-.site-brand {
-  height: 52px;
-  display: flex;
-  align-items: center;
-}
-
-.site-logo {
-  fill: currentColor;
-  height: 28px;
-  aspect-ratio: 1 / 1;
-  margin-right: 8px;
-}
-
+/* naiveui样式覆写 */
 .t-icon {
   font-size: 1.2rem;
 }
