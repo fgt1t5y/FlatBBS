@@ -6,6 +6,7 @@ use Throwable;
 use Webman\Http\Request;
 use Webman\Http\Response;
 use PDOException;
+use support\APIException;
 
 class Exception extends \Webman\Exception\ExceptionHandler
 {
@@ -16,6 +17,10 @@ class Exception extends \Webman\Exception\ExceptionHandler
 
     public function render(Request $request, Throwable $exception): Response
     {
+        if ($exception instanceof APIException) {
+            return no($exception->getCode(), $exception->getMessage());
+        }
+
         if ($exception instanceof PDOException) {
             return no(STATUS_INTERNAL_ERROR, 'Database Internal Error');
         }
