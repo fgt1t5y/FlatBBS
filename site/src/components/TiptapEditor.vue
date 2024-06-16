@@ -30,7 +30,16 @@ const editor = useEditor({
       openOnClick: false,
     }),
   ],
+  onUpdate: ({ editor }) => {
+    if (modelModifiers.plain) {
+      modelValue.value = editor.getText()
+      return
+    }
+    modelValue.value = editor.getHTML()
+  },
 })
+
+const [modelValue, modelModifiers] = defineModel<string>({ default: '<p></p>' })
 
 onBeforeUnmount(() => {
   if (editor.value) {

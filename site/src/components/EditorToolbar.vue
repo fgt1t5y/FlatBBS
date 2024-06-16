@@ -1,23 +1,24 @@
 <template>
-  <div class="editor-toolbar">
+  <div :class="editorToolbarClass">
     <NButton
       v-for="(tool, index) in editorTools"
       :key="index"
-      secondary
-      circle
+      text
+      size="large"
       :type="tool.isActive() ? 'primary' : 'default'"
       @click="tool.onClick"
     >
-      <NIcon :size="20" :component="tool.icon" />
+      <NIcon :size="24" :component="tool.icon" />
     </NButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import { type Component } from 'vue'
+import { computed, type Component } from 'vue'
 import { NButton, NIcon } from 'naive-ui'
 import { H1, H2, Bold, Italic, List, ListNumbers, Quote } from '@vicons/tabler'
+import { isMobile } from '@/utils'
 
 defineOptions({
   name: 'EditorToolbar',
@@ -35,6 +36,13 @@ interface EditorTools {
 }
 
 const props = defineProps<EditorToolbarProps>()
+
+const editorToolbarClass = computed(() => {
+  return {
+    'editor-toolbar': true,
+    'editor-toolbar-float': isMobile.value,
+  }
+})
 
 const editorTools = [
   {
