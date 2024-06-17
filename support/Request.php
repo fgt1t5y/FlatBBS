@@ -14,11 +14,22 @@
 
 namespace support;
 
+use app\model\User;
+use support\APIException;
+
 /**
  * Class Request
  * @package support
  */
 class Request extends \Webman\Http\Request
 {
+    public function getUser(): User|null
+    {
+        $user_id = $this->session->get('id');
 
+        if (!$user_id)
+            throw new APIException('Please authorize.', STATUS_UNAUTHORIZED);
+
+        return User::find($user_id, ['id']);
+    }
 }
