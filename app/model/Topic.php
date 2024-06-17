@@ -5,6 +5,8 @@ namespace app\model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
+use app\model\Board;
+use app\model\User;
 
 class Topic extends AbstractModel
 {
@@ -37,30 +39,5 @@ class Topic extends AbstractModel
     public function discussions(): HasMany
     {
         return $this->hasMany(Discussion::class);
-    }
-
-    public static function createTopic(
-        string $title,
-        string $content,
-        int $board_id,
-        int $author_id,
-    ): bool|\Illuminate\Database\Eloquent\Model {
-        $now = date('Y-m-d\TH:i:s.u');
-        $board = Board::find($board_id);
-        if (!$board)
-            return false;
-
-        $created_topic = $board->topics()->create([
-            'author_id' => $author_id,
-            'title' => $title,
-            'last_reply_at' => $now
-        ]);
-        $host_discussion = new Discussion();
-        $host_discussion->topic_id = $created_topic->id;
-        $host_discussion->author_id = $author_id;
-        $host_discussion->content = $content ?? 'No Content';
-        $host_discussion->save();
-
-        return $created_topic;
     }
 }
