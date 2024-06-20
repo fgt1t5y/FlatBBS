@@ -1,5 +1,13 @@
 <template>
   <div :class="editorToolbarClass">
+    <input
+      ref="imageInput"
+      type="file"
+      name="avatar"
+      accept=".jpg,.png,.jpeg"
+      style="display: none"
+      @change="uploadAndInsertImage"
+    />
     <NButton
       v-for="(tool, index) in editorTools"
       :key="index"
@@ -15,10 +23,22 @@
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import { computed, type Component } from 'vue'
+import { computed, ref, type Component } from 'vue'
 import { NButton, NIcon } from 'naive-ui'
-import { H1, H2, Bold, Italic, List, ListNumbers, Quote } from '@vicons/tabler'
+import {
+  H1,
+  H2,
+  Bold,
+  Italic,
+  List,
+  ListNumbers,
+  Quote,
+  Photo,
+  ArrowBackUp,
+  ArrowForwardUp,
+} from '@vicons/tabler'
 import { isMobile } from '@/utils'
+import { uploadFile } from '@/services'
 
 defineOptions({
   name: 'EditorToolbar',
@@ -36,6 +56,22 @@ interface EditorTools {
 }
 
 const props = defineProps<EditorToolbarProps>()
+const imageInput = ref<HTMLInputElement>()
+
+const uploadAndInsertImage = () => {
+  if (!imageInput.value?.files?.length) {
+    return
+  }
+
+  const image = imageInput.value.files[0]
+  uploadFile(image).then((res) => {
+    res.data.forEach((uri) => {
+      props?.editor.commands.setImage({
+        src: uri,
+      })
+    })
+  })
+}
 
 const editorToolbarClass = computed(() => {
   return {
@@ -88,6 +124,24 @@ const editorTools = [
     icon: Quote,
     onClick: () => props?.editor.chain().focus().toggleBlockquote().run(),
     isActive: () => props?.editor.isActive('blockquote'),
+  },
+  {
+    name: 'image',
+    icon: Photo,
+    onClick: () => imageInput.value!.click(),
+    isActive: () => false,
+  },
+  {
+    name: 'undo',
+    icon: ArrowBackUp,
+    onClick: () => props?.editor.commands.undo(),
+    isActive: () => false,
+  },
+  {
+    name: 'redo',
+    icon: ArrowForwardUp,
+    onClick: () => props?.editor.commands.redo(),
+    isActive: () => false,
   },
 ] as EditorTools[]
 </script>

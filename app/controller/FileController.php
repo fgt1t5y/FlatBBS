@@ -21,6 +21,6 @@ class FileController
             no(STATUS_INTERNAL_ERROR);
         }
 
-        ok($result);
+        return ok($result);
     }
 }

@@ -49,7 +49,7 @@ export interface CreateTopicForm {
 }
 
 export interface UploadResult extends Result {
-  uri: string | string[];
+  data: string[];
 }
 
 export interface Board {

@@ -38,7 +38,7 @@ class FileService
             } catch (ImageException) {
                 return null;
             }
-            $filenames[] = $filename;
+            $filenames[] = "/backend/usercontent/{$filename}";
         }
 
         return $filenames;
