@@ -18,7 +18,7 @@
       </NButton>
       <NButton round secondary size="small" title="发表讨论">
         <template #icon>
-          <ChatMessageIcon size="16px" />
+          <NIcon :size="18" :component="Message" />
         </template>
         {{ topic.reply_count }}
       </NButton>
@@ -29,8 +29,8 @@
 <script setup lang="ts">
 import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
-import { NAvatar, NText, NButton } from 'naive-ui'
-import { ChatMessageIcon } from 'tdesign-icons-vue-next'
+import { NAvatar, NText, NButton, NIcon } from 'naive-ui'
+import { Message } from '@vicons/tabler'
 import RelativeTime from './RelativeTime.vue'
 import '@/style/TopicItem.css'
 

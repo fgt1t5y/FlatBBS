@@ -7,7 +7,7 @@
         <div class="common-detail-opt">
           <NButton circle secondary>
             <template #icon>
-              <EllipsisIcon />
+              <Dots />
             </template>
           </NButton>
           <NButton type="primary" round>加入</NButton>
@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { NButton, NImage, NAvatar, NText } from 'naive-ui'
 import '@/style/CommonDetail.css'
-import { EllipsisIcon } from 'tdesign-icons-vue-next'
+import { Dots } from '@vicons/tabler'
 
 defineOptions({
   name: 'CommonDetail',

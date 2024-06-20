@@ -9,15 +9,15 @@
       </div>
       <div v-if="user.isLogin" class="navbar-options">
         <NButton title="发布新话题" quaternary circle>
-          <AddRectangleIcon />
+          <NIcon :size="24" :component="Plus" />
         </NButton>
         <RouterLink to="/settings">
           <NButton title="设置" quaternary circle>
-            <Setting1Icon />
+            <NIcon :size="24" :component="Settings" />
           </NButton>
         </RouterLink>
         <NButton title="查看通知" quaternary circle>
-          <NotificationIcon />
+          <NIcon :size="24" :component="Bell" />
         </NButton>
         <NPopover
           placement="bottom-end"
@@ -41,7 +41,7 @@
           </div>
           <div>
             <NButton type="error" secondary round block @click="user.quit">
-              <LogoutIcon />
+              <NIcon :size="24" :component="Logout" />
               退出登录
             </NButton>
           </div>
@@ -58,14 +58,9 @@
 
 <script setup lang="ts">
 import '@/style/Navbar.css'
-import { NText, NButton, NAvatar, NInput, NPopover } from 'naive-ui'
+import { NText, NButton, NAvatar, NInput, NPopover, NIcon } from 'naive-ui'
 import { useUserStore } from '@/stores'
-import {
-  NotificationIcon,
-  AddRectangleIcon,
-  Setting1Icon,
-  LogoutIcon,
-} from 'tdesign-icons-vue-next'
+import { Plus, Bell, Settings, Logout } from '@vicons/tabler'
 import { isDesktop } from '@/utils'
 import { ref } from 'vue'
 

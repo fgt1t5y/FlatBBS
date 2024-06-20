@@ -8,7 +8,7 @@
         size="large"
         @click="page.back"
       >
-        <ArrowLeftIcon size="28px" />
+        <NIcon :size="28" :component="ArrowLeft" />
       </NButton>
       <div class="page-title-default">
         <slot>
@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
 import '@/style/PageTitle.css'
-import { ArrowLeftIcon } from 'tdesign-icons-vue-next'
-import { NButton } from 'naive-ui'
+import { ArrowLeft } from '@vicons/tabler'
+import { NButton, NIcon } from 'naive-ui'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePage } from '@/utils'

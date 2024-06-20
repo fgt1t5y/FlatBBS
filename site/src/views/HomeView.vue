@@ -12,7 +12,7 @@
       <RouterLink to="/publish">
         <NButton type="primary" round block>
           <template #icon>
-            <PenIcon size="20px" />
+            <NIcon :component="Pencil" />
           </template>
           发布话题
         </NButton>
@@ -25,12 +25,12 @@
 import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
-import { NButton } from 'naive-ui'
+import { NButton, NIcon } from 'naive-ui'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import CommonList from '@/components/CommonList.vue'
 import { getAllTopics } from '@/services'
-import { PenIcon } from 'tdesign-icons-vue-next'
+import { Pencil } from '@vicons/tabler'
 import { usePagination } from '@alova/scene-vue'
 
 let lastItemId = 0

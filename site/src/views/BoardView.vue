@@ -26,7 +26,7 @@
       <RouterLink :to="`/board/${currentSlug}/publish`">
         <NButton type="primary" round block>
           <template #icon>
-            <PenIcon size="20px" />
+            <NIcon :component="Pencil" />
           </template>
           发布话题
         </NButton>
@@ -45,8 +45,8 @@ import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
 import CommonDetail from '@/components/CommonDetail.vue'
-import { NButton } from 'naive-ui'
-import { PenIcon } from 'tdesign-icons-vue-next'
+import { NButton, NIcon } from 'naive-ui'
+import { Pencil } from '@vicons/tabler'
 import { usePagination } from '@alova/scene-vue'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest } from 'alova'

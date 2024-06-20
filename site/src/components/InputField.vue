@@ -8,7 +8,7 @@
       title="更改此栏"
       @click="startEdit"
     >
-      <Edit1Icon />
+      <NIcon :size="24" :component="Pencil" />
     </NButton>
   </NSpace>
   <NSpace v-else vertical>
@@ -26,8 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import { NInput, NSpace, NButton, NText } from 'naive-ui'
-import { Edit1Icon } from 'tdesign-icons-vue-next'
+import { NInput, NSpace, NButton, NText, NIcon } from 'naive-ui'
+import { Pencil } from '@vicons/tabler'
 import { ref, watch, nextTick } from 'vue'
 import '@/style/InputField.css'
 import { modifyUserInfo } from '@/services'
