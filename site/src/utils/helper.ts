@@ -1,3 +1,4 @@
+import { config } from '@/global';
 import { useBreakpoints } from '@vueuse/core';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
@@ -44,8 +45,9 @@ export const blobToFile = (blob: Blob, fileName: string) => {
   return new File([blob], fileName, { type: blob.type });
 };
 
-export const fromNow = (datetime: string) => {
-  return dayjs(datetime).fromNow();
+export const formatTime = (datetime: string) => {
+  const localTime = dayjs.utc(datetime).tz(config.time_zone)
+  return [localTime.format('LLL'), localTime.fromNow()];
 };
 
 export const breakpoint = useBreakpoints({

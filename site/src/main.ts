@@ -5,13 +5,19 @@ import '@/style/theme.css';
 import 'dayjs/locale/zh-cn';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import App from './App.vue';
 import router from './router';
 import { code } from '@/constants';
 import i18n from './i18n';
 
 dayjs.locale('zh-cn');
+dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.extend(relativeTime);
+dayjs.extend(LocalizedFormat);
 
 const app = createApp(App);
 

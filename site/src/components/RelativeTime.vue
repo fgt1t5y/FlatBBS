@@ -1,14 +1,14 @@
 <template>
   <NTooltip>
     <template #trigger>
-      <NText :depth="3">{{ relativeTime }}</NText>
+      <NText :depth="3">{{ relativeTime[1] }}</NText>
     </template>
-    {{ time }}
+    {{ relativeTime[0] }}
   </NTooltip>
 </template>
 
 <script setup lang="ts">
-import { fromNow } from '@/utils'
+import { formatTime } from '@/utils'
 import { NText, NTooltip } from 'naive-ui'
 
 defineOptions({
@@ -22,5 +22,5 @@ interface RelativeTimeProps {
 const props = withDefaults(defineProps<RelativeTimeProps>(), {
   time: Date.toString(),
 })
-const relativeTime = fromNow(props.time)
+const relativeTime = formatTime(props.time)
 </script>
