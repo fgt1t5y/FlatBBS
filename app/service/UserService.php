@@ -13,9 +13,9 @@ class UserService
         'password'
     ];
 
-    public function info(int $useer_id, array $columns)
+    public function info(int $user_id, array $columns)
     {
-        return User::find($useer_id, $columns);
+        return User::find($user_id, $columns);
     }
 
     public function modify(string $field, string $value): bool
