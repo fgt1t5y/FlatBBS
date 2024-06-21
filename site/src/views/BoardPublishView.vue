@@ -11,7 +11,7 @@
           type="primary"
           :disabled="topicPublishing"
           round
-          @click="checkForm() && handlePublishTopic"
+          @click="checkForm() && handlePublishTopic()"
         >
           发布
         </NButton>
