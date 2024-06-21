@@ -13,7 +13,7 @@ return [
             'password'    => 'lyghj456',
             'charset'     => 'utf8',
             'collation'   => 'utf8_unicode_ci',
-            'prefix'      => 'flat_',
+            'prefix'      => '',
             'strict'      => true,
             'options' => [
                 \PDO::ATTR_TIMEOUT => 3
