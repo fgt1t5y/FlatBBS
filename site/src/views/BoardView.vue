@@ -4,7 +4,7 @@
     :error="boardInfoError"
     @retry="loadBoardInfo"
   >
-    <PageTitle title="版块" />
+    <PageTitle :title="boardInfo?.name" />
     <CommonDetail
       :header-image-uri="boardInfo.header_img_uri"
       :avatar-uri="boardInfo.avatar_uri"
@@ -17,11 +17,7 @@
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder
-      :loading="loading"
-      :error="error"
-      @retry="send"
-    />
+    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
     <template #panels>
       <RouterLink :to="`/board/${currentSlug}/publish`">
         <NButton type="primary" round block>
