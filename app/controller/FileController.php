@@ -15,7 +15,7 @@ class FileController
     #[Gate]
     public function upload(Request $request)
     {
-        $result = $this->file->upload($request->file());
+        $result = $this->file->upload($request->file(), true);
 
         if (!$result) {
             no(STATUS_INTERNAL_ERROR);

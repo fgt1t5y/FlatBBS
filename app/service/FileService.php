@@ -10,7 +10,7 @@ class FileService
 {
     private $supportedFile = ['image/png', 'image/jpeg'];
 
-    public function upload(UploadFile|array $files): array|null
+    public function upload(UploadFile|array $files, bool|null $with_suffix = false): array|null
     {
         $filenames = [];
         $filename = '';
@@ -38,7 +38,12 @@ class FileService
             } catch (ImageException) {
                 return null;
             }
-            $filenames[] = "/backend/usercontent/{$filename}";
+            
+            if ($with_suffix) {
+                $filenames[] = "/backend/usercontent/{$filename}";
+            } else {
+                $filenames[] = $filename;
+            }
         }
 
         return $filenames;
