@@ -41,7 +41,7 @@ class BoardController
             return no(STATUS_NOT_FOUND);
         }
 
-        return $result;
+        return ok($result);
     }
 
     public function search(Request $request)

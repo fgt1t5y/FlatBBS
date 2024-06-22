@@ -62,6 +62,10 @@ export interface Board {
   color: string;
 }
 
+export interface BoardInfo extends Result {
+  data: Board;
+}
+
 export interface Boards extends Result {
   data: Board[];
 }

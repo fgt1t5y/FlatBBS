@@ -4,12 +4,12 @@
     :error="boardInfoError"
     @retry="loadBoardInfo"
   >
-    <PageTitle :title="boardInfo?.name" />
+    <PageTitle :title="boardInfo.data.name" />
     <CommonDetail
-      :header-image-uri="boardInfo.header_img_uri"
-      :avatar-uri="boardInfo.avatar_uri"
-      :name="boardInfo.name"
-      :introduction="boardInfo.description"
+      :header-image-uri="boardInfo.data.header_img_uri"
+      :avatar-uri="boardInfo.data.avatar_uri"
+      :name="boardInfo.data.name"
+      :introduction="boardInfo.data.description"
     />
     <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
@@ -83,7 +83,7 @@ const {
 )
 
 onBoardInfoSuccess(() => {
-  setTitle(boardInfo.value.name)
+  setTitle(boardInfo.value.data.name)
 })
 
 onSuccess(() => {

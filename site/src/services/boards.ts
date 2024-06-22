@@ -1,4 +1,4 @@
-import type { Boards, Board } from '@/types';
+import type { Boards, BoardInfo } from '@/types';
 import { alovaInstance } from './instance';
 
 export const getBoards = () => {
@@ -6,5 +6,5 @@ export const getBoards = () => {
 };
 
 export const getBoardInfo = (board_slug: string) => {
-  return alovaInstance.Post<Board>(`/board/${board_slug}/info`);
+  return alovaInstance.Post<BoardInfo>(`/board/${board_slug}/info`);
 };
