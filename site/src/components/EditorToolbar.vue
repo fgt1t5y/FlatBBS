@@ -134,13 +134,13 @@ const editorTools = [
   {
     name: 'undo',
     icon: ArrowBackUp,
-    onClick: () => props?.editor.commands.undo(),
+    onClick: () => props?.editor.chain().focus().undo().run(),
     isActive: () => false,
   },
   {
     name: 'redo',
     icon: ArrowForwardUp,
-    onClick: () => props?.editor.commands.redo(),
+    onClick: () => props?.editor.chain().focus().redo().run(),
     isActive: () => false,
   },
 ] as EditorTools[]
