@@ -12,4 +12,14 @@ class User extends AbstractModel
     ];
 
     protected $table = 'users';
+
+    public static $basic_columns = [
+        'id',
+        'display_name',
+        'username',
+        'email',
+        'avatar_uri',
+        'header_image_uri',
+        'introduction'
+    ];
 }

@@ -12,15 +12,6 @@ use support\Gate;
 
 class UserController
 {
-    private $userBasicFields = [
-        'id',
-        'email',
-        'display_name',
-        'username',
-        'avatar_uri',
-        'introduction'
-    ];
-
     #[Inject]
     protected FileService $file;
     #[Inject]
@@ -33,7 +24,7 @@ class UserController
     {
         $uid = session('id');
 
-        $userinfo = $this->user->info($uid, $this->userBasicFields);
+        $userinfo = $this->user->info($uid, User::$basic_columns);
 
         return ok($userinfo);
     }
@@ -51,6 +42,19 @@ class UserController
         }
 
         return ok();
+    }
+
+    public function user(Request $request)
+    {
+        $user_id = $request->post('username');
+
+        $result = $this->user->info($user_id, User::$basic_columns);
+
+        if (!$result) {
+            return no(STATUS_INTERNAL_ERROR);
+        }
+
+        return ok($result);
     }
 
     #[Gate]
@@ -84,7 +88,7 @@ class UserController
             return no(STATUS_BAD_REQUEST);
         }
 
-        $user = User::find($uid)->first();
+        $user = $request->getUser();
 
         if (!password_verify($old_password, $user->password)) {
             return no(STATUS_FORBIDDEN, '密码错误');

@@ -6,6 +6,10 @@ export const getUserInfo = () => {
   return alovaInstance.Post<UserInfo>('/user/info');
 };
 
+export const getInfoByUsername = (username: string) => {
+  return alovaInstance.Post<UserInfo>('/user/user', { username });
+};
+
 export const modifyUserInfo = (field: string, value: string) => {
   return alovaInstance.Post<Result>('/user/modify', { field, value });
 };

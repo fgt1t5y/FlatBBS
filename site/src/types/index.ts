@@ -70,13 +70,11 @@ export interface Boards extends Result {
   data: Board[];
 }
 
-export type Author = Pick<User, 'id' | 'display_name' | 'avatar_uri'>;
-
 export interface Topic {
   id: number;
   title: string;
   content?: string;
-  author: Author;
+  author: User;
   board: Board;
   board_id: number;
   author_id: number;
@@ -95,7 +93,7 @@ export interface Discussion {
   id: number;
   content: string;
   created_at: string;
-  author: Author;
+  author: User;
   like_count: number;
 }
 

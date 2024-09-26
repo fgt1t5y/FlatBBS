@@ -33,6 +33,7 @@ class AuthController
         $token = random_string();
         $session->put([
             'id' => $user->id,
+            'username' => $user->username,
             'token' => $token,
             'email' => $email
         ]);
