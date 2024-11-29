@@ -19,7 +19,7 @@ router.beforeEach((to) => {
     }
   } else {
     if (to.meta?.memberOnly) {
-      window?.$message?.error('请先登录');
+      window.$message.error('请先登录');
       return { name: 'auth_page', query: { next: to.fullPath } };
     }
   }

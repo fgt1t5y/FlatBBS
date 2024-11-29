@@ -10,8 +10,6 @@ class Board extends AbstractModel
 {
     protected $table = 'boards';
     protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
         'avatar_uri' => FullPath::class,
     ];
 

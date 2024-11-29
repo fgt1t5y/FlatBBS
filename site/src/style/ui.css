@@ -61,6 +61,10 @@ img {
   font-size: 1.2rem;
 }
 
+.border-b {
+  border-bottom: 1px solid var(--color-border);
+}
+
 /* naiveui样式覆写 */
 .n-radio-block {
   display: flex;
@@ -194,6 +198,16 @@ img {
   flex-grow: 1;
 }
 
+.discussion-header {
+  display: flex;
+  gap: var(--gap);
+}
+
+.discussion-info {
+  display: flex;
+  font-size: 1rem;
+}
+
 .discussion-content {
   font-size: 1rem;
 }
@@ -236,7 +250,6 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--page-max-width);
 }
 
 .navbar-sitename {

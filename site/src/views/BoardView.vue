@@ -4,7 +4,7 @@
     :error="boardInfoError"
     @retry="loadBoardInfo"
   >
-    <PageTitle :title="boardInfo.data.name" />
+    <PageTitle :title="boardInfo?.data?.name" />
     <CommonDetail
       :avatar-uri="boardInfo.data.avatar_uri"
       :name="boardInfo.data.name"
@@ -16,7 +16,7 @@
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
+    <RequestPlaceholder :loading="loading" :error="topicsError" @retry="send" />
     <template #panels>
       <RouterLink :to="`/board/${currentSlug}/publish`">
         <NButton type="primary" round block>
@@ -36,7 +36,6 @@ import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
 import CommonDetail from '@/components/CommonDetail.vue'
@@ -50,8 +49,8 @@ import { useTitle } from '@/utils'
 const route = useRoute()
 const { setTitle } = useTitle('板块')
 
-const currentSlug = computed(() => route.params.slug as string)
-let lastSlug = currentSlug.value
+const currentSlug = route.params.slug as string
+
 let lastItemId = 0
 
 const {
@@ -60,46 +59,37 @@ const {
   error: boardInfoError,
   onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
-} = useRequest(() => getBoardInfo(currentSlug.value), {
+} = useRequest(() => getBoardInfo(currentSlug), {
   immediate: true,
-  sendable: () => !!currentSlug.value,
+  sendable: () => !!currentSlug,
 })
 
 const {
   loading,
   data: topics,
   isLastPage,
-  error,
-  onSuccess,
+  error: topicsError,
+  onSuccess: onTopicsSuccess,
   send,
-  reload,
 } = usePagination(
-  (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug.value),
+  (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug),
   {
     append: true,
     initialPageSize: 10,
+    immediate: false,
+    sendable: () => !!boardInfo.value
   },
 )
 
 onBoardInfoSuccess(() => {
   setTitle(boardInfo.value.data.name)
+  send()
 })
 
-onSuccess(() => {
+onTopicsSuccess(() => {
   const items = topics.value
   if (!items) return
 
   lastItemId = items[items.length - 1].id
 })
-
-watch(
-  () => currentSlug.value,
-  (to) => {
-    if (!to || to === lastSlug) return
-    lastSlug = to
-    lastItemId = 0
-    reload()
-    loadBoardInfo()
-  },
-)
 </script>

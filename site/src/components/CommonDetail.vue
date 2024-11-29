@@ -1,5 +1,5 @@
 <template>
-  <div class="common-detail">
+  <div class="common-detail border-b">
     <div class="common-detail-main chunk">
       <div class="common-detail-intro">
         <NAvatar class="common-avatar" round size="large" :src="avatarUri" />

@@ -11,10 +11,6 @@ use app\model\User;
 class Topic extends AbstractModel
 {
     protected $table = 'topics';
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s'
-    ];
     protected $with = [
         'author:id,display_name,avatar_uri',
         'board:id,name,color,slug',

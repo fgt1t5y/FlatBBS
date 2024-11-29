@@ -1,5 +1,5 @@
 <template>
-  <MainContent>
+  <MainContent disable-panels>
     <PageTitle title="话题" />
     <CommonList :items="discussions">
       <template #default="{ item, index }">
@@ -7,11 +7,7 @@
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder
-      :loading="loading"
-      :error="error"
-      @retry="send"
-    />
+    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
   </MainContent>
 </template>
 
@@ -24,13 +20,11 @@ import { getDiscussions } from '@/services/discussions'
 import { useRoute } from 'vue-router'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { computed, watch } from 'vue'
 import { usePagination } from '@alova/scene-vue'
 
 const route = useRoute()
 
-const currentTopicId = computed(() => Number(route.params.topic_id))
-let lastTopicId = currentTopicId.value
+const currentTopicId = Number(route.params.topic_id)
 let lastItemId = 0
 
 const {
@@ -40,9 +34,8 @@ const {
   error,
   onSuccess,
   send,
-  update,
 } = usePagination(
-  (page, limit) => getDiscussions(lastItemId, limit, currentTopicId.value),
+  (page, limit) => getDiscussions(lastItemId, limit, currentTopicId),
   {
     append: true,
     initialPageSize: 10,
@@ -55,15 +48,4 @@ onSuccess(() => {
 
   lastItemId = items[items.length - 1].id
 })
-
-watch(
-  () => currentTopicId.value,
-  (to) => {
-    if (!to || to === lastTopicId) return
-    lastTopicId = to
-    lastItemId = 0
-    update({ data: [] })
-    send()
-  },
-)
 </script>

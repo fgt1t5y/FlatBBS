@@ -1,19 +1,12 @@
 <template>
-  <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null" :locale="zhCN">
+  <NConfigProvider
+    :theme="theme.naiveuiDark ? darkTheme : null"
+    :theme-overrides="themeOverrides"
+    :locale="zhCN"
+  >
     <NDialogProvider>
       <NMessageProvider>
-        <Navbar v-if="isDesktop" :is-loggined="user.isLogin" />
-        <div id="flatbbs">
-          <CommonGrid>
-            <RouterView v-slot="{ Component }">
-              <KeepAlive :max="10">
-                <component :is="Component" />
-              </KeepAlive>
-            </RouterView>
-          </CommonGrid>
-          <NBackTop />
-        </div>
-        <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
+        <RouterView />
         <NGlobalStyle />
       </NMessageProvider>
     </NDialogProvider>
@@ -23,7 +16,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useUserStore, useTheme } from './stores'
-import { hasToken, isDesktop } from './utils'
+import { hasToken } from './utils'
 import {
   NMessageProvider,
   NDialogProvider,
@@ -31,11 +24,9 @@ import {
   darkTheme,
   NGlobalStyle,
   zhCN,
-  NBackTop,
 } from 'naive-ui'
-import Navbar from '@/components/Navbar.vue'
-import NavbarMobile from '@/components/NavbarMobile.vue'
-import CommonGrid from '@/components/CommonGrid.vue'
+
+import type { GlobalThemeOverrides } from 'naive-ui'
 
 const user = useUserStore()
 const theme = useTheme()
@@ -43,5 +34,15 @@ theme.init()
 
 if (hasToken()) {
   user.fetch()
+}
+
+const themeOverrides: GlobalThemeOverrides = {
+  common: {
+    baseColor: '#FFFFFFFF',
+    primaryColor: '#6366F1FF',
+    primaryColorHover: '#4F46E5FF',
+    primaryColorPressed: '#4338CAFF',
+    primaryColorSuppl: '#6366F1FF',
+  },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="pageTitleClass" :title="title">
+  <div class="page-title border-b" :title="title">
     <div class="page-title-main">
       <NButton
         v-if="showBackButton"
@@ -46,9 +46,4 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
 const page = usePage()
 const route = useRoute()
 const showBackButton = computed(() => props.showBack && route.fullPath !== '/')
-const pageTitleClass = computed(() => {
-  return {
-    'page-title': true,
-  }
-})
 </script>

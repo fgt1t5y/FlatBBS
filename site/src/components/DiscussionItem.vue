@@ -1,15 +1,17 @@
 <template>
   <div class="discussion-list-item item">
-    <div class="discussion-avatar">
-      <NAvatar :size="40" :src="discussion.author.avatar_uri" round />
-    </div>
     <div class="discussion-body">
-      <NText>{{ discussion.author.display_name }}</NText>
-      <RelativeTime :time="discussion.created_at" />
+      <div class="discussion-header">
+        <NAvatar :size="40" :src="discussion.author.avatar_uri" round />
+        <div class="discussion-info">
+          <NText>{{ discussion.author.display_name }}</NText>
+          <RelativeTime :time="discussion.created_at" />
+        </div>
+      </div>
       <div class="discussion-content" v-html="discussion.content"></div>
       <div class="discussion-footer">
         <NText :depth="3"># {{ !index ? '题主楼' : index }}</NText>
-        <NButton size="small" round quaternary>回复</NButton>
+        <NButton size="small" round secondary>回复</NButton>
       </div>
     </div>
   </div>
