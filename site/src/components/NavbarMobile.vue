@@ -1,5 +1,5 @@
 <template>
-  <NEl is="div" class="mobile-nav">
+  <NEl tag="div" class="mobile-nav">
     <RouterLink class="mobile-nav-item" to="/">首页</RouterLink>
     <RouterLink class="mobile-nav-item" to="/boards">版块</RouterLink>
     <RouterLink class="mobile-nav-item" to="/search">搜索</RouterLink>

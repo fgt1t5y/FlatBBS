@@ -1,5 +1,5 @@
 <template>
-  <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null" :locale="zhCN" abstract>
+  <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null" :locale="zhCN">
     <NDialogProvider>
       <NMessageProvider>
         <RouterView />

@@ -330,14 +330,10 @@ img {
 }
 
 .mobile-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1rem;
+  font-size: 1.25rem;
 
   &.router-link-active {
     color: var(--primary-color);
-    font-weight: bold;
   }
 }
 
