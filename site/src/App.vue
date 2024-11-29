@@ -2,7 +2,18 @@
   <NConfigProvider :theme="theme.naiveuiDark ? darkTheme : null" :locale="zhCN">
     <NDialogProvider>
       <NMessageProvider>
-        <RouterView />
+        <Navbar v-if="isDesktop" :is-loggined="user.isLogin" />
+        <div id="flatbbs">
+          <CommonGrid>
+            <RouterView v-slot="{ Component }">
+              <KeepAlive :max="10">
+                <component :is="Component" />
+              </KeepAlive>
+            </RouterView>
+          </CommonGrid>
+          <NBackTop />
+        </div>
+        <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
         <NGlobalStyle />
       </NMessageProvider>
     </NDialogProvider>
@@ -12,7 +23,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useUserStore, useTheme } from './stores'
-import { hasToken } from './utils'
+import { hasToken, isDesktop } from './utils'
 import {
   NMessageProvider,
   NDialogProvider,
@@ -20,7 +31,11 @@ import {
   darkTheme,
   NGlobalStyle,
   zhCN,
+  NBackTop,
 } from 'naive-ui'
+import Navbar from '@/components/Navbar.vue'
+import NavbarMobile from '@/components/NavbarMobile.vue'
+import CommonGrid from '@/components/CommonGrid.vue'
 
 const user = useUserStore()
 const theme = useTheme()

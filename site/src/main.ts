@@ -11,7 +11,6 @@ import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import App from './App.vue';
 import router from './router';
 import { code } from '@/constants';
-import i18n from './i18n';
 
 dayjs.locale('zh-cn');
 dayjs.extend(utc);
@@ -24,5 +23,4 @@ const app = createApp(App);
 window.$code = code;
 app.use(createPinia());
 app.use(router);
-app.use(i18n);
 app.mount('#app');

@@ -1,5 +1,5 @@
 <template>
-  <div ref="obTarget" class="observe-target"></div>
+  <div ref="obTarget"></div>
 </template>
 
 <script setup lang="ts">

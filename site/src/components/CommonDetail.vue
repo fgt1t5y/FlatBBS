@@ -1,6 +1,6 @@
 <template>
   <div class="common-detail">
-    <NImage :img-props="{ id: 'common-header-img' }" :src="headerImageUri" />
+    <NImage :img-props="{ class: 'common-header-img' }" :src="headerImageUri" />
     <div class="common-detail-main chunk">
       <div class="common-detail-intro">
         <NAvatar class="common-avatar" round size="large" :src="avatarUri" />

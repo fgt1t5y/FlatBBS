@@ -9,34 +9,11 @@ a {
   color: currentColor;
 }
 
-button {
-  font-family: inherit;
-  border: none;
-  color: currentColor;
-  background-color: transparent;
-  cursor: pointer;
-  display: inline-flex;
-}
-
-button.link {
-  padding: unset;
-}
-
 input {
   border: none;
   outline: none;
   color: currentColor;
   background: transparent;
-}
-
-textarea {
-  border: none;
-  outline: none;
-  background: transparent;
-  caret-color: inherit;
-  color: inherit;
-  font-family: ui-sans-serif;
-  padding: var(--gap);
 }
 
 img {
@@ -55,21 +32,9 @@ img {
   gap: var(--gap);
 }
 
-.observe-target {
-  width: 100%;
-}
-
 /* 原子类 */
-.text-center {
-  text-align: center;
-}
-
 .chunk {
   padding: var(--gap);
-}
-
-.underline {
-  border-bottom: 1px solid var(--color-border);
 }
 
 .flex-v {
@@ -97,10 +62,6 @@ img {
 }
 
 /* naiveui样式覆写 */
-.t-icon {
-  font-size: 1.2rem;
-}
-
 .n-radio-block {
   display: flex;
 
@@ -108,6 +69,10 @@ img {
     text-align: center;
     flex-grow: 1;
   }
+}
+
+.n-avatar {
+  cursor: pointer;
 }
 
 .auth-page {
@@ -149,7 +114,7 @@ img {
   height: 90px;
 }
 
-#common-header-img {
+.common-header-img {
   width: 100%;
 }
 
@@ -280,6 +245,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: var(--page-max-width);
 }
 
 .navbar-sitename {
@@ -310,6 +276,7 @@ img {
   display: flex;
   flex-direction: column;
   margin-bottom: var(--gap);
+  gap: 6px;
 
   b {
     font-size: 1rem;
@@ -354,7 +321,6 @@ img {
   display: flex;
   flex-grow: 1;
   align-items: center;
-  margin-left: var(--gap);
 }
 
 .page-title-extra {
