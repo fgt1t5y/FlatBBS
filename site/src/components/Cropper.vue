@@ -29,7 +29,6 @@
 <script setup lang="ts">
 import { NText, NSlider, NSpace } from 'naive-ui'
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
-import '@/style/Cropper.css'
 
 defineOptions({
   name: 'Cropper',

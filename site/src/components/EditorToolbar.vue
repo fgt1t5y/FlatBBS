@@ -51,7 +51,7 @@ interface EditorToolbarProps {
 interface EditorTools {
   name: string
   icon: Component
-  onClick: unknown
+  onClick: any
   isActive: () => boolean
 }
 

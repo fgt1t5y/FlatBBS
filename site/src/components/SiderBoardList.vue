@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { getBoards } from '@/services'
-import '@/style/SiderBoardList.css'
 import { NSpin } from 'naive-ui'
 import { useRequest } from 'alova'
 

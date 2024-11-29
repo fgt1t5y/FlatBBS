@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import '@/style/CommonList.css'
 import { computed } from 'vue'
 import { NDivider } from 'naive-ui'
 

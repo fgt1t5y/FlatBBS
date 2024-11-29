@@ -39,7 +39,6 @@ import { getBoardInfo, publishTopic } from '@/services'
 import { computed, onActivated, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTitle } from '@/utils'
-import '@/style/EditorView.css'
 import router from '@/router'
 
 const route = useRoute()

@@ -29,7 +29,6 @@
 import { NInput, NSpace, NButton, NText, NIcon } from 'naive-ui'
 import { Pencil } from '@vicons/tabler'
 import { ref, watch, nextTick } from 'vue'
-import '@/style/InputField.css'
 import { modifyUserInfo } from '@/services'
 
 defineOptions({

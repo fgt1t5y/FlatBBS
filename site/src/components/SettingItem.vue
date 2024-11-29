@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { NText, NSpace } from 'naive-ui'
-import '@/style/SettingItem.css'
 
 defineOptions({
   name: 'SettingItem',

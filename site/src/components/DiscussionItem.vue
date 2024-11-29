@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import type { Discussion } from '@/types'
-import '@/style/DiscussionItem.css'
 import { NAvatar, NButton, NText } from 'naive-ui'
 import RelativeTime from './RelativeTime.vue'
 

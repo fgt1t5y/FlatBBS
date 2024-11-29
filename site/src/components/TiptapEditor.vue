@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import '@/style/RichEditor.css'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'

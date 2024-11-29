@@ -42,7 +42,6 @@ import {
   type FormInst,
 } from 'naive-ui'
 import { ref, reactive } from 'vue'
-import '@/style/AuthView.css'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import MainContent from '@/components/MainContent.vue'

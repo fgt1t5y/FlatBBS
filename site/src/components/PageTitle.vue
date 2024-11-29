@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import '@/style/PageTitle.css'
 import { ArrowLeft } from '@vicons/tabler'
 import { NButton, NIcon } from 'naive-ui'
 import { computed } from 'vue'

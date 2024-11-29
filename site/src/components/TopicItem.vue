@@ -32,7 +32,6 @@ import { RouterLink } from 'vue-router'
 import { NAvatar, NText, NButton, NIcon } from 'naive-ui'
 import { Message } from '@vicons/tabler'
 import RelativeTime from './RelativeTime.vue'
-import '@/style/TopicItem.css'
 
 defineOptions({
   name: 'TopicItem',

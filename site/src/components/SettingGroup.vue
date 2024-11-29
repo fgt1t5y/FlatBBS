@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { NText, NH6 } from 'naive-ui'
-import '@/style/SettingGroup.css'
 
 defineOptions({
   name: 'SettingGroup',

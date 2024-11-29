@@ -27,7 +27,6 @@
 
 <script setup lang="ts">
 import { NButton, NImage, NAvatar, NText } from 'naive-ui'
-import '@/style/CommonDetail.css'
 import { Dots } from '@vicons/tabler'
 
 defineOptions({

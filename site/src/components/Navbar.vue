@@ -57,7 +57,6 @@
 </template>
 
 <script setup lang="ts">
-import '@/style/Navbar.css'
 import { NText, NButton, NAvatar, NInput, NPopover, NIcon } from 'naive-ui'
 import { useUserStore } from '@/stores'
 import { Plus, Bell, Settings, Logout } from '@vicons/tabler'
