@@ -58,7 +58,6 @@ export interface Board {
   slug: string;
   description?: string;
   avatar_uri: string;
-  header_img_uri: string;
   color: string;
 }
 

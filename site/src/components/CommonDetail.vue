@@ -1,6 +1,5 @@
 <template>
   <div class="common-detail">
-    <NImage :img-props="{ class: 'common-header-img' }" :src="headerImageUri" />
     <div class="common-detail-main chunk">
       <div class="common-detail-intro">
         <NAvatar class="common-avatar" round size="large" :src="avatarUri" />
@@ -26,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { NButton, NImage, NAvatar, NText } from 'naive-ui'
+import { NButton, NAvatar, NText } from 'naive-ui'
 import { Dots } from '@vicons/tabler'
 
 defineOptions({
@@ -35,7 +34,6 @@ defineOptions({
 
 interface CommonDetailProps {
   avatarUri: string
-  headerImageUri?: string
   name: string
   introduction?: string
 }

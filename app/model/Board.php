@@ -13,7 +13,6 @@ class Board extends AbstractModel
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
         'avatar_uri' => FullPath::class,
-        'header_img_uri' => FullPath::class
     ];
 
     public function topics(): HasMany

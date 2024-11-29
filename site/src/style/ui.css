@@ -81,10 +81,6 @@ img {
   max-width: 400px;
 }
 
-.common-detail .n-image {
-  width: 100%;
-}
-
 .common-detail-main {
   display: flex;
   flex-direction: column;
@@ -93,7 +89,6 @@ img {
 
 .common-detail-intro {
   display: flex;
-  height: 34px;
   align-items: end;
   justify-content: space-between;
 }
@@ -112,10 +107,6 @@ img {
 .common-avatar {
   width: 90px;
   height: 90px;
-}
-
-.common-header-img {
-  width: 100%;
 }
 
 .grid-panels {
@@ -313,6 +304,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0px var(--gap);
 }
 
 .page-title-main {
@@ -321,10 +313,6 @@ img {
   display: flex;
   flex-grow: 1;
   align-items: center;
-}
-
-.page-title-extra {
-  margin-right: var(--gap);
 }
 
 .page-title-default {

@@ -1,7 +1,7 @@
 <template>
-  <MainContent>
+  <MainContent disable-panels>
     <PageTitle title="所有板块" :show-back="false" />
-    <CommonList :items="boards" :is-end="true">
+    <CommonList hoverable :items="boards" :is-end="true">
       <template #default="{ item }">
         <div class="item flex-v gap align-center">
           <NAvatar :src="item.avatar_uri" :size="35" />
@@ -11,11 +11,7 @@
         </div>
       </template>
     </CommonList>
-    <RequestPlaceholder
-      :loading="loading"
-      :error="error"
-      @retry="send"
-    />
+    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
   </MainContent>
 </template>
 

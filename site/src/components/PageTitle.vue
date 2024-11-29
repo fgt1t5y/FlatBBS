@@ -4,7 +4,8 @@
       <NButton
         v-if="showBackButton"
         title="返回上一级页面或回到首页"
-        text
+        secondary
+        circle
         size="large"
         @click="page.back"
       >
@@ -39,7 +40,7 @@ interface PageTitleProps {
 }
 
 const props = withDefaults(defineProps<PageTitleProps>(), {
-  title: '未命名页面',
+  title: '',
   showBack: true,
 })
 const page = usePage()

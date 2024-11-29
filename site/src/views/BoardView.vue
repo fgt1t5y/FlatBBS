@@ -6,7 +6,6 @@
   >
     <PageTitle :title="boardInfo.data.name" />
     <CommonDetail
-      :header-image-uri="boardInfo.data.header_img_uri"
       :avatar-uri="boardInfo.data.avatar_uri"
       :name="boardInfo.data.name"
       :introduction="boardInfo.data.description"

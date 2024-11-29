@@ -18,7 +18,6 @@ class BoardController
         'color',
         'description',
         'avatar_uri',
-        'header_img_uri'
     ];
 
     #[Inject]

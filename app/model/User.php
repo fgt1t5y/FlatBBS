@@ -19,7 +19,6 @@ class User extends AbstractModel
         'username',
         'email',
         'avatar_uri',
-        'header_image_uri',
         'introduction'
     ];
 }
