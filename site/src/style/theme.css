@@ -1,5 +1,9 @@
 /* FlatBBS Color Scheme */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   --color-border: rgb(var(--gray-3));
   --color-bg: #fff;

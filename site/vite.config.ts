@@ -2,20 +2,12 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { config } from './src/global';
-import { browserslistToTargets } from 'lightningcss';
-import browserslist from 'browserslist';
 import VueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     cssMinify: 'lightningcss',
-  },
-  css: {
-    transformer: 'lightningcss',
-    lightningcss: {
-      targets: browserslistToTargets(browserslist('>= 0.25%')),
-    },
   },
   plugins: [vue(), VueDevTools()],
   resolve: {

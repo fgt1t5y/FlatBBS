@@ -7,5 +7,6 @@
 /public/usercontent/*.jpg
 /public/usercontent/*.png
 /plugin/lab
+node_modules
 
 dump.rdb

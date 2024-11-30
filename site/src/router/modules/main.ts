@@ -75,14 +75,6 @@ export const mainRoutes = [
         },
       },
       {
-        path: 'people/:username',
-        name: 'user_space_page',
-        component: () => import('@/views/UserSpaceView.vue'),
-        meta: {
-          title: '我的空间',
-        },
-      },
-      {
         path: 'publish',
         name: 'publish_page',
         component: () => import('@/views/PublishView.vue'),
