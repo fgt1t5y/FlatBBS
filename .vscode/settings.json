@@ -11,4 +11,5 @@
   "[php]": {
     "editor.tabSize": 4
   },
+  "css.lint.unknownAtRules": "ignore"
 }

@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .text-primary {
+    @apply text-indigo-600;
+  }
+}
+
 body {
   --color-border: rgb(var(--gray-3));
   --color-bg: #fff;

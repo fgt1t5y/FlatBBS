@@ -92,14 +92,6 @@ export const mainRoutes = [
         },
       },
       {
-        path: '_debug',
-        name: 'debug',
-        component: () => import('@/views/DebugView.vue'),
-        meta: {
-          title: 'Debug Page',
-        },
-      },
-      {
         path: ':pathMatch(.*)*',
         name: 'not_found_page',
         component: () => import('@/views/NotFoundView.vue'),
