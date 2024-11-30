@@ -1,29 +1,20 @@
 <template>
-  <div>
-    <NFlex
-      v-if="loading"
-      vertical
-      justify="center"
-      align="center"
-      style="width: 100%; height: 300px"
-    >
+  <div class="mt-6 mb-6">
+    <div v-if="loading" class="flex justify-center">
       <NSpin :delay="200" description="加载中" />
-    </NFlex>
-    <NFlex
+    </div>
+    <div
       v-if="error && !loading"
-      vertical
-      justify="center"
-      align="center"
-      style="width: 100%; height: 300px"
+      class="flex flex-col items-center justify-center gap-6"
     >
-      <NH3>{{ error.message }}</NH3>
+      <span class="text-xl">{{ error.message }}</span>
       <NButton type="primary" round @click="emits('retry')">重试</NButton>
-    </NFlex>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { NFlex, NButton, NSpin, NH3 } from 'naive-ui'
+import { NButton, NSpin } from 'naive-ui'
 
 defineOptions({
   name: 'RequestPlaceholder',

@@ -1,33 +1,31 @@
 <template>
-  <NSpace v-if="!isEditing" align="center" justify="space-between">
-    <NText>{{ valueNow || '未填写' }}</NText>
+  <div v-if="!isEditing" class="flex items-center justify-between">
+    <span>{{ valueNow || '未填写' }}</span>
     <NButton
       v-if="!readonly"
       secondary
-      circle
       title="更改此栏"
       @click="startEdit"
     >
-      <NIcon :size="24" :component="Pencil" />
+      编辑
     </NButton>
-  </NSpace>
-  <NSpace v-else vertical>
+  </div>
+  <div v-else class="flex flex-col gap-2">
     <NInput
       ref="inputRef"
       v-model:value="valueNow"
       :maxlength="maxLength"
       show-count
     />
-    <div class="input-field-opt">
+    <div class="flex gap-2">
       <NButton type="primary" @click="onConfirm">保存</NButton>
       <NButton @click="onCancle">取消</NButton>
     </div>
-  </NSpace>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { NInput, NSpace, NButton, NText, NIcon } from 'naive-ui'
-import { Pencil } from '@vicons/tabler'
+import { NInput, NButton } from 'naive-ui'
 import { ref, watch, nextTick } from 'vue'
 import { modifyUserInfo } from '@/services'
 

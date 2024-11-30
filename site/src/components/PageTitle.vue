@@ -1,6 +1,6 @@
 <template>
   <div class="page-title border-b" :title="title">
-    <div class="page-title-main">
+    <div class="flex gap-2 w-full items-center">
       <NButton
         v-if="showBackButton"
         title="返回上一级页面或回到首页"
@@ -9,11 +9,11 @@
         size="large"
         @click="page.back"
       >
-        <NIcon :size="28" :component="ArrowLeft" />
+        <ArrowLeft class="size-6"/>
       </NButton>
-      <div class="page-title-default">
+      <div class="flex flex-col grow">
         <slot>
-          <div class="page-title-title">{{ title }}</div>
+          <div class="font-bold text-xl">{{ title }}</div>
         </slot>
       </div>
     </div>
@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ArrowLeft } from '@vicons/tabler'
-import { NButton, NIcon } from 'naive-ui'
+import { NButton } from 'naive-ui'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePage } from '@/utils'

@@ -17,10 +17,10 @@
         </NButton>
       </template>
     </PageTitle>
-    <div class="chunk editor-view">
+    <div class="chunk flex flex-col">
       <input
         v-model="topicDraft.title"
-        class="f-l"
+        class="text-lg"
         placeholder="话题标题"
         autofocus
       />

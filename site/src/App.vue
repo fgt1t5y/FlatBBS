@@ -39,8 +39,8 @@ if (hasToken()) {
 const themeOverrides: GlobalThemeOverrides = {
   common: {
     baseColor: '#FFFFFFFF',
-    primaryColor: '#6366F1FF',
-    primaryColorHover: '#4F46E5FF',
+    primaryColor: '#4F46E5FF',
+    primaryColorHover: '#4338CAFF',
     primaryColorPressed: '#4338CAFF',
     primaryColorSuppl: '#6366F1FF',
   },

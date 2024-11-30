@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar">
     <div class="navbar-inner">
-      <RouterLink to="/" class="navbar-sitename">
-        <NText>FlatBBS</NText>
+      <RouterLink to="/">
+        <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
       <div v-if="user.isLogin && user.info" class="navbar-options">
         <NPopover
@@ -17,9 +17,11 @@
               round
             />
           </template>
-          <div class="user-panel-info">
-            <b>{{ user.info.display_name }}</b>
-            <NText :depth="3">@{{ user.info.username }}</NText>
+          <div class="flex flex-col gap-2">
+            <div class="text-base">
+              <b>{{ user.info.display_name }}</b>
+              <span class="text-muted">@{{ user.info.username }}</span>
+            </div>
             <RouterLink to="/settings">
               <NButton secondary round block>设置</NButton>
             </RouterLink>
@@ -29,7 +31,7 @@
           </div>
         </NPopover>
       </div>
-      <div v-else class="navbar-options">
+      <div v-else>
         <RouterLink to="/auth">
           <NButton type="primary" round>注册 / 登录</NButton>
         </RouterLink>
@@ -39,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { NText, NButton, NAvatar, NPopover } from 'naive-ui'
+import { NButton, NAvatar, NPopover } from 'naive-ui'
 import { useUserStore } from '@/stores'
 
 defineOptions({

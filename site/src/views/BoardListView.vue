@@ -3,10 +3,10 @@
     <PageTitle title="所有板块" :show-back="false" />
     <CommonList hoverable :items="boards" :is-end="true">
       <template #default="{ item }">
-        <div class="item flex-v gap align-center">
+        <div class="item flex gap-3 items-center">
           <NAvatar :src="item.avatar_uri" :size="35" />
           <RouterLink :to="`/board/${item.slug}`">
-            <div class="f-m">{{ item.name }}</div>
+            <div class="text-base">{{ item.name }}</div>
           </RouterLink>
         </div>
       </template>

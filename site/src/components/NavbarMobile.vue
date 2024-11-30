@@ -1,15 +1,13 @@
 <template>
-  <NEl tag="div" class="mobile-nav">
-    <RouterLink class="mobile-nav-item" to="/">首页</RouterLink>
-    <RouterLink class="mobile-nav-item" to="/boards">版块</RouterLink>
-    <RouterLink class="mobile-nav-item" to="/search">搜索</RouterLink>
-    <RouterLink class="mobile-nav-item" to="/people">我</RouterLink>
-  </NEl>
+  <div class="mobile-nav">
+    <RouterLink class="text-lg route" to="/">首页</RouterLink>
+    <RouterLink class="text-lg route" to="/boards">版块</RouterLink>
+    <RouterLink class="text-lg route" to="/search">搜索</RouterLink>
+    <RouterLink class="text-lg route" to="/people">我</RouterLink>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { NEl } from 'naive-ui'
-
 defineOptions({
   name: 'MobileNavbar',
 })

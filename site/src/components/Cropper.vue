@@ -1,7 +1,7 @@
 <template>
-  <NSpace vertical :style="{ width: `${width}px` }" fill>
+  <div class="flex flex-col gap-2" :style="{ width: `${width}px` }">
     <div
-      class="cropper-container"
+      class="relative cursor-move select-none"
       :style="{ height: `${height}px` }"
       @pointerdown="mousedown"
       @pointermove="mousemove"
@@ -9,11 +9,10 @@
     >
       <img ref="imageSrc" :src="imageURL" alt="src" style="display: none" />
       <canvas ref="canvasRef" :width="width" :height="height"></canvas>
-      <div v-show="cropMask" class="cropper-wrapper">
+      <div class="cropper-wrapper">
         <div class="cropper-mask"></div>
       </div>
     </div>
-    <NText>显示比例（最小 - 最大）</NText>
     <NSlider
       v-model:value="scale"
       :min="minScale"
@@ -23,11 +22,11 @@
       :disabled="!imageURL || imageException || ratioException"
       @update:value="onScaleChange"
     />
-  </NSpace>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { NText, NSlider, NSpace } from 'naive-ui'
+import { NSlider } from 'naive-ui'
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 
 defineOptions({
@@ -38,14 +37,12 @@ interface CropperProps {
   height: number
   width: number
   image?: File
-  cropMask?: boolean
 }
 
 const props = withDefaults(defineProps<CropperProps>(), {
   height: 320,
   width: 320,
   image: undefined,
-  cropMask: true,
 })
 const emits = defineEmits<{
   (e: 'load'): void

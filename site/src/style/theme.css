@@ -6,7 +6,23 @@
 
 @layer base {
   .text-primary {
-    @apply text-indigo-600;
+    @apply text-indigo-600 dark:text-indigo-400;
+  }
+
+  .route.router-link-exact-active {
+    @apply text-indigo-600 dark:text-indigo-400;
+  }
+
+  .text-muted {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .gap {
+    gap: 12px;
+  }
+
+  p {
+    margin: 1em 0;
   }
 }
 

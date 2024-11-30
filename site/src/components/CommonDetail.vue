@@ -1,32 +1,24 @@
 <template>
-  <div class="common-detail border-b">
-    <div class="common-detail-main chunk">
-      <div class="common-detail-intro">
-        <NAvatar class="common-avatar" round size="large" :src="avatarUri" />
-        <div class="common-detail-opt">
-          <NButton circle secondary>
-            <template #icon>
-              <Dots />
-            </template>
-          </NButton>
+  <div class="border-b">
+    <div class="chunk flex flex-col gap-2">
+      <div class="flex justify-between items-end">
+        <NAvatar class="size-24" :src="avatarUri" />
+        <div class="flex gap-2">
           <NButton type="primary" round>加入</NButton>
         </div>
       </div>
-      <div class="common-detail-info">
-        <div class="common-detail-name">
+      <div>
+        <div class="text-lg font-bold">
           {{ name }}
         </div>
-        <NText :depth="3">
-          {{ introduction }}
-        </NText>
+        <div class="text-muted">{{ introduction }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { NButton, NAvatar, NText } from 'naive-ui'
-import { Dots } from '@vicons/tabler'
+import { NButton, NAvatar } from 'naive-ui'
 
 defineOptions({
   name: 'CommonDetail',

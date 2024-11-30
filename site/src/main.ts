@@ -11,6 +11,8 @@ import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import App from './App.vue';
 import router from './router';
 import { code } from '@/constants';
+import { plugin, defaultConfig } from '@formkit/vue';
+import config from '../formkit.config';
 
 dayjs.locale('zh-cn');
 dayjs.extend(utc);
@@ -23,4 +25,5 @@ const app = createApp(App);
 window.$code = code;
 app.use(createPinia());
 app.use(router);
+app.use(plugin, defaultConfig(config));
 app.mount('#app');

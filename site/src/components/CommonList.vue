@@ -6,13 +6,14 @@
       :item="item"
       :index="index"
     />
-    <NDivider v-if="isEnd && items.length" dashed>没有更多了</NDivider>
+    <div v-if="isEnd && items.length" class="text-center text-lg mt-2">
+      没有更多了
+    </div>
   </div>
 </template>
 
 <script setup lang="ts" generic="T">
 import { computed } from 'vue'
-import { NDivider } from 'naive-ui'
 
 defineOptions({
   name: 'CommonList',
