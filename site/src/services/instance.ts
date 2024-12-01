@@ -27,7 +27,7 @@ export const alovaInstance = createAlova({
       return json;
     },
     onError: () => {
-      window.$message.error('网络错误');
+      // window.$message.error('网络错误');
     },
   },
 });

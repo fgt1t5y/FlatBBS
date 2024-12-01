@@ -7,20 +7,19 @@
   >
     <PageTitle title="发话题">
       <template #extra>
-        <NButton
-          type="primary"
+        <button
           :disabled="topicPublishing"
-          round
+          class="btn btn-primary btn-md w-full"
           @click="checkForm() && handlePublishTopic()"
         >
           发布
-        </NButton>
+        </button>
       </template>
     </PageTitle>
-    <div class="chunk editor-view">
+    <div class="p-3 flex flex-col">
       <input
         v-model="topicDraft.title"
-        class="f-l"
+        class="text-lg"
         placeholder="话题标题"
         autofocus
       />
@@ -33,7 +32,6 @@
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
-import { NButton } from 'naive-ui'
 import { useWatcher, useRequest } from 'alova'
 import { getBoardInfo, publishTopic } from '@/services'
 import { computed, onActivated, ref } from 'vue'
@@ -51,7 +49,7 @@ const topicDraft = ref({
 
 const checkForm = () => {
   if (!topicDraft.value.title.trim()) {
-    window.$message.error('请填写标题')
+    // window.$message.error('请填写标题')
     return false
   }
   return true
@@ -90,7 +88,7 @@ onBoardInfoSuccess(() => {
 })
 
 onTopicPulished(() => {
-  window.$message.success('发布成功')
+  // window.$message.success('发布成功')
   router.replace(`/topic/${topic.value.id}`)
 })
 

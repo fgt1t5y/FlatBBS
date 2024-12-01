@@ -1,26 +1,25 @@
 <template>
-  <div class="discussion-list-item item">
-    <div class="discussion-body">
-      <div class="discussion-header">
-        <NAvatar :size="40" :src="discussion.author.avatar_uri" round />
-        <div class="discussion-info">
-          <NText>{{ discussion.author.display_name }}</NText>
-          <RelativeTime :time="discussion.created_at" />
-        </div>
+  <div class="item p-3 border-bt">
+    <div class="flex gap-3">
+      <Avatar class="size-10" :src="discussion.author.avatar_uri" rounded />
+      <div class="flex text-base gap-2">
+        <span>{{ discussion.author.display_name }}</span>
+        <RelativeTime :time="discussion.created_at" />
       </div>
-      <div class="discussion-content" v-html="discussion.content"></div>
-      <div class="discussion-footer">
-        <NText :depth="3"># {{ !index ? '题主楼' : index }}</NText>
-        <NButton size="small" round secondary>回复</NButton>
-      </div>
+    </div>
+    <div class="text-base" v-html="discussion.content"></div>
+    <div class="flex justify-between items-center">
+      <span class="text-muted"># {{ !index ? '题主楼' : index }}</span>
+      <button class="btn btn-air btn-md">回复</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Discussion } from '@/types'
-import { NAvatar, NButton, NText } from 'naive-ui'
 import RelativeTime from './RelativeTime.vue'
+import Avatar from './Avatar.vue'
+
+import type { Discussion } from '@/types'
 
 defineOptions({
   name: 'DiscussionItem',

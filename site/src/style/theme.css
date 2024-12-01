@@ -6,7 +6,78 @@
 
 @layer base {
   .text-primary {
-    @apply text-indigo-600;
+    @apply text-indigo-600 dark:text-indigo-400;
+  }
+
+  .route.router-link-exact-active {
+    @apply text-indigo-600 dark:text-indigo-400;
+  }
+
+  .text-muted {
+    @apply text-gray-400;
+  }
+
+  .bg-navdark {
+    background-color: rgb(24, 24, 28);
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+
+  p {
+    @apply my-4;
+  }
+
+  blockquote {
+    @apply p-3 ml-3 border-l-4 border-l-indigo-700;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply rounded text-white transition-all whitespace-nowrap;
+  }
+
+  .btn:disabled {
+    @apply cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+  }
+
+  .btn-air {
+    @apply text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+  }
+
+  .btn-text {
+    @apply text-black hover:text-primary dark:text-gray-300;
+  }
+
+  .btn-circle {
+    @apply size-10 rounded-full;
+  }
+}
+
+@layer utilities {
+  .btn-sm {
+    @apply h-7 px-4;
+  }
+
+  .btn-md {
+    @apply h-9 px-6;
+  }
+
+  .border-bt {
+    @apply border-b border-gray-300 dark:border-gray-700;
+  }
+
+  .border-tp {
+    @apply border-t border-gray-300 dark:border-gray-700;
   }
 }
 
@@ -28,10 +99,6 @@ body {
   --color-neutral-8: rgb(var(--gray-8));
   --color-neutral-9: rgb(var(--gray-9));
   --color-neutral-10: rgb(var(--gray-10));
-  --color-text-1: var(--color-neutral-10);
-  --color-text-2: var(--color-neutral-8);
-  --color-text-3: var(--color-neutral-6);
-  --color-text-4: var(--color-neutral-4);
   --color-fill-1: var(--color-neutral-1);
   --color-fill-2: var(--color-neutral-2);
   --color-fill-3: var(--color-neutral-3);
@@ -56,22 +123,8 @@ body[flat-theme='dark'] {
   --color-bg-3: #2a2a2b;
   --color-bg-4: #313132;
   --color-bg-5: #373739;
-  --color-text-1: rgba(255, 255, 255, 0.9);
-  --color-text-2: rgba(255, 255, 255, 0.7);
-  --color-text-3: rgba(255, 255, 255, 0.5);
-  --color-text-4: rgba(255, 255, 255, 0.3);
   --color-fill-1: rgba(255, 255, 255, 0.04);
   --color-fill-2: rgba(255, 255, 255, 0.08);
   --color-fill-3: rgba(255, 255, 255, 0.12);
   --color-fill-4: rgba(255, 255, 255, 0.16);
-  --gray-1: 23, 23, 26;
-  --gray-2: 46, 46, 48;
-  --gray-3: 72, 72, 73;
-  --gray-4: 95, 95, 96;
-  --gray-5: 120, 120, 122;
-  --gray-6: 146, 146, 147;
-  --gray-7: 171, 171, 172;
-  --gray-8: 197, 197, 197;
-  --gray-9: 223, 223, 223;
-  --gray-10: 246, 246, 246;
 }

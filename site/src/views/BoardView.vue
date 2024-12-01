@@ -19,12 +19,7 @@
     <RequestPlaceholder :loading="loading" :error="topicsError" @retry="send" />
     <template #panels>
       <RouterLink :to="`/board/${currentSlug}/publish`">
-        <NButton type="primary" round block>
-          <template #icon>
-            <NIcon :component="Pencil" />
-          </template>
-          发布话题
-        </NButton>
+        <button class="btn btn-primary btn-md w-full">发布话题</button>
       </RouterLink>
     </template>
   </MainContent>
@@ -39,8 +34,6 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
 import CommonDetail from '@/components/CommonDetail.vue'
-import { NButton, NIcon } from 'naive-ui'
-import { Pencil } from '@vicons/tabler'
 import { usePagination } from '@alova/scene-vue'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest } from 'alova'
@@ -77,7 +70,7 @@ const {
     append: true,
     initialPageSize: 10,
     immediate: false,
-    sendable: () => !!boardInfo.value
+    sendable: () => !!boardInfo.value,
   },
 )
 

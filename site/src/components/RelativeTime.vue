@@ -1,15 +1,9 @@
 <template>
-  <NTooltip>
-    <template #trigger>
-      <NText :depth="3">{{ relativeTime[1] }}</NText>
-    </template>
-    {{ relativeTime[0] }}
-  </NTooltip>
+  <span class="text-muted" :title="relativeTime[0]">{{ relativeTime[1] }}</span>
 </template>
 
 <script setup lang="ts">
 import { formatTime } from '@/utils'
-import { NText, NTooltip } from 'naive-ui'
 
 defineOptions({
   name: 'RelativeTime',

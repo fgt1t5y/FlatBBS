@@ -1,31 +1,27 @@
 <template>
   <MainContent disable-panels>
     <PageTitle title="登录" />
-    <div class="auth-page">
-      <NForm
-        ref="formRef"
-        :model="inputForm"
-        :rules="loginRule"
+    <div class="p-3 my-0 mx-auto" style="max-width: 500px">
+      <FormKit
+        v-model="inputForm"
+        type="form"
+        submit-label="登录"
         :disabled="isDealing"
+        @submit="actionLogin"
       >
-        <NFormItem path="email" label="电子邮箱地址">
-          <NInput v-model:value="inputForm.email" />
-        </NFormItem>
-        <NFormItem path="password" label="密码">
-          <NInput v-model:value="inputForm.password" type="password" />
-        </NFormItem>
-        <NFormItem>
-          <NButton
-            type="primary"
-            round
-            block
-            size="large"
-            @click="validateForm"
-          >
-            登录
-          </NButton>
-        </NFormItem>
-      </NForm>
+        <FormKit
+          type="email"
+          name="email"
+          label="电子邮箱"
+          validation="required|length:5|*email"
+        />
+        <FormKit
+          type="password"
+          name="password"
+          label="密码"
+          validation="required|length:8"
+        />
+      </FormKit>
     </div>
   </MainContent>
 </template>
@@ -33,54 +29,21 @@
 <script setup lang="ts">
 import { login } from '@/services'
 import { useUserStore } from '@/stores'
-import {
-  NForm,
-  NFormItem,
-  NInput,
-  type FormRules,
-  NButton,
-  type FormInst,
-} from 'naive-ui'
 import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
+import { FormKit } from '@formkit/vue'
 
 const isDealing = ref<boolean>(false)
 const inputForm = reactive({
   email: '',
   password: '',
 })
-const formRef = ref<FormInst>()
-const loginRule: FormRules = {
-  email: [
-    {
-      required: true,
-      type: 'email',
-      message: '请输入正确的电子邮箱地址',
-      trigger: ['blur'],
-    },
-  ],
-  password: [
-    {
-      required: true,
-      message: '请输入密码',
-      trigger: ['blur'],
-      min: 8,
-    },
-  ],
-}
 const user = useUserStore()
 const route = useRoute()
-const validateForm = (ev: MouseEvent) => {
-  ev.preventDefault()
-  formRef.value!.validate((errors) => {
-    if (!errors) {
-      actionLogin()
-    }
-  })
-}
+
 const actionLogin = () => {
   isDealing.value = true
   login(inputForm.email, inputForm.password)
@@ -89,7 +52,7 @@ const actionLogin = () => {
       router.replace({ path: (route.query.next as string) || '/' })
     })
     .catch((error: Error) => {
-      window.$message.error(error.message)
+      // window.$message.error(error.message)
     })
     .finally(() => {
       isDealing.value = false

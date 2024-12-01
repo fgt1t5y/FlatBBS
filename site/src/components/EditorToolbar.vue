@@ -1,5 +1,10 @@
 <template>
-  <div :class="editorToolbarClass">
+  <div
+    :class="{
+      'editor-toolbar': true,
+      'editor-toolbar-float': isMobile,
+    }"
+  >
     <input
       ref="imageInput"
       type="file"
@@ -8,23 +13,20 @@
       style="display: none"
       @change="uploadAndInsertImage"
     />
-    <NButton
+    <button
       v-for="(tool, index) in editorTools"
       :key="index"
-      text
-      size="large"
-      :type="tool.isActive() ? 'primary' : 'default'"
+      class="btn btn-text"
       @click="tool.onClick"
     >
-      <NIcon :size="24" :component="tool.icon" />
-    </NButton>
+      <component :is="tool.icon" class="size-6" />
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import { computed, ref, type Component } from 'vue'
-import { NButton, NIcon } from 'naive-ui'
+import { ref, type Component } from 'vue'
 import {
   H1,
   H2,
@@ -72,13 +74,6 @@ const uploadAndInsertImage = () => {
     })
   })
 }
-
-const editorToolbarClass = computed(() => {
-  return {
-    'editor-toolbar': true,
-    'editor-toolbar-float': isMobile.value,
-  }
-})
 
 const editorTools = [
   {

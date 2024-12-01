@@ -12,7 +12,6 @@ export const useTheme = defineStore('theme', () => {
   const theme = computed(() => {
     return currentTheme;
   });
-  const naiveuiDark = ref<boolean>(false);
   const sysMedia = window.matchMedia('(prefers-color-scheme: dark)');
   let systemIsDark = sysMedia.matches;
 
@@ -23,10 +22,8 @@ export const useTheme = defineStore('theme', () => {
       currentTheme.value === 'dark'
     ) {
       document.body.setAttribute('flat-theme', 'dark');
-      naiveuiDark.value = true;
     } else {
       document.body.removeAttribute('flat-theme');
-      naiveuiDark.value = false;
     }
   };
 
@@ -45,5 +42,5 @@ export const useTheme = defineStore('theme', () => {
     return applyAndSava();
   };
 
-  return { theme, naiveuiDark, init, switchTo };
+  return { theme, init, switchTo };
 });

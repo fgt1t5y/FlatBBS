@@ -1,6 +1,6 @@
 <template>
-  <div class="grid-main">
-    <div class="grid-main-content">
+  <div class="flex grow gap-3">
+    <div class="relative grow mb-14">
       <RequestPlaceholder
         v-if="loading || error"
         :loading="loading"
@@ -9,7 +9,7 @@
       />
       <slot v-else />
     </div>
-    <div v-if="isDesktop && !disablePanels" class="grid-main-panels">
+    <div v-if="isDesktop && !disablePanels">
       <div class="grid-main-panels-inner">
         <slot name="panels" />
       </div>

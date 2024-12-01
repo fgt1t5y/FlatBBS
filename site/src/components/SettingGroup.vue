@@ -1,15 +1,11 @@
 <template>
-  <div class="setting-group">
-    <NH6>
-      <NText type="primary">{{ title }}</NText>
-    </NH6>
+  <div class="border-bt">
+    <h6 class="text-primary px-3 mt-3 text-base">{{ title }}</h6>
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { NText, NH6 } from 'naive-ui'
-
 defineOptions({
   name: 'SettingGroup',
 })

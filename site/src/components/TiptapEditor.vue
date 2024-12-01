@@ -1,5 +1,5 @@
 <template>
-  <div class="editor">
+  <div class="border-bt">
     <EditorToolbar v-if="editor" :editor="editor" />
     <div v-else>加载中</div>
     <EditorContent :editor="editor" />
