@@ -1,20 +1,22 @@
 <template>
   <div class="my-6">
     <div v-if="loading" class="flex justify-center">
-      <NSpin :delay="200" description="加载中" />
+      <Loader class="size-12 animate-spin" />
     </div>
     <div
       v-if="error && !loading"
       class="flex flex-col items-center justify-center gap-6"
     >
       <span class="text-xl">{{ error.message }}</span>
-      <NButton type="primary" round @click="emits('retry')">重试</NButton>
+      <button class="btn btn-primary btn-md" @click="emits('retry')">
+        重试
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { NButton, NSpin } from 'naive-ui'
+import { Loader } from '@vicons/tabler'
 
 defineOptions({
   name: 'RequestPlaceholder',

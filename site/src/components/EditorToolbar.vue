@@ -13,23 +13,20 @@
       style="display: none"
       @change="uploadAndInsertImage"
     />
-    <NButton
+    <button
       v-for="(tool, index) in editorTools"
       :key="index"
-      text
-      size="large"
-      :type="tool.isActive() ? 'primary' : 'default'"
+      class="btn btn-text"
       @click="tool.onClick"
     >
-      <NIcon :size="24" :component="tool.icon" />
-    </NButton>
+      <component :is="tool.icon" class="size-6" />
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
 import { ref, type Component } from 'vue'
-import { NButton, NIcon } from 'naive-ui'
 import {
   H1,
   H2,

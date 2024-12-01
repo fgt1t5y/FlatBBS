@@ -3,8 +3,8 @@
     <PageTitle title="所有板块" :show-back="false" />
     <CommonList hoverable :items="boards" :is-end="true">
       <template #default="{ item }">
-        <div class="item flex gap-3 items-center">
-          <NAvatar :src="item.avatar_uri" :size="35" />
+        <div class="item p-3 flex gap-3 items-center border-bt">
+          <Avatar class="size-9" :src="item.avatar_uri" />
           <RouterLink :to="`/board/${item.slug}`">
             <div class="text-base">{{ item.name }}</div>
           </RouterLink>
@@ -21,8 +21,8 @@ import PageTitle from '@/components/PageTitle.vue'
 import CommonList from '@/components/CommonList.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import { getBoards } from '@/services'
-import { NAvatar } from 'naive-ui'
 import { usePagination } from '@alova/scene-vue'
+import Avatar from '@/components/Avatar.vue'
 
 const { data: boards, error, loading, send } = usePagination(getBoards, {})
 </script>

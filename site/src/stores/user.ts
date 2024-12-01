@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', () => {
         info.value = res.data;
       })
       .catch(() => {
-        window.$message.error('获取用户信息失败');
+        // window.$message.error('获取用户信息失败');
       });
   };
   const quit = () => {

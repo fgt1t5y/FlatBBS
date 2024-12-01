@@ -29,21 +29,55 @@
   }
 
   p {
-    @apply my-4
+    @apply my-4;
   }
 
   blockquote {
-    @apply p-3 ml-3 border-l-4 border-l-indigo-700
+    @apply p-3 ml-3 border-l-4 border-l-indigo-700;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply rounded text-white transition-all whitespace-nowrap;
+  }
+
+  .btn:disabled {
+    @apply cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+  }
+
+  .btn-air {
+    @apply text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+  }
+
+  .btn-text {
+    @apply text-black hover:text-primary dark:text-gray-300;
+  }
+
+  .btn-circle {
+    @apply size-10 rounded-full;
   }
 }
 
 @layer utilities {
+  .btn-sm {
+    @apply h-7 px-4;
+  }
+
+  .btn-md {
+    @apply h-9 px-6;
+  }
+
   .border-bt {
-    @apply border-b border-gray-300 dark:border-gray-700
+    @apply border-b border-gray-300 dark:border-gray-700;
   }
 
   .border-tp {
-    @apply border-t border-gray-300 dark:border-gray-700
+    @apply border-t border-gray-300 dark:border-gray-700;
   }
 }
 

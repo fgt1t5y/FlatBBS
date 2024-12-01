@@ -13,20 +13,20 @@
         <div class="cropper-mask"></div>
       </div>
     </div>
-    <NSlider
-      v-model:value="scale"
+    <FormKit
+      v-model="scale"
+      type="range"
+      number
       :min="minScale"
       :max="1.0"
       :step="0.01"
-      :format-tooltip="displayScale"
-      :disabled="!imageURL || imageException || ratioException"
-      @update:value="onScaleChange"
+      @update:model-value="onScaleChange"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { NSlider } from 'naive-ui'
+import { FormKit } from '@formkit/vue'
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 
 defineOptions({
@@ -63,13 +63,15 @@ const renderStatus = {
 }
 let minScale = 0
 const scale = ref<number>(0.5)
-const displayScale = (n: number) => {
-  return n.toFixed(2)
-}
 const hasFile = ref<boolean>(!!props.image)
 const imageException = ref<boolean>(false)
 const ratioException = ref<boolean>(false)
 let ctx: CanvasRenderingContext2D | null = null
+
+const displayScale = (n: number) => {
+  return n.toFixed(2)
+}
+
 const initCanvas = () => {
   if (props.width > props.height) {
     if (imageSrc.value!.height > imageSrc.value!.width) {
@@ -91,12 +93,15 @@ const initCanvas = () => {
 
   drawAt(0, 0)
 }
+
 const borderDistanceX = computed(() => {
   return imageSrc.value!.width * scale.value - props.width
 })
+
 const borderDistanceY = computed(() => {
   return imageSrc.value!.height * scale.value - props.height
 })
+
 const drawAt = (x: number, y: number) => {
   ctx?.drawImage(
     imageSrc.value!,
@@ -106,6 +111,7 @@ const drawAt = (x: number, y: number) => {
     imageSrc.value!.height * scale.value,
   )
 }
+
 const draw = () => {
   ctx?.clearRect(0, 0, props.width, props.height)
   const currentX = renderStatus.clientX + renderStatus.deltaX
@@ -113,10 +119,12 @@ const draw = () => {
 
   drawAt(currentX, currentY)
 }
+
 const onScaleChange = () => {
   // check over-border and redraw
   checkOverBorder()
 }
+
 const checkOverBorder = () => {
   if (renderStatus.clientX > 0) {
     renderStatus.clientX = 0
@@ -132,6 +140,7 @@ const checkOverBorder = () => {
   }
   drawAt(renderStatus.clientX, renderStatus.clientY)
 }
+
 const mousedown = (ev: MouseEvent) => {
   if (imageException.value) return
 
@@ -140,6 +149,7 @@ const mousedown = (ev: MouseEvent) => {
   renderStatus.startX = clientX
   renderStatus.startY = clientY
 }
+
 const mousemove = (ev: MouseEvent) => {
   if (!renderStatus.isDraging) return
 
@@ -148,6 +158,7 @@ const mousemove = (ev: MouseEvent) => {
   renderStatus.deltaY = clientY - renderStatus.startY
   draw()
 }
+
 const mouseup = (ev: MouseEvent) => {
   renderStatus.isDraging = false
   const { clientX, clientY } = ev
@@ -159,9 +170,11 @@ const mouseup = (ev: MouseEvent) => {
   renderStatus.deltaY = 0
   checkOverBorder()
 }
+
 const destoryCropper = () => {
   URL.revokeObjectURL(imageURL.value)
 }
+
 const getBlobAsync = (): Promise<Blob | null> => {
   return new Promise(function (resolve, reject) {
     canvasRef.value!.toBlob(
@@ -177,6 +190,7 @@ const getBlobAsync = (): Promise<Blob | null> => {
     )
   })
 }
+
 const updateImage = (file: File | undefined) => {
   if (file) {
     if (supportedType.indexOf(file.type) === -1) {
@@ -189,6 +203,7 @@ const updateImage = (file: File | undefined) => {
     hasFile.value = false
   }
 }
+
 const checkImage = () => {
   if (
     imageSrc.value!.width < props.width ||
@@ -202,6 +217,7 @@ const checkImage = () => {
     emits('load')
   }
 }
+
 const dealOutsideMousedown = () => {
   if (renderStatus.isDraging) {
     renderStatus.isDraging = false

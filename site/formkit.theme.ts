@@ -2314,7 +2314,6 @@ const classes: Record<string, Record<string, boolean>> = {
     'max-w-[20em]': true,
     'min-w-0': true,
     grow: true,
-    'mb-4': true,
     'data-[disabled]:select-none': true,
     'data-[disabled]:opacity-50': true,
     'text-base': true,

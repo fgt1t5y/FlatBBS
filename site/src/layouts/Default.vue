@@ -14,7 +14,6 @@
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import { useMessage } from 'naive-ui'
 
-window.$message = useMessage()
+// window.$message = useMessage()
 </script>

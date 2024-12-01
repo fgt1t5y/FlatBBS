@@ -1,16 +1,13 @@
 <template>
   <div class="page-title border-bt" :title="title">
     <div class="flex gap-2 w-full items-center">
-      <NButton
+      <button
         v-if="showBackButton"
-        title="返回上一级页面或回到首页"
-        secondary
-        circle
-        size="large"
+        class="btn btn-air btn-circle flex justify-center items-center"
         @click="page.back"
       >
-        <ArrowLeft class="size-6"/>
-      </NButton>
+        <ArrowLeft class="size-6" />
+      </button>
       <div class="flex flex-col grow">
         <slot>
           <div class="font-bold text-xl">{{ title }}</div>
@@ -25,7 +22,6 @@
 
 <script setup lang="ts">
 import { ArrowLeft } from '@vicons/tabler'
-import { NButton } from 'naive-ui'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePage } from '@/utils'

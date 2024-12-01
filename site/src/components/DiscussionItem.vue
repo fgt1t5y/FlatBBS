@@ -1,7 +1,7 @@
 <template>
-  <div class="item">
+  <div class="item p-3 border-bt">
     <div class="flex gap-3">
-      <NAvatar :size="40" :src="discussion.author.avatar_uri" round />
+      <Avatar class="size-10" :src="discussion.author.avatar_uri" rounded />
       <div class="flex text-base gap-2">
         <span>{{ discussion.author.display_name }}</span>
         <RelativeTime :time="discussion.created_at" />
@@ -10,15 +10,16 @@
     <div class="text-base" v-html="discussion.content"></div>
     <div class="flex justify-between items-center">
       <span class="text-muted"># {{ !index ? '题主楼' : index }}</span>
-      <NButton size="small" round secondary>回复</NButton>
+      <button class="btn btn-air btn-md">回复</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Discussion } from '@/types'
-import { NAvatar, NButton } from 'naive-ui'
 import RelativeTime from './RelativeTime.vue'
+import Avatar from './Avatar.vue'
+
+import type { Discussion } from '@/types'
 
 defineOptions({
   name: 'DiscussionItem',

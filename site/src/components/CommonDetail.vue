@@ -2,9 +2,9 @@
   <div class="border-bt">
     <div class="p-3 flex flex-col gap-2">
       <div class="flex justify-between items-end">
-        <NAvatar class="size-24" :src="avatarUri" />
+        <Avatar class="size-24" :src="avatarUri" />
         <div class="flex gap-2">
-          <NButton type="primary" round>加入</NButton>
+          <button class="btn btn-primary btn-md">加入</button>
         </div>
       </div>
       <div>
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { NButton, NAvatar } from 'naive-ui'
+import Avatar from './Avatar.vue'
 
 defineOptions({
   name: 'CommonDetail',

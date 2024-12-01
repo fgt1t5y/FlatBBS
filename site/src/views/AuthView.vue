@@ -52,7 +52,7 @@ const actionLogin = () => {
       router.replace({ path: (route.query.next as string) || '/' })
     })
     .catch((error: Error) => {
-      window.$message.error(error.message)
+      // window.$message.error(error.message)
     })
     .finally(() => {
       isDealing.value = false
