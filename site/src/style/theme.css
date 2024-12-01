@@ -79,6 +79,10 @@
   .border-tp {
     @apply border-t border-gray-300 dark:border-gray-700;
   }
+
+  .w-full-page {
+    max-width: 900px;
+  }
 }
 
 body {

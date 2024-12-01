@@ -1,6 +1,6 @@
 <template>
   <img
-    :class="{ 'rounded-full': rounded }"
+    :class="{ 'rounded-full': rounded, rounded: !rounded }"
     :src="src"
     :alt="alt || 'User Avatar'"
   />
