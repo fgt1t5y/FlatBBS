@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-6 mb-6">
+  <div class="my-6">
     <div v-if="loading" class="flex justify-center">
       <NSpin :delay="200" description="加载中" />
     </div>

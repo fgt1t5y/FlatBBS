@@ -1,7 +1,7 @@
 <template>
   <MainContent disable-panels>
     <PageTitle title="登录" />
-    <div class="auth-page">
+    <div class="p-3 my-0 mx-auto" style="max-width: 500px">
       <FormKit
         v-model="inputForm"
         type="form"

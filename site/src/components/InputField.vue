@@ -1,12 +1,7 @@
 <template>
   <div v-if="!isEditing" class="flex items-center justify-between">
     <span>{{ valueNow || '未填写' }}</span>
-    <NButton
-      v-if="!readonly"
-      secondary
-      title="更改此栏"
-      @click="startEdit"
-    >
+    <NButton v-if="!readonly" secondary title="更改此栏" @click="startEdit">
       编辑
     </NButton>
   </div>
@@ -34,7 +29,7 @@ defineOptions({
 })
 
 interface InputFieldProps {
-  inputValue: string
+  inputValue?: string
   maxLength?: number
   readonly?: boolean
   field?: string

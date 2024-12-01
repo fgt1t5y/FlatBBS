@@ -1,16 +1,16 @@
 <template>
-  <div class="item">
-    <div class="topic-header">
+  <div class="flex flex-col gap-1 p-3 border-bt">
+    <div class="flex gap-2">
       <NAvatar :src="topic.author.avatar_uri" :size="20" round />
-      <NText>{{ topic.author.display_name }}</NText>
+      <span>{{ topic.author.display_name }}</span>
       <RelativeTime :time="topic.created_at" />
     </div>
-    <div class="topic-title">
+    <div class="text-base">
       <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
         {{ topic.title }}
       </RouterLink>
     </div>
-    <div class="topic-footer">
+    <div class="flex justify-between">
       <NButton secondary round size="small" :title="topic.board.name">
         <RouterLink :to="`/board/${topic.board.slug}`">
           {{ topic.board.name }}
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
-import { NAvatar, NText, NButton, NIcon } from 'naive-ui'
+import { NAvatar, NButton, NIcon } from 'naive-ui'
 import { Message } from '@vicons/tabler'
 import RelativeTime from './RelativeTime.vue'
 

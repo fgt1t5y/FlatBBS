@@ -23,16 +23,14 @@ defineSlots<{
   default(props: { item: T; index: number }): any
 }>()
 
-interface CommonListProps {
+type CommonListProps = {
   items: T[]
   hoverable?: boolean
-  clickable?: boolean
   isEnd?: boolean
 }
 
 const props = withDefaults(defineProps<CommonListProps>(), {
   hoverable: false,
-  clickable: false,
   isEnd: false,
 })
 
@@ -40,7 +38,6 @@ const itemClass = computed(() => {
   return {
     list: true,
     'list-hover': props.hoverable,
-    'list-link': props.clickable,
   }
 })
 </script>

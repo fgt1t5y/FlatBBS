@@ -1,5 +1,10 @@
 <template>
-  <div :class="editorToolbarClass">
+  <div
+    :class="{
+      'editor-toolbar': true,
+      'editor-toolbar-float': isMobile,
+    }"
+  >
     <input
       ref="imageInput"
       type="file"
@@ -23,7 +28,7 @@
 
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import { computed, ref, type Component } from 'vue'
+import { ref, type Component } from 'vue'
 import { NButton, NIcon } from 'naive-ui'
 import {
   H1,
@@ -72,13 +77,6 @@ const uploadAndInsertImage = () => {
     })
   })
 }
-
-const editorToolbarClass = computed(() => {
-  return {
-    'editor-toolbar': true,
-    'editor-toolbar-float': isMobile.value,
-  }
-})
 
 const editorTools = [
   {

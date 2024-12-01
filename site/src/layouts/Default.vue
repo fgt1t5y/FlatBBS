@@ -1,12 +1,11 @@
 <template>
   <Navbar v-if="isDesktop" />
-  <div id="flatbbs">
+  <div id="flatbbs" class="flex gap-3">
     <RouterView v-slot="{ Component, route }">
       <KeepAlive :max="10">
         <component :is="Component" :key="route.fullPath" />
       </KeepAlive>
     </RouterView>
-    <NBackTop />
   </div>
   <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
 </template>
@@ -15,7 +14,7 @@
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import { useMessage, NBackTop } from 'naive-ui'
+import { useMessage } from 'naive-ui'
 
 window.$message = useMessage()
 </script>

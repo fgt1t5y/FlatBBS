@@ -17,7 +17,7 @@
         </NButton>
       </template>
     </PageTitle>
-    <div class="chunk flex flex-col">
+    <div class="p-3 flex flex-col">
       <input
         v-model="topicDraft.title"
         class="text-lg"

@@ -1,6 +1,6 @@
 <template>
-  <div class="border-b">
-    <div class="chunk flex flex-col gap-2">
+  <div class="border-bt">
+    <div class="p-3 flex flex-col gap-2">
       <div class="flex justify-between items-end">
         <NAvatar class="size-24" :src="avatarUri" />
         <div class="flex gap-2">

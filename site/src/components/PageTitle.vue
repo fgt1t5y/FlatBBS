@@ -1,5 +1,5 @@
 <template>
-  <div class="page-title border-b" :title="title">
+  <div class="page-title border-bt" :title="title">
     <div class="flex gap-2 w-full items-center">
       <NButton
         v-if="showBackButton"

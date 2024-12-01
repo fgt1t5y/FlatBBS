@@ -1,6 +1,8 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar-inner">
+  <nav
+    class="z-10 flex justify-center sticky top-0 shadow-md px-3 py-1 bg-white dark:bg-navdark"
+  >
+    <div class="flex justify-between items-center grow">
       <RouterLink to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
