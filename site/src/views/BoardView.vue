@@ -34,9 +34,8 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
 import CommonDetail from '@/components/CommonDetail.vue'
-import { usePagination } from '@alova/scene-vue'
 import CommonList from '@/components/CommonList.vue'
-import { useRequest } from 'alova'
+import { useRequest, usePagination } from 'alova/client'
 import { useTitle } from '@/utils'
 
 const route = useRoute()
@@ -54,7 +53,11 @@ const {
   send: loadBoardInfo,
 } = useRequest(() => getBoardInfo(currentSlug), {
   immediate: true,
-  sendable: () => !!currentSlug,
+  middleware(_, next) {
+    if (currentSlug) {
+      next()
+    }
+  },
 })
 
 const {
@@ -70,7 +73,11 @@ const {
     append: true,
     initialPageSize: 10,
     immediate: false,
-    sendable: () => !!boardInfo.value,
+    middleware(_, next) {
+      if (boardInfo.value) {
+        next()
+      }
+    },
   },
 )
 

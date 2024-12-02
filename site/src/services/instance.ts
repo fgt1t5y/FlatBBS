@@ -3,12 +3,12 @@ import { useMessage } from '@/stores';
 import type { Result } from '@/types';
 import { clearToken } from '@/utils';
 import { createAlova } from 'alova';
-import GlobalFetch from 'alova/GlobalFetch';
+import adapterFetch from 'alova/fetch';
 import VueHook from 'alova/vue';
 
 export const alovaInstance = createAlova({
   baseURL: config.api_base,
-  requestAdapter: GlobalFetch(),
+  requestAdapter: adapterFetch(),
   statesHook: VueHook,
   timeout: 10000,
   responded: {

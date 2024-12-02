@@ -20,7 +20,7 @@ import { getDiscussions } from '@/services/discussions'
 import { useRoute } from 'vue-router'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import { usePagination } from '@alova/scene-vue'
+import { usePagination } from 'alova/client'
 
 const route = useRoute()
 

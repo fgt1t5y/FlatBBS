@@ -21,7 +21,7 @@ import PageTitle from '@/components/PageTitle.vue'
 import CommonList from '@/components/CommonList.vue'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import { getBoards } from '@/services'
-import { usePagination } from '@alova/scene-vue'
+import { usePagination } from 'alova/client'
 import Avatar from '@/components/Avatar.vue'
 
 const { data: boards, error, loading, send } = usePagination(getBoards, {})

@@ -32,7 +32,7 @@
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
-import { useWatcher, useRequest } from 'alova'
+import { useWatcher, useRequest } from 'alova/client'
 import { getBoardInfo, publishTopic } from '@/services'
 import { computed, onActivated, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -65,7 +65,11 @@ const {
   send: loadBoardInfo,
 } = useWatcher(() => getBoardInfo(currentSlug.value), [currentSlug], {
   immediate: true,
-  sendable: () => currentSlug.value !== undefined,
+  middleware(_, next) {
+    if (currentSlug.value) {
+      next()
+    }
+  },
 })
 
 const {

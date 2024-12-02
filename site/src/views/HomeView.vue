@@ -19,7 +19,7 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import CommonList from '@/components/CommonList.vue'
 import { getAllTopics } from '@/services'
-import { usePagination } from '@alova/scene-vue'
+import { usePagination } from 'alova/client'
 
 let lastItemId = 0
 const {
