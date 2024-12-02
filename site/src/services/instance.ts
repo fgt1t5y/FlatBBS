@@ -13,8 +13,6 @@ export const alovaInstance = createAlova({
   timeout: 10000,
   responded: {
     onSuccess: async (res) => {
-      console.log(res);
-
       if (res.status === window.$code.INTERNAL_ERROR) {
         throw new Error('Server Internal Error');
       }
@@ -31,7 +29,7 @@ export const alovaInstance = createAlova({
         throw new Error(json.message || 'Network Error');
       }
 
-      return json;
+      return json.data;
     },
     onError: () => {
       const ms = useMessage();

@@ -12,14 +12,6 @@ use support\Request;
 
 class TopicController
 {
-    private $topicBasicFields = [
-        'id',
-        'title',
-        'author_id',
-        'board_id',
-        'reply_count',
-        'created_at'
-    ];
 
     #[Inject]
     protected SearchService $search;
@@ -33,17 +25,7 @@ class TopicController
         $last_id = (int) $request->post('last');
         $limit = (int) $request->post('limit');
 
-        $result = $this->topic->all($last_id, $limit, $this->topicBasicFields);
-
-        return ok($result);
-    }
-
-    public function list(Request $request, string $slug)
-    {
-        $last_id = (int) $request->post('last');
-        $limit = (int) $request->post('limit');
-
-        $result = $this->topic->list($slug, $last_id, $limit, $this->topicBasicFields);
+        $result = $this->topic->all($last_id, $limit);
 
         return ok($result);
     }
@@ -62,12 +44,21 @@ class TopicController
         /** @var Board */
         $board = Board::find($board_id, ['id']);
 
-        $topic = $this->topic->create($title, $board, $author);
+        $topic = $this->topic->create($title, $content, $board, $author);
         $topic->save();
 
-        $this->discussion->create($content, $topic, $author)->save();
+        return ok($topic);
+    }
 
-        return $topic;
+    public function detail(Request $request, int $topic_id)
+    {
+        $result = $this->topic->detail($topic_id);
+
+        if (!$result) {
+            return no(STATUS_NOT_FOUND);
+        }
+
+        return ok($result);
     }
 
     public function search(Request $request)

@@ -1,19 +1,15 @@
 import { alovaInstance } from './instance';
-import type { Topic, Topics } from '@/types';
+import type { Topic, Result } from '@/types';
 
 export const getAllTopics = (last: number, limit: number) => {
-  return alovaInstance.Post<Topics>('/topic/all', { last, limit });
-};
-
-export const getTopicsByBoardSlug = (
-  last: number,
-  limit: number,
-  board_slug: string,
-) => {
-  return alovaInstance.Post<Topics>(`/topic/${board_slug}/list`, {
+  return alovaInstance.Post<Result<Topic[]>, Topic>('/topic/all', {
     last,
     limit,
   });
+};
+
+export const getTopic = (topic_id: number) => {
+  return alovaInstance.Get<Topic>(`/topic/${topic_id}/detail`);
 };
 
 export const publishTopic = (
@@ -24,6 +20,6 @@ export const publishTopic = (
   return alovaInstance.Post<Topic>(`/topic/publish`, {
     title,
     content,
-    board_id
+    board_id,
   });
 };

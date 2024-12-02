@@ -11,7 +11,7 @@ export const useUserStore = defineStore('user', () => {
     getUserInfo()
       .then((res) => {
         isLogin.value = true;
-        info.value = res.data;
+        info.value = res;
       })
       .catch(() => {
         const ms = useMessage();

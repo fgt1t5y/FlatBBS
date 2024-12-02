@@ -1,17 +1,13 @@
 import { genForm } from '@/utils';
 import { alovaInstance } from './instance';
-import type { Result, UserInfo, UploadForm, UploadResult } from '@/types';
+import type { UploadForm, User } from '@/types';
 
 export const getUserInfo = () => {
-  return alovaInstance.Post<UserInfo>('/user/info');
-};
-
-export const getInfoByUsername = (username: string) => {
-  return alovaInstance.Post<UserInfo>('/user/user', { username });
+  return alovaInstance.Post<User>('/user/info');
 };
 
 export const modifyUserInfo = (field: string, value: string) => {
-  return alovaInstance.Post<Result>('/user/modify', { field, value });
+  return alovaInstance.Post<null>('/user/modify', { field, value });
 };
 
 export const modifyUserAvatar = (file: File) => {
@@ -19,5 +15,5 @@ export const modifyUserAvatar = (file: File) => {
     avgfile: file,
   });
 
-  return alovaInstance.Post<UploadResult>('/user/avatar', form);
+  return alovaInstance.Post<string[]>('/user/avatar', form);
 };

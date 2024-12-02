@@ -4,11 +4,11 @@
     :error="boardInfoError"
     @retry="loadBoardInfo"
   >
-    <PageTitle :title="boardInfo?.data?.name" />
+    <PageTitle :title="boardInfo?.name" />
     <CommonDetail
-      :avatar-uri="boardInfo.data.avatar_uri"
-      :name="boardInfo.data.name"
-      :introduction="boardInfo.data.description"
+      :avatar-uri="boardInfo.avatar_uri"
+      :name="boardInfo.name"
+      :introduction="boardInfo.description"
     />
     <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
@@ -49,7 +49,6 @@ const {
   loading: boardInfoLoading,
   data: boardInfo,
   error: boardInfoError,
-  onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
 } = useRequest(() => getBoardInfo(currentSlug), {
   immediate: true,
@@ -58,6 +57,9 @@ const {
       next()
     }
   },
+}).onSuccess(() => {
+  setTitle(boardInfo.value.name)
+  send()
 })
 
 const {
@@ -65,7 +67,6 @@ const {
   data: topics,
   isLastPage,
   error: topicsError,
-  onSuccess: onTopicsSuccess,
   send,
 } = usePagination(
   (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug),
@@ -79,14 +80,7 @@ const {
       }
     },
   },
-)
-
-onBoardInfoSuccess(() => {
-  setTitle(boardInfo.value.data.name)
-  send()
-})
-
-onTopicsSuccess(() => {
+).onSuccess(() => {
   const items = topics.value
   if (!items) return
 

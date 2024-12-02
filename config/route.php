@@ -19,17 +19,14 @@ Route::fallback(function () {
 });
 
 Route::group('/board/{slug}', function () {
-    // 获取论坛所有的版块
-    Route::post('/all', [app\controller\BoardController::class, 'all']);
     // 通过 BoardID 获取指定版块的信息
     Route::post('/info', [app\controller\BoardController::class, 'info']);
+    // 通过 BoardID 获取指定版块下的话题
+    Route::post('/topics', [app\controller\BoardController::class, 'topics']);
 });
 
-Route::group('/topic/{slug}', function () {
-    // 获取所有话题
-    Route::post('/all', [app\controller\TopicController::class, 'all']);
-    // 通过 BoardID 获取指定版块下的话题
-    Route::post('/list', [app\controller\TopicController::class, 'list']);
+Route::group('/topic/{tid:\d+}', function () {
+    Route::get('/detail', [app\controller\TopicController::class, 'detail']);
 });
 
 Route::group('/discussion/{tid:\d+}', function () {

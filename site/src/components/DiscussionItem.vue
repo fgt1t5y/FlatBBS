@@ -7,7 +7,7 @@
         <RelativeTime :time="discussion.created_at" />
       </div>
     </div>
-    <div class="text-base" v-html="discussion.content"></div>
+    <ContentRenderer :html="discussion.content" />
     <div class="flex justify-between items-center">
       <span class="text-muted"># {{ !index ? '题主楼' : index }}</span>
       <button class="btn btn-air btn-md">回复</button>
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
+import ContentRenderer from './ContentRenderer.vue';
 
 import type { Discussion } from '@/types'
 

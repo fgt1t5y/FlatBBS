@@ -43,6 +43,16 @@ class BoardController
         return ok($result);
     }
 
+    public function topics(Request $request, string $slug)
+    {
+        $last_id = (int) $request->post('last');
+        $limit = (int) $request->post('limit');
+
+        $result = $this->board->topics($slug, $last_id, $limit);
+
+        return ok($result);
+    }
+
     public function search(Request $request)
     {
         $keyword = $request->post('q');

@@ -34,7 +34,7 @@
             <RouterLink to="/settings">
               <button class="btn btn-primary btn-md w-full">设置</button>
             </RouterLink>
-            <button class="btn btn-air btn-md">退出登录</button>
+            <button class="btn btn-air btn-md" @click="user.quit">退出登录</button>
           </div>
         </div>
       </div>

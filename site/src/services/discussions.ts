@@ -1,4 +1,4 @@
-import type { Discussions } from '@/types';
+import type { Discussion, Result } from '@/types';
 import { alovaInstance } from './instance';
 
 export const getDiscussions = (
@@ -6,8 +6,11 @@ export const getDiscussions = (
   limit: number,
   topic_id: number,
 ) => {
-  return alovaInstance.Post<Discussions>(`/discussion/${topic_id}/list`, {
-    last,
-    limit,
-  });
+  return alovaInstance.Post<Result<Discussion[]>>(
+    `/discussion/${topic_id}/list`,
+    {
+      last,
+      limit,
+    },
+  );
 };

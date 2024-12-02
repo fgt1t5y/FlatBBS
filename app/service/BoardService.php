@@ -15,4 +15,15 @@ class BoardService
     {
         return Board::where('slug', $value)->first($columns);
     }
+
+    public function topics(string $slug, int $last_id, int $limit)
+    {
+        return Board::where('slug', $slug)
+            ->firstOrFail()
+            ->topics()
+            ->limit(min($limit, 50))
+            ->where('id', '>', $last_id)
+            ->orderByDesc('last_reply_at')
+            ->get();
+    }
 }

@@ -82,7 +82,7 @@ const {
     publishTopic(
       topicDraft.value.title,
       topicDraft.value.content,
-      boardInfo.value.data.id,
+      boardInfo.value.id,
     ),
   {
     immediate: false,
@@ -90,7 +90,7 @@ const {
 )
 
 onBoardInfoSuccess(() => {
-  setTitle(boardInfo.value.data.name)
+  setTitle(boardInfo.value.name)
 })
 
 onTopicPulished(() => {

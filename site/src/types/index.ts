@@ -1,6 +1,7 @@
-export interface Result {
+export interface Result<T = null> {
   code: number;
   message?: string;
+  data: T;
 }
 
 export interface User {
@@ -10,10 +11,6 @@ export interface User {
   email?: string;
   avatar_uri?: string;
   introduction?: string;
-}
-
-export interface UserInfo extends Result {
-  data: User;
 }
 
 export interface LoginForm {
@@ -48,10 +45,6 @@ export interface CreateTopicForm {
   board: number;
 }
 
-export interface UploadResult extends Result {
-  data: string[];
-}
-
 export interface Board {
   id: number;
   name: string;
@@ -61,18 +54,10 @@ export interface Board {
   color: string;
 }
 
-export interface BoardInfo extends Result {
-  data: Board;
-}
-
-export interface Boards extends Result {
-  data: Board[];
-}
-
 export interface Topic {
   id: number;
   title: string;
-  content?: string;
+  content: string;
   author: User;
   board: Board;
   board_id: number;
@@ -80,10 +65,6 @@ export interface Topic {
   reply_count: number;
   created_at: string;
   last_reply_at: string;
-}
-
-export interface Topics extends Result {
-  data: Topic[];
 }
 
 export type TopicDraft = Pick<Topic, 'title' | 'content' | 'board_id'>;
@@ -96,14 +77,10 @@ export interface Discussion {
   like_count: number;
 }
 
-export interface Discussions extends Result {
-  data: Discussion[];
-}
-
 export type ThemeMode = 'auto' | 'light' | 'dark';
 
 export interface IMessage {
-  i: number
+  i: number;
   message: string;
   type?: 'info' | 'success' | 'error';
   time?: number;
