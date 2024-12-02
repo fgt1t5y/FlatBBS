@@ -2,7 +2,6 @@ import 'vue-router';
 
 declare global {
   interface Window {
-    // $message: MessageApiInjection;
     $code: {
       OK: 200;
       BAD_REQUEST: 400;

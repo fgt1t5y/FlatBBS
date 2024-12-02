@@ -2,6 +2,7 @@ import { getUserInfo, logout } from '@/services';
 import { defineStore } from 'pinia';
 import { ref, shallowRef } from 'vue';
 import type { User } from '@/types';
+import { useMessage } from './message';
 
 export const useUserStore = defineStore('user', () => {
   const info = shallowRef<User>();
@@ -13,7 +14,8 @@ export const useUserStore = defineStore('user', () => {
         info.value = res.data;
       })
       .catch(() => {
-        // window.$message.error('获取用户信息失败');
+        const ms = useMessage();
+        ms.error('获取用户信息失败');
       });
   };
   const quit = () => {

@@ -1,4 +1,5 @@
 import { config } from '@/global';
+import { useMessage } from '@/stores';
 import type { Result } from '@/types';
 import { clearToken } from '@/utils';
 import { createAlova } from 'alova';
@@ -12,22 +13,29 @@ export const alovaInstance = createAlova({
   timeout: 10000,
   responded: {
     onSuccess: async (res) => {
-      if (res.status > window.$code.OK) {
-        throw new Error('服务器错误');
+      console.log(res);
+
+      if (res.status === window.$code.INTERNAL_ERROR) {
+        throw new Error('Server Internal Error');
       }
       const json = (await res.json()) as Result;
       const code = json.code;
 
-      if (code && code !== window.$code.OK) {
+      if (!code) {
+        throw new Error('Invalid Response Body');
+      }
+
+      if (code !== window.$code.OK) {
         // 服务器回报未认证，直接清空本地状态Cookie
         if (code === window.$code.UNAUTHORIZED) clearToken();
-        throw new Error(json.message || '网络错误');
+        throw new Error(json.message || 'Network Error');
       }
 
       return json;
     },
     onError: () => {
-      // window.$message.error('网络错误');
+      const ms = useMessage();
+      ms.error('Network Error');
     },
   },
 });

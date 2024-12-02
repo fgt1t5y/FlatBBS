@@ -1,9 +1,9 @@
 <template>
   <nav
-    class="z-10 flex items-center sticky top-0 shadow-md px-3 bg-white dark:bg-navdark justify-center"
+    class="z-10 flex items-center sticky top-0 shadow-md bg-white dark:bg-navdark justify-center"
     style="height: 52px"
   >
-    <div class="w-full-page flex justify-between items-center grow">
+    <div class="w-full-page flex justify-between items-center grow px-3">
       <RouterLink to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>

@@ -38,8 +38,10 @@ import { computed, onActivated, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTitle } from '@/utils'
 import router from '@/router'
+import { useMessage } from '@/stores'
 
 const route = useRoute()
+const ms = useMessage()
 const { setTitle } = useTitle('发布')
 const currentSlug = computed(() => route.params.slug as string)
 const topicDraft = ref({
@@ -49,7 +51,7 @@ const topicDraft = ref({
 
 const checkForm = () => {
   if (!topicDraft.value.title.trim()) {
-    // window.$message.error('请填写标题')
+    ms.error('请填写标题')
     return false
   }
   return true
@@ -88,7 +90,7 @@ onBoardInfoSuccess(() => {
 })
 
 onTopicPulished(() => {
-  // window.$message.success('发布成功')
+  ms.success('发布成功')
   router.replace(`/topic/${topic.value.id}`)
 })
 

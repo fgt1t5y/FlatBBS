@@ -18,6 +18,7 @@
 import { ref, watch } from 'vue'
 import { modifyUserInfo } from '@/services'
 import { FormKit } from '@formkit/vue'
+import { useMessage } from '@/stores'
 
 defineOptions({
   name: 'InputField',
@@ -39,6 +40,7 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
 const valueNow = ref<string>(props.inputValue)
 const isChanged = ref<boolean>(false)
 const inputRef = ref<any>()
+const ms = useMessage()
 
 const onConfirm = () => {
   if (valueNow.value.trim() === '' || valueNow.value === props.inputValue) {
@@ -48,13 +50,11 @@ const onConfirm = () => {
   }
   modifyUserInfo(props.field, valueNow.value)
     .then(() => {
-      // window.$message.success('信息已更新。')
+      ms.success('信息已更新。')
+      isChanged.value = false
     })
     .catch(() => {
-      // window.$message.error('信息更新失败。')
-    })
-    .finally(() => {
-      isChanged.value = false
+      ms.error('信息更新失败。')
     })
 }
 

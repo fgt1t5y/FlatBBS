@@ -8,12 +8,12 @@
     </RouterView>
   </div>
   <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
+  <Message />
 </template>
 
 <script setup lang="ts">
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-
-// window.$message = useMessage()
+import Message from '@/components/Message.vue'
 </script>

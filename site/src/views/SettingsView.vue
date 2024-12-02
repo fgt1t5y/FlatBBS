@@ -66,7 +66,7 @@ import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { useTheme, useUserStore } from '@/stores'
+import { useMessage, useTheme, useUserStore } from '@/stores'
 import { blobToFile } from '@/utils'
 import { ref, watch } from 'vue'
 import { modifyUserAvatar } from '@/services'
@@ -75,6 +75,7 @@ import { FormKit } from '@formkit/vue'
 import Avatar from '@/components/Avatar.vue'
 
 const user = useUserStore()
+const ms = useMessage()
 const { switchTo, theme } = useTheme()
 const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)
@@ -95,7 +96,7 @@ const giveAvatarFile = () => {
 
 const showCropperMessage = (content: string) => {
   isShowCropper.value = false
-  // window.$message.error(content)
+  ms.error(content)
 }
 
 const closeAvatarCrop = () => {
@@ -109,10 +110,10 @@ const uploadAvatar = () => {
       const file = blobToFile(blob, '_.jpg')
       modifyUserAvatar(file)
         .then(() => {
-          // window.$message.success('头像已上传')
+          ms.success('头像已上传')
         })
         .catch(() => {
-          // window.$message.error('头像更新失败')
+          ms.error('头像更新失败')
         })
     }
   })

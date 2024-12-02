@@ -6,6 +6,7 @@ import {
 } from 'vue-router';
 import { mainRoutes } from './modules/main';
 import { pureSetTitle, hasToken } from '@/utils';
+import { useMessage } from '@/stores';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,13 +14,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
+  const ms = useMessage();
+
   if (hasToken()) {
     if (to.meta?.guestOnly) {
       return { name: 'root' };
     }
   } else {
     if (to.meta?.memberOnly) {
-      // window.$message.error('请先登录');
+      ms.error('请先登录');
 
       return { name: 'auth_page', query: { next: to.fullPath } };
     }

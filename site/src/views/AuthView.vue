@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { login } from '@/services'
-import { useUserStore } from '@/stores'
+import { useMessage, useUserStore } from '@/stores'
 import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
@@ -43,6 +43,7 @@ const inputForm = reactive({
 })
 const user = useUserStore()
 const route = useRoute()
+const ms = useMessage()
 
 const actionLogin = () => {
   isDealing.value = true
@@ -52,7 +53,7 @@ const actionLogin = () => {
       router.replace({ path: (route.query.next as string) || '/' })
     })
     .catch((error: Error) => {
-      // window.$message.error(error.message)
+      ms.error(error.message)
     })
     .finally(() => {
       isDealing.value = false

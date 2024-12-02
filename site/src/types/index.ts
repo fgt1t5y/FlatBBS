@@ -101,3 +101,10 @@ export interface Discussions extends Result {
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
+
+export interface IMessage {
+  i: number
+  message: string;
+  type?: 'info' | 'success' | 'error';
+  time?: number;
+}
