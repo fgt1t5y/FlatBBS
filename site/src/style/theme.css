@@ -22,24 +22,44 @@
   }
 
   h1 {
-    @apply text-2xl;
+    @apply text-2xl my-4 font-bold;
   }
   h2 {
-    @apply text-xl;
+    @apply text-xl my-4 font-bold;
   }
 
   p {
     @apply my-4;
   }
 
+  p a {
+    @apply text-primary underline;
+  }
+
+  p:has(img) {
+    @apply text-center;
+  }
+
+  p ul {
+    @apply list-disc pl-10 my-4;
+  }
+
+  p ol {
+    @apply list-decimal pl-10 my-4;
+  }
+
   blockquote {
     @apply p-3 ml-3 border-l-4 border-l-indigo-700;
+  }
+
+  p img {
+    @apply inline-block sm:max-w-lg;
   }
 }
 
 @layer components {
   .btn {
-    @apply rounded text-white transition-all whitespace-nowrap;
+    @apply rounded whitespace-nowrap;
   }
 
   .btn:disabled {
@@ -47,15 +67,19 @@
   }
 
   .btn-primary {
-    @apply bg-indigo-600 hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+    @apply text-white bg-indigo-600 transition-all hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
 
   .btn-air {
-    @apply text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+    @apply text-black bg-gray-100 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
   }
 
   .btn-text {
-    @apply text-black hover:text-primary dark:text-gray-300;
+    @apply text-black hover:text-primary dark:text-gray-300 disabled:opacity-50;
+  }
+
+  .btn-text-active {
+    @apply text-primary outline outline-2 outline-indigo-600;
   }
 
   .btn-circle {

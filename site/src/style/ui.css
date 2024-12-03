@@ -3,11 +3,6 @@
   --gap: 12px;
 }
 
-a {
-  text-decoration: none;
-  color: currentColor;
-}
-
 input {
   border: none;
   outline: none;
@@ -16,9 +11,6 @@ input {
 }
 
 img {
-  max-width: 100%;
-  height: auto;
-
   &.ProseMirror-selectednode {
     outline: 2px solid indigo;
   }

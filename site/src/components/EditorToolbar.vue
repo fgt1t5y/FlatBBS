@@ -16,7 +16,12 @@
     <button
       v-for="(tool, index) in editorTools"
       :key="index"
-      class="btn btn-text"
+      :disabled="!tool.enable()"
+      :class="{
+        'btn': true,
+        'btn-text': true,
+        'btn-text-active': tool.isActive()
+      }"
       @click="tool.onClick"
     >
       <component :is="tool.icon" class="size-6" />
@@ -55,6 +60,7 @@ interface EditorTools {
   icon: Component
   onClick: any
   isActive: () => boolean
+  enable: () => boolean
 }
 
 const props = defineProps<EditorToolbarProps>()
@@ -67,7 +73,7 @@ const uploadAndInsertImage = () => {
 
   const image = imageInput.value.files[0]
   uploadFile(image).then((res) => {
-    res.data.forEach((uri) => {
+    res.forEach((uri) => {
       props?.editor.commands.setImage({
         src: uri,
       })
@@ -82,6 +88,7 @@ const editorTools = [
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 1 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 1 }),
+    enable: () => true,
   },
   {
     name: 'heading-2',
@@ -89,54 +96,63 @@ const editorTools = [
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 2 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 2 }),
+    enable: () => true,
   },
   {
     name: 'bold',
     icon: Bold,
     onClick: () => props?.editor.chain().focus().toggleBold().run(),
     isActive: () => props?.editor.isActive('bold'),
+    enable: () => true,
   },
   {
     name: 'italic',
     icon: Italic,
     onClick: () => props?.editor.chain().focus().toggleItalic().run(),
     isActive: () => props?.editor.isActive('italic'),
+    enable: () => true,
   },
   {
     name: 'bullet-list',
     icon: List,
     onClick: () => props?.editor.chain().focus().toggleBulletList().run(),
     isActive: () => props?.editor.isActive('bulletList'),
+    enable: () => true,
   },
   {
     name: 'ordered-list',
     icon: ListNumbers,
     onClick: () => props?.editor.chain().focus().toggleOrderedList().run(),
     isActive: () => props?.editor.isActive('orderedList'),
+    enable: () => true,
   },
   {
     name: 'blockquote',
     icon: Quote,
     onClick: () => props?.editor.chain().focus().toggleBlockquote().run(),
     isActive: () => props?.editor.isActive('blockquote'),
+    enable: () => true,
   },
   {
     name: 'image',
     icon: Photo,
     onClick: () => imageInput.value!.click(),
     isActive: () => false,
+    enable: () => true,
   },
   {
     name: 'undo',
     icon: ArrowBackUp,
     onClick: () => props?.editor.chain().focus().undo().run(),
     isActive: () => false,
+    enable: () => props.editor.can().undo(),
   },
   {
     name: 'redo',
     icon: ArrowForwardUp,
     onClick: () => props?.editor.chain().focus().redo().run(),
     isActive: () => false,
+    enable: () => props.editor.can().redo(),
   },
 ] as EditorTools[]
 </script>
