@@ -17,7 +17,7 @@ class TopicService
             ->get();
     }
 
-    public function create(string $title, string $content, Board $board, User $author)
+    public function build(string $title, string $content, Board $board, User $author)
     {
         $topic = new Topic;
 

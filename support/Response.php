@@ -20,45 +20,4 @@ namespace support;
  */
 class Response extends \Webman\Http\Response
 {
-    protected $is_success = true;
-    protected $data = [];
-    protected int $code = 200;
-
-    public function success()
-    {
-        $this->is_success = true;
-        return $this;
-    }
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
-    }
-
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    public function failed(int $code)
-    {
-        $this->code = $code;
-        return $this;
-    }
-
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    public function isSuccess()
-    {
-        return $this->is_success;
-    }
-
-    public function toJson()
-    {
-        return json_encode(['code' => $this->code, 'data' => $this->data]);
-    }
 }

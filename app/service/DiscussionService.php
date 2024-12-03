@@ -18,7 +18,7 @@ class DiscussionService
             ->get($columns);
     }
 
-    public function create(string $content, Topic $topic, User $author)
+    public function build(string $content, Topic $topic, User $author)
     {
         $discussion = new Discussion;
 

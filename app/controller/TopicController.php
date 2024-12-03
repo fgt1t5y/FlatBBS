@@ -17,8 +17,6 @@ class TopicController
     protected SearchService $search;
     #[Inject]
     protected TopicService $topic;
-    #[Inject]
-    protected DiscussionService $discussion;
 
     public function all(Request $request)
     {
@@ -42,10 +40,13 @@ class TopicController
 
         $author = $request->getUser();
         /** @var Board */
-        $board = Board::find($board_id, ['id']);
+        $board = Board::find($board_id);
 
-        $topic = $this->topic->create($title, $content, $board, $author);
+        $topic = $this->topic->build($title, $content, $board, $author);
         $topic->save();
+
+        $board->topic_count = $board->topic_count + 1;
+        $board->save();
 
         return ok($topic);
     }
