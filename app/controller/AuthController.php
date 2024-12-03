@@ -5,9 +5,14 @@ namespace app\controller;
 use support\Redis;
 use support\Request;
 use app\model\User;
+use app\service\AuthService;
+use DI\Attribute\Inject;
 
 class AuthController
 {
+    #[Inject]
+    protected AuthService $auth;
+
     public function login(Request $request)
     {
         $session = $request->session();
@@ -30,16 +35,17 @@ class AuthController
             return no(STATUS_FORBIDDEN, '你不被允许登录你的账号');
         }
 
+        $user_id = $user->id;
         $token = random_string();
         $session->put([
-            'id' => $user->id,
+            'id' => $user_id,
             'username' => $user->username,
             'token' => $token,
             'email' => $email
         ]);
         $user->last_login_at = date('Y-m-d\TH:i:s.u');
         $user->save();
-        Redis::rPush('flat_sess_' . $user->id, $session->getId());
+        Redis::sAdd("flat_sess_{$user_id}", $session->getId());
 
         return ok()
             ->cookie('flat_sess', $token, 43200, '/');
@@ -48,10 +54,28 @@ class AuthController
     public function logout(Request $request)
     {
         $session = $request->session();
-        Redis::lRem('flat_sess_' . $session->get('id'), 1, $session->getId());
+        $user_id = $session->get('id');
+
+        if (!$user_id) {
+            return no(STATUS_UNAUTHORIZED);
+        }
+
+        Redis::sRem("flat_sess_{$user_id}", 1, $session->getId());
         $session->flush();
 
         return ok()
             ->cookie('flat_sess', '', 0, '/');
+    }
+
+    public function forget(Request $request)
+    {
+        $session = $request->session();
+        $user_id = $session->get('id');
+
+        if (!$user_id) {
+            return no(STATUS_UNAUTHORIZED);
+        }
+
+        return $this->auth->logout_all($user_id);
     }
 }

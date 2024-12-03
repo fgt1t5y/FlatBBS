@@ -30,6 +30,6 @@ class Request extends \Webman\Http\Request
         if (!$user_id)
             throw new APIException('Please authorize.', STATUS_UNAUTHORIZED);
 
-        return User::find($user_id, ['id']);
+        return User::find($user_id);
     }
 }

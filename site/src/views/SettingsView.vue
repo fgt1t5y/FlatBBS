@@ -43,9 +43,9 @@
     </SettingGroup>
     <SettingGroup title="安全与隐私">
       <SettingItem title="密码">
-        <div>
+        <RouterLink :to="{ name: 'modify_password' }">
           <button class="btn btn-primary btn-md">更改</button>
-        </div>
+        </RouterLink>
       </SettingItem>
     </SettingGroup>
     <SettingGroup title="显示">

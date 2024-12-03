@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { login } from '@/services'
 import { useMessage, useUserStore } from '@/stores'
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import MainContent from '@/components/MainContent.vue'
@@ -37,7 +37,7 @@ import PageTitle from '@/components/PageTitle.vue'
 import { FormKit } from '@formkit/vue'
 
 const isDealing = ref<boolean>(false)
-const inputForm = reactive({
+const inputForm = ref({
   email: '',
   password: '',
 })
@@ -47,7 +47,7 @@ const ms = useMessage()
 
 const actionLogin = () => {
   isDealing.value = true
-  login(inputForm.email, inputForm.password)
+  login(inputForm.value.email, inputForm.value.password)
     .then(() => {
       user.fetch()
       router.replace({ path: (route.query.next as string) || '/' })

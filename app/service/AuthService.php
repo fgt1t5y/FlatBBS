@@ -8,14 +8,14 @@ class AuthService
 {
     public function logout_all(int $user_id): void
     {
-        $sessions = Redis::lRange("flat_sess_{$user_id}", 0, -1);
+        $sessions = Redis::sMembers("flat_sess_{$user_id}");
 
         if (!$sessions || count($sessions) === 0)
             return;
 
         foreach ($sessions as $session) {
             Redis::del("flat_sess_{$session}");
-            Redis::lRem("flat_sess_{$user_id}", 1, $session);
+            Redis::sRem("flat_sess_{$user_id}", 1, $session);
         }
 
         return;
