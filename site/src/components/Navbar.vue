@@ -4,28 +4,35 @@
     style="height: 52px"
   >
     <div class="w-full-page flex justify-between items-center grow px-3">
-      <RouterLink to="/">
+      <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
       <div v-if="user.isLogin && user.info">
-        <Avatar
-          ref="avatarRef"
-          tabindex="0"
-          role="button"
-          class="size-10 cursor-pointer"
-          :src="user.info.avatar_uri"
-          rounded
-          @click="openMenu"
-        />
+        <button title="你的头像，点击打开用户菜单" @click="openMenu">
+          <Avatar
+            ref="avatarRef"
+            role="button"
+            class="size-10 cursor-pointer"
+            :src="user.info.avatar_uri"
+            rounded
+          />
+        </button>
         <div
           ref="menuRef"
           role="tooltip"
-          class="user-panel bg-white shadow-md p-3 dark:bg-navdark"
+          class="user-panel bg-white shadow-md p-3 dark:bg-navdark focus:outline-1 focus:outline-indigo-600"
           :style="{
             display: isPositioned ? 'block' : 'none',
             ...floatingStyles,
           }"
+          @keydown="handleMenuKeydown"
         >
+          <div
+            ref="focusTargetRef"
+            aria-label="用户菜单"
+            class="absolute h-0 w-0"
+            tabindex="0"
+          ></div>
           <div class="text-base">
             <b>{{ user.info.display_name }}</b>
             <span class="text-muted">@{{ user.info.username }}</span>
@@ -34,7 +41,9 @@
             <RouterLink to="/settings">
               <button class="btn btn-primary btn-md w-full">设置</button>
             </RouterLink>
-            <button class="btn btn-air btn-md" @click="user.quit">退出登录</button>
+            <button class="btn btn-air btn-md" @click="user.quit">
+              退出登录
+            </button>
           </div>
         </div>
       </div>
@@ -61,20 +70,38 @@ defineOptions({
 const user = useUserStore()
 const avatarRef = ref<HTMLElement>()
 const menuRef = ref<HTMLElement>()
+const focusTargetRef = ref<HTMLElement>()
 const showMenu = ref(false)
 
-const { floatingStyles, update, isPositioned } = useFloating(
-  avatarRef,
-  menuRef,
-  {
-    placement: 'bottom-end',
-    open: showMenu,
-    whileElementsMounted: autoUpdate,
-  },
-)
+const { floatingStyles, isPositioned } = useFloating(avatarRef, menuRef, {
+  placement: 'bottom-end',
+  open: showMenu,
+  whileElementsMounted: autoUpdate,
+})
 
 const openMenu = () => {
   showMenu.value = true
+
+  let t = window.setTimeout(() => {
+    focusTargetRef.value?.focus()
+    clearTimeout(t)
+  }, 10)
+}
+
+const handleMenuKeydown = (ev: KeyboardEvent) => {
+  if (ev.key === 'Escape') {
+    showMenu.value = false
+
+    let t = window.setTimeout(() => {
+      const el = document.getElementById('main-content')
+      if (!el) {
+        return
+      }
+
+      el.focus()
+      clearTimeout(t)
+    }, 10)
+  }
 }
 
 onClickOutside(menuRef, () => {
@@ -82,6 +109,4 @@ onClickOutside(menuRef, () => {
     showMenu.value = false
   }
 })
-
-window.addEventListener('resize', update)
 </script>

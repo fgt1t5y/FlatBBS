@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grow gap-3">
+  <div id="main-content" class="flex grow gap-3">
     <div class="relative grow mb-14">
       <RequestPlaceholder
         v-if="loading || error"
