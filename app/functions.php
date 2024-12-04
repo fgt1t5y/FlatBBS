@@ -9,11 +9,7 @@ function is_email(string $email)
         return false;
     }
 
-    if (preg_match('/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/', $email)) {
-        return true;
-    }
-
-    return false;
+    return preg_match('/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/', $email);
 }
 
 function all(array $value)
@@ -40,21 +36,6 @@ function no(int $code, string $message = ''): Response
 function random_string()
 {
     return Str::random();
-}
-
-function is_login($token)
-{
-    $server_token = session('token');
-    if ($server_token === null) {
-        return false;
-    }
-
-    if ($server_token === $token) {
-        return true;
-    }
-
-    session()->flush();
-    return false;
 }
 
 function config_with(string $key, mixed $suffix)

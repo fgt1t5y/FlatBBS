@@ -19,7 +19,7 @@ class UserController
     #[Inject]
     protected AuthService $auth;
 
-    #[Gate]
+    #[Gate('user:query')]
     public function info(Request $request)
     {
         $uid = session('id');
@@ -29,7 +29,7 @@ class UserController
         return ok($userinfo);
     }
 
-    #[Gate]
+    #[Gate('user:modify')]
     public function modify(Request $request)
     {
         $field = $request->post('field', '');
@@ -57,7 +57,6 @@ class UserController
         return ok($result);
     }
 
-    #[Gate]
     public function avatar(Request $request)
     {
         $file_array = $this->file->upload($request->file());
@@ -76,13 +75,10 @@ class UserController
         }
     }
 
-    #[Gate]
     public function password(Request $request)
     {
         $old_password = $request->post('old_password');
         $new_password = $request->post('new_password');
-        $session = $request->session();
-        $uid = (int) $session->get('id');
 
         if (!all([$old_password, $new_password]) || $old_password === $new_password) {
             return no(STATUS_BAD_REQUEST);
@@ -97,7 +93,7 @@ class UserController
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
 
         $result = $this->user->modify('password', $new_password);
-        $this->auth->logout_all($uid);
+        $this->auth->logout_all($user->id);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);

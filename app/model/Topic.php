@@ -31,11 +31,6 @@ class Topic extends AbstractModel
         return $this->belongsTo(User::class);
     }
 
-    public function last_reply(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function board(): BelongsTo
     {
         return $this->belongsTo(Board::class);

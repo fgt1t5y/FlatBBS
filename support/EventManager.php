@@ -41,6 +41,11 @@ class EventManager
         static::dispatchListener("$ns:$event", $model);
     }
 
+    public function ping()
+    {
+        return 'pong';
+    }
+
     private function __construct()
     {
     }

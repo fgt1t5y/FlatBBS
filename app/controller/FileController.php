@@ -12,7 +12,7 @@ class FileController
     #[Inject]
     protected FileService $file;
 
-    #[Gate]
+    #[Gate('file:create')]
     public function upload(Request $request)
     {
         $result = $this->file->upload($request->file(), true);

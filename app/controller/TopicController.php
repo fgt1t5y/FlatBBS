@@ -4,11 +4,11 @@ namespace app\controller;
 
 use app\model\Board;
 use app\model\Topic;
-use app\service\DiscussionService;
 use app\service\SearchService;
 use app\service\TopicService;
 use DI\Attribute\Inject;
 use support\Request;
+use support\Gate;
 
 class TopicController
 {
@@ -28,6 +28,7 @@ class TopicController
         return ok($result);
     }
 
+    #[Gate('create:topic')]
     public function publish(Request $request)
     {
         $title = $request->post('title');

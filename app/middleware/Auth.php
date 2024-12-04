@@ -11,14 +11,27 @@ class Auth implements MiddlewareInterface
 {
     public function process(Request $request, callable $handle): Response
     {
-        $authed = is_login($request->cookie('flat_sess'));
+        $session = $request->session();
         $reflection = new \ReflectionClass($request->controller);
         $attr = $reflection->getMethod($request->action)->getAttributes(Gate::class);
 
         if (count($attr)) {
-            $need_auth = $attr[0]->getArguments()[0] ?? true;
-            if ($need_auth === true && $authed !== true) {
-                return no(STATUS_UNAUTHORIZED, '请登录');
+            $permission_required = $attr[0]->getArguments();
+
+            if (count($permission_required) === 0) {
+                return no(STATUS_INTERNAL_ERROR);
+            }
+
+            $permission_required = $permission_required[0];
+
+            if (!$session->has('id')) {
+                return no(STATUS_UNAUTHORIZED, 'Login please');
+            }
+
+            if (in_array($permission_required, $session->get('permissions'))) {
+                return $handle($request);
+            } else {
+                return no(STATUS_FORBIDDEN, 'Forbidden');
             }
         }
 

@@ -11,6 +11,13 @@ export interface User {
   email?: string;
   avatar_uri?: string;
   introduction?: string;
+  roles: Role[];
+}
+
+export interface Role {
+  id: number;
+  name: string;
+  description?: string;
 }
 
 export interface LoginForm {

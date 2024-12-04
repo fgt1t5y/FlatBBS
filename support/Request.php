@@ -14,8 +14,8 @@
 
 namespace support;
 
+use app\model\Guest;
 use app\model\User;
-use support\APIException;
 
 /**
  * Class Request
@@ -28,7 +28,8 @@ class Request extends \Webman\Http\Request
         $user_id = $this->session->get('id');
 
         if (!$user_id)
-            throw new APIException('Please authorize.', STATUS_UNAUTHORIZED);
+            // not a user, seen as a guest
+            return new Guest;
 
         return User::find($user_id);
     }

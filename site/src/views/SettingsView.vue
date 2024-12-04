@@ -28,6 +28,9 @@
           readonly
         />
       </SettingItem>
+      <SettingItem title="用户角色">
+        <span>{{ roleStringify() }}</span>
+      </SettingItem>
       <SettingItem title="昵称">
         <InputField
           field="display_name"
@@ -119,6 +122,10 @@ const uploadAvatar = () => {
   })
 
   closeAvatarCrop()
+}
+
+const roleStringify = () => {
+  return user.info?.roles.map(role => role.name).join(', ')
 }
 
 watch(

@@ -17,7 +17,7 @@ class AuthController
     {
         $session = $request->session();
 
-        if (is_login($request->cookie('flat_sess'))) {
+        if ($session->has('id')) {
             return no(STATUS_BAD_REQUEST, '你已经登录过了');
         }
 
@@ -37,11 +37,15 @@ class AuthController
 
         $user_id = $user->id;
         $token = random_string();
+        $roles = $user->roles->pluck('id')->all();
+        $permissions = $user->permissions();
         $session->put([
             'id' => $user_id,
             'username' => $user->username,
             'token' => $token,
-            'email' => $email
+            'email' => $email,
+            'roles' => $roles,
+            'permissions' => $permissions
         ]);
         $user->last_login_at = date('Y-m-d\TH:i:s.u');
         $user->save();
