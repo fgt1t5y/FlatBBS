@@ -171,7 +171,9 @@ const mouseup = (ev: MouseEvent) => {
   checkOverBorder()
 }
 
-const destoryCropper = () => {
+const destroyCropper = () => {
+  console.log('[Cropper] Destroy Cropper.')
+
   URL.revokeObjectURL(imageURL.value)
 }
 
@@ -245,7 +247,7 @@ watch(
 )
 
 defineExpose({
-  destoryCropper,
+  destroyCropper,
   getBlobAsync,
 })
 </script>

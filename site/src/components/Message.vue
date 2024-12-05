@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div
-      class="fixed top-6 z-30 w-full flex flex-col gap-2 items-center h-0 text-black"
+      class="fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black"
     >
       <MessageItem
         v-for="m in ms.messages"

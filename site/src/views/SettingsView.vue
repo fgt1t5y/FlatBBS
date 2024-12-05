@@ -61,6 +61,20 @@
       </SettingItem>
     </SettingGroup>
   </MainContent>
+  <Modal v-model:visible="isShowCropper" mount title="裁剪头像">
+    <Cropper
+      ref="cropper"
+      :height="320"
+      :width="320"
+      :image="avatarFile"
+      @load="isShowCropper = true"
+      @error="showCropperMessage"
+    />
+    <div class="flex flex-col gap-2">
+      <button class="btn btn-primary btn-md" @click="uploadAvatar">确定</button>
+      <button class="btn btn-air btn-md" @click="closeAvatarCrop">取消</button>
+    </div>
+  </Modal>
 </template>
 
 <script setup lang="ts">
@@ -76,6 +90,7 @@ import { modifyUserAvatar } from '@/services'
 import MainContent from '@/components/MainContent.vue'
 import { FormKit } from '@formkit/vue'
 import Avatar from '@/components/Avatar.vue'
+import Modal from '@/components/Modal.vue'
 
 const user = useUserStore()
 const ms = useMessage()
@@ -87,13 +102,12 @@ const avatarFile = ref<File>()
 const themeSwitcherValue = ref(theme.value)
 
 const openAvatarSelector = () => {
-  avatarInput.value!.click()
+  avatarInput.value?.click()
 }
 
 const giveAvatarFile = () => {
   if (avatarInput.value?.files) {
     avatarFile.value = avatarInput.value!.files[0]
-    isShowCropper.value = true
   }
 }
 
@@ -103,7 +117,7 @@ const showCropperMessage = (content: string) => {
 }
 
 const closeAvatarCrop = () => {
-  cropper.value?.destoryCropper()
+  cropper.value?.destroyCropper()
   isShowCropper.value = false
 }
 
@@ -125,7 +139,7 @@ const uploadAvatar = () => {
 }
 
 const roleStringify = () => {
-  return user.info?.roles.map(role => role.name).join(', ')
+  return user.info?.roles.map((role) => role.name).join(', ')
 }
 
 watch(
