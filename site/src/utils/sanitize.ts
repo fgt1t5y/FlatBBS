@@ -150,7 +150,20 @@ export function sanitize(opts?: SanitizeOptions) {
   };
 }
 
-export const sanitizer = (doc: any) =>
-  sanitize({
-    dropElements: ['script'],
+export const sanitizer = (doc: any) => {
+  return sanitize({
+    allowElements: [
+      'p',
+      'a',
+      'h1',
+      'h2',
+      'ul',
+      'ol',
+      'li',
+      'img',
+      'b',
+      'i',
+      'blockquote',
+    ],
   })(doc);
+};
