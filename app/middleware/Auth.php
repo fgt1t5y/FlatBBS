@@ -2,7 +2,6 @@
 
 namespace app\middleware;
 
-use support\Gate;
 use Webman\MiddlewareInterface;
 use Webman\http\Request;
 use Webman\http\Response;
@@ -13,28 +12,33 @@ class Auth implements MiddlewareInterface
     {
         $session = $request->session();
         $reflection = new \ReflectionClass($request->controller);
-        $attr = $reflection->getMethod($request->action)->getAttributes(Gate::class);
+        try {
+            $attrs = $reflection->getMethod($request->action)->getAttributes();
+        } catch (\ReflectionException) {
+            return no(STATUS_INTERNAL_ERROR);
+        }
 
-        if (count($attr)) {
-            $permission_required = $attr[0]->getArguments();
+        if (count($attrs) === 0) {
+            return $handle($request);
+        }
 
-            if (count($permission_required) === 0) {
-                return no(STATUS_INTERNAL_ERROR);
-            }
+        $pass_flags = [];
 
-            $permission_required = $permission_required[0];
+        foreach ($attrs as $attr) {
+            /**
+             * @var \support\Guard
+             */
+            $gate = $attr->newInstance();
 
-            if (!$session->has('id')) {
-                return no(STATUS_UNAUTHORIZED, 'Login please');
-            }
-
-            if (in_array($permission_required, $session->get('permissions'))) {
-                return $handle($request);
-            } else {
-                return no(STATUS_FORBIDDEN, 'Forbidden');
+            if ($gate instanceof \support\Guard && $gate->check($request)) {
+                $pass_flags[] = true;
             }
         }
 
-        return $handle($request);
+        if (count($pass_flags) === count($attrs)) {
+            return $handle($request);
+        } else {
+            return no(STATUS_FORBIDDEN);
+        }
     }
 }

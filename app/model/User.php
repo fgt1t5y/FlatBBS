@@ -40,9 +40,6 @@ class User extends AbstractModel
         return $this->belongsToMany(Role::class, 'role_user');
     }
 
-    /**
-     * @return Builder
-     */
     public function permissions(): array
     {
         return Permission::query()

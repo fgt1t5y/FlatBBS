@@ -1,7 +1,7 @@
 <template>
   <Teleport v-if="mount" to="body">
     <div v-show="visible" class="h-full w-full fixed z-40 top-0">
-      <div class="h-full w-full bg-black opacity-50"></div>
+      <div class="h-full w-full bg-indigo-900 opacity-50"></div>
       <div
         class="h-full w-full absolute flex flex-col items-center top-0 justify-center"
       >
