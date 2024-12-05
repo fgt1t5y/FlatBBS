@@ -6,7 +6,8 @@ use Webman\http\Request;
 
 class Guard
 {
-    public function check(Request $request): bool{
+    public function check(Request $request): bool
+    {
         return false;
     }
 }

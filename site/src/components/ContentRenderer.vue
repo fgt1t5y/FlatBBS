@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { computed, h, Fragment } from 'vue'
 import { parse, TEXT_NODE } from 'ultrahtml'
+import { sanitizer } from '@/utils'
 
 import type { VNode } from 'vue'
 import type { Node } from 'ultrahtml'
@@ -42,7 +43,7 @@ const nodeToVNode = (node: Node): VNode | string | null => {
 }
 
 const contentToVNode = (html: string): VNode => {
-  const tree = parse(html)
+  const tree = sanitizer(parse(html))
 
   return h(
     Fragment,

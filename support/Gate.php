@@ -6,7 +6,7 @@ use support\Guard;
 use Attribute;
 use Webman\http\Request;
 
-#[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
+#[Attribute]
 class Gate extends Guard
 {
     public string $permission = '';
