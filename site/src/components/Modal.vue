@@ -6,7 +6,7 @@
         class="h-full w-full absolute flex flex-col items-center top-0 justify-center"
       >
         <div
-          class="bg-white flex flex-col rounded shadow dark:bg-navdark"
+          class="bg-white flex flex-col rounded shadow dark:bg-navdark border-1 border border-gray-300 dark:border-gray-700"
           :style="{
             'min-width': minWidth,
             'min-height': minHeight,
