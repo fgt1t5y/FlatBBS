@@ -70,7 +70,7 @@
       @load="isShowCropper = true"
       @error="showCropperMessage"
     />
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 mt-2">
       <button class="btn btn-primary btn-md" @click="uploadAvatar">确定</button>
       <button class="btn btn-air btn-md" @click="closeAvatarCrop">取消</button>
     </div>

@@ -13,20 +13,19 @@
         <div class="cropper-mask"></div>
       </div>
     </div>
-    <FormKit
+    <input
       v-model="scale"
       type="range"
-      number
       :min="minScale"
       :max="1.0"
       :step="0.01"
-      @update:model-value="onScaleChange"
+      @input="onScaleChange"
+      @change="onScaleChange"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue'
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 
 defineOptions({
@@ -86,6 +85,9 @@ const initCanvas = () => {
       minScale = Math.min(props.height / imageSrc.value!.height, 1)
     }
   }
+
+  minScale = parseFloat(minScale.toFixed(2))
+
   if (displayScale(minScale) === '1.00') {
     ratioException.value = true
   }

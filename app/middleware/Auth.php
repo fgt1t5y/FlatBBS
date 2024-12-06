@@ -5,12 +5,12 @@ namespace app\middleware;
 use Webman\MiddlewareInterface;
 use Webman\http\Request;
 use Webman\http\Response;
+use support\Guard;
 
 class Auth implements MiddlewareInterface
 {
     public function process(Request $request, callable $handle): Response
     {
-        $session = $request->session();
         $reflection = new \ReflectionClass($request->controller);
         try {
             $attrs = $reflection->getMethod($request->action)->getAttributes();
@@ -26,11 +26,11 @@ class Auth implements MiddlewareInterface
 
         foreach ($attrs as $attr) {
             /**
-             * @var \support\Guard
+             * @var Guard
              */
             $gate = $attr->newInstance();
 
-            if ($gate instanceof \support\Guard && $gate->check($request)) {
+            if ($gate instanceof Guard && $gate->check($request)) {
                 $pass_flags[] = true;
             }
         }
