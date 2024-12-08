@@ -45,8 +45,6 @@ const emits = defineEmits<{
 }>()
 
 onActivated(() => {
-  console.log(2)
-
   if (props.title) {
     pureSetTitle(props.title)
   }

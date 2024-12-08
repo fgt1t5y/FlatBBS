@@ -1,0 +1,82 @@
+{
+  "loading": "Loading",
+  "ok": "OK",
+  "cancle": "Cancle",
+
+  "login": "Login",
+
+  "email": "E-mail",
+  "password": "Password",
+  "old_password": "Old Password",
+  "new_password": "New Password",
+  "new_password_confirm": "Confirm New Password",
+
+  "user_menu": "User Menu",
+  "board": "Board",
+
+  "page": {
+    "home": "Home",
+    "boards": "Boards",
+    "publish_topic": "Publish Topic",
+    "modify_password": "Modify Password",
+    "not_found": "Page Not Found",
+    "search": "Search",
+    "settings": "Settings",
+    "register_or_login": "Signin / Login",
+    "me": "Me"
+  },
+
+  "topic": {
+    "topic": "Topic",
+    "title": "Topic title"
+  },
+
+  "message": {
+    "fill_topic_title": "Fill in the topic title please.",
+    "publish_topic_success": "The topic was successfully published",
+    "logout_all_session_if_modify_password": "All sessions will be logged out if you modify password.",
+    "upload_avatar_success": "New avatar was successfully uploaded.",
+    "upload_avatar_fail": "Upload failed, try again.",
+    "list_no_more": "No more things",
+    "modify_profile_success": "User profile was successfully updated.",
+    "modify_profile_fail": "User profile update failed.",
+
+    "forbidden_login_please": "Forbidden! Login please.",
+
+    "crop_image_fail": "Failed to crop image, try again please.",
+    "unsupport_image_format": "Unsupport image type.",
+    "image_too_small": "Image too small，height and width at least {height}x{width} px.",
+    "cannot_load_image": "Can't load this image."
+  },
+
+  "action": {
+    "back_home": "Back Home",
+    "submit": "Submit",
+    "modify": "Modify",
+    "save": "Save",
+    "logout": "Logout",
+    "publish": "Publish",
+    "retry": "Retry",
+
+    "publish_topic": "Publish Topic",
+    "crop_avatar": "Crop Avatar"
+  },
+
+  "settings": {
+    "user_profile": "User Profile",
+    "my_avatar": "My Avatar",
+    "email_address": "E-mail Address",
+    "username": "Username",
+    "user_roles": "User Roles",
+    "display_name": "Display Name",
+    "introduction": "Short Introduction",
+
+    "security_and_privacy": "Security and Privacy",
+
+    "display": "Display",
+    "theme_mode": "Theme Mode",
+    "follow_system": "Follow System",
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  }
+}

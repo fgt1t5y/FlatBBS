@@ -4,6 +4,7 @@
   "description": "一个用于练手的论坛项目，使用 PHP 框架 Webman 和 Javascript 前端框架 vue3 开发。",
   "scripts": {
     "dev:site": "pnpm --filter @flatbbs/site run dev --host",
+    "build:site": "pnpm --filter @flatbbs/site run build",
     "dev:api": "php windows.php"
   },
   "author": "fgt1t5y",
