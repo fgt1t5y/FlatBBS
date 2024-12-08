@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 defineOptions({
   name: 'Cropper',
@@ -47,6 +48,7 @@ const emits = defineEmits<{
   (e: 'load'): void
   (e: 'error', message: string): void
 }>()
+const { t } = useI18n()
 const supportedType = ['image/jpeg', 'image/png', 'image/webp']
 const imageURL = ref<string>('')
 const imageSrc = ref<HTMLImageElement>()
@@ -184,7 +186,7 @@ const getBlobAsync = (): Promise<Blob | null> => {
     canvasRef.value!.toBlob(
       function (blob) {
         if (!blob) {
-          emits('error', '失败，请重试。')
+          emits('error', t('message.crop_image_fail'))
           reject(blob)
         }
         resolve(blob)
@@ -198,7 +200,7 @@ const getBlobAsync = (): Promise<Blob | null> => {
 const updateImage = (file: File | undefined) => {
   if (file) {
     if (supportedType.indexOf(file.type) === -1) {
-      emits('error', '不支持的格式')
+      emits('error', t('message.unsupport_image_format'))
       return
     }
     hasFile.value = true
@@ -214,7 +216,13 @@ const checkImage = () => {
     imageSrc.value!.height < props.height
   ) {
     imageException.value = true
-    emits('error', `图像高宽至少为 ${props.height}x${props.width} px`)
+    emits(
+      'error',
+      t('message.image_too_small', {
+        height: props.height,
+        width: props.width,
+      }),
+    )
   } else {
     imageException.value = false
     initCanvas()
@@ -233,7 +241,7 @@ onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
   window.addEventListener('mouseup', dealOutsideMousedown)
   imageSrc.value!.addEventListener('error', () => {
-    hasFile.value && emits('error', '无法加载此文件')
+    hasFile.value && emits('error', t('message.cannot_load_image'))
   })
   imageSrc.value!.addEventListener('load', checkImage)
   updateImage(props.image)

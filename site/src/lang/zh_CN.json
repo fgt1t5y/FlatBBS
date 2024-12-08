@@ -41,7 +41,12 @@
     "modify_profile_success": "资料已更新",
     "modify_profile_fail": "资料更新失败",
 
-    "forbidden_login_please": "你不能访问当前页面，请先登录"
+    "forbidden_login_please": "你不能访问当前页面，请先登录",
+
+    "crop_image_fail": "裁剪图片失败，请重试。",
+    "unsupport_image_format": "不支持的图像格式",
+    "image_too_small": "图像太小，高宽至少为 {height}x{width} px",
+    "cannot_load_image": "无法加载此图像"
   },
 
   "action": {
