@@ -54,6 +54,9 @@
       </SettingItem>
     </SettingGroup>
     <SettingGroup :title="$t('settings.display')">
+      <SettingItem :title="$t('settings.languege')">
+        <FormKit v-model="locale" type="select" :options="availableLocales" />
+      </SettingItem>
       <SettingItem :title="$t('settings.theme_mode')">
         <FormKit
           v-model="themeSwitcherValue"
@@ -109,7 +112,7 @@ import { useI18n } from 'vue-i18n'
 
 const user = useUserStore()
 const ms = useMessage()
-const { t } = useI18n()
+const { t, locale, availableLocales } = useI18n()
 const { switchTo, theme } = useTheme()
 const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)

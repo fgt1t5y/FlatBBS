@@ -77,6 +77,8 @@
     "theme_mode": "Theme Mode",
     "follow_system": "Follow System",
     "light": "Light Mode",
-    "dark": "Dark Mode"
+    "dark": "Dark Mode",
+
+    "languege": "Languege"
   }
 }
