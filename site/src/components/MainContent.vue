@@ -18,8 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { isDesktop } from '@/utils'
+import { isDesktop, pureSetTitle } from '@/utils'
 import RequestPlaceholder from './RequestPlaceholder.vue'
+import { onActivated } from 'vue'
 
 defineOptions({
   name: 'MainContent',
@@ -29,15 +30,25 @@ interface MainContentProps {
   disablePanels?: boolean
   loading?: boolean
   error?: Error
+  title?: string
 }
 
 const props = withDefaults(defineProps<MainContentProps>(), {
   disablePanels: false,
   loading: false,
   error: undefined,
+  title: undefined,
 })
 
 const emits = defineEmits<{
   (e: 'retry'): void
 }>()
+
+onActivated(() => {
+  console.log(2)
+
+  if (props.title) {
+    pureSetTitle(props.title)
+  }
+})
 </script>

@@ -1,0 +1,77 @@
+{
+  "loading": "加载中",
+  "ok": "确定",
+  "cancle": "取消",
+
+  "login": "登录",
+
+  "email": "电子邮箱",
+  "password": "密码",
+  "old_password": "旧密码",
+  "new_password": "新密码",
+  "new_password_confirm": "确认新密码",
+
+  "user_menu": "用户菜单",
+  "board": "板块",
+
+  "page": {
+    "home": "首页",
+    "boards": "板块",
+    "publish_topic": "发布话题",
+    "modify_password": "修改密码",
+    "not_found": "页面不存在",
+    "search": "搜索",
+    "settings": "设置",
+    "register_or_login": "注册 / 登录",
+    "me": "我"
+  },
+
+  "topic": {
+    "topic": "话题",
+    "title": "话题标题"
+  },
+
+  "message": {
+    "fill_topic_title": "请填写话题标题",
+    "publish_topic_success": "话题发布成功",
+    "logout_all_session_if_modify_password": "修改密码将会退出所有设备上的登录",
+    "upload_avatar_success": "头像上传成功",
+    "upload_avatar_fail": "头像上传失败",
+    "list_no_more": "没有更多了",
+    "modify_profile_success": "资料已更新",
+    "modify_profile_fail": "资料更新失败",
+
+    "forbidden_login_please": "你不能访问当前页面，请先登录"
+  },
+
+  "action": {
+    "back_home": "回到首页",
+    "submit": "提交",
+    "modify": "更改",
+    "save": "保存",
+    "logout": "退出登录",
+    "publish": "发布",
+    "retry": "重试",
+
+    "publish_topic": "发布话题",
+    "crop_avatar": "裁剪头像"
+  },
+
+  "settings": {
+    "user_profile": "用户资料",
+    "my_avatar": "我的头像",
+    "email_address": "电子邮箱地址",
+    "username": "用户名",
+    "user_roles": "用户角色",
+    "display_name": "昵称",
+    "introduction": "简短介绍",
+
+    "security_and_privacy": "安全与隐私",
+
+    "display": "显示",
+    "theme_mode": "主题模式",
+    "follow_system": "跟随系统模式",
+    "light": "亮色模式",
+    "dark": "暗色模式"
+  }
+}

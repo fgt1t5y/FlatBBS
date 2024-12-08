@@ -1,6 +1,6 @@
 <template>
-  <MainContent>
-    <PageTitle title="搜索">
+  <MainContent :title="$t('page.search')">
+    <PageTitle :title="$t('page.search')">
       <FormKit v-model="searchKeyword" type="search" placeholder="Search..." />
     </PageTitle>
   </MainContent>

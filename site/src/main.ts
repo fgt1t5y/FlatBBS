@@ -13,6 +13,7 @@ import router from './router';
 import { code } from '@/constants';
 import { plugin, defaultConfig } from '@formkit/vue';
 import config from '../formkit.config';
+import i18n from './i18n';
 
 dayjs.locale('zh-cn');
 dayjs.extend(utc);
@@ -25,5 +26,6 @@ const app = createApp(App);
 window.$code = code;
 app.use(createPinia());
 app.use(router);
+app.use(i18n)
 app.use(plugin, defaultConfig(config));
 app.mount('#app');

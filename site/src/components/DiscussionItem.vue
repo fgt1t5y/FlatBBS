@@ -9,8 +9,7 @@
     </div>
     <ContentRenderer :html="discussion.content" />
     <div class="flex justify-between items-center">
-      <span class="text-muted"># {{ !index ? '题主楼' : index }}</span>
-      <button class="btn btn-air btn-md">回复</button>
+      <span class="text-muted"># {{ index + 1 }}</span>
     </div>
   </div>
 </template>
@@ -18,7 +17,7 @@
 <script setup lang="ts">
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
-import ContentRenderer from './ContentRenderer.vue';
+import ContentRenderer from './ContentRenderer.vue'
 
 import type { Discussion } from '@/types'
 

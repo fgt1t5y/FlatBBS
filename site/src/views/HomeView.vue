@@ -1,6 +1,6 @@
 <template>
-  <MainContent disable-panels>
-    <PageTitle title="首页" />
+  <MainContent disable-panels :title="$t('page.home')">
+    <PageTitle :title="$t('page.home')" />
     <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />

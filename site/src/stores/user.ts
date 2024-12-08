@@ -1,11 +1,11 @@
 import { getUserInfo, logout } from '@/services';
 import { defineStore } from 'pinia';
-import { ref, shallowRef } from 'vue';
+import { ref } from 'vue';
 import type { User } from '@/types';
 import { useMessage } from './message';
 
 export const useUserStore = defineStore('user', () => {
-  const info = shallowRef<User>();
+  const info = ref<User>();
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
     getUserInfo()
@@ -15,6 +15,7 @@ export const useUserStore = defineStore('user', () => {
       })
       .catch(() => {
         const ms = useMessage();
+        // TODO: i18n
         ms.error('获取用户信息失败');
       });
   };

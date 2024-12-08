@@ -1,7 +1,7 @@
 <template>
   <div class="border-bt">
     <EditorToolbar v-if="editor" :editor="editor" />
-    <div v-else>加载中</div>
+    <div v-else></div>
     <EditorContent :editor="editor" />
   </div>
 </template>

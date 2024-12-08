@@ -1,12 +1,12 @@
 <template>
-  <MainContent disable-panels>
-    <PageTitle title="设置" />
-    <SettingGroup title="用户资料">
-      <SettingItem title="我的头像" subtitle="头像更新可能会有延迟">
+  <MainContent disable-panels :title="$t('page.settings')">
+    <PageTitle :title="$t('page.settings')" />
+    <SettingGroup :title="$t('settings.user_profile')">
+      <SettingItem :title="$t('settings.my_avatar')">
         <div class="flex justify-between">
           <Avatar class="size-16" :src="user.info?.avatar_uri" rounded />
           <button class="btn btn-primary btn-md" @click="openAvatarSelector">
-            更改...
+            {{ $t('action.modify') }}
           </button>
         </div>
         <input
@@ -18,50 +18,60 @@
           @change="giveAvatarFile"
         />
       </SettingItem>
-      <SettingItem title="电子邮箱地址">
+      <SettingItem :title="$t('settings.email_address')">
         <InputField :input-value="user.info?.email" readonly />
       </SettingItem>
-      <SettingItem title="用户名">
+      <SettingItem :title="$t('settings.username')">
         <InputField
           field="username"
           :input-value="user.info?.username"
           readonly
         />
       </SettingItem>
-      <SettingItem title="用户角色">
+      <SettingItem :title="$t('settings.user_roles')">
         <span>{{ roleStringify() }}</span>
       </SettingItem>
-      <SettingItem title="昵称">
+      <SettingItem :title="$t('settings.display_name')">
         <InputField
           field="display_name"
           :input-value="user.info?.display_name"
         />
       </SettingItem>
-      <SettingItem title="简短介绍">
+      <SettingItem :title="$t('settings.introduction')">
         <InputField
           field="introduction"
           :input-value="user.info?.introduction"
         />
       </SettingItem>
     </SettingGroup>
-    <SettingGroup title="安全与隐私">
-      <SettingItem title="密码">
+    <SettingGroup :title="$t('settings.security_and_privacy')">
+      <SettingItem :title="$t('password')">
         <RouterLink :to="{ name: 'modify_password' }">
-          <button class="btn btn-primary btn-md">更改</button>
+          <button class="btn btn-primary btn-md">
+            {{ $t('action.modify') }}
+          </button>
         </RouterLink>
       </SettingItem>
     </SettingGroup>
-    <SettingGroup title="显示">
-      <SettingItem title="颜色主题" subtitle="网站全局显示的颜色主题">
+    <SettingGroup :title="$t('settings.display')">
+      <SettingItem :title="$t('settings.theme_mode')">
         <FormKit
           v-model="themeSwitcherValue"
           type="radio"
-          :options="{ auto: 'Auto', light: 'Light', dark: 'Dark' }"
+          :options="{
+            auto: $t('settings.follow_system'),
+            light: $t('settings.light'),
+            dark: $t('settings.dark'),
+          }"
         />
       </SettingItem>
     </SettingGroup>
   </MainContent>
-  <Modal v-model:visible="isShowCropper" mount title="裁剪头像">
+  <Modal
+    v-model:visible="isShowCropper"
+    mount
+    :title="$t('action.crop_avatar')"
+  >
     <Cropper
       ref="cropper"
       :height="320"
@@ -71,8 +81,12 @@
       @error="showCropperMessage"
     />
     <div class="flex flex-col gap-2 mt-2">
-      <button class="btn btn-primary btn-md" @click="uploadAvatar">确定</button>
-      <button class="btn btn-air btn-md" @click="closeAvatarCrop">取消</button>
+      <button class="btn btn-primary btn-md" @click="uploadAvatar">
+        {{ $t('ok') }}
+      </button>
+      <button class="btn btn-air btn-md" @click="closeAvatarCrop">
+        {{ $t('cancle') }}
+      </button>
     </div>
   </Modal>
 </template>
@@ -91,9 +105,11 @@ import MainContent from '@/components/MainContent.vue'
 import { FormKit } from '@formkit/vue'
 import Avatar from '@/components/Avatar.vue'
 import Modal from '@/components/Modal.vue'
+import { useI18n } from 'vue-i18n'
 
 const user = useUserStore()
 const ms = useMessage()
+const { t } = useI18n()
 const { switchTo, theme } = useTheme()
 const cropper = ref<InstanceType<typeof Cropper>>()
 const isShowCropper = ref<boolean>(false)
@@ -127,10 +143,10 @@ const uploadAvatar = () => {
       const file = blobToFile(blob, '_.jpg')
       modifyUserAvatar(file)
         .then(() => {
-          ms.success('头像已上传')
+          ms.success(t('message.upload_avatar_success'))
         })
         .catch(() => {
-          ms.error('头像更新失败')
+          ms.error(t('message.upload_avatar_fail'))
         })
     }
   })

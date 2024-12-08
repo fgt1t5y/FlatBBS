@@ -1,36 +1,38 @@
 <template>
-  <MainContent disable-panels>
-    <PageTitle title="修改密码" />
+  <MainContent disable-panels :title="$t('page.modify_password')">
+    <PageTitle :title="$t('page.modify_password')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
       <FormKit
         v-model="modifyForm"
         type="form"
-        submit-label="提交"
         action="false"
+        :submit-label="$t('action.submit')"
         @submit="actionSubmit"
       >
         <FormKit
           type="password"
           name="old_password"
           autocomplete="current-password"
-          label="旧密码"
           validation="required|length:8"
+          :label="$t('old_password')"
         />
         <FormKit
           type="password"
           name="new_password"
           autocomplete="new-password"
-          label="新密码"
           validation="required|length:8"
+          :label="$t('new_password')"
         />
         <FormKit
           type="password"
           name="new_password_confirm"
           autocomplete="new-password"
-          label="确认新密码"
           validation="required|confirm"
+          :label="$t('new_password_confirm')"
         />
-        <p class="text-red-600">修改密码将会退出所有设备上的登录。</p>
+        <p class="text-red-600">
+          {{ $t('message.logout_all_session_if_modify_password') }}
+        </p>
       </FormKit>
     </div>
   </MainContent>

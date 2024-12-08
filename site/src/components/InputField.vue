@@ -9,7 +9,7 @@
       :disabled="!isChanged"
       @click="onConfirm"
     >
-      保存
+      {{ $t('action.save') }}
     </button>
   </div>
 </template>
@@ -19,6 +19,7 @@ import { ref, watch } from 'vue'
 import { modifyUserInfo } from '@/services'
 import { FormKit } from '@formkit/vue'
 import { useMessage } from '@/stores'
+import { useI18n } from 'vue-i18n'
 
 defineOptions({
   name: 'InputField',
@@ -41,6 +42,7 @@ const valueNow = ref<string>(props.inputValue)
 const isChanged = ref<boolean>(false)
 const inputRef = ref<any>()
 const ms = useMessage()
+const { t } = useI18n()
 
 const onConfirm = () => {
   if (valueNow.value.trim() === '' || valueNow.value === props.inputValue) {
@@ -50,11 +52,11 @@ const onConfirm = () => {
   }
   modifyUserInfo(props.field, valueNow.value)
     .then(() => {
-      ms.success('信息已更新。')
+      ms.success(t('message.modify_profile_success'))
       isChanged.value = false
     })
     .catch(() => {
-      ms.error('信息更新失败。')
+      ms.error(t('message.modify_profile_fail'))
     })
 }
 

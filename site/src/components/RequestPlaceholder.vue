@@ -9,7 +9,7 @@
     >
       <span class="text-xl">{{ error.message }}</span>
       <button class="btn btn-primary btn-md" @click="emits('retry')">
-        重试
+        {{ $t('action.retry') }}
       </button>
     </div>
   </div>

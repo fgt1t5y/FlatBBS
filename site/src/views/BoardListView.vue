@@ -1,6 +1,6 @@
 <template>
-  <MainContent disable-panels>
-    <PageTitle title="所有板块" :show-back="false" />
+  <MainContent disable-panels :title="$t('page.boards')">
+    <PageTitle :title="$t('page.boards')" :show-back="false" />
     <CommonList hoverable :items="boards" :is-end="true">
       <template #default="{ item }">
         <div class="item p-3 flex gap-3 items-center border-bt">

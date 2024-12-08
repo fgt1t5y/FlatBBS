@@ -8,7 +8,7 @@
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
       <div v-if="user.isLogin && user.info">
-        <button title="你的头像，点击打开用户菜单" @click="openMenu">
+        <button :title="$t('user_menu')" @click="openMenu">
           <Avatar
             ref="avatarRef"
             role="button"
@@ -39,17 +39,21 @@
           </div>
           <div class="flex flex-col gap-2">
             <RouterLink to="/settings">
-              <button class="btn btn-primary btn-md w-full">设置</button>
+              <button class="btn btn-primary btn-md w-full">
+                {{ $t('page.settings') }}
+              </button>
             </RouterLink>
             <button class="btn btn-air btn-md" @click="user.quit">
-              退出登录
+              {{ $t('action.logout') }}
             </button>
           </div>
         </div>
       </div>
       <div v-else>
         <RouterLink to="/auth">
-          <button class="btn btn-primary btn-md">注册 / 登录</button>
+          <button class="btn btn-primary btn-md">
+            {{ $t('page.register_or_login') }}
+          </button>
         </RouterLink>
       </div>
     </div>

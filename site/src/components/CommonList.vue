@@ -7,7 +7,7 @@
       :index="index"
     />
     <div v-if="isEnd && items.length" class="text-center text-lg mt-2">
-      没有更多了
+      {{ $t('message.list_no_more') }}
     </div>
   </div>
 </template>

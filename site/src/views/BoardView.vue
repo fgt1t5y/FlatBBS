@@ -2,6 +2,7 @@
   <MainContent
     :loading="boardInfoLoading"
     :error="boardInfoError"
+    :title="$t('board')"
     @retry="loadBoardInfo"
   >
     <PageTitle :title="boardInfo?.name" />
@@ -15,11 +16,17 @@
         <TopicItem :topic="item" />
       </template>
     </CommonList>
-    <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder :loading="loading" :error="topicsError" @retry="send" />
+    <IntersectionObserver :disabled="isLastPage" @reach="loadTopics" />
+    <RequestPlaceholder
+      :loading="loading"
+      :error="topicsError"
+      @retry="loadTopics"
+    />
     <template #panels>
       <RouterLink :to="`/board/${currentSlug}/publish`">
-        <button class="btn btn-primary btn-md w-full">发布话题</button>
+        <button class="btn btn-primary btn-md w-full">
+          {{ $t('action.publish_topic') }}
+        </button>
       </RouterLink>
     </template>
   </MainContent>
@@ -37,9 +44,12 @@ import CommonDetail from '@/components/CommonDetail.vue'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest, usePagination } from 'alova/client'
 import { useTitle } from '@/utils'
+import { useI18n } from 'vue-i18n'
+import { onActivated } from 'vue'
 
 const route = useRoute()
-const { setTitle } = useTitle('板块')
+const { t } = useI18n()
+const { setTitle } = useTitle(t('board'))
 
 const currentSlug = route.params.slug as string
 
@@ -59,7 +69,7 @@ const {
   },
 }).onSuccess(() => {
   setTitle(boardInfo.value.name)
-  send()
+  loadTopics()
 })
 
 const {
@@ -67,7 +77,7 @@ const {
   data: topics,
   isLastPage,
   error: topicsError,
-  send,
+  send: loadTopics,
 } = usePagination(
   (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug),
   {
@@ -85,5 +95,11 @@ const {
   if (!items) return
 
   lastItemId = items[items.length - 1].id
+})
+
+onActivated(() => {
+  if (boardInfo?.value?.name) {
+    setTitle(boardInfo.value.name)
+  }
 })
 </script>

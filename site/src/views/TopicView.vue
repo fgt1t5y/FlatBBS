@@ -32,8 +32,13 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { usePagination, useRequest } from 'alova/client'
 import TopicDetail from '@/components/TopicDetail.vue'
+import { useTitle } from '@/utils'
+import { useI18n } from 'vue-i18n'
+import { onActivated } from 'vue'
 
 const route = useRoute()
+const { t } = useI18n()
+const { setTitle } = useTitle(t('topic.topic'))
 
 const topicId = Number(route.params.topic_id)
 let lastItemId = 0
@@ -44,6 +49,7 @@ const {
   error: topicError,
   send: loadTopic,
 } = useRequest(() => getTopic(topicId)).onSuccess(() => {
+  setTitle(topic.value.title)
   loadDiscissions()
 })
 
@@ -62,5 +68,11 @@ const {
   if (!items || !items.length) return
 
   lastItemId = items[items.length - 1].id
+})
+
+onActivated(() => {
+  if (topic?.value?.title) {
+    setTitle(topic.value.title)
+  }
 })
 </script>

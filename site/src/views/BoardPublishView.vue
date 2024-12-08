@@ -2,17 +2,18 @@
   <MainContent
     :loading="boardInfoLoading"
     :error="boardInfoError"
+    :title="$t('page.publish_topic')"
     disable-panels
     @retry="loadBoardInfo"
   >
-    <PageTitle title="发话题">
+    <PageTitle :title="$t('page.publish_topic')">
       <template #extra>
         <button
           :disabled="topicPublishing"
           class="btn btn-primary btn-md w-full"
           @click="checkForm() && handlePublishTopic()"
         >
-          发布
+          {{ $t('action.publish') }}
         </button>
       </template>
     </PageTitle>
@@ -20,7 +21,7 @@
       <input
         v-model="topicDraft.title"
         class="text-lg"
-        placeholder="话题标题"
+        :placeholder="$t('topic.title')"
         autofocus
       />
       <TiptapEditor v-model:model-value="topicDraft.content" />
@@ -39,10 +40,12 @@ import { useRoute } from 'vue-router'
 import { useTitle } from '@/utils'
 import router from '@/router'
 import { useMessage } from '@/stores'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const ms = useMessage()
-const { setTitle } = useTitle('发布')
+const { t } = useI18n()
+const { setTitle } = useTitle(t('action.publish'))
 const currentSlug = computed(() => route.params.slug as string)
 const topicDraft = ref({
   title: '',
@@ -51,7 +54,7 @@ const topicDraft = ref({
 
 const checkForm = () => {
   if (!topicDraft.value.title.trim()) {
-    ms.error('请填写标题')
+    ms.error(t('message.fill_topic_title'))
     return false
   }
   return true
@@ -94,7 +97,7 @@ onBoardInfoSuccess(() => {
 })
 
 onTopicPulished(() => {
-  ms.success('发布成功')
+  ms.success(t('message.publish_topic_success'))
   router.replace(`/topic/${topic.value.id}`)
 })
 

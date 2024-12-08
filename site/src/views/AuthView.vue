@@ -1,24 +1,24 @@
 <template>
-  <MainContent disable-panels>
-    <PageTitle title="登录" />
+  <MainContent disable-panels :title="$t('login')">
+    <PageTitle :title="$t('login')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
       <FormKit
         v-model="inputForm"
         type="form"
-        submit-label="登录"
+        :submit-label="$t('login')"
         :disabled="isDealing"
         @submit="actionLogin"
       >
         <FormKit
           type="email"
           name="email"
-          label="电子邮箱"
+          :label="$t('email')"
           validation="required|length:5|*email"
         />
         <FormKit
           type="password"
           name="password"
-          label="密码"
+          :label="$t('password')"
           validation="required|length:8"
         />
       </FormKit>

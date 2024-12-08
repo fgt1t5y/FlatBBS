@@ -1,9 +1,9 @@
 <template>
-  <MainContent disable-panels>
+  <MainContent disable-panels :title="$t('page.not_found')">
     <div class="flex flex-col items-center gap-8 my-6">
-      <h2 class="text-3xl">页面不存在</h2>
+      <h2 class="text-3xl">{{ $t('page.not_found') }}</h2>
       <button class="btn btn-primary btn-md" @click="page.goHome(false)">
-        回到首页
+        {{ $t('action.back_home') }}
       </button>
     </div>
   </MainContent>

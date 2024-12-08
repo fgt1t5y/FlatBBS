@@ -3,9 +3,7 @@
     <div class="p-3 flex flex-col gap-2">
       <div class="flex justify-between items-end">
         <Avatar class="size-24" :src="avatarUri" />
-        <div class="flex gap-2">
-          <button class="btn btn-primary btn-md">加入</button>
-        </div>
+        <slot />
       </div>
       <div>
         <div class="text-lg font-bold">
