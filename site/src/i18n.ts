@@ -8,7 +8,7 @@ interface LanguageAliasMap {
 
 export const languageAliasMap: LanguageAliasMap = {
   zh_CN: 'zh-CN',
-  en: 'en_US',
+  en: 'en-US',
 };
 
 export default createI18n({

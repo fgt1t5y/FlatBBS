@@ -1,5 +1,5 @@
 <template>
-  <div class="my-6">
+  <div class="my-6 empty:my-0">
     <div v-if="loading" class="flex justify-center">
       <Loader class="size-12 animate-spin" />
     </div>

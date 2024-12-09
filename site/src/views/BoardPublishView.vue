@@ -24,7 +24,7 @@
         :placeholder="$t('topic.title')"
         autofocus
       />
-      <TiptapEditor v-model:model-value="topicDraft.content" />
+      <TiptapEditor v-model="topicDraft.content" />
     </div>
   </MainContent>
 </template>
