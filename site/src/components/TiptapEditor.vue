@@ -15,6 +15,9 @@ import Link from '@tiptap/extension-link'
 import { onBeforeUnmount } from 'vue'
 import EditorToolbar from './EditorToolbar.vue'
 
+const htmlValue = defineModel<string>('html', { default: '<p></p>' })
+const textValue = defineModel<string>('text', { default: '' })
+
 const editor = useEditor({
   content: '',
   extensions: [
@@ -37,15 +40,10 @@ const editor = useEditor({
     }),
   ],
   onUpdate: ({ editor }) => {
-    if (modelModifiers.plain) {
-      modelValue.value = editor.getText()
-      return
-    }
-    modelValue.value = editor.getHTML()
+    textValue.value = editor.getText()
+    htmlValue.value = editor.getHTML()
   },
 })
-
-const [modelValue, modelModifiers] = defineModel<string>({ default: '<p></p>' })
 
 onBeforeUnmount(() => {
   if (editor.value) {

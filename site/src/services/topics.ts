@@ -14,11 +14,13 @@ export const getTopic = (topic_id: number) => {
 
 export const publishTopic = (
   title: string,
+  text: string,
   content: string,
   board_id: number,
 ) => {
   return alovaInstance.Post<Topic>(`/topic/publish`, {
     title,
+    text,
     content,
     board_id,
   });

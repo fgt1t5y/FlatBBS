@@ -32,6 +32,7 @@ class TopicController
     public function publish(Request $request)
     {
         $title = $request->post('title');
+        $text = $request->post('text');
         $content = $request->post('content');
         $board_id = (int) $request->post('board_id');
 
@@ -43,7 +44,7 @@ class TopicController
         /** @var Board */
         $board = Board::find($board_id);
 
-        $topic = $this->topic->build($title, $content, $board, $author);
+        $topic = $this->topic->build($title, $text, $content, $board, $author);
         $topic->save();
 
         $board->topic_count = $board->topic_count + 1;

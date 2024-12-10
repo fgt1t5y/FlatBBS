@@ -5,14 +5,21 @@
       <span>{{ topic.author.display_name }}</span>
       <RelativeTime :time="topic.created_at" />
     </div>
-    <div class="text-base">
-      <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
-        {{ topic.title }}
-      </RouterLink>
+    <div>
+      <div class="text-lg">
+        <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
+          {{ topic.title }}
+        </RouterLink>
+      </div>
+      <div class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden">
+        {{ previewText }}
+      </div>
     </div>
     <div class="flex justify-between">
       <RouterLink :to="`/board/${topic.board.slug}`">
-        <button class="btn btn-air btn-sm rounded-3xl">{{ topic.board.name }}</button>
+        <button class="btn btn-air btn-sm rounded-3xl">
+          {{ topic.board.name }}
+        </button>
       </RouterLink>
     </div>
   </div>
@@ -23,6 +30,7 @@ import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'TopicItem',
@@ -33,4 +41,11 @@ interface TopicListItemProps {
 }
 
 const props = defineProps<TopicListItemProps>()
+
+const previewText = computed(() => {
+  if (!props.topic.text) {
+    return ''
+  }
+  return props.topic.text.slice(0, 100)
+})
 </script>

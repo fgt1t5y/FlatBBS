@@ -24,7 +24,10 @@
         :placeholder="$t('topic.title')"
         autofocus
       />
-      <TiptapEditor v-model="topicDraft.content" />
+      <TiptapEditor
+        v-model:text="topicDraft.text"
+        v-model:html="topicDraft.content"
+      />
     </div>
   </MainContent>
 </template>
@@ -49,6 +52,7 @@ const { setTitle } = useTitle(t('action.publish'))
 const currentSlug = computed(() => route.params.slug as string)
 const topicDraft = ref({
   title: '',
+  text: '',
   content: '',
 })
 
@@ -84,6 +88,7 @@ const {
   () =>
     publishTopic(
       topicDraft.value.title,
+      topicDraft.value.text,
       topicDraft.value.content,
       boardInfo.value.id,
     ),

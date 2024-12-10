@@ -64,6 +64,7 @@ export interface Board {
 export interface Topic {
   id: number;
   title: string;
+  text: string;
   content: string;
   author: User;
   board: Board;
