@@ -20,8 +20,8 @@ class TopicController
 
     public function all(Request $request)
     {
-        $last_id = (int) $request->post('last');
-        $limit = (int) $request->post('limit');
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
 
         $result = $this->topic->all($last_id, $limit);
 

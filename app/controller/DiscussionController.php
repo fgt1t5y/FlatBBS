@@ -21,8 +21,8 @@ class DiscussionController
 
     public function list(Request $request, int $topic_id)
     {
-        $last_id = (int) $request->post('last');
-        $limit = (int) $request->post('limit');
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
 
         $result = $this->discussion->list($topic_id, $last_id, $limit, $this->discussionBasicFields);
 

@@ -45,8 +45,8 @@ class BoardController
 
     public function topics(Request $request, string $slug)
     {
-        $last_id = (int) $request->post('last');
-        $limit = (int) $request->post('limit');
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
 
         $result = $this->board->topics($slug, $last_id, $limit);
 

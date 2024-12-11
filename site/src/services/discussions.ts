@@ -6,11 +6,13 @@ export const getDiscussions = (
   limit: number,
   topic_id: number,
 ) => {
-  return alovaInstance.Post<Result<Discussion[]>>(
+  return alovaInstance.Get<Result<Discussion[]>>(
     `/discussion/${topic_id}/list`,
     {
-      last,
-      limit,
+      params: {
+        last,
+        limit,
+      },
     },
   );
 };

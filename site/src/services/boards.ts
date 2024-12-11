@@ -6,7 +6,7 @@ export const getBoards = () => {
 };
 
 export const getBoardInfo = (board_slug: string) => {
-  return alovaInstance.Post<Board>(`/board/${board_slug}/info`);
+  return alovaInstance.Get<Board>(`/board/${board_slug}/info`);
 };
 
 export const getTopicsByBoardSlug = (
@@ -14,8 +14,10 @@ export const getTopicsByBoardSlug = (
   limit: number,
   board_slug: string,
 ) => {
-  return alovaInstance.Post<Result<Topic[]>>(`/board/${board_slug}/topics`, {
-    last,
-    limit,
+  return alovaInstance.Get<Result<Topic[]>>(`/board/${board_slug}/topics`, {
+    params: {
+      last,
+      limit,
+    },
   });
 };
