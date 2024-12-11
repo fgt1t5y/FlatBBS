@@ -5,15 +5,13 @@
       <span>{{ topic.author.display_name }}</span>
       <RelativeTime :time="topic.created_at" />
     </div>
-    <div>
-      <div class="text-lg">
-        <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
-          {{ topic.title }}
-        </RouterLink>
-      </div>
-      <div class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden">
-        {{ previewText }}
-      </div>
+    <div class="text-lg">
+      <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
+        {{ topic.title }}
+      </RouterLink>
+    </div>
+    <div class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden">
+      {{ previewText }}
     </div>
     <div class="flex justify-between">
       <RouterLink :to="`/board/${topic.board.slug}`">
