@@ -1,8 +1,3 @@
-:root {
-  --page-max-width: 900px;
-  --gap: 12px;
-}
-
 input {
   border: none;
   outline: none;
@@ -10,20 +5,10 @@ input {
   background: transparent;
 }
 
-img {
-  &.ProseMirror-selectednode {
-    outline: 2px solid indigo;
-  }
-}
-
 .grid-main-panels-inner {
-  margin-top: var(--gap);
   position: sticky;
   top: 60px;
   min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
 }
 
 .cropper-wrapper {
@@ -67,28 +52,10 @@ img {
   position: static;
   top: 0px;
   height: 52px;
-  background-color: transparent;
   z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px var(--gap);
-}
-
-.editor-toolbar {
-  display: flex;
-  gap: var(--gap);
-  padding: var(--gap) 0px;
-}
-
-.editor-toolbar-float {
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  width: 100vw;
-  overflow: scroll;
-  background-color: var(--color-bg-1);
-  padding-left: var(--gap);
 }
 
 .tiptap {
@@ -108,7 +75,5 @@ img {
 @media (width <= 810px) {
   .page-title {
     position: sticky;
-    background-color: var(--color-bg-1);
-    border-bottom: 1px solid var(--color-border);
   }
 }

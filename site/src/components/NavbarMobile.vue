@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-nav border-tp bg-white dark:bg-navdark">
+  <div class="mobile-nav border-tp auto-color">
     <RouterLink class="text-lg route" to="/">{{ $t('page.home') }}</RouterLink>
     <RouterLink class="text-lg route" to="/boards">
       {{ $t('page.boards') }}

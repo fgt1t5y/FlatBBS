@@ -10,7 +10,7 @@
       <slot v-else />
     </div>
     <div v-if="isDesktop && !disablePanels">
-      <div class="grid-main-panels-inner">
+      <div class="grid-main-panels-inner mt-3">
         <slot name="panels" />
       </div>
     </div>

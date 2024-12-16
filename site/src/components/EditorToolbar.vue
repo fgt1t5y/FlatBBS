@@ -1,8 +1,8 @@
 <template>
   <div
     :class="{
-      'editor-toolbar': true,
-      'editor-toolbar-float': isMobile,
+      'auto-color flex gap-3 py-3': true,
+      'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
     }"
   >
     <input
@@ -18,9 +18,9 @@
       :key="index"
       :disabled="!tool.enable()"
       :class="{
-        'btn': true,
+        btn: true,
         'btn-text': true,
-        'btn-text-active': tool.isActive()
+        'btn-text-active': tool.isActive(),
       }"
       @click="tool.onClick"
     >

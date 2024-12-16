@@ -1,8 +1,5 @@
 <template>
-  <nav
-    class="z-10 flex items-center sticky top-0 shadow-md bg-white dark:bg-navdark justify-center"
-    style="height: 52px"
-  >
+  <nav class="navbar" style="height: 52px">
     <div class="w-full-page flex justify-between items-center grow px-3">
       <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
@@ -20,7 +17,7 @@
         <div
           ref="menuRef"
           role="tooltip"
-          class="user-panel bg-white shadow-md p-3 dark:bg-navdark focus:outline-1 focus:outline-indigo-600"
+          class="user-panel shadow-md p-3 auto-color focus:outline-1 focus:outline-indigo-600"
           :style="{
             display: isPositioned ? 'block' : 'none',
             ...floatingStyles,

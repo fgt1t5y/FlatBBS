@@ -9,6 +9,10 @@
     @apply text-indigo-600 dark:text-indigo-400;
   }
 
+  .bg-primary {
+    @apply bg-indigo-600;
+  }
+
   .route.router-link-exact-active {
     @apply text-primary;
   }
@@ -17,15 +21,12 @@
     @apply text-gray-500 dark:text-gray-400;
   }
 
-  .bg-navdark {
-    background-color: rgb(24, 24, 24);
+  h1 {
+    @apply text-xl md:text-2xl my-4 font-bold;
   }
 
-  h1 {
-    @apply text-2xl my-4 font-bold;
-  }
   h2 {
-    @apply text-xl my-4 font-bold;
+    @apply text-lg md:text-xl my-4 font-bold;
   }
 
   p {
@@ -85,6 +86,10 @@
   .btn-circle {
     @apply size-10 rounded-full;
   }
+
+  .navbar {
+    @apply z-10 flex items-center sticky top-0 shadow-md auto-color justify-center;
+  }
 }
 
 @layer utilities {
@@ -107,52 +112,8 @@
   .w-full-page {
     max-width: 1000px;
   }
-}
 
-body {
-  --color-border: rgb(var(--gray-3));
-  --color-bg: #fff;
-  --color-bg-1: #fff;
-  --color-bg-2: #fff;
-  --color-bg-3: #fff;
-  --color-bg-4: #fff;
-  --color-bg-5: #fff;
-  --color-neutral-1: rgb(var(--gray-1));
-  --color-neutral-2: rgb(var(--gray-2));
-  --color-neutral-3: rgb(var(--gray-3));
-  --color-neutral-4: rgb(var(--gray-4));
-  --color-neutral-5: rgb(var(--gray-5));
-  --color-neutral-6: rgb(var(--gray-6));
-  --color-neutral-7: rgb(var(--gray-7));
-  --color-neutral-8: rgb(var(--gray-8));
-  --color-neutral-9: rgb(var(--gray-9));
-  --color-neutral-10: rgb(var(--gray-10));
-  --color-fill-1: var(--color-neutral-1);
-  --color-fill-2: var(--color-neutral-2);
-  --color-fill-3: var(--color-neutral-3);
-  --color-fill-4: var(--color-neutral-4);
-  --gray-1: 247, 248, 250;
-  --gray-2: 242, 243, 245;
-  --gray-3: 229, 230, 235;
-  --gray-4: 201, 205, 212;
-  --gray-5: 169, 174, 184;
-  --gray-6: 134, 144, 156;
-  --gray-7: 107, 119, 133;
-  --gray-8: 78, 89, 105;
-  --gray-9: 39, 46, 59;
-  --gray-10: 29, 33, 41;
-}
-
-body[flat-theme='dark'] {
-  --color-border: #333335;
-  --color-bg: #101014ff;
-  --color-bg-1: #18181c;
-  --color-bg-2: #232324;
-  --color-bg-3: #2a2a2b;
-  --color-bg-4: #313132;
-  --color-bg-5: #373739;
-  --color-fill-1: rgba(255, 255, 255, 0.04);
-  --color-fill-2: rgba(255, 255, 255, 0.08);
-  --color-fill-3: rgba(255, 255, 255, 0.12);
-  --color-fill-4: rgba(255, 255, 255, 0.16);
+  .auto-color {
+    @apply bg-white dark:bg-black;
+  }
 }
