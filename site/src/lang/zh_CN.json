@@ -3,8 +3,6 @@
   "ok": "确定",
   "cancle": "取消",
 
-  "login": "登录",
-
   "email": "电子邮箱",
   "password": "密码",
   "old_password": "旧密码",
@@ -57,6 +55,7 @@
     "logout": "退出登录",
     "publish": "发布",
     "retry": "重试",
+    "login": "登录",
 
     "publish_topic": "发布话题",
     "crop_avatar": "裁剪头像"
@@ -79,6 +78,6 @@
     "light": "亮色模式",
     "dark": "暗色模式",
 
-    "languege": "语言（Languege）"
+    "language": "语言（Language）"
   }
 }

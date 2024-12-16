@@ -41,7 +41,7 @@ const preferLang = window.navigator.language.replace('-', '_')
 const documentLang = (languageAliasMap[locale.value] as string) || 'en_US'
 
 if (preferLang in languageAliasMap) {
-  locale.value = getOrSet('flat_languege', preferLang)
+  locale.value = getOrSet('flat_language', preferLang)
 }
 
 document.documentElement.lang = documentLang
@@ -55,7 +55,7 @@ dayjs.extend(LocalizedFormat)
 watch(
   () => locale.value,
   (lang) => {
-    set('flat_languege', lang)
+    set('flat_language', lang)
   },
 )
 </script>

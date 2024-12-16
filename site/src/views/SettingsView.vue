@@ -54,7 +54,7 @@
       </SettingItem>
     </SettingGroup>
     <SettingGroup :title="$t('settings.display')">
-      <SettingItem :title="$t('settings.languege')">
+      <SettingItem :title="$t('settings.language')">
         <FormKit v-model="locale" type="select" :options="availableLocales" />
       </SettingItem>
       <SettingItem :title="$t('settings.theme_mode')">

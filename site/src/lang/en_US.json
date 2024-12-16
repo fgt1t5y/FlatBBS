@@ -3,8 +3,6 @@
   "ok": "OK",
   "cancle": "Cancle",
 
-  "login": "Login",
-
   "email": "E-mail",
   "password": "Password",
   "old_password": "Old Password",
@@ -57,6 +55,7 @@
     "logout": "Logout",
     "publish": "Publish",
     "retry": "Retry",
+    "login": "Login",
 
     "publish_topic": "Publish Topic",
     "crop_avatar": "Crop Avatar"
@@ -79,6 +78,6 @@
     "light": "Light Mode",
     "dark": "Dark Mode",
 
-    "languege": "Languege"
+    "language": "Language"
   }
 }

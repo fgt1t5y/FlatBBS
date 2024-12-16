@@ -1,11 +1,11 @@
 <template>
-  <MainContent disable-panels :title="$t('login')">
-    <PageTitle :title="$t('login')" />
+  <MainContent disable-panels :title="$t('action.login')">
+    <PageTitle :title="$t('action.login')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
       <FormKit
         v-model="inputForm"
         type="form"
-        :submit-label="$t('login')"
+        :submit-label="$t('action.login')"
         :disabled="isDealing"
         @submit="actionLogin"
       >
