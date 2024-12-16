@@ -1,12 +1,21 @@
 <template>
-  <div class="item p-3 border-bt flex gap-2">
-    <Avatar class="size-8 md:size-12" :src="topic.author.avatar_uri" rounded />
+  <div class="item p-3 border-bt">
+    <div class="flex gap-2">
+      <Avatar
+        class="size-8 md:size-12"
+        :src="topic.author.avatar_uri"
+        rounded
+      />
+      <span>{{ topic.author.display_name }}</span>
+      <RelativeTime :time="topic.created_at" />
+    </div>
     <div>
-      <div class="flex text-base gap-2">
-        <span>{{ topic.author.display_name }}</span>
-        <RelativeTime :time="topic.created_at" />
-      </div>
       <ContentRenderer :html="topic.content" />
+      <RouterLink :to="`/board/${topic.board.slug}`">
+        <button class="btn btn-air btn-sm" :title="topic.board.name">
+          {{ topic.board.name }}
+        </button>
+      </RouterLink>
     </div>
   </div>
 </template>
