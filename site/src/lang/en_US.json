@@ -29,6 +29,10 @@
     "title": "Topic title"
   },
 
+  "discussion": {
+    "count": "{count} discussion(s)"
+  },
+
   "message": {
     "fill_topic_title": "Fill in the topic title please.",
     "publish_topic_success": "The topic was successfully published",

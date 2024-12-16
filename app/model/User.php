@@ -18,7 +18,7 @@ class User extends AbstractModel
     protected $table = 'users';
 
     protected $with = [
-        'roles',
+        'roles:id,name,description',
     ];
 
     public static $basic_columns = [

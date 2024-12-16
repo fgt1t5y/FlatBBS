@@ -12,7 +12,6 @@ use support\Gate;
 
 class TopicController
 {
-
     #[Inject]
     protected SearchService $search;
     #[Inject]

@@ -16,11 +16,6 @@ img {
   }
 }
 
-#flatbbs {
-  margin: 0px auto;
-  max-width: var(--page-max-width);
-}
-
 .grid-main-panels-inner {
   margin-top: var(--gap);
   position: sticky;

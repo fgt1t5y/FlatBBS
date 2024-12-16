@@ -1,13 +1,11 @@
 <template>
-  <div class="p-3 border-bt">
-    <div class="flex gap-3">
-      <Avatar class="size-10" :src="topic.author.avatar_uri" rounded />
+  <div class="item p-3 border-bt flex gap-2">
+    <Avatar class="size-8 md:size-12" :src="topic.author.avatar_uri" rounded />
+    <div>
       <div class="flex text-base gap-2">
         <span>{{ topic.author.display_name }}</span>
         <RelativeTime :time="topic.created_at" />
       </div>
-    </div>
-    <div>
       <ContentRenderer :html="topic.content" />
     </div>
   </div>

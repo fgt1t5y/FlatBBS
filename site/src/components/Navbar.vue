@@ -38,11 +38,12 @@
             <span class="text-muted">@{{ user.info.username }}</span>
           </div>
           <div class="flex flex-col gap-2">
-            <RouterLink to="/settings">
-              <button class="btn btn-primary btn-md w-full">
-                {{ $t('page.settings') }}
-              </button>
-            </RouterLink>
+            <button
+              class="btn btn-air btn-md"
+              @click="$router.push({ name: 'settings_page' })"
+            >
+              {{ $t('page.settings') }}
+            </button>
             <button class="btn btn-air btn-md" @click="user.quit">
               {{ $t('action.logout') }}
             </button>

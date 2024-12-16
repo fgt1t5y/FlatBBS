@@ -29,6 +29,10 @@
     "title": "话题标题"
   },
 
+  "discussion": {
+    "count": "{count} 条讨论"
+  },
+
   "message": {
     "fill_topic_title": "请填写话题标题",
     "publish_topic_success": "话题发布成功",

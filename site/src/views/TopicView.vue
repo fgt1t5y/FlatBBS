@@ -1,12 +1,10 @@
 <template>
-  <MainContent
-    :loading="topicLoading"
-    :error="topicError"
-    disable-panels
-    @retry="loadTopic"
-  >
+  <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
     <TopicDetail :topic="topic" />
+    <div class="p-3 border-bt text-base font-bold">
+      {{ $t('discussion.count', { count: discussions.length }) }}
+    </div>
     <CommonList :items="discussions">
       <template #default="{ item, index }">
         <DiscussionItem :discussion="item" :index="index" />
