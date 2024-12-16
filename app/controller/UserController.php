@@ -22,11 +22,9 @@ class UserController
     #[Gate('user:query')]
     public function info(Request $request)
     {
-        $uid = session('id');
+        $user_id = session('id');
 
-        $userinfo = $this->user->info($uid, User::$basic_columns);
-
-        return ok($userinfo);
+        return ok($this->user->info($user_id, User::$basic_columns));
     }
 
     #[Gate('user:modify')]
@@ -44,17 +42,12 @@ class UserController
         return ok();
     }
 
-    public function user(Request $request)
+    #[Gate('user:query')]
+    public function detail(Request $request)
     {
-        $user_id = $request->post('username');
+        $user_id = $request->get('user_id');
 
-        $result = $this->user->info($user_id, User::$basic_columns);
-
-        if (!$result) {
-            return no(STATUS_INTERNAL_ERROR);
-        }
-
-        return ok($result);
+        return ok($this->user->info($user_id, User::$basic_columns));
     }
 
     public function avatar(Request $request)

@@ -2,8 +2,16 @@ import { genForm } from '@/utils';
 import { alovaInstance } from './instance';
 import type { UploadForm, User } from '@/types';
 
-export const getUserInfo = () => {
-  return alovaInstance.Post<User>('/user/info');
+export const getSessionUserInfo = () => {
+  return alovaInstance.Get<User>('/user/info');
+};
+
+export const getUserDetail = (user_id: number) => {
+  return alovaInstance.Get<User>('/user/detail', {
+    params: {
+      user_id,
+    },
+  });
 };
 
 export const modifyUserInfo = (field: string, value: string) => {
@@ -19,5 +27,8 @@ export const modifyUserAvatar = (file: File) => {
 };
 
 export const modifyPassword = (old_password: string, new_password: string) => {
-  return alovaInstance.Post<string[]>('/user/password', { old_password, new_password });
+  return alovaInstance.Post<string[]>('/user/password', {
+    old_password,
+    new_password,
+  });
 };

@@ -1,4 +1,4 @@
-import { getUserInfo, logout } from '@/services';
+import { getSessionUserInfo, logout } from '@/services';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { User } from '@/types';
@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', () => {
   const info = ref<User>();
   const isLogin = ref<boolean>(false);
   const fetch = async () => {
-    getUserInfo()
+    getSessionUserInfo()
       .then((res) => {
         isLogin.value = true;
         info.value = res;

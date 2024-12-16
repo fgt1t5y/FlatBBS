@@ -1,8 +1,10 @@
 <template>
   <div class="flex flex-col gap-1 p-3 border-bt">
     <div class="flex gap-2">
-      <Avatar class="size-5" :src="topic.author.avatar_uri" rounded />
-      <span>{{ topic.author.display_name }}</span>
+      <UserPopover :user-id="topic.author_id">
+        <Avatar class="size-5" :src="topic.author.avatar_uri" rounded />
+        <span>{{ topic.author.display_name }}</span>
+      </UserPopover>
       <RelativeTime :time="topic.created_at" />
     </div>
     <div class="text-lg">
@@ -29,6 +31,7 @@ import { RouterLink } from 'vue-router'
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import { computed } from 'vue'
+import UserPopover from './UserPopover.vue'
 
 defineOptions({
   name: 'TopicItem',

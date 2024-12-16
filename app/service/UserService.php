@@ -20,7 +20,7 @@ class UserService
 
     public function modify(string $field, string $value): bool
     {
-        $uid = session('id');
+        $user_id = session('id');
 
         if (
             !all([$value])
@@ -29,7 +29,7 @@ class UserService
             return false;
         }
 
-        $user = User::find($uid);
+        $user = User::find($user_id);
         $user->$field = $value;
 
         if (!$user->isDirty()) {

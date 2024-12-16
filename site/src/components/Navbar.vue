@@ -15,13 +15,11 @@
           />
         </button>
         <div
+          v-show="isPositioned"
           ref="menuRef"
           role="tooltip"
-          class="user-panel shadow-md p-3 auto-color focus:outline-1 focus:outline-indigo-600"
-          :style="{
-            display: isPositioned ? 'block' : 'none',
-            ...floatingStyles,
-          }"
+          class="user-panel shadow-md p-3 auto-color"
+          :style="floatingStyles"
           @keydown="handleMenuKeydown"
         >
           <div
