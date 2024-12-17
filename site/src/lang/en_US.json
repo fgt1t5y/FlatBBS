@@ -28,7 +28,8 @@
   },
 
   "board": {
-    "board": "Board"
+    "board": "Board",
+    "topic_count": "Topic(s)"
   },
 
   "topic": {

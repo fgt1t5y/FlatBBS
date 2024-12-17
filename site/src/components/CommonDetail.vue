@@ -1,17 +1,19 @@
 <template>
-  <div class="border-bt">
-    <div class="p-3 flex flex-col gap-2">
-      <div class="flex justify-between items-end">
-        <Avatar class="size-16 md:size-24" :src="avatarUri" :rounded="avatarRounded" />
-        <slot />
-      </div>
-      <div>
-        <div class="text-lg font-bold">
-          {{ name }}
-        </div>
-        <div class="text-muted">{{ introduction }}</div>
-      </div>
+  <div class="p-3 flex flex-col gap-2 border-bt">
+    <div class="flex justify-between items-end">
+      <Avatar
+        class="size-16 md:size-24"
+        :src="avatarUri"
+        :rounded="avatarRounded"
+      />
     </div>
+    <div>
+      <div class="text-lg font-bold">
+        {{ name }}
+      </div>
+      <div class="text-base text-muted">{{ introduction }}</div>
+    </div>
+    <slot />
   </div>
 </template>
 

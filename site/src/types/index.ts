@@ -58,7 +58,7 @@ export interface Board {
   slug: string;
   description?: string;
   avatar_uri: string;
-  color: string;
+  topic_count: number;
 }
 
 export interface Topic {

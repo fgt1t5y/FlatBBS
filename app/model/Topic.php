@@ -22,7 +22,7 @@ class Topic extends AbstractModel
     protected $table = 'topics';
     protected $with = [
         'author:id,username,display_name,avatar_uri',
-        'board:id,name,color,slug',
+        'board:id,name,slug',
     ];
     protected $fillable = ['author_id', 'title', 'last_reply_at'];
 

@@ -15,7 +15,7 @@ class BoardController
         'id',
         'name',
         'slug',
-        'color',
+        'topic_count',
         'description',
         'avatar_uri',
     ];

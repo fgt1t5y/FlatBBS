@@ -28,7 +28,8 @@
   },
 
   "board": {
-    "board": "板块"
+    "board": "板块",
+    "topic_count": "话题数"
   },
 
   "topic": {

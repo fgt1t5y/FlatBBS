@@ -2,7 +2,7 @@
   <MainContent
     :loading="boardInfoLoading"
     :error="boardInfoError"
-    :title="$t('board')"
+    :title="$t('board.board')"
     @retry="loadBoardInfo"
   >
     <PageTitle :title="boardInfo.name" />
@@ -10,7 +10,12 @@
       :avatar-uri="boardInfo.avatar_uri"
       :name="boardInfo.name"
       :introduction="boardInfo.description"
-    />
+    >
+      <div class="flex gap-2 text-base">
+        <span class="font-bold">{{ boardInfo.topic_count }}</span>
+        <span class="text-muted">{{ $t('board.topic_count') }}</span>
+      </div>
+    </CommonDetail>
     <CommonList hoverable :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
@@ -49,7 +54,7 @@ import { onActivated } from 'vue'
 
 const route = useRoute()
 const { t } = useI18n()
-const { setTitle } = useTitle(t('board'))
+const { setTitle } = useTitle(t('board.board'))
 
 const currentSlug = route.params.slug as string
 
