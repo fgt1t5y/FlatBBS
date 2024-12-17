@@ -12,7 +12,10 @@
     <div>
       <ContentRenderer :html="topic.content" />
       <RouterLink :to="`/board/${topic.board.slug}`">
-        <button class="btn btn-air btn-sm" :title="topic.board.name">
+        <button
+          class="btn btn-air btn-sm rounded-3xl"
+          :title="topic.board.name"
+        >
           {{ topic.board.name }}
         </button>
       </RouterLink>

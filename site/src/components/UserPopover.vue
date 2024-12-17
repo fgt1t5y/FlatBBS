@@ -1,6 +1,6 @@
 <template>
   <div @mouseleave="onMouseLeave">
-    <div ref="triggerRef" class="flex gap-2" @mouseenter="onMouseEnter">
+    <div ref="triggerRef" @mouseenter="onMouseEnter">
       <slot />
     </div>
     <Transition>
@@ -8,7 +8,7 @@
         v-show="isPositioned"
         ref="userPopoverRef"
         role="tooltip"
-        class="shadow-lg p-3 auto-color"
+        class="shadow-lg rounded p-3 auto-color panel-border"
         :style="{
           width: '400px',
           ...floatingStyles,
@@ -81,6 +81,7 @@ const onMouseEnter = () => {
   }
 
   timerId = window.setTimeout(() => {
+    window.clearTimeout(timerId!)
     showPopover.value = true
 
     if (user.value) {

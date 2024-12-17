@@ -18,7 +18,7 @@
           v-show="isPositioned"
           ref="menuRef"
           role="tooltip"
-          class="user-panel shadow-md p-3 auto-color"
+          class="user-panel shadow-lg rounded p-3 auto-color panel-border"
           :style="floatingStyles"
           @keydown="handleMenuKeydown"
         >

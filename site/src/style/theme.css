@@ -116,4 +116,8 @@
   .auto-color {
     @apply bg-white dark:bg-black;
   }
+
+  .panel-border {
+    @apply border border-solid border-neutral-200 dark:border-neutral-800;
+  }
 }

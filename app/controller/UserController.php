@@ -19,7 +19,6 @@ class UserController
     #[Inject]
     protected AuthService $auth;
 
-    #[Gate('user:query')]
     public function info(Request $request)
     {
         $user_id = session('id');
@@ -42,7 +41,6 @@ class UserController
         return ok();
     }
 
-    #[Gate('user:query')]
     public function detail(Request $request)
     {
         $user_id = $request->get('user_id');

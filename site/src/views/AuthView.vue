@@ -14,6 +14,7 @@
           name="email"
           :label="$t('email')"
           validation="required|length:5|*email"
+          autofocus
         />
         <FormKit
           type="password"
