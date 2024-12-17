@@ -18,6 +18,11 @@ class UserService
         return User::find($user_id, $columns);
     }
 
+    public function info_by_username(string $username, array $columns)
+    {
+        return User::where('username', $username)->first($columns);
+    }
+
     public function modify(string $field, string $value): bool
     {
         $user_id = session('id');

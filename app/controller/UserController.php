@@ -23,6 +23,10 @@ class UserController
     {
         $user_id = session('id');
 
+        if (!$user_id) {
+            return no(STATUS_UNAUTHORIZED);
+        }
+
         return ok($this->user->info($user_id, User::$basic_columns));
     }
 
@@ -44,8 +48,21 @@ class UserController
     public function detail(Request $request)
     {
         $user_id = $request->get('user_id');
+        $username = $request->get('username');
 
-        return ok($this->user->info($user_id, User::$basic_columns));
+        if ($user_id) {
+            $result = $this->user->info($user_id, User::$basic_columns);
+        } elseif ($username) {
+            $result = $this->user->info_by_username($username, User::$basic_columns);
+        } else {
+            $result = null;
+        }
+
+        if (!$result) {
+            return no(STATUS_NOT_FOUND);
+        }
+
+        return ok($result);
     }
 
     public function avatar(Request $request)
@@ -55,8 +72,8 @@ class UserController
         if (!$file_array) {
             return no(STATUS_BAD_REQUEST);
         }
-        $newAvatarName = $file_array[0];
 
+        $newAvatarName = $file_array[0];
         $result = $this->user->modify('avatar_uri', $newAvatarName);
 
         if (!$result) {
@@ -82,8 +99,8 @@ class UserController
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-
         $result = $this->user->modify('password', $new_password);
+
         $this->auth->logout_all($user->id);
 
         if (!$result) {

@@ -5,12 +5,12 @@ export interface Result<T = null> {
 }
 
 export interface User {
-  id?: number;
-  display_name?: string;
-  username?: string;
+  id: number;
+  display_name: string;
+  username: string;
   email?: string;
-  avatar_uri?: string;
-  introduction?: string;
+  avatar_uri: string;
+  introduction: string;
   roles: Role[];
 }
 

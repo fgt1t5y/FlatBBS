@@ -5,7 +5,7 @@
     :title="$t('board')"
     @retry="loadBoardInfo"
   >
-    <PageTitle :title="boardInfo?.name" />
+    <PageTitle :title="boardInfo.name" />
     <CommonDetail
       :avatar-uri="boardInfo.avatar_uri"
       :name="boardInfo.name"
@@ -60,15 +60,8 @@ const {
   data: boardInfo,
   error: boardInfoError,
   send: loadBoardInfo,
-} = useRequest(() => getBoardInfo(currentSlug), {
-  immediate: true,
-  middleware(_, next) {
-    if (currentSlug) {
-      next()
-    }
-  },
-}).onSuccess(() => {
-  setTitle(boardInfo.value.name)
+} = useRequest(() => getBoardInfo(currentSlug)).onSuccess(() => {
+  setTitle(boardInfo.value?.name)
   loadTopics()
 })
 
@@ -98,7 +91,7 @@ const {
 })
 
 onActivated(() => {
-  if (boardInfo?.value?.name) {
+  if (boardInfo.value?.name) {
     setTitle(boardInfo.value.name)
   }
 })

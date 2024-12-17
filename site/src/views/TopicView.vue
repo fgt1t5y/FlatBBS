@@ -47,7 +47,7 @@ const {
   error: topicError,
   send: loadTopic,
 } = useRequest(() => getTopic(topicId)).onSuccess(() => {
-  setTitle(topic.value.title)
+  setTitle(topic.value?.title)
   loadDiscissions()
 })
 
@@ -69,7 +69,7 @@ const {
 })
 
 onActivated(() => {
-  if (topic?.value?.title) {
+  if (topic.value?.title) {
     setTitle(topic.value.title)
   }
 })

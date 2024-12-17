@@ -10,7 +10,6 @@
   "new_password_confirm": "Confirm New Password",
 
   "user_menu": "User Menu",
-  "board": "Board",
 
   "page": {
     "home": "Home",
@@ -22,6 +21,14 @@
     "settings": "Settings",
     "register_or_login": "Signin / Login",
     "me": "Me"
+  },
+
+  "user": {
+    "user": "User"
+  },
+
+  "board": {
+    "board": "Board"
   },
 
   "topic": {

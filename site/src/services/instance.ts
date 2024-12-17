@@ -1,7 +1,6 @@
 import { config } from '@/global';
 import { useMessage } from '@/stores';
 import type { Result } from '@/types';
-import { clearToken } from '@/utils';
 import { createAlova } from 'alova';
 import adapterFetch from 'alova/fetch';
 import VueHook from 'alova/vue';
@@ -16,16 +15,14 @@ export const alovaInstance = createAlova({
       if (res.status === window.$code.INTERNAL_ERROR) {
         throw new Error('Server Internal Error');
       }
-      const json = (await res.json()) as Result;
-      const code = json.code;
 
-      if (!code) {
+      const json = (await res.json()) as Result;
+
+      if (!json.code) {
         throw new Error('Invalid Response Body');
       }
 
-      if (code !== window.$code.OK) {
-        // 服务器回报未认证，直接清空本地状态Cookie
-        if (code === window.$code.UNAUTHORIZED) clearToken();
+      if (json.code !== window.$code.OK) {
         throw new Error(json.message || 'Network Error');
       }
 

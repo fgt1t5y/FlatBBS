@@ -38,6 +38,11 @@ export const mainRoutes = [
     },
   },
   {
+    path: '/user/:username',
+    name: 'user_page',
+    component: () => import('@/views/UserView.vue'),
+  },
+  {
     path: '/setting/password',
     name: 'modify_password',
     component: () => import('@/views/ModifyPasswordView.vue'),

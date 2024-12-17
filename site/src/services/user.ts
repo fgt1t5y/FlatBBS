@@ -14,6 +14,14 @@ export const getUserDetail = (user_id: number) => {
   });
 };
 
+export const getUserDetailByUsername = (username: string) => {
+  return alovaInstance.Get<User>('/user/detail', {
+    params: {
+      username,
+    },
+  });
+};
+
 export const modifyUserInfo = (field: string, value: string) => {
   return alovaInstance.Post<null>('/user/modify', { field, value });
 };
