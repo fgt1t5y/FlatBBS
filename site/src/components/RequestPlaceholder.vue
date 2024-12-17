@@ -7,7 +7,7 @@
       v-if="error && !loading"
       class="flex flex-col items-center justify-center gap-6"
     >
-      <span class="text-xl">{{ error.message }}</span>
+      <span class="text-xl">{{ errorMessage }}</span>
       <button class="btn btn-primary btn-md" @click="emits('retry')">
         {{ $t('action.retry') }}
       </button>
@@ -17,6 +17,8 @@
 
 <script setup lang="ts">
 import { Loader } from '@vicons/tabler'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 defineOptions({
   name: 'RequestPlaceholder',
@@ -31,4 +33,17 @@ const props = defineProps<RequestPlaceholderProps>()
 const emits = defineEmits<{
   (e: 'retry'): any
 }>()
+const { t } = useI18n()
+
+const errorMessage = computed(() => {
+  if (!props.error?.message) {
+    return null
+  }
+
+  if (props.error.message.startsWith('i18n$')) {
+    return t(props.error.message.slice(5))
+  }
+
+  return props.error.message
+})
 </script>

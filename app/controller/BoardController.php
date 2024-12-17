@@ -37,7 +37,7 @@ class BoardController
         $result = $this->board->info($slug, $this->boardFields);
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND);
+            return no(STATUS_NOT_FOUND, 'i18n$exception.board_not_found');
         }
 
         return ok($result);

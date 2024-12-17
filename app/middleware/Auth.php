@@ -38,7 +38,7 @@ class Auth implements MiddlewareInterface
         if (count($pass_flags) === count($attrs)) {
             return $handle($request);
         } else {
-            return no(STATUS_FORBIDDEN);
+            return no(STATUS_FORBIDDEN, 'i18n$exception.need_higher_permissions');
         }
     }
 }

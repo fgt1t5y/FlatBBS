@@ -36,7 +36,7 @@ class TopicController
         $board_id = (int) $request->post('board_id');
 
         if (empty($title)) {
-            return no(STATUS_BAD_REQUEST);
+            return no(STATUS_BAD_REQUEST, 'i18n$exception.fill_out_form_completely');
         }
 
         $author = $request->getUser();
@@ -57,7 +57,7 @@ class TopicController
         $result = $this->topic->detail($topic_id);
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND);
+            return no(STATUS_NOT_FOUND, 'i18n$exception.topic_not_found');
         }
 
         return ok($result);

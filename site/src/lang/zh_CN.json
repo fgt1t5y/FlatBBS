@@ -90,5 +90,18 @@
     "dark": "暗色模式",
 
     "language": "语言（Language）"
+  },
+
+  "exception": {
+    "user_not_found": "此用户不存在",
+    "board_not_found": "此板块不存在",
+    "topic_not_found": "此话题不存在",
+
+    "you_are_logged_in": "你已经登录过了",
+    "password_is_wrong": "密码错误",
+    "user_has_been_banned": "你的账号已被禁止登录",
+    "unauthorized": "未登录",
+    "fill_out_form_completely": "请完整填写表单",
+    "need_higher_permissions": "需要更高的权限来进行操作"
   }
 }

@@ -90,5 +90,18 @@
     "dark": "Dark Mode",
 
     "language": "Language"
+  },
+
+  "exception": {
+    "user_not_found": "User Not Found",
+    "board_not_found": "Board Not Found",
+    "topic_not_found": "Topic Not Found",
+
+    "you_are_logged_in": "You are already logged in",
+    "password_is_wrong": "Password is wrong",
+    "user_has_been_banned": "Your account has been banned by admin",
+    "unauthorized": "Login please",
+    "fill_out_form_completely": "Please fill out form completely",
+    "need_higher_permissions": "Your account need higher permission to action"
   }
 }

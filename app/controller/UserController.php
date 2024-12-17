@@ -24,7 +24,7 @@ class UserController
         $user_id = session('id');
 
         if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED);
+            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
         }
 
         return ok($this->user->info($user_id, User::$basic_columns));
@@ -59,7 +59,7 @@ class UserController
         }
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND);
+            return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');
         }
 
         return ok($result);
@@ -70,7 +70,7 @@ class UserController
         $file_array = $this->file->upload($request->file());
 
         if (!$file_array) {
-            return no(STATUS_BAD_REQUEST);
+            return no(STATUS_BAD_REQUEST, 'i18n$exception.fill_out_form_completely');
         }
 
         $newAvatarName = $file_array[0];
@@ -95,7 +95,7 @@ class UserController
         $user = $request->getUser();
 
         if (!password_verify($old_password, $user->password)) {
-            return no(STATUS_FORBIDDEN, '密码错误');
+            return no(STATUS_FORBIDDEN, 'i18n$exception.password_is_wrong');
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);

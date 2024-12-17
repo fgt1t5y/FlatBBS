@@ -18,7 +18,7 @@ class AuthController
         $session = $request->session();
 
         if ($session->has('id')) {
-            return no(STATUS_BAD_REQUEST, '你已经登录过了');
+            return no(STATUS_BAD_REQUEST, 'i18n$exception.you_are_logged_in');
         }
 
         $email = $request->post('email');
@@ -26,13 +26,13 @@ class AuthController
         $user = User::where('email', $email)->first();
 
         if (!all([$email, $password]) || !$user) {
-            return no(STATUS_BAD_REQUEST, '用户不存在');
+            return no(STATUS_BAD_REQUEST, 'i18n$exception.user_not_found');
         }
         if (!password_verify($password, $user->password)) {
-            return no(STATUS_FORBIDDEN, '账号或密码错误');
+            return no(STATUS_FORBIDDEN, 'i18n$exception.password_is_wrong');
         }
         if ($user->allow_login === 0) {
-            return no(STATUS_FORBIDDEN, '你不被允许登录你的账号');
+            return no(STATUS_FORBIDDEN, 'i18n$exception.user_has_been_banned');
         }
 
         $user_id = $user->id;
@@ -61,7 +61,7 @@ class AuthController
         $user_id = $session->get('id');
 
         if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED);
+            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
         }
 
         Redis::sRem("flat_sess_{$user_id}", 1, $session->getId());
@@ -77,7 +77,7 @@ class AuthController
         $user_id = $session->get('id');
 
         if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED);
+            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
         }
 
         return $this->auth->logout_all($user_id);
