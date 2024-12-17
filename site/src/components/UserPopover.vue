@@ -38,7 +38,7 @@
 import { getUserDetail } from '@/services'
 import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { useRequest } from 'alova/client'
-import { ref } from 'vue'
+import { onDeactivated, ref } from 'vue'
 import { Loader } from '@vicons/tabler'
 import Avatar from './Avatar.vue'
 
@@ -75,6 +75,15 @@ const { send, loading } = useRequest(() => getUserDetail(props.userId), {
   immediate: false,
 })
 
+const clearTimer = () => {
+  if (!timerId) {
+    return
+  }
+
+  window.clearTimeout(timerId)
+  timerId = null
+}
+
 const onMouseEnter = () => {
   if (timerId) {
     return
@@ -97,13 +106,9 @@ const onMouseEnter = () => {
 }
 
 const onMouseLeave = () => {
-  if (!timerId) {
-    return
-  }
-
-  window.clearTimeout(timerId)
-  timerId = null
-
+  clearTimer()
   showPopover.value = false
 }
+
+onDeactivated(clearTimer)
 </script>
