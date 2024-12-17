@@ -29,6 +29,7 @@
 
   "board": {
     "board": "Board",
+    "hotspot": "Hotspot Boards",
     "topic_count": "Topic(s)"
   },
 

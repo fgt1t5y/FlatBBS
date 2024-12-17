@@ -11,6 +11,11 @@ class BoardService
         return Board::orderBy('id')->get($columns);
     }
 
+    public function hotspot(?array $columns = null)
+    {
+        return Board::orderBy('topic_count')->limit(10)->get($columns);
+    }
+
     public function info(string $value, ?array $columns = null)
     {
         return Board::where('slug', $value)->first($columns);

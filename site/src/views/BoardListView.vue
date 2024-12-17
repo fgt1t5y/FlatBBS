@@ -24,5 +24,5 @@ import { getBoards } from '@/services'
 import { usePagination } from 'alova/client'
 import Avatar from '@/components/Avatar.vue'
 
-const { data: boards, error, loading, send } = usePagination(getBoards, {})
+const { data: boards, error, loading, send } = usePagination(getBoards)
 </script>

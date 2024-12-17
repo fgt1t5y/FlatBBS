@@ -70,14 +70,7 @@ const {
   error: boardInfoError,
   onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
-} = useWatcher(() => getBoardInfo(currentSlug.value), [currentSlug], {
-  immediate: true,
-  middleware(_, next) {
-    if (currentSlug.value) {
-      next()
-    }
-  },
-})
+} = useWatcher(() => getBoardInfo(currentSlug.value), [currentSlug])
 
 const {
   loading: topicPublishing,

@@ -1,5 +1,11 @@
 <template>
-  <div id="main-content" class="flex grow gap-3">
+  <div
+    id="main-content"
+    :class="{
+      'flex grow gap-3': true,
+      'flex-row-reverse': reversePanel,
+    }"
+  >
     <div class="relative grow mb-14">
       <RequestPlaceholder
         v-if="loading || error"
@@ -10,7 +16,7 @@
       <slot v-else />
     </div>
     <div v-if="isDesktop && !disablePanels">
-      <div class="grid-main-panels-inner mt-3">
+      <div class="grid-main-panels-inner">
         <slot name="panels" />
       </div>
     </div>
@@ -28,6 +34,7 @@ defineOptions({
 
 interface MainContentProps {
   disablePanels?: boolean
+  reversePanel?: boolean
   loading?: boolean
   error?: Error
   title?: string
@@ -35,6 +42,7 @@ interface MainContentProps {
 
 const props = withDefaults(defineProps<MainContentProps>(), {
   disablePanels: false,
+  reversePanel: false,
   loading: false,
   error: undefined,
   title: undefined,
