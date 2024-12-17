@@ -1,12 +1,28 @@
 <template>
   <div class="item p-3 border-bt">
-    <div class="flex gap-2">
-      <Avatar
-        class="size-8 md:size-12"
-        :src="topic.author.avatar_uri"
-        rounded
-      />
-      <span>{{ topic.author.display_name }}</span>
+    <div class="flex gap-2 items-start">
+      <UserPopover :user-id="topic.author.id">
+        <RouterLink
+          :to="{
+            name: 'user_page',
+            params: { username: topic.author.username },
+          }"
+        >
+          <Avatar
+            class="size-8 md:size-12"
+            :src="topic.author.avatar_uri"
+            rounded
+          />
+        </RouterLink>
+      </UserPopover>
+      <RouterLink
+        :to="{
+          name: 'user_page',
+          params: { username: topic.author.username },
+        }"
+      >
+        <span>{{ topic.author.display_name }}</span>
+      </RouterLink>
       <RelativeTime :time="topic.created_at" />
     </div>
     <div>
@@ -29,6 +45,7 @@ import Avatar from './Avatar.vue'
 import ContentRenderer from '@/components/ContentRenderer.vue'
 
 import type { Topic } from '@/types'
+import UserPopover from './UserPopover.vue'
 
 defineOptions({
   name: 'TopicDetail',

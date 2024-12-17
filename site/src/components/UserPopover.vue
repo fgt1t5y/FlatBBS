@@ -5,6 +5,7 @@
     </div>
     <Transition>
       <div
+        v-if="popoverMounted"
         v-show="isPositioned"
         ref="userPopoverRef"
         role="tooltip"
@@ -57,6 +58,7 @@ const props = defineProps<UserPopoverProps>()
 
 const triggerRef = ref<HTMLElement>()
 const userPopoverRef = ref<HTMLElement>()
+const popoverMounted = ref(false)
 const showPopover = ref(false)
 const user = ref<User | undefined>(props.initialData)
 let timerId: number | null = null
@@ -90,6 +92,9 @@ const onMouseEnter = () => {
   }
 
   timerId = window.setTimeout(() => {
+    // mount the popover when mouse enter element only
+    popoverMounted.value = true
+
     window.clearTimeout(timerId!)
     showPopover.value = true
 

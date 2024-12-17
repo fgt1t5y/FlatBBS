@@ -2,7 +2,13 @@
   <div class="flex flex-col gap-1 p-3 border-bt">
     <div class="flex gap-2">
       <UserPopover :user-id="topic.author_id">
-        <RouterLink class="flex gap-2" :to="`/user/${topic.author.username}`">
+        <RouterLink
+          class="flex gap-2"
+          :to="{
+            name: 'user_page',
+            params: { username: topic.author.username },
+          }"
+        >
           <Avatar class="size-5" :src="topic.author.avatar_uri" rounded />
           <span>{{ topic.author.display_name }}</span>
         </RouterLink>

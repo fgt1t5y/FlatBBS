@@ -8,7 +8,7 @@ use support\AbstractModel;
 class Discussion extends AbstractModel
 {
     protected $table = 'discussions';
-    protected $with = ['author:id,display_name,avatar_uri'];
+    protected $with = ['author:id,username,display_name,avatar_uri'];
 
     public function author(): BelongsTo
     {
