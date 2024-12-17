@@ -7,7 +7,7 @@
       :introduction="user.introduction"
       avatar-rounded
     />
-    <CommonList hoverable :items="topics" :is-end="isLastPage">
+    <CommonList :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>

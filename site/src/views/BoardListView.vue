@@ -1,7 +1,7 @@
 <template>
   <MainContent disable-panels :title="$t('page.boards')">
     <PageTitle :title="$t('page.boards')" :show-back="false" />
-    <CommonList hoverable :items="boards" :is-end="true">
+    <CommonList :items="boards" :is-end="true">
       <template #default="{ item }">
         <div class="item p-3 flex gap-3 items-center border-bt">
           <Avatar class="size-9" :src="item.avatar_uri" />

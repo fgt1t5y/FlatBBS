@@ -1,5 +1,5 @@
 <template>
-  <div :class="itemClass">
+  <div>
     <slot
       v-for="(item, index) of items"
       v-bind="{ key: index }"
@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { computed } from 'vue'
-
 defineOptions({
   name: 'CommonList',
 })
@@ -25,19 +23,10 @@ defineSlots<{
 
 type CommonListProps = {
   items: T[]
-  hoverable?: boolean
   isEnd?: boolean
 }
 
 const props = withDefaults(defineProps<CommonListProps>(), {
-  hoverable: false,
   isEnd: false,
-})
-
-const itemClass = computed(() => {
-  return {
-    list: true,
-    'list-hover': props.hoverable,
-  }
 })
 </script>

@@ -16,7 +16,7 @@
         <span class="text-muted">{{ $t('board.topic_count') }}</span>
       </div>
     </CommonDetail>
-    <CommonList hoverable :items="topics" :is-end="isLastPage">
+    <CommonList :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>
