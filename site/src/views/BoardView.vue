@@ -23,12 +23,12 @@
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="loadTopics" />
     <RequestPlaceholder
-      :loading="loading"
+      :loading="topicsLoading"
       :error="topicsError"
       @retry="loadTopics"
     />
     <template #panels>
-      <RouterLink :to="`/board/${currentSlug}/publish`">
+      <RouterLink :to="`/board/${slug}/publish`">
         <button class="btn btn-primary btn-md w-full">
           {{ $t('action.publish_topic') }}
         </button>
@@ -56,7 +56,7 @@ const route = useRoute()
 const { t } = useI18n()
 const { setTitle } = useTitle(t('board.board'))
 
-const currentSlug = route.params.slug as string
+const slug = route.params.slug as string
 
 let lastItemId = 0
 
@@ -65,28 +65,23 @@ const {
   data: boardInfo,
   error: boardInfoError,
   send: loadBoardInfo,
-} = useRequest(() => getBoardInfo(currentSlug)).onSuccess(() => {
+} = useRequest(() => getBoardInfo(slug)).onSuccess(() => {
   setTitle(boardInfo.value?.name)
   loadTopics()
 })
 
 const {
-  loading,
+  loading: topicsLoading,
   data: topics,
   isLastPage,
   error: topicsError,
   send: loadTopics,
 } = usePagination(
-  (page, limit) => getTopicsByBoardSlug(lastItemId, limit, currentSlug),
+  (page, limit) => getTopicsByBoardSlug(lastItemId, limit, slug),
   {
     append: true,
     initialPageSize: 10,
     immediate: false,
-    middleware(_, next) {
-      if (boardInfo.value) {
-        next()
-      }
-    },
   },
 ).onSuccess(() => {
   const items = topics.value

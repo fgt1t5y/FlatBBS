@@ -35,8 +35,9 @@ class UserController
     {
         $field = $request->post('field', '');
         $value = $request->post('value', '');
+        $user_id = session('id');
 
-        $result = $this->user->modify($field, $value);
+        $result = $this->user->modify($user_id, $field, $value);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -65,6 +66,17 @@ class UserController
         return ok($result);
     }
 
+    public function topics(Request $request, string $username)
+    {
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
+
+        $result = $this->user->topics($username, $last_id, $limit);
+
+        return ok($result);
+    }
+
+    #[Gate('user:modify')]
     public function avatar(Request $request)
     {
         $file_array = $this->file->upload($request->file());
@@ -74,7 +86,9 @@ class UserController
         }
 
         $newAvatarName = $file_array[0];
-        $result = $this->user->modify('avatar_uri', $newAvatarName);
+        $user_id = session('id');
+
+        $result = $this->user->modify($user_id, 'avatar_uri', $newAvatarName);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -99,7 +113,7 @@ class UserController
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $result = $this->user->modify('password', $new_password);
+        $result = $this->user->modify($user->id, 'password', $new_password);
 
         $this->auth->logout_all($user->id);
 

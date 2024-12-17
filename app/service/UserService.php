@@ -23,10 +23,19 @@ class UserService
         return User::where('username', $username)->first($columns);
     }
 
-    public function modify(string $field, string $value): bool
+    public function topics(string $username, int $last_id, int $limit)
     {
-        $user_id = session('id');
+        return User::where('username', $username)
+            ->firstOrFail()
+            ->topics()
+            ->limit(min($limit, 50))
+            ->where('id', '>', $last_id)
+            ->orderByDesc('created_at')
+            ->get();
+    }
 
+    public function modify(int $user_id, string $field, string $value): bool
+    {
         if (
             !all([$value])
             || !in_array($field, $this->allowModifyColumn)

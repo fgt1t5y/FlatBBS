@@ -4,10 +4,11 @@ namespace app\model;
 
 use app\casts\FullPath;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
 use app\model\Role;
 use app\model\Permission;
-use Illuminate\Database\Eloquent\Builder;
+use app\model\Topic;
 
 class User extends AbstractModel
 {
@@ -27,12 +28,13 @@ class User extends AbstractModel
         'username',
         'email',
         'avatar_uri',
-        'introduction'
+        'introduction',
+        'created_at'
     ];
 
     public function isGuest(): bool
     {
-        return true;
+        return false;
     }
 
     public function roles(): BelongsToMany
@@ -48,8 +50,8 @@ class User extends AbstractModel
             ->pluck('permission')->all();
     }
 
-    public function hasPermission(string $permission): bool
+    public function topics(): HasMany
     {
-        return in_array($permission, $this->permissions());
+        return $this->hasMany(Topic::class, 'author_id');
     }
 }

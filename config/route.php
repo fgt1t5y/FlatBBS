@@ -18,6 +18,10 @@ Route::fallback(function () {
     return no(STATUS_NOT_FOUND, 'Route Not Found.');
 });
 
+Route::group('/user/{username}', function () {
+    Route::get('/topics', [app\controller\UserController::class, 'topics']);
+});
+
 Route::group('/board/{slug}', function () {
     // 通过 BoardID 获取指定版块的信息
     Route::get('/info', [app\controller\BoardController::class, 'info']);

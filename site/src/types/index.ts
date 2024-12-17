@@ -12,6 +12,7 @@ export interface User {
   avatar_uri: string;
   introduction: string;
   roles: Role[];
+  created_at?: string;
 }
 
 export interface Role {

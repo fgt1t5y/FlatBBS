@@ -10,6 +10,6 @@ class Guest extends User
 
     public function isGuest(): bool
     {
-        return false;
+        return true;
     }
 }
