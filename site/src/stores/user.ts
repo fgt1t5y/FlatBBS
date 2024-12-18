@@ -15,8 +15,7 @@ export const useUserStore = defineStore('user', () => {
       })
       .catch(() => {
         const ms = useMessage();
-        // TODO: i18n
-        ms.error('获取用户信息失败');
+        ms.error('i18n$message.fetch_user_profile_fail');
       });
   };
   const quit = () => {

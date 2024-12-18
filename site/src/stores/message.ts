@@ -8,6 +8,10 @@ export const useMessage = defineStore('message', () => {
   const messages = ref<IMessage[]>([]);
 
   const add = (option: IMessage) => {
+    if (messages.value.length >= 16) {
+      console.warn('Max message count is 16.');
+      return;
+    }
     messages.value.push(option);
   };
 

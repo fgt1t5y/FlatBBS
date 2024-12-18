@@ -57,7 +57,9 @@
     "crop_image_fail": "Failed to crop image, try again please.",
     "unsupport_image_format": "Unsupport image type.",
     "image_too_small": "Image too small，height and width at least {height}x{width} px.",
-    "cannot_load_image": "Can't load this image."
+    "cannot_load_image": "Can't load this image.",
+
+    "fetch_user_profile_fail": "Failed to fetch user profile."
   },
 
   "action": {

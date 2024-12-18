@@ -1,11 +1,12 @@
 <template>
   <div :class="['rounded', 'p-3', 'shadow-md', ...typeClass]">
-    {{ message.message }}
+    {{ messageText }}
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onBeforeMount, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import type { IMessage } from '@/types'
 
@@ -21,6 +22,8 @@ const emits = defineEmits<{
   (e: 'close', id: number): void
 }>()
 
+const { t } = useI18n()
+
 let timer: number | null = null
 
 const typeClass = computed(() => {
@@ -35,6 +38,14 @@ const typeClass = computed(() => {
   }
 
   return []
+})
+
+const messageText = computed(() => {
+  if (props.message.message.startsWith('i18n$')) {
+    return t(props.message.message.slice(5))
+  }
+
+  return props.message.message
 })
 
 onMounted(() => {

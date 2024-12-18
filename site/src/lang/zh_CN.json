@@ -57,7 +57,9 @@
     "crop_image_fail": "裁剪图片失败，请重试。",
     "unsupport_image_format": "不支持的图像格式",
     "image_too_small": "图像太小，高宽至少为 {height}x{width} px",
-    "cannot_load_image": "无法加载此图像"
+    "cannot_load_image": "无法加载此图像",
+
+    "fetch_user_profile_fail": "获取用户信息失败"
   },
 
   "action": {
