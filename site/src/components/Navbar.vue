@@ -34,12 +34,12 @@
           </div>
           <div class="flex flex-col gap-2">
             <button
-              class="btn btn-air btn-md"
+              class="btn-air btn-md"
               @click="$router.push({ name: 'settings_page' })"
             >
               {{ $t('page.settings') }}
             </button>
-            <button class="btn btn-air btn-md" @click="user.quit">
+            <button class="btn-air btn-md" @click="user.quit">
               {{ $t('action.logout') }}
             </button>
           </div>
@@ -47,7 +47,7 @@
       </div>
       <div v-else>
         <RouterLink to="/auth">
-          <button class="btn btn-primary btn-md">
+          <button class="btn-primary btn-md">
             {{ $t('page.register_or_login') }}
           </button>
         </RouterLink>

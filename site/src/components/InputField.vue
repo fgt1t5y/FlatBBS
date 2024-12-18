@@ -5,7 +5,7 @@
   <div v-else class="flex gap-2">
     <FormKit ref="inputRef" v-model="valueNow" class="max-w-56" type="text" />
     <button
-      class="btn btn-primary btn-md"
+      class="btn-primary btn-md"
       :disabled="!isChanged"
       @click="onConfirm"
     >

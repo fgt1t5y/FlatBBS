@@ -8,7 +8,7 @@
       class="flex flex-col items-center justify-center gap-6"
     >
       <span class="text-xl">{{ errorMessage }}</span>
-      <button class="btn btn-primary btn-md" @click="emits('retry')">
+      <button class="btn-primary btn-md" @click="emits('retry')">
         {{ $t('action.retry') }}
       </button>
     </div>

@@ -10,7 +10,7 @@
       <template #extra>
         <button
           :disabled="topicPublishing"
-          class="btn btn-primary btn-md w-full"
+          class="btn-primary btn-md w-full"
           @click="checkForm() && handlePublishTopic()"
         >
           {{ $t('action.publish') }}

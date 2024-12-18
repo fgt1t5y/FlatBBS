@@ -13,6 +13,10 @@
     @apply bg-indigo-600;
   }
 
+  .outline-primary {
+    @apply outline-indigo-600;
+  }
+
   .route.router-link-exact-active {
     @apply text-primary;
   }
@@ -59,14 +63,6 @@
 }
 
 @layer components {
-  .btn {
-    @apply rounded whitespace-nowrap;
-  }
-
-  .btn:disabled {
-    @apply cursor-not-allowed;
-  }
-
   .btn-primary {
     @apply text-white bg-indigo-600 transition-all hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
@@ -80,7 +76,7 @@
   }
 
   .btn-text-active {
-    @apply text-primary outline outline-2 outline-indigo-600;
+    @apply text-primary outline outline-2 outline-primary;
   }
 
   .btn-circle {
@@ -89,6 +85,14 @@
 
   .navbar {
     @apply z-10 flex items-center sticky top-0 shadow-md auto-color justify-center;
+  }
+
+  button {
+    @apply rounded whitespace-nowrap;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed;
   }
 }
 

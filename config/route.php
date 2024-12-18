@@ -31,6 +31,7 @@ Route::group('/board/{slug}', function () {
 
 Route::group('/topic/{tid:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
+    Route::post('/like', [app\controller\TopicController::class, 'like']);
 });
 
 Route::group('/discussion/{tid:\d+}', function () {

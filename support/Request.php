@@ -25,7 +25,7 @@ class Request extends \Webman\Http\Request
 {
     public function getUser(): User|null
     {
-        $user_id = $this->session->get('id');
+        $user_id = session()->get('id');
 
         if (!$user_id)
             // not a user, seen as a guest

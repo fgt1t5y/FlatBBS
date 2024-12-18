@@ -71,4 +71,13 @@ class TopicController
 
         return ok($result);
     }
+
+    public function like(Request $request, int $topic_id)
+    {
+        $user_id = session('id');
+
+        $this->topic->like($topic_id, $user_id);
+
+        return ok();
+    }
 }

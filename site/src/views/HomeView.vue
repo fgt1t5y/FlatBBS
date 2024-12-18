@@ -14,7 +14,7 @@
     />
     <template #panels>
       <div class="p-3 flex flex-col gap-2">
-        <button class="btn btn-primary btn-md">
+        <button class="btn-primary btn-md">
           {{ $t('action.publish') }}
         </button>
         <span class="text-base text-muted">{{ $t('board.hotspot') }}</span>

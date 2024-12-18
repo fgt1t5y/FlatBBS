@@ -74,6 +74,7 @@ export interface Topic {
   reply_count: number;
   created_at: string;
   last_reply_at: string;
+  likes: User[];
 }
 
 export type TopicDraft = Pick<Topic, 'title' | 'content' | 'board_id'>;

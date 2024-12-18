@@ -29,7 +29,7 @@
     />
     <template #panels>
       <RouterLink :to="`/board/${slug}/publish`">
-        <button class="btn btn-primary btn-md w-full">
+        <button class="btn-primary btn-md w-full">
           {{ $t('action.publish_topic') }}
         </button>
       </RouterLink>

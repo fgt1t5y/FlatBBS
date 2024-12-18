@@ -9,6 +9,8 @@ use Carbon\Carbon;
 
 class TopicService
 {
+    public array $topic_detail_columns = ['id', 'board_id', 'author_id', 'title', 'content', 'created_at'];
+
     public function all(int $last_id, int $limit)
     {
         return Topic::orderByDesc('last_reply_at')
@@ -33,7 +35,17 @@ class TopicService
 
     public function detail(int $topic_id)
     {
-        return Topic::where('id', $topic_id)
-            ->first(['id', 'board_id', 'author_id', 'title', 'content', 'created_at']);
+        return Topic::find($topic_id, $this->topic_detail_columns);
+    }
+
+    public function like(int $topic_id, int $user_id)
+    {
+        $topic = Topic::find($topic_id);
+
+        if (!$topic) {
+            return null;
+        }
+
+        $topic->likes()->attach($user_id);
     }
 }

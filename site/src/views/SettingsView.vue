@@ -5,7 +5,7 @@
       <SettingItem :title="$t('settings.my_avatar')">
         <div class="flex justify-between">
           <Avatar class="size-16" :src="user.info?.avatar_uri" rounded />
-          <button class="btn btn-primary btn-md" @click="openAvatarSelector">
+          <button class="btn-primary btn-md" @click="openAvatarSelector">
             {{ $t('action.modify') }}
           </button>
         </div>
@@ -47,7 +47,7 @@
     <SettingGroup :title="$t('settings.security_and_privacy')">
       <SettingItem :title="$t('password')">
         <RouterLink :to="{ name: 'modify_password' }">
-          <button class="btn btn-primary btn-md">
+          <button class="btn-primary btn-md">
             {{ $t('action.modify') }}
           </button>
         </RouterLink>
@@ -84,10 +84,10 @@
       @error="showCropperMessage"
     />
     <div class="flex flex-col gap-2 mt-2">
-      <button class="btn btn-primary btn-md" @click="uploadAvatar">
+      <button class="btn-primary btn-md" @click="uploadAvatar">
         {{ $t('ok') }}
       </button>
-      <button class="btn btn-air btn-md" @click="closeAvatarCrop">
+      <button class="btn-air btn-md" @click="closeAvatarCrop">
         {{ $t('cancle') }}
       </button>
     </div>

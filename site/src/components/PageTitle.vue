@@ -3,7 +3,7 @@
     <div class="flex gap-2 w-full items-center">
       <button
         v-if="showBackButton"
-        class="btn btn-air btn-circle flex justify-center items-center shrink-0"
+        class="btn-air btn-circle flex justify-center items-center shrink-0"
         @click="page.back"
       >
         <ArrowLeft class="size-6" />

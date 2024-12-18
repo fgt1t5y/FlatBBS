@@ -25,7 +25,7 @@
     </div>
     <div class="flex justify-between">
       <RouterLink :to="`/board/${topic.board.slug}`">
-        <button class="btn btn-air btn-sm rounded-3xl">
+        <button class="btn-air btn-sm rounded-3xl">
           {{ topic.board.name }}
         </button>
       </RouterLink>
