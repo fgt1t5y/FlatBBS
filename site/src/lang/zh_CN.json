@@ -35,7 +35,9 @@
 
   "topic": {
     "topic": "话题",
-    "title": "话题标题"
+    "title": "话题标题",
+
+    "liked": "已喜欢"
   },
 
   "discussion": {
@@ -71,6 +73,7 @@
     "publish": "发布",
     "retry": "重试",
     "login": "登录",
+    "like": "喜欢",
 
     "publish_topic": "发布话题",
     "crop_avatar": "裁剪头像"
@@ -104,8 +107,12 @@
     "you_are_logged_in": "你已经登录过了",
     "password_is_wrong": "密码错误",
     "user_has_been_banned": "你的账号已被禁止登录",
-    "unauthorized": "未登录",
+    "unauthorized": "请先登录",
     "fill_out_form_completely": "请完整填写表单",
     "need_higher_permissions": "需要更高的权限来进行操作"
+  },
+
+  "tooltip": {
+    "like_this_topic": "我喜欢这个话题"
   }
 }

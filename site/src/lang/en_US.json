@@ -35,7 +35,9 @@
 
   "topic": {
     "topic": "Topic",
-    "title": "Topic title"
+    "title": "Topic title",
+
+    "liked": "Like"
   },
 
   "discussion": {
@@ -71,6 +73,7 @@
     "publish": "Publish",
     "retry": "Retry",
     "login": "Login",
+    "like": "Like",
 
     "publish_topic": "Publish Topic",
     "crop_avatar": "Crop Avatar"
@@ -107,5 +110,9 @@
     "unauthorized": "Login please",
     "fill_out_form_completely": "Please fill out form completely",
     "need_higher_permissions": "Your account need higher permission to action"
+  },
+
+  "tooltip": {
+    "like_this_topic": "I like this topic."
   }
 }

@@ -8,7 +8,6 @@ use app\service\SearchService;
 use app\service\TopicService;
 use DI\Attribute\Inject;
 use support\Request;
-use support\Gate;
 
 class TopicController
 {
@@ -27,9 +26,10 @@ class TopicController
         return ok($result);
     }
 
-    #[Gate('create:topic')]
     public function publish(Request $request)
     {
+        $request->assertLogin();
+
         $title = $request->post('title');
         $text = $request->post('text');
         $content = $request->post('content');
@@ -74,10 +74,11 @@ class TopicController
 
     public function like(Request $request, int $topic_id)
     {
+        $request->assertLogin();
+
         $user_id = session('id');
+        $is_liked = $this->topic->toggle_like($topic_id, $user_id);
 
-        $this->topic->like($topic_id, $user_id);
-
-        return ok();
+        return ok($is_liked);
     }
 }

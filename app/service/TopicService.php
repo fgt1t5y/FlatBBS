@@ -38,14 +38,23 @@ class TopicService
         return Topic::find($topic_id, $this->topic_detail_columns);
     }
 
-    public function like(int $topic_id, int $user_id)
+    public function toggle_like(int $topic_id, int $user_id)
     {
         $topic = Topic::find($topic_id);
+
 
         if (!$topic) {
             return null;
         }
 
-        $topic->likes()->attach($user_id);
+        $is_liked = $topic->likes()->where('user_id', $user_id)->exists();
+
+        if ($is_liked) {
+            $topic->likes()->detach($user_id);
+            return false;
+        } else {
+            $topic->likes()->attach($user_id, ['type' => 1]);
+            return true;
+        }
     }
 }

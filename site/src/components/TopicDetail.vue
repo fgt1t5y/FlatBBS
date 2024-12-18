@@ -27,14 +27,25 @@
     </div>
     <div>
       <ContentRenderer :html="topic.content" />
-      <RouterLink :to="`/board/${topic.board.slug}`">
+      <div class="flex justify-between">
+        <RouterLink :to="`/board/${topic.board.slug}`">
+          <button class="btn-air btn-md rounded-3xl" :title="topic.board.name">
+            {{ topic.board.name }}
+          </button>
+        </RouterLink>
         <button
-          class="btn btn-air btn-sm rounded-3xl"
-          :title="topic.board.name"
+          :class="{
+            'btn-md rounded-3xl': true,
+            'btn-primary': liked,
+            'btn-air': !liked,
+          }"
+          :title="$t('tooltip.like_this_topic')"
+          @click="emits('like')"
         >
-          {{ topic.board.name }}
+          <ThumbUp class="size-6 inline" />
+          <span>{{ $t(liked ? 'topic.liked' : 'action.like') }}</span>
         </button>
-      </RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -43,9 +54,10 @@
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import ContentRenderer from '@/components/ContentRenderer.vue'
+import UserPopover from './UserPopover.vue'
+import { ThumbUp } from '@vicons/tabler'
 
 import type { Topic } from '@/types'
-import UserPopover from './UserPopover.vue'
 
 defineOptions({
   name: 'TopicDetail',
@@ -53,7 +65,11 @@ defineOptions({
 
 interface TopicListDetailProps {
   topic: Topic
+  liked?: boolean
 }
 
 const props = defineProps<TopicListDetailProps>()
+const emits = defineEmits<{
+  (e: 'like'): void
+}>()
 </script>

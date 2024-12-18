@@ -1,7 +1,7 @@
 <template>
   <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
-    <TopicDetail :topic="topic" />
+    <TopicDetail :topic="topic" :liked="isLiked" @like="likeOrUnlike" />
     <div class="p-3 border-bt text-base font-bold">
       {{ $t('discussion.count', { count: discussions.length }) }}
     </div>
@@ -24,7 +24,7 @@ import MainContent from '@/components/MainContent.vue'
 import CommonList from '@/components/CommonList.vue'
 import DiscussionItem from '@/components/DiscussionItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { getDiscussions, getTopic } from '@/services'
+import { getDiscussions, getTopic, likeTopic } from '@/services'
 import { useRoute } from 'vue-router'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
@@ -32,14 +32,24 @@ import { usePagination, useRequest } from 'alova/client'
 import TopicDetail from '@/components/TopicDetail.vue'
 import { useTitle } from '@/utils'
 import { useI18n } from 'vue-i18n'
-import { onActivated } from 'vue'
+import { onActivated, ref } from 'vue'
+import { useUserStore } from '@/stores'
 
 const route = useRoute()
+const user = useUserStore()
+const isTopicLiked = ref<boolean>(false)
+const topicId = Number(route.params.topic_id)
 const { t } = useI18n()
 const { setTitle } = useTitle(t('topic.topic'))
 
-const topicId = Number(route.params.topic_id)
 let lastItemId = 0
+
+const { data: isLiked, send: likeOrUnlike } = useRequest(
+  () => likeTopic(topicId),
+  {
+    immediate: false,
+  },
+)
 
 const {
   loading: topicLoading,
@@ -49,6 +59,19 @@ const {
 } = useRequest(() => getTopic(topicId)).onSuccess(() => {
   setTitle(topic.value?.title)
   loadDiscissions()
+
+  const likedUsers = topic.value.likes
+
+  if (
+    !likedUsers ||
+    !user.isLogin ||
+    !Array.isArray(likedUsers) ||
+    !likedUsers.length
+  ) {
+    return false
+  }
+
+  isTopicLiked.value = likedUsers.some((like) => like.id === user.info?.id)
 })
 
 const {
