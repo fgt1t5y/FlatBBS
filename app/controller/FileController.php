@@ -3,7 +3,6 @@
 namespace app\controller;
 
 use DI\Attribute\Inject;
-use support\Gate;
 use support\Request;
 use app\service\FileService;
 
@@ -12,9 +11,10 @@ class FileController
     #[Inject]
     protected FileService $file;
 
-    #[Gate('file:create')]
     public function upload(Request $request)
     {
+        $request->assertLogin();
+
         $result = $this->file->upload($request->file(), true);
 
         if (!$result) {

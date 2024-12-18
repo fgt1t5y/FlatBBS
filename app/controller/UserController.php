@@ -8,7 +8,6 @@ use app\service\UserService;
 use app\service\AuthService;
 use support\Request;
 use DI\Attribute\Inject;
-use support\Gate;
 
 class UserController
 {
@@ -30,9 +29,10 @@ class UserController
         return ok($this->user->info($user_id, User::$basic_columns));
     }
 
-    #[Gate('user:modify')]
     public function modify(Request $request)
     {
+        $request->assertLogin();
+
         $field = $request->post('field', '');
         $value = $request->post('value', '');
         $user_id = session('id');
@@ -76,9 +76,10 @@ class UserController
         return ok($result);
     }
 
-    #[Gate('user:modify')]
     public function avatar(Request $request)
     {
+        $request->assertLogin();
+
         $file_array = $this->file->upload($request->file());
 
         if (!$file_array) {
@@ -99,6 +100,8 @@ class UserController
 
     public function password(Request $request)
     {
+        $request->assertLogin();
+
         $old_password = $request->post('old_password');
         $new_password = $request->post('new_password');
 

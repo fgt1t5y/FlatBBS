@@ -33,4 +33,11 @@ class Request extends \Webman\Http\Request
 
         return User::find($user_id);
     }
+
+    public function assertLogin()
+    {
+        if (!session()->has('id')) {
+            throw new APIException('i18n$exception.unauthorized', STATUS_UNAUTHORIZED);
+        }
+    }
 }
