@@ -23,7 +23,7 @@
             class="text-base flex gap-2 items-center hover:text-primary"
             :to="{ name: 'board_page', params: { slug: board.slug } }"
           >
-            <Avatar class="size-6" :src="board.avatar_uri" rounded />
+            <Avatar class="size-6" :src="board.avatar_uri" />
             <span>{{ board.name }}</span>
           </RouterLink>
         </div>
