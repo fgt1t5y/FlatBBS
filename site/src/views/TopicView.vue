@@ -1,7 +1,7 @@
 <template>
   <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
-    <TopicDetail :topic="topic" :liked="isLiked" @like="likeOrUnlike" />
+    <TopicDetail :topic="topic" :liked="isTopicLiked" @like="likeOrUnlike" />
     <div class="p-3 border-bt text-base font-bold">
       {{ $t('discussion.count', { count: discussions.length }) }}
     </div>
@@ -49,7 +49,9 @@ const { data: isLiked, send: likeOrUnlike } = useRequest(
   {
     immediate: false,
   },
-)
+).onSuccess(() => {
+  isTopicLiked.value = isLiked.value
+})
 
 const {
   loading: topicLoading,

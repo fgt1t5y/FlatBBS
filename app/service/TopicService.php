@@ -42,7 +42,6 @@ class TopicService
     {
         $topic = Topic::find($topic_id);
 
-
         if (!$topic) {
             return null;
         }
