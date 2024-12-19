@@ -9,14 +9,14 @@ use Carbon\Carbon;
 
 class TopicService
 {
-    public array $topic_detail_columns = ['id', 'board_id', 'author_id', 'title', 'content', 'created_at'];
+    public array $topic_detail_columns = ['id', 'board_id', 'author_id', 'like_count', 'title', 'content', 'created_at'];
 
     public function all(int $last_id, int $limit)
     {
         return Topic::orderByDesc('last_reply_at')
             ->limit(min($limit, 50))
             ->where('id', $last_id === 0 ? '>' : '<', $last_id)
-            ->get(['id', 'board_id', 'author_id', 'title', 'text', 'created_at']);
+            ->get(['id', 'board_id', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
     public function build(string $title, string $text, string $content, Board $board, User $author)
@@ -50,9 +50,13 @@ class TopicService
 
         if ($is_liked) {
             $topic->likes()->detach($user_id);
+            $topic->like_count--;
+            $topic->save();
             return false;
         } else {
             $topic->likes()->attach($user_id, ['type' => 1]);
+            $topic->like_count++;
+            $topic->save();
             return true;
         }
     }

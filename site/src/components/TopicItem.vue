@@ -29,17 +29,23 @@
           {{ topic.board.name }}
         </button>
       </RouterLink>
+      <div class="flex gap-2 items-center">
+        <Heart class="size-6" />
+        <span>{{ topic.like_count }}</span>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Topic } from '@/types'
 import { RouterLink } from 'vue-router'
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import { computed } from 'vue'
 import UserPopover from './UserPopover.vue'
+import { Heart } from '@vicons/tabler'
+
+import type { Topic } from '@/types'
 
 defineOptions({
   name: 'TopicItem',

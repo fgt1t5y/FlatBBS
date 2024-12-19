@@ -72,6 +72,7 @@ export interface Topic {
   board_id: number;
   author_id: number;
   reply_count: number;
+  like_count: number;
   created_at: string;
   last_reply_at: string;
   likes: User[];

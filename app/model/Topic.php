@@ -12,15 +12,6 @@ use app\model\User;
 
 class Topic extends AbstractModel
 {
-    public static $topicBasicFields = [
-        'id',
-        'title',
-        'author_id',
-        'board_id',
-        'reply_count',
-        'created_at'
-    ];
-
     protected $table = 'topics';
     protected $with = [
         'author:id,username,display_name,avatar_uri',

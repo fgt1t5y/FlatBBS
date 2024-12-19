@@ -77,6 +77,7 @@ class TopicController
         $request->assertLogin();
 
         $user_id = session('id');
+
         $is_liked = $this->topic->toggle_like($topic_id, $user_id);
 
         return ok($is_liked);

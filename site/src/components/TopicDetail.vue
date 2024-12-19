@@ -42,7 +42,7 @@
           :title="$t('tooltip.like_this_topic')"
           @click="emits('like')"
         >
-          <ThumbUp class="size-6 inline" />
+          <Heart class="size-6 inline" />
           <span>{{ $t(liked ? 'topic.liked' : 'action.like') }}</span>
         </button>
       </div>
@@ -55,7 +55,7 @@ import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import ContentRenderer from '@/components/ContentRenderer.vue'
 import UserPopover from './UserPopover.vue'
-import { ThumbUp } from '@vicons/tabler'
+import { Heart } from '@vicons/tabler'
 
 import type { Topic } from '@/types'
 
