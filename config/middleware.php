@@ -14,7 +14,5 @@
  */
 
 return [
-  '' => [
-    app\middleware\Auth::class
-  ]
+  '' => []
 ];
