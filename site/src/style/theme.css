@@ -103,6 +103,10 @@
     @apply z-10 flex items-center sticky top-0 shadow-md bg-content justify-center;
   }
 
+  .navbar-h {
+    height: 52px;
+  }
+
   button {
     @apply rounded whitespace-nowrap;
   }
@@ -131,6 +135,10 @@
 
   .w-full-page {
     max-width: 1000px;
+  }
+
+  .top-navbar-h {
+    top: 52px;
   }
 }
 

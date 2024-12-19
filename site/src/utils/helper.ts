@@ -52,7 +52,7 @@ export const formatTime = (datetime: string) => {
 
 export const breakpoint = useBreakpoints({
   mobile: 640,
-  pad: 810,
+  pad: 768,
 });
 
 export const resolveParagraph = (value: string) => {

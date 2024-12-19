@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" style="height: 52px">
+  <nav class="navbar navbar-h">
     <div class="w-full-page flex justify-between items-center grow px-3">
       <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
