@@ -23,9 +23,7 @@ Route::group('/user/{username}', function () {
 });
 
 Route::group('/board/{slug}', function () {
-    // 通过 BoardID 获取指定版块的信息
     Route::get('/info', [app\controller\BoardController::class, 'info']);
-    // 通过 BoardID 获取指定版块下的话题
     Route::get('/topics', [app\controller\BoardController::class, 'topics']);
 });
 
@@ -35,6 +33,5 @@ Route::group('/topic/{tid:\d+}', function () {
 });
 
 Route::group('/discussion/{tid:\d+}', function () {
-    // 通过 TopicID 获取指定话题下的讨论
     Route::get('/list', [app\controller\DiscussionController::class, 'list']);
 });

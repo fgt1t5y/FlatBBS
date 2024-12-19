@@ -1,12 +1,10 @@
 <template>
   <Navbar v-if="isDesktop" />
-  <div id="flatbbs" class="flex gap-3 my-0 mx-auto w-full-page">
-    <RouterView v-slot="{ Component, route }">
-      <KeepAlive :max="10">
-        <component :is="Component" :key="route.fullPath" />
-      </KeepAlive>
-    </RouterView>
-  </div>
+  <RouterView v-slot="{ Component, route }">
+    <KeepAlive :max="10">
+      <component :is="Component" :key="route.fullPath" />
+    </KeepAlive>
+  </RouterView>
   <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
   <Message />
 </template>
