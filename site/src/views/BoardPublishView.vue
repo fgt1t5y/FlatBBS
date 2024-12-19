@@ -36,9 +36,9 @@
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
-import { useWatcher, useRequest } from 'alova/client'
+import { useRequest } from 'alova/client'
 import { getBoardInfo, publishTopic } from '@/services'
-import { computed, onActivated, ref } from 'vue'
+import { onActivated, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTitle } from '@/utils'
 import router from '@/router'
@@ -49,12 +49,14 @@ const route = useRoute()
 const ms = useMessage()
 const { t } = useI18n()
 const { setTitle } = useTitle(t('action.publish'))
-const currentSlug = computed(() => route.params.slug as string)
+
 const topicDraft = ref({
   title: '',
   text: '',
   content: '',
 })
+
+const slug = route.params.slug as string
 
 const checkForm = () => {
   if (!topicDraft.value.title.trim()) {
@@ -68,14 +70,14 @@ const {
   loading: boardInfoLoading,
   data: boardInfo,
   error: boardInfoError,
-  onSuccess: onBoardInfoSuccess,
   send: loadBoardInfo,
-} = useWatcher(() => getBoardInfo(currentSlug.value), [currentSlug])
+} = useRequest(() => getBoardInfo(slug)).onSuccess(() => {
+  setTitle(boardInfo.value.name)
+})
 
 const {
   loading: topicPublishing,
   data: topic,
-  onSuccess: onTopicPulished,
   send: handlePublishTopic,
 } = useRequest(
   () =>
@@ -88,18 +90,14 @@ const {
   {
     immediate: false,
   },
-)
-
-onBoardInfoSuccess(() => {
-  setTitle(boardInfo.value.name)
-})
-
-onTopicPulished(() => {
+).onSuccess(() => {
   ms.success(t('message.publish_topic_success'))
   router.replace(`/topic/${topic.value.id}`)
 })
 
 onActivated(() => {
-  loadBoardInfo()
+  if (boardInfo.value?.name) {
+    setTitle(boardInfo.value.name)
+  }
 })
 </script>

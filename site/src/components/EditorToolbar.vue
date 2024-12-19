@@ -22,6 +22,7 @@
         'btn-text': true,
         'btn-text-active': tool.isActive(),
       }"
+      :title="$t(`editor.tool.${tool.name}`)"
       @click="tool.onClick"
     >
       <component :is="tool.icon" class="size-6" />
@@ -83,7 +84,7 @@ const uploadAndInsertImage = () => {
 
 const editorTools = [
   {
-    name: 'heading-1',
+    name: 'heading_1',
     icon: H1,
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 1 }).run(),
@@ -91,7 +92,7 @@ const editorTools = [
     enable: () => true,
   },
   {
-    name: 'heading-2',
+    name: 'heading_2',
     icon: H2,
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 2 }).run(),
@@ -113,14 +114,14 @@ const editorTools = [
     enable: () => true,
   },
   {
-    name: 'bullet-list',
+    name: 'bullet_list',
     icon: List,
     onClick: () => props?.editor.chain().focus().toggleBulletList().run(),
     isActive: () => props?.editor.isActive('bulletList'),
     enable: () => true,
   },
   {
-    name: 'ordered-list',
+    name: 'ordered_list',
     icon: ListNumbers,
     onClick: () => props?.editor.chain().focus().toggleOrderedList().run(),
     isActive: () => props?.editor.isActive('orderedList'),

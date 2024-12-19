@@ -14,10 +14,12 @@ import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
 import { onBeforeUnmount } from 'vue'
 import EditorToolbar from './EditorToolbar.vue'
+import { useI18n } from 'vue-i18n'
 
 const htmlValue = defineModel<string>('html', { default: '<p></p>' })
 const textValue = defineModel<string>('text', { default: '' })
 
+const { t } = useI18n()
 const editor = useEditor({
   content: '',
   extensions: [
@@ -30,7 +32,7 @@ const editor = useEditor({
       },
     }),
     Placeholder.configure({
-      placeholder: '点击输入内容',
+      placeholder: t('editor.default_placeholder'),
     }),
     Link.configure({
       openOnClick: false,

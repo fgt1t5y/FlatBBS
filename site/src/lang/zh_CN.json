@@ -114,5 +114,22 @@
 
   "tooltip": {
     "like_this_topic": "喜欢这个话题"
+  },
+
+  "editor": {
+    "default_placeholder": "点击输入内容...",
+
+    "tool": {
+      "heading_1": "一级标题",
+      "heading_2": "二级标题",
+      "bold": "粗体",
+      "italic": "斜体",
+      "bullet_list": "无序列表",
+      "ordered_list": "有序列表",
+      "blockquote": "块引用",
+      "image": "图片",
+      "undo": "撤销",
+      "redo": "重做"
+    }
   }
 }

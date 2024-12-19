@@ -162,7 +162,7 @@ export const sanitizer = (doc: any) => {
       'li',
       'img',
       'strong',
-      'i',
+      'em',
       'blockquote',
     ],
   })(doc);

@@ -77,7 +77,12 @@ foreach (config('plugin', []) as $firm => $projects) {
         Middleware::load($project['middleware'] ?? []);
     }
     Middleware::load($projects['middleware'] ?? [], $firm);
+    if ($staticMiddlewares = config("plugin.$firm.static.middleware")) {
+        // Middleware::load(['__static__' => $staticMiddlewares], $firm);
+    }
 }
+
+// Middleware::load(['__static__' => config('static.middleware', [])]);
 
 foreach (config('bootstrap', []) as $className) {
     if (!class_exists($className)) {

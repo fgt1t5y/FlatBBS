@@ -114,5 +114,22 @@
 
   "tooltip": {
     "like_this_topic": "Like this topic."
+  },
+
+  "editor": {
+    "default_placeholder": "Type content here...",
+
+    "tool": {
+      "heading_1": "Heading 1",
+      "heading_2": "Heading 2",
+      "bold": "Bold",
+      "italic": "Italic",
+      "bullet_list": "Bullet List",
+      "ordered_list": "Ordered List",
+      "blockquote": "Blockquote",
+      "image": "Upload Image",
+      "undo": "Undo",
+      "redo": "Redo"
+    }
   }
 }
