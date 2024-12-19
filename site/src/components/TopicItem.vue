@@ -29,8 +29,8 @@
           {{ topic.board.name }}
         </button>
       </RouterLink>
-      <div class="flex gap-2 items-center">
-        <Heart class="size-6" />
+      <div class="flex gap-1 items-center text-muted">
+        <Heart class="size-5" />
         <span>{{ topic.like_count }}</span>
       </div>
     </div>

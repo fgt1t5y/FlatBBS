@@ -23,6 +23,8 @@ export const alovaInstance = createAlova({
       }
 
       if (json.code !== window.$code.OK) {
+        const ms = useMessage();
+        ms.error(json.message || 'Network Error');
         throw new Error(json.message || 'Network Error');
       }
 
