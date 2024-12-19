@@ -9,7 +9,7 @@
         v-show="isPositioned"
         ref="userPopoverRef"
         role="tooltip"
-        class="shadow-lg rounded p-3 auto-color panel-border"
+        class="shadow-lg rounded p-3 bg-content border border-content"
         :style="{
           width: '400px',
           ...floatingStyles,

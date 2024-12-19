@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{
-      'auto-color flex gap-3 py-3': true,
+      'bg-content flex gap-3 py-3': true,
       'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
     }"
   >

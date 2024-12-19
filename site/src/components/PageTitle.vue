@@ -1,5 +1,5 @@
 <template>
-  <div class="page-title px-3 border-bt auto-color" :title="title">
+  <div class="page-title px-3 border-bt bg-content" :title="title">
     <div class="flex gap-2 w-full items-center">
       <button
         v-if="showBackButton"

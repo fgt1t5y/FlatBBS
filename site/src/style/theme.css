@@ -9,8 +9,20 @@
     @apply text-indigo-600 dark:text-indigo-400;
   }
 
+  .text-content {
+    @apply text-gray-900 dark:text-gray-300;
+  }
+
   .bg-primary {
     @apply bg-indigo-600;
+  }
+
+  .bg-content {
+    @apply bg-white dark:bg-black;
+  }
+
+  .border-content {
+    @apply border-gray-300 dark:border-gray-700;
   }
 
   .outline-primary {
@@ -64,7 +76,7 @@
 
 @layer components {
   .btn-primary {
-    @apply text-white bg-indigo-600 transition-all hover:bg-indigo-700 focus-within:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+    @apply text-white bg-primary transition-all hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
 
   .btn-air {
@@ -72,7 +84,7 @@
   }
 
   .btn-text {
-    @apply text-black hover:text-primary dark:text-gray-300 disabled:opacity-50;
+    @apply text-content hover:text-primary disabled:opacity-50;
   }
 
   .btn-text-active {
@@ -84,7 +96,7 @@
   }
 
   .navbar {
-    @apply z-10 flex items-center sticky top-0 shadow-md auto-color justify-center;
+    @apply z-10 flex items-center sticky top-0 shadow-md bg-content justify-center;
   }
 
   button {
@@ -106,22 +118,14 @@
   }
 
   .border-bt {
-    @apply border-b border-gray-300 dark:border-gray-700;
+    @apply border-b border-content;
   }
 
   .border-tp {
-    @apply border-t border-gray-300 dark:border-gray-700;
+    @apply border-t border-content;
   }
 
   .w-full-page {
     max-width: 1000px;
-  }
-
-  .auto-color {
-    @apply bg-white dark:bg-black;
-  }
-
-  .panel-border {
-    @apply border border-solid border-neutral-200 dark:border-neutral-800;
   }
 }
