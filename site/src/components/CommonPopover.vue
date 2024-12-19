@@ -36,12 +36,14 @@ interface CommonPopoverProps {
   duration?: number | false
   placement?: Placement
   trigger?: 'hover' | 'click'
+  unmountOnClose?: boolean
 }
 
 const props = withDefaults(defineProps<CommonPopoverProps>(), {
   duration: false,
   placement: 'bottom',
   trigger: 'hover',
+  unmountOnClose: true,
 })
 const emits = defineEmits<{
   (e: 'show'): void
@@ -76,6 +78,10 @@ const openPopover = () => {
 const closePopover = () => {
   emits('close')
   showPopover.value = false
+
+  if (props.unmountOnClose) {
+    mountPopover.value = false
+  }
 }
 
 const clearTimer = () => {
