@@ -1,5 +1,5 @@
 <template>
-  <div class="border-bt">
+  <div>
     <EditorToolbar v-if="editor" :editor="editor" />
     <div v-else></div>
     <EditorContent :editor="editor" />

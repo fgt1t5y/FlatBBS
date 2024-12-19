@@ -17,7 +17,7 @@
         </button>
       </template>
     </PageTitle>
-    <div class="p-3 flex flex-col">
+    <div class="p-3 flex flex-col border-bt">
       <input
         v-model="topicDraft.title"
         class="text-lg"

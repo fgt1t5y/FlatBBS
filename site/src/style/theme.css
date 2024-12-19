@@ -21,6 +21,10 @@
     @apply bg-white dark:bg-black;
   }
 
+  .border-primary {
+    @apply border-indigo-600;
+  }
+
   .border-content {
     @apply border-gray-300 dark:border-gray-700;
   }
@@ -54,7 +58,7 @@
   }
 
   p:has(img) {
-    @apply text-center;
+    @apply flex flex-col items-center text-muted;
   }
 
   p ul {
@@ -70,7 +74,7 @@
   }
 
   p img {
-    @apply inline-block sm:max-w-lg;
+    @apply sm:max-w-lg;
   }
 }
 
@@ -128,4 +132,8 @@
   .w-full-page {
     max-width: 1000px;
   }
+}
+
+.ProseMirror-selectednode {
+  @apply outline outline-2 outline-primary;
 }
