@@ -1,20 +1,8 @@
 <template>
-  <div @mouseleave="onMouseLeave">
-    <div ref="triggerRef" @mouseenter="onMouseEnter">
-      <slot />
-    </div>
-    <Transition>
-      <div
-        v-if="popoverMounted"
-        v-show="isPositioned"
-        ref="userPopoverRef"
-        role="tooltip"
-        class="shadow-lg rounded p-3 bg-content border border-content"
-        :style="{
-          width: '400px',
-          ...floatingStyles,
-        }"
-      >
+  <CommonPopover :duration="1200" @show="loadUserDetail">
+    <slot />
+    <template #body>
+      <div class="p-3" style="max-width: 400px;">
         <div v-if="loading" class="flex justify-center">
           <Loader class="size-12 animate-spin" />
         </div>
@@ -31,17 +19,17 @@
           </div>
         </div>
       </div>
-    </Transition>
-  </div>
+    </template>
+  </CommonPopover>
 </template>
 
 <script setup lang="ts">
 import { getUserDetail } from '@/services'
-import { autoUpdate, useFloating } from '@floating-ui/vue'
 import { useRequest } from 'alova/client'
-import { onDeactivated, ref } from 'vue'
+import { ref } from 'vue'
 import { Loader } from '@vicons/tabler'
 import Avatar from './Avatar.vue'
+import CommonPopover from './CommonPopover.vue'
 
 import type { User } from '@/types'
 
@@ -56,64 +44,21 @@ interface UserPopoverProps {
 
 const props = defineProps<UserPopoverProps>()
 
-const triggerRef = ref<HTMLElement>()
-const userPopoverRef = ref<HTMLElement>()
-const popoverMounted = ref(false)
-const showPopover = ref(false)
 const user = ref<User | undefined>(props.initialData)
-let timerId: number | null = null
-
-const { floatingStyles, isPositioned } = useFloating(
-  triggerRef,
-  userPopoverRef,
-  {
-    placement: 'bottom-start',
-    open: showPopover,
-    whileElementsMounted: autoUpdate,
-  },
-)
 
 const { send, loading } = useRequest(() => getUserDetail(props.userId), {
   immediate: false,
 })
 
-const clearTimer = () => {
-  if (!timerId) {
+const loadUserDetail = () => {
+  if (user.value) {
     return
   }
 
-  window.clearTimeout(timerId)
-  timerId = null
-}
-
-const onMouseEnter = () => {
-  if (timerId) {
-    return
-  }
-
-  timerId = window.setTimeout(() => {
-    // mount the popover when mouse enter element only
-    popoverMounted.value = true
-
-    window.clearTimeout(timerId!)
-    showPopover.value = true
-
-    if (user.value) {
-      return
+  send().then((_user) => {
+    if (_user) {
+      user.value = _user
     }
-
-    send().then((_user) => {
-      if (_user) {
-        user.value = _user
-      }
-    })
-  }, 1200)
+  })
 }
-
-const onMouseLeave = () => {
-  clearTimer()
-  showPopover.value = false
-}
-
-onDeactivated(clearTimer)
 </script>
