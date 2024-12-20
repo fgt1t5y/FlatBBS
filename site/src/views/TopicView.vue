@@ -1,7 +1,12 @@
 <template>
   <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
-    <TopicDetail :topic="topic" :liked="isTopicLiked" @like="likeOrUnlike" />
+    <TopicDetail
+      :topic="topic"
+      :liked="isTopicLiked"
+      :like-count="currentLikeCount"
+      @like="likeOrUnlike"
+    />
     <div class="p-3 border-bt text-base font-bold">
       {{ $t('discussion.count', { count: discussions.length }) }}
     </div>
@@ -38,19 +43,22 @@ import { useUserStore } from '@/stores'
 const route = useRoute()
 const user = useUserStore()
 const isTopicLiked = ref<boolean>(false)
+const currentLikeCount = ref<number>(0)
 const topicId = Number(route.params.topic_id)
 const { t } = useI18n()
 const { setTitle } = useTitle(t('topic.topic'))
 
 let lastItemId = 0
 
-const { data: isLiked, send: likeOrUnlike } = useRequest(
+const { data: likeCount, send: likeOrUnlike } = useRequest(
   () => likeTopic(topicId),
   {
     immediate: false,
   },
 ).onSuccess(() => {
-  isTopicLiked.value = isLiked.value
+  isTopicLiked.value = !isTopicLiked.value
+
+  currentLikeCount.value = likeCount.value
 })
 
 const {
@@ -74,6 +82,7 @@ const {
   }
 
   isTopicLiked.value = likedUsers.some((like) => like.id === user.info?.id)
+  currentLikeCount.value = topic.value.like_count
 })
 
 const {

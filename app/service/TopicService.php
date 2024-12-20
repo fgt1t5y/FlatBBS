@@ -52,12 +52,12 @@ class TopicService
             $topic->likes()->detach($user_id);
             $topic->like_count--;
             $topic->save();
-            return false;
         } else {
             $topic->likes()->attach($user_id, ['type' => 1]);
             $topic->like_count++;
             $topic->save();
-            return true;
         }
+
+        return $topic->like_count;
     }
 }

@@ -43,7 +43,7 @@
           @click="emits('like')"
         >
           <Heart class="size-5 inline" />
-          <span>{{ $t(liked ? 'topic.liked' : 'action.like') }}</span>
+          <span class="h-5 ml-1">{{ likeCount }}</span>
         </button>
       </div>
     </div>
@@ -65,6 +65,7 @@ defineOptions({
 
 interface TopicListDetailProps {
   topic: Topic
+  likeCount?: number
   liked?: boolean
 }
 

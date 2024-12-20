@@ -29,5 +29,5 @@ export const publishTopic = (
 };
 
 export const likeTopic = (topic_id: number) => {
-  return alovaInstance.Post<boolean>(`/topic/${topic_id}/like`);
+  return alovaInstance.Post<number>(`/topic/${topic_id}/like`);
 };
