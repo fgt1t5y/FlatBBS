@@ -44,7 +44,7 @@
             >
               {{ $t('page.settings') }}
             </button>
-            <button class="btn-md btn-air" @click="user.quit">
+            <button class="btn-md btn-air danger" @click="user.quit">
               {{ $t('action.logout') }}
             </button>
           </div>

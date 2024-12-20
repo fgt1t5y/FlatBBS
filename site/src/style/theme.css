@@ -85,6 +85,10 @@
 
   .btn-air {
     @apply rounded transition-all text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+
+    &.danger {
+      @apply bg-opacity-50 bg-red-200 text-red-600 hover:bg-opacity-70 dark:bg-opacity-50 dark:text-white dark:bg-red-300 dark:hover:bg-opacity-40;
+    }
   }
 
   .btn-text {
