@@ -80,11 +80,11 @@
 
 @layer components {
   .btn-primary {
-    @apply text-white bg-primary transition-all hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+    @apply rounded transition-all text-white bg-primary hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
 
   .btn-air {
-    @apply text-black bg-gray-100 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+    @apply rounded transition-all text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
   }
 
   .btn-text {
@@ -108,7 +108,7 @@
   }
 
   button {
-    @apply rounded whitespace-nowrap;
+    @apply whitespace-nowrap;
   }
 
   button:disabled {

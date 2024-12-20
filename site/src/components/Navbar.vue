@@ -28,18 +28,23 @@
             class="absolute h-0 w-0"
             tabindex="0"
           ></div>
-          <div class="text-base">
-            <b>{{ user.info.display_name }}</b>
-            <span class="text-muted">@{{ user.info.username }}</span>
+          <div class="text-base flex gap-2 mb-2">
+            <div class="shrink-0">
+              <Avatar class="size-14" :src="user.info.avatar_uri" rounded />
+            </div>
+            <div>
+              <b>{{ user.info.display_name }}</b>
+              <span class="text-muted">@{{ user.info.username }}</span>
+            </div>
           </div>
-          <div class="flex flex-col gap-2">
+          <div class="flex gap-1">
             <button
-              class="btn-air btn-md"
+              class="btn-md btn-air grow"
               @click="$router.push({ name: 'settings_page' })"
             >
               {{ $t('page.settings') }}
             </button>
-            <button class="btn-air btn-md" @click="user.quit">
+            <button class="btn-md btn-air" @click="user.quit">
               {{ $t('action.logout') }}
             </button>
           </div>
