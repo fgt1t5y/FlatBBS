@@ -40,7 +40,7 @@
           <div class="flex gap-1">
             <button
               class="btn-md btn-air grow"
-              @click="$router.push({ name: 'settings_page' })"
+              @click="$router.push({ name: 'settings' })"
             >
               {{ $t('page.settings') }}
             </button>

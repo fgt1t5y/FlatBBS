@@ -15,7 +15,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   if (hasToken()) {
     if (to.meta?.guestOnly) {
-      return { name: 'home_page' };
+      return { name: 'home' };
     }
   } else {
     if (to.meta?.memberOnly) {

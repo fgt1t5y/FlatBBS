@@ -5,7 +5,7 @@
         <RouterLink
           class="flex gap-2"
           :to="{
-            name: 'user_page',
+            name: 'user',
             params: { username: topic.author.username },
           }"
         >
@@ -16,7 +16,10 @@
       <RelativeTime :time="topic.created_at" />
     </div>
     <div class="text-lg">
-      <RouterLink :to="`/topic/${topic.id}`" :title="topic.title">
+      <RouterLink
+        :to="{ name: 'topic', params: { topic_id: topic.id } }"
+        :title="topic.title"
+      >
         {{ topic.title }}
       </RouterLink>
     </div>
@@ -24,7 +27,7 @@
       {{ previewText }}
     </div>
     <div class="flex justify-between">
-      <RouterLink :to="`/board/${topic.board.slug}`">
+      <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
         <button class="btn-air btn-sm rounded-3xl">
           {{ topic.board.name }}
         </button>

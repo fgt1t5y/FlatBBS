@@ -21,7 +21,7 @@
         <div v-for="board in boards">
           <RouterLink
             class="text-base flex gap-2 items-center hover:text-primary"
-            :to="{ name: 'board_page', params: { slug: board.slug } }"
+            :to="{ name: 'board', params: { slug: board.slug } }"
           >
             <Avatar class="size-6" :src="board.avatar_uri" />
             <span>{{ board.name }}</span>

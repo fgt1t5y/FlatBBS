@@ -3,7 +3,7 @@
     <UserPopover :user-id="discussion.author.id">
       <RouterLink
         :to="{
-          name: 'user_page',
+          name: 'user',
           params: { username: discussion.author.username },
         }"
       >
@@ -18,7 +18,7 @@
       <div class="flex gap-2">
         <RouterLink
           :to="{
-            name: 'user_page',
+            name: 'user',
             params: { username: discussion.author.username },
           }"
         >

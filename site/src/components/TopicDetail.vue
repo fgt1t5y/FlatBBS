@@ -4,7 +4,7 @@
       <UserPopover :user-id="topic.author.id">
         <RouterLink
           :to="{
-            name: 'user_page',
+            name: 'user',
             params: { username: topic.author.username },
           }"
         >
@@ -17,7 +17,7 @@
       </UserPopover>
       <RouterLink
         :to="{
-          name: 'user_page',
+          name: 'user',
           params: { username: topic.author.username },
         }"
       >
@@ -28,7 +28,7 @@
     <div>
       <ContentRenderer :html="topic.content" />
       <div class="flex justify-between">
-        <RouterLink :to="`/board/${topic.board.slug}`">
+        <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
           <button class="btn-air btn-sm rounded-3xl" :title="topic.board.name">
             {{ topic.board.name }}
           </button>

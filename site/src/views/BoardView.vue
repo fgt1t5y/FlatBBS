@@ -28,7 +28,7 @@
       @retry="loadTopics"
     />
     <template #panels>
-      <RouterLink :to="`/board/${slug}/publish`">
+      <RouterLink :to="{ name: 'board_publish', params: { slug: slug } }">
         <button class="btn-primary btn-md w-full">
           {{ $t('action.publish_topic') }}
         </button>

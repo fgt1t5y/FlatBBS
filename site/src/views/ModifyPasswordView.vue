@@ -63,7 +63,7 @@ const actionSubmit = () => {
   modifyPassword(modifyForm.value.old_password, modifyForm.value.new_password)
     .then(() => {
       clearToken()
-      router.replace({ name: 'home_page' }).then(() => {
+      router.replace({ name: 'home' }).then(() => {
         location.reload()
       })
     })

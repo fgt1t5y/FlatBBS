@@ -5,7 +5,7 @@ import type { RouteRecordRaw } from 'vue-router';
 export const mainRoutes = [
   {
     path: '/',
-    name: 'home_page',
+    name: 'home',
     component: HomeView,
     meta: {
       showBottomNav: true,
@@ -13,12 +13,12 @@ export const mainRoutes = [
   },
   {
     path: '/board/:slug',
-    name: 'board_page',
+    name: 'board',
     component: BoardView,
   },
   {
     path: '/board/:slug/publish',
-    name: 'board_publish_page',
+    name: 'board_publish',
     component: () => import('@/views/BoardPublishView.vue'),
     meta: {
       memberOnly: true,
@@ -26,12 +26,12 @@ export const mainRoutes = [
   },
   {
     path: '/topic/:topic_id(\\d+)',
-    name: 'topic_detail_page',
+    name: 'topic',
     component: () => import('@/views/TopicView.vue'),
   },
   {
     path: '/settings',
-    name: 'settings_page',
+    name: 'settings',
     component: () => import('@/views/SettingsView.vue'),
     meta: {
       memberOnly: true,
@@ -39,7 +39,7 @@ export const mainRoutes = [
   },
   {
     path: '/user/:username',
-    name: 'user_page',
+    name: 'user',
     component: () => import('@/views/UserView.vue'),
   },
   {
@@ -52,12 +52,12 @@ export const mainRoutes = [
   },
   {
     path: '/search',
-    name: 'search_page',
+    name: 'search',
     component: () => import('@/views/SearchView.vue'),
   },
   {
     path: '/boards',
-    name: 'board_list_page',
+    name: 'board_list',
     component: () => import('@/views/BoardListView.vue'),
     meta: {
       showBottomNav: true,
@@ -73,7 +73,7 @@ export const mainRoutes = [
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'not_found_page',
+    name: 'not_found',
     component: () => import('@/views/NotFoundView.vue'),
     meta: {
       showBottomNav: true,

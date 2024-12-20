@@ -751,6 +751,9 @@ const classes: Record<string, Record<string, boolean>> = {
   },
   form__form: {
     'group/form': true,
+    flex: true,
+    'flex-col': true,
+    'gap-3': true,
   },
   form__actions: {
     '': true,
@@ -988,7 +991,6 @@ const classes: Record<string, Record<string, boolean>> = {
     'max-w-[20em]': true,
     'min-w-0': true,
     grow: true,
-    'mb-4': true,
     'data-[disabled]:select-none': true,
     'text-base': true,
     'data-[disabled]:opacity-100': true,
@@ -3326,7 +3328,6 @@ const globals: Record<string, Record<string, boolean>> = {
     'max-w-nonw': true,
     'min-w-0': true,
     grow: true,
-    'mb-4': true,
     'data-[disabled]:select-none': true,
     'data-[disabled]:opacity-50': true,
     'text-base': true,
