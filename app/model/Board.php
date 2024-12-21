@@ -4,7 +4,7 @@ namespace app\model;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
-use app\casts\FullPath;
+use app\cast\FullPath;
 
 class Board extends AbstractModel
 {

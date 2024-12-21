@@ -2,7 +2,7 @@
 
 namespace app\model;
 
-use app\casts\FullPath;
+use app\cast\FullPath;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
