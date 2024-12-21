@@ -21,7 +21,7 @@ export const mainRoutes = [
     name: 'board_publish',
     component: () => import('@/views/BoardPublishView.vue'),
     meta: {
-      memberOnly: true,
+      userOnly: true,
     },
   },
   {
@@ -34,7 +34,7 @@ export const mainRoutes = [
     name: 'settings',
     component: () => import('@/views/SettingsView.vue'),
     meta: {
-      memberOnly: true,
+      userOnly: true,
     },
   },
   {
@@ -47,7 +47,7 @@ export const mainRoutes = [
     name: 'modify_password',
     component: () => import('@/views/ModifyPasswordView.vue'),
     meta: {
-      memberOnly: true,
+      userOnly: true,
     },
   },
   {
@@ -65,7 +65,7 @@ export const mainRoutes = [
   },
   {
     path: '/auth',
-    name: 'auth_page',
+    name: 'auth',
     component: () => import('@/views/AuthView.vue'),
     meta: {
       guestOnly: true,

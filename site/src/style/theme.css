@@ -37,6 +37,10 @@
     @apply text-primary;
   }
 
+  .menu-item.router-link-exact-active {
+    @apply bg-primary hover:bg-primary text-white;
+  }
+
   .text-muted {
     @apply text-gray-500 dark:text-gray-400;
   }
@@ -107,8 +111,12 @@
     @apply z-10 flex items-center sticky top-0 shadow-md bg-content justify-center;
   }
 
-  .navbar-h {
+  .h-navbar {
     height: 52px;
+  }
+
+  .menu-item {
+    @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200;
   }
 
   button {

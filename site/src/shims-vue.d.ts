@@ -16,8 +16,9 @@ declare global {
 declare module 'vue-router' {
   interface RouteMeta {
     title?: string;
-    memberOnly?: boolean;
+    userOnly?: boolean;
     guestOnly?: boolean;
+    adminOnly?: boolean;
     showBottomNav?: boolean;
   }
 }

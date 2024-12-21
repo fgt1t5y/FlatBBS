@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { acceptHMRUpdate, defineStore } from 'pinia';
 import { ref } from 'vue';
 
 import type { IMessage } from '@/types';
@@ -60,3 +60,7 @@ export const useMessage = defineStore('message', () => {
 
   return { messages, add, info, success, error, close };
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useMessage, import.meta.hot))
+}

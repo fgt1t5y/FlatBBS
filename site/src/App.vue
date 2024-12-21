@@ -11,8 +11,8 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { useUserStore, useTheme } from './stores'
-import { getOrSet, hasToken, set } from './utils'
+import { useTheme } from './stores'
+import { getOrSet, set } from './utils'
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
@@ -26,13 +26,8 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import LocalizedFormat from 'dayjs/plugin/localizedFormat'
 
-const user = useUserStore()
 const theme = useTheme()
 theme.init()
-
-if (hasToken()) {
-  user.fetch()
-}
 
 const { locale } = useI18n()
 const preferLang = window.navigator.language.replace('-', '_')

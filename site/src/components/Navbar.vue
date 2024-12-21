@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-h">
+  <nav class="navbar h-navbar">
     <div class="w-full-page flex justify-between items-center grow px-3">
       <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
@@ -37,6 +37,11 @@
               <span class="text-muted">@{{ user.info.username }}</span>
             </div>
           </div>
+          <a href="/_admin" target="_blank">
+            <button v-if="user.isAdmin" class="btn-md btn-air w-full mb-2">
+              Admin
+            </button>
+          </a>
           <div class="flex gap-1">
             <button
               class="btn-md btn-air grow"
