@@ -6,7 +6,7 @@
       :item="item"
       :index="index"
     />
-    <div v-if="isEnd && items.length" class="text-center text-lg mt-2">
+    <div v-if="isEnd && items" class="text-center text-muted p-3 border-bt">
       {{ $t('message.list_no_more') }}
     </div>
   </div>

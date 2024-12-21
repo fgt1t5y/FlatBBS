@@ -27,6 +27,7 @@
       <TiptapEditor
         v-model:text="topicDraft.text"
         v-model:html="topicDraft.content"
+        show-toolbar
       />
     </div>
   </MainContent>

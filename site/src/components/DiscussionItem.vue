@@ -1,6 +1,6 @@
 <template>
   <div class="item p-3 border-bt flex gap-2">
-    <UserPopover :user-id="discussion.author.id">
+    <UserPopover class="shrink-0" :user-id="discussion.author.id">
       <RouterLink
         :to="{
           name: 'user',

@@ -62,6 +62,10 @@ input {
   outline: none;
   font-size: 1rem;
   min-height: 150px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .tiptap p.is-editor-empty:first-child::before {

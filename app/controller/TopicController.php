@@ -46,7 +46,7 @@ class TopicController
         $topic = $this->topic->build($title, $text, $content, $board, $author);
         $topic->save();
 
-        $board->topic_count = $board->topic_count + 1;
+        $board->topic_count++;
         $board->save();
 
         return ok($topic);

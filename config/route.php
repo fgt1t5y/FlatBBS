@@ -34,4 +34,5 @@ Route::group('/topic/{tid:\d+}', function () {
 
 Route::group('/discussion/{tid:\d+}', function () {
     Route::get('/list', [app\controller\DiscussionController::class, 'list']);
+    Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
 });

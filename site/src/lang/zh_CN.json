@@ -41,7 +41,8 @@
   },
 
   "discussion": {
-    "count": "{count} 条讨论"
+    "count": "{count} 条讨论",
+    "publish": "发布讨论"
   },
 
   "message": {

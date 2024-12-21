@@ -41,7 +41,8 @@
   },
 
   "discussion": {
-    "count": "{count} discussion(s)"
+    "count": "{count} discussion(s)",
+    "publish": "Publish"
   },
 
   "message": {

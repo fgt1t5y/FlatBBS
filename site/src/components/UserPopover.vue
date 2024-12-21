@@ -1,8 +1,8 @@
 <template>
-  <CommonPopover :duration="1200" @show="loadUserDetail">
+  <CommonPopover :class="$attrs.class" :duration="1200" @show="loadUserDetail">
     <slot />
     <template #body>
-      <div class="p-3" style="max-width: 400px;">
+      <div class="p-3" style="max-width: 400px">
         <div v-if="loading" class="flex justify-center">
           <Loader class="size-12 animate-spin" />
         </div>

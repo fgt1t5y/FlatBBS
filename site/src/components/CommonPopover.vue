@@ -1,6 +1,11 @@
 <template>
   <div @mouseleave="onMouseLeave">
-    <div ref="wrapperRef" @mouseenter="onMouseEnter" @click="onClick">
+    <div
+      ref="wrapperRef"
+      :class="$attrs.class"
+      @mouseenter="onMouseEnter"
+      @click="onClick"
+    >
       <slot />
     </div>
 

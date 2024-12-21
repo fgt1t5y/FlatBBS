@@ -7,10 +7,10 @@
       :like-count="currentLikeCount"
       @like="likeOrUnlike"
     />
-    <div class="p-3 border-bt text-base font-bold">
+    <div class="p-3 text-base font-bold">
       {{ $t('discussion.count', { count: discussions.length }) }}
     </div>
-    <CommonList :items="discussions">
+    <CommonList :items="discussions" :is-end="isLastPage">
       <template #default="{ item, index }">
         <DiscussionItem :discussion="item" :index="index" />
       </template>
@@ -21,6 +21,31 @@
       :error="error"
       @retry="loadDiscissions"
     />
+    <div v-if="topic && user.isLogin" class="p-3 border-bt">
+      <div class="flex gap-2">
+        <Avatar
+          class="size-8 md:size-12"
+          :src="user.info?.avatar_uri"
+          rounded
+        />
+        <div class="grow">
+          <TiptapEditor
+            ref="discussionEditor"
+            v-model:text="discussionEditorText"
+            v-model:html="discussionEditorContent"
+          />
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button
+          class="btn-primary btn-md"
+          :disabled="!discussionEditorText || discussionPublishing"
+          @click="handlePublishDiscussion"
+        >
+          {{ $t('discussion.publish') }}
+        </button>
+      </div>
+    </div>
   </MainContent>
 </template>
 
@@ -29,7 +54,12 @@ import MainContent from '@/components/MainContent.vue'
 import CommonList from '@/components/CommonList.vue'
 import DiscussionItem from '@/components/DiscussionItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { getDiscussions, getTopic, likeTopic } from '@/services'
+import {
+  getDiscussions,
+  getTopic,
+  likeTopic,
+  publishDiscussion,
+} from '@/services'
 import { useRoute } from 'vue-router'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
@@ -39,14 +69,20 @@ import { useTitle } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import { onActivated, ref } from 'vue'
 import { useUserStore } from '@/stores'
+import Avatar from '@/components/Avatar.vue'
+import TiptapEditor from '@/components/TiptapEditor.vue'
 
 const route = useRoute()
 const user = useUserStore()
 const isTopicLiked = ref<boolean>(false)
 const currentLikeCount = ref<number>(0)
-const topicId = Number(route.params.topic_id)
+const discussionEditor = ref<InstanceType<typeof TiptapEditor>>()
+const discussionEditorText = ref<string>('')
+const discussionEditorContent = ref<string>('')
 const { t } = useI18n()
 const { setTitle } = useTitle(t('topic.topic'))
+
+const topicId = Number(route.params.topic_id)
 
 let lastItemId = 0
 
@@ -91,6 +127,7 @@ const {
   isLastPage,
   error,
   send: loadDiscissions,
+  reload: reloadDiscussion,
 } = usePagination((page, limit) => getDiscussions(lastItemId, limit, topicId), {
   append: true,
   initialPageSize: 10,
@@ -100,6 +137,22 @@ const {
   if (!items || !items.length) return
 
   lastItemId = items[items.length - 1].id
+})
+
+const {
+  loading: discussionPublishing,
+  data: discussion,
+  send: handlePublishDiscussion,
+} = useRequest(
+  () => publishDiscussion(discussionEditorContent.value, topicId),
+  { immediate: false },
+).onComplete(() => {
+  if (discussion.value) {
+    reloadDiscussion()
+  }
+  if (discussionEditor.value) {
+    discussionEditor.value.editor?.commands.clearContent()
+  }
 })
 
 onActivated(() => {

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <EditorToolbar v-if="editor" :editor="editor" />
-    <div v-else></div>
+    <EditorToolbar v-if="editor && showToolbar" :editor="editor" />
     <EditorContent :editor="editor" />
   </div>
 </template>
@@ -15,6 +14,12 @@ import Link from '@tiptap/extension-link'
 import { onBeforeUnmount } from 'vue'
 import EditorToolbar from './EditorToolbar.vue'
 import { useI18n } from 'vue-i18n'
+
+interface TiptapEditorProps {
+  showToolbar?: boolean
+}
+
+const props = defineProps<TiptapEditorProps>()
 
 const htmlValue = defineModel<string>('html', { default: '<p></p>' })
 const textValue = defineModel<string>('text', { default: '' })
@@ -51,5 +56,9 @@ onBeforeUnmount(() => {
   if (editor.value) {
     editor.value.destroy()
   }
+})
+
+defineExpose({
+  editor,
 })
 </script>
