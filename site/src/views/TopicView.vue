@@ -38,8 +38,9 @@
       </div>
       <div class="flex justify-end">
         <button
+          v-if="discussionEditorText"
           class="btn-primary btn-md"
-          :disabled="!discussionEditorText || discussionPublishing"
+          :disabled="discussionPublishing"
           @click="handlePublishDiscussion"
         >
           {{ $t('discussion.publish') }}
@@ -127,7 +128,7 @@ const {
   isLastPage,
   error,
   send: loadDiscissions,
-  reload: reloadDiscussion,
+  refresh: refreshDiscussion,
 } = usePagination((page, limit) => getDiscussions(lastItemId, limit, topicId), {
   append: true,
   initialPageSize: 10,
@@ -148,7 +149,7 @@ const {
   { immediate: false },
 ).onComplete(() => {
   if (discussion.value) {
-    reloadDiscussion()
+    refreshDiscussion()
   }
   if (discussionEditor.value) {
     discussionEditor.value.editor?.commands.clearContent()
