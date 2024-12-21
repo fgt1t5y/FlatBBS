@@ -14,10 +14,7 @@
     />
     <template #panels>
       <div class="p-3 flex flex-col gap-2">
-        <button class="btn-primary btn-md">
-          {{ $t('action.publish') }}
-        </button>
-        <span class="text-base text-muted">{{ $t('board.hotspot') }}</span>
+        <span class="text-base text-muted">{{ $t('board.board') }}</span>
         <div v-for="board in boards">
           <RouterLink
             class="text-base flex gap-2 items-center hover:text-primary"
