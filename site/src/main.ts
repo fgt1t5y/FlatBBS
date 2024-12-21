@@ -17,14 +17,12 @@ const app = createApp(App);
 window.$code = code;
 
 app.use(createPinia());
-app.use(router);
-app.use(i18n);
-app.use(plugin, defaultConfig(config));
 
 if (hasToken()) {
   await useUserStore().fetch();
 }
 
-await router.isReady();
-
+app.use(router);
+app.use(i18n);
+app.use(plugin, defaultConfig(config));
 app.mount('#flatbbs');
