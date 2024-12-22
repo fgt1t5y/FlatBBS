@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { login } from '@/services'
-import { useMessage, useUserStore } from '@/stores'
+import { useUserStore } from '@/stores'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
@@ -44,17 +44,13 @@ const inputForm = ref({
 })
 const user = useUserStore()
 const route = useRoute()
-const ms = useMessage()
 
 const actionLogin = () => {
   isDealing.value = true
   login(inputForm.value.email, inputForm.value.password)
-    .then(() => {
-      user.fetch()
+    .then(async () => {
+      await user.fetch()
       router.replace({ path: (route.query.next as string) || '/' })
-    })
-    .catch((error: Error) => {
-      ms.error(error.message)
     })
     .finally(() => {
       isDealing.value = false
