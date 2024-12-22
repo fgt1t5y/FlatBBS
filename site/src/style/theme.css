@@ -130,11 +130,11 @@
 
 @layer utilities {
   .btn-sm {
-    @apply h-7 px-4;
+    @apply h-7 px-3;
   }
 
   .btn-md {
-    @apply h-9 px-6;
+    @apply h-10 px-6;
   }
 
   .border-bt {

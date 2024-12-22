@@ -61,6 +61,7 @@
         <FormKit
           v-model="themeSwitcherValue"
           type="radio"
+          decorator-icon="circle"
           :options="{
             auto: $t('settings.follow_system'),
             light: $t('settings.light'),
