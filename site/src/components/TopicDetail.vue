@@ -42,8 +42,8 @@
           :title="$t('tooltip.like_this_topic')"
           @click="emits('like')"
         >
-          <Heart class="size-5 inline" />
-          <span class="h-5 ml-1">{{ likeCount }}</span>
+          <Heart class="size-5" />
+          <span>{{ likeCount }}</span>
         </button>
       </div>
     </div>

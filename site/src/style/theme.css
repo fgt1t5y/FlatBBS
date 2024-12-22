@@ -120,7 +120,7 @@
   }
 
   button {
-    @apply whitespace-nowrap;
+    @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
   }
 
   button:disabled {
