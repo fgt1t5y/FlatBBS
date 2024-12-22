@@ -19,7 +19,6 @@
       :key="index"
       :disabled="!tool.enable()"
       :class="{
-        btn: true,
         'btn-text': true,
         'btn-text-active': tool.isActive(),
       }"
