@@ -157,7 +157,7 @@ return new class {
 
     public function up(Builder \$schema): void
     {
-        \$schema->create('', function(Blueprint \$table) {
+        \$schema->create('', function (Blueprint \$table) {
 
         });
     }
