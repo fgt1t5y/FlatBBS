@@ -6,21 +6,21 @@ use app\model\User;
 
 class UserService
 {
-    private $allowModifyColumn = [
+    private $allow_modify_column = [
         'avatar_uri',
         'display_name',
         'introduction',
         'password'
     ];
 
-    public function info(int $user_id, array $columns)
+    public function info(int $user_id)
     {
-        return User::find($user_id, $columns);
+        return User::find($user_id);
     }
 
-    public function info_by_username(string $username, array $columns)
+    public function info_by_username(string $username)
     {
-        return User::where('username', $username)->first($columns);
+        return User::where('username', $username)->first();
     }
 
     public function topics(string $username, int $last_id, int $limit)
@@ -38,7 +38,7 @@ class UserService
     {
         if (
             !all([$value])
-            || !in_array($field, $this->allowModifyColumn)
+            || !in_array($field, $this->allow_modify_column)
         ) {
             return false;
         }

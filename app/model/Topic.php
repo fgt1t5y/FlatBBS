@@ -13,11 +13,13 @@ use app\model\User;
 class Topic extends AbstractModel
 {
     protected $table = 'topics';
+
     protected $with = [
         'author:id,username,display_name,avatar_uri',
         'board:id,name,slug',
         'likes:id,username'
     ];
+
     protected $fillable = ['author_id', 'title', 'last_reply_at'];
 
     public function author(): BelongsTo

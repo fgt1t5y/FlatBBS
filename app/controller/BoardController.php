@@ -10,8 +10,8 @@ use support\Request;
 
 class BoardController
 {
-    private $boardBasicFields = ['id', 'name', 'slug', 'avatar_uri'];
-    private $boardFields = [
+    private $board_basic_fields = ['id', 'name', 'slug', 'avatar_uri'];
+    private $board_fields = [
         'id',
         'name',
         'slug',
@@ -27,21 +27,21 @@ class BoardController
 
     public function all(Request $request)
     {
-        $result = $this->board->all($this->boardBasicFields);
+        $result = $this->board->all($this->board_basic_fields);
 
         return ok($result);
     }
 
     public function hotspot(Request $request)
     {
-        $result = $this->board->hotspot($this->boardBasicFields);
+        $result = $this->board->hotspot($this->board_basic_fields);
 
         return ok($result);
     }
 
     public function info(Request $request, string $slug)
     {
-        $result = $this->board->info($slug, $this->boardFields);
+        $result = $this->board->info($slug, $this->board_fields);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, 'i18n$exception.board_not_found');

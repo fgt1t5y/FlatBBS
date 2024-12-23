@@ -2,7 +2,6 @@
 
 namespace app\controller;
 
-use app\model\User;
 use app\service\FileService;
 use app\service\UserService;
 use app\service\AuthService;
@@ -26,7 +25,7 @@ class UserController
             return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
         }
 
-        return ok($this->user->info($user_id, User::$basic_columns));
+        return ok($this->user->info($user_id));
     }
 
     public function modify(Request $request)
@@ -52,9 +51,9 @@ class UserController
         $username = $request->get('username');
 
         if ($user_id) {
-            $result = $this->user->info($user_id, User::$basic_columns);
+            $result = $this->user->info($user_id);
         } elseif ($username) {
-            $result = $this->user->info_by_username($username, User::$basic_columns);
+            $result = $this->user->info_by_username($username);
         } else {
             $result = null;
         }

@@ -12,24 +12,16 @@ use app\model\Topic;
 
 class User extends AbstractModel
 {
+    protected $table = 'users';
+
     protected $casts = [
         'avatar_uri' => FullPath::class
     ];
 
-    protected $table = 'users';
+    protected $hidden = ['password'];
 
     protected $with = [
         'roles:id,name,description',
-    ];
-
-    public static $basic_columns = [
-        'id',
-        'display_name',
-        'username',
-        'email',
-        'avatar_uri',
-        'introduction',
-        'created_at'
     ];
 
     public function isGuest(): bool
