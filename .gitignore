@@ -8,5 +8,6 @@
 /public/usercontent/*.png
 /plugin/lab
 node_modules
+.phpunit.cache
 
 dump.rdb
