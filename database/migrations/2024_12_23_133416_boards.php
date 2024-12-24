@@ -15,6 +15,9 @@ return new class {
             $table->string('description')->nullable();
             $table->integer('topic_count', false, true)->default(0);
             $table->datetimes();
+
+            $table->engine('Mroonga');
+            $table->comment('engine "InnoDB"');
         });
     }
 

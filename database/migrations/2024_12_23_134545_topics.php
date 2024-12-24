@@ -7,7 +7,7 @@ return new class {
 
     public function up(Builder $schema): void
     {
-        $schema->create('topics', function(Blueprint $table) {
+        $schema->create('topics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('board_id');
             $table->foreignId('author_id');
@@ -18,6 +18,9 @@ return new class {
             $table->text('content');
             $table->dateTime('last_reply_at')->nullable();
             $table->datetimes();
+
+            $table->engine('Mroonga');
+            $table->comment('engine "InnoDB"');
         });
     }
 

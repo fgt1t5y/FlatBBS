@@ -18,6 +18,9 @@ return new class {
             $table->string('introduction', length: 128)->nullable();
             $table->dateTime('last_login_at')->nullable();
             $table->datetimes();
+
+            $table->engine('Mroonga');
+            $table->comment('engine "InnoDB"');
         });
     }
 
