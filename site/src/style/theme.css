@@ -65,6 +65,14 @@
     @apply flex flex-col items-center text-muted;
   }
 
+  p:first-child {
+    @apply mt-0;
+  }
+
+  p:last-child {
+    @apply mb-0;
+  }
+
   p ul {
     @apply list-disc pl-10 my-4;
   }

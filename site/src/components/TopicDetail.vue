@@ -1,5 +1,5 @@
 <template>
-  <div class="item p-3 border-bt">
+  <div class="item p-3 border-bt flex flex-col gap-2">
     <div class="flex gap-2 items-start">
       <UserPopover :user-id="topic.author.id">
         <RouterLink
@@ -27,25 +27,25 @@
     </div>
     <div>
       <ContentRenderer :html="topic.content" />
-      <div class="flex justify-between">
-        <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
-          <button class="btn-air btn-sm rounded-3xl" :title="topic.board.name">
-            {{ topic.board.name }}
-          </button>
-        </RouterLink>
-        <button
-          :class="{
-            'btn-sm rounded-3xl': true,
-            'btn-primary': liked,
-            'btn-air': !liked,
-          }"
-          :title="$t('tooltip.like_this_topic')"
-          @click="emits('like')"
-        >
-          <Heart class="size-5" />
-          <span>{{ likeCount }}</span>
+    </div>
+    <div class="flex justify-between">
+      <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
+        <button class="btn-air btn-sm rounded-3xl" :title="topic.board.name">
+          {{ topic.board.name }}
         </button>
-      </div>
+      </RouterLink>
+      <button
+        :class="{
+          'btn-sm rounded-3xl': true,
+          'btn-primary': liked,
+          'btn-air': !liked,
+        }"
+        :title="$t('tooltip.like_this_topic')"
+        @click="emits('like')"
+      >
+        <Heart class="size-5" />
+        <span>{{ likeCount }}</span>
+      </button>
     </div>
   </div>
 </template>
