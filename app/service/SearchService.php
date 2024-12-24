@@ -12,7 +12,8 @@ class SearchService
             return null;
         }
 
-        $builder = $model::whereFullText($by, $keyword);
+        $keyword = preg_replace('/[^\p{L}\p{N}\p{M}_]+/u', ' ', $keyword);
+        $builder = $model::whereFullText($by, $keyword, ['mode' => 'boolean']);
 
         return $builder->get($columns);
     }
