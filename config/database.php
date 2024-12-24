@@ -8,7 +8,7 @@ return [
             'driver' => 'mysql',
             'host' => '127.0.0.1',
             'port' => 3306,
-            'database' => 'flat_bbs',
+            'database' => 'flatbbs',
             'username' => 'root',
             'password' => 'lyghj456',
             'charset' => 'utf8mb4',
