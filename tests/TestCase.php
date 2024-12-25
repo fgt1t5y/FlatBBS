@@ -4,9 +4,13 @@ namespace tests;
 
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use \DI\ContainerBuilder;
+use support\Container;
 
 class TestCase extends PHPUnitTestCase
 {
+    /**
+     * @var Container
+     */
     protected $container;
 
     public function __construct($name = null)
@@ -17,10 +21,4 @@ class TestCase extends PHPUnitTestCase
         $builder->useAttributes(true);
         $this->container = $builder->build();
     }
-
-    public function __call($name, $arguments)
-    {
-        return $this->container->{$name}(...$arguments);
-    }
 }
-

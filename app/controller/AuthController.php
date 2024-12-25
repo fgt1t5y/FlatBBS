@@ -7,6 +7,7 @@ use support\Request;
 use app\model\User;
 use app\service\AuthService;
 use DI\Attribute\Inject;
+use Illuminate\Support\Str;
 
 class AuthController
 {
@@ -36,7 +37,7 @@ class AuthController
         }
 
         $user_id = $user->id;
-        $token = random_string();
+        $token = Str::random();
         $roles = $user->roles->pluck('id')->all();
         $permissions = $user->permissions();
         $session->put([

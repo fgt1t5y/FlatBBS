@@ -5,6 +5,7 @@ namespace app\service;
 use Intervention\Image\Exception\ImageException;
 use Intervention\Image\ImageManager;
 use Webman\Http\UploadFile;
+use Illuminate\Support\Str;
 
 class FileService
 {
@@ -29,7 +30,7 @@ class FileService
                 return null;
             }
 
-            $filename = random_string() . '.jpg';
+            $filename = Str::random() . '.jpg';
             $path = config_with('flatbbs.paths.usercontent', $filename);
 
             try {
@@ -38,7 +39,7 @@ class FileService
             } catch (ImageException) {
                 return null;
             }
-            
+
             if ($with_suffix) {
                 $filenames[] = "/backend/usercontent/{$filename}";
             } else {

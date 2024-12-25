@@ -1,16 +1,6 @@
 <?php
 
 use support\Response;
-use Illuminate\Support\Str;
-
-function is_email(string $email)
-{
-    if (strlen($email) > 64) {
-        return false;
-    }
-
-    return preg_match('/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/', $email);
-}
 
 function all(array $value)
 {
@@ -31,11 +21,6 @@ function ok(mixed $data = null): Response
 function no(int $code, string $message = ''): Response
 {
     return json(['code' => $code, 'message' => $message]);
-}
-
-function random_string()
-{
-    return Str::random();
 }
 
 function config_with(string $key, mixed $suffix)
