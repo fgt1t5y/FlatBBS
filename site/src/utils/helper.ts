@@ -1,5 +1,5 @@
 import { config } from '@/global';
-import { useBreakpoints } from '@vueuse/core';
+import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
 
@@ -46,34 +46,17 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 };
 
 export const formatTime = (datetime: string) => {
-  const localTime = dayjs.utc(datetime).tz(config.time_zone)
+  const localTime = dayjs.utc(datetime).tz(config.time_zone);
   return [localTime.format('LLL'), localTime.fromNow()];
 };
 
-export const breakpoint = useBreakpoints({
-  mobile: 640,
-  pad: 768,
-});
+export const breakpoint = useBreakpoints(breakpointsTailwind);
 
 export const resolveParagraph = (value: string) => {
   return value.replace(/(.*)$/gm, '<p>$1</p>');
 };
 
-export const resolveRichContent = async (value: string) => {
-  if (!value) return '';
-  return value
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/@(.+?)(?=\s)/gm, '<span class="mention">@$1</span>')
-    .replace(
-      /(https?:\/\/([-\w.]+)+(:\d+)?(\/[^\s^\n]*)?)(?=\s)/gm,
-      '<a class="ilink" href="$1">$1</a>',
-    )
-    .replace(/^(.+)$/gm, '<p>$1</p>')
-    .replace(/^$/gm, '<p></br></p>');
-};
-
-export const isMobile = breakpoint.smaller('mobile');
-export const isPad = breakpoint.greater('mobile');
-export const isDesktop = breakpoint.greater('pad');
+export const isMobile = breakpoint.smaller('sm');
+export const isPad = breakpoint.greater('sm');
+export const isDesktop = breakpoint.greater('lg');
 export const isDev = import.meta.env.DEV;

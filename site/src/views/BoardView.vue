@@ -28,11 +28,14 @@
       @retry="loadTopics"
     />
     <template #panels>
-      <RouterLink :to="{ name: 'board_publish', params: { slug: slug } }">
-        <button class="btn-primary btn-md w-full">
+      <div class="p-3">
+        <RouterLink
+          class="btn btn-primary btn-md w-full"
+          :to="{ name: 'board_publish', params: { slug: slug } }"
+        >
           {{ $t('action.publish_topic') }}
-        </button>
-      </RouterLink>
+        </RouterLink>
+      </div>
     </template>
   </MainContent>
 </template>

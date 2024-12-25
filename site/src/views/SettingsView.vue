@@ -46,11 +46,14 @@
     </SettingGroup>
     <SettingGroup :title="$t('settings.security_and_privacy')">
       <SettingItem :title="$t('password')">
-        <RouterLink :to="{ name: 'modify_password' }">
-          <button class="btn-primary btn-md">
+        <div>
+          <RouterLink
+            class="btn btn-primary btn-md"
+            :to="{ name: 'modify_password' }"
+          >
             {{ $t('action.modify') }}
-          </button>
-        </RouterLink>
+          </RouterLink>
+        </div>
       </SettingItem>
     </SettingGroup>
     <SettingGroup :title="$t('settings.display')">

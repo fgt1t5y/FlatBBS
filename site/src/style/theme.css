@@ -88,18 +88,22 @@
   p img {
     @apply sm:max-w-lg;
   }
+
+  body {
+    @apply text-content text-sm bg-white dark:bg-black;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply rounded transition-all text-white bg-primary hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+    @apply rounded text-white bg-primary hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
 
   .btn-air {
-    @apply rounded transition-all text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+    @apply rounded text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
 
     &.danger {
-      @apply bg-opacity-50 bg-red-200 text-red-600 hover:bg-opacity-70 dark:bg-opacity-50 dark:text-white dark:bg-red-300 dark:hover:bg-opacity-40;
+      @apply bg-opacity-50 bg-red-200 text-red-600 hover:bg-opacity-70 dark:bg-opacity-50 dark:text-white dark:bg-red-400 dark:hover:bg-opacity-40;
     }
   }
 
@@ -119,6 +123,10 @@
     @apply z-10 flex items-center sticky top-0 shadow-md bg-content justify-center;
   }
 
+  .mobile-navbar {
+    @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
+  }
+
   .h-navbar {
     height: 52px;
   }
@@ -127,6 +135,11 @@
     @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200;
   }
 
+  .page-title {
+    @apply h-navbar sticky top-0 px-3 bg-content flex items-center justify-between z-20 md:static;
+  }
+
+  .btn,
   button {
     @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
   }
@@ -157,11 +170,80 @@
     max-width: 1000px;
   }
 
-  .top-navbar-h {
+  .top-navbar {
     top: 52px;
   }
 }
 
+input {
+  border: none;
+  outline: none;
+  color: currentColor;
+  background: transparent;
+}
+
+.grid-main-panels-inner {
+  position: sticky;
+  top: 60px;
+  min-width: 250px;
+}
+
+.cropper-wrapper {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cropper-mask {
+  border-radius: 50%;
+  box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  border: 1px dashed white;
+  box-sizing: border-box;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  touch-action: none;
+}
+
+.user-panel {
+  width: 300px;
+}
+
+/** Editor */
+.tiptap {
+  outline: none;
+  font-size: 1rem;
+  min-height: 150px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  opacity: 0.6;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
 .ProseMirror-selectednode {
   @apply outline outline-2 outline-primary;
+}
+
+/** Transitions */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }

@@ -2,7 +2,7 @@
   <div
     :class="{
       'bg-content flex gap-3 py-3': true,
-      'sticky top-navbar-h': !isMobile,
+      'sticky top-navbar': !isMobile,
       'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
     }"
   >

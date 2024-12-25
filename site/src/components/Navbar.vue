@@ -37,11 +37,6 @@
               <span class="text-muted">@{{ user.info.username }}</span>
             </div>
           </div>
-          <a href="/_admin" target="_blank">
-            <button v-if="user.isAdmin" class="btn-md btn-air w-full mb-2">
-              Admin
-            </button>
-          </a>
           <div class="flex gap-1">
             <button
               class="btn-md btn-air grow"
@@ -56,10 +51,8 @@
         </div>
       </div>
       <div v-else>
-        <RouterLink to="/auth">
-          <button class="btn-primary btn-md">
-            {{ $t('page.register_or_login') }}
-          </button>
+        <RouterLink class="btn btn-primary btn-md" to="/auth">
+          {{ $t('page.register_or_login') }}
         </RouterLink>
       </div>
     </div>

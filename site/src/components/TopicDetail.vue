@@ -29,10 +29,11 @@
       <ContentRenderer :html="topic.content" />
     </div>
     <div class="flex justify-between">
-      <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
-        <button class="btn-air btn-sm rounded-3xl" :title="topic.board.name">
-          {{ topic.board.name }}
-        </button>
+      <RouterLink
+        class="btn btn-air btn-sm rounded-3xl"
+        :to="{ name: 'board', params: { slug: topic.board.slug } }"
+      >
+        {{ topic.board.name }}
       </RouterLink>
       <button
         :class="{

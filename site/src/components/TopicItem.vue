@@ -27,10 +27,11 @@
       {{ previewText }}
     </div>
     <div class="flex justify-between">
-      <RouterLink :to="{ name: 'board', params: { slug: topic.board.slug } }">
-        <button class="btn-air btn-sm rounded-3xl">
-          {{ topic.board.name }}
-        </button>
+      <RouterLink
+        class="btn btn-air btn-sm rounded-3xl"
+        :to="{ name: 'board', params: { slug: topic.board.slug } }"
+      >
+        {{ topic.board.name }}
       </RouterLink>
       <div class="flex gap-1 items-center text-muted">
         <Heart class="size-5" />

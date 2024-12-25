@@ -1,5 +1,5 @@
 <template>
-  <div class="page-title px-3 border-bt bg-content" :title="title">
+  <div class="page-title" :title="title">
     <div class="flex gap-2 w-full items-center">
       <button
         v-if="showBackButton"
@@ -14,7 +14,7 @@
         </slot>
       </div>
     </div>
-    <div class="page-title-extra">
+    <div>
       <slot name="extra" />
     </div>
   </div>

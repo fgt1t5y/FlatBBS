@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import '@/style/ui.css';
 import '@/style/theme.css';
 import 'dayjs/locale/zh-cn';
 import App from './App.vue';
