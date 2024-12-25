@@ -6,7 +6,12 @@
       :name="user.display_name"
       :introduction="user.introduction"
       avatar-rounded
-    />
+    >
+      <div class="flex gap-2 text-muted">
+        <CircleOff class="size-5" />
+        <span>{{ $t('message.this_user_has_been_banned') }}</span>
+      </div>
+    </CommonDetail>
     <CommonList :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />
@@ -35,6 +40,7 @@ import { useRequest, usePagination } from 'alova/client'
 import { onActivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
+import { CircleOff } from '@vicons/tabler'
 
 const route = useRoute()
 const { t } = useI18n()

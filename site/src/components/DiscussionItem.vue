@@ -14,7 +14,7 @@
         />
       </RouterLink>
     </UserPopover>
-    <div>
+    <div class="flex flex-col gap-2">
       <div class="flex gap-2">
         <RouterLink
           :to="{
@@ -24,10 +24,11 @@
         >
           <span>{{ discussion.author.display_name }}</span>
         </RouterLink>
-
         <RelativeTime :time="discussion.created_at" />
       </div>
-      <ContentRenderer :html="discussion.content" />
+      <div>
+        <ContentRenderer :html="discussion.content" />
+      </div>
     </div>
   </div>
 </template>

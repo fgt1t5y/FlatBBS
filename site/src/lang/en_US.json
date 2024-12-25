@@ -62,7 +62,9 @@
     "image_too_small": "Image too small，height and width at least {height}x{width} px.",
     "cannot_load_image": "Can't load this image.",
 
-    "fetch_user_profile_fail": "Failed to fetch user profile."
+    "fetch_user_profile_fail": "Failed to fetch user profile.",
+
+    "this_user_has_been_banned": "This user has been banned."
   },
 
   "action": {

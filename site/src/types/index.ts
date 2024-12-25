@@ -13,6 +13,7 @@ export interface User {
   introduction: string;
   roles: Role[];
   created_at?: string;
+  allow_login?: number
 }
 
 export interface Role {
