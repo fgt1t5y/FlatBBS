@@ -1,5 +1,9 @@
 <template>
-  <CommonPopover :class="$attrs.class" :duration="1200" @show="loadUserDetail">
+  <CommonPopover
+    :class="$attrs.class"
+    :duration="[1200, 400]"
+    @show="loadUserDetail"
+  >
     <slot />
     <template #body>
       <div class="p-3" style="max-width: 400px">

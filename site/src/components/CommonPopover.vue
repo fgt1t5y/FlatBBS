@@ -18,6 +18,8 @@
           role="tooltip"
           class="shadow-lg rounded bg-content border border-content"
           :style="floatingStyles"
+          @mouseenter="onMouseEnterPopover"
+          @mouseleave="onMouseLeavePopover"
         >
           <slot name="body" />
         </div>
@@ -38,14 +40,14 @@ defineOptions({
 })
 
 interface CommonPopoverProps {
-  duration?: number | false
+  duration?: [number, number] | number
   placement?: Placement
   trigger?: 'hover' | 'click'
   unmountOnClose?: boolean
 }
 
 const props = withDefaults(defineProps<CommonPopoverProps>(), {
-  duration: false,
+  duration: 0,
   placement: 'bottom',
   trigger: 'hover',
   unmountOnClose: true,
@@ -59,18 +61,33 @@ const wrapperRef = ref<HTMLElement>()
 const bodyRef = ref<HTMLElement>()
 const mountPopover = ref<boolean>(false)
 const showPopover = ref<boolean>(false)
+const isMouseInPopover = ref<boolean>(false)
 
-let timerId: number | null = null
+const resolveDuration = () => {
+  if (!props.duration) {
+    return [0, 0]
+  }
+
+  if (typeof props.duration === 'number') {
+    return [props.duration, props.duration]
+  }
+
+  if (Array.isArray(props.duration) && props.duration.length === 2) {
+    return [props.duration[0], props.duration[1]]
+  }
+
+  return [0, 0]
+}
+
+const [openDuration, closeDuration] = resolveDuration()
+let openTimerId: number | null = null
+let closeTimerId: number | null = null
 
 const { floatingStyles, isPositioned } = useFloating(wrapperRef, bodyRef, {
   middleware: [],
   open: showPopover,
   placement: props.placement,
   whileElementsMounted: autoUpdate,
-})
-
-onClickOutside(bodyRef, () => {
-  closePopover()
 })
 
 const openPopover = () => {
@@ -90,12 +107,21 @@ const closePopover = () => {
 }
 
 const clearTimer = () => {
-  if (!timerId) {
+  if (!openTimerId) {
     return
   }
 
-  window.clearTimeout(timerId)
-  timerId = null
+  window.clearTimeout(openTimerId)
+  openTimerId = null
+}
+
+const onMouseEnterPopover = () => {
+  isMouseInPopover.value = true
+}
+
+const onMouseLeavePopover = () => {
+  isMouseInPopover.value = false
+  onMouseLeave()
 }
 
 const onMouseEnter = () => {
@@ -103,15 +129,15 @@ const onMouseEnter = () => {
     return
   }
 
-  if (!props.duration) {
+  if (!openDuration) {
     openPopover()
     return
   }
 
-  timerId = window.setTimeout(() => {
-    window.clearTimeout(timerId!)
+  openTimerId = window.setTimeout(() => {
+    window.clearTimeout(openTimerId!)
     openPopover()
-  }, props.duration)
+  }, openDuration)
 }
 
 const onMouseLeave = () => {
@@ -119,8 +145,20 @@ const onMouseLeave = () => {
     return
   }
 
-  clearTimer()
-  closePopover()
+  if (!closeDuration) {
+    clearTimer()
+    closePopover()
+    return
+  }
+
+  closeTimerId = window.setTimeout(() => {
+    window.clearTimeout(closeTimerId!)
+    if (isMouseInPopover.value) {
+      return
+    }
+    clearTimer()
+    closePopover()
+  }, closeDuration)
 }
 
 const onClick = () => {
@@ -128,16 +166,34 @@ const onClick = () => {
     return
   }
 
-  if (!props.duration) {
+  if (!openDuration) {
     openPopover()
     return
   }
 
-  timerId = window.setTimeout(() => {
-    window.clearTimeout(timerId!)
+  openTimerId = window.setTimeout(() => {
+    window.clearTimeout(openTimerId!)
     openPopover()
-  }, props.duration)
+  }, openDuration)
+}
+
+const onClickPopoverOutside = () => {
+  if (props.trigger !== 'click') {
+    return
+  }
+
+  if (!closeDuration) {
+    closePopover()
+    return
+  }
+
+  closeTimerId = window.setTimeout(() => {
+    window.clearTimeout(closeTimerId!)
+    clearTimer()
+    closePopover()
+  }, closeDuration)
 }
 
 onDeactivated(clearTimer)
+onClickOutside(bodyRef, onClickPopoverOutside)
 </script>
