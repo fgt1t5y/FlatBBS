@@ -142,6 +142,7 @@ const showCropperMessage = (content: string) => {
 const closeAvatarCrop = () => {
   cropper.value?.destroyCropper()
   isShowCropper.value = false
+  avatarInput.value!.value = ''
 }
 
 const uploadAvatar = () => {
