@@ -1,7 +1,6 @@
 <template>
-  <CommonPopover placement="top" :duration="200">
+  <CommonPopover placement="top">
     <slot />
-
     <template #body>
       <div class="p-2">{{ text }}</div>
     </template>

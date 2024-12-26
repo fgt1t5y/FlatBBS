@@ -65,7 +65,7 @@ const isMouseInPopover = ref<boolean>(false)
 
 const resolveDuration = () => {
   if (!props.duration) {
-    return [0, 0]
+    return [1000, 200]
   }
 
   if (typeof props.duration === 'number') {

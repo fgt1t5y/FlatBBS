@@ -2,6 +2,7 @@ import { getSessionUserInfo, logout } from '@/services';
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { useMessage } from './message';
+import { clearToken } from '@/utils';
 
 import type { User } from '@/types';
 
@@ -33,6 +34,7 @@ export const useUserStore = defineStore('user', () => {
       info.value = response;
     } else {
       const ms = useMessage();
+      clearToken();
       ms.error('i18n$message.fetch_user_profile_fail');
     }
   };
