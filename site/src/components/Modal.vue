@@ -1,6 +1,10 @@
 <template>
   <Teleport v-if="mount" to="body">
-    <Transition name="modal">
+    <Transition
+      name="modal"
+      @after-enter="onAfterEnter"
+      @after-leave="onAfterLeave"
+    >
       <div v-show="visible" class="modal">
         <div class="h-full w-full bg-indigo-900 opacity-50"></div>
         <div class="modal-wrapper">
@@ -31,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { X } from '@vicons/tabler'
 import { FocusTrap } from './FocusTrap'
@@ -57,6 +61,8 @@ const mount = defineModel<boolean>('mount')
 const visible = defineModel<boolean>('visible')
 const enableFocusTrap = ref<boolean>(false)
 
+let triggerElement: HTMLElement | null = null
+
 const closeModal = () => {
   visible.value = false
 }
@@ -67,20 +73,22 @@ const onClickOutsideHandle = () => {
   }
 }
 
-watch(
-  () => visible.value,
-  (v) => {
-    if (v) {
-      emits('show')
-      nextTick(() => {
-        enableFocusTrap.value = true
-      })
-    } else {
-      emits('hide')
-      enableFocusTrap.value = false
-    }
-  },
-)
+const onAfterEnter = () => {
+  triggerElement = document.activeElement as HTMLElement
+  emits('show')
+  nextTick(() => {
+    enableFocusTrap.value = true
+  })
+}
+
+const onAfterLeave = () => {
+  emits('hide')
+  enableFocusTrap.value = false
+  if (triggerElement) {
+    triggerElement.focus()
+  }
+  triggerElement = null
+}
 
 onClickOutside(modalInnerRef, onClickOutsideHandle)
 </script>
