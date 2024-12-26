@@ -82,6 +82,7 @@ const resolveDuration = () => {
 const [openDuration, closeDuration] = resolveDuration()
 let openTimerId: number | null = null
 let closeTimerId: number | null = null
+let onClickOutsideStop: (() => void) | null = null
 
 const { floatingStyles, isPositioned } = useFloating(wrapperRef, bodyRef, {
   middleware: [],
@@ -95,11 +96,19 @@ const openPopover = () => {
   mountPopover.value = true
   showPopover.value = true
   emits('show')
+
+  if (props.trigger === 'click') {
+    onClickOutsideStop = onClickOutside(bodyRef, onClickPopoverOutside)
+  }
 }
 
 const closePopover = () => {
   emits('close')
   showPopover.value = false
+
+  if (props.trigger === 'click' && onClickOutsideStop) {
+    onClickOutsideStop()
+  }
 
   if (props.unmountOnClose) {
     mountPopover.value = false
@@ -195,5 +204,4 @@ const onClickPopoverOutside = () => {
 }
 
 onDeactivated(clearTimer)
-onClickOutside(bodyRef, onClickPopoverOutside)
 </script>
