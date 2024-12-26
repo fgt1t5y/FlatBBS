@@ -51,7 +51,10 @@
         </div>
       </div>
       <div v-else>
-        <RouterLink class="btn btn-primary btn-md" to="/auth">
+        <RouterLink
+          class="btn btn-primary btn-md"
+          :to="{ name: 'auth', query: { next: $route.fullPath } }"
+        >
           {{ $t('page.register_or_login') }}
         </RouterLink>
       </div>

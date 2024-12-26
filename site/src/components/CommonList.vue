@@ -1,12 +1,7 @@
 <template>
   <div>
-    <slot
-      v-for="(item, index) of items"
-      v-bind="{ key: index }"
-      :item="item"
-      :index="index"
-    />
-    <div v-if="isEnd && items" class="text-center text-muted p-3 border-bt">
+    <slot v-for="(item, index) of items" :item="item" :index="index" />
+    <div v-if="isEnd && items" class="text-center text-muted p-3">
       {{ $t('message.list_no_more') }}
     </div>
   </div>

@@ -21,8 +21,8 @@
       :error="error"
       @retry="loadDiscissions"
     />
-    <div v-if="topic && user.isLogin" class="p-3 border-bt">
-      <div class="flex gap-2">
+    <div v-if="topic" class="p-3 border-bt">
+      <div v-if="user.isLogin" class="flex gap-2">
         <Avatar
           class="size-8 md:size-12"
           :src="user.info?.avatar_uri"
@@ -36,9 +36,13 @@
           />
         </div>
       </div>
-      <div class="flex justify-end">
+      <div v-else>
+        <div class="text-center text-muted">
+          {{ $t('message.login_for_publish_discussion') }}
+        </div>
+      </div>
+      <div v-if="discussionEditorText" class="flex justify-end">
         <button
-          v-if="discussionEditorText"
           class="btn-primary btn-md"
           :disabled="discussionPublishing"
           @click="handlePublishDiscussion"

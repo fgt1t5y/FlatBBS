@@ -64,7 +64,9 @@
 
     "fetch_user_profile_fail": "Failed to fetch user profile.",
 
-    "this_user_has_been_banned": "This user has been banned."
+    "this_user_has_been_banned": "This user has been banned.",
+
+    "login_for_publish_discussion": "Please login for publish a discussion."
   },
 
   "action": {

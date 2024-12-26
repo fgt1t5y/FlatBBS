@@ -64,7 +64,9 @@
 
     "fetch_user_profile_fail": "获取用户信息失败",
 
-    "this_user_has_been_banned": "此用户已被封禁"
+    "this_user_has_been_banned": "此用户已被封禁",
+
+    "login_for_publish_discussion": "登录以发表讨论"
   },
 
   "action": {
