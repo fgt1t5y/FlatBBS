@@ -1,25 +1,23 @@
 <template>
-  <div class="flex gap-3 my-0 mx-auto w-full-page">
-    <div
-      id="main-content"
-      :class="{
-        'flex grow gap-3': true,
-        'flex-row-reverse': reversePanel,
-      }"
-    >
-      <div class="relative grow mb-14">
-        <RequestPlaceholder
-          v-if="loading || error"
-          :loading="loading"
-          :error="error"
-          @retry="emits('retry')"
-        />
-        <slot v-else />
-      </div>
-      <div v-if="isDesktop && !disablePanels">
-        <div class="grid-main-panels-inner">
-          <slot name="panels" />
-        </div>
+  <div
+    id="main-content"
+    class="main-content"
+    :class="{
+      'flex-row-reverse': reversePanel,
+    }"
+  >
+    <div class="relative grow mb-14">
+      <RequestPlaceholder
+        v-if="loading || error"
+        :loading="loading"
+        :error="error"
+        @retry="emits('retry')"
+      />
+      <slot v-else />
+    </div>
+    <div v-if="isDesktop && !disablePanels">
+      <div class="grid-main-panels-inner">
+        <slot name="panels" />
       </div>
     </div>
   </div>

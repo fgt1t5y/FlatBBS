@@ -77,7 +77,9 @@
   <Modal
     v-model:visible="isShowCropper"
     mount
+    close-button
     :title="$t('action.crop_avatar')"
+    @hide="closeAvatarCrop"
   >
     <Cropper
       ref="cropper"

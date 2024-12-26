@@ -115,8 +115,12 @@
     @apply text-primary outline outline-2 outline-primary;
   }
 
-  .btn-circle {
-    @apply size-10 rounded-full;
+  .btn-sm {
+    @apply h-7 px-3;
+  }
+
+  .btn-md {
+    @apply h-10 px-6;
   }
 
   .navbar {
@@ -139,6 +143,26 @@
     @apply h-navbar sticky top-0 px-3 bg-content flex items-center justify-between z-20 md:static;
   }
 
+  .message-container {
+    @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
+  }
+
+  .modal {
+    @apply h-full w-full fixed z-40 top-0 transition-all;
+  }
+
+  .main-content {
+    @apply flex gap-3 my-0 mx-auto w-full-page grow;
+  }
+
+  .modal-wrapper {
+    @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
+  }
+
+  .modal-inner {
+    @apply bg-content flex flex-col rounded shadow;
+  }
+
   .btn,
   button {
     @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
@@ -150,14 +174,6 @@
 }
 
 @layer utilities {
-  .btn-sm {
-    @apply h-7 px-3;
-  }
-
-  .btn-md {
-    @apply h-10 px-6;
-  }
-
   .border-bt {
     @apply border-b border-content;
   }
