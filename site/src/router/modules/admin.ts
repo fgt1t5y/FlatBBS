@@ -4,6 +4,9 @@ export const adminRoute = {
   path: '/_admin',
   name: 'admin',
   component: () => import('@/layouts/Admin.vue'),
+  meta: {
+    adminOnly: true
+  },
   children: [
     {
       path: '',

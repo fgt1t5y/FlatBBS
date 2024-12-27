@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use Carbon\Carbon;
 use support\Redis;
 use support\Request;
 use app\model\User;
@@ -36,21 +37,18 @@ class AuthController
             return no(STATUS_FORBIDDEN, 'i18n$exception.user_has_been_banned');
         }
 
-        $user_id = $user->id;
         $token = Str::random();
         $roles = $user->roles->pluck('id')->all();
         $permissions = $user->permissions();
-        $session->put([
-            'id' => $user_id,
-            'username' => $user->username,
+
+        $session->put(array_merge($user->toArray(), [
             'token' => $token,
-            'email' => $email,
             'roles' => $roles,
             'permissions' => $permissions
-        ]);
-        $user->last_login_at = date('Y-m-d\TH:i:s.u');
+        ]));
+        $user->last_login_at = Carbon::now();
         $user->save();
-        Redis::sAdd("flat_sess_{$user_id}", $session->getId());
+        Redis::sAdd("flat_sess_{$user->id}", $session->getId());
 
         return ok()
             ->cookie('flat_sess', $token, 43200, '/');
