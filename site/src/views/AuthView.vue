@@ -5,8 +5,8 @@
       <FormKit
         v-model="inputForm"
         type="form"
-        :submit-label="$t('action.login')"
         :disabled="isDealing"
+        :actions="false"
         @submit="actionLogin"
       >
         <FormKit
@@ -21,6 +21,11 @@
           name="password"
           :label="$t('password')"
           validation="required|length:8"
+        />
+        <FormKit
+          type="submit"
+          prefix-icon="submit"
+          :label="$t('action.login')"
         />
       </FormKit>
     </div>
