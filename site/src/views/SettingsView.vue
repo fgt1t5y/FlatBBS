@@ -93,7 +93,7 @@
       <button class="btn-primary btn-md" @click="uploadAvatar">
         {{ $t('ok') }}
       </button>
-      <button class="btn-air btn-md" @click="closeAvatarCrop">
+      <button class="btn-air btn-md" @click="isShowCropper = false">
         {{ $t('cancle') }}
       </button>
     </div>
