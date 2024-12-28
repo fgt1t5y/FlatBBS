@@ -62,17 +62,10 @@
 import { useUserStore } from '@/stores'
 import Avatar from './Avatar.vue'
 import CommonPopover from './CommonPopover.vue'
-import { useActiveElement } from '@vueuse/core'
-import { watch } from 'vue'
 
 defineOptions({
   name: 'Navbar',
 })
 
 const user = useUserStore()
-const ae = useActiveElement()
-
-watch(ae, (el) => {
-  console.log(el)
-})
 </script>
