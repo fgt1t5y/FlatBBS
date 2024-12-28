@@ -147,12 +147,12 @@
     @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
   }
 
-  .modal {
-    @apply h-full w-full fixed z-40 top-0 transition-all;
-  }
-
   .main-content {
     @apply flex gap-3 my-0 mx-auto w-full-page grow;
+  }
+
+  .modal {
+    @apply h-full w-full fixed z-40 top-0 transition-all;
   }
 
   .modal-wrapper {
@@ -161,6 +161,14 @@
 
   .modal-inner {
     @apply bg-content flex flex-col rounded shadow;
+  }
+
+  .modal-header {
+    @apply p-3 border-bt flex justify-between;
+  }
+
+  .modal-body {
+    @apply p-3;
   }
 
   .btn,

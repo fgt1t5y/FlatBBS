@@ -17,13 +17,13 @@
                 'min-height': minHeight,
               }"
             >
-              <div class="p-3 border-bt flex justify-between">
+              <div class="modal-header">
                 <span class="text-base font-bold">{{ title }}</span>
                 <button v-if="closeButton" @click="closeModal">
                   <X class="size-5" />
                 </button>
               </div>
-              <div class="p-3">
+              <div class="modal-body">
                 <slot />
               </div>
             </div>

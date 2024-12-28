@@ -7,7 +7,14 @@
       @pointermove="mousemove"
       @pointerup="mouseup"
     >
-      <img ref="imageSrc" :src="imageURL" alt="src" style="display: none" />
+      <img
+        ref="imageSrc"
+        :src="imageURL"
+        alt="src"
+        style="display: none"
+        @error="onImageError"
+        @load="checkImage"
+      />
       <canvas ref="canvasRef" :width="width" :height="height"></canvas>
       <div class="cropper-wrapper">
         <div class="cropper-mask"></div>
@@ -230,7 +237,11 @@ const checkImage = () => {
   }
 }
 
-const dealOutsideMousedown = () => {
+const onImageError = () => {
+  hasFile.value && emits('error', t('message.cannot_load_image'))
+}
+
+const onMouseupOutside = () => {
   if (renderStatus.isDraging) {
     renderStatus.isDraging = false
     checkOverBorder()
@@ -239,22 +250,15 @@ const dealOutsideMousedown = () => {
 
 onMounted(() => {
   ctx = canvasRef.value!.getContext('2d')
-  window.addEventListener('mouseup', dealOutsideMousedown)
-  imageSrc.value!.addEventListener('error', () => {
-    hasFile.value && emits('error', t('message.cannot_load_image'))
-  })
-  imageSrc.value!.addEventListener('load', checkImage)
+  window.addEventListener('mouseup', onMouseupOutside)
   updateImage(props.image)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mouseup', dealOutsideMousedown)
+  window.removeEventListener('mouseup', onMouseupOutside)
 })
 
-watch(
-  () => props.image,
-  (file) => updateImage(file),
-)
+watch(() => props.image, updateImage)
 
 defineExpose({
   destroyCropper,
