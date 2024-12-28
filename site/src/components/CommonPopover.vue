@@ -119,7 +119,16 @@ const closePopover = () => {
   }
 }
 
-const clearTimer = () => {
+const clearOpenTimer = () => {
+  if (!openTimerId) {
+    return
+  }
+
+  window.clearTimeout(openTimerId)
+  openTimerId = null
+}
+
+const clearCloseTimer = () => {
   if (!openTimerId) {
     return
   }
@@ -148,7 +157,7 @@ const onMouseEnter = () => {
   }
 
   openTimerId = window.setTimeout(() => {
-    window.clearTimeout(openTimerId!)
+    clearOpenTimer()
     openPopover()
   }, openDuration)
 }
@@ -159,7 +168,7 @@ const onMouseLeave = () => {
   }
 
   if (!closeDuration) {
-    clearTimer()
+    clearOpenTimer()
     closePopover()
     return
   }
@@ -169,7 +178,7 @@ const onMouseLeave = () => {
     if (isMouseInPopover.value) {
       return
     }
-    clearTimer()
+    clearCloseTimer()
     closePopover()
   }, closeDuration)
 }
@@ -185,7 +194,7 @@ const onClick = () => {
   }
 
   openTimerId = window.setTimeout(() => {
-    window.clearTimeout(openTimerId!)
+    clearOpenTimer()
     openPopover()
   }, openDuration)
 }
@@ -202,7 +211,7 @@ const onClickPopoverOutside = () => {
 
   closeTimerId = window.setTimeout(() => {
     window.clearTimeout(closeTimerId!)
-    clearTimer()
+    clearCloseTimer()
     closePopover()
   }, closeDuration)
 }
@@ -217,5 +226,9 @@ const enableFocusTrap = computed(() => {
   return showPopover.value && props.trigger === 'click' && props.focusTrap
 })
 
-onDeactivated(clearTimer)
+onDeactivated(() => {
+  clearOpenTimer()
+  clearCloseTimer()
+  closePopover()
+})
 </script>
