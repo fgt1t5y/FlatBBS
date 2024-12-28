@@ -8,7 +8,6 @@
     >
       <slot />
     </div>
-
     <Teleport to="body">
       <Transition>
         <div
@@ -20,8 +19,11 @@
           :style="floatingStyles"
           @mouseenter="onMouseEnterPopover"
           @mouseleave="onMouseLeavePopover"
+          @keydown="onKeyDown"
         >
-          <slot name="body" />
+          <FocusTrap :active="enableFocusTrap" auto-focus>
+            <slot name="body" />
+          </FocusTrap>
         </div>
       </Transition>
     </Teleport>
@@ -30,8 +32,9 @@
 
 <script setup lang="ts">
 import { useFloating, autoUpdate } from '@floating-ui/vue'
-import { onDeactivated, ref } from 'vue'
+import { computed, onDeactivated, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import { FocusTrap } from './FocusTrap'
 
 import type { Placement } from '@floating-ui/vue'
 
@@ -44,6 +47,7 @@ interface CommonPopoverProps {
   placement?: Placement
   trigger?: 'hover' | 'click'
   unmountOnClose?: boolean
+  focusTrap?: boolean
 }
 
 const props = withDefaults(defineProps<CommonPopoverProps>(), {
@@ -65,7 +69,7 @@ const isMouseInPopover = ref<boolean>(false)
 
 const resolveDuration = () => {
   if (!props.duration) {
-    return [1000, 200]
+    return [0, 0]
   }
 
   if (typeof props.duration === 'number') {
@@ -202,6 +206,16 @@ const onClickPopoverOutside = () => {
     closePopover()
   }, closeDuration)
 }
+
+const onKeyDown = (ev: KeyboardEvent) => {
+  if (ev.key === 'Escape') {
+    onClickPopoverOutside()
+  }
+}
+
+const enableFocusTrap = computed(() => {
+  return showPopover.value && props.trigger === 'click' && props.focusTrap
+})
 
 onDeactivated(clearTimer)
 </script>
