@@ -34,6 +34,17 @@ class UserService
             ->get();
     }
 
+    public function liked_topics(string $username, int $last_id, int $limit)
+    {
+        return User::where('username', $username)
+            ->first()
+            ->liked_topics()
+            ->limit(min($limit, 50))
+            ->where('topic_id', '>', $last_id)
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
     public function modify(int $user_id, string $field, string $value): bool
     {
         if (

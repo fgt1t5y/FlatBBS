@@ -32,8 +32,8 @@ class UserController
     {
         $request->assertLogin();
 
-        $field = $request->post('field', '');
-        $value = $request->post('value', '');
+        $field = $request->post('field');
+        $value = $request->post('value');
         $user_id = session('id');
 
         $result = $this->user->modify($user_id, $field, $value);
@@ -71,6 +71,16 @@ class UserController
         $limit = $request->get('limit');
 
         $result = $this->user->topics($username, $last_id, $limit);
+
+        return ok($result);
+    }
+
+    public function liked(Request $request, string $username)
+    {
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
+
+        $result = $this->user->liked_topics($username, $last_id, $limit);
 
         return ok($result);
     }

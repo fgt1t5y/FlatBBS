@@ -171,6 +171,18 @@
     @apply p-3;
   }
 
+  .tabs {
+    @apply py-3 border-bt;
+  }
+
+  .tab-item {
+    @apply text-base px-3;
+  }
+
+  .tab-item.router-link-exact-active {
+    @apply text-primary;
+  }
+
   .btn,
   button {
     @apply whitespace-nowrap inline-flex justify-center items-center gap-1;

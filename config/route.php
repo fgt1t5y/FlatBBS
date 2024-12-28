@@ -20,6 +20,7 @@ Route::fallback(function () {
 
 Route::group('/user/{username}', function () {
     Route::get('/topics', [app\controller\UserController::class, 'topics']);
+    Route::get('/liked', [app\controller\UserController::class, 'liked']);
 });
 
 Route::group('/board/{slug}', function () {

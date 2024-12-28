@@ -13,7 +13,7 @@ export interface User {
   introduction: string;
   roles: Role[];
   created_at?: string;
-  allow_login?: number
+  allow_login?: number;
 }
 
 export interface Role {
@@ -96,4 +96,10 @@ export interface IMessage {
   message: string;
   type?: 'info' | 'success' | 'error';
   time?: number;
+}
+
+export interface IRouteTab {
+  routeName: string;
+  label: string;
+  params: any;
 }

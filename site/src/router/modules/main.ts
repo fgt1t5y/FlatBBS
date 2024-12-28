@@ -39,8 +39,19 @@ export const mainRoutes = [
   },
   {
     path: '/user/:username',
-    name: 'user',
     component: () => import('@/views/UserView.vue'),
+    children: [
+      {
+        path: '',
+        name: 'user',
+        component: () => import('@/views/user/TopicsView.vue'),
+      },
+      {
+        path: 'liked',
+        name: 'user_liked_topics',
+        component: () => import('@/views/user/LikedTopicsView.vue'),
+      }
+    ],
   },
   {
     path: '/setting/password',

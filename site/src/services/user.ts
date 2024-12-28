@@ -35,6 +35,19 @@ export const getTopicsByUsername = (
   });
 };
 
+export const getLikedTopicsByUsername = (
+  last: number,
+  limit: number,
+  username: string,
+) => {
+  return alovaInstance.Get<Result<Topic[]>>(`/user/${username}/liked`, {
+    params: {
+      last,
+      limit,
+    },
+  });
+};
+
 export const modifyUserInfo = (field: string, value: string) => {
   return alovaInstance.Post<null>('/user/modify', { field, value });
 };
