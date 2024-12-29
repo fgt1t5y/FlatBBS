@@ -25,9 +25,7 @@
       </RouterLink>
       <RelativeTime :time="topic.created_at" />
     </div>
-    <div>
-      <ContentRenderer :html="topic.content" />
-    </div>
+    <ContentRenderer :html="topic.content" />
     <div class="flex justify-between">
       <RouterLink
         class="btn btn-air btn-sm rounded-3xl"
