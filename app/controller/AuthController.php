@@ -56,12 +56,10 @@ class AuthController
 
     public function logout(Request $request)
     {
+        $request->assertLogin();
+
         $session = $request->session();
         $user_id = $session->get('id');
-
-        if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
-        }
 
         Redis::sRem("flat_sess_{$user_id}", 1, $session->getId());
         $session->flush();
@@ -72,12 +70,10 @@ class AuthController
 
     public function forget(Request $request)
     {
+        $request->assertLogin();
+
         $session = $request->session();
         $user_id = $session->get('id');
-
-        if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
-        }
 
         return $this->auth->logout_all($user_id);
     }

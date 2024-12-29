@@ -40,7 +40,8 @@ class Topic extends AbstractModel
         return $this->belongsToMany(User::class, 'topic_like', 'topic_id', 'user_id')
             ->orderBy(new Expression($grammer->wrap('user_id') . '=' . $user_id))
             ->limit(5)
-            ->applyScopes();
+            ->applyScopes()
+            ->withTimestamps();
     }
 
     public function discussions(): HasMany
