@@ -3,6 +3,8 @@
     <div
       ref="wrapperRef"
       :class="$attrs.class"
+      :aria-activedescendant="`#${popoverId}`"
+      :aria-expanded="showPopover"
       @mouseenter="onMouseEnter"
       @click="onClick"
     >
@@ -13,6 +15,7 @@
         <div
           v-if="mountPopover"
           v-show="isPositioned"
+          :id="popoverId"
           ref="bodyRef"
           role="tooltip"
           class="shadow-lg rounded bg-content border border-content"
@@ -21,7 +24,7 @@
           @mouseleave="onMouseLeavePopover"
           @keydown="onKeyDown"
         >
-          <FocusTrap :active="enableFocusTrap" auto-focus>
+          <FocusTrap :active="enableFocusTrap">
             <slot name="body" />
           </FocusTrap>
         </div>
@@ -32,7 +35,7 @@
 
 <script setup lang="ts">
 import { useFloating, autoUpdate } from '@floating-ui/vue'
-import { computed, onDeactivated, ref } from 'vue'
+import { computed, onDeactivated, ref, useId } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { FocusTrap } from './FocusTrap'
 
@@ -61,6 +64,7 @@ const emits = defineEmits<{
   (e: 'close'): void
 }>()
 
+const popoverId = useId()
 const wrapperRef = ref<HTMLElement>()
 const bodyRef = ref<HTMLElement>()
 const mountPopover = ref<boolean>(false)
@@ -102,7 +106,9 @@ const openPopover = () => {
   emits('show')
 
   if (props.trigger === 'click') {
-    onClickOutsideStop = onClickOutside(bodyRef, onClickPopoverOutside)
+    onClickOutsideStop = onClickOutside(bodyRef, onClickPopoverOutside, {
+      ignore: [wrapperRef],
+    })
   }
 }
 
@@ -185,6 +191,11 @@ const onMouseLeave = () => {
 
 const onClick = () => {
   if (props.trigger !== 'click') {
+    return
+  }
+
+  if (showPopover.value) {
+    onClickPopoverOutside()
     return
   }
 
