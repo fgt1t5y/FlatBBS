@@ -1,7 +1,7 @@
 <template>
   <MainContent :title="$t('page.search')">
     <PageTitle :title="$t('page.search')">
-      <FormKit v-model="searchKeyword" type="search" placeholder="Search..." />
+      <input v-model="searchKeyword" type="search" class="input" />
     </PageTitle>
   </MainContent>
 </template>
@@ -11,7 +11,6 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
-import { FormKit } from '@formkit/vue'
 
 const route = useRoute()
 const searchKeyword = ref<string>((route.query.q as string) ?? '')

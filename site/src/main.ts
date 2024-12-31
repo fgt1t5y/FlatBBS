@@ -5,8 +5,6 @@ import 'dayjs/locale/zh-cn';
 import App from './App.vue';
 import router from './router';
 import { code } from '@/constants';
-import { plugin, defaultConfig } from '@formkit/vue';
-import config from '../formkit.config';
 import i18n from './i18n';
 import { hasToken } from './utils';
 import { useUserStore } from './stores';
@@ -23,5 +21,4 @@ if (hasToken()) {
 
 app.use(router);
 app.use(i18n);
-app.use(plugin, defaultConfig(config));
 app.mount('#flatbbs');

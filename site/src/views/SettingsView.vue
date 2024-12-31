@@ -58,19 +58,18 @@
     </SettingGroup>
     <SettingGroup :title="$t('settings.display')">
       <SettingItem :title="$t('settings.language')">
-        <FormKit v-model="locale" type="select" :options="availableLocales" />
+        <select v-model="locale" class="input">
+          <option v-for="local in availableLocales" :value="local">
+            {{ local }}
+          </option>
+        </select>
       </SettingItem>
       <SettingItem :title="$t('settings.theme_mode')">
-        <FormKit
-          v-model="themeSwitcherValue"
-          type="radio"
-          decorator-icon="circle"
-          :options="{
-            auto: $t('settings.follow_system'),
-            light: $t('settings.light'),
-            dark: $t('settings.dark'),
-          }"
-        />
+        <select v-model="themeSwitcherValue" class="input">
+          <option value="auto">{{ $t('settings.follow_system') }}</option>
+          <option value="light">{{ $t('settings.light') }}</option>
+          <option value="dark">{{ $t('settings.dark') }}</option>
+        </select>
       </SettingItem>
     </SettingGroup>
   </MainContent>
@@ -111,7 +110,6 @@ import { blobToFile } from '@/utils'
 import { ref, watch } from 'vue'
 import { modifyUserAvatar } from '@/services'
 import MainContent from '@/components/MainContent.vue'
-import { FormKit } from '@formkit/vue'
 import Avatar from '@/components/Avatar.vue'
 import Modal from '@/components/Modal.vue'
 import { useI18n } from 'vue-i18n'

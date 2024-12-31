@@ -157,7 +157,7 @@
   }
 
   .input-widget {
-    @apply grow text-base [color-scheme:light] dark:[color-scheme:dark];
+    @apply grow text-base;
   }
 
   .navbar {
@@ -229,11 +229,14 @@
     @apply cursor-not-allowed;
   }
 
-  input {
-    @apply bg-transparent;
+  input,
+  select,
+  option {
+    @apply bg-content [color-scheme:light] dark:[color-scheme:dark];
   }
 
-  input:focus {
+  input:focus,
+  select:focus {
     outline: none;
   }
 }

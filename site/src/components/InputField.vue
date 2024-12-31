@@ -3,7 +3,7 @@
     <span>{{ valueNow }}</span>
   </div>
   <div v-else class="flex gap-2">
-    <FormKit ref="inputRef" v-model="valueNow" class="max-w-56" type="text" />
+    <input v-model="valueNow" type="text" class="input grow" />
     <button
       class="btn-primary btn-md"
       :disabled="!isChanged"
@@ -17,7 +17,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { modifyUserInfo } from '@/services'
-import { FormKit } from '@formkit/vue'
 import { useMessage } from '@/stores'
 import { useI18n } from 'vue-i18n'
 
@@ -40,7 +39,6 @@ const props = withDefaults(defineProps<InputFieldProps>(), {
 })
 const valueNow = ref<string>(props.inputValue)
 const isChanged = ref<boolean>(false)
-const inputRef = ref<any>()
 const ms = useMessage()
 const { t } = useI18n()
 
