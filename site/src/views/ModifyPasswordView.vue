@@ -2,7 +2,11 @@
   <MainContent disable-panels :title="$t('page.modify_password')">
     <PageTitle :title="$t('page.modify_password')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
-      <CommonForm :form="modifyForm" @submit="actionSubmit">
+      <CommonForm
+        :form="modifyForm"
+        :submit-label="$t('action.submit')"
+        @submit="actionSubmit"
+      >
         <FormInput
           v-model="modifyForm.old_password"
           autocomplete="current-password"

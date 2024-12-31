@@ -109,6 +109,7 @@ export interface IRouteTab {
 
 export interface IFormContext {
   rules: Ref<Rules>;
+  disabled: boolean;
   errorMessages: Ref<ValidateErrorMap>;
-  onFormItemBlur: (ev: FocusEvent) => void
+  onFormItemBlur: (ev: FocusEvent) => void;
 }

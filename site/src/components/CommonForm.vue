@@ -1,9 +1,13 @@
 <template>
   <form class="form" @submit="onFormSubmit">
     <slot />
-    <div>
-      <button class="btn-primary btn-md" @click="onFormSubmit">
-        {{ submitLabel || $t('action.submit') }}
+    <div v-if="submitLabel">
+      <button
+        class="btn-primary btn-md"
+        :disabled="disabled"
+        @click="onFormSubmit"
+      >
+        {{ submitLabel }}
       </button>
     </div>
   </form>
@@ -28,6 +32,7 @@ defineOptions({
 
 interface CommonFormProps {
   form: Values
+  disabled?: boolean
   submitLabel?: string
 }
 
@@ -78,7 +83,12 @@ const onFormItemBlur = (ev: FocusEvent) => {
   validate()
 }
 
-provide<IFormContext>(formContextKey, { rules, errorMessages, onFormItemBlur })
+provide<IFormContext>(formContextKey, {
+  rules,
+  disabled: props.disabled,
+  errorMessages,
+  onFormItemBlur,
+})
 
 defineExpose({
   validate,

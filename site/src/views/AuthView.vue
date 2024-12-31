@@ -5,6 +5,7 @@
       <CommonForm
         :form="inputForm"
         :submit-label="$t('action.login')"
+        :disabled="isDealing"
         @submit="actionLogin"
       >
         <FormInput

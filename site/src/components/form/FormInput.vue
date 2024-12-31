@@ -3,18 +3,18 @@
     <label
       v-if="label"
       :class="{
-        'form-required': required,
+        'form-item-required': required,
       }"
       :for="inputId"
-    >
-      {{ label }}
-    </label>
-    <div class="input">
+      v-text="label"
+    ></label>
+    <div :class="inputClass">
       <input
         :id="inputId"
         v-model="inputValue"
         class="input-widget"
         :autocomplete="autocomplete"
+        :disabled="disabled || context!.disabled"
         :name="name"
         :type="type"
         :readonly="readonly"
@@ -47,6 +47,7 @@ interface FormInputProps {
   name: string
   autocomplete?: string
   type?: 'text' | 'password'
+  disabled?: boolean
   datatype?: RuleType
   label?: string
   readonly?: boolean
@@ -88,6 +89,11 @@ const errorMessage = computed(() => {
 
   return context?.errorMessages.value[props.name][0].message
 })
+
+const inputClass = computed(() => ({
+  input: true,
+  'input-status-error': !!errorMessage.value,
+}))
 
 onMounted(() => {
   context!.rules.value[props.name] = {

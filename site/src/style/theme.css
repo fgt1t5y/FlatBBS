@@ -131,7 +131,11 @@
     @apply flex flex-col;
   }
 
-  .form-required::after {
+  .form-item {
+    @apply flex flex-col gap-1;
+  }
+
+  .form-item-required::after {
     content: ' *';
     color: theme(textColor.red.600);
   }
@@ -141,7 +145,15 @@
   }
 
   .input {
-    @apply border border-form rounded h-10 px-2 flex flex-col;
+    @apply border border-form rounded h-10 px-2 flex;
+
+    &:focus-within {
+      @apply border-primary;
+    }
+  }
+
+  .input-status-error {
+    @apply !border-red-600;
   }
 
   .input-widget {
