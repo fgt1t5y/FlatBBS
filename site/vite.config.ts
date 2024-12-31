@@ -7,6 +7,7 @@ import { config } from './src/global';
 export default defineConfig({
   build: {
     cssMinify: 'lightningcss',
+    target: 'esnext'
   },
   plugins: [vue()],
   resolve: {

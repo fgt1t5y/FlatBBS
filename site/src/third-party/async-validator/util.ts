@@ -10,11 +10,14 @@ import type {
 export function convertFieldsError(
   errors: ValidateError[],
 ): Record<string, ValidateError[]> {
+  //@ts-expect-error ignore
   if (!errors || !errors.length) return null;
   const fields = {};
   errors.forEach((error) => {
     const field = error.field;
+    //@ts-expect-error ignore
     fields[field] = fields[field] || [];
+    //@ts-expect-error ignore
     fields[field].push(error);
   });
   return fields;
@@ -38,6 +41,7 @@ export function isEmptyValue(value: Value, type?: string) {
   if (type === 'array' && Array.isArray(value) && !value.length) {
     return true;
   }
+  //@ts-expect-error ignore
   if (isNativeStringType(type) && typeof value === 'string' && !value) {
     return true;
   }

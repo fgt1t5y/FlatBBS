@@ -29,7 +29,7 @@ export class Schema {
   static validators = validators;
 
   // ======================== Instance ========================
-  rules: Record<string, RuleItem[]> = null;
+  rules: Record<string, RuleItem[]> | null = null;
 
   constructor(descriptor: Rules) {
     this.define(descriptor);
@@ -46,7 +46,7 @@ export class Schema {
 
     Object.keys(rules).forEach((name) => {
       const item: Rule = rules[name];
-      this.rules[name] = Array.isArray(item) ? item : [item];
+      this.rules![name] = Array.isArray(item) ? item : [item];
     });
   }
 
@@ -99,7 +99,7 @@ export class Schema {
     const series: Record<string, RuleValuePackage[]> = {};
     const keys = options.keys || Object.keys(this.rules);
     keys.forEach((z) => {
-      const arr = this.rules[z];
+      const arr = this.rules![z];
       let value = source[z];
       arr.forEach((r) => {
         let rule: InternalRuleItem = r;
@@ -164,6 +164,7 @@ export class Schema {
         function cb(e: SyncErrorType | SyncErrorType[] = []) {
           let errorList = Array.isArray(e) ? e : [e];
           if (errorList.length && rule.message !== undefined) {
+            //@ts-expect-error ignore
             errorList = [].concat(rule.message);
           }
 
@@ -171,6 +172,7 @@ export class Schema {
           let filledErrors = errorList.map(complementError(rule, source));
 
           if (options.first && filledErrors.length) {
+            //@ts-expect-error ignore
             errorFields[rule.field] = 1;
             return doIt(filledErrors);
           }
@@ -234,6 +236,7 @@ export class Schema {
                 if (errs && errs.length) {
                   finalErrors.push(...errs);
                 }
+                //@ts-expect-error ignore
                 doIt(finalErrors.length ? finalErrors : null);
               },
             );
