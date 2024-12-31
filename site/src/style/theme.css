@@ -29,6 +29,10 @@
     @apply border-gray-300 dark:border-gray-700;
   }
 
+  .border-form {
+    @apply border-gray-500 dark:border-gray-700;
+  }
+
   .outline-primary {
     @apply outline-indigo-600;
   }
@@ -123,6 +127,26 @@
     @apply h-10 px-6;
   }
 
+  .form {
+    @apply flex flex-col gap-2;
+  }
+
+  .form-label {
+    @apply font-bold;
+  }
+
+  .form-item-error {
+    color: red;
+  }
+
+  .input {
+    @apply border border-form rounded h-10 px-2 flex flex-col;
+  }
+
+  .input-widget {
+    @apply grow text-base [color-scheme:light] dark:[color-scheme:dark];
+  }
+
   .navbar {
     @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center;
   }
@@ -191,6 +215,14 @@
   button:disabled {
     @apply cursor-not-allowed;
   }
+
+  input {
+    @apply bg-transparent;
+  }
+
+  input:focus {
+    outline: none;
+  }
 }
 
 @layer utilities {
@@ -209,13 +241,6 @@
   .top-navbar {
     top: 52px;
   }
-}
-
-input {
-  border: none;
-  outline: none;
-  color: currentColor;
-  background: transparent;
 }
 
 .grid-main-panels-inner {

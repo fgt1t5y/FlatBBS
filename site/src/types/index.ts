@@ -1,3 +1,6 @@
+import type { Ref } from 'vue';
+import type { Rules, ValidateErrorMap } from '@/third-party/async-validator';
+
 export interface Result<T = null> {
   code: number;
   message?: string;
@@ -102,4 +105,10 @@ export interface IRouteTab {
   routeName: string;
   label: string;
   params: any;
+}
+
+export interface IFormContext {
+  rules: Ref<Rules>;
+  errorMessages: Ref<ValidateErrorMap>;
+  onFormItemBlur: (ev: FocusEvent) => void
 }

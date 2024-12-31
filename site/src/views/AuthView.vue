@@ -2,32 +2,27 @@
   <MainContent disable-panels :title="$t('action.login')">
     <PageTitle :title="$t('action.login')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
-      <FormKit
-        v-model="inputForm"
-        type="form"
-        :disabled="isDealing"
-        :actions="false"
+      <CommonForm
+        :form="inputForm"
+        :submit-label="$t('action.login')"
         @submit="actionLogin"
       >
-        <FormKit
-          type="email"
+        <FormInput
+          v-model="inputForm.email"
           name="email"
+          datatype="email"
           :label="$t('email')"
-          validation="required|length:5|*email"
-          autofocus
+          required
         />
-        <FormKit
-          type="password"
+        <FormInput
+          v-model="inputForm.password"
           name="password"
+          type="password"
           :label="$t('password')"
-          validation="required|length:8"
+          :min="8"
+          required
         />
-        <FormKit
-          type="submit"
-          prefix-icon="submit"
-          :label="$t('action.login')"
-        />
-      </FormKit>
+      </CommonForm>
     </div>
   </MainContent>
 </template>
@@ -40,7 +35,8 @@ import { useRoute } from 'vue-router'
 import router from '@/router'
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { FormKit } from '@formkit/vue'
+import CommonForm from '@/components/CommonForm.vue'
+import FormInput from '@/components/form/FormInput.vue'
 
 const isDealing = ref<boolean>(false)
 const inputForm = ref({

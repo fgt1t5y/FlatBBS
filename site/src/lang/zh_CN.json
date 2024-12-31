@@ -136,5 +136,53 @@
       "undo": "撤销",
       "redo": "重做"
     }
+  },
+
+  "form": {
+    "default": "验证 {0} 时出现错误",
+    "required": "{0} 是必填项",
+    "enum": "{0} 必须是 {1} 中的一个值",
+    "whitespace": "{0} 不能为空",
+    "date": {
+      "format": "%s date %s is invalid for format %s",
+      "parse": "%s date could not be parsed, %s is invalid ",
+      "invalid": "%s date %s is invalid"
+    },
+    "types": {
+      "string": "{0} 不是字符串",
+      "method": "{0} 不是方法（函数）",
+      "array": "{0} 不是数组",
+      "object": "{0} 不是对象",
+      "number": "{0} 不是数字",
+      "date": "{0} 不是日期",
+      "boolean": "{0} 不是布尔类型",
+      "integer": "{0} 不是整数",
+      "float": "{0} 不是浮点数",
+      "regexp": "{0} 不是正则表达式",
+      "email": "{0} 不是电子邮箱地址",
+      "url": "{0} 不是 URL",
+      "hex": "{0} 不是有效的hex值"
+    },
+    "string": {
+      "len": "{0} 的字符数必须为 {1}",
+      "min": "{0} 至少需要 {1} 个字符",
+      "max": "{0} 最多只能 {1} 个字符",
+      "range": "{0} 的字符数必须介于 {1} 和 {2} 之间"
+    },
+    "number": {
+      "len": "{0} 必须等于 {1}",
+      "min": "{0} 不能小于 {1}",
+      "max": "{0} 不能大于 {1}",
+      "range": "{0} 必须介于 {1} 和 {2} 之间"
+    },
+    "array": {
+      "len": "{0} 的长度必须为 {1}",
+      "min": "{0} 至少需要 {1} 个元素",
+      "max": "{0} 最多只能 {1} 个元素",
+      "range": "{0} 的元素数必须介于 {1} 和 {2} 之间"
+    },
+    "pattern": {
+      "mismatch": "{0} 的值 {1} 不能匹配表达式 {2}"
+    }
   }
 }

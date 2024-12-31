@@ -136,5 +136,53 @@
       "undo": "Undo",
       "redo": "Redo"
     }
+  },
+
+  "form": {
+    "default": "Validation error on field {0}",
+    "required": "{0} is required",
+    "enum": "{0} must be one of {1}",
+    "whitespace": "{0} cannot be empty",
+    "date": {
+      "format": "{0} date {1} is invalid for format {2}",
+      "parse": "{0} date could not be parsed, {1} is invalid ",
+      "invalid": "{0} date {1} is invalid"
+    },
+    "types": {
+      "string": "{0} is not a string",
+      "method": "{0} is not a method (function)",
+      "array": "{0} is not an array",
+      "object": "{0} is not an object",
+      "number": "{0} is not a number",
+      "date": "{0} is not a date",
+      "boolean": "{0} is not a boolean",
+      "integer": "{0} is not an integer",
+      "float": "{0} is not a float",
+      "regexp": "{0} is not a valid regexp",
+      "email": "{0} is not a valid email",
+      "url": "{0} is not a valid url",
+      "hex": "{0} is not a valid hex"
+    },
+    "string": {
+      "len": "{0} must be exactly {1} characters",
+      "min": "{0} must be at least {1} characters",
+      "max": "{0} cannot be longer than {1} characters",
+      "range": "{0} must be between {1} and {2} characters"
+    },
+    "number": {
+      "len": "{0} must equal {1}",
+      "min": "{0} cannot be less than {1}",
+      "max": "{0} cannot be greater than {1}",
+      "range": "{0} must be between {1} and {2}"
+    },
+    "array": {
+      "len": "{0} must be exactly {1} in length",
+      "min": "{0} cannot be less than {1} in length",
+      "max": "{0} cannot be greater than {1} in length",
+      "range": "{0} must be between {1} and {2} in length"
+    },
+    "pattern": {
+      "mismatch": "{0} value {1} does not match pattern {2}"
+    }
   }
 }
