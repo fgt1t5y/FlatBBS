@@ -6,7 +6,7 @@ import { config } from './src/global';
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    cssMinify: 'lightningcss',
+    cssMinify: false,
     target: 'esnext'
   },
   plugins: [vue()],
