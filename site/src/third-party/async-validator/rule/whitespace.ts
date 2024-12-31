@@ -13,7 +13,7 @@ import type { ExecuteRule } from '../interface';
  */
 const whitespace: ExecuteRule = (rule, value, source, errors, options) => {
   if (/^\s+$/.test(value) || value === '') {
-    errors.push(options.translator('form.whitespace', [rule.fullField!]));
+    errors.push(options.t('form.whitespace', [rule.label! || rule.fullField!]));
   }
 };
 

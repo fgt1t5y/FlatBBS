@@ -1,6 +1,14 @@
 <template>
   <div class="form-item">
-    <label v-if="label" class="form-label" :for="inputId">{{ label }}</label>
+    <label
+      v-if="label"
+      :class="{
+        'form-required': required,
+      }"
+      :for="inputId"
+    >
+      {{ label }}
+    </label>
     <div class="input">
       <input
         :id="inputId"
@@ -14,8 +22,9 @@
         @blur="context?.onFormItemBlur"
       />
     </div>
-    <div v-if="errorMessage" class="form-item-error">
-      {{ errorMessage }}
+    <div class="form-item-error">
+      <span v-if="errorMessage">{{ errorMessage }}</span>
+      <span v-else>&nbsp;</span>
     </div>
   </div>
 </template>
@@ -82,6 +91,7 @@ const errorMessage = computed(() => {
 
 onMounted(() => {
   context!.rules.value[props.name] = {
+    label: props.label,
     type: props.datatype,
     required: props.required,
     min: props.min,

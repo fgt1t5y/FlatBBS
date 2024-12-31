@@ -45,7 +45,7 @@ const validator = computed(() => new Schema(toValue(rules)))
 
 const validate = async () => {
   try {
-    await validator.value.validate(props.form, { translator: t })
+    await validator.value.validate(props.form, { t })
     errorMessages.value = {}
     return true
   } catch (error: any) {

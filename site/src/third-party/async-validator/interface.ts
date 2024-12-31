@@ -31,14 +31,13 @@ export interface ValidateOption {
   // when the first validation rule of the specified field generates an error stop the field processed, 'true' means all fields.
   firstFields?: boolean | string[];
 
-  messages?: Partial<ValidateMessages>;
-
   /** The name of rules need to be trigger. Will validate all rules if leave empty */
   keys?: string[];
 
   error?: (rule: InternalRuleItem, message: string) => ValidateError;
 
-  translator: (key: string, slot: string[]) => string;
+  // translator function
+  t: (key: string, slot: string[]) => string;
 }
 
 export type SyncErrorType = Error | string;
@@ -54,6 +53,7 @@ export type SyncValidateFunction = (
 ) => SyncValidateResult | void;
 
 export interface RuleItem {
+  label?: string;
   type?: RuleType; // default type is 'string'
   required?: boolean;
   pattern?: RegExp | string;
@@ -119,64 +119,6 @@ export type ExecuteValidator = (
   source: Values,
   options: ValidateOption,
 ) => void;
-
-// >>>>> Message
-type ValidateMessage<T extends any[] = unknown[]> =
-  | string
-  | ((...args: T) => string);
-type FullField = string | undefined;
-type EnumString = string | undefined;
-type Pattern = string | RegExp | undefined;
-type Range = number | undefined;
-type Type = string | undefined;
-
-export interface ValidateMessages {
-  default?: ValidateMessage;
-  required?: ValidateMessage<[FullField]>;
-  enum?: ValidateMessage<[FullField, EnumString]>;
-  whitespace?: ValidateMessage<[FullField]>;
-  date?: {
-    format?: ValidateMessage;
-    parse?: ValidateMessage;
-    invalid?: ValidateMessage;
-  };
-  types?: {
-    string?: ValidateMessage<[FullField, Type]>;
-    method?: ValidateMessage<[FullField, Type]>;
-    array?: ValidateMessage<[FullField, Type]>;
-    object?: ValidateMessage<[FullField, Type]>;
-    number?: ValidateMessage<[FullField, Type]>;
-    date?: ValidateMessage<[FullField, Type]>;
-    boolean?: ValidateMessage<[FullField, Type]>;
-    integer?: ValidateMessage<[FullField, Type]>;
-    float?: ValidateMessage<[FullField, Type]>;
-    regexp?: ValidateMessage<[FullField, Type]>;
-    email?: ValidateMessage<[FullField, Type]>;
-    url?: ValidateMessage<[FullField, Type]>;
-    hex?: ValidateMessage<[FullField, Type]>;
-  };
-  string?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
-  };
-  number?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
-  };
-  array?: {
-    len?: ValidateMessage<[FullField, Range]>;
-    min?: ValidateMessage<[FullField, Range]>;
-    max?: ValidateMessage<[FullField, Range]>;
-    range?: ValidateMessage<[FullField, Range, Range]>;
-  };
-  pattern?: {
-    mismatch?: ValidateMessage<[FullField, Value, Pattern]>;
-  };
-}
 
 // >>>>> Values
 export type Value = any;

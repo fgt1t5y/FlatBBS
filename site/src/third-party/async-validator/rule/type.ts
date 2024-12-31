@@ -91,13 +91,13 @@ const type: ExecuteRule = (rule, value, source, errors, options) => {
   if (custom.indexOf(ruleType!) > -1) {
     if (!types[ruleType](value)) {
       errors.push(
-        options.translator(`form.types.${ruleType}`, [rule.fullField!]),
+        options.t(`form.types.${ruleType}`, [rule.label! || rule.fullField!]),
       );
     }
     // straight typeof check
   } else if (ruleType && typeof value !== rule.type) {
     errors.push(
-      options.translator(`form.types.${ruleType}`, [rule.fullField!]),
+      options.t(`form.types.${ruleType}`, [rule.label! || rule.fullField!]),
     );
   }
 };

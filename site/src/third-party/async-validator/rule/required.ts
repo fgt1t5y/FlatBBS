@@ -7,7 +7,7 @@ const required: ExecuteRule = (rule, value, source, errors, options, type) => {
     (!source.hasOwnProperty(rule.field) ||
       isEmptyValue(value, type || rule.type))
   ) {
-    errors.push(options.translator('form.required', [rule.fullField!]));
+    errors.push(options.t('form.required', [rule.label! || rule.fullField!]));
   }
 };
 

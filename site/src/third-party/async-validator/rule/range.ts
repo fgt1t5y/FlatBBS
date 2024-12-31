@@ -34,21 +34,30 @@ const range: ExecuteRule = (rule, value, source, errors, options) => {
   if (len) {
     if (val !== rule.len) {
       errors.push(
-        options.translator(`form.${key}.len`, [rule.fullField!, `${rule.len}`]),
+        options.t(`form.${key}.len`, [
+          rule.label! || rule.fullField!,
+          `${rule.len}`,
+        ]),
       );
     }
   } else if (min && !max && val < rule.min!) {
     errors.push(
-      options.translator(`form.${key}.min`, [rule.fullField!, `${rule.min}`]),
+      options.t(`form.${key}.min`, [
+        rule.label! || rule.fullField!,
+        `${rule.min}`,
+      ]),
     );
   } else if (max && !min && val > rule.max!) {
     errors.push(
-      options.translator(`form.${key}.max`, [rule.fullField!, `${rule.max}`]),
+      options.t(`form.${key}.max`, [
+        rule.label! || rule.fullField!,
+        `${rule.max}`,
+      ]),
     );
   } else if (min && max && (val < rule.min! || val > rule.max!)) {
     errors.push(
-      options.translator(`form.${key}.range`, [
-        rule.fullField!,
+      options.t(`form.${key}.range`, [
+        rule.label! || rule.fullField!,
         `${rule.min}`,
         `${rule.max}`,
       ]),

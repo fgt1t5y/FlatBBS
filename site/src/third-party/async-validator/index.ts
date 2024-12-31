@@ -59,12 +59,8 @@ export class Schema {
   validate(source: Values): Promise<Values>;
   validate(source_: Values, o: any = {}, oc: any = () => {}): Promise<Values> {
     let source: Values = source_;
-    let options: ValidateOption = o;
-    let callback: ValidateCallback = oc;
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
+    const options: ValidateOption = o;
+    const callback: ValidateCallback = oc;
     if (!this.rules || Object.keys(this.rules).length === 0) {
       if (callback) {
         callback(null, source);
@@ -187,13 +183,14 @@ export class Schema {
             if (rule.required && !data.value) {
               if (rule.message !== undefined) {
                 filledErrors = []
+                  // @ts-expect-error ignore
                   .concat(rule.message)
                   .map(complementError(rule, source));
               } else if (options.error) {
                 filledErrors = [
                   options.error(
                     rule,
-                    options.translator('form.required', [rule.field!]),
+                    options.t('form.required', [rule.field!]),
                   ),
                 ];
               }
@@ -203,7 +200,7 @@ export class Schema {
             let fieldsSchema: Record<string, Rule> = {};
             if (rule.defaultField) {
               Object.keys(data.value).map((key) => {
-                fieldsSchema[key] = rule.defaultField;
+                fieldsSchema[key] = rule.defaultField!;
               });
             }
             fieldsSchema = {
@@ -230,7 +227,7 @@ export class Schema {
               data.value,
               data.rule.options || options,
               (errs) => {
-                const finalErrors = [];
+                const finalErrors: ValidateError[] = [];
                 if (filledErrors && filledErrors.length) {
                   finalErrors.push(...filledErrors);
                 }
@@ -243,13 +240,13 @@ export class Schema {
           }
         }
 
-        let res: ValidateResult;
+        let res: ValidateResult = undefined;
         if (rule.asyncValidator) {
           res = rule.asyncValidator(rule, data.value, cb, data.source, options);
         } else if (rule.validator) {
           try {
             res = rule.validator(rule, data.value, cb, data.source, options);
-          } catch (error) {
+          } catch (error: any) {
             console.error?.(error);
             // rethrow to report error
             if (!options.suppressValidatorError) {
@@ -294,6 +291,7 @@ export class Schema {
     if (
       typeof rule.validator !== 'function' &&
       rule.type &&
+      // eslint-disable-next-line no-prototype-builtins
       !validators.hasOwnProperty(rule.type)
     ) {
       throw new Error(`'Unknown rule type ${rule.type}`);

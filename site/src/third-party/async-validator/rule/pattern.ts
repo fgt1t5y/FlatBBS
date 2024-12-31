@@ -9,8 +9,8 @@ const pattern: ExecuteRule = (rule, value, source, errors, options) => {
       rule.pattern.lastIndex = 0;
       if (!rule.pattern.test(value)) {
         errors.push(
-          options.translator('form.pattern', [
-            rule.fullField,
+          options.t('form.pattern', [
+            rule.label! || rule.fullField!,
             value,
             rule.pattern,
           ]),
@@ -20,8 +20,8 @@ const pattern: ExecuteRule = (rule, value, source, errors, options) => {
       const _pattern = new RegExp(rule.pattern);
       if (!_pattern.test(value)) {
         errors.push(
-          options.translator('form.pattern', [
-            rule.fullField,
+          options.t('form.pattern', [
+            rule.label! || rule.fullField!,
             value,
             rule.pattern,
           ]),

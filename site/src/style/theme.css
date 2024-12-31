@@ -128,15 +128,16 @@
   }
 
   .form {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col;
   }
 
-  .form-label {
-    @apply font-bold;
+  .form-required::after {
+    content: ' *';
+    color: theme(textColor.red.600);
   }
 
   .form-item-error {
-    color: red;
+    @apply text-red-600;
   }
 
   .input {
