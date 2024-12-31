@@ -45,6 +45,14 @@ export type SyncErrorType = Error | string;
 export type SyncValidateResult = boolean | SyncErrorType | SyncErrorType[];
 export type ValidateResult = void | Promise<void> | SyncValidateResult;
 
+export type SyncValidateFunction = (
+  rule: InternalRuleItem,
+  value: Value,
+  callback: (error?: string | Error) => void,
+  source: Values,
+  options: ValidateOption,
+) => SyncValidateResult | void;
+
 export interface RuleItem {
   type?: RuleType; // default type is 'string'
   required?: boolean;
@@ -66,13 +74,7 @@ export interface RuleItem {
     source: Values,
     options: ValidateOption,
   ) => void | Promise<void>;
-  validator?: (
-    rule: InternalRuleItem,
-    value: Value,
-    callback: (error?: string | Error) => void,
-    source: Values,
-    options: ValidateOption,
-  ) => SyncValidateResult | void;
+  validator?: SyncValidateFunction;
 }
 
 export type Rule = RuleItem | RuleItem[];

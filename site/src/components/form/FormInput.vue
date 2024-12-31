@@ -6,6 +6,7 @@
         :id="inputId"
         v-model="inputValue"
         class="input-widget"
+        :autocomplete="autocomplete"
         :name="name"
         :type="type"
         :readonly="readonly"
@@ -24,7 +25,10 @@ import { computed, inject, onMounted, useId } from 'vue'
 import { formContextKey } from '@/utils'
 
 import type { IFormContext } from '@/types'
-import type { RuleType } from '@/third-party/async-validator'
+import type {
+  RuleType,
+  SyncValidateFunction,
+} from '@/third-party/async-validator'
 
 defineOptions({
   name: 'FormInput',
@@ -32,6 +36,7 @@ defineOptions({
 
 interface FormInputProps {
   name: string
+  autocomplete?: string
   type?: 'text' | 'password'
   datatype?: RuleType
   label?: string
@@ -41,9 +46,11 @@ interface FormInputProps {
   min?: number
   max?: number
   len?: number
+  validator?: SyncValidateFunction
 }
 
 const props = withDefaults(defineProps<FormInputProps>(), {
+  autocomplete: undefined,
   datatype: 'string',
   type: 'text',
   label: undefined,
@@ -53,6 +60,7 @@ const props = withDefaults(defineProps<FormInputProps>(), {
   min: undefined,
   max: undefined,
   len: undefined,
+  validator: undefined,
 })
 
 const inputValue = defineModel<string>('modelValue', { default: '' })
@@ -79,6 +87,7 @@ onMounted(() => {
     min: props.min,
     max: props.max,
     len: props.len,
+    validator: props.validator,
   }
 })
 </script>

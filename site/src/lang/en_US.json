@@ -183,6 +183,7 @@
     },
     "pattern": {
       "mismatch": "{0} value {1} does not match pattern {2}"
-    }
+    },
+    "password_confirm_dismatch": "Password ane confirm password is dismatch."
   }
 }

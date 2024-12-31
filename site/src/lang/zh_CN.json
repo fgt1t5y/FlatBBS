@@ -183,6 +183,7 @@
     },
     "pattern": {
       "mismatch": "{0} 的值 {1} 不能匹配表达式 {2}"
-    }
+    },
+    "password_confirm_dismatch": "密码与确认密码不一致"
   }
 }

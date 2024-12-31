@@ -2,38 +2,36 @@
   <MainContent disable-panels :title="$t('page.modify_password')">
     <PageTitle :title="$t('page.modify_password')" />
     <div class="p-3 my-0 mx-auto" style="max-width: 500px">
-      <FormKit
-        v-model="modifyForm"
-        type="form"
-        action="false"
-        :submit-label="$t('action.submit')"
-        @submit="actionSubmit"
-      >
-        <FormKit
+      <CommonForm :form="modifyForm" @submit="actionSubmit">
+        <FormInput
+          v-model="modifyForm.old_password"
+          autocomplete="current-password"
           type="password"
           name="old_password"
-          autocomplete="current-password"
-          validation="required|length:8"
           :label="$t('old_password')"
+          :min="8"
+          required
         />
-        <FormKit
+        <FormInput
+          v-model="modifyForm.new_password"
+          autocomplete="new-password"
           type="password"
           name="new_password"
-          autocomplete="new-password"
-          validation="required|length:8"
           :label="$t('new_password')"
+          :min="8"
+          required
         />
-        <FormKit
+        <FormInput
+          v-model="modifyForm.new_password_confirm"
+          autocomplete="new-password"
           type="password"
           name="new_password_confirm"
-          autocomplete="new-password"
-          validation="required|confirm"
           :label="$t('new_password_confirm')"
+          :validator="checkPasswordSame"
+          :min="8"
+          required
         />
-        <p class="text-red-600">
-          {{ $t('message.logout_all_session_if_modify_password') }}
-        </p>
-      </FormKit>
+      </CommonForm>
     </div>
   </MainContent>
 </template>
@@ -44,18 +42,32 @@ import PageTitle from '@/components/PageTitle.vue'
 import { modifyPassword } from '@/services'
 import { useMessage } from '@/stores'
 import { clearToken } from '@/utils'
-import { FormKit } from '@formkit/vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import CommonForm from '@/components/CommonForm.vue'
+import FormInput from '@/components/form/FormInput.vue'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const ms = useMessage()
+const { t } = useI18n()
 const isDealing = ref<boolean>(false)
 const modifyForm = ref({
   old_password: '',
   new_password: '',
   new_password_confirm: '',
 })
+
+const checkPasswordSame = () => {
+  if (
+    modifyForm.value.new_password &&
+    modifyForm.value.new_password_confirm !== modifyForm.value.new_password
+  ) {
+    return new Error(t('form.password_confirm_dismatch'))
+  }
+
+  return true
+}
 
 const actionSubmit = () => {
   isDealing.value = true
