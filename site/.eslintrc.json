@@ -111,6 +111,9 @@
     "import/no-unresolved": "off",
 
     // 关闭将导出标记为默认导出的警告
-    "import/no-named-as-default": "off"
+    "import/no-named-as-default": "off",
+
+    // 强制包裹 if 语句块
+    "curly": ["error", "all"]
   }
 }
