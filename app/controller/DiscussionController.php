@@ -40,7 +40,8 @@ class DiscussionController
         $discussion = $this->discussion->build($content, $topic, $author);
         $discussion->save();
 
-        // DOTO: add `discussion_count` column to Topic model;
+        $topic->discussion_count++;
+        $topic->save();
 
         return ok(Discussion::find($discussion->id));
     }

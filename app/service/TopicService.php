@@ -9,14 +9,12 @@ use Carbon\Carbon;
 
 class TopicService
 {
-    public array $topic_detail_columns = ['id', 'board_id', 'author_id', 'like_count', 'title', 'content', 'created_at'];
-
     public function all(int $last_id, int $limit)
     {
         return Topic::orderByDesc('last_reply_at')
             ->limit(min($limit, 50))
             ->where('id', $last_id === 0 ? '>' : '<', $last_id)
-            ->get(['id', 'board_id', 'like_count', 'author_id', 'title', 'text', 'created_at']);
+            ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
     public function build(string $title, string $text, string $content, Board $board, User $author)
@@ -35,7 +33,10 @@ class TopicService
 
     public function detail(int $topic_id)
     {
-        return Topic::find($topic_id, $this->topic_detail_columns);
+        return Topic::find(
+            $topic_id,
+            ['id', 'board_id', 'author_id', 'discussion_count', 'like_count', 'title', 'content', 'created_at']
+        );
     }
 
     public function toggle_like(int $topic_id, int $user_id): int

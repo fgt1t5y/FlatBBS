@@ -8,7 +8,7 @@
       @like="likeOrUnlike"
     />
     <div class="p-3 text-base font-bold">
-      {{ $t('discussion.count', { count: discussions.length }) }}
+      {{ $t('discussion.count', { count: topic.discussion_count }) }}
     </div>
     <CommonList :items="discussions" :is-end="isLastPage">
       <template #default="{ item, index }">
@@ -21,8 +21,11 @@
       :error="error"
       @retry="loadDiscussions"
     />
-    <div v-if="topic" class="p-3 border-bt">
-      <div v-if="user.isLogin" class="flex gap-2">
+    <div v-if="topic" class="border-bt">
+      <div class="p-3 text-base font-bold">
+        {{ $t('discussion.publish') }}
+      </div>
+      <div v-if="user.isLogin" class="p-3 flex gap-2">
         <Avatar
           class="size-8 md:size-12"
           :src="user.info?.avatar_uri"
@@ -41,7 +44,7 @@
           {{ $t('message.login_for_publish_discussion') }}
         </div>
       </div>
-      <div v-if="discussionEditorText" class="flex justify-end">
+      <div v-if="discussionEditorText" class="p-3 flex justify-end">
         <button
           class="btn-primary btn-md"
           :disabled="discussionPublishing"
@@ -159,9 +162,10 @@ const {
     insertDiscussion(discussion.value, lastItemId)
   }
   if (discussionEditor.value) {
-    discussionEditor.value.editor?.commands.clearContent()
+    discussionEditor.value.editor?.commands.clearContent(true)
   }
   ms.success(t('message.publish_discussion_success'))
+  topic.value.discussion_count++
 })
 
 onActivated(() => {

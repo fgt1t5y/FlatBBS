@@ -33,9 +33,15 @@
       >
         {{ topic.board.name }}
       </RouterLink>
-      <div class="flex gap-1 items-center text-muted">
-        <Heart class="size-5" />
-        <span>{{ topic.like_count }}</span>
+      <div class="flex gap-2 text-muted">
+        <div class="flex gap-1">
+          <Message class="size-5" />
+          <span>{{ topic.discussion_count }}</span>
+        </div>
+        <div class="flex gap-1">
+          <Heart class="size-5" />
+          <span>{{ topic.like_count }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +53,7 @@ import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import { computed } from 'vue'
 import UserPopover from './UserPopover.vue'
-import { Heart } from '@vicons/tabler'
+import { Message, Heart } from '@vicons/tabler'
 
 import type { Topic } from '@/types'
 
