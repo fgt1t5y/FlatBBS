@@ -227,6 +227,10 @@
     @apply text-primary;
   }
 
+  .item:not(:last-child) {
+    @apply border-bt;
+  }
+
   .btn,
   button {
     @apply whitespace-nowrap inline-flex justify-center items-center gap-1;

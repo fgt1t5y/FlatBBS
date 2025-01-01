@@ -48,6 +48,7 @@
   "message": {
     "fill_topic_title": "请填写话题标题",
     "publish_topic_success": "话题发布成功",
+    "publish_discussion_success": "讨论发布成功",
     "logout_all_session_if_modify_password": "修改密码将会退出所有设备上的登录",
     "upload_avatar_success": "头像上传成功",
     "upload_avatar_fail": "头像上传失败",

@@ -15,11 +15,11 @@
         <DiscussionItem :discussion="item" :index="index" />
       </template>
     </CommonList>
-    <IntersectionObserver :disabled="isLastPage" @reach="loadDiscissions" />
+    <IntersectionObserver :disabled="isLastPage" @reach="loadDiscussions" />
     <RequestPlaceholder
       :loading="loading"
       :error="error"
-      @retry="loadDiscissions"
+      @retry="loadDiscussions"
     />
     <div v-if="topic" class="p-3 border-bt">
       <div v-if="user.isLogin" class="flex gap-2">
@@ -73,12 +73,13 @@ import TopicDetail from '@/components/TopicDetail.vue'
 import { useTitle } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import { onActivated, ref } from 'vue'
-import { useUserStore } from '@/stores'
+import { useMessage, useUserStore } from '@/stores'
 import Avatar from '@/components/Avatar.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
 
 const route = useRoute()
 const user = useUserStore()
+const ms = useMessage()
 const isTopicLiked = ref<boolean>(false)
 const currentLikeCount = ref<number>(0)
 const discussionEditor = ref<InstanceType<typeof TiptapEditor>>()
@@ -109,7 +110,7 @@ const {
   send: loadTopic,
 } = useRequest(() => getTopic(topicId)).onSuccess(() => {
   setTitle(topic.value?.title)
-  loadDiscissions()
+  loadDiscussions()
 
   const likedUsers = topic.value.likes
 
@@ -131,15 +132,17 @@ const {
   data: discussions,
   isLastPage,
   error,
-  send: loadDiscissions,
-  refresh: refreshDiscussion,
+  send: loadDiscussions,
+  insert: insertDiscussion,
 } = usePagination((page, limit) => getDiscussions(lastItemId, limit, topicId), {
   append: true,
   initialPageSize: 10,
   immediate: false,
 }).onSuccess(() => {
   const items = discussions.value
-  if (!items || !items.length) return
+  if (!items || !items.length) {
+    return
+  }
 
   lastItemId = items[items.length - 1].id
 })
@@ -151,13 +154,14 @@ const {
 } = useRequest(
   () => publishDiscussion(discussionEditorContent.value, topicId),
   { immediate: false },
-).onComplete(() => {
+).onSuccess(() => {
   if (discussion.value) {
-    refreshDiscussion()
+    insertDiscussion(discussion.value, lastItemId)
   }
   if (discussionEditor.value) {
     discussionEditor.value.editor?.commands.clearContent()
   }
+  ms.success(t('message.publish_discussion_success'))
 })
 
 onActivated(() => {

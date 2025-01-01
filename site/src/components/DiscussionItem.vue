@@ -1,5 +1,5 @@
 <template>
-  <div class="item p-3 border-bt flex gap-2">
+  <div class="item p-3 flex gap-2">
     <UserPopover class="shrink-0" :user-id="discussion.author.id">
       <RouterLink
         :to="{

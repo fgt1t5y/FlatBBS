@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="list">
     <slot v-for="(item, index) of items" :item="item" :index="index" />
-    <div v-if="isEnd && items" class="text-center text-muted p-3 border-bt">
-      {{ $t('message.list_no_more') }}
-    </div>
+  </div>
+  <div v-if="isEnd && items" class="text-center text-muted p-3 border-bt">
+    {{ $t('message.list_no_more') }}
   </div>
 </template>
 

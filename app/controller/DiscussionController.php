@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\model\Discussion;
 use app\service\DiscussionService;
 use DI\Attribute\Inject;
 use support\Request;
@@ -41,6 +42,6 @@ class DiscussionController
 
         // DOTO: add `discussion_count` column to Topic model;
 
-        return ok($discussion);
+        return ok(Discussion::find($discussion->id));
     }
 }

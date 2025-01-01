@@ -48,6 +48,7 @@
   "message": {
     "fill_topic_title": "Fill in the topic title please.",
     "publish_topic_success": "The topic was successfully published",
+    "publish_discussion_success": "The discussion was successfully published",
     "logout_all_session_if_modify_password": "All sessions will be logged out if you modify password.",
     "upload_avatar_success": "New avatar was successfully uploaded.",
     "upload_avatar_fail": "Upload failed, try again.",
