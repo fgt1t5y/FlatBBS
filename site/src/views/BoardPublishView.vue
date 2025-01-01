@@ -20,7 +20,7 @@
     <div class="p-3 flex flex-col border-bt">
       <input
         v-model="topicDraft.title"
-        class="text-lg"
+        class="text-xl"
         :placeholder="$t('topic.title')"
         autofocus
       />

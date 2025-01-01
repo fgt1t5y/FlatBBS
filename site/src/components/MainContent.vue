@@ -1,12 +1,12 @@
 <template>
-  <div
+  <main
     id="main-content"
     class="main-content"
     :class="{
       'flex-row-reverse': reversePanel,
     }"
   >
-    <div class="relative grow mb-14">
+    <div class="main-content-body">
       <RequestPlaceholder
         v-if="loading || error"
         :loading="loading"
@@ -16,11 +16,11 @@
       <slot v-else />
     </div>
     <div v-if="isDesktop && !disablePanels">
-      <div class="grid-main-panels-inner">
+      <div class="main-content-aside">
         <slot name="panels" />
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

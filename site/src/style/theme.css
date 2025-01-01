@@ -112,7 +112,7 @@
   }
 
   .btn-text {
-    @apply text-content hover:text-primary disabled:opacity-50;
+    @apply rounded text-content hover:text-primary disabled:opacity-50;
   }
 
   .btn-text-active {
@@ -135,9 +135,8 @@
     @apply flex flex-col gap-1;
   }
 
-  .form-item-required::after {
-    content: ' *';
-    color: theme(textColor.red.600);
+  .form-item-required {
+    @apply text-red-600;
   }
 
   .form-item-error {
@@ -169,7 +168,7 @@
   }
 
   .h-navbar {
-    height: 52px;
+    @apply h-[52px];
   }
 
   .menu-item {
@@ -185,7 +184,15 @@
   }
 
   .main-content {
-    @apply flex gap-3 my-0 mx-auto w-full-page grow;
+    @apply flex gap-3 my-0 mx-auto w-full-page;
+  }
+
+  .main-content-aside {
+    @apply sticky top-navbar min-w-[250px];
+  }
+
+  .main-content-body {
+    @apply relative grow mb-14;
   }
 
   .modal {
@@ -232,12 +239,7 @@
   input,
   select,
   option {
-    @apply bg-content [color-scheme:light] dark:[color-scheme:dark];
-  }
-
-  input:focus,
-  select:focus {
-    outline: none;
+    @apply bg-content outline-0 [color-scheme:light] dark:[color-scheme:dark];
   }
 }
 
@@ -257,12 +259,6 @@
   .top-navbar {
     top: 52px;
   }
-}
-
-.grid-main-panels-inner {
-  position: sticky;
-  top: 60px;
-  min-width: 250px;
 }
 
 .cropper-wrapper {
@@ -285,10 +281,6 @@
   left: 0px;
   right: 0px;
   touch-action: none;
-}
-
-.user-panel {
-  width: 300px;
 }
 
 /** Editor */

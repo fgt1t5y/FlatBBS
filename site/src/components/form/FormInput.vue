@@ -1,13 +1,9 @@
 <template>
   <div class="form-item">
-    <label
-      v-if="label"
-      :class="{
-        'form-item-required': required,
-      }"
-      :for="inputId"
-      v-text="label"
-    ></label>
+    <label v-if="label" :for="inputId">
+      {{ label }}
+      <span v-if="required" class="form-item-required">*</span>
+    </label>
     <div :class="inputClass">
       <input
         :id="inputId"

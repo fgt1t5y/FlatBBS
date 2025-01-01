@@ -169,7 +169,9 @@ const roleStringify = () => {
 watch(
   () => themeSwitcherValue.value,
   (tm) => {
-    if (!tm) return
+    if (!tm) {
+      return
+    }
 
     switchTo(tm)
   },
