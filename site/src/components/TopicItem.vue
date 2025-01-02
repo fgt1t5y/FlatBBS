@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-1 p-3 border-bt">
+  <div class="item p-3 flex flex-col gap-1">
     <div class="flex gap-2">
       <UserPopover :user-id="topic.author_id">
         <RouterLink
@@ -23,7 +23,7 @@
         {{ topic.title }}
       </RouterLink>
     </div>
-    <div class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden">
+    <div v-if="previewText" class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden">
       {{ previewText }}
     </div>
     <div class="flex justify-between">

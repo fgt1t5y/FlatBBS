@@ -15,7 +15,7 @@
     <CommonRouteTabs
       :tabs="[
         {
-          routeName: 'user',
+          routeName: 'user_topics',
           label: $t('topic.topic'),
           params: { username },
         },
@@ -26,7 +26,11 @@
         },
       ]"
     />
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <KeepAlive :max="10">
+        <component :is="Component" :key="route.fullPath" />
+      </KeepAlive>
+    </RouterView>
   </MainContent>
 </template>
 

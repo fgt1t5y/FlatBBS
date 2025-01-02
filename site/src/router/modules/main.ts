@@ -39,18 +39,22 @@ export const mainRoutes = [
   },
   {
     path: '/user/:username',
+    name: 'user',
+    redirect(to) {
+      return { name: 'user_topics', params: { username: to.params.username } };
+    },
     component: () => import('@/views/UserView.vue'),
     children: [
       {
         path: '',
-        name: 'user',
+        name: 'user_topics',
         component: () => import('@/views/user/TopicsView.vue'),
       },
       {
         path: 'liked',
         name: 'user_liked_topics',
         component: () => import('@/views/user/LikedTopicsView.vue'),
-      }
+      },
     ],
   },
   {
