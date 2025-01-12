@@ -184,7 +184,7 @@
   }
 
   .main-content {
-    @apply flex gap-3 my-0 mx-auto w-full-page;
+    @apply flex my-0 mx-auto w-full-page;
   }
 
   .main-content-aside {
@@ -244,6 +244,10 @@
   select,
   option {
     @apply bg-content outline-0 [color-scheme:light] dark:[color-scheme:dark];
+  }
+
+  div[role='tooltip'] {
+    z-index: 100;
   }
 }
 
