@@ -1,12 +1,14 @@
 <template>
   <Teleport to="body">
     <div class="message-container">
-      <MessageItem
-        v-for="m in ms.messages"
-        :key="m.i"
-        :message="m"
-        @close="ms.close"
-      />
+      <TransitionGroup>
+        <MessageItem
+          v-for="m in ms.messages"
+          :key="m.i"
+          :message="m"
+          @close="ms.close"
+        />
+      </TransitionGroup>
     </div>
   </Teleport>
 </template>

@@ -33,7 +33,7 @@
       >
         {{ topic.board.name }}
       </RouterLink>
-      <div class="flex gap-2 text-muted">
+      <div class="flex gap-2 text-muted items-center">
         <div class="flex gap-1">
           <Message class="size-5" />
           <span>{{ topic.discussion_count }}</span>
