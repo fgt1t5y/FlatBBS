@@ -144,10 +144,10 @@
   }
 
   .input {
-    @apply border border-form rounded h-10 px-2 flex;
+    @apply border outline outline-transparent outline-2 border-form rounded h-10 px-2 flex;
 
     &:focus-within {
-      @apply border-primary;
+      @apply border-transparent outline-primary;
     }
   }
 
@@ -201,6 +201,7 @@
 
   .modal-wrapper {
     @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
+    transition: all 0.2s ease-in-out;
   }
 
   .modal-inner {
@@ -331,10 +332,4 @@
 
 .modal-leave-to {
   opacity: 0;
-}
-
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
 }
