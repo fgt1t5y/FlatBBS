@@ -39,10 +39,8 @@
           />
         </div>
       </div>
-      <div v-else>
-        <div class="text-center text-muted">
-          {{ $t('message.login_for_publish_discussion') }}
-        </div>
+      <div v-else class="p-3 text-center text-muted">
+        {{ $t('message.login_for_publish_discussion') }}
       </div>
       <div v-if="discussionEditorText" class="p-3 flex justify-end">
         <button

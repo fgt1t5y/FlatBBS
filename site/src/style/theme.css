@@ -176,7 +176,7 @@
   }
 
   .page-title {
-    @apply h-navbar sticky top-0 px-3 bg-content flex items-center justify-between z-20 md:static;
+    @apply sticky top-0 p-3 border-bt bg-content flex items-center justify-between z-20 md:static;
   }
 
   .message-container {
@@ -230,6 +230,10 @@
 
   .item:not(:last-child) {
     @apply border-bt;
+  }
+
+  .html-rendered {
+    @apply text-base;
   }
 
   .btn,

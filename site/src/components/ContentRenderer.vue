@@ -1,5 +1,5 @@
 <template>
-  <div class="html-rendered text-base">
+  <div class="html-rendered">
     <component :is="vnode" />
   </div>
 </template>
@@ -21,11 +21,14 @@ const props = defineProps<{
 }>()
 
 const treeToVNode = (input: Node): VNode | string | null => {
-  if (!input) return null
+  if (!input) {
+    return null
+  }
 
-  if (input.type === TEXT_NODE)
+  if (input.type === TEXT_NODE) {
     // return decode(input.value)
     return input.value
+  }
 
   if ('children' in input) {
     return nodeToVNode(input)
@@ -34,7 +37,9 @@ const treeToVNode = (input: Node): VNode | string | null => {
 }
 
 const nodeToVNode = (node: Node): VNode | string | null => {
-  if (node.type === TEXT_NODE) return node.value
+  if (node.type === TEXT_NODE) {
+    return node.value
+  }
 
   if ('children' in node) {
     return h(node.name, node.attributes, node.children.map(treeToVNode))

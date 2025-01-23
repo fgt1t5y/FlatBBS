@@ -9,9 +9,10 @@ import type {
 
 export function convertFieldsError(
   errors: ValidateError[],
-): Record<string, ValidateError[]> {
-  //@ts-expect-error ignore
-  if (!errors || !errors.length) return null;
+): Record<string, ValidateError[]> | null {
+  if (!errors || !errors.length) {
+    return null;
+  }
   const fields = {};
   errors.forEach((error) => {
     const field = error.field;
@@ -113,11 +114,11 @@ export class AsyncValidationError extends Error {
 
   constructor(
     errors: ValidateError[],
-    fields: Record<string, ValidateError[]>,
+    fields: Record<string, ValidateError[]> | null,
   ) {
     super('Async Validation Error');
     this.errors = errors;
-    this.fields = fields;
+    this.fields = fields || {};
   }
 }
 

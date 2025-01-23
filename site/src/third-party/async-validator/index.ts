@@ -86,7 +86,7 @@ export class Schema {
       if (!errors.length) {
         callback(null, source);
       } else {
-        fields = convertFieldsError(errors);
+        fields = convertFieldsError(errors) || {};
         (
           callback as (
             errors: ValidateError[],
@@ -294,8 +294,7 @@ export class Schema {
     if (
       typeof rule.validator !== 'function' &&
       rule.type &&
-      // eslint-disable-next-line no-prototype-builtins
-      !validators.hasOwnProperty(rule.type)
+      !Object.prototype.hasOwnProperty.call(validators, rule.type)
     ) {
       throw new Error(`'Unknown rule type ${rule.type}`);
     }
