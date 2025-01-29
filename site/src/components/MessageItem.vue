@@ -28,7 +28,7 @@ let timer: number | null = null
 
 const typeClass = computed(() => {
   if (props.message.type === 'info') {
-    return ['bg-indigo-300']
+    return ['bg-primary-300']
   }
   if (props.message.type === 'success') {
     return ['bg-green-300']

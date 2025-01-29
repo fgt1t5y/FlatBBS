@@ -1,7 +1,7 @@
 <template>
   <div
     :class="{
-      'bg-content flex gap-3 py-3': true,
+      'bg-content flex gap-2 py-3': true,
       'sticky top-navbar': !isMobile,
       'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
     }"

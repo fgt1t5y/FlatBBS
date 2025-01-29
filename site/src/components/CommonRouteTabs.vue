@@ -1,13 +1,10 @@
 <template>
   <div class="tabs">
-    <RouterLink
-      v-for="tab in tabs"
-      :key="tab.label"
-      class="tab-item"
-      :to="{ name: tab.routeName, params: tab.params }"
-    >
-      {{ tab.label }}
-    </RouterLink>
+    <div v-for="tab in tabs" :key="tab.label" class="tab-item">
+      <RouterLink :to="{ name: tab.routeName, params: tab.params }">
+        {{ tab.label }}
+      </RouterLink>
+    </div>
   </div>
 </template>
 

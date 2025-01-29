@@ -13,8 +13,48 @@
     @apply text-gray-900 dark:text-gray-300;
   }
 
-  .bg-primary {
+  .bg-primary-50 {
+    @apply bg-indigo-50;
+  }
+
+  .bg-primary-100 {
+    @apply bg-indigo-100;
+  }
+
+  .bg-primary-200 {
+    @apply bg-indigo-200;
+  }
+
+  .bg-primary-300 {
+    @apply bg-indigo-300;
+  }
+
+  .bg-primary-400 {
+    @apply bg-indigo-400;
+  }
+
+  .bg-primary-500 {
+    @apply bg-indigo-500;
+  }
+
+  .bg-primary-600 {
     @apply bg-indigo-600;
+  }
+
+  .bg-primary-700 {
+    @apply bg-indigo-700;
+  }
+
+  .bg-primary-800 {
+    @apply bg-indigo-800;
+  }
+
+  .bg-primary-900 {
+    @apply bg-indigo-900;
+  }
+
+  .bg-primary-950 {
+    @apply bg-indigo-950;
   }
 
   .bg-content {
@@ -42,7 +82,7 @@
   }
 
   .menu-item.router-link-exact-active {
-    @apply bg-primary hover:bg-primary text-white;
+    @apply bg-primary-600 hover:bg-primary-600 text-white;
   }
 
   .text-muted {
@@ -100,7 +140,7 @@
 
 @layer components {
   .btn-primary {
-    @apply rounded text-white bg-primary hover:bg-indigo-700 disabled:opacity-60 disabled:hover:opacity-60;
+    @apply rounded text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 disabled:hover:opacity-60;
   }
 
   .btn-air {
@@ -201,6 +241,7 @@
 
   .modal-wrapper {
     @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
+
     transition: all 0.2s ease-in-out;
   }
 
@@ -217,15 +258,26 @@
   }
 
   .tabs {
-    @apply py-3 border-bt;
+    @apply px-3 border-bt flex gap-2;
   }
 
   .tab-item {
-    @apply text-base px-3;
+    @apply text-base py-3 relative;
   }
 
-  .tab-item.router-link-exact-active {
+  .tab-item .router-link-exact-active {
     @apply text-primary;
+  }
+
+  .tab-item .router-link-exact-active::after {
+    @apply bg-primary-600;
+
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 4px;
+    width: 100%;
   }
 
   .item:not(:last-child) {

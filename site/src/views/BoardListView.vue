@@ -3,7 +3,7 @@
     <PageTitle :title="$t('page.boards')" :show-back="false" />
     <CommonList :items="boards" :is-end="true">
       <template #default="{ item }">
-        <div class="item p-3 flex gap-3 items-center border-bt">
+        <div class="item p-3 flex gap-2 items-center border-bt">
           <Avatar class="size-9" :src="item.avatar_uri" />
           <RouterLink :to="{ name: 'board', params: { slug: item.slug } }">
             <div class="text-base">{{ item.name }}</div>

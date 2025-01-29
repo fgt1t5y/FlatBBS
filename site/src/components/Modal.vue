@@ -6,7 +6,7 @@
       @after-leave="onAfterLeave"
     >
       <div v-show="visible" class="modal">
-        <div class="h-full w-full bg-indigo-900 opacity-50"></div>
+        <div class="h-full w-full bg-primary-900 opacity-50"></div>
         <div class="modal-wrapper">
           <FocusTrap :active="enableFocusTrap">
             <div
