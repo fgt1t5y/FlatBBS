@@ -20,7 +20,8 @@
     "search": "Search",
     "settings": "Settings",
     "register_or_login": "Signin / Login",
-    "me": "Me"
+    "me": "Me",
+    "my_page": "My Homepage"
   },
 
   "user": {

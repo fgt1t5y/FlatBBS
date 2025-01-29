@@ -107,6 +107,8 @@ export interface IRouteTab {
   params: any;
 }
 
+export type IRouteMenuItem = IRouteTab;
+
 export interface IFormContext {
   rules: Ref<Rules>;
   disabled: boolean;

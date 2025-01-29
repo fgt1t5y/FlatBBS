@@ -203,6 +203,15 @@
     @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center;
   }
 
+  .nav-inner {
+    @apply w-full-page flex justify-between items-center grow px-3;
+  }
+
+  .nav-user-panel {
+    width: 350px;
+    max-width: 100vw;
+  }
+
   .mobile-navbar {
     @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
   }
@@ -213,6 +222,14 @@
 
   .menu-item {
     @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200;
+  }
+
+  .route-menu {
+    @apply flex flex-col;
+  }
+
+  .route-menu-item {
+    @apply flex items-center gap-2 p-3 hover:bg-gray-200 dark:hover:bg-gray-800;
   }
 
   .page-title {

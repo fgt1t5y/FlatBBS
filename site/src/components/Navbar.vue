@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar h-navbar">
-    <div class="w-full-page flex justify-between items-center grow px-3">
+    <div class="nav-inner">
       <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
@@ -21,23 +21,18 @@
             />
           </button>
           <template #body>
-            <div class="p-3">
-              <div class="text-base flex gap-2 mb-2">
-                <div class="shrink-0">
-                  <Avatar class="size-14" :src="user.info.avatar_uri" rounded />
-                </div>
+            <div class="nav-user-panel">
+              <div class="p-3 text-base flex gap-2 border-bt">
+                <Avatar class="size-14" :src="user.info.avatar_uri" rounded />
                 <div>
-                  <b>{{ user.info.display_name }}</b>
-                  <span class="text-muted">@{{ user.info.username }}</span>
+                  <div class="text-base font-bold">
+                    {{ user.info.display_name }}
+                  </div>
+                  <div class="text-muted">@{{ user.info.username }}</div>
                 </div>
               </div>
-              <div class="flex gap-1">
-                <button
-                  class="btn-md btn-air grow"
-                  @click="$router.push({ name: 'settings' })"
-                >
-                  {{ $t('page.settings') }}
-                </button>
+              <CommonRouteMenu class="border-bt" :items="userPanelMenuItems" />
+              <div class="p-3 flex justify-end">
                 <button class="btn-md btn-air danger" @click="user.quit">
                   {{ $t('action.logout') }}
                 </button>
@@ -60,12 +55,32 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores'
+import { useI18n } from 'vue-i18n'
 import Avatar from './Avatar.vue'
 import CommonPopover from './CommonPopover.vue'
+import CommonRouteMenu from './CommonRouteMenu.vue'
+
+import { computed } from 'vue'
 
 defineOptions({
   name: 'Navbar',
 })
 
 const user = useUserStore()
+const { t } = useI18n()
+
+const userPanelMenuItems = computed(() => {
+  return [
+    {
+      routeName: 'user',
+      label: t('page.my_page'),
+      params: { username: user.info?.username },
+    },
+    {
+      routeName: 'settings',
+      label: t('page.settings'),
+      params: null,
+    },
+  ]
+})
 </script>
