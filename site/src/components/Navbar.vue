@@ -32,11 +32,9 @@
                 </div>
               </div>
               <CommonRouteMenu class="border-bt" :items="userPanelMenuItems" />
-              <div class="p-3 flex justify-end">
-                <button class="btn-md btn-air danger" @click="user.quit">
-                  {{ $t('action.logout') }}
-                </button>
-              </div>
+              <button class="route-menu-item text-danger" @click="user.quit">
+                {{ $t('action.logout') }}
+              </button>
             </div>
           </template>
         </CommonPopover>

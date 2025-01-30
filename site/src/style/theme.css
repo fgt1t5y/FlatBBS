@@ -9,6 +9,10 @@
     @apply text-indigo-600 dark:text-indigo-400;
   }
 
+  .text-danger {
+    @apply text-red-600;
+  }
+
   .text-content {
     @apply text-gray-900 dark:text-gray-300;
   }
@@ -145,10 +149,6 @@
 
   .btn-air {
     @apply rounded text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
-
-    &.danger {
-      @apply bg-opacity-50 bg-red-200 text-red-600 hover:bg-opacity-70 dark:bg-opacity-50 dark:text-white dark:bg-red-400 dark:hover:bg-opacity-40;
-    }
   }
 
   .btn-text {
@@ -176,19 +176,19 @@
   }
 
   .form-item-required {
-    @apply text-red-600;
+    @apply text-danger;
   }
 
   .form-item-error {
-    @apply text-red-600;
+    @apply text-danger;
+  }
+
+  .form-default-submit {
+    @apply mt-3;
   }
 
   .input {
-    @apply border outline outline-transparent outline-2 border-form rounded h-10 px-2 flex;
-
-    &:focus-within {
-      @apply border-transparent outline-primary;
-    }
+    @apply border outline outline-transparent outline-2 border-form rounded h-10 px-2 flex focus-within:border-transparent focus-within:outline-primary;
   }
 
   .input-status-error {
@@ -229,7 +229,7 @@
   }
 
   .route-menu-item {
-    @apply flex items-center gap-2 p-3 hover:bg-gray-200 dark:hover:bg-gray-800;
+    @apply p-3 w-full hover:bg-gray-100 dark:hover:bg-gray-900;
   }
 
   .page-title {

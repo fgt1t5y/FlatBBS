@@ -3,7 +3,7 @@
     <slot />
     <div v-if="submitLabel">
       <button
-        class="btn-primary btn-md"
+        class="btn-primary btn-md form-default-submit"
         :disabled="disabled"
         @click="onFormSubmit"
       >

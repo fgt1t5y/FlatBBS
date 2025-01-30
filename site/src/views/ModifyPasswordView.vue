@@ -35,6 +35,9 @@
           :min="8"
           required
         />
+        <span class="text-danger">
+          {{ $t('message.logout_all_session_if_modify_password') }}
+        </span>
       </CommonForm>
     </div>
   </MainContent>
