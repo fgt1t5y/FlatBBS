@@ -7,7 +7,19 @@ import { config } from './src/global';
 export default defineConfig({
   build: {
     cssMinify: false,
-    target: 'esnext'
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        chunkFileNames(chunkInfo) {
+          const name =
+            chunkInfo.name.endsWith('.vue_vue_type_style_index_0_lang') ||
+            chunkInfo.name.endsWith('.vue_vue_type_script_setup_true_lang')
+              ? chunkInfo.name.split('.')[0]
+              : chunkInfo.name;
+          return `assets/${name}-[hash].js`;
+        },
+      },
+    },
   },
   plugins: [vue()],
   resolve: {
