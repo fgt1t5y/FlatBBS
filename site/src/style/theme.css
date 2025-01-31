@@ -204,7 +204,7 @@
   }
 
   .nav-inner {
-    @apply w-full-page flex justify-between items-center grow px-3;
+    @apply  flex justify-between items-center grow px-3;
   }
 
   .nav-user-panel {
