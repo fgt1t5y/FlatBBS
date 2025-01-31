@@ -21,4 +21,4 @@ if (hasToken()) {
 
 app.use(router);
 app.use(i18n);
-app.mount('#flatbbs');
+app.mount(document.body);
