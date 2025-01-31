@@ -49,7 +49,7 @@ class UserController
     {
         $username = $request->get('username');
 
-        $result = $this->user->info_by_username($username);
+        $result = $this->user->getInfoById($username);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');
@@ -73,7 +73,7 @@ class UserController
         $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        $result = $this->user->liked_topics($username, $last_id, $limit);
+        $result = $this->user->getLikedTopics($username, $last_id, $limit);
 
         return ok($result);
     }
@@ -120,7 +120,7 @@ class UserController
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
         $result = $this->user->modify($user->id, 'password', $new_password);
 
-        $this->auth->logout_all($user->id);
+        $this->auth->logoutAll($user->id);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);

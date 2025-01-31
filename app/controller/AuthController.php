@@ -75,6 +75,6 @@ class AuthController
         $session = $request->session();
         $user_id = $session->get('id');
 
-        return $this->auth->logout_all($user_id);
+        return $this->auth->logoutAll($user_id);
     }
 }

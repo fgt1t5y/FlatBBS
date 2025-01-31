@@ -6,7 +6,7 @@ use support\Redis;
 
 class AuthService
 {
-    public function logout_all(int $user_id): void
+    public function logoutAll(int $user_id): void
     {
         $sessions = Redis::sMembers("flat_sess_{$user_id}");
 

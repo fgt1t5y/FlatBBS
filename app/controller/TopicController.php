@@ -78,7 +78,7 @@ class TopicController
 
         $user_id = session('id');
 
-        $like_count = $this->topic->toggle_like($topic_id, $user_id);
+        $like_count = $this->topic->toggleLike($topic_id, $user_id);
 
         return ok($like_count);
     }

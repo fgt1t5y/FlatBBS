@@ -39,7 +39,7 @@ class TopicService
         );
     }
 
-    public function toggle_like(int $topic_id, int $user_id): int
+    public function toggleLike(int $topic_id, int $user_id): int
     {
         $topic = Topic::find($topic_id);
 

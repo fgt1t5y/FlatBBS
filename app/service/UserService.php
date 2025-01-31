@@ -18,7 +18,7 @@ class UserService
         return User::find($user_id);
     }
 
-    public function info_by_username(string $username)
+    public function getInfoById(string $username)
     {
         return User::where('username', $username)->first();
     }
@@ -34,7 +34,7 @@ class UserService
             ->get();
     }
 
-    public function liked_topics(string $username, int $last_id, int $limit)
+    public function getLikedTopics(string $username, int $last_id, int $limit)
     {
         return User::where('username', $username)
             ->first()
