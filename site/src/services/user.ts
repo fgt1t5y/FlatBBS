@@ -6,14 +6,6 @@ export const getSessionUserInfo = () => {
   return alovaInstance.Get<User>('/user/info');
 };
 
-export const getUserDetail = (user_id: number) => {
-  return alovaInstance.Get<User>('/user/detail', {
-    params: {
-      user_id,
-    },
-  });
-};
-
 export const getUserDetailByUsername = (username: string) => {
   return alovaInstance.Get<User>('/user/detail', {
     params: {

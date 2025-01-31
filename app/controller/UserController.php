@@ -47,16 +47,9 @@ class UserController
 
     public function detail(Request $request)
     {
-        $user_id = $request->get('user_id');
         $username = $request->get('username');
 
-        if ($user_id) {
-            $result = $this->user->info($user_id);
-        } elseif ($username) {
-            $result = $this->user->info_by_username($username);
-        } else {
-            $result = null;
-        }
+        $result = $this->user->info_by_username($username);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');

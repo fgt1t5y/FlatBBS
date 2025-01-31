@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { getUserDetail } from '@/services'
+import { getUserDetailByUsername } from '@/services'
 import { useRequest } from 'alova/client'
 import { ref } from 'vue'
 import { Loader } from '@vicons/tabler'
@@ -42,7 +42,7 @@ defineOptions({
 })
 
 interface UserPopoverProps {
-  userId: number
+  username: string
   initialData?: User
 }
 
@@ -50,9 +50,12 @@ const props = defineProps<UserPopoverProps>()
 
 const user = ref<User | undefined>(props.initialData)
 
-const { send, loading } = useRequest(() => getUserDetail(props.userId), {
-  immediate: false,
-})
+const { send, loading } = useRequest(
+  () => getUserDetailByUsername(props.username),
+  {
+    immediate: false,
+  },
+)
 
 const loadUserDetail = () => {
   if (user.value) {
