@@ -13,7 +13,7 @@ class UserService
         'password'
     ];
 
-    public function info(int $user_id)
+    public function getUserInfo(int $user_id)
     {
         return User::find($user_id);
     }
@@ -23,7 +23,7 @@ class UserService
         return User::where('username', $username)->first();
     }
 
-    public function topics(string $username, int $last_id, int $limit)
+    public function getUserTopics(string $username, int $last_id, int $limit)
     {
         return User::where('username', $username)
             ->firstOrFail()
@@ -45,7 +45,7 @@ class UserService
             ->get();
     }
 
-    public function modify(int $user_id, string $field, string $value): bool
+    public function modifyUserInfo(int $user_id, string $field, string $value): bool
     {
         if (
             !all([$value])

@@ -25,7 +25,7 @@ class UserController
             return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
         }
 
-        return ok($this->user->info($user_id));
+        return ok($this->user->getUserInfo($user_id));
     }
 
     public function modify(Request $request)
@@ -36,7 +36,7 @@ class UserController
         $value = $request->post('value');
         $user_id = session('id');
 
-        $result = $this->user->modify($user_id, $field, $value);
+        $result = $this->user->modifyUserInfo($user_id, $field, $value);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -63,7 +63,7 @@ class UserController
         $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        $result = $this->user->topics($username, $last_id, $limit);
+        $result = $this->user->getUserTopics($username, $last_id, $limit);
 
         return ok($result);
     }
@@ -91,7 +91,7 @@ class UserController
         $newAvatarName = $file_array[0];
         $user_id = session('id');
 
-        $result = $this->user->modify($user_id, 'avatar_uri', $newAvatarName);
+        $result = $this->user->modifyUserInfo($user_id, 'avatar_uri', $newAvatarName);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -118,7 +118,7 @@ class UserController
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $result = $this->user->modify($user->id, 'password', $new_password);
+        $result = $this->user->modifyUserInfo($user->id, 'password', $new_password);
 
         $this->auth->logoutAll($user->id);
 

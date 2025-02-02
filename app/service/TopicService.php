@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class TopicService
 {
-    public function all(int $last_id, int $limit)
+    public function getAllTopics(int $last_id, int $limit)
     {
         return Topic::orderByDesc('last_reply_at')
             ->limit(min($limit, 50))
@@ -31,7 +31,7 @@ class TopicService
         return $topic;
     }
 
-    public function detail(int $topic_id)
+    public function getTopicDetail(int $topic_id)
     {
         return Topic::find(
             $topic_id,

@@ -1,5 +1,6 @@
 <template>
   <CommonPopover
+    placement="bottom-start"
     :class="$attrs.class"
     :duration="[1200, 400]"
     @show="loadUserDetail"

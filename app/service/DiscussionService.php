@@ -8,7 +8,7 @@ use app\model\User;
 
 class DiscussionService
 {
-    public function list(int $id, int $last_id, int $limit)
+    public function getDiscussionsByTopicId(int $id, int $last_id, int $limit)
     {
         return Topic::find($id)
             ->discussions()

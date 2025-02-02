@@ -6,22 +6,22 @@ use app\Model\Board;
 
 class BoardService
 {
-    public function all(?array $columns = null)
+    public function getAllBoards(?array $columns = null)
     {
         return Board::orderBy('id')->get($columns);
     }
 
-    public function hotspot(?array $columns = null)
+    public function getHotBoards(?array $columns = null)
     {
         return Board::orderByDesc('topic_count')->limit(10)->get($columns);
     }
 
-    public function info(string $value, ?array $columns = null)
+    public function getBoardInfo(string $value, ?array $columns = null)
     {
         return Board::where('slug', $value)->first($columns);
     }
 
-    public function topics(string $slug, int $last_id, int $limit)
+    public function getTopicsByBoardSlug(string $slug, int $last_id, int $limit)
     {
         return Board::where('slug', $slug)
             ->firstOrFail()

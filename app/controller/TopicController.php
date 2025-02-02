@@ -3,16 +3,12 @@
 namespace app\controller;
 
 use app\model\Board;
-use app\model\Topic;
-use app\service\SearchService;
 use app\service\TopicService;
 use DI\Attribute\Inject;
 use support\Request;
 
 class TopicController
 {
-    #[Inject]
-    protected SearchService $search;
     #[Inject]
     protected TopicService $topic;
 
@@ -21,7 +17,7 @@ class TopicController
         $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        $result = $this->topic->all($last_id, $limit);
+        $result = $this->topic->getAllTopics($last_id, $limit);
 
         return ok($result);
     }
@@ -54,20 +50,11 @@ class TopicController
 
     public function detail(Request $request, int $topic_id)
     {
-        $result = $this->topic->detail($topic_id);
+        $result = $this->topic->getTopicDetail($topic_id);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, 'i18n$exception.topic_not_found');
         }
-
-        return ok($result);
-    }
-
-    public function search(Request $request)
-    {
-        $keyword = $request->post('q');
-
-        $result = $this->search->search($keyword, Topic::class, 'title');
 
         return ok($result);
     }

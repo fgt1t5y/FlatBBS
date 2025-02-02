@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\model\Discussion;
 use app\service\DiscussionService;
+use Carbon\Carbon;
 use DI\Attribute\Inject;
 use support\Request;
 use app\model\Topic;
@@ -18,7 +19,7 @@ class DiscussionController
         $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        $result = $this->discussion->list($topic_id, $last_id, $limit);
+        $result = $this->discussion->getDiscussionsByTopicId($topic_id, $last_id, $limit);
 
         return ok($result);
     }
@@ -41,6 +42,7 @@ class DiscussionController
         $discussion->save();
 
         $topic->discussion_count++;
+        $topic->last_reply_at = Carbon::now();
         $topic->save();
 
         return ok(Discussion::find($discussion->id));
