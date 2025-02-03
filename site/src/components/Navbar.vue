@@ -22,15 +22,7 @@
           </button>
           <template #body>
             <div class="nav-user-panel">
-              <div class="p-3 text-base flex gap-2 border-bt">
-                <Avatar class="size-14" :src="user.info.avatar_uri" rounded />
-                <div>
-                  <div class="text-base font-bold">
-                    {{ user.info.display_name }}
-                  </div>
-                  <div class="text-muted">@{{ user.info.username }}</div>
-                </div>
-              </div>
+              <SimpleUserInfo class="p-3 border-bt" :user="user.info" />
               <CommonRouteMenu class="border-bt" :items="userPanelMenuItems" />
               <button class="route-menu-item text-danger" @click="user.quit">
                 {{ $t('action.logout') }}
@@ -57,6 +49,7 @@ import { useI18n } from 'vue-i18n'
 import Avatar from './Avatar.vue'
 import CommonPopover from './CommonPopover.vue'
 import CommonRouteMenu from './CommonRouteMenu.vue'
+import SimpleUserInfo from './SimpleUserInfo.vue'
 
 import { computed } from 'vue'
 

@@ -11,18 +11,7 @@
         <div v-if="loading" class="flex justify-center">
           <Loader class="size-12 animate-spin" />
         </div>
-        <div v-else class="flex flex-col gap-2">
-          <div class="flex gap-2">
-            <Avatar class="size-16" :src="user?.avatar_uri" rounded />
-            <div>
-              <div class="text-base font-bold">{{ user?.display_name }}</div>
-              <div class="text-base text-muted">@{{ user?.username }}</div>
-            </div>
-          </div>
-          <div>
-            {{ user?.introduction }}
-          </div>
-        </div>
+        <SimpleUserInfo v-else :user="user" show-description />
       </div>
     </template>
   </CommonPopover>
@@ -33,7 +22,7 @@ import { getUserDetailByUsername } from '@/services'
 import { useRequest } from 'alova/client'
 import { ref } from 'vue'
 import { Loader } from '@vicons/tabler'
-import Avatar from './Avatar.vue'
+import SimpleUserInfo from './SimpleUserInfo.vue'
 import CommonPopover from './CommonPopover.vue'
 
 import type { User } from '@/types'
