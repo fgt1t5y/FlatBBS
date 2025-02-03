@@ -11,7 +11,7 @@ class TopicService
 {
     public function getAllTopics(int $last_id, int $limit)
     {
-        return Topic::orderByDesc('last_reply_at')
+        return Topic::orderByDesc('created_at')
             ->limit(min($limit, 50))
             ->where('id', $last_id === 0 ? '>' : '<', $last_id)
             ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
