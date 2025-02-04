@@ -62,7 +62,7 @@
   }
 
   .bg-content {
-    @apply bg-white dark:bg-black;
+    @apply bg-white dark:bg-[#16181C];
   }
 
   .border-primary {
@@ -138,7 +138,7 @@
   }
 
   body {
-    @apply text-content text-sm bg-white dark:bg-black;
+    @apply text-content text-sm bg-content;
   }
 }
 
@@ -148,7 +148,7 @@
   }
 
   .btn-air {
-    @apply rounded text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-white;
+    @apply rounded text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white;
   }
 
   .btn-text {
@@ -229,7 +229,7 @@
   }
 
   .route-menu-item {
-    @apply p-3 w-full hover:bg-gray-100 dark:hover:bg-gray-900;
+    @apply p-3 w-full hover:bg-gray-100 dark:hover:bg-gray-800;
   }
 
   .page-title {
