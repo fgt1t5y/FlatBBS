@@ -14,13 +14,18 @@
 
 use Webman\Route;
 
-Route::fallback(function () {
-    return no(STATUS_NOT_FOUND, 'Route Not Found.');
+
+// API routes
+
+Route::group('/auth', function () {
+    Route::post('/login', [app\controller\AuthController::class, 'login']);
+    Route::post('/logout', [app\controller\AuthController::class, 'logout']);
+    Route::post('/forget', [app\controller\AuthController::class, 'forget']);
 });
 
-Route::group('/user/{username}', function () {
-    Route::get('/topics', [app\controller\UserController::class, 'topics']);
-    Route::get('/liked', [app\controller\UserController::class, 'liked']);
+Route::group('/boards', function () {
+    Route::get('/all', [app\controller\BoardController::class, 'all']);
+    Route::get('/hotspot', [app\controller\BoardController::class, 'hotspot']);
 });
 
 Route::group('/board/{slug}', function () {
@@ -28,12 +33,40 @@ Route::group('/board/{slug}', function () {
     Route::get('/topics', [app\controller\BoardController::class, 'topics']);
 });
 
+Route::group('/discussion/{tid:\d+}', function () {
+    Route::get('/list', [app\controller\DiscussionController::class, 'list']);
+    Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
+});
+
+Route::group('/file', function () {
+    Route::post('/upload', [app\controller\FileController::class, 'upload']);
+});
+
+Route::group('/topics', function () {
+    Route::get('/all', [app\controller\TopicController::class, 'all']);
+    Route::post('/publish', [app\controller\TopicController::class, 'publish']);
+});
+
 Route::group('/topic/{tid:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
     Route::post('/like', [app\controller\TopicController::class, 'like']);
 });
 
-Route::group('/discussion/{tid:\d+}', function () {
-    Route::get('/list', [app\controller\DiscussionController::class, 'list']);
-    Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
+Route::group('/user', function () {
+    ROute::get('/info', [app\controller\UserController::class, 'info']);
 });
+
+Route::group('/user/{username}', function () {
+    Route::get('/topics', [app\controller\UserController::class, 'topics']);
+    Route::get('/liked', [app\controller\UserController::class, 'liked']);
+});
+
+// Fallback Route
+
+Route::fallback(function () {
+    return no(STATUS_NOT_FOUND, 'Route Not Found.');
+});
+
+// Disable auto route
+
+Route::disableDefaultRoute();

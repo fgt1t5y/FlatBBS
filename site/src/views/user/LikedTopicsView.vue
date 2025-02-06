@@ -41,7 +41,9 @@ const {
   },
 ).onSuccess(() => {
   const items = topics.value
-  if (!items) return
+  if (!items) {
+    return
+  }
 
   lastItemId = items[items.length - 1].id
 })

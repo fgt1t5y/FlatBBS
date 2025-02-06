@@ -2,7 +2,7 @@ import { alovaInstance } from './instance';
 import type { Topic, Result } from '@/types';
 
 export const getAllTopics = (last: number, limit: number) => {
-  return alovaInstance.Get<Result<Topic[]>, Topic>('/topic/all', {
+  return alovaInstance.Get<Result<Topic[]>, Topic>('/topics/all', {
     params: {
       last,
       limit,
