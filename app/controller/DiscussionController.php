@@ -31,7 +31,7 @@ class DiscussionController
         $content = $request->post('content');
 
         if (empty($content)) {
-            return no(STATUS_BAD_REQUEST, 'i18n$exception.fill_out_form_completely');
+            return no(STATUS_BAD_REQUEST, '{{exception.fill_out_form_completely}}');
         }
 
         $author = $request->getUser();

@@ -27,7 +27,7 @@ class UserController
         $result = $this->user->getInfoById($username);
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');
+            return no(STATUS_NOT_FOUND, '{{exception.user_not_found}}');
         }
 
         return ok($result);
@@ -36,6 +36,7 @@ class UserController
     public function modifyMe(Request $request)
     {
         $request->assertLogin();
+        $request->assertPermission('user:modify');
 
         $attributes = $request->post();
         $user_id = session('id');
@@ -77,7 +78,7 @@ class UserController
         $file_array = $this->file->upload($request->file());
 
         if (!$file_array) {
-            return no(STATUS_BAD_REQUEST, 'i18n$exception.fill_out_form_completely');
+            return no(STATUS_BAD_REQUEST, '{{exception.fill_out_form_completely}}');
         }
 
         $newAvatarName = $file_array[0];
@@ -106,7 +107,7 @@ class UserController
         $user = $request->getUser();
 
         if (!password_verify($old_password, $user->password)) {
-            return no(STATUS_FORBIDDEN, 'i18n$exception.password_is_wrong');
+            return no(STATUS_FORBIDDEN, '{{exception.password_is_wrong}}');
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);

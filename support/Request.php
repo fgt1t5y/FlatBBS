@@ -37,7 +37,20 @@ class Request extends \Webman\Http\Request
     public function assertLogin()
     {
         if (!session()->has('id')) {
-            throw new APIException('i18n$exception.unauthorized', STATUS_UNAUTHORIZED);
+            throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
+        }
+    }
+
+    public function assertPermission(string $permission)
+    {
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
+        }
+
+        if (!in_array($permission, $user->permissions())) {
+            throw new APIException('{{exception.forbidden}}', STATUS_FORBIDDEN);
         }
     }
 }

@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user', () => {
     } else {
       const ms = useMessage();
       clearToken();
-      ms.error('i18n$message.fetch_user_profile_fail');
+      ms.error('{{message.fetch_user_profile_fail}}');
     }
   };
 

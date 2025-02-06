@@ -41,8 +41,8 @@ const typeClass = computed(() => {
 })
 
 const messageText = computed(() => {
-  if (props.message.message.startsWith('i18n$')) {
-    return t(props.message.message.slice(5))
+  if (props.message.message.startsWith('{{')) {
+    return t(props.message.message.slice(2))
   }
 
   return props.message.message

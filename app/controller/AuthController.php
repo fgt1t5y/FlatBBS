@@ -20,7 +20,7 @@ class AuthController
         $session = $request->session();
 
         if ($session->has('id')) {
-            return no(STATUS_BAD_REQUEST, 'i18n$exception.you_are_logged_in');
+            return no(STATUS_BAD_REQUEST, '{{exception.you_are_logged_in}}');
         }
 
         $email = $request->post('email');
@@ -28,13 +28,13 @@ class AuthController
         $user = User::where('email', $email)->first();
 
         if (!all([$email, $password]) || !$user) {
-            return no(STATUS_BAD_REQUEST, 'i18n$exception.user_not_found');
+            return no(STATUS_BAD_REQUEST, '{{exception.user_not_found}}');
         }
         if (!password_verify($password, $user->password)) {
-            return no(STATUS_FORBIDDEN, 'i18n$exception.password_is_wrong');
+            return no(STATUS_FORBIDDEN, '{{exception.password_is_wrong}}');
         }
         if ($user->allow_login === 0) {
-            return no(STATUS_FORBIDDEN, 'i18n$exception.user_has_been_banned');
+            return no(STATUS_FORBIDDEN, '{{exception.user_has_been_banned}}');
         }
 
         $token = Str::random();

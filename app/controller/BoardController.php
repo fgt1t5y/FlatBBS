@@ -40,7 +40,7 @@ class BoardController
         $result = $this->board->getBoardInfo($slug, $this->board_fields);
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND, 'i18n$exception.board_not_found');
+            return no(STATUS_NOT_FOUND, '{{exception.board_not_found}}');
         }
 
         return ok($result);

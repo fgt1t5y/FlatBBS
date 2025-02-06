@@ -57,8 +57,6 @@
     "modify_profile_success": "资料已更新",
     "modify_profile_fail": "资料更新失败",
 
-    "forbidden_login_please": "你不能访问当前页面，请先登录",
-
     "crop_image_fail": "裁剪图片失败，请重试。",
     "unsupport_image_format": "不支持的图像格式",
     "image_too_small": "图像太小，高宽至少为 {height}x{width} px",
@@ -116,7 +114,7 @@
     "user_has_been_banned": "你的账号已被禁止登录",
     "unauthorized": "请先登录",
     "fill_out_form_completely": "请完整填写表单",
-    "need_higher_permissions": "需要更高的权限来进行操作"
+    "forbidden": "你没有足够的权限进行此操作"
   },
 
   "tooltip": {
