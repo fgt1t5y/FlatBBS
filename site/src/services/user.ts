@@ -2,10 +2,6 @@ import { genForm } from '@/utils';
 import { alovaInstance } from './instance';
 import type { Result, Topic, UploadForm, User } from '@/types';
 
-export const getSessionUserInfo = () => {
-  return alovaInstance.Get<User>('/user/info');
-};
-
 export const getUserDetailByUsername = (username: string) => {
   return alovaInstance.Get<User>('/user/detail', {
     params: {

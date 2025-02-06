@@ -18,6 +18,7 @@ use Webman\Route;
 // API routes
 
 Route::group('/auth', function () {
+    Route::get('/info', [app\controller\AuthController::class, 'info']);
     Route::post('/login', [app\controller\AuthController::class, 'login']);
     Route::post('/logout', [app\controller\AuthController::class, 'logout']);
     Route::post('/forget', [app\controller\AuthController::class, 'forget']);
@@ -53,7 +54,6 @@ Route::group('/topic/{tid:\d+}', function () {
 });
 
 Route::group('/user', function () {
-    Route::get('/info', [app\controller\UserController::class, 'info']);
     Route::get('/detail', [app\controller\UserController::class, 'detail']);
     Route::post('/modify', [app\controller\UserController::class, 'modify']);
     Route::post('/avatar', [app\controller\UserController::class, 'avatar']);

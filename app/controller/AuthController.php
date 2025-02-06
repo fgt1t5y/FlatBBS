@@ -15,6 +15,11 @@ class AuthController
     #[Inject]
     protected AuthService $auth;
 
+    public function info(Request $request)
+    {
+        return ok($request->getUser());
+    }
+
     public function login(Request $request)
     {
         $session = $request->session();

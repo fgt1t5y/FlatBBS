@@ -17,17 +17,6 @@ class UserController
     #[Inject]
     protected AuthService $auth;
 
-    public function info(Request $request)
-    {
-        $user_id = session('id');
-
-        if (!$user_id) {
-            return no(STATUS_UNAUTHORIZED, 'i18n$exception.unauthorized');
-        }
-
-        return ok($this->user->getUserInfo($user_id));
-    }
-
     public function modify(Request $request)
     {
         $request->assertLogin();
