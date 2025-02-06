@@ -24,22 +24,32 @@ class User extends AbstractModel
         'roles:id,name,description',
     ];
 
+    public array $permissions = null;
+
     public function isGuest(): bool
     {
         return false;
     }
 
+    public function getPermissions(): array
+    {
+        if ($this->permissions === null) {
+            $this->permissions = Permission::whereIn('role_id', $this->roles
+                ->pluck('id')->all())->get()
+                ->pluck('permission')->all();
+        }
+
+        return $this->permissions;
+    }
+
+    public function hasPermission($permission): bool
+    {
+        return in_array($permission, $this->getPermissions());
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'role_user');
-    }
-
-    public function permissions(): array
-    {
-        return Permission::query()
-            ->whereIn('role_id', $this->roles
-                ->pluck('id')->all())->get()
-            ->pluck('permission')->all();
     }
 
     public function topics(): HasMany

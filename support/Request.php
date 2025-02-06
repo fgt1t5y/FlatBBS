@@ -49,7 +49,7 @@ class Request extends \Webman\Http\Request
             throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
         }
 
-        if (!in_array($permission, $user->permissions())) {
+        if (!$user->hasPermission($permission)) {
             throw new APIException('{{exception.forbidden}}', STATUS_FORBIDDEN);
         }
     }
