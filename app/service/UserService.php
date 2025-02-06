@@ -6,14 +6,14 @@ use app\model\User;
 
 class UserService
 {
-    private $allow_modify_column = [
+    private $allowModifyColumns = [
         'avatar_uri',
         'display_name',
         'introduction',
         'password'
     ];
 
-    public function getUserInfo(int $user_id)
+    public function getInfo(int $user_id)
     {
         return User::find($user_id);
     }
@@ -45,17 +45,23 @@ class UserService
             ->get();
     }
 
-    public function modifyUserInfo(int $user_id, string $field, string $value): bool
+    public function modifyUserInfo(int $user_id, array $data): bool
     {
-        if (
-            !all([$value])
-            || !in_array($field, $this->allow_modify_column)
-        ) {
+        if (!is_array($data) || !count($data)) {
             return false;
         }
 
         $user = User::find($user_id);
-        $user->$field = $value;
+
+        if (!$user) {
+            return false;
+        }
+
+        foreach ($data as $attribute => $value) {
+            if (in_array($attribute, $this->allowModifyColumns)) {
+                $user->setAttribute($attribute, $value);
+            }
+        }
 
         if (!$user->isDirty()) {
             return true;

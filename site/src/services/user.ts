@@ -38,7 +38,7 @@ export const getLikedTopicsByUsername = (
 };
 
 export const modifyUserInfo = (field: string, value: string) => {
-  return alovaInstance.Post<null>('/user/modify', { field, value });
+  return alovaInstance.Post<null>('/user/me', { [field]: value });
 };
 
 export const modifyUserAvatar = (file: File) => {

@@ -33,15 +33,14 @@ class UserController
         return ok($result);
     }
 
-    public function modify(Request $request)
+    public function modifyMe(Request $request)
     {
         $request->assertLogin();
 
-        $field = $request->post('field');
-        $value = $request->post('value');
+        $attributes = $request->post();
         $user_id = session('id');
 
-        $result = $this->user->modifyUserInfo($user_id, $field, $value);
+        $result = $this->user->modifyUserInfo($user_id, $attributes);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -84,7 +83,7 @@ class UserController
         $newAvatarName = $file_array[0];
         $user_id = session('id');
 
-        $result = $this->user->modifyUserInfo($user_id, 'avatar_uri', $newAvatarName);
+        $result = $this->user->modifyUserInfo($user_id, ['avatar_uri' => $newAvatarName]);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -111,7 +110,7 @@ class UserController
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $result = $this->user->modifyUserInfo($user->id, 'password', $new_password);
+        $result = $this->user->modifyUserInfo($user->id, ['password' => $new_password]);
 
         $this->auth->logoutAll($user->id);
 

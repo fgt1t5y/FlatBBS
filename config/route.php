@@ -54,7 +54,7 @@ Route::group('/topic/{tid:\d+}', function () {
 
 Route::group('/user', function () {
     Route::get('/me', [app\controller\UserController::class, 'me']);
-    Route::post('/modify', [app\controller\UserController::class, 'modify']);
+    Route::post('/me', [app\controller\UserController::class, 'modifyMe']);
     Route::post('/avatar', [app\controller\UserController::class, 'avatar']);
     Route::post('/password', [app\controller\UserController::class, 'password']);
 });
