@@ -1,11 +1,7 @@
 import { alovaInstance } from './instance';
 import { genForm } from '@/utils';
 
-import type { LoginForm, Result, User } from '@/types';
-
-export const getSessionUserInfo = () => {
-  return alovaInstance.Get<User>('/auth/info');
-};
+import type { LoginForm, Result } from '@/types';
 
 export const login = (email: string, password: string) => {
   const form = genForm<LoginForm>({

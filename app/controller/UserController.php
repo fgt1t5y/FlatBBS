@@ -17,6 +17,22 @@ class UserController
     #[Inject]
     protected AuthService $auth;
 
+    public function me(Request $request)
+    {
+        return ok($request->getUser());
+    }
+
+    public function info(Request $request, string $username)
+    {
+        $result = $this->user->getInfoById($username);
+
+        if (!$result) {
+            return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');
+        }
+
+        return ok($result);
+    }
+
     public function modify(Request $request)
     {
         $request->assertLogin();
@@ -34,18 +50,6 @@ class UserController
         return ok();
     }
 
-    public function detail(Request $request)
-    {
-        $username = $request->get('username');
-
-        $result = $this->user->getInfoById($username);
-
-        if (!$result) {
-            return no(STATUS_NOT_FOUND, 'i18n$exception.user_not_found');
-        }
-
-        return ok($result);
-    }
 
     public function topics(Request $request, string $username)
     {
