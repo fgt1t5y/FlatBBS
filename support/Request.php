@@ -23,7 +23,7 @@ use app\model\User;
  */
 class Request extends \Webman\Http\Request
 {
-    public function getUser(): User|null
+    public function getUser(): User
     {
         $user_id = session()->get('id');
 
@@ -31,7 +31,7 @@ class Request extends \Webman\Http\Request
             // not a user, seen as a guest
             return new Guest;
 
-        return User::find($user_id);
+        return User::find($user_id) ?? new Guest();
     }
 
     public function assertLogin()

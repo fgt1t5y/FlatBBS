@@ -16,12 +16,8 @@ class Guest extends User
 
     public function permissions(): array
     {
-        if ($this->permissions === null) {
-            $this->permissions = Permission::query()
-                ->where('role_id', GROUP_GUEST)->get()
-                ->pluck('permission')->all();
-        }
-
-        return $this->permissions;
+        return Permission::query()
+            ->where('role_id', GROUP_GUEST)->get()
+            ->pluck('permission')->all();
     }
 }

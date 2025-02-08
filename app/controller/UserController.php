@@ -19,6 +19,8 @@ class UserController
 
     public function me(Request $request)
     {
+        $request->assertLogin();
+
         return ok($request->getUser());
     }
 

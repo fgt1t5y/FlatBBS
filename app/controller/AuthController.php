@@ -39,7 +39,7 @@ class AuthController
 
         $token = Str::random();
         $roles = $user->roles->pluck('id')->all();
-        $permissions = $user->permissions();
+        $permissions = $user->getPermissions();
 
         $session->put(array_merge($user->toArray(), [
             'token' => $token,

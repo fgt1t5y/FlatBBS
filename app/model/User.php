@@ -24,8 +24,6 @@ class User extends AbstractModel
         'roles:id,name,description',
     ];
 
-    public array $permissions = null;
-
     public function isGuest(): bool
     {
         return false;
@@ -33,13 +31,9 @@ class User extends AbstractModel
 
     public function getPermissions(): array
     {
-        if ($this->permissions === null) {
-            $this->permissions = Permission::whereIn('role_id', $this->roles
-                ->pluck('id')->all())->get()
-                ->pluck('permission')->all();
-        }
-
-        return $this->permissions;
+        return Permission::whereIn('role_id', $this->roles
+            ->pluck('id')->all())->get()
+            ->pluck('permission')->all();
     }
 
     public function hasPermission($permission): bool
