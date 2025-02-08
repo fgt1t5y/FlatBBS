@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router';
 export const adminRoute = {
   path: '/_admin',
   name: 'admin',
-  component: () => import('@/layouts/Admin.vue'),
+  component: () => import('@/layouts/AdminLayout.vue'),
   meta: {
     adminOnly: true
   },

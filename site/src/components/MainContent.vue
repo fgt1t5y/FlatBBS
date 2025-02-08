@@ -1,11 +1,5 @@
 <template>
-  <main
-    id="main-content"
-    class="main-content"
-    :class="{
-      'flex-row-reverse': reversePanel,
-    }"
-  >
+  <main id="main-content" class="main-content site-layout-content">
     <div class="main-content-body">
       <RequestPlaceholder
         v-if="loading || error"
@@ -34,7 +28,6 @@ defineOptions({
 
 interface MainContentProps {
   disablePanels?: boolean
-  reversePanel?: boolean
   loading?: boolean
   error?: Error
   title?: string
@@ -42,7 +35,6 @@ interface MainContentProps {
 
 const props = withDefaults(defineProps<MainContentProps>(), {
   disablePanels: false,
-  reversePanel: false,
   loading: false,
   error: undefined,
   title: undefined,

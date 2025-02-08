@@ -61,6 +61,10 @@
     @apply bg-indigo-950;
   }
 
+  .bg-sidebar {
+    @apply bg-white dark:bg-black;
+  }
+
   .bg-content {
     @apply bg-white dark:bg-[#16181C];
   }
@@ -204,7 +208,7 @@
   }
 
   .nav-inner {
-    @apply  flex justify-between items-center grow px-3;
+    @apply flex justify-between items-center grow px-3;
   }
 
   .nav-user-panel {
@@ -216,12 +220,8 @@
     @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
   }
 
-  .h-navbar {
-    @apply h-[52px];
-  }
-
   .menu-item {
-    @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200;
+    @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200 dark:hover:bg-gray-800;
   }
 
   .route-menu {
@@ -236,8 +236,16 @@
     @apply sticky top-0 p-3 border-bt bg-content flex items-center justify-between z-20 md:static;
   }
 
-  .message-container {
-    @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
+  .site-layout {
+    @apply flex;
+  }
+
+  .site-layout-sidebar {
+    @apply min-w-[300px] border-r border-content h-screen-without-navbar sticky top-navbar bg-sidebar;
+  }
+
+  .sidebar {
+    @apply p-3;
   }
 
   .main-content {
@@ -297,6 +305,10 @@
     width: 100%;
   }
 
+  .message-container {
+    @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
+  }
+
   .item:not(:last-child) {
     @apply border-bt;
   }
@@ -335,7 +347,15 @@
   }
 
   .w-full-page {
-    max-width: 1000px;
+    width: 1000px;
+  }
+
+  .h-screen-without-navbar {
+    height: calc(100vh - 53px);
+  }
+
+  .h-navbar {
+    @apply h-[52px];
   }
 
   .top-navbar {

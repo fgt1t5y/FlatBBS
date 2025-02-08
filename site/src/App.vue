@@ -1,10 +1,6 @@
 <template>
   <Navbar v-if="isDesktop" />
-  <RouterView v-slot="{ Component, route }">
-    <KeepAlive :max="10">
-      <component :is="Component" :key="route.fullPath" />
-    </KeepAlive>
-  </RouterView>
+  <RouterView />
   <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
   <Message />
 </template>

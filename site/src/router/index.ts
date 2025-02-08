@@ -4,13 +4,24 @@ import {
   isNavigationFailure,
   type RouteRecordRaw,
 } from 'vue-router';
-import { mainRoutes } from './modules/main';
+import { siteRoute } from './modules/site';
 import { adminRoute } from './modules/admin';
 import { useUserStore } from '@/stores';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...mainRoutes, adminRoute] as RouteRecordRaw[],
+  routes: [
+    siteRoute,
+    adminRoute,
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not_found',
+      component: () => import('@/views/NotFoundView.vue'),
+      meta: {
+        showBottomNav: true,
+      },
+    },
+  ] as RouteRecordRaw[],
 });
 
 router.beforeEach((to) => {
@@ -28,7 +39,9 @@ router.beforeEach((to) => {
 });
 
 router.afterEach((to, from, failure) => {
-  if (isNavigationFailure(failure)) return;
+  if (isNavigationFailure(failure)) {
+    return;
+  }
 });
 
 export default router;
