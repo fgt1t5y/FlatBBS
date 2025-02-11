@@ -23,6 +23,9 @@ use app\model\User;
  */
 class Request extends \Webman\Http\Request
 {
+
+    public ?User $user = null;
+
     public function getUser(): User
     {
         $user_id = session()->get('id');
@@ -31,7 +34,9 @@ class Request extends \Webman\Http\Request
             // not a user, seen as a guest
             return new Guest;
 
-        return User::find($user_id) ?? new Guest();
+        $this->user = User::find($user_id) ?? new Guest;
+
+        return $this->user;
     }
 
     public function assertLogin()
@@ -43,13 +48,15 @@ class Request extends \Webman\Http\Request
 
     public function assertPermission(string $permission)
     {
-        $user = $this->getUser();
+        if ($this->user === null) {
+            $this->getUser();
+        }
 
-        if (!$user) {
+        if ($this->user->isGuest()) {
             throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
         }
 
-        if (!$user->hasPermission($permission)) {
+        if (!$this->user->hasPermission($permission)) {
             throw new APIException('{{exception.forbidden}}', STATUS_FORBIDDEN);
         }
     }

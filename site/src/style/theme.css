@@ -221,7 +221,7 @@
   }
 
   .menu-item {
-    @apply flex items-center gap-2 btn-md rounded hover:bg-gray-200 dark:hover:bg-gray-800;
+    @apply flex items-center gap-2 btn-md rounded hoverable;
   }
 
   .route-menu {
@@ -229,7 +229,7 @@
   }
 
   .route-menu-item {
-    @apply p-3 w-full hover:bg-gray-100 dark:hover:bg-gray-800;
+    @apply p-3 w-full hoverable;
   }
 
   .page-title {
@@ -288,6 +288,11 @@
 
   .tab-item {
     @apply text-base py-3 relative;
+  }
+
+  .tab-item:hover,
+  .tab-item:focus-within {
+    @apply bg-gray-100 dark:bg-gray-800;
   }
 
   .tab-item .router-link-exact-active {
@@ -360,6 +365,10 @@
 
   .top-navbar {
     top: 52px;
+  }
+
+  .hoverable {
+    @apply hover:bg-gray-100 dark:hover:bg-gray-800;
   }
 }
 
