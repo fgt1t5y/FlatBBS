@@ -37,13 +37,13 @@ if ($worker) {
     }, time());
 }
 
-// if (class_exists('Dotenv\Dotenv') && file_exists(base_path(false) . '/.env')) {
-//     if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
-//         Dotenv::createUnsafeMutable(base_path(false))->load();
-//     } else {
-//         Dotenv::createMutable(base_path(false))->load();
-//     }
-// }
+if (class_exists('Dotenv\Dotenv') && file_exists(base_path(false) . '/.env')) {
+    if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
+        Dotenv::createUnsafeMutable(base_path(false))->load();
+    } else {
+        Dotenv::createMutable(base_path(false))->load();
+    }
+}
 
 Config::clear();
 support\App::loadAllConfig(['route']);

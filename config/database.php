@@ -2,11 +2,11 @@
 
 return [
     'driver' => 'mysql',
-    'host' => '127.0.0.1',
-    'port' => 3306,
-    'database' => 'flatbbs',
-    'username' => 'root',
-    'password' => 'lyghj456',
+    'host' => getenv("DATABASE_HOST"),
+    'port' => getenv("DATABASE_PORT"),
+    'database' => getenv("DATABASE_NAME"),
+    'username' => getenv("DATABASE_USER"),
+    'password' => getenv("DATABASE_PASSWORD"),
     'charset' => 'utf8mb4',
     'collation' => 'utf8mb4_unicode_ci',
     'prefix' => '',
