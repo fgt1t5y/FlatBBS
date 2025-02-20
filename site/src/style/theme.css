@@ -85,14 +85,6 @@
     @apply outline-indigo-600;
   }
 
-  .route.router-link-exact-active {
-    @apply text-primary;
-  }
-
-  .menu-item.router-link-exact-active {
-    @apply bg-primary-600 hover:bg-primary-600 text-white;
-  }
-
   .text-muted {
     @apply text-gray-500 dark:text-gray-400;
   }
@@ -220,8 +212,16 @@
     @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
   }
 
+  .route.router-link-exact-active {
+    @apply text-primary;
+  }
+
   .menu-item {
     @apply flex items-center gap-2 btn-md rounded hoverable;
+  }
+
+  .menu-item.router-link-exact-active {
+    @apply bg-primary-600 hover:bg-primary-600 text-content;
   }
 
   .route-menu {
