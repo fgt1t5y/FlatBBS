@@ -217,7 +217,7 @@
   }
 
   .menu-item {
-    @apply flex items-center gap-2 btn-md rounded hoverable;
+    @apply flex items-center gap-2 btn-md px-3 rounded hoverable;
   }
 
   .menu-item.router-link-exact-active {
@@ -245,7 +245,11 @@
   }
 
   .sidebar {
-    @apply p-3;
+    @apply py-3;
+  }
+
+  .sidebar-menu-item {
+    @apply rounded-none;
   }
 
   .main-content {
