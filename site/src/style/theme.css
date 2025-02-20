@@ -331,6 +331,10 @@
     @apply cursor-not-allowed;
   }
 
+  input:focus-visible {
+    @apply outline-none;
+  }
+
   input,
   select,
   option {
