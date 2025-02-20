@@ -1,12 +1,12 @@
 <template>
-  <CommonTooltip :text="relativeTime[0]">
+  <Tooltip :text="relativeTime[0]">
     <time class="text-muted">{{ relativeTime[1] }}</time>
-  </CommonTooltip>
+  </Tooltip>
 </template>
 
 <script setup lang="ts">
 import { formatTime } from '@/utils'
-import CommonTooltip from './CommonTooltip.vue';
+import Tooltip from './Tooltip.vue';
 
 defineOptions({
   name: 'RelativeTime',

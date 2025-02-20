@@ -43,7 +43,7 @@ import { FocusTrap } from './FocusTrap'
 import type { Placement } from '@floating-ui/vue'
 
 defineOptions({
-  name: 'CommonPopover',
+  name: 'Popover',
 })
 
 interface CommonPopoverProps {

@@ -1,17 +1,17 @@
 <template>
-  <CommonPopover placement="top" :duration="[1000, 200]">
+  <Popover placement="top" :duration="[1000, 200]">
     <slot />
     <template #body>
       <div class="p-2">{{ text }}</div>
     </template>
-  </CommonPopover>
+  </Popover>
 </template>
 
 <script setup lang="ts">
-import CommonPopover from './CommonPopover.vue'
+import Popover from './Popover.vue'
 
 defineOptions({
-  name: 'CommonTooltip',
+  name: 'Tooltip',
 })
 
 const props = defineProps<{

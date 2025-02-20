@@ -5,7 +5,7 @@
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
       <div v-if="user.isLogin && user.info">
-        <CommonPopover
+        <Popover
           trigger="click"
           placement="bottom-end"
           :duration="0"
@@ -29,7 +29,7 @@
               </button>
             </div>
           </template>
-        </CommonPopover>
+        </Popover>
       </div>
       <div v-else>
         <RouterLink
@@ -47,7 +47,7 @@
 import { useUserStore } from '@/stores'
 import { useI18n } from 'vue-i18n'
 import Avatar from './Avatar.vue'
-import CommonPopover from './CommonPopover.vue'
+import Popover from './Popover.vue'
 import CommonRouteMenu from './CommonRouteMenu.vue'
 import SimpleUserInfo from './SimpleUserInfo.vue'
 

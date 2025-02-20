@@ -1,5 +1,5 @@
 <template>
-  <CommonPopover
+  <Popover
     placement="bottom-start"
     :class="$attrs.class"
     :duration="[1200, 400]"
@@ -14,7 +14,7 @@
         <SimpleUserInfo v-else :user="user" show-description />
       </div>
     </template>
-  </CommonPopover>
+  </Popover>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +23,7 @@ import { useRequest } from 'alova/client'
 import { ref } from 'vue'
 import { Loader } from '@vicons/tabler'
 import SimpleUserInfo from './SimpleUserInfo.vue'
-import CommonPopover from './CommonPopover.vue'
+import Popover from './Popover.vue'
 
 import type { User } from '@/types'
 

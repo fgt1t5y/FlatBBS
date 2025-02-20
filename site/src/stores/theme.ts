@@ -21,9 +21,9 @@ export const useTheme = defineStore('theme', () => {
       (systemIsDark && currentTheme.value === 'auto') ||
       currentTheme.value === 'dark'
     ) {
-      document.body.setAttribute('flat-theme', 'dark');
+      document.documentElement.classList.add('dark');
     } else {
-      document.body.removeAttribute('flat-theme');
+      document.documentElement.classList.remove('dark');
     }
   };
 
