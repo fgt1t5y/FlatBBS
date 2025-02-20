@@ -42,7 +42,7 @@ class Request extends \Webman\Http\Request
     public function assertLogin()
     {
         if (!session()->has('id')) {
-            throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
+            throw new APIException('$exception.unauthorized', STATUS_UNAUTHORIZED);
         }
     }
 
@@ -53,11 +53,11 @@ class Request extends \Webman\Http\Request
         }
 
         if ($this->user->isGuest()) {
-            throw new APIException('{{exception.unauthorized}}', STATUS_UNAUTHORIZED);
+            throw new APIException('$exception.unauthorized', STATUS_UNAUTHORIZED);
         }
 
         if (!$this->user->hasPermission($permission)) {
-            throw new APIException('{{exception.forbidden}}', STATUS_FORBIDDEN);
+            throw new APIException('$exception.forbidden', STATUS_FORBIDDEN);
         }
     }
 }

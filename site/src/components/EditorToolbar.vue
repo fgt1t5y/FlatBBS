@@ -74,10 +74,8 @@ const uploadAndInsertImage = () => {
 
   const image = imageInput.value.files[0]
   uploadFile(image).then((res) => {
-    res.forEach((uri) => {
-      props?.editor.commands.setImage({
-        src: uri,
-      })
+    props?.editor.commands.setImage({
+      src: res,
     })
   })
 }

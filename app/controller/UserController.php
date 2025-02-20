@@ -29,7 +29,7 @@ class UserController
         $result = $this->user->getInfoById($username);
 
         if (!$result) {
-            return no(STATUS_NOT_FOUND, '{{exception.user_not_found}}');
+            return no(STATUS_NOT_FOUND, '$exception.user_not_found');
         }
 
         return ok($result);
@@ -77,16 +77,15 @@ class UserController
     {
         $request->assertLogin();
 
-        $file_array = $this->file->upload($request->file());
+        $file = $this->file->upload($request->file('avgfile'));
 
-        if (!$file_array) {
-            return no(STATUS_BAD_REQUEST, '{{exception.fill_out_form_completely}}');
+        if (!$file) {
+            return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
         }
 
-        $newAvatarName = $file_array[0];
         $user_id = session('id');
 
-        $result = $this->user->modifyUserInfo($user_id, ['avatar_uri' => $newAvatarName]);
+        $result = $this->user->modifyUserInfo($user_id, ['avatar_uri' => $file]);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -109,7 +108,7 @@ class UserController
         $user = $request->getUser();
 
         if (!password_verify($old_password, $user->password)) {
-            return no(STATUS_FORBIDDEN, '{{exception.password_is_wrong}}');
+            return no(STATUS_FORBIDDEN, '\$exception.password_is_wrong');
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);

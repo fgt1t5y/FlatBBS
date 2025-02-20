@@ -40,8 +40,8 @@ const errorMessage = computed(() => {
     return null
   }
 
-  if (props.error.message.startsWith('{{')) {
-    return t(props.error.message.slice(2))
+  if (props.error.message.startsWith('$')) {
+    return t(props.error.message.slice(1))
   }
 
   return props.error.message
