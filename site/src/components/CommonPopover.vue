@@ -25,7 +25,7 @@
           @mouseleave="onMouseLeavePopover"
           @keydown="onKeyDown"
         >
-          <FocusTrap :active="enableFocusTrap">
+          <FocusTrap :active="enableFocusTrap" auto-focus>
             <slot name="body" />
           </FocusTrap>
         </div>

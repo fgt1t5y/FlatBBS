@@ -88,15 +88,23 @@ export const FocusTrap = defineComponent({
 
     onBeforeUnmount(() => {
       document.removeEventListener('keydown', handleDocumentKeydown);
-      if (activated) deactivate();
+      if (activated) {
+        deactivate();
+      }
     });
 
     function handleDocumentFocus(e: FocusEvent): void {
-      if (ignoreInternalFocusChange) return;
+      if (ignoreInternalFocusChange) {
+        return;
+      }
       if (isCurrentActive()) {
         const mainEl = getMainEl();
-        if (mainEl === null) return;
-        if (mainEl.contains(getPreciseEventTarget(e) as Node | null)) return;
+        if (mainEl === null) {
+          return;
+        }
+        if (mainEl.contains(getPreciseEventTarget(e) as Node | null)) {
+          return;
+        }
         // I don't handle shift + tab status since it's too tricky to handle
         // Not impossible but I need to sleep
         resetFocusTo('first');
@@ -105,12 +113,16 @@ export const FocusTrap = defineComponent({
 
     function getMainEl(): ChildNode | null {
       const focusableStartEl = focusableStartRef.value;
-      if (focusableStartEl === null) return null;
+      if (focusableStartEl === null) {
+        return null;
+      }
       let mainEl: ChildNode | null = focusableStartEl;
       // eslint-disable-next-line no-constant-condition
       while (true) {
         mainEl = mainEl.nextSibling;
-        if (mainEl === null) break;
+        if (mainEl === null) {
+          break;
+        }
         if (mainEl instanceof Element && mainEl.tagName === 'DIV') {
           break;
         }
@@ -119,14 +131,22 @@ export const FocusTrap = defineComponent({
     }
 
     function activate(): void {
-      if (props.disabled) return;
+      if (props.disabled) {
+        return;
+      }
       stack.push(id);
       if (props.autoFocus) {
         const { initialFocusTo } = props;
         if (initialFocusTo === undefined) {
-          resetFocusTo('first');
+          const timerId = window.setTimeout(() => {
+            resetFocusTo('first');
+            window.clearTimeout(timerId);
+          }, 50);
         } else {
-          resolveTo(initialFocusTo)?.focus({ preventScroll: true });
+          const timerId = window.setTimeout(() => {
+            resolveTo(initialFocusTo)?.focus({ preventScroll: true });
+            window.clearTimeout(timerId);
+          }, 50);
         }
       }
       activated = true;
@@ -134,10 +154,14 @@ export const FocusTrap = defineComponent({
     }
 
     function deactivate(): void {
-      if (props.disabled) return;
+      if (props.disabled) {
+        return;
+      }
       document.removeEventListener('focus', handleDocumentFocus, true);
       stack = stack.filter((idInStack) => idInStack !== id);
-      if (isCurrentActive()) return;
+      if (isCurrentActive()) {
+        return;
+      }
       const { finalFocusTo } = props;
       if (finalFocusTo !== undefined) {
         resolveTo(finalFocusTo)?.focus({ preventScroll: true });
@@ -151,7 +175,9 @@ export const FocusTrap = defineComponent({
     }
 
     function resetFocusTo(target: 'last' | 'first'): void {
-      if (!isCurrentActive()) return;
+      if (!isCurrentActive()) {
+        return;
+      }
       if (props.active) {
         const focusableStartEl = focusableStartRef.value;
         const focusableEndEl = focusableEndRef.value;
@@ -180,9 +206,13 @@ export const FocusTrap = defineComponent({
     }
 
     function handleStartFocus(e: FocusEvent): void {
-      if (ignoreInternalFocusChange) return;
+      if (ignoreInternalFocusChange) {
+        return;
+      }
       const mainEl = getMainEl();
-      if (mainEl === null) return;
+      if (mainEl === null) {
+        return;
+      }
       if (e.relatedTarget !== null && mainEl.contains(e.relatedTarget as any)) {
         // if it comes from inner, focus last
         resetFocusTo('last');
@@ -193,7 +223,9 @@ export const FocusTrap = defineComponent({
     }
 
     function handleEndFocus(e: FocusEvent): void {
-      if (ignoreInternalFocusChange) return;
+      if (ignoreInternalFocusChange) {
+        return;
+      }
       if (
         e.relatedTarget !== null &&
         e.relatedTarget === focusableStartRef.value
@@ -216,8 +248,12 @@ export const FocusTrap = defineComponent({
   },
   render() {
     const { default: defaultSlot } = this.$slots;
-    if (defaultSlot === undefined) return null;
-    if (this.disabled) return defaultSlot();
+    if (defaultSlot === undefined) {
+      return null;
+    }
+    if (this.disabled) {
+      return defaultSlot();
+    }
     const { active, focusableStyle } = this;
     return h(Fragment, null, [
       h('div', {
