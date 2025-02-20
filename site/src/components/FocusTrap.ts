@@ -8,7 +8,12 @@ import {
   watch,
   useId,
 } from 'vue';
-import { resolveTo, focusFirstDescendant, focusLastDescendant } from '@/utils';
+import {
+  resolveTo,
+  focusFirstDescendant,
+  focusLastDescendant,
+  delay,
+} from '@/utils';
 
 import type { PropType } from 'vue';
 
@@ -138,15 +143,11 @@ export const FocusTrap = defineComponent({
       if (props.autoFocus) {
         const { initialFocusTo } = props;
         if (initialFocusTo === undefined) {
-          const timerId = window.setTimeout(() => {
-            resetFocusTo('first');
-            window.clearTimeout(timerId);
-          }, 50);
+          delay(() => resetFocusTo('first'));
         } else {
-          const timerId = window.setTimeout(() => {
-            resolveTo(initialFocusTo)?.focus({ preventScroll: true });
-            window.clearTimeout(timerId);
-          }, 50);
+          delay(() =>
+            resolveTo(initialFocusTo)?.focus({ preventScroll: true }),
+          );
         }
       }
       activated = true;

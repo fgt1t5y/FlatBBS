@@ -1,11 +1,7 @@
 <template>
   <div class="page-title" :title="title">
     <div class="flex gap-2 w-full items-center">
-      <button
-        v-if="showBackButton"
-        class="btn-text"
-        @click="page.back"
-      >
+      <button v-if="showBackButton" class="btn-text" @click="back">
         <ArrowLeft class="size-8" />
       </button>
       <div class="flex flex-col grow">
@@ -23,8 +19,7 @@
 <script setup lang="ts">
 import { ArrowLeft } from '@vicons/tabler'
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { usePage } from '@/utils'
+import { useRoute, useRouter } from 'vue-router'
 
 defineOptions({
   name: 'PageTitle',
@@ -39,7 +34,16 @@ const props = withDefaults(defineProps<PageTitleProps>(), {
   title: '',
   showBack: true,
 })
-const page = usePage()
 const route = useRoute()
+const router = useRouter()
+
+const back = () => {
+  if (!history.state.back) {
+    router.push({ path: '/' })
+    return
+  }
+  router.back()
+}
+
 const showBackButton = computed(() => props.showBack && route.fullPath !== '/')
 </script>

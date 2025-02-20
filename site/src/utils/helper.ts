@@ -26,7 +26,9 @@ export const genForm = <T>(data: T) => {
   const form = new FormData();
 
   for (const item in data) {
-    if (!item) continue;
+    if (!item) {
+      continue;
+    }
     const value = data[item] as any;
     // 遇到文件数组 合并到一个 field
     if (Array.isArray(value)) {
@@ -61,20 +63,20 @@ export const isPad = breakpoint.greater('sm');
 export const isDesktop = breakpoint.greater('lg');
 export const isDev = import.meta.env.DEV;
 
-export function resolveTo(
+export const resolveTo = (
   selector: string | (() => HTMLElement | null),
-): HTMLElement | null {
+): HTMLElement | null => {
   if (typeof selector === 'string') {
     return document.querySelector(selector);
   }
   return selector();
-}
+};
 
-function isHTMLElement(node: Node): node is HTMLElement {
+export const isHTMLElement = (node: Node): node is HTMLElement => {
   return node instanceof HTMLElement;
-}
+};
 
-function isFocusable(element: HTMLElement): boolean {
+export const isFocusable = (element: HTMLElement): boolean => {
   if (
     element.tabIndex > 0 ||
     (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)
@@ -104,9 +106,9 @@ function isFocusable(element: HTMLElement): boolean {
     default:
       return false;
   }
-}
+};
 
-function attemptFocus(element: HTMLElement): boolean {
+export const attemptFocus = (element: HTMLElement): boolean => {
   if (!isFocusable(element)) {
     return false;
   }
@@ -115,9 +117,9 @@ function attemptFocus(element: HTMLElement): boolean {
     // eslint-disable-next-line no-empty
   } catch (e) {}
   return document.activeElement === element;
-}
+};
 
-export function focusFirstDescendant(node: Node): boolean {
+export const focusFirstDescendant = (node: Node): boolean => {
   for (let i = 0; i < node.childNodes.length; i++) {
     const child = node.childNodes[i];
     if (isHTMLElement(child)) {
@@ -127,9 +129,9 @@ export function focusFirstDescendant(node: Node): boolean {
     }
   }
   return false;
-}
+};
 
-export function focusLastDescendant(element: Node): boolean {
+export const focusLastDescendant = (element: Node): boolean => {
   for (let i = element.childNodes.length - 1; i >= 0; i--) {
     const child = element.childNodes[i];
     if (isHTMLElement(child)) {
@@ -139,7 +141,8 @@ export function focusLastDescendant(element: Node): boolean {
     }
   }
   return false;
-}
+};
 
-// eslint-disable-next-line prefer-const
-export let focusTrapStack: string[] = []
+export const delay = function (fn: () => void) {
+  return setTimeout(fn, 0);
+};
