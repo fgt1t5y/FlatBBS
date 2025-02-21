@@ -136,11 +136,11 @@ const clearOpenTimer = () => {
 }
 
 const clearCloseTimer = () => {
-  if (!openTimerId) {
+  if (!closeTimerId) {
     return
   }
 
-  window.clearTimeout(openTimerId)
+  window.clearTimeout(closeTimerId)
   openTimerId = null
 }
 
@@ -181,7 +181,6 @@ const onMouseLeave = () => {
   }
 
   closeTimerId = window.setTimeout(() => {
-    window.clearTimeout(closeTimerId!)
     if (isMouseInPopover.value) {
       return
     }
@@ -222,7 +221,6 @@ const onClickPopoverOutside = () => {
   }
 
   closeTimerId = window.setTimeout(() => {
-    window.clearTimeout(closeTimerId!)
     clearCloseTimer()
     closePopover()
   }, closeDuration)
