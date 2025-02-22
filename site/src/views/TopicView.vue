@@ -61,7 +61,7 @@ import CommonList from '@/components/CommonList.vue'
 import DiscussionItem from '@/components/DiscussionItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import {
-  getDiscussions,
+  getDiscussionsByTopicId,
   getTopic,
   likeTopic,
   publishDiscussion,
@@ -135,11 +135,14 @@ const {
   error,
   send: loadDiscussions,
   insert: insertDiscussion,
-} = usePagination((page, limit) => getDiscussions(lastItemId, limit, topicId), {
-  append: true,
-  initialPageSize: 10,
-  immediate: false,
-}).onSuccess(() => {
+} = usePagination(
+  (page, limit) => getDiscussionsByTopicId(lastItemId, limit, topicId),
+  {
+    append: true,
+    initialPageSize: 10,
+    immediate: false,
+  },
+).onSuccess(() => {
   const items = discussions.value
   if (!items || !items.length) {
     return

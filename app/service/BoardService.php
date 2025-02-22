@@ -16,7 +16,7 @@ class BoardService
         return Board::where('slug', $value)->first($columns);
     }
 
-    public function getTopicsByBoardSlug(string $slug, int $last_id, int $limit)
+    public function getTopicsBySlug(string $slug, int $last_id, int $limit)
     {
         return Board::where('slug', $slug)
             ->firstOrFail()

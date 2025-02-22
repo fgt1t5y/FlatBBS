@@ -17,6 +17,16 @@ class TopicService
             ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
+    public function getDiscussionsById(int $id, int $last_id, int $limit)
+    {
+        return Topic::find($id)
+            ->discussions()
+            ->limit(min($limit, 50))
+            ->where('id', '>', $last_id)
+            ->orderBy('created_at')
+            ->get();
+    }
+
     public function build(string $title, string $text, string $content, Board $board, User $author)
     {
         $topic = new Topic;

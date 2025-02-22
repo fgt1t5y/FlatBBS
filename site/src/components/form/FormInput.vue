@@ -23,10 +23,8 @@
         @blur="context?.onFormItemBlur"
       />
     </div>
-    <div class="form-item-error">
-      <span :id="inputErrorMessageId">
-        {{ errorMessage || '&nbsp;' }}
-      </span>
+    <div :id="inputErrorMessageId" class="form-item-error">
+      {{ errorMessage || '&nbsp;' }}
     </div>
   </div>
 </template>

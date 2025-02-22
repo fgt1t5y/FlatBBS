@@ -8,16 +8,6 @@ use app\model\User;
 
 class DiscussionService
 {
-    public function getDiscussionsByTopicId(int $id, int $last_id, int $limit)
-    {
-        return Topic::find($id)
-            ->discussions()
-            ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
-            ->orderBy('created_at')
-            ->get();
-    }
-
     public function build(string $content, Topic $topic, User $author)
     {
         $discussion = new Discussion;

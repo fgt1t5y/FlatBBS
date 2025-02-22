@@ -22,6 +22,16 @@ class TopicController
         return ok($result);
     }
 
+    public function discussions(Request $request, int $topic_id)
+    {
+        $last_id = $request->get('last');
+        $limit = $request->get('limit');
+
+        $result = $this->topic->getDiscussionsById($topic_id, $last_id, $limit);
+
+        return ok($result);
+    }
+
     public function publish(Request $request)
     {
         $request->assertLogin();

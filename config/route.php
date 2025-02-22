@@ -33,7 +33,6 @@ Route::group('/board/{slug}', function () {
 });
 
 Route::group('/discussion/{tid:\d+}', function () {
-    Route::get('/list', [app\controller\DiscussionController::class, 'list']);
     Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
 });
 
@@ -56,6 +55,7 @@ Route::group('/topics', function () {
 
 Route::group('/topic/{tid:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
+    Route::get('/discussions', [app\controller\TopicController::class, 'discussions']);
     Route::post('/like', [app\controller\TopicController::class, 'like']);
 });
 

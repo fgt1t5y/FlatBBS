@@ -44,7 +44,7 @@ class BoardController
         $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        $result = $this->board->getTopicsByBoardSlug($slug, $last_id, $limit);
+        $result = $this->board->getTopicsBySlug($slug, $last_id, $limit);
 
         return ok($result);
     }

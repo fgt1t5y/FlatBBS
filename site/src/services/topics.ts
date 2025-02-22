@@ -1,5 +1,6 @@
 import { alovaInstance } from './instance';
-import type { Topic, Result } from '@/types';
+
+import type { Topic, Result, Discussion } from '@/types';
 
 export const getAllTopics = (last: number, limit: number) => {
   return alovaInstance.Get<Result<Topic[]>, Topic>('/topics/all', {
@@ -8,6 +9,22 @@ export const getAllTopics = (last: number, limit: number) => {
       limit,
     },
   });
+};
+
+export const getDiscussionsByTopicId = (
+  last: number,
+  limit: number,
+  topic_id: number,
+) => {
+  return alovaInstance.Get<Result<Discussion[]>>(
+    `/topic/${topic_id}/discussions`,
+    {
+      params: {
+        last,
+        limit,
+      },
+    },
+  );
 };
 
 export const getTopic = (topic_id: number) => {
