@@ -1,4 +1,4 @@
-import type { Ref } from 'vue';
+import type { Component, Ref } from 'vue';
 import type { Rules, ValidateErrorMap } from '@/third-party/async-validator';
 
 export interface Result<T = null> {
@@ -114,4 +114,18 @@ export interface IFormContext {
   disabled: boolean;
   errorMessages: Ref<ValidateErrorMap>;
   onFormItemBlur: (ev: FocusEvent) => void;
+}
+
+export interface IVisitLog<T = unknown> {
+  id: number;
+  user_id: number;
+  visitable_id: number;
+  visitable_type: string;
+  updated_at: Date;
+  created_at: Date;
+  visitable: T;
+}
+
+export type StringComponentMap = {
+  [string: string]: Component
 }

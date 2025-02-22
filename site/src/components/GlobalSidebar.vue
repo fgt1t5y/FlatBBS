@@ -11,11 +11,18 @@
       <Flower class="size-5" />
       <span>{{ $t('page.boards') }}</span>
     </RouterLink>
+    <RouterLink
+      class="menu-item sidebar-menu-item"
+      :to="{ name: 'logs' }"
+    >
+      <Clock class="size-5" />
+      <span>{{ $t('page.visit_logs') }}</span>
+    </RouterLink>
   </aside>
 </template>
 
 <script setup lang="ts">
-import { Home, Flower } from '@vicons/tabler'
+import { Home, Flower, Clock } from '@vicons/tabler'
 
 defineOptions({
   name: 'GlobalSidebar',

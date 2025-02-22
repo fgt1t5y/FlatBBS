@@ -27,8 +27,14 @@ class MeController
 
         $last_id = $request->get('last');
         $limit = $request->get('limit');
+        $visitable_type = $request->get('type');
 
-        return ok($this->userVisitLog->getVisitLogs($request->getUser(), $last_id, $limit));
+        return ok($this->userVisitLog->getVisitLogs(
+            $request->getUser(),
+            $last_id,
+            $limit,
+            $visitable_type
+        ));
     }
 
     public function info(Request $request)

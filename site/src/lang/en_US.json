@@ -22,7 +22,8 @@
     "settings": "Settings",
     "register_or_login": "Signin / Login",
     "me": "Me",
-    "my_page": "My Homepage"
+    "my_page": "My Homepage",
+    "visit_logs": "Visit Log"
   },
 
   "user": {

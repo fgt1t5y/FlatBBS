@@ -1,7 +1,17 @@
 import { genForm } from '@/utils';
 import { alovaInstance } from './instance';
 
-import type { UploadForm, User } from '@/types';
+import type { UploadForm, User, IVisitLog, Result } from '@/types';
+
+export const getVisitLogs = (last: number, limit: number, type?: string) => {
+  return alovaInstance.Get<Result<IVisitLog[]>, IVisitLog>('/me/logs', {
+    params: {
+      last,
+      limit,
+      type,
+    },
+  });
+};
 
 export const getSessionUserInfo = () => {
   return alovaInstance.Get<User>('/me/info');

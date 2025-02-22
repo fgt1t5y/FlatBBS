@@ -95,5 +95,13 @@ export const siteRoute = {
         guestOnly: true,
       },
     },
+    {
+      path: 'logs',
+      name: 'logs',
+      component: () => import('@/views/UserVisitLogView.vue'),
+      meta: {
+        userOnly: true,
+      },
+    },
   ],
 } as RouteRecordRaw;

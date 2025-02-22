@@ -22,7 +22,8 @@
     "settings": "设置",
     "register_or_login": "注册 / 登录",
     "me": "我",
-    "my_page": "我的主页"
+    "my_page": "我的主页",
+    "visit_logs": "历史记录"
   },
 
   "user": {

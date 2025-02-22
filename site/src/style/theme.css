@@ -221,7 +221,7 @@
   }
 
   .menu-item.router-link-exact-active {
-    @apply bg-primary-600 hover:bg-primary-600 text-content;
+    @apply bg-primary-600 hover:bg-primary-600 text-white;
   }
 
   .route-menu {

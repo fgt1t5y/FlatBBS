@@ -6,12 +6,17 @@ use app\model\User;
 
 class UserVisitLogService
 {
-    public function getVisitLogs(User $user, int $last_id, int $limit)
+    public function getVisitLogs(User $user, int $last_id, int $limit, ?string $type)
     {
-        return $user->visit_logs()
+        $query = $user->visit_logs()
             ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
-            ->orderBy('updated_at', 'dasc')
+            ->where('id', '>', $last_id);
+
+        if ($type !== null) {
+            $query->where('visitable_type', $type);
+        }
+
+        return $query->orderByDesc('updated_at')
             ->with(['visitable'])
             ->get();
     }

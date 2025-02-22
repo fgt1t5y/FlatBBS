@@ -47,5 +47,4 @@ class UserController
 
         return ok($result);
     }
-
 }
