@@ -28,13 +28,6 @@ class BoardController
         return ok($result);
     }
 
-    public function hotspot(Request $request)
-    {
-        $result = $this->board->getHotBoards($this->board_basic_fields);
-
-        return ok($result);
-    }
-
     public function info(Request $request, string $slug)
     {
         $result = $this->board->getBoardInfo($slug, $this->board_fields);

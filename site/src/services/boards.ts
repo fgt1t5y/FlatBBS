@@ -5,10 +5,6 @@ export const getBoards = () => {
   return alovaInstance.Get<Result<Board[]>>('/boards/all');
 };
 
-export const getHotspotBoards = () => {
-  return alovaInstance.Get<Board[]>('/boards/hotspot');
-};
-
 export const getBoardInfo = (board_slug: string) => {
   return alovaInstance.Get<Board>(`/board/${board_slug}/info`);
 };

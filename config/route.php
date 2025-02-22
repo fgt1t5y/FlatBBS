@@ -25,7 +25,6 @@ Route::group('/auth', function () {
 
 Route::group('/boards', function () {
     Route::get('/all', [app\controller\BoardController::class, 'all']);
-    Route::get('/hotspot', [app\controller\BoardController::class, 'hotspot']);
 });
 
 Route::group('/board/{slug}', function () {
