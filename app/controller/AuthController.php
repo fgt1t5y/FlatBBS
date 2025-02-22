@@ -19,10 +19,6 @@ class AuthController
     {
         $session = $request->session();
 
-        if ($session->has('id')) {
-            return no(STATUS_BAD_REQUEST, '$exception.you_are_logged_in');
-        }
-
         $email = $request->post('email');
         $password = $request->post('password');
         $user = User::where('email', $email)->first();

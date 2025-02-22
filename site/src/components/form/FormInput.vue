@@ -15,12 +15,18 @@
         :type="type"
         :readonly="readonly"
         :placeholder="placeholder"
+        :required="required"
+        :aria-disabled="disabled || context!.disabled"
+        :aria-required="required"
+        :aria-invalid="!!errorMessage"
+        :aria-errormessage="inputErrorMessageId"
         @blur="context?.onFormItemBlur"
       />
     </div>
     <div class="form-item-error">
-      <span v-if="errorMessage">{{ errorMessage }}</span>
-      <span v-else>&nbsp;</span>
+      <span :id="inputErrorMessageId">
+        {{ errorMessage || '&nbsp;' }}
+      </span>
     </div>
   </div>
 </template>
@@ -72,6 +78,7 @@ const props = withDefaults(defineProps<FormInputProps>(), {
 const inputValue = defineModel<string>('modelValue', { default: '' })
 
 const inputId = useId()
+const inputErrorMessageId = useId()
 
 const context = inject<IFormContext>(formContextKey)
 
