@@ -55,4 +55,9 @@ class User extends AbstractModel
     {
         return $this->belongsToMany(Topic::class, 'topic_like', 'user_id', 'topic_id');
     }
+
+    public function visit_logs(): HasMany
+    {
+        return $this->hasMany(UserVisitLog::class);
+    }
 }

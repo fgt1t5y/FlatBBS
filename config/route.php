@@ -65,6 +65,10 @@ Route::group('/user/{username}', function () {
     Route::get('/liked', [app\controller\UserController::class, 'liked']);
 });
 
+Route::group('/me', function () {
+    Route::get('/logs', [app\controller\MeController::class, 'logs']);
+});
+
 // Fallback Route
 
 Route::fallback(function () {
