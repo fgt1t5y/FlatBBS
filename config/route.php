@@ -41,6 +41,14 @@ Route::group('/file', function () {
     Route::post('/upload', [app\controller\FileController::class, 'upload']);
 });
 
+Route::group('/me', function () {
+    Route::get('/logs', [app\controller\MeController::class, 'logs']);
+    Route::get('/info', [app\controller\MeController::class, 'info']);
+    Route::post('/info', [app\controller\MeController::class, 'modify']);
+    Route::post('/avatar', [app\controller\MeController::class, 'avatar']);
+    Route::post('/password', [app\controller\MeController::class, 'password']);
+});
+
 Route::group('/topics', function () {
     Route::get('/all', [app\controller\TopicController::class, 'all']);
     Route::post('/publish', [app\controller\TopicController::class, 'publish']);
@@ -51,21 +59,10 @@ Route::group('/topic/{tid:\d+}', function () {
     Route::post('/like', [app\controller\TopicController::class, 'like']);
 });
 
-Route::group('/user', function () {
-    Route::get('/me', [app\controller\UserController::class, 'me']);
-    Route::post('/me', [app\controller\UserController::class, 'modifyMe']);
-    Route::post('/avatar', [app\controller\UserController::class, 'avatar']);
-    Route::post('/password', [app\controller\UserController::class, 'password']);
-});
-
 Route::group('/user/{username}', function () {
     Route::get('/info', [app\controller\UserController::class, 'info']);
     Route::get('/topics', [app\controller\UserController::class, 'topics']);
     Route::get('/liked', [app\controller\UserController::class, 'liked']);
-});
-
-Route::group('/me', function () {
-    Route::get('/logs', [app\controller\MeController::class, 'logs']);
 });
 
 // Fallback Route
