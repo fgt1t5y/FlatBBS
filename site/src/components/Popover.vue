@@ -2,9 +2,6 @@
   <div @mouseleave="onMouseLeave">
     <div
       ref="wrapperRef"
-      :class="$attrs.class"
-      :aria-activedescendant="`#${popoverId}`"
-      :aria-expanded="showPopover"
       @mouseenter="onMouseEnter"
       @mouseleave="clearOpenTimer"
       @click="onClick"

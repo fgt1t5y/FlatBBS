@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="message-container">
+    <div class="message-container" aria-hidden="true">
       <TransitionGroup>
         <MessageItem
           v-for="m in ms.messages"

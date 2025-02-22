@@ -2,7 +2,7 @@
   <img
     :class="{ 'rounded-full': rounded, rounded: !rounded }"
     :src="src"
-    :alt="alt || 'User Avatar'"
+    :alt="alt || $t('avatar')"
   />
 </template>
 

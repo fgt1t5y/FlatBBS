@@ -12,13 +12,7 @@
           focus-trap
         >
           <button :title="$t('user_menu')">
-            <Avatar
-              ref="avatarRef"
-              role="button"
-              class="size-10 cursor-pointer"
-              :src="user.info.avatar_uri"
-              rounded
-            />
+            <Avatar class="size-10" :src="user.info.avatar_uri" rounded />
           </button>
           <template #body>
             <div class="nav-user-panel">
