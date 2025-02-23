@@ -16,7 +16,7 @@
           :id="popoverId"
           ref="bodyRef"
           role="tooltip"
-          class="shadow-lg rounded bg-content border border-content"
+          class="popover-body"
           :style="floatingStyles"
           @mouseenter="onMouseEnterPopover"
           @mouseleave="onMouseLeavePopover"

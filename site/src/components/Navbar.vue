@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar h-navbar">
-    <div class="nav-inner">
+  <nav class="navbar">
+    <div class="navbar-inner">
       <RouterLink title="FlatBBS" to="/">
         <span class="text-2xl font-bold">FlatBBS</span>
       </RouterLink>
@@ -17,7 +17,7 @@
             <Avatar class="size-10" :src="user.info.avatar_uri" rounded />
           </button>
           <template #body>
-            <div class="nav-user-panel">
+            <div class="navbar-user-panel">
               <SimpleUserInfo class="p-3 border-bt" :user="user.info" />
               <CommonRouteMenu class="border-bt" :items="userPanelMenuItems" />
               <button class="route-menu-item text-danger" @click="user.quit">

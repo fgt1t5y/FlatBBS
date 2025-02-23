@@ -196,14 +196,14 @@
   }
 
   .navbar {
-    @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center;
+    @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center h-navbar;
   }
 
-  .nav-inner {
+  .navbar-inner {
     @apply flex justify-between items-center grow px-3;
   }
 
-  .nav-user-panel {
+  .navbar-user-panel {
     width: 350px;
     max-width: 100vw;
   }
@@ -324,6 +324,10 @@
 
   .html-rendered {
     @apply text-base;
+  }
+
+  .popover-body {
+    @apply shadow-lg rounded bg-content border border-content;
   }
 
   .btn,
