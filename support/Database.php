@@ -4,10 +4,8 @@ namespace support;
 
 use Illuminate\Container\Container as IlluminateContainer;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Events\Dispatcher;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\CursorPaginator;
-use Illuminate\Pagination\Cursor;
 use support\Container;
 use Throwable;
 use Webman\Bootstrap;
@@ -46,6 +44,11 @@ class Database implements Bootstrap
 
         $capsule->bootEloquent();
 
+        Relation::enforceMorphMap([
+            'topic' => 'app\model\Topic',
+            'user' => 'app\model\User'
+        ]);
+
         // Heartbeat
         if ($worker) {
             Timer::add(55, function () use ($capsule) {
@@ -60,33 +63,6 @@ class Database implements Bootstrap
                 }
             });
         }
-
-        // Paginator
-        // if (class_exists(Paginator::class)) {
-        //     if (method_exists(Paginator::class, 'queryStringResolver')) {
-        //         Paginator::queryStringResolver(function () {
-        //             $request = request();
-        //             return $request ? $request->queryString() : null;
-        //         });
-        //     }
-        //     Paginator::currentPathResolver(function () {
-        //         $request = request();
-        //         return $request ? $request->path(): '/';
-        //     });
-        //     Paginator::currentPageResolver(function ($pageName = 'page') {
-        //         $request = request();
-        //         if (!$request) {
-        //             return 1;
-        //         }
-        //         $page = (int)($request->input($pageName, 1));
-        //         return $page > 0 ? $page : 1;
-        //     });
-        //     if (class_exists(CursorPaginator::class)) {
-        //         CursorPaginator::currentCursorResolver(function ($cursorName = 'cursor') {
-        //             return Cursor::fromEncoded(request()->input($cursorName));
-        //         });
-        //     }
-        // }
     }
 }
 
