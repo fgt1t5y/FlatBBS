@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { useFloating, autoUpdate } from '@floating-ui/vue'
-import { computed, onDeactivated, ref, useId } from 'vue'
+import { computed, onDeactivated, ref, useId, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { FocusTrap } from './FocusTrap'
 
@@ -46,7 +46,7 @@ defineOptions({
 interface CommonPopoverProps {
   duration?: [number, number] | number
   placement?: Placement
-  trigger?: 'hover' | 'click'
+  trigger?: 'hover' | 'click' | 'manual'
   unmountOnClose?: boolean
   focusTrap?: boolean
 }
@@ -60,7 +60,9 @@ const props = withDefaults(defineProps<CommonPopoverProps>(), {
 const emits = defineEmits<{
   (e: 'show'): void
   (e: 'close'): void
+  (e: 'clickOutside'): void
 }>()
+const modelValue = defineModel<boolean>('open', { default: false })
 
 const popoverId = useId()
 const wrapperRef = ref<HTMLElement>()
@@ -103,7 +105,7 @@ const openPopover = () => {
   showPopover.value = true
   emits('show')
 
-  if (props.trigger === 'click') {
+  if (props.trigger !== 'hover') {
     onClickOutsideStop = onClickOutside(bodyRef, onClickPopoverOutside, {
       ignore: [wrapperRef],
     })
@@ -114,7 +116,7 @@ const closePopover = () => {
   emits('close')
   showPopover.value = false
 
-  if (props.trigger === 'click' && onClickOutsideStop) {
+  if (props.trigger !== 'hover' && onClickOutsideStop) {
     onClickOutsideStop()
   }
 
@@ -155,11 +157,6 @@ const onMouseEnter = () => {
     return
   }
 
-  if (!openDuration) {
-    openPopover()
-    return
-  }
-
   openTimerId = window.setTimeout(() => {
     clearOpenTimer()
     openPopover()
@@ -196,11 +193,6 @@ const onClick = () => {
     return
   }
 
-  if (!openDuration) {
-    openPopover()
-    return
-  }
-
   openTimerId = window.setTimeout(() => {
     clearOpenTimer()
     openPopover()
@@ -208,12 +200,12 @@ const onClick = () => {
 }
 
 const onClickPopoverOutside = () => {
-  if (props.trigger !== 'click') {
+  if (props.trigger === 'hover') {
     return
   }
 
-  if (!closeDuration) {
-    closePopover()
+  if (props.trigger === 'manual') {
+    emits('clickOutside')
     return
   }
 
@@ -230,8 +222,23 @@ const onKeyDown = (ev: KeyboardEvent) => {
 }
 
 const enableFocusTrap = computed(() => {
-  return showPopover.value && props.trigger === 'click' && props.focusTrap
+  return showPopover.value && props.trigger !== 'hover' && props.focusTrap
 })
+
+watch(
+  () => modelValue.value,
+  (show) => {
+    if (props.trigger !== 'manual') {
+      return
+    }
+
+    if (show) {
+      openPopover()
+    } else {
+      closePopover()
+    }
+  },
+)
 
 onDeactivated(() => {
   clearOpenTimer()

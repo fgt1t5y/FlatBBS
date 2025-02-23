@@ -6,12 +6,14 @@
       </RouterLink>
       <div v-if="user.isLogin && user.info">
         <Popover
-          trigger="click"
+          v-model:open="openUserPanel"
+          trigger="manual"
           placement="bottom-end"
-          :duration="0"
           focus-trap
+          :duration="0"
+          @click-outside="closeUserPanel"
         >
-          <button :title="$t('user_menu')">
+          <button :title="$t('user_menu')" @click="openUserPanel = true">
             <Avatar class="size-10" :src="user.info.avatar_uri" rounded />
           </button>
           <template #body>
@@ -45,14 +47,22 @@ import Popover from './Popover.vue'
 import CommonRouteMenu from './CommonRouteMenu.vue'
 import SimpleUserInfo from './SimpleUserInfo.vue'
 
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 defineOptions({
   name: 'Navbar',
 })
 
 const user = useUserStore()
+const route = useRoute()
 const { t } = useI18n()
+
+const openUserPanel = ref<boolean>(false)
+
+const closeUserPanel = () => {
+  openUserPanel.value = false
+}
 
 const userPanelMenuItems = computed(() => {
   return [
@@ -68,4 +78,6 @@ const userPanelMenuItems = computed(() => {
     },
   ]
 })
+
+watch(() => route.fullPath, closeUserPanel)
 </script>
