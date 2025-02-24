@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-2" :style="{ width: `${width}px` }">
+  <div class="cropper" :style="{ width: `${width}px` }">
     <div
-      class="relative cursor-move select-none"
+      class="cropper-area"
       :style="{ height: `${height}px` }"
       @pointerdown="mousedown"
       @pointermove="mousemove"
@@ -153,7 +153,9 @@ const checkOverBorder = () => {
 }
 
 const mousedown = (ev: MouseEvent) => {
-  if (imageException.value) return
+  if (imageException.value) {
+    return
+  }
 
   const { clientX, clientY } = ev
   renderStatus.isDraging = true
@@ -162,7 +164,9 @@ const mousedown = (ev: MouseEvent) => {
 }
 
 const mousemove = (ev: MouseEvent) => {
-  if (!renderStatus.isDraging) return
+  if (!renderStatus.isDraging) {
+    return
+  }
 
   const { clientX, clientY } = ev
   renderStatus.deltaX = clientX - renderStatus.startX
