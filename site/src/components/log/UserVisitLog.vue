@@ -6,7 +6,7 @@
     </div>
     <div class="visit-log-title">
       <RouterLink
-        :to="{ name: 'topic', params: { topic_id: item.visitable.id } }"
+        :to="{ name: 'user', params: { username: item.visitable.username } }"
         :title="item.visitable.display_name"
       >
         {{ item.visitable.display_name }}
