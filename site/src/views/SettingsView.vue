@@ -5,18 +5,13 @@
       <SettingItem :title="$t('settings.my_avatar')">
         <div class="flex justify-between">
           <Avatar class="size-16" :src="user.info?.avatar_uri" rounded />
-          <button class="btn-primary btn-md" @click="openAvatarSelector">
+          <RouterLink
+            class="btn btn-primary btn-md"
+            :to="{ name: 'modify_avatar' }"
+          >
             {{ $t('action.modify') }}
-          </button>
+          </RouterLink>
         </div>
-        <input
-          ref="avatarInput"
-          type="file"
-          name="avatar"
-          accept=".jpg,.png,.jpeg"
-          style="display: none"
-          @change="giveAvatarFile"
-        />
       </SettingItem>
       <SettingItem :title="$t('settings.email_address')">
         <InputField :input-value="user.info?.email" readonly />
@@ -27,9 +22,6 @@
           :input-value="user.info?.username"
           readonly
         />
-      </SettingItem>
-      <SettingItem :title="$t('settings.user_roles')">
-        <span>{{ roleStringify() }}</span>
       </SettingItem>
       <SettingItem :title="$t('settings.display_name')">
         <InputField
@@ -73,107 +65,23 @@
       </SettingItem>
     </SettingGroup>
   </MainContent>
-  <Modal
-    v-model:visible="isShowCropper"
-    mount
-    close-button
-    :title="$t('action.crop_avatar')"
-    @hide="closeAvatarCrop"
-  >
-    <Cropper
-      ref="cropper"
-      :height="320"
-      :width="320"
-      :image="avatarFile"
-      @load="isShowCropper = true"
-      @error="showCropperMessage"
-    />
-    <div class="flex flex-col gap-2 mt-2">
-      <button class="btn-primary btn-md" @click="uploadAvatar">
-        {{ $t('ok') }}
-      </button>
-      <button class="btn-air btn-md" @click="isShowCropper = false">
-        {{ $t('cancle') }}
-      </button>
-    </div>
-  </Modal>
 </template>
 
 <script setup lang="ts">
-import Cropper from '@/components/Cropper.vue'
 import InputField from '@/components/InputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { useMessage, useTheme, useUserStore } from '@/stores'
-import { blobToFile } from '@/utils'
+import { useTheme, useUserStore } from '@/stores'
 import { ref, watch } from 'vue'
-import { modifyUserAvatar } from '@/services'
 import MainContent from '@/components/MainContent.vue'
 import Avatar from '@/components/Avatar.vue'
-import Modal from '@/components/Modal.vue'
 import { useI18n } from 'vue-i18n'
 
 const user = useUserStore()
-const ms = useMessage()
-const { t, locale, availableLocales } = useI18n()
+const { locale, availableLocales } = useI18n()
 const { switchTo, theme } = useTheme()
-const cropper = ref<InstanceType<typeof Cropper>>()
-const isShowCropper = ref<boolean>(false)
-const avatarInput = ref<HTMLInputElement>()
-const avatarFile = ref<File>()
 const themeSwitcherValue = ref(theme.value)
 
-const openAvatarSelector = () => {
-  avatarInput.value?.click()
-}
-
-const giveAvatarFile = () => {
-  if (avatarInput.value?.files) {
-    avatarFile.value = avatarInput.value!.files[0]
-  }
-}
-
-const showCropperMessage = (content: string) => {
-  isShowCropper.value = false
-  ms.error(content)
-}
-
-const closeAvatarCrop = () => {
-  cropper.value?.destroyCropper()
-  isShowCropper.value = false
-  avatarInput.value!.value = ''
-}
-
-const uploadAvatar = () => {
-  cropper.value!.getBlobAsync().then((blob) => {
-    if (blob) {
-      const file = blobToFile(blob, '_.jpg')
-      modifyUserAvatar(file)
-        .then(() => {
-          ms.success(t('message.upload_avatar_success'))
-        })
-        .catch(() => {
-          ms.error(t('message.upload_avatar_fail'))
-        })
-    }
-  })
-
-  closeAvatarCrop()
-}
-
-const roleStringify = () => {
-  return user.info?.roles.map((role) => role.name).join(', ')
-}
-
-watch(
-  () => themeSwitcherValue.value,
-  (tm) => {
-    if (!tm) {
-      return
-    }
-
-    switchTo(tm)
-  },
-)
+watch(() => themeSwitcherValue.value, switchTo)
 </script>

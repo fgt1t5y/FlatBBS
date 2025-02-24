@@ -75,6 +75,14 @@ export const siteRoute = {
       },
     },
     {
+      path: 'setting/avatar',
+      name: 'modify_avatar',
+      component: () => import('@/views/ModifyAvatarView.vue'),
+      meta: {
+        userOnly: true,
+      },
+    },
+    {
       path: 'search',
       name: 'search',
       component: () => import('@/views/SearchView.vue'),
