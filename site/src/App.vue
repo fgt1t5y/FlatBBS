@@ -27,13 +27,14 @@ theme.init()
 
 const { locale } = useI18n()
 const preferLang = window.navigator.language.replace('-', '_')
-const documentLang = (languageAliasMap[locale.value] as string) || 'en_US'
 
 if (preferLang in languageAliasMap) {
   locale.value = getOrSet('flat_language', preferLang)
 }
 
-document.documentElement.lang = documentLang
+const documentLang = (languageAliasMap[locale.value] as string) || 'en'
+
+document.documentElement.lang = locale.value
 
 dayjs.locale(documentLang.toLocaleLowerCase())
 dayjs.extend(utc)
