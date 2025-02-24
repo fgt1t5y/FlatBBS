@@ -27,7 +27,9 @@
   },
 
   "user": {
-    "user": "用户"
+    "user": "用户",
+
+    "visited": "查看了用户页面"
   },
 
   "board": {
@@ -40,7 +42,9 @@
     "topic": "话题",
     "title": "话题标题",
 
-    "liked": "已喜欢"
+    "liked": "已喜欢",
+
+    "visited": "查看了话题"
   },
 
   "discussion": {

@@ -121,8 +121,8 @@ export interface IVisitLog<T = unknown> {
   user_id: number;
   visitable_id: number;
   visitable_type: string;
-  updated_at: Date;
-  created_at: Date;
+  updated_at: string;
+  created_at: string;
   visitable: T;
 }
 

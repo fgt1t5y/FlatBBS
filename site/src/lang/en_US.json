@@ -27,7 +27,9 @@
   },
 
   "user": {
-    "user": "User"
+    "user": "User",
+
+    "visited": "visited user page"
   },
 
   "board": {
@@ -40,7 +42,9 @@
     "topic": "Topic",
     "title": "Topic title",
 
-    "liked": "Like"
+    "liked": "Like",
+
+    "visited": "visited topic"
   },
 
   "discussion": {

@@ -1,9 +1,12 @@
 <template>
   <MainContent :title="$t('page.visit_logs')" disable-panels>
     <PageTitle :title="$t('page.visit_logs')" />
-    <CommonList :items="visitLogs">
+    <CommonList :items="visitLogs" :is-end="isLastPage">
       <template #default="{ item }">
-        <component :is="visitLogComponentMap[item.visitable_type]" :item="item.visitable" />
+        <component
+          :is="visitLogComponentMap[item.visitable_type]"
+          :item="item"
+        />
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />

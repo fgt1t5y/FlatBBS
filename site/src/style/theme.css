@@ -330,6 +330,27 @@
     @apply shadow-lg rounded bg-content border border-content;
   }
 
+  .visit-log {
+    @apply item p-3;
+  }
+
+  .visit-log-info {
+    @apply flex gap-1;
+  }
+
+  .visit-log-title {
+    @apply text-lg;
+  }
+
+  .topic-visit-log {
+    @apply flex flex-col gap-1;
+  }
+
+
+  .user-visit-log {
+    @apply flex flex-col gap-1;
+  }
+
   .btn,
   button {
     @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
