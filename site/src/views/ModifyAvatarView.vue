@@ -3,8 +3,9 @@
     <PageTitle :title="$t('page.modify_avatar')" />
     <div
       v-show="isCropping"
-      class="flex flex-col items-center gap-1 border-bt p-3"
+      class="flex flex-col items-center gap-2 border-bt p-3"
     >
+      <span class="font-bold">{{ $t('action.crop_avatar') }}</span>
       <Cropper
         ref="cropper"
         :height="320"
@@ -13,19 +14,28 @@
         @load="isCropping = true"
         @error="showCropperMessage"
       />
-      <div class="flex gap-2 mt-2">
-        <button class="btn-primary btn-md" @click="uploadAvatar">
-          {{ $t('ok') }}
-        </button>
-        <button class="btn-air btn-md" @click="isCropping = false">
+      <div class="flex gap-2">
+        <button
+          class="btn-air btn-md"
+          :disabled="uploading"
+          @click="isCropping = false"
+        >
           {{ $t('cancle') }}
+        </button>
+        <button
+          class="btn-primary btn-md"
+          :disabled="uploading"
+          @click="uploadAvatar"
+        >
+          {{ $t('ok') }}
         </button>
       </div>
     </div>
     <div
       v-show="!isCropping"
-      class="flex flex-col items-center gap-1 border-bt p-3"
+      class="flex flex-col items-center gap-2 border-bt p-3"
     >
+      <span class="font-bold">{{ $t('message.current_avatar') }}</span>
       <Avatar class="size-24" :src="user.info?.avatar_uri" rounded />
       <button class="btn-primary btn-md" @click="onePickImageClick">
         {{ $t('action.pick_image') }}
@@ -52,6 +62,7 @@ import { ref } from 'vue'
 import { modifyUserAvatar } from '@/services'
 import { blobToFile } from '@/utils'
 import { useI18n } from 'vue-i18n'
+import { useRequest } from 'alova/client'
 
 const user = useUserStore()
 const ms = useMessage()
@@ -61,6 +72,20 @@ const isCropping = ref<boolean>(false)
 const avatarFile = ref<File>()
 const avatarInputRef = ref<HTMLInputElement>()
 const cropper = ref<InstanceType<typeof Cropper>>()
+
+const { loading: uploading, send } = useRequest(
+  (file: File) => modifyUserAvatar(file),
+  {
+    immediate: false,
+  },
+)
+  .onSuccess(() => {
+    ms.success(t('message.upload_avatar_success'))
+    closeAvatarCrop()
+  })
+  .onError(() => {
+    ms.error(t('message.upload_avatar_fail'))
+  })
 
 const onePickImageClick = () => {
   avatarInputRef.value?.click()
@@ -82,20 +107,13 @@ const closeAvatarCrop = () => {
   avatarInputRef.value!.value = ''
 }
 
-const uploadAvatar = () => {
-  cropper.value!.getBlobAsync().then((blob) => {
-    if (blob) {
-      const file = blobToFile(blob, '_.jpg')
-      modifyUserAvatar(file)
-        .then(() => {
-          ms.success(t('message.upload_avatar_success'))
-        })
-        .catch(() => {
-          ms.error(t('message.upload_avatar_fail'))
-        })
-    }
-  })
+const uploadAvatar = async () => {
+  const blob = await cropper.value!.getBlobAsync()
 
-  closeAvatarCrop()
+  if (blob) {
+    const file = blobToFile(blob, '_.jpg')
+
+    await send(file)
+  }
 }
 </script>

@@ -73,7 +73,9 @@
 
     "this_user_has_been_banned": "This user has been banned.",
 
-    "login_for_publish_discussion": "Please login for publish a discussion."
+    "login_for_publish_discussion": "Please login for publish a discussion.",
+
+    "current_avatar": "Your current avatar"
   },
 
   "action": {

@@ -73,7 +73,9 @@
 
     "this_user_has_been_banned": "此用户已被封禁",
 
-    "login_for_publish_discussion": "登录以发表讨论"
+    "login_for_publish_discussion": "登录以发表讨论",
+
+    "current_avatar": "当前头像"
   },
 
   "action": {
