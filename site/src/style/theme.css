@@ -33,11 +33,11 @@
     @apply mb-0;
   }
 
-  p ul {
+  ul {
     @apply list-disc pl-10 my-4;
   }
 
-  p ol {
+  ol {
     @apply list-decimal pl-10 my-4;
   }
 

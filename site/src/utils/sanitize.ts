@@ -51,10 +51,13 @@ function resolveSantizeOptions(
 
 type NodeKind = 'element' | 'component' | 'custom-element';
 function getNodeKind(node: ElementNode): NodeKind {
-  if (node.name.includes('-')) return 'custom-element';
+  if (node.name.includes('-')) {
+    return 'custom-element';
+  }
   // eslint-disable-next-line no-useless-escape
-  if (/[\_\$A-Z]/.test(node.name[0]) || node.name.includes('.'))
+  if (/[\_\$A-Z]/.test(node.name[0]) || node.name.includes('.')) {
     return 'component';
+  }
   return 'element';
 }
 
@@ -65,16 +68,26 @@ function getAction(
   sanitize: Required<SanitizeOptions>,
 ): ActionType {
   if (sanitize.allowElements?.length > 0) {
-    if (sanitize.allowElements.includes(name)) return 'allow';
+    if (sanitize.allowElements.includes(name)) {
+      return 'allow';
+    }
   }
   if (sanitize.blockElements?.length > 0) {
-    if (sanitize.blockElements.includes(name)) return 'block';
+    if (sanitize.blockElements.includes(name)) {
+      return 'block';
+    }
   }
   if (sanitize.dropElements?.length > 0) {
-    if (sanitize.dropElements.find((n) => n === name)) return 'drop';
+    if (sanitize.dropElements.find((n) => n === name)) {
+      return 'drop';
+    }
   }
-  if (kind === 'component' && !sanitize.allowComponents) return 'drop';
-  if (kind === 'custom-element' && !sanitize.allowCustomElements) return 'drop';
+  if (kind === 'component' && !sanitize.allowComponents) {
+    return 'drop';
+  }
+  if (kind === 'custom-element' && !sanitize.allowCustomElements) {
+    return 'drop';
+  }
 
   return sanitize.allowElements?.length > 0 ? 'drop' : 'allow';
 }
@@ -111,18 +124,20 @@ function sanitizeElement(
   const kind = getNodeKind(node);
   const { name } = node;
   const action = getAction(name, kind, opts);
-  if (action === 'drop')
+  if (action === 'drop') {
     return () => {
       parent!.children = parent!.children.filter(
         (child: Node) => child !== node,
       );
     };
-  if (action === 'block')
+  }
+  if (action === 'block') {
     return () => {
       parent!.children = parent!.children
         .map((child: Node) => (child === node ? child.children : child))
         .flat(1);
     };
+  }
 
   return () => {
     node.attributes = sanitizeAttributes(node, opts);

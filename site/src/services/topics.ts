@@ -37,7 +37,7 @@ export const publishTopic = (
   content: string,
   board_id: number,
 ) => {
-  return alovaInstance.Post<Topic>(`/topic/publish`, {
+  return alovaInstance.Post<Topic>(`/topics/publish`, {
     title,
     text,
     content,
