@@ -12,24 +12,29 @@ defineOptions({
 
 interface IntersectionObserverProps {
   disabled?: boolean
+  rootMargin?: string
 }
 
 const props = withDefaults(defineProps<IntersectionObserverProps>(), {
   disabled: true,
+  rootMargin: '40px',
 })
 const emits = defineEmits<{
   (e: 'reach'): void
 }>()
+
 const obTarget = ref<HTMLElement>()
 
 const { pause, resume } = useIntersectionObserver(
   obTarget,
   ([{ isIntersecting }]) => {
-    if (props.disabled) return
+    if (props.disabled) {
+      return
+    }
     isIntersecting && emits('reach')
   },
   {
-    rootMargin: '40px',
+    rootMargin: props.rootMargin,
   },
 )
 

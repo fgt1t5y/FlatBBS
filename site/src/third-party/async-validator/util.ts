@@ -49,10 +49,6 @@ export function isEmptyValue(value: Value, type?: string) {
   return false;
 }
 
-export function isEmptyObject(obj: object) {
-  return Object.keys(obj).length === 0;
-}
-
 function asyncParallelArray(
   arr: RuleValuePackage[],
   func: ValidateFunc,
