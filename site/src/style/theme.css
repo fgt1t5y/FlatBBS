@@ -263,8 +263,12 @@
     @apply text-base;
   }
 
-  .popover-body {
+  .popover {
     @apply shadow-lg rounded bg-content border border-content;
+  }
+
+  .tooltip {
+    @apply p-2;
   }
 
   .visit-log {

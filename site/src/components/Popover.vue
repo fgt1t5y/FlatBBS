@@ -16,7 +16,7 @@
           :id="popoverId"
           ref="bodyRef"
           role="tooltip"
-          class="popover-body"
+          class="popover"
           :style="floatingStyles"
           @mouseenter="onMouseEnterPopover"
           @mouseleave="onMouseLeavePopover"
@@ -43,7 +43,7 @@ defineOptions({
   name: 'Popover',
 })
 
-interface CommonPopoverProps {
+interface PopoverProps {
   duration?: [number, number] | number
   placement?: Placement
   trigger?: 'hover' | 'click' | 'manual'
@@ -51,7 +51,7 @@ interface CommonPopoverProps {
   focusTrap?: boolean
 }
 
-const props = withDefaults(defineProps<CommonPopoverProps>(), {
+const props = withDefaults(defineProps<PopoverProps>(), {
   duration: 0,
   placement: 'bottom',
   trigger: 'hover',

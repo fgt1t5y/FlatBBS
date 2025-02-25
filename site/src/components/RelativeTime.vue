@@ -1,12 +1,13 @@
 <template>
-  <Tooltip :text="relativeTime[0]">
-    <time class="text-muted">{{ relativeTime[1] }}</time>
-  </Tooltip>
+  <TextTooltip :id="id" :text="relativeTime[0]">
+    <time class="text-muted" :aria-labelledby="id">{{ relativeTime[1] }}</time>
+  </TextTooltip>
 </template>
 
 <script setup lang="ts">
 import { formatTime } from '@/utils'
-import Tooltip from './Tooltip.vue';
+import TextTooltip from './TextTooltip.vue'
+import { useId } from 'vue'
 
 defineOptions({
   name: 'RelativeTime',
@@ -19,5 +20,8 @@ interface RelativeTimeProps {
 const props = withDefaults(defineProps<RelativeTimeProps>(), {
   time: Date.toString(),
 })
+
+const id = useId()
+
 const relativeTime = formatTime(props.time)
 </script>
