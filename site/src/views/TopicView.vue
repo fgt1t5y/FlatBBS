@@ -1,12 +1,54 @@
 <template>
   <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
-    <TopicDetail
-      :topic="topic"
-      :liked="isTopicLiked"
-      :like-count="currentLikeCount"
-      @like="likeOrUnlike"
-    />
+    <div class="item p-3 border-bt flex flex-col gap-2">
+      <div class="flex gap-2 items-start">
+        <UserPopover :username="topic.author.username">
+          <RouterLink
+            :to="{
+              name: 'user',
+              params: { username: topic.author.username },
+            }"
+          >
+            <Avatar
+              class="size-8 md:size-12"
+              :src="topic.author.avatar_uri"
+              rounded
+            />
+          </RouterLink>
+        </UserPopover>
+        <RouterLink
+          :to="{
+            name: 'user',
+            params: { username: topic.author.username },
+          }"
+        >
+          <span>{{ topic.author.display_name }}</span>
+        </RouterLink>
+        <RelativeTime :time="topic.created_at" />
+      </div>
+      <ContentRenderer :html="topic.content" />
+      <div class="flex justify-between">
+        <RouterLink
+          class="btn btn-air btn-sm rounded-3xl"
+          :to="{ name: 'board', params: { slug: topic.board.slug } }"
+        >
+          {{ topic.board.name }}
+        </RouterLink>
+        <button
+          :class="{
+            'btn-sm rounded-3xl': true,
+            'btn-primary': isTopicLiked,
+            'btn-air': !isTopicLiked,
+          }"
+          :title="$t('tooltip.like_this_topic')"
+          @click="likeOrUnlike"
+        >
+          <Heart class="size-5" />
+          <span>{{ currentLikeCount }}</span>
+        </button>
+      </div>
+    </div>
     <div class="p-3 text-base font-bold">
       {{ $t('discussion.count', { count: topic.discussion_count }) }}
     </div>
@@ -70,13 +112,16 @@ import { useRoute } from 'vue-router'
 import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { usePagination, useRequest } from 'alova/client'
-import TopicDetail from '@/components/TopicDetail.vue'
 import { useTitle } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import { onActivated, ref } from 'vue'
 import { useMessage, useUserStore } from '@/stores'
 import Avatar from '@/components/Avatar.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
+import RelativeTime from '@/components/RelativeTime.vue'
+import ContentRenderer from '@/components/ContentRenderer.vue'
+import UserPopover from '@/components/UserPopover.vue'
+import { Heart } from '@vicons/tabler'
 
 const route = useRoute()
 const user = useUserStore()
@@ -92,17 +137,6 @@ const { setTitle } = useTitle(t('topic.topic'))
 const topicId = Number(route.params.topic_id)
 
 let lastItemId = 0
-
-const { data: likeCount, send: likeOrUnlike } = useRequest(
-  () => likeTopic(topicId),
-  {
-    immediate: false,
-  },
-).onSuccess(() => {
-  isTopicLiked.value = !isTopicLiked.value
-
-  currentLikeCount.value = likeCount.value
-})
 
 const {
   loading: topicLoading,
@@ -126,6 +160,17 @@ const {
 
   isTopicLiked.value = likedUsers.some((like) => like.id === user.info?.id)
   currentLikeCount.value = topic.value.like_count
+})
+
+const { data: likeCount, send: likeOrUnlike } = useRequest(
+  () => likeTopic(topicId),
+  {
+    immediate: false,
+  },
+).onSuccess(() => {
+  isTopicLiked.value = !isTopicLiked.value
+
+  currentLikeCount.value = likeCount.value
 })
 
 const {
