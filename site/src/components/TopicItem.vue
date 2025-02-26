@@ -26,9 +26,8 @@
     <div
       v-if="previewText"
       class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden"
-    >
-      {{ previewText }}
-    </div>
+      v-text="previewText"
+    ></div>
     <div class="flex justify-between">
       <RouterLink
         class="btn btn-air btn-sm rounded-3xl"
