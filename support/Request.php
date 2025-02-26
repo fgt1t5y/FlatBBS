@@ -30,11 +30,12 @@ class Request extends \Webman\Http\Request
     {
         $user_id = session()->get('id');
 
-        if (!$user_id)
+        if ($user_id) {
+            $this->user = User::find($user_id);
+        } else {
             // not a user, seen as a guest
-            return new Guest;
-
-        $this->user = User::find($user_id) ?? new Guest;
+            $this->user = new Guest;
+        }
 
         return $this->user;
     }

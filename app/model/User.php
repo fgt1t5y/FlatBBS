@@ -20,9 +20,7 @@ class User extends AbstractModel
 
     protected $hidden = ['password'];
 
-    protected $with = [
-        'roles:id,name,description',
-    ];
+    protected $with = ['roles:id,name',];
 
     public function isGuest(): bool
     {

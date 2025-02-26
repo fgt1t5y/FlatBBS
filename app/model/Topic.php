@@ -37,11 +37,16 @@ class Topic extends AbstractModel
         $grammer = $this->getQuery()->getGrammar();
         $user_id = request()->getUser()->id;
 
-        return $this->belongsToMany(User::class, 'topic_like', 'topic_id', 'user_id')
-            ->orderBy(new Expression($grammer->wrap('user_id') . '=' . $user_id))
-            ->limit(5)
-            ->applyScopes()
-            ->withTimestamps();
+        return $this->belongsToMany(
+            User::class,
+            'topic_like',
+            'topic_id',
+            'user_id'
+        )
+            ->orderBy(
+                new Expression($grammer->wrap('user_id') . '=' . $user_id)
+            )
+            ->limit(5);
     }
 
     public function discussions(): HasMany
