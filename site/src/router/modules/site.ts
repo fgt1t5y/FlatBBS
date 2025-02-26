@@ -44,6 +44,22 @@ export const siteRoute = {
       },
     },
     {
+      path: 'settings/password',
+      name: 'modify_password',
+      component: () => import('@/views/ModifyPasswordView.vue'),
+      meta: {
+        userOnly: true,
+      },
+    },
+    {
+      path: 'settings/avatar',
+      name: 'modify_avatar',
+      component: () => import('@/views/ModifyAvatarView.vue'),
+      meta: {
+        userOnly: true,
+      },
+    },
+    {
       path: 'user/:username',
       name: 'user',
       redirect(to) {
@@ -65,22 +81,6 @@ export const siteRoute = {
           component: () => import('@/views/user/LikedTopicsView.vue'),
         },
       ],
-    },
-    {
-      path: 'setting/password',
-      name: 'modify_password',
-      component: () => import('@/views/ModifyPasswordView.vue'),
-      meta: {
-        userOnly: true,
-      },
-    },
-    {
-      path: 'setting/avatar',
-      name: 'modify_avatar',
-      component: () => import('@/views/ModifyAvatarView.vue'),
-      meta: {
-        userOnly: true,
-      },
     },
     {
       path: 'search',

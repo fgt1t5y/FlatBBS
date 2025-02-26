@@ -48,7 +48,7 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 };
 
 export const formatTime = (datetime: string) => {
-  const localTime = dayjs.utc(datetime).tz(config.time_zone);
+  const localTime = dayjs.utc(datetime).tz(config.timezone);
   return [localTime.format('LLL'), localTime.fromNow()];
 };
 

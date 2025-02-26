@@ -14,7 +14,7 @@ export const getVisitLogs = (last: number, limit: number, type?: string) => {
 };
 
 export const getSessionUserInfo = () => {
-  return alovaInstance.Get<User>('/me/info');
+  return alovaInstance.Get<User>('/me/info', { cacheFor: null });
 };
 
 export const modifyUserInfo = (field: string, value: string) => {
