@@ -9,9 +9,13 @@
       />
       <slot v-else />
     </div>
-    <div v-if="isDesktop && !disablePanels">
-      <div class="main-content-aside">
-        <slot name="panels" />
+    <div
+      v-if="isDesktop && !disablePanels"
+      class="main-content-aside"
+      tabindex="0"
+    >
+      <div class="main-content-aside-inner">
+        <slot name="aside" />
       </div>
     </div>
   </main>
