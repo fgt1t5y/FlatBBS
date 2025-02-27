@@ -25,15 +25,13 @@ class MeController
     {
         $request->assertLogin();
 
-        $last_id = $request->get('last');
+        $page = $request->get('page');
         $limit = $request->get('limit');
-        $visitable_type = $request->get('type');
 
         return ok($this->userVisitLog->getVisitLogs(
             $request->getUser(),
-            $last_id,
+            $page,
             $limit,
-            $visitable_type
         ));
     }
 

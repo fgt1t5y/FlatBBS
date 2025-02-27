@@ -9,18 +9,13 @@ use Carbon\Carbon;
 
 class UserVisitLogService
 {
-    public function getVisitLogs(User $user, int $last_id, int $limit, ?string $type)
+    public function getVisitLogs(User $user, int $page, int $limit)
     {
-        $query = UserVisitLog::orderByDesc('updated_at')
+        return UserVisitLog::orderByDesc('updated_at')
             ->limit(min($limit, 50))
             ->where('user_id', $user->id)
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id);
-
-        if ($type !== null) {
-            $query->where('visitable_type', $type);
-        }
-
-        return $query->get();
+            ->offset(($page - 1) * $limit)
+            ->get();
     }
 
     public function pushVisitLog(User $user, VisitableModel $visitable)

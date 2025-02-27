@@ -3,12 +3,11 @@ import { alovaInstance } from './instance';
 
 import type { UploadForm, User, IVisitLog, Result } from '@/types';
 
-export const getVisitLogs = (last: number, limit: number, type?: string) => {
+export const getVisitLogs = (page: number, limit: number) => {
   return alovaInstance.Get<Result<IVisitLog[]>, IVisitLog>('/me/logs', {
     params: {
-      last,
+      page,
       limit,
-      type,
     },
   });
 };

@@ -9,7 +9,7 @@
         />
       </template>
     </CommonList>
-    <IntersectionObserver :disabled="isLastPage" @reach="send" />
+    <IntersectionObserver :disabled="isLastPage" @reach="nextPage" />
     <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
   </MainContent>
 </template>
@@ -24,22 +24,19 @@ import { getVisitLogs } from '@/services'
 import { usePagination } from 'alova/client'
 import { visitLogComponentMap } from '@/components/log'
 
-let lastItemId = 0
-
 const {
   loading,
   data: visitLogs,
   isLastPage,
+  page,
   error,
   send,
-} = usePagination((page, limit) => getVisitLogs(lastItemId, limit, undefined), {
+} = usePagination((page, limit) => getVisitLogs(page, limit), {
   append: true,
-}).onSuccess(() => {
-  const items = visitLogs.value
-  if (!items) {
-    return
-  }
-
-  lastItemId = items[items.length - 1].id
+  preloadNextPage: false,
 })
+
+const nextPage = () => {
+  page.value++
+}
 </script>
