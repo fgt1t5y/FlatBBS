@@ -27,7 +27,7 @@
       :error="topicsError"
       @retry="loadTopics"
     />
-    <template #panels>
+    <template #aside>
       <div class="p-3">
         <RouterLink
           class="btn btn-primary btn-md w-full"
@@ -88,7 +88,9 @@ const {
   },
 ).onSuccess(() => {
   const items = topics.value
-  if (!items) return
+  if (!items) {
+    return
+  }
 
   lastItemId = items[items.length - 1].id
 })

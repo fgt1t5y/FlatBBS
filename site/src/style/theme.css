@@ -183,7 +183,7 @@
   }
 
   .site-layout-sidebar {
-    @apply min-w-[300px] border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
+    @apply w-global-sidebar border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
   }
 
   .sidebar {
@@ -195,15 +195,31 @@
   }
 
   .main-content {
-    @apply flex my-0 mx-auto w-full-page;
-  }
-
-  .main-content-aside {
-    @apply sticky top-navbar min-w-[250px];
+    @apply flex my-0 mx-auto w-main-content gap-3;
   }
 
   .main-content-body {
     @apply relative grow mb-14;
+  }
+
+  .main-content-aside {
+    @apply min-w-[300px];
+  }
+
+  .main-content-aside-inner {
+    @apply sticky top-navbar flex flex-col gap-2 py-3;
+  }
+
+  .aside-panel {
+    @apply bg-content border border-content rounded;
+  }
+
+  .aside-panel-header {
+    @apply p-3 text-base border-bt;
+  }
+
+  .aside-panel-body {
+    @apply p-3;
   }
 
   .modal {
@@ -268,7 +284,7 @@
   }
 
   .tooltip {
-    @apply p-2;
+    @apply p-3;
   }
 
   .visit-log {
@@ -397,8 +413,12 @@
     @apply border-t border-content;
   }
 
-  .w-full-page {
-    width: 1000px;
+  .w-main-content {
+    @apply w-[1050px];
+  }
+
+  .w-global-sidebar {
+    @apply w-[250px];
   }
 
   .h-screen-without-navbar {
@@ -410,7 +430,7 @@
   }
 
   .top-navbar {
-    top: 52px;
+    @apply top-[52px];
   }
 
   .hoverable {
