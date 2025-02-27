@@ -21,7 +21,7 @@ class User extends AbstractModel implements VisitableModel
 
     protected $hidden = ['password'];
 
-    protected $with = ['roles:id,name',];
+    protected $with = ['roles:id,name'];
 
     public function isGuest(): bool
     {

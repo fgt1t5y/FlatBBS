@@ -11,17 +11,16 @@ class UserVisitLogService
 {
     public function getVisitLogs(User $user, int $last_id, int $limit, ?string $type)
     {
-        $query = $user->visit_logs()
+        $query = UserVisitLog::orderByDesc('updated_at')
             ->limit(min($limit, 50))
-            ->where('id', '>', $last_id);
+            ->where('user_id', $user->id)
+            ->where('id', $last_id === 0 ? '>' : '<', $last_id);
 
         if ($type !== null) {
             $query->where('visitable_type', $type);
         }
 
-        return $query->orderByDesc('updated_at')
-            ->with(['visitable'])
-            ->get();
+        return $query->get();
     }
 
     public function pushVisitLog(User $user, VisitableModel $visitable)
@@ -37,12 +36,10 @@ class UserVisitLogService
             $visitableLog->user_id = $user->id;
             $visitableLog->visitable_id = $visitable->getVisitableId();
             $visitableLog->visitable_type = $visitable->getVisitableType();
-
-            return $visitableLog->save();
         } else {
             $oldVisitLog->updated_at = Carbon::now();
-
-            return $oldVisitLog->save();
         }
+
+        return $visitableLog->save();
     }
 }

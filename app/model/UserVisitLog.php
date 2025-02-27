@@ -11,6 +11,8 @@ class UserVisitLog extends AbstractModel
 {
     protected $table = 'user_visit_logs';
 
+    protected $with = ['visitable'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -24,11 +24,22 @@ import { getVisitLogs } from '@/services'
 import { usePagination } from 'alova/client'
 import { visitLogComponentMap } from '@/components/log'
 
+let lastItemId = 0
+
 const {
   loading,
   data: visitLogs,
   isLastPage,
   error,
   send,
-} = usePagination(() => getVisitLogs(0, 10, undefined))
+} = usePagination((page, limit) => getVisitLogs(lastItemId, limit, undefined), {
+  append: true,
+}).onSuccess(() => {
+  const items = visitLogs.value
+  if (!items) {
+    return
+  }
+
+  lastItemId = items[items.length - 1].id
+})
 </script>
