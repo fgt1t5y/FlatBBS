@@ -6,11 +6,12 @@ use app\cast\FullPath;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
+use support\VisitableModel;
 use app\model\Role;
 use app\model\Permission;
 use app\model\Topic;
 
-class User extends AbstractModel
+class User extends AbstractModel implements VisitableModel
 {
     protected $table = 'users';
 
@@ -57,5 +58,15 @@ class User extends AbstractModel
     public function visit_logs(): HasMany
     {
         return $this->hasMany(UserVisitLog::class);
+    }
+
+    public function getVisitableId(): int
+    {
+        return $this->id;
+    }
+
+    public function getVisitableType(): string
+    {
+        return 'user';
     }
 }

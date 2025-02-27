@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Expression;
 use support\AbstractModel;
+use support\VisitableModel;
 use app\model\Board;
 use app\model\User;
 
-class Topic extends AbstractModel
+class Topic extends AbstractModel implements VisitableModel
 {
     protected $table = 'topics';
 
@@ -52,5 +53,15 @@ class Topic extends AbstractModel
     public function discussions(): HasMany
     {
         return $this->hasMany(Discussion::class);
+    }
+
+    public function getVisitableId(): int
+    {
+        return $this->id;
+    }
+
+    public function getVisitableType(): string
+    {
+        return 'topic';
     }
 }

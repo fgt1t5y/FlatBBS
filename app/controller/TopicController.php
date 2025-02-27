@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\model\Board;
 use app\service\TopicService;
+use app\service\UserVisitLogService;
 use DI\Attribute\Inject;
 use support\Request;
 
@@ -11,6 +12,9 @@ class TopicController
 {
     #[Inject]
     protected TopicService $topic;
+
+    #[Inject]
+    protected UserVisitLogService $visitLog;
 
     public function all(Request $request)
     {
@@ -61,6 +65,12 @@ class TopicController
     public function detail(Request $request, int $topic_id)
     {
         $result = $this->topic->getTopicDetail($topic_id);
+
+        $user = $request->getUser();
+
+        if (!$user->isGuest()) {
+            $this->visitLog->pushVisitLog($user, $result);
+        }
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, '$exception.topic_not_found');
