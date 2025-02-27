@@ -179,11 +179,15 @@
   }
 
   .site-layout {
-    @apply flex;
+    @apply flex w-page mx-auto;
   }
 
   .site-layout-sidebar {
-    @apply w-global-sidebar border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
+    @apply w-global-sidebar shrink-0 border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
+  }
+
+  .site-layout-content {
+    @apply flex-grow;
   }
 
   .sidebar {
@@ -195,7 +199,7 @@
   }
 
   .main-content {
-    @apply flex my-0 mx-auto w-main-content gap-3;
+    @apply flex gap-3;
   }
 
   .main-content-body {
@@ -413,8 +417,8 @@
     @apply border-t border-content;
   }
 
-  .w-main-content {
-    @apply w-[1050px];
+  .w-page {
+    @apply max-w-[1250px];
   }
 
   .w-global-sidebar {

@@ -143,6 +143,6 @@ export const focusLastDescendant = (element: Node): boolean => {
   return false;
 };
 
-export const delay = function (fn: () => void) {
-  return setTimeout(fn, 0);
+export const delay = (fn: () => void) => {
+  return window.setTimeout(fn, 0);
 };
