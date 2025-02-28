@@ -23,13 +23,13 @@
 <script setup lang="ts">
 import RelativeTime from '../RelativeTime.vue'
 
-import type { IVisitLog, User } from '@/types'
+import type { UserVisitLog, User } from '@/types'
 
 defineOptions({
-  name: 'UserVisitLog',
+  name: 'UserVisitLogItem',
 })
 
 const props = defineProps<{
-  item: IVisitLog<User>
+  item: UserVisitLog<User>
 }>()
 </script>

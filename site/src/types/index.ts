@@ -116,7 +116,7 @@ export interface IFormContext {
   onFormItemBlur: (ev: FocusEvent) => void;
 }
 
-export interface IVisitLog<T = unknown> {
+export interface UserVisitLog<T = unknown> {
   id: number;
   user_id: number;
   visitable_id: number;

@@ -31,14 +31,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import RelativeTime from '../RelativeTime.vue'
-import type { IVisitLog, Topic } from '@/types'
+
+import type { UserVisitLog, Topic } from '@/types'
 
 defineOptions({
-  name: 'TopicVisitLog',
+  name: 'TopicVisitLogItem',
 })
 
 const props = defineProps<{
-  item: IVisitLog<Topic>
+  item: UserVisitLog<Topic>
 }>()
 
 const previewText = computed(() => {
