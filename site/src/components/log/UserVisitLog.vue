@@ -4,11 +4,6 @@
       <RelativeTime :time="item.updated_at" />
       <span>{{ $t('user.visited') }}</span>
     </div>
-    <div
-      v-if="item.visitable.introduction"
-      class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden"
-      v-text="item.visitable.introduction"
-    ></div>
     <div class="visit-log-title">
       <RouterLink
         :to="{ name: 'user', params: { username: item.visitable.username } }"
@@ -17,6 +12,11 @@
         {{ item.visitable.display_name }}
       </RouterLink>
     </div>
+    <div
+      v-if="item.visitable.introduction"
+      class="text-base text-muted max-h-12 sm:max-h-max overflow-hidden"
+      v-text="item.visitable.introduction"
+    ></div>
   </div>
 </template>
 

@@ -18,7 +18,7 @@ class UserVisitLogService
             ->get();
     }
 
-    public function pushVisitLog(User $user, VisitableModel $visitable)
+    public function pushVisitLog(User $user, VisitableModel $visitable): bool
     {
         $oldVisitLog = UserVisitLog::where('user_id', $user->id)
             ->where('visitable_id', $visitable->getVisitableId())
@@ -31,10 +31,12 @@ class UserVisitLogService
             $visitableLog->user_id = $user->id;
             $visitableLog->visitable_id = $visitable->getVisitableId();
             $visitableLog->visitable_type = $visitable->getVisitableType();
+
+            return $visitableLog->save();
         } else {
             $oldVisitLog->updated_at = Carbon::now();
-        }
 
-        return $visitableLog->save();
+            return $oldVisitLog->save();
+        }
     }
 }
