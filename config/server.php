@@ -14,7 +14,7 @@
  */
 
 return [
-    'listen' => 'http://127.0.0.1:3900',
+    'listen' => getenv('LISTEN_ADDRESS'),
     'transport' => 'tcp',
     'context' => [],
     'name' => 'webman',
