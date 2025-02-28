@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { formatTime } from '@/utils'
 import TextTooltip from './TextTooltip.vue'
-import { useId } from 'vue'
+import { useId, computed } from 'vue'
 
 defineOptions({
   name: 'RelativeTime',
@@ -23,5 +23,5 @@ const props = withDefaults(defineProps<RelativeTimeProps>(), {
 
 const id = useId()
 
-const relativeTime = formatTime(props.time)
+const relativeTime = computed(() => formatTime(props.time))
 </script>

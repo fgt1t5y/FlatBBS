@@ -23,6 +23,7 @@ import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import { getVisitLogs } from '@/services'
 import { usePagination } from 'alova/client'
 import { visitLogComponentMap } from '@/components/log'
+import { onActivated } from 'vue'
 
 const {
   loading,
@@ -31,6 +32,7 @@ const {
   page,
   error,
   send,
+  reload
 } = usePagination((page, limit) => getVisitLogs(page, limit), {
   append: true,
   preloadNextPage: false,
@@ -39,4 +41,6 @@ const {
 const nextPage = () => {
   page.value++
 }
+
+onActivated(reload)
 </script>
