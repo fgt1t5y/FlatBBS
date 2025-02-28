@@ -11,7 +11,7 @@ class FileService
 {
     private $supportedFile = ['image/png', 'image/jpeg'];
 
-    public function upload(UploadFile $file, ?bool $with_suffix = false): string|null
+    public function uploadImage(UploadFile $file, ?bool $with_suffix = false): string|null
     {
         $filename = '';
 
@@ -22,12 +22,19 @@ class FileService
             return null;
         }
 
-        $filename = Str::random() . '.jpg';
-        $path = config_with('flatbbs.paths.usercontent', $filename);
+        $filename = Str::random();
+        $base_path = config('flatbbs.paths.usercontent');
+        $manager = ImageManager::gd();
 
         try {
-            $image = (ImageManager::gd())->read($file->getPathname());
-            $image->save($path, 60, 'jpg');
+            $image = $manager->read($file->getPathname());
+            if ($image->isAnimated()) {
+                $filename .= '.gif';
+                $image->save("{$base_path}{$filename}", 100, 'gif');
+            } else {
+                $filename .= '.jpg';
+                $image->save("{$base_path}{$filename}", 80, 'jpg');
+            }
         } catch (ImageException) {
             return null;
         }

@@ -15,7 +15,7 @@ class FileController
     {
         $request->assertLogin();
 
-        $result = $this->file->upload($request->file(), true);
+        $result = $this->file->uploadImage($request->file(), true);
 
         if (!$result) {
             no(STATUS_INTERNAL_ERROR);

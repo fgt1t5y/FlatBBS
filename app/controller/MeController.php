@@ -63,7 +63,7 @@ class MeController
     {
         $request->assertLogin();
 
-        $file = $this->file->upload($request->file('avgfile'));
+        $file = $this->file->uploadImage($request->file('avgfile'));
 
         if (!$file) {
             return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
