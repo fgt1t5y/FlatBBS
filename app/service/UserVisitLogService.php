@@ -5,6 +5,7 @@ namespace app\service;
 use app\model\User;
 use app\model\UserVisitLog;
 use support\VisitableModel;
+use support\Model;
 use Carbon\Carbon;
 
 class UserVisitLogService
@@ -12,13 +13,13 @@ class UserVisitLogService
     public function getVisitLogs(User $user, int $page, int $limit)
     {
         return UserVisitLog::orderByDesc('updated_at')
-            ->limit(min($limit, 50))
             ->where('user_id', $user->id)
+            ->limit(min($limit, 50))
             ->offset(($page - 1) * $limit)
             ->get();
     }
 
-    public function pushVisitLog(User $user, VisitableModel $visitable): bool
+    public function pushVisitLog(User $user, VisitableModel|Model $visitable): bool
     {
         $oldVisitLog = UserVisitLog::where('user_id', $user->id)
             ->where('visitable_id', $visitable->getVisitableId())

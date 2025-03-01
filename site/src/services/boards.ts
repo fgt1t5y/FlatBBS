@@ -10,13 +10,13 @@ export const getBoardInfo = (board_slug: string) => {
 };
 
 export const getTopicsByBoardSlug = (
-  last: number,
+  page: number,
   limit: number,
   board_slug: string,
 ) => {
   return alovaInstance.Get<Result<Topic[]>>(`/board/${board_slug}/topics`, {
     params: {
-      last,
+      page,
       limit,
     },
   });

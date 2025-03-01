@@ -41,10 +41,10 @@ class BoardController
 
     public function topics(Request $request, string $slug)
     {
-        $last_id = $request->get('last');
+        $page = $request->get('page');
         $limit = $request->get('limit');
 
-        $result = $this->board->getTopicsBySlug($slug, $last_id, $limit);
+        $result = $this->board->getTopicsBySlug($slug, $page, $limit);
 
         return ok($result);
     }

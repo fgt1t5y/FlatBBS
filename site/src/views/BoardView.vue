@@ -21,7 +21,7 @@
         <TopicItem :topic="item" />
       </template>
     </CommonList>
-    <IntersectionObserver :disabled="isLastPage" @reach="loadTopics" />
+    <IntersectionObserver :disabled="isLastPage" @reach="nextPage" />
     <RequestPlaceholder
       :loading="topicsLoading"
       :error="topicsError"
@@ -61,8 +61,6 @@ const { setTitle } = useTitle(t('board.board'))
 
 const slug = route.params.slug as string
 
-let lastItemId = 0
-
 const {
   loading: boardInfoLoading,
   data: boardInfo,
@@ -77,23 +75,18 @@ const {
   loading: topicsLoading,
   data: topics,
   isLastPage,
+  page: topicPage,
   error: topicsError,
   send: loadTopics,
-} = usePagination(
-  (page, limit) => getTopicsByBoardSlug(lastItemId, limit, slug),
-  {
-    append: true,
-    initialPageSize: 10,
-    immediate: false,
-  },
-).onSuccess(() => {
-  const items = topics.value
-  if (!items) {
-    return
-  }
-
-  lastItemId = items[items.length - 1].id
+} = usePagination((page, limit) => getTopicsByBoardSlug(page, limit, slug), {
+  append: true,
+  initialPageSize: 10,
+  immediate: false,
 })
+
+const nextPage = () => {
+  topicPage.value++
+}
 
 onActivated(() => {
   if (boardInfo.value?.name) {

@@ -16,14 +16,14 @@ class BoardService
         return Board::where('slug', $value)->first($columns);
     }
 
-    public function getTopicsBySlug(string $slug, int $last_id, int $limit)
+    public function getTopicsBySlug(string $slug, int $page, int $limit)
     {
         return Board::where('slug', $slug)
             ->firstOrFail()
             ->topics()
-            ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
             ->orderByDesc('last_reply_at')
+            ->limit(min($limit, 50))
+            ->offset(($page - 1) * $limit)
             ->get();
     }
 }
