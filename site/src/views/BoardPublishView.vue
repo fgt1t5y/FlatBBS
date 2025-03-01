@@ -10,7 +10,7 @@
       <template #extra>
         <button
           :disabled="topicPublishing"
-          class="btn-primary btn-md w-full"
+          class="btn-primary btn-md"
           @click="checkForm() && handlePublishTopic()"
         >
           {{ $t('action.publish') }}
@@ -24,6 +24,8 @@
         :placeholder="$t('topic.title')"
         autofocus
       />
+    </div>
+    <div class="p-3 flex flex-col border-bt">
       <TiptapEditor
         v-model:text="topicDraft.text"
         v-model:html="topicDraft.content"

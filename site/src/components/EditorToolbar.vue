@@ -1,8 +1,8 @@
 <template>
   <div
     :class="{
-      'bg-content flex gap-2 py-3': true,
-      'sticky top-navbar': !isMobile,
+      'bg-content flex gap-2': true,
+      'sticky top-navbar mb-3': !isMobile,
       'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
     }"
   >
@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Editor } from '@tiptap/vue-3'
 import { ref, type Component } from 'vue'
 import {
   H1,
@@ -47,6 +46,8 @@ import {
 } from '@vicons/tabler'
 import { isMobile } from '@/utils'
 import { uploadFile } from '@/services'
+
+import type { Editor } from '@tiptap/vue-3'
 
 defineOptions({
   name: 'EditorToolbar',
