@@ -11,8 +11,12 @@ class StorageService
 {
     public function useLocal()
     {
-        $adapter = new LocalFilesystemAdapter(config('fs.local.path'));
-        return new Filesystem($adapter);
+        return new Filesystem(new LocalFilesystemAdapter(
+            config('fs.local.path'),
+            null,
+            LOCK_EX,
+            LocalFilesystemAdapter::DISALLOW_LINKS
+        ));
     }
 
     public function useS3()
@@ -27,7 +31,8 @@ class StorageService
             'endpoint' => config('fs.s3.endpoint'),
         ]);
 
-        $adapter = new AwsS3V3Adapter($client, config('fs.s3.bucket'), 'Honeyview');
-        return new Filesystem($adapter);
+        return new Filesystem(
+            new AwsS3V3Adapter($client, config('fs.s3.bucket'))
+        );
     }
 }

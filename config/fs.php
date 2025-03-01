@@ -2,7 +2,7 @@
 
 return [
     'local' => [
-        'path' => base_path() . "/public/usercontent/"
+        'path' => config('app.public_path')
     ],
     's3' => [
         'key' => getenv('S3_ACCESS_KEY'),
