@@ -9,6 +9,8 @@ use Aws\S3\S3Client;
 
 class StorageService
 {
+    private S3Client $s3Client;
+
     public function useLocal()
     {
         return new Filesystem(new LocalFilesystemAdapter(
@@ -21,7 +23,14 @@ class StorageService
 
     public function useS3()
     {
-        $client = new S3Client([
+        return new Filesystem(
+            new AwsS3V3Adapter($this->createS3Client(), config('fs.s3.bucket'))
+        );
+    }
+
+    public function createS3Client()
+    {
+        $this->s3Client = new S3Client([
             'credentials' => [
                 'key' => config('fs.s3.key'),
                 'secret' => config('fs.s3.secret'),
@@ -31,8 +40,15 @@ class StorageService
             'endpoint' => config('fs.s3.endpoint'),
         ]);
 
-        return new Filesystem(
-            new AwsS3V3Adapter($client, config('fs.s3.bucket'))
-        );
+        return $this->s3Client;
+    }
+
+    public function getS3Client()
+    {
+        if ($this->s3Client) {
+            return $this->s3Client;
+        } else {
+            return $this->createS3Client();
+        }
     }
 }
