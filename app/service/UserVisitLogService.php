@@ -4,7 +4,7 @@ namespace app\service;
 
 use app\model\User;
 use app\model\UserVisitLog;
-use support\VisitableModel;
+use app\interface\VisitableModel;
 use support\Model;
 use Carbon\Carbon;
 

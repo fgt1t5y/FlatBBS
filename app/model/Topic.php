@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Expression;
 use support\AbstractModel;
-use support\VisitableModel;
+use app\interface\VisitableModel;
 use app\model\Board;
 use app\model\User;
 

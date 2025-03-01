@@ -1,6 +1,6 @@
 <?php
 
-namespace support;
+namespace app\interface;
 
 interface VisitableModel
 {

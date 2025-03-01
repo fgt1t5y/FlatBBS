@@ -6,7 +6,7 @@ use app\cast\FullPath;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use support\AbstractModel;
-use support\VisitableModel;
+use app\interface\VisitableModel;
 use app\model\Role;
 use app\model\Permission;
 use app\model\Topic;
