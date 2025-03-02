@@ -9,16 +9,11 @@ use Illuminate\Support\Str;
 
 class FileService
 {
-    private $supportedFile = ['image/png', 'image/jpeg', 'image/gif'];
-
     public function saveUserAvatar(UploadFile $file): ?string
     {
         $filename = '';
 
-        if (
-            !$file ||
-            !in_array($file->getUploadMimeType(), $this->supportedFile)
-        ) {
+        if (!$file) {
             return null;
         }
 
@@ -46,10 +41,7 @@ class FileService
     {
         $filename = '';
 
-        if (
-            !$file ||
-            !in_array($file->getUploadMimeType(), $this->supportedFile)
-        ) {
+        if (!$file) {
             return null;
         }
 

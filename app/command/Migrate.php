@@ -2,6 +2,7 @@
 
 namespace app\command;
 
+use DirectoryIterator;
 use support\Db;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -83,7 +84,7 @@ class Migrate extends Command
 
         $schema = $this->getSchemaBuilder();
 
-        $dir = new \DirectoryIterator(base_path('database/migrations'));
+        $dir = new DirectoryIterator(base_path('database/migrations'));
         $dir->rewind();
         foreach ($dir as $fileInfo) {
             /* @var $fileInfo \SplFileInfo */

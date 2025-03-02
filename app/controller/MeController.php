@@ -7,16 +7,22 @@ use app\service\AuthService;
 use app\service\FileService;
 use app\service\UserService;
 use app\service\UserVisitLogService;
+use app\service\SettingService;
 use DI\Attribute\Inject;
 
 class MeController
 {
     #[Inject]
     protected FileService $file;
+
     #[Inject]
     protected UserService $user;
+
     #[Inject]
     protected AuthService $auth;
+
+    #[Inject]
+    protected SettingService $setting;
 
     #[Inject]
     protected UserVisitLogService $userVisitLog;
@@ -67,6 +73,15 @@ class MeController
 
         if (!$file) {
             return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
+        }
+
+        if (
+            !in_array(
+                $file->getUploadMimeType(),
+                $this->setting->getArrayValue('allowedImageType')
+            )
+        ) {
+            return no(STATUS_BAD_REQUEST, '$exception.invalid_file_type');
         }
 
         $uri = $this->file->saveUserAvatar($request->file('avgfile'));

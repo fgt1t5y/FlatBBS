@@ -124,7 +124,8 @@
     "user_has_been_banned": "你的账号已被禁止登录",
     "unauthorized": "请先登录",
     "fill_out_form_completely": "请完整填写表单",
-    "forbidden": "你没有足够的权限进行此操作"
+    "forbidden": "你没有足够的权限进行此操作",
+    "invalid_file_type": "无效的文件类型"
   },
 
   "tooltip": {
