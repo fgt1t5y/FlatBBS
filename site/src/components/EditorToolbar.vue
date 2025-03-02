@@ -10,7 +10,7 @@
       ref="imageInput"
       type="file"
       name="avatar"
-      accept=".jpg,.png,.jpeg"
+      accept=".jpg,.png,.jpeg,.gif"
       style="display: none"
       @change="uploadAndInsertImage"
     />
@@ -75,6 +75,9 @@ const uploadAndInsertImage = () => {
 
   const image = imageInput.value.files[0]
   uploadFile(image).then((res) => {
+    if (!res) {
+      return
+    }
     props?.editor.commands.setImage({
       src: res,
     })

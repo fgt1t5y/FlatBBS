@@ -63,15 +63,15 @@ class MeController
     {
         $request->assertLogin();
 
-        $file = $this->file->uploadImage($request->file('avgfile'));
+        $file = $request->file('avgfile');
 
         if (!$file) {
             return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
         }
 
-        $user_id = session('id');
+        $uri = $this->file->saveUserAvatar($request->file('avgfile'));
 
-        $result = $this->user->modifyUserInfo($user_id, ['avatar_uri' => $file]);
+        $result = $this->user->modifyUserInfo(session('id'), ['avatar_uri' => $uri]);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);

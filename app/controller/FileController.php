@@ -15,7 +15,13 @@ class FileController
     {
         $request->assertLogin();
 
-        $result = $this->file->uploadImage($request->file(), true);
+        $file = $request->file('avgfile');
+
+        if (!$file) {
+            return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
+        }
+
+        $result = $this->file->saveImage($file, true);
 
         if (!$result) {
             no(STATUS_INTERNAL_ERROR);

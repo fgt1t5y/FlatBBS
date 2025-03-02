@@ -9,9 +9,40 @@ use Illuminate\Support\Str;
 
 class FileService
 {
-    private $supportedFile = ['image/png', 'image/jpeg'];
+    private $supportedFile = ['image/png', 'image/jpeg', 'image/gif'];
 
-    public function uploadImage(UploadFile $file, ?bool $with_suffix = false): string|null
+    public function saveUserAvatar(UploadFile $file): ?string
+    {
+        $filename = '';
+
+        if (
+            !$file ||
+            !in_array($file->getUploadMimeType(), $this->supportedFile)
+        ) {
+            return null;
+        }
+
+        $filename = Str::random();
+        $base_path = config('flatbbs.paths.usercontent');
+        $manager = ImageManager::gd();
+
+        try {
+            $image = $manager->read($file->getPathname());
+            if ($image->isAnimated()) {
+                $filename .= '.gif';
+                $image->save("{$base_path}{$filename}", 100, 'gif');
+            } else {
+                $filename .= '.jpg';
+                $image->save("{$base_path}{$filename}", 80, 'jpg');
+            }
+        } catch (ImageException) {
+            return null;
+        }
+
+        return $filename;
+    }
+
+    public function saveImage(UploadFile $file, ?bool $with_suffix = false): ?string
     {
         $filename = '';
 

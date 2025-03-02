@@ -24,7 +24,7 @@ class StorageService
     public function useS3()
     {
         return new Filesystem(
-            new AwsS3V3Adapter($this->createS3Client(), config('fs.s3.bucket'))
+            new AwsS3V3Adapter($this->getS3Client(), config('fs.s3.bucket'))
         );
     }
 

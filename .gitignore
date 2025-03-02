@@ -6,6 +6,7 @@
 /tests/.phpunit.result.cache
 /public/usercontent/*.jpg
 /public/usercontent/*.png
+/public/usercontent/*.gif
 /plugin/lab
 node_modules
 .phpunit.cache
