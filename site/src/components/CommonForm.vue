@@ -1,9 +1,9 @@
 <template>
   <form class="form" @submit="onFormSubmit">
     <slot />
-    <div v-if="submitLabel">
+    <div v-if="submitLabel" class="form-default-submit">
       <button
-        class="btn-primary btn-md form-default-submit"
+        class="btn-primary btn-md"
         :disabled="disabled"
         @click="onFormSubmit"
       >
@@ -65,6 +65,19 @@ const validate = async () => {
   }
 }
 
+const validateByName = async (name: string) => {
+  try {
+    await validator.value.validate(props.form, { t, keys: [name] })
+    delete errorMessages.value[name]
+    return true
+  } catch (error: any) {
+    Object.assign(errorMessages.value, error.fields)
+    console.log(errorMessages.value, error.fields)
+
+    return false
+  }
+}
+
 const onFormSubmit = async (ev: Event) => {
   ev.preventDefault()
 
@@ -80,7 +93,7 @@ const onFormItemBlur = (ev: FocusEvent) => {
     return
   }
 
-  validate()
+  validateByName(inputEl.name)
 }
 
 provide<IFormContext>(formContextKey, {
@@ -92,5 +105,6 @@ provide<IFormContext>(formContextKey, {
 
 defineExpose({
   validate,
+  validateByName,
 })
 </script>

@@ -66,6 +66,9 @@ const modifyForm = ref({
 })
 
 const checkPasswordSame = () => {
+  if (!modifyForm.value.new_password_confirm) {
+    return new Error(t('form.required'))
+  }
   if (
     modifyForm.value.new_password &&
     modifyForm.value.new_password_confirm !== modifyForm.value.new_password
