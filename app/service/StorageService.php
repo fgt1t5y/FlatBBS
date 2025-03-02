@@ -9,7 +9,7 @@ use Aws\S3\S3Client;
 
 class StorageService
 {
-    private S3Client $s3Client;
+    private ?S3Client $s3Client = null;
 
     public function useLocal()
     {

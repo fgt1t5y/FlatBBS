@@ -146,8 +146,7 @@
   }
 
   .navbar-user-panel {
-    width: 350px;
-    max-width: 100vw;
+    @apply w-[350px] max-w-full;
   }
 
   .mobile-navbar {
@@ -207,7 +206,7 @@
   }
 
   .main-content-aside {
-    @apply min-w-[300px];
+    @apply min-w-[250px];
   }
 
   .main-content-aside-inner {
@@ -232,8 +231,6 @@
 
   .modal-wrapper {
     @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
-
-    transition: all 0.2s ease-in-out;
   }
 
   .modal-inner {
