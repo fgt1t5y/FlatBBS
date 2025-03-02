@@ -1,9 +1,9 @@
 <template>
   <div
     :class="{
-      'bg-content flex gap-2': true,
-      'sticky top-navbar mb-3': !isMobile,
-      'fixed left-0 bottom-0 w-full overflow-scroll pl-3': isMobile,
+      'bg-content flex gap-2 z-30': true,
+      'sticky top-navbar py-3': !isMobile,
+      'fixed left-0 bottom-0 w-full overflow-scroll p-3': isMobile,
     }"
   >
     <input
@@ -45,7 +45,7 @@ import {
   ArrowForwardUp,
 } from '@vicons/tabler'
 import { isMobile } from '@/utils'
-import { uploadFile } from '@/services'
+import { uploadImage } from '@/services'
 
 import type { Editor } from '@tiptap/vue-3'
 
@@ -68,20 +68,19 @@ interface EditorTools {
 const props = defineProps<EditorToolbarProps>()
 const imageInput = ref<HTMLInputElement>()
 
-const uploadAndInsertImage = () => {
+const uploadAndInsertImage = async () => {
   if (!imageInput.value?.files?.length) {
     return
   }
 
   const image = imageInput.value.files[0]
-  uploadFile(image).then((res) => {
-    if (!res) {
-      return
-    }
+  const imageUri = await uploadImage(image)
+
+  if (imageUri) {
     props?.editor.commands.setImage({
-      src: res,
+      src: imageUri,
     })
-  })
+  }
 }
 
 const editorTools = [

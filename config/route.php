@@ -37,7 +37,7 @@ Route::group('/discussion/{tid:\d+}', function () {
 });
 
 Route::group('/file', function () {
-    Route::post('/upload', [app\controller\FileController::class, 'upload']);
+    Route::put('/image', [app\controller\FileController::class, 'image']);
 });
 
 Route::group('/me', function () {

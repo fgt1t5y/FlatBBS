@@ -11,12 +11,6 @@ class FileService
 {
     public function saveUserAvatar(UploadFile $file): ?string
     {
-        $filename = '';
-
-        if (!$file) {
-            return null;
-        }
-
         $filename = Str::random();
         $base_path = config('flatbbs.paths.usercontent');
         $manager = ImageManager::gd();
@@ -39,12 +33,6 @@ class FileService
 
     public function saveImage(UploadFile $file, ?bool $with_suffix = false): ?string
     {
-        $filename = '';
-
-        if (!$file) {
-            return null;
-        }
-
         $filename = Str::random();
         $base_path = config('flatbbs.paths.usercontent');
         $manager = ImageManager::gd();

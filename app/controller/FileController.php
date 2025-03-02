@@ -15,7 +15,7 @@ class FileController
     #[Inject]
     protected SettingService $setting;
 
-    public function upload(Request $request)
+    public function image(Request $request)
     {
         $request->assertLogin();
 
