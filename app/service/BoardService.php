@@ -6,14 +6,14 @@ use app\Model\Board;
 
 class BoardService
 {
-    public function getAllBoards(?array $columns = null)
+    public function getAllBoards()
     {
-        return Board::orderBy('id')->get($columns);
+        return Board::orderBy('id')->get();
     }
 
-    public function getBoardInfo(string $value, ?array $columns = null)
+    public function getBoardInfo(string $value)
     {
-        return Board::where('slug', $value)->first($columns);
+        return Board::where('slug', $value)->first();
     }
 
     public function getTopicsBySlug(string $slug, int $page, int $limit)
