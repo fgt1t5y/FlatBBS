@@ -20,7 +20,7 @@
               <div class="modal-header">
                 <span class="text-base font-bold">{{ title }}</span>
                 <button v-if="closeButton" @click="closeModal">
-                  <X class="size-5" />
+                  <i class="ti ti-x icon"></i>
                 </button>
               </div>
               <div class="modal-body">
@@ -37,7 +37,6 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import { X } from '@vicons/tabler'
 import { FocusTrap } from './FocusTrap'
 
 defineOptions({

@@ -44,7 +44,7 @@
           :title="$t('tooltip.like_this_topic')"
           @click="likeOrUnlike"
         >
-          <Heart class="size-5" />
+          <i class="ti ti-heart icon"></i>
           <span>{{ currentLikeCount }}</span>
         </button>
       </div>
@@ -121,7 +121,6 @@ import TiptapEditor from '@/components/TiptapEditor.vue'
 import RelativeTime from '@/components/RelativeTime.vue'
 import ContentRenderer from '@/components/ContentRenderer.vue'
 import UserPopover from '@/components/UserPopover.vue'
-import { Heart } from '@vicons/tabler'
 
 const route = useRoute()
 const user = useUserStore()

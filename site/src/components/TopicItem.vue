@@ -37,11 +37,11 @@
       </RouterLink>
       <div class="flex gap-2 text-muted items-center">
         <div class="flex gap-1">
-          <Message class="size-5" />
+          <i class="ti ti-message icon"></i>
           <span>{{ topic.discussion_count }}</span>
         </div>
         <div class="flex gap-1">
-          <Heart class="size-5" />
+          <i class="ti ti-heart icon"></i>
           <span>{{ topic.like_count }}</span>
         </div>
       </div>
@@ -55,7 +55,6 @@ import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import { computed } from 'vue'
 import UserPopover from './UserPopover.vue'
-import { Message, Heart } from '@vicons/tabler'
 
 import type { Topic } from '@/types'
 

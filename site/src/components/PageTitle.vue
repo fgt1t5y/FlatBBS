@@ -2,7 +2,7 @@
   <div class="page-title" :title="title">
     <div class="flex gap-2 w-full items-center">
       <button v-if="showBackButton" class="btn-text" @click="back">
-        <ArrowLeft class="size-8" />
+        <i class="icon-4xl ti ti-arrow-left"></i>
       </button>
       <div class="flex flex-col grow">
         <slot>
@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft } from '@vicons/tabler'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
