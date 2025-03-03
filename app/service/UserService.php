@@ -13,12 +13,7 @@ class UserService
         'password'
     ];
 
-    public function getInfo(int $user_id)
-    {
-        return User::find($user_id);
-    }
-
-    public function getInfoById(string $username)
+    public function getUserByUsername(string $username): ?User
     {
         return User::where('username', $username)->first();
     }
@@ -45,15 +40,9 @@ class UserService
             ->get();
     }
 
-    public function modifyUserInfo(int $user_id, array $data): bool
+    public function modifyUserInfo(User $user, array $data): bool
     {
-        if (!is_array($data) || !count($data)) {
-            return false;
-        }
-
-        $user = User::find($user_id);
-
-        if (!$user) {
+        if (!$user || $user->isGuest()) {
             return false;
         }
 

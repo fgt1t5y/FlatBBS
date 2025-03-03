@@ -61,4 +61,11 @@ class Request extends \Webman\Http\Request
             throw new APIException('$exception.forbidden', STATUS_FORBIDDEN);
         }
     }
+
+    public function assertNotEmptyArray(array $data)
+    {
+        if (!is_array($data) || !count($data)) {
+            throw new APIException('$exception.invalid_data', STATUS_BAD_REQUEST);
+        }
+    }
 }

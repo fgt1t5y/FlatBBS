@@ -8,29 +8,19 @@ use support\Request;
 
 class BoardController
 {
-    private $board_basic_fields = ['id', 'name', 'slug', 'avatar_uri'];
-    private $board_fields = [
-        'id',
-        'name',
-        'slug',
-        'topic_count',
-        'description',
-        'avatar_uri',
-    ];
-
     #[Inject]
     protected BoardService $board;
 
     public function all(Request $request)
     {
-        $result = $this->board->getAllBoards($this->board_basic_fields);
+        $result = $this->board->getAllBoards();
 
         return ok($result);
     }
 
     public function info(Request $request, string $slug)
     {
-        $result = $this->board->getBoardInfo($slug, $this->board_fields);
+        $result = $this->board->getBoardInfo($slug);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, '$exception.board_not_found');

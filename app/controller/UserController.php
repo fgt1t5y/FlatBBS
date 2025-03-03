@@ -19,7 +19,7 @@ class UserController
 
     public function info(Request $request, string $username)
     {
-        $result = $this->user->getInfoById($username);
+        $result = $this->user->getUserByUsername($username);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, '$exception.user_not_found');

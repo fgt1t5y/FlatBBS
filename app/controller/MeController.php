@@ -54,9 +54,10 @@ class MeController
         $request->assertPermission('user:modify');
 
         $attributes = $request->post();
-        $user_id = session('id');
 
-        $result = $this->user->modifyUserInfo($user_id, $attributes);
+        $request->assertNotEmptyArray($attributes);
+
+        $result = $this->user->modifyUserInfo($request->getUser(), $attributes);
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -86,7 +87,14 @@ class MeController
 
         $uri = $this->file->saveUserAvatar($request->file('avgfile'));
 
-        $result = $this->user->modifyUserInfo(session('id'), ['avatar_uri' => $uri]);
+        if (!$uri) {
+            return no(STATUS_INTERNAL_ERROR);
+        }
+
+        $result = $this->user->modifyUserInfo(
+            $request->getUser(),
+            ['avatar_uri' => $uri]
+        );
 
         if (!$result) {
             return no(STATUS_INTERNAL_ERROR);
@@ -113,7 +121,7 @@ class MeController
         }
 
         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $result = $this->user->modifyUserInfo($user->id, ['password' => $new_password]);
+        $result = $this->user->modifyUserInfo($user, ['password' => $new_password]);
 
         $this->auth->logoutAll($user->id);
 
