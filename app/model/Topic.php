@@ -47,7 +47,8 @@ class Topic extends AbstractModel implements VisitableModel
             ->orderBy(
                 new Expression($grammer->wrap('user_id') . '=' . $user_id)
             )
-            ->limit(5);
+            ->limit(5)
+            ->withTimestamps();
     }
 
     public function discussions(): HasMany
