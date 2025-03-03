@@ -19,9 +19,14 @@ use Webman\Config;
 use Webman\Middleware;
 use Webman\Route;
 use Webman\Util;
+use Workerman\Events\Select;
+use Workerman\Worker;
 
 $worker = $worker ?? null;
-$config_plugin = config('plugin', []);
+
+if (empty(Worker::$eventLoopClass)) {
+    Worker::$eventLoopClass = Select::class;
+}
 
 set_error_handler(function ($level, $message, $file = '', $line = 0) {
     if (error_reporting() & $level) {
@@ -54,7 +59,7 @@ if ($timezone = config('app.default_timezone')) {
 foreach (config('autoload.files', []) as $file) {
     include_once $file;
 }
-foreach ($config_plugin as $firm => $projects) {
+foreach (config('plugin', []) as $firm => $projects) {
     foreach ($projects as $name => $project) {
         if (!is_array($project)) {
             continue;
@@ -78,11 +83,10 @@ foreach (config('plugin', []) as $firm => $projects) {
     }
     Middleware::load($projects['middleware'] ?? [], $firm);
     if ($staticMiddlewares = config("plugin.$firm.static.middleware")) {
-        // Middleware::load(['__static__' => $staticMiddlewares], $firm);
+        Middleware::load(['__static__' => $staticMiddlewares], $firm);
     }
 }
-
-// Middleware::load(['__static__' => config('static.middleware', [])]);
+Middleware::load(['__static__' => config('static.middleware', [])]);
 
 foreach (config('bootstrap', []) as $className) {
     if (!class_exists($className)) {
@@ -95,7 +99,7 @@ foreach (config('bootstrap', []) as $className) {
     $className::start($worker);
 }
 
-foreach ($config_plugin as $firm => $projects) {
+foreach (config('plugin', []) as $firm => $projects) {
     foreach ($projects as $name => $project) {
         if (!is_array($project)) {
             continue;
@@ -127,9 +131,9 @@ foreach ($config_plugin as $firm => $projects) {
 $directory = base_path() . '/plugin';
 $paths = [config_path()];
 foreach (Util::scanDir($directory) as $path) {
-    if (is_dir($config_path = "$path/config")) {
-        $paths[] = $config_path;
+    if (is_dir($path = "$path/config")) {
+        $paths[] = $path;
     }
 }
-
 Route::load($paths);
+
