@@ -40,7 +40,7 @@ class Monitor
     /**
      * @var string
      */
-    public static $lockFile = __DIR__ . '/../runtime/monitor.lock';
+    public static $lockFile = __DIR__ . '/../../runtime/monitor.lock';
 
     /**
      * Pause monitor
