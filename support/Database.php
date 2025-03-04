@@ -1,6 +1,6 @@
 <?php
 
-namespace support\bootstrap;
+namespace support;
 
 use Illuminate\Container\Container as IlluminateContainer;
 use Illuminate\Database\Capsule\Manager as Capsule;
