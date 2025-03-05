@@ -13,11 +13,13 @@ class AdminController
 
     public function sysinfo(Request $request)
     {
-        return ok([
+        $data = [
             'redis_version' => $this->system->getRedisServerInfo()['redis_version'],
             'php_version' => $this->system->getPhpVersion(),
             'database_driver' => $this->system->getDatabaseDriver(),
             'database_version' => $this->system->getDatabaseVersion()
-        ]);
+        ];
+
+        return ok($data);
     }
 }

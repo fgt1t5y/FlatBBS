@@ -18,22 +18,22 @@ class TopicController
 
     public function all(Request $request)
     {
-        $lastId = $request->get('last');
+        $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        return ok(
-            $this->topic->getAllTopics($lastId, $limit)
-        );
+        $result = $this->topic->getAllTopics($last_id, $limit);
+
+        return ok($result);
     }
 
-    public function discussions(Request $request, int $topicId)
+    public function discussions(Request $request, int $topic_id)
     {
-        $lastId = $request->get('last');
+        $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        return ok(
-            $this->topic->getDiscussionsById($topicId, $lastId, $limit)
-        );
+        $result = $this->topic->getDiscussionsById($topic_id, $last_id, $limit);
+
+        return ok($result);
     }
 
     public function publish(Request $request)
@@ -43,7 +43,7 @@ class TopicController
         $title = $request->post('title');
         $text = $request->post('text');
         $content = $request->post('content');
-        $boardId = (int) $request->post('board_id');
+        $board_id = (int) $request->post('board_id');
 
         if (empty($title)) {
             return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');
@@ -51,7 +51,7 @@ class TopicController
 
         $author = $request->getUser();
         /** @var Board */
-        $board = Board::find($boardId);
+        $board = Board::find($board_id);
 
         $topic = $this->topic->build($title, $text, $content, $board, $author);
         $topic->save();
@@ -62,9 +62,9 @@ class TopicController
         return ok($topic);
     }
 
-    public function detail(Request $request, int $topicId)
+    public function detail(Request $request, int $topic_id)
     {
-        $result = $this->topic->getTopicDetail($topicId);
+        $result = $this->topic->getTopicDetail($topic_id);
 
         $user = $request->getUser();
 
@@ -79,14 +79,14 @@ class TopicController
         return ok($result);
     }
 
-    public function like(Request $request, int $topicId)
+    public function like(Request $request, int $topic_id)
     {
         $request->assertLogin();
 
-        $userId = session('id');
+        $user_id = session('id');
 
-        return ok(
-            $this->topic->toggleLike($topicId, $userId)
-        );
+        $like_count = $this->topic->toggleLike($topic_id, $user_id);
+
+        return ok($like_count);
     }
 }

@@ -37,17 +37,17 @@ class FileController
         }
 
         $filename = Str::random();
-        $BasePath = $this->storage->getStorageRoot('user-content');
+        $base_path = $this->storage->getStorageRoot('user-content');
         $manager = ImageManager::gd();
 
         try {
             $image = $manager->read($file->getPathname());
             if ($image->isAnimated()) {
                 $filename .= '.gif';
-                $image->save("{$BasePath}/{$filename}", 100, 'gif');
+                $image->save("{$base_path}/{$filename}", 100, 'gif');
             } else {
                 $filename .= '.jpg';
-                $image->save("{$BasePath}/{$filename}", 80, 'jpg');
+                $image->save("{$base_path}/{$filename}", 80, 'jpg');
             }
         } catch (\Throwable $e) {
             return no(STATUS_INTERNAL_ERROR, $e->getMessage());

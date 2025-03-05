@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\service\FileService;
 use app\service\UserService;
 use app\service\AuthService;
 use support\Request;
@@ -9,6 +10,8 @@ use DI\Attribute\Inject;
 
 class UserController
 {
+    #[Inject]
+    protected FileService $file;
     #[Inject]
     protected UserService $user;
     #[Inject]
@@ -27,21 +30,21 @@ class UserController
 
     public function topics(Request $request, string $username)
     {
-        $lastId = $request->get('last');
+        $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        return ok(
-            $this->user->getUserTopics($username, $lastId, $limit)
-        );
+        $result = $this->user->getUserTopics($username, $last_id, $limit);
+
+        return ok($result);
     }
 
     public function liked(Request $request, string $username)
     {
-        $lastId = $request->get('last');
+        $last_id = $request->get('last');
         $limit = $request->get('limit');
 
-        return ok(
-            $this->user->getLikedTopics($username, $lastId, $limit)
-        );
+        $result = $this->user->getLikedTopics($username, $last_id, $limit);
+
+        return ok($result);
     }
 }

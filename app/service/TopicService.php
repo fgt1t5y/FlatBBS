@@ -9,20 +9,20 @@ use Carbon\Carbon;
 
 class TopicService
 {
-    public function getAllTopics(int $lastId, int $limit)
+    public function getAllTopics(int $last_id, int $limit)
     {
         return Topic::orderByDesc('created_at')
             ->limit(min($limit, 50))
-            ->where('id', $lastId === 0 ? '>' : '<', $lastId)
+            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
             ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
-    public function getDiscussionsById(int $id, int $lastId, int $limit)
+    public function getDiscussionsById(int $id, int $last_id, int $limit)
     {
         return Topic::find($id)
             ->discussions()
             ->limit(min($limit, 50))
-            ->where('id', '>', $lastId)
+            ->where('id', '>', $last_id)
             ->orderBy('created_at')
             ->get();
     }
@@ -41,30 +41,30 @@ class TopicService
         return $topic;
     }
 
-    public function getTopicDetail(int $topicId)
+    public function getTopicDetail(int $topic_id)
     {
         return Topic::find(
-            $topicId,
+            $topic_id,
             ['id', 'board_id', 'author_id', 'discussion_count', 'like_count', 'title', 'content', 'created_at']
         );
     }
 
-    public function toggleLike(int $topicId, int $userId): int
+    public function toggleLike(int $topic_id, int $user_id): int
     {
-        $topic = Topic::find($topicId);
+        $topic = Topic::find($topic_id);
 
         if (!$topic) {
             return -1;
         }
 
-        $is_liked = $topic->likes()->where('user_id', $userId)->exists();
+        $is_liked = $topic->likes()->where('user_id', $user_id)->exists();
 
         if ($is_liked) {
-            $topic->likes()->detach($userId);
+            $topic->likes()->detach($user_id);
             $topic->like_count--;
             $topic->save();
         } else {
-            $topic->likes()->attach($userId, ['type' => 1]);
+            $topic->likes()->attach($user_id, ['type' => 1]);
             $topic->like_count++;
             $topic->save();
         }

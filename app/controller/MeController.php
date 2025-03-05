@@ -88,13 +88,13 @@ class MeController
         }
 
         $avatar_uri = Str::random();
-        $basePath = $this->storage->getStorageRoot('user-content');
+        $base_path = $this->storage->getStorageRoot('user-content');
         $manager = ImageManager::gd();
 
         try {
             $image = $manager->read($file->getPathname());
             $avatar_uri .= '.jpg';
-            $image->save("{$basePath}/{$avatar_uri}", 80, 'jpg');
+            $image->save("{$base_path}/{$avatar_uri}", 80, 'jpg');
         } catch (\Throwable $e) {
             return no(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
