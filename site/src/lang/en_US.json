@@ -124,11 +124,12 @@
     "unauthorized": "Login please",
     "fill_out_form_completely": "Please fill out form completely",
     "forbidden": "You don't have enough authority to do this",
-    "invalid_file_type": "Invalid file type"
+    "invalid_file_type": "Invalid file type",
+    "server_internal_error": "Server goes wrong, try again later"
   },
 
   "tooltip": {
-    "like_this_topic": "Like this topic."
+    "like_this_topic": "Like this topic"
   },
 
   "editor": {

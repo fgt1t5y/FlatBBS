@@ -16,6 +16,9 @@ namespace support;
 
 use app\model\Guest;
 use app\model\User;
+use support\exception\UnauthorizedException;
+use support\exception\ForbiddenException;
+use support\exception\BadRequestException;
 
 /**
  * Class Request
@@ -43,7 +46,7 @@ class Request extends \Webman\Http\Request
     public function assertLogin()
     {
         if (!session()->has('id')) {
-            throw new APIException('$exception.unauthorized', STATUS_UNAUTHORIZED);
+            throw new UnauthorizedException;
         }
     }
 
@@ -54,18 +57,18 @@ class Request extends \Webman\Http\Request
         }
 
         if ($this->user->isGuest()) {
-            throw new APIException('$exception.unauthorized', STATUS_UNAUTHORIZED);
+            throw new UnauthorizedException;
         }
 
         if (!$this->user->hasPermission($permission)) {
-            throw new APIException('$exception.forbidden', STATUS_FORBIDDEN);
+            throw new ForbiddenException;
         }
     }
 
     public function assertNotEmptyArray(array $data)
     {
         if (!is_array($data) || !count($data)) {
-            throw new APIException('$exception.invalid_data', STATUS_BAD_REQUEST);
+            throw new BadRequestException('$exception.invalid_data');
         }
     }
 }
