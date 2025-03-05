@@ -14,7 +14,7 @@ class DiscussionController
     #[Inject]
     protected DiscussionService $discussion;
 
-    public function publish(Request $request, int $topic_id)
+    public function publish(Request $request, int $topicId)
     {
         $request->assertLogin();
 
@@ -26,7 +26,7 @@ class DiscussionController
 
         $author = $request->getUser();
         /** @var Topic */
-        $topic = Topic::find($topic_id);
+        $topic = Topic::find($topicId);
 
         $discussion = $this->discussion->build($content, $topic, $author);
         $discussion->save();

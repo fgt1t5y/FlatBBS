@@ -9,20 +9,20 @@ use Carbon\Carbon;
 
 class TopicService
 {
-    public function getAllTopics(int $last_id, int $limit)
+    public function getAllTopics(int $lastId, int $limit)
     {
         return Topic::orderByDesc('created_at')
             ->limit(min($limit, 50))
-            ->where('id', $last_id === 0 ? '>' : '<', $last_id)
+            ->where('id', $lastId === 0 ? '>' : '<', $lastId)
             ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
-    public function getDiscussionsById(int $id, int $last_id, int $limit)
+    public function getDiscussionsById(int $id, int $lastId, int $limit)
     {
         return Topic::find($id)
             ->discussions()
             ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
+            ->where('id', '>', $lastId)
             ->orderBy('created_at')
             ->get();
     }
@@ -41,30 +41,30 @@ class TopicService
         return $topic;
     }
 
-    public function getTopicDetail(int $topic_id)
+    public function getTopicDetail(int $topicId)
     {
         return Topic::find(
-            $topic_id,
+            $topicId,
             ['id', 'board_id', 'author_id', 'discussion_count', 'like_count', 'title', 'content', 'created_at']
         );
     }
 
-    public function toggleLike(int $topic_id, int $user_id): int
+    public function toggleLike(int $topicId, int $userId): int
     {
-        $topic = Topic::find($topic_id);
+        $topic = Topic::find($topicId);
 
         if (!$topic) {
             return -1;
         }
 
-        $is_liked = $topic->likes()->where('user_id', $user_id)->exists();
+        $is_liked = $topic->likes()->where('user_id', $userId)->exists();
 
         if ($is_liked) {
-            $topic->likes()->detach($user_id);
+            $topic->likes()->detach($userId);
             $topic->like_count--;
             $topic->save();
         } else {
-            $topic->likes()->attach($user_id, ['type' => 1]);
+            $topic->likes()->attach($userId, ['type' => 1]);
             $topic->like_count++;
             $topic->save();
         }

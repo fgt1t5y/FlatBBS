@@ -55,9 +55,9 @@ class AuthController
         $request->assertLogin();
 
         $session = $request->session();
-        $user_id = $session->get('id');
+        $userId = $session->get('id');
 
-        Redis::sRem("flat_sess_{$user_id}", 1, $session->getId());
+        Redis::sRem("flat_sess_{$userId}", 1, $session->getId());
         $session->flush();
 
         return ok()
@@ -69,8 +69,8 @@ class AuthController
         $request->assertLogin();
 
         $session = $request->session();
-        $user_id = $session->get('id');
+        $userId = $session->get('id');
 
-        return $this->auth->logoutAll($user_id);
+        return $this->auth->logoutAll($userId);
     }
 }

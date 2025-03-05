@@ -13,9 +13,7 @@ class BoardController
 
     public function all(Request $request)
     {
-        $result = $this->board->getAllBoards();
-
-        return ok($result);
+        return ok($this->board->getAllBoards());
     }
 
     public function info(Request $request, string $slug)
@@ -34,8 +32,8 @@ class BoardController
         $page = $request->get('page');
         $limit = $request->get('limit');
 
-        $result = $this->board->getTopicsBySlug($slug, $page, $limit);
-
-        return ok($result);
+        return ok(
+            $this->board->getTopicsBySlug($slug, $page, $limit)
+        );
     }
 }
