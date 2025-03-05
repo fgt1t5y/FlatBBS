@@ -7,7 +7,6 @@ use support\Request;
 use app\service\FileService;
 use app\service\SettingService;
 use app\service\StorageService;
-use Intervention\Image\Exception\ImageException;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 
@@ -54,8 +53,8 @@ class FileController
                 $filename .= '.jpg';
                 $image->save("{$base_path}/{$filename}", 80, 'jpg');
             }
-        } catch (ImageException) {
-            return null;
+        } catch (\Throwable $e) {
+            return no(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
 
         return ok($this->storage->use('user-content')->publicUrl($filename));
