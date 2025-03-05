@@ -32,7 +32,7 @@ Route::group('/board/{slug}', function () {
     Route::get('/topics', [app\controller\BoardController::class, 'topics']);
 });
 
-Route::group('/discussion/{tid:\d+}', function () {
+Route::group('/discussion/{topicId:\d+}', function () {
     Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
 });
 
@@ -53,7 +53,7 @@ Route::group('/topics', function () {
     Route::post('/publish', [app\controller\TopicController::class, 'publish']);
 });
 
-Route::group('/topic/{tid:\d+}', function () {
+Route::group('/topic/{topicId:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
     Route::get('/discussions', [app\controller\TopicController::class, 'discussions']);
     Route::post('/like', [app\controller\TopicController::class, 'like']);
