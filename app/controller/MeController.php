@@ -4,17 +4,16 @@ namespace app\controller;
 
 use support\Request;
 use app\service\AuthService;
-use app\service\FileService;
 use app\service\UserService;
 use app\service\UserVisitLogService;
 use app\service\SettingService;
+use app\service\StorageService;
 use DI\Attribute\Inject;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
 
 class MeController
 {
-    #[Inject]
-    protected FileService $file;
-
     #[Inject]
     protected UserService $user;
 
@@ -23,6 +22,9 @@ class MeController
 
     #[Inject]
     protected SettingService $setting;
+
+    #[Inject]
+    protected StorageService $storage;
 
     #[Inject]
     protected UserVisitLogService $userVisitLog;
@@ -85,15 +87,25 @@ class MeController
             return no(STATUS_BAD_REQUEST, '$exception.invalid_file_type');
         }
 
-        $uri = $this->file->saveUserAvatar($request->file('avgfile'));
+        $avatar_uri = Str::random();
+        $base_path = $this->storage->getStorageRoot('user-content');
+        $manager = ImageManager::gd();
 
-        if (!$uri) {
+        try {
+            $image = $manager->read($file->getPathname());
+            $avatar_uri .= '.jpg';
+            $image->save("{$base_path}/{$avatar_uri}", 80, 'jpg');
+        } catch (\Throwable $e) {
+            return no(STATUS_INTERNAL_ERROR, $e->getMessage());
+        }
+
+        if (!$avatar_uri) {
             return no(STATUS_INTERNAL_ERROR);
         }
 
         $result = $this->user->modifyUserInfo(
             $request->getUser(),
-            ['avatar_uri' => $uri]
+            ['avatar_uri' => $avatar_uri]
         );
 
         if (!$result) {

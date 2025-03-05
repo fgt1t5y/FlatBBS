@@ -22,8 +22,3 @@ function no(int $code, string $message = ''): Response
 {
     return json(['code' => $code, 'message' => $message]);
 }
-
-function config_with(string $key, mixed $suffix)
-{
-    return config($key) . $suffix;
-}

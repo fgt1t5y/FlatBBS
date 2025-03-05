@@ -4,7 +4,6 @@ namespace app\controller;
 
 use DI\Attribute\Inject;
 use support\Request;
-use app\service\FileService;
 use app\service\SettingService;
 use app\service\StorageService;
 use Intervention\Image\ImageManager;
@@ -12,9 +11,6 @@ use Illuminate\Support\Str;
 
 class FileController
 {
-    #[Inject]
-    protected FileService $file;
-
     #[Inject]
     protected SettingService $setting;
 

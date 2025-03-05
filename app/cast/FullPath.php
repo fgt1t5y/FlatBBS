@@ -8,7 +8,7 @@ class FullPath implements CastsAttributes
 {
     public function get($model, $key, $value, $attributes)
     {
-        return config_with('flatbbs.assets_path', $value);
+        return getenv('LOCAL_USERCONTENT_ENDPOINT') . $value;
     }
 
     public function set($model, $key, $value, $attributes)
