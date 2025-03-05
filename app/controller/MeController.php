@@ -65,7 +65,7 @@ class MeController
             return no(STATUS_INTERNAL_ERROR);
         }
 
-        return ok();
+        return ok(true);
     }
 
     public function avatar(Request $request)
@@ -87,25 +87,25 @@ class MeController
             return no(STATUS_BAD_REQUEST, '$exception.invalid_file_type');
         }
 
-        $avatar_uri = Str::random();
+        $avatarUri = Str::random();
         $basePath = $this->storage->getStorageRoot('user-content');
         $manager = ImageManager::gd();
 
         try {
             $image = $manager->read($file->getPathname());
-            $avatar_uri .= '.jpg';
-            $image->save("{$basePath}/{$avatar_uri}", 80, 'jpg');
+            $avatarUri .= '.jpg';
+            $image->save("{$basePath}/{$avatarUri}", 80, 'jpg');
         } catch (\Throwable $e) {
             return no(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
 
-        if (!$avatar_uri) {
+        if (!$avatarUri) {
             return no(STATUS_INTERNAL_ERROR);
         }
 
         $result = $this->user->modifyUserInfo(
             $request->getUser(),
-            ['avatar_uri' => $avatar_uri]
+            ['avatar_uri' => $avatarUri]
         );
 
         if (!$result) {
@@ -119,21 +119,21 @@ class MeController
     {
         $request->assertLogin();
 
-        $old_password = $request->post('old_password');
-        $new_password = $request->post('new_password');
+        $oldPassword = $request->post('old_password');
+        $newPassword = $request->post('new_password');
 
-        if (!all([$old_password, $new_password]) || $old_password === $new_password) {
+        if (!all([$oldPassword, $newPassword]) || $oldPassword === $newPassword) {
             return no(STATUS_BAD_REQUEST);
         }
 
         $user = $request->getUser();
 
-        if (!password_verify($old_password, $user->password)) {
+        if (!password_verify($oldPassword, $user->password)) {
             return no(STATUS_FORBIDDEN, '$exception.password_is_wrong');
         }
 
-        $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $result = $this->user->modifyUserInfo($user, ['password' => $new_password]);
+        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $result = $this->user->modifyUserInfo($user, ['password' => $newPassword]);
 
         $this->auth->logoutAll($user->id);
 
