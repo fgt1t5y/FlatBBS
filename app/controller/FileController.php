@@ -6,6 +6,10 @@ use DI\Attribute\Inject;
 use support\Request;
 use app\service\FileService;
 use app\service\SettingService;
+use app\service\StorageService;
+use Intervention\Image\Exception\ImageException;
+use Intervention\Image\ImageManager;
+use Illuminate\Support\Str;
 
 class FileController
 {
@@ -14,6 +18,9 @@ class FileController
 
     #[Inject]
     protected SettingService $setting;
+
+    #[Inject]
+    protected StorageService $storage;
 
     public function image(Request $request)
     {
@@ -34,12 +41,23 @@ class FileController
             return no(STATUS_BAD_REQUEST, '$exception.invalid_file_type');
         }
 
-        $result = $this->file->saveImage($file, true);
+        $filename = Str::random();
+        $base_path = $this->storage->getStorageRoot('user-content');
+        $manager = ImageManager::gd();
 
-        if (!$result) {
-            no(STATUS_INTERNAL_ERROR);
+        try {
+            $image = $manager->read($file->getPathname());
+            if ($image->isAnimated()) {
+                $filename .= '.gif';
+                $image->save("{$base_path}/{$filename}", 100, 'gif');
+            } else {
+                $filename .= '.jpg';
+                $image->save("{$base_path}/{$filename}", 80, 'jpg');
+            }
+        } catch (ImageException) {
+            return null;
         }
 
-        return ok($result);
+        return ok($this->storage->use('user-content')->publicUrl($filename));
     }
 }

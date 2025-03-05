@@ -20,7 +20,7 @@ return [
     'error_reporting' => E_ALL,
     'default_timezone' => 'UTC',
     'request_class' => Request::class,
-    'public_path' => base_path() . DIRECTORY_SEPARATOR . 'public',
+    'public_path' => getenv('APP_PUBLIC_PATH'),
     'runtime_path' => base_path(false) . DIRECTORY_SEPARATOR . 'runtime',
     'controller_suffix' => 'Controller',
     'controller_reuse' => false,

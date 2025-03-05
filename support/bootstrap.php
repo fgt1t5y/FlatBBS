@@ -43,6 +43,7 @@ if ($worker) {
 }
 
 if (class_exists('Dotenv\Dotenv') && file_exists(base_path(false) . '/.env')) {
+    putenv('APP_PATH=' . base_path());
     if (method_exists('Dotenv\Dotenv', 'createUnsafeMutable')) {
         Dotenv::createUnsafeMutable(base_path(false))->load();
     } else {
@@ -136,4 +137,3 @@ foreach (Util::scanDir($directory) as $path) {
     }
 }
 Route::load($paths);
-
