@@ -14,7 +14,7 @@
  */
 
 return [
-    'listen' => getenv('LISTEN_ADDRESS'),
+    'listen' => getenv('APP_LISTEN_ADDRESS'),
     'transport' => 'tcp',
     'context' => [],
     'name' => 'webman',
