@@ -6,7 +6,7 @@ use app\model\User;
 
 class UserService
 {
-    private $allowModifyColumns = [
+    const AllowModifyColumns = [
         'avatar_uri',
         'display_name',
         'introduction',
@@ -18,24 +18,24 @@ class UserService
         return User::where('username', $username)->first();
     }
 
-    public function getUserTopics(string $username, int $last_id, int $limit)
+    public function getUserTopics(string $username, int $lastId, int $limit)
     {
         return User::where('username', $username)
             ->firstOrFail()
             ->topics()
             ->limit(min($limit, 50))
-            ->where('id', '>', $last_id)
+            ->where('id', '>', $lastId)
             ->orderByDesc('created_at')
             ->get();
     }
 
-    public function getLikedTopics(string $username, int $last_id, int $limit)
+    public function getLikedTopics(string $username, int $lastId, int $limit)
     {
         return User::where('username', $username)
             ->first()
             ->liked_topics()
             ->limit(min($limit, 50))
-            ->where('topic_id', '>', $last_id)
+            ->where('topic_id', '>', $lastId)
             ->orderByDesc('created_at')
             ->get();
     }
@@ -47,7 +47,7 @@ class UserService
         }
 
         foreach ($data as $attribute => $value) {
-            if (in_array($attribute, $this->allowModifyColumns)) {
+            if (in_array($attribute, self::AllowModifyColumns)) {
                 $user->setAttribute($attribute, $value);
             }
         }
