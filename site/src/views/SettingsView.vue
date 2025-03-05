@@ -14,23 +14,23 @@
         </div>
       </SettingItem>
       <SettingItem :title="$t('settings.email_address')">
-        <InputField :input-value="user.info?.email" readonly />
+        <SettingInputField :input-value="user.info?.email" readonly />
       </SettingItem>
       <SettingItem :title="$t('settings.username')">
-        <InputField
+        <SettingInputField
           field="username"
           :input-value="user.info?.username"
           readonly
         />
       </SettingItem>
       <SettingItem :title="$t('settings.display_name')">
-        <InputField
+        <SettingInputField
           field="display_name"
           :input-value="user.info?.display_name"
         />
       </SettingItem>
       <SettingItem :title="$t('settings.introduction')">
-        <InputField
+        <SettingInputField
           field="introduction"
           :input-value="user.info?.introduction"
         />
@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import InputField from '@/components/InputField.vue'
+import SettingInputField from '@/components/SettingSettingInputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'
@@ -81,6 +81,7 @@ import { useI18n } from 'vue-i18n'
 const user = useUserStore()
 const { locale, availableLocales } = useI18n()
 const { switchTo, theme } = useTheme()
+
 const themeSwitcherValue = ref(theme.value)
 
 watch(() => themeSwitcherValue.value, switchTo)

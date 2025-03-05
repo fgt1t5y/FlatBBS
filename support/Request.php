@@ -56,10 +56,6 @@ class Request extends \Webman\Http\Request
             $this->getUser();
         }
 
-        if ($this->user->isGuest()) {
-            throw new UnauthorizedException;
-        }
-
         if (!$this->user->hasPermission($permission)) {
             throw new ForbiddenException;
         }

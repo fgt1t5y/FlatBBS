@@ -2,7 +2,7 @@
   <Navbar v-if="isDesktop" />
   <RouterView />
   <NavbarMobile v-if="!isDesktop && $route.meta.showBottomNav" />
-  <Message />
+  <MessageContainer />
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ import { getOrSet, set } from './utils'
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
-import Message from '@/components/Message.vue'
+import MessageContainer from '@/components/MessageContainer.vue'
 import { useI18n } from 'vue-i18n'
 import { languageAliasMap } from './i18n'
 import { watch } from 'vue'

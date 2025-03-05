@@ -21,17 +21,17 @@ import { useMessage } from '@/stores'
 import { useI18n } from 'vue-i18n'
 
 defineOptions({
-  name: 'InputField',
+  name: 'SettingInputField',
 })
 
-interface InputFieldProps {
+interface SettingInputFieldProps {
   inputValue?: string
   maxLength?: number
   readonly?: boolean
   field?: string
 }
 
-const props = withDefaults(defineProps<InputFieldProps>(), {
+const props = withDefaults(defineProps<SettingInputFieldProps>(), {
   inputValue: '',
   maxLength: 32,
   readonly: false,

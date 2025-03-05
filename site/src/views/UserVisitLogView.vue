@@ -38,8 +38,6 @@ const {
 } = usePagination((page, limit) => getVisitLogs(page, limit), {
   append: true,
   preloadNextPage: false,
-}).onSuccess(() => {
-  console.log(groupedItems.value)
 })
 
 const nextPage = () => {

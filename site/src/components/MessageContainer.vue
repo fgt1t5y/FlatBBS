@@ -18,7 +18,7 @@ import { useMessage } from '@/stores'
 import MessageItem from './MessageItem.vue'
 
 defineOptions({
-  name: 'Message',
+  name: 'MessageContainer',
 })
 
 const ms = useMessage()
