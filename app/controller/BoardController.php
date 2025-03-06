@@ -16,9 +16,9 @@ class BoardController
         return ok($this->board->getAllBoards());
     }
 
-    public function info(Request $request, string $slug)
+    public function info(Request $request, string $boardSlug)
     {
-        $result = $this->board->getBoardInfo($slug);
+        $result = $this->board->getBoardInfo($boardSlug);
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, '$exception.board_not_found');
@@ -27,13 +27,13 @@ class BoardController
         return ok($result);
     }
 
-    public function topics(Request $request, string $slug)
+    public function topics(Request $request, string $boardSlug)
     {
         $page = $request->get('page');
         $limit = $request->get('limit');
 
         return ok(
-            $this->board->getTopics($slug, $page, $limit)
+            $this->board->getTopics($boardSlug, $page, $limit)
         );
     }
 }

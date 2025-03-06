@@ -27,7 +27,7 @@ Route::group('/boards', function () {
     Route::get('/all', [app\controller\BoardController::class, 'all']);
 });
 
-Route::group('/board/{slug}', function () {
+Route::group('/board/{boardSlug}', function () {
     Route::get('/info', [app\controller\BoardController::class, 'info']);
     Route::get('/topics', [app\controller\BoardController::class, 'topics']);
 });
