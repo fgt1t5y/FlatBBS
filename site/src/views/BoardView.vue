@@ -28,14 +28,12 @@
       @retry="loadTopics"
     />
     <template #aside>
-      <div class="p-3">
-        <RouterLink
-          class="btn btn-primary btn-md w-full"
-          :to="{ name: 'board_publish', params: { slug: slug } }"
-        >
-          {{ $t('action.publish_topic') }}
-        </RouterLink>
-      </div>
+      <RouterLink
+        class="btn btn-primary btn-md w-full"
+        :to="{ name: 'board_publish', params: { slug: slug } }"
+      >
+        {{ $t('action.publish_topic') }}
+      </RouterLink>
     </template>
   </MainContent>
 </template>
@@ -82,6 +80,7 @@ const {
   append: true,
   initialPageSize: 10,
   immediate: false,
+  total: () => boardInfo.value.topic_count,
 })
 
 const nextPage = () => {

@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import SettingInputField from '@/components/SettingSettingInputField.vue'
+import SettingInputField from '@/components/SettingInputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'

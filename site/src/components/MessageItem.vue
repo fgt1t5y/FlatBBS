@@ -1,5 +1,5 @@
 <template>
-  <div :class="['rounded', 'p-3', 'shadow-md', ...typeClass]">
+  <div :class="['message-item', ...typeClass]">
     {{ messageText }}
   </div>
 </template>

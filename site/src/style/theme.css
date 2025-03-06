@@ -86,7 +86,7 @@
   }
 
   .btn-air {
-    @apply rounded text-black bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white;
+    @apply rounded text-black bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white;
   }
 
   .btn-text {
@@ -142,7 +142,7 @@
   }
 
   .navbar-inner {
-    @apply flex justify-between items-center grow px-3;
+    @apply flex justify-between items-center grow px-3 w-page;
   }
 
   .navbar-user-panel {
@@ -270,6 +270,10 @@
 
   .message-container {
     @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
+  }
+
+  .message-item {
+    @apply rounded p-3 shadow-md text-center min-w-[150px];
   }
 
   .item:not(:last-child) {
@@ -415,7 +419,7 @@
   }
 
   .w-page {
-    @apply max-w-[1250px];
+    @apply max-w-[1260px];
   }
 
   .w-global-sidebar {
@@ -435,7 +439,7 @@
   }
 
   .hoverable {
-    @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+    @apply hover:bg-gray-200 dark:hover:bg-gray-800;
   }
 
   .shadow-full {
