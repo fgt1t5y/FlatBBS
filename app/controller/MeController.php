@@ -89,10 +89,9 @@ class MeController
 
         $avatarUri = Str::random();
         $basePath = $this->storage->getStorageRoot('user-content');
-        $manager = ImageManager::gd();
 
         try {
-            $image = $manager->read($file->getPathname());
+            $image = ImageManager::gd()->read($file->getPathname());
             $avatarUri .= '.jpg';
             $image->save("{$basePath}/{$avatarUri}", 80, 'jpg');
         } catch (\Throwable $e) {

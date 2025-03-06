@@ -12,5 +12,3 @@ const STATUS_INTERNAL_ERROR = 500;
 const GROUP_ADMIN = 1;
 const GROUP_GUEST = 2;
 const GROUP_USER = 100;
-
-putenv('APP_PATH=' . base_path());

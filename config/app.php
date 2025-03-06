@@ -15,6 +15,8 @@
 
 use support\Request;
 
+putenv('APP_PATH=' . base_path());
+
 return [
     'debug' => getenv('APP_DEBUG') === 'true',
     'error_reporting' => E_ALL,
