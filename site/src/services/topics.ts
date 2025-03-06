@@ -12,7 +12,7 @@ export const getAllTopics = (last: number, limit: number) => {
 };
 
 export const getDiscussionsByTopicId = (
-  last: number,
+  page: number,
   limit: number,
   topic_id: number,
 ) => {
@@ -20,7 +20,7 @@ export const getDiscussionsByTopicId = (
     `/topic/${topic_id}/discussions`,
     {
       params: {
-        last,
+        page,
         limit,
       },
     },

@@ -1,18 +1,18 @@
 <template>
   <MainContent
-    :loading="boardInfoLoading"
-    :error="boardInfoError"
+    :loading="boardLoading"
+    :error="boardError"
     :title="$t('board.board')"
     @retry="loadBoardInfo"
   >
-    <PageTitle :title="boardInfo.name" />
+    <PageTitle :title="board.name" />
     <CommonDetail
-      :avatar-uri="boardInfo.avatar_uri"
-      :name="boardInfo.name"
-      :introduction="boardInfo.description"
+      :avatar-uri="board.avatar_uri"
+      :name="board.name"
+      :introduction="board.description"
     >
       <div class="flex gap-2 text-base">
-        <span class="font-bold">{{ boardInfo.topic_count }}</span>
+        <span class="font-bold">{{ board.topic_count }}</span>
         <span class="text-muted">{{ $t('board.topic_count') }}</span>
       </div>
     </CommonDetail>
@@ -60,12 +60,12 @@ const { setTitle } = useTitle(t('board.board'))
 const slug = route.params.slug as string
 
 const {
-  loading: boardInfoLoading,
-  data: boardInfo,
-  error: boardInfoError,
+  loading: boardLoading,
+  data: board,
+  error: boardError,
   send: loadBoardInfo,
 } = useRequest(() => getBoardInfo(slug)).onSuccess(() => {
-  setTitle(boardInfo.value?.name)
+  setTitle(board.value?.name)
   loadTopics()
 })
 
@@ -80,7 +80,7 @@ const {
   append: true,
   initialPageSize: 10,
   immediate: false,
-  total: () => boardInfo.value.topic_count,
+  total: () => board.value.topic_count,
 })
 
 const nextPage = () => {
@@ -88,8 +88,8 @@ const nextPage = () => {
 }
 
 onActivated(() => {
-  if (boardInfo.value?.name) {
-    setTitle(boardInfo.value.name)
+  if (board.value?.name) {
+    setTitle(board.value.name)
   }
 })
 </script>

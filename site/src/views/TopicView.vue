@@ -136,8 +136,6 @@ const { setTitle } = useTitle(t('topic.topic'))
 
 const topicId = Number(route.params.topic_id)
 
-let lastItemId = 0
-
 const {
   loading: topicLoading,
   data: topic,
@@ -181,20 +179,14 @@ const {
   send: loadDiscussions,
   insert: insertDiscussion,
 } = usePagination(
-  (page, limit) => getDiscussionsByTopicId(lastItemId, limit, topicId),
+  (page, limit) => getDiscussionsByTopicId(page, limit, topicId),
   {
     append: true,
     initialPageSize: 10,
     immediate: false,
+    total: () => topic.value.discussion_count,
   },
-).onSuccess(() => {
-  const items = discussions.value
-  if (!items || !items.length) {
-    return
-  }
-
-  lastItemId = items[items.length - 1].id
-})
+)
 
 const {
   loading: discussionPublishing,
@@ -205,7 +197,10 @@ const {
   { immediate: false },
 ).onSuccess(() => {
   if (discussion.value) {
-    insertDiscussion(discussion.value, lastItemId)
+    insertDiscussion(
+      discussion.value,
+      discussions.value[discussions.value.length - 1],
+    )
   }
   if (discussionEditor.value) {
     discussionEditor.value.editor?.commands.clearContent(true)

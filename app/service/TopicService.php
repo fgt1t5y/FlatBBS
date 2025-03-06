@@ -17,13 +17,13 @@ class TopicService
             ->get(['id', 'board_id', 'discussion_count', 'like_count', 'author_id', 'title', 'text', 'created_at']);
     }
 
-    public function getDiscussionsById(int $id, int $lastId, int $limit)
+    public function getDiscussions(int $topicId, int $page, int $limit)
     {
-        return Topic::find($id)
+        return Topic::find($topicId)
             ->discussions()
+            ->orderBy('updated_at')
             ->limit(min($limit, 50))
-            ->where('id', '>', $lastId)
-            ->orderBy('created_at')
+            ->offset(($page - 1) * $limit)
             ->get();
     }
 
@@ -43,10 +43,7 @@ class TopicService
 
     public function getTopicDetail(int $topicId)
     {
-        return Topic::find(
-            $topicId,
-            ['id', 'board_id', 'author_id', 'discussion_count', 'like_count', 'title', 'content', 'created_at']
-        );
+        return Topic::find($topicId);
     }
 
     public function toggleLike(int $topicId, int $userId): int

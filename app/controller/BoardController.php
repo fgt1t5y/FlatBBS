@@ -33,7 +33,7 @@ class BoardController
         $limit = $request->get('limit');
 
         return ok(
-            $this->board->getTopicsBySlug($slug, $page, $limit)
+            $this->board->getTopics($slug, $page, $limit)
         );
     }
 }

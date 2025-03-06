@@ -16,10 +16,9 @@ class BoardService
         return Board::where('slug', $value)->first();
     }
 
-    public function getTopicsBySlug(string $slug, int $page, int $limit)
+    public function getTopics(string $slug, int $page, int $limit)
     {
         return Board::where('slug', $slug)
-            ->firstOrFail()
             ->topics()
             ->orderByDesc('last_reply_at')
             ->limit(min($limit, 50))

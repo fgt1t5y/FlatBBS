@@ -26,13 +26,10 @@ class TopicController
         );
     }
 
-    public function discussions(Request $request, int $topicId)
+    public function discussions(int $topicId, int $page, int $limit)
     {
-        $lastId = $request->get('last');
-        $limit = $request->get('limit');
-
         return ok(
-            $this->topic->getDiscussionsById($topicId, $lastId, $limit)
+            $this->topic->getDiscussions($topicId, $page, $limit)
         );
     }
 
