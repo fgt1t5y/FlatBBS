@@ -25,25 +25,14 @@
       :title="$t(`editor.tool.${tool.name}`)"
       @click="tool.onClick"
     >
-      <component :is="tool.icon" class="size-6" />
+      <i :class="tool.icon"></i>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, type Component } from 'vue'
-import {
-  H1,
-  H2,
-  Bold,
-  Italic,
-  List,
-  ListNumbers,
-  Quote,
-  Photo,
-  ArrowBackUp,
-  ArrowForwardUp,
-} from '@vicons/tabler'
+import { ref } from 'vue'
+
 import { isMobile } from '@/utils'
 import { uploadImage } from '@/services'
 
@@ -59,7 +48,7 @@ interface EditorToolbarProps {
 
 interface EditorTools {
   name: string
-  icon: Component
+  icon: string
   onClick: any
   isActive: () => boolean
   enable: () => boolean
@@ -86,7 +75,7 @@ const uploadAndInsertImage = async () => {
 const editorTools = [
   {
     name: 'heading_1',
-    icon: H1,
+    icon: 'icon-2xl ti ti-h-1',
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 1 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 1 }),
@@ -94,7 +83,7 @@ const editorTools = [
   },
   {
     name: 'heading_2',
-    icon: H2,
+    icon: 'icon-2xl ti ti-h-2',
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 2 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 2 }),
@@ -102,56 +91,56 @@ const editorTools = [
   },
   {
     name: 'bold',
-    icon: Bold,
+    icon: 'icon-2xl ti ti-bold',
     onClick: () => props?.editor.chain().focus().toggleBold().run(),
     isActive: () => props?.editor.isActive('bold'),
     enable: () => true,
   },
   {
     name: 'italic',
-    icon: Italic,
+    icon: 'icon-2xl ti ti-italic',
     onClick: () => props?.editor.chain().focus().toggleItalic().run(),
     isActive: () => props?.editor.isActive('italic'),
     enable: () => true,
   },
   {
     name: 'bullet_list',
-    icon: List,
+    icon: 'icon-2xl ti ti-list',
     onClick: () => props?.editor.chain().focus().toggleBulletList().run(),
     isActive: () => props?.editor.isActive('bulletList'),
     enable: () => true,
   },
   {
     name: 'ordered_list',
-    icon: ListNumbers,
+    icon: 'icon-2xl ti ti-list-numbers',
     onClick: () => props?.editor.chain().focus().toggleOrderedList().run(),
     isActive: () => props?.editor.isActive('orderedList'),
     enable: () => true,
   },
   {
     name: 'blockquote',
-    icon: Quote,
+    icon: 'icon-2xl ti ti-blockquote',
     onClick: () => props?.editor.chain().focus().toggleBlockquote().run(),
     isActive: () => props?.editor.isActive('blockquote'),
     enable: () => true,
   },
   {
     name: 'image',
-    icon: Photo,
+    icon: 'icon-2xl ti ti-h-1',
     onClick: () => imageInput.value!.click(),
     isActive: () => false,
     enable: () => true,
   },
   {
     name: 'undo',
-    icon: ArrowBackUp,
+    icon: 'icon-2xl ti ti-arrow-back-up',
     onClick: () => props?.editor.chain().focus().undo().run(),
     isActive: () => false,
     enable: () => props.editor.can().undo(),
   },
   {
     name: 'redo',
-    icon: ArrowForwardUp,
+    icon: 'icon-2xl ti ti-arrow-forward-up',
     onClick: () => props?.editor.chain().focus().redo().run(),
     isActive: () => false,
     enable: () => props.editor.can().redo(),

@@ -445,6 +445,26 @@
   .shadow-full {
     box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
   }
+
+  .icon {
+    @apply text-xl;
+  }
+
+  .icon-2xl {
+    @apply text-2xl;
+  }
+
+  .icon-3xl {
+    @apply text-3xl;
+  }
+
+  .icon-4xl {
+    @apply text-4xl;
+  }
+
+  .icon-5xl {
+    @apply text-5xl;
+  }
 }
 
 /** Editor */
