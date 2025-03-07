@@ -8,7 +8,7 @@
       avatar-rounded
     >
       <div v-if="user.allow_login === 0" class="flex gap-2 text-muted">
-        <CircleOff class="size-5" />
+        <i class="icon ti ti-ban"></i>
         <span>{{ $t('message.this_user_has_been_banned') }}</span>
       </div>
     </CommonDetail>
@@ -45,7 +45,6 @@ import { useRequest } from 'alova/client'
 import { onActivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { CircleOff } from '@vicons/tabler'
 
 const route = useRoute()
 const { t } = useI18n()

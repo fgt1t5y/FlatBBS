@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import '@/style/theme.css';
+import '@/style/tabler-icons.css';
 import 'dayjs/locale/zh-cn';
 import App from './App.vue';
 import router from './router';

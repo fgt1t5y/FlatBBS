@@ -1,7 +1,7 @@
 <template>
   <div class="my-6 empty:my-0">
     <div v-if="loading" class="flex justify-center">
-      <Loader class="size-12 animate-spin" />
+      <i class="icon-5xl ti ti-loader animate-spin"></i>
     </div>
     <div
       v-if="error && !loading"
@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { Loader } from '@vicons/tabler'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 

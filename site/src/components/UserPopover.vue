@@ -9,7 +9,7 @@
     <template #body>
       <div class="p-3" style="max-width: 400px">
         <div v-if="loading" class="flex justify-center">
-          <Loader class="size-12 animate-spin" />
+          <i class="icon-5xl ti ti-loader animate-spin"></i>
         </div>
         <SimpleUserInfo v-else :user="user" show-description />
       </div>
@@ -21,7 +21,6 @@
 import { getUserDetailByUsername } from '@/services'
 import { useRequest } from 'alova/client'
 import { ref } from 'vue'
-import { Loader } from '@vicons/tabler'
 import SimpleUserInfo from './SimpleUserInfo.vue'
 import Popover from './Popover.vue'
 
