@@ -75,7 +75,7 @@
         />
         <div class="grow">
           <TiptapEditor
-            ref="discussionEditor"
+            ref="discussionEditorRef"
             v-model:text="discussionEditorText"
             v-model:html="discussionEditorContent"
           />
@@ -114,7 +114,7 @@ import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { usePagination, useRequest } from 'alova/client'
 import { useTitle } from '@/utils'
 import { useI18n } from 'vue-i18n'
-import { onActivated, ref } from 'vue'
+import { onActivated, ref, useTemplateRef } from 'vue'
 import { useMessage, useUserStore } from '@/stores'
 import Avatar from '@/components/Avatar.vue'
 import TiptapEditor from '@/components/TiptapEditor.vue'
@@ -127,9 +127,9 @@ const user = useUserStore()
 const ms = useMessage()
 const isTopicLiked = ref<boolean>(false)
 const currentLikeCount = ref<number>(0)
-const discussionEditor = ref<InstanceType<typeof TiptapEditor>>()
 const discussionEditorText = ref<string>('')
 const discussionEditorContent = ref<string>('')
+const discussionEditor = useTemplateRef('discussionEditorRef')
 const { t } = useI18n()
 const { setTitle } = useTitle(t('topic.topic'))
 

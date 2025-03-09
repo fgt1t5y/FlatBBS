@@ -7,7 +7,7 @@
     >
       <span class="font-bold">{{ $t('action.crop_avatar') }}</span>
       <Cropper
-        ref="cropper"
+        ref="cropperRef"
         :height="320"
         :width="320"
         :image="avatarFile"
@@ -58,7 +58,7 @@ import PageTitle from '@/components/PageTitle.vue'
 import Avatar from '@/components/Avatar.vue'
 import Cropper from '@/components/Cropper.vue'
 import { useMessage, useUserStore } from '@/stores'
-import { ref } from 'vue'
+import { ref, useTemplateRef } from 'vue'
 import { modifyUserAvatar } from '@/services'
 import { blobToFile } from '@/utils'
 import { useI18n } from 'vue-i18n'
@@ -72,7 +72,7 @@ const { t } = useI18n()
 const isCropping = ref<boolean>(false)
 const avatarFile = ref<File>()
 const avatarInputRef = ref<HTMLInputElement>()
-const cropper = ref<InstanceType<typeof Cropper>>()
+const cropper = useTemplateRef('cropperRef')
 
 const { loading: uploading, send } = useRequest(
   (file: File) => modifyUserAvatar(file),
