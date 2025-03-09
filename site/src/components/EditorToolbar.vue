@@ -1,19 +1,5 @@
 <template>
-  <div
-    :class="{
-      'bg-content flex gap-2 z-30': true,
-      'sticky top-navbar py-3': !isMobile,
-      'fixed left-0 bottom-0 w-full overflow-scroll p-3': isMobile,
-    }"
-  >
-    <input
-      ref="imageInput"
-      type="file"
-      name="avatar"
-      accept=".jpg,.png,.jpeg,.gif"
-      style="display: none"
-      @change="uploadAndInsertImage"
-    />
+  <div class="editor-toolbar">
     <button
       v-for="(tool, index) in editorTools"
       :key="index"
@@ -31,11 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import { isMobile } from '@/utils'
-import { uploadImage } from '@/services'
-
 import type { Editor } from '@tiptap/vue-3'
 
 defineOptions({
@@ -55,27 +36,11 @@ interface EditorTools {
 }
 
 const props = defineProps<EditorToolbarProps>()
-const imageInput = ref<HTMLInputElement>()
-
-const uploadAndInsertImage = async () => {
-  if (!imageInput.value?.files?.length) {
-    return
-  }
-
-  const image = imageInput.value.files[0]
-  const imageUri = await uploadImage(image)
-
-  if (imageUri) {
-    props?.editor.commands.setImage({
-      src: imageUri,
-    })
-  }
-}
 
 const editorTools = [
   {
     name: 'heading_1',
-    icon: 'icon-2xl ti ti-h-1',
+    icon: 'ti ti-h-1',
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 1 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 1 }),
@@ -83,7 +48,7 @@ const editorTools = [
   },
   {
     name: 'heading_2',
-    icon: 'icon-2xl ti ti-h-2',
+    icon: 'ti ti-h-2',
     onClick: () =>
       props?.editor.chain().focus().toggleHeading({ level: 2 }).run(),
     isActive: () => props?.editor.isActive('heading', { level: 2 }),
@@ -91,56 +56,56 @@ const editorTools = [
   },
   {
     name: 'bold',
-    icon: 'icon-2xl ti ti-bold',
+    icon: 'ti ti-bold',
     onClick: () => props?.editor.chain().focus().toggleBold().run(),
     isActive: () => props?.editor.isActive('bold'),
     enable: () => true,
   },
   {
     name: 'italic',
-    icon: 'icon-2xl ti ti-italic',
+    icon: 'ti ti-italic',
     onClick: () => props?.editor.chain().focus().toggleItalic().run(),
     isActive: () => props?.editor.isActive('italic'),
     enable: () => true,
   },
   {
     name: 'bullet_list',
-    icon: 'icon-2xl ti ti-list',
+    icon: 'ti ti-list',
     onClick: () => props?.editor.chain().focus().toggleBulletList().run(),
     isActive: () => props?.editor.isActive('bulletList'),
     enable: () => true,
   },
   {
     name: 'ordered_list',
-    icon: 'icon-2xl ti ti-list-numbers',
+    icon: 'ti ti-list-numbers',
     onClick: () => props?.editor.chain().focus().toggleOrderedList().run(),
     isActive: () => props?.editor.isActive('orderedList'),
     enable: () => true,
   },
   {
     name: 'blockquote',
-    icon: 'icon-2xl ti ti-blockquote',
+    icon: 'ti ti-blockquote',
     onClick: () => props?.editor.chain().focus().toggleBlockquote().run(),
     isActive: () => props?.editor.isActive('blockquote'),
     enable: () => true,
   },
-  {
-    name: 'image',
-    icon: 'icon-2xl ti ti-h-1',
-    onClick: () => imageInput.value!.click(),
-    isActive: () => false,
-    enable: () => true,
-  },
+  // {
+  //   name: 'image',
+  //   icon: 'ti ti-h-1',
+  //   onClick: () => imageInput.value!.click(),
+  //   isActive: () => false,
+  //   enable: () => true,
+  // },
   {
     name: 'undo',
-    icon: 'icon-2xl ti ti-arrow-back-up',
+    icon: 'ti ti-arrow-back-up',
     onClick: () => props?.editor.chain().focus().undo().run(),
     isActive: () => false,
     enable: () => props.editor.can().undo(),
   },
   {
     name: 'redo',
-    icon: 'icon-2xl ti ti-arrow-forward-up',
+    icon: 'ti ti-arrow-forward-up',
     onClick: () => props?.editor.chain().focus().redo().run(),
     isActive: () => false,
     enable: () => props.editor.can().redo(),

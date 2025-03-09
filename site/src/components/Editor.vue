@@ -13,11 +13,15 @@ import { onBeforeUnmount } from 'vue'
 import EditorToolbar from './EditorToolbar.vue'
 import { useI18n } from 'vue-i18n'
 
-interface TiptapEditorProps {
+defineOptions({
+  name: 'Editor',
+})
+
+interface EditorProps {
   showToolbar?: boolean
 }
 
-const props = defineProps<TiptapEditorProps>()
+const props = defineProps<EditorProps>()
 
 const htmlValue = defineModel<string>('html', { default: '<p></p>' })
 const textValue = defineModel<string>('text', { default: '' })

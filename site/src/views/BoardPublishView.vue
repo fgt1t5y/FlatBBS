@@ -26,7 +26,7 @@
       />
     </div>
     <div class="p-3 flex flex-col border-bt">
-      <TiptapEditor
+      <Editor
         v-model:text="topicDraft.text"
         v-model:html="topicDraft.content"
         show-toolbar
@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import TiptapEditor from '@/components/TiptapEditor.vue'
+import Editor from '@/components/Editor.vue'
 import { useRequest } from 'alova/client'
 import { getBoardInfo, publishTopic } from '@/services'
 import { onActivated, ref } from 'vue'

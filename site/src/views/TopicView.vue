@@ -74,7 +74,7 @@
           rounded
         />
         <div class="grow">
-          <TiptapEditor
+          <Editor
             ref="discussionEditorRef"
             v-model:text="discussionEditorText"
             v-model:html="discussionEditorContent"
@@ -117,7 +117,7 @@ import { useI18n } from 'vue-i18n'
 import { onActivated, ref, useTemplateRef } from 'vue'
 import { useMessage, useUserStore } from '@/stores'
 import Avatar from '@/components/Avatar.vue'
-import TiptapEditor from '@/components/TiptapEditor.vue'
+import Editor from '@/components/Editor.vue'
 import RelativeTime from '@/components/RelativeTime.vue'
 import ContentRenderer from '@/components/ContentRenderer.vue'
 import UserPopover from '@/components/UserPopover.vue'

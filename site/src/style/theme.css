@@ -327,6 +327,22 @@
   .cropper-mask {
     @apply z-10 rounded-full shadow-full absolute border border-white border-dashed box-border inset-0 touch-none;
   }
+
+  .editor-toolbar {
+    @apply bg-content flex gap-2 z-30 max-sm:editor-toolbar-mobile lg:editor-toolbar-desktop;
+  }
+
+  .editor-toolbar-desktop {
+    @apply sticky top-navbar mb-3;
+  }
+
+  .editor-toolbar-mobile {
+    @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content;
+  }
+
+  .editor-toolbar i {
+    @apply text-2xl;
+  }
 }
 
 @layer utilities {
