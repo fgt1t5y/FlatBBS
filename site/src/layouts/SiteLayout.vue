@@ -3,7 +3,7 @@
     <GlobalSidebar v-if="isDesktop" class="site-layout-sidebar" />
     <RouterView v-slot="{ Component, route }">
       <KeepAlive :max="10">
-        <component :is="Component" :key="route.fullPath" />
+        <component :is="Component" :key="route.path" />
       </KeepAlive>
     </RouterView>
   </div>
