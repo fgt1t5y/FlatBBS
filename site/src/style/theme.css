@@ -1,8 +1,456 @@
 /* FlatBBS Color Scheme */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility btn {
+  @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
+}
+
+@utility btn-primary {
+  @apply rounded-sm text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 disabled:hover:opacity-60;
+}
+
+@utility btn-air {
+  @apply rounded-sm text-black bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white;
+}
+
+@utility btn-text {
+  @apply rounded-sm text-content hover:text-primary disabled:opacity-50;
+}
+
+@utility btn-text-active {
+  @apply text-primary outline-2 outline-primary;
+}
+
+@utility btn-sm {
+  @apply h-7 px-3;
+}
+
+@utility btn-md {
+  @apply h-10 px-6;
+}
+
+@utility form {
+  @apply flex flex-col;
+}
+
+@utility form-item {
+  @apply flex flex-col gap-1;
+}
+
+@utility form-item-required {
+  @apply text-danger;
+}
+
+@utility form-item-error {
+  @apply text-danger;
+}
+
+@utility form-default-submit {
+  @apply mt-3;
+}
+
+@utility input {
+  @apply border outline-transparent outline-2 border-form rounded-sm h-10 px-2 flex focus-within:border-transparent focus-within:outline-primary;
+}
+
+@utility input-status-error {
+  @apply border-red-600!;
+}
+
+@utility input-widget {
+  @apply grow text-base;
+}
+
+@utility navbar {
+  @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center h-navbar;
+}
+
+@utility navbar-inner {
+  @apply flex justify-between items-center grow px-3 w-page;
+}
+
+@utility navbar-user-panel {
+  @apply w-[350px] max-w-full;
+}
+
+@utility mobile-navbar {
+  @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
+}
+
+@utility route {
+  &.router-link-exact-active {
+    @apply text-primary;
+  }
+}
+
+@utility router-link-exact-active {
+  &.route {
+    @apply text-primary;
+  }
+
+  &.menu-item {
+    @apply bg-primary-600 hover:bg-primary-600 text-white;
+  }
+
+  .tab-item & {
+    @apply text-primary;
+  }
+
+  .tab-item &::after {
+    @apply bg-primary-600 absolute bottom-0 left-0 h-1 w-full;
+
+    content: '';
+  }
+}
+
+@utility menu-item {
+  @apply flex items-center gap-2 btn-md px-3 rounded-sm hoverable;
+
+  &.router-link-exact-active {
+    @apply bg-primary-600 hover:bg-primary-600 text-white;
+  }
+}
+
+@utility route-menu {
+  @apply flex flex-col;
+}
+
+@utility route-menu-item {
+  @apply p-3 w-full hoverable;
+}
+
+@utility page-title {
+  @apply sticky top-0 p-3 border-bt bg-content flex items-center justify-between z-20 md:static;
+}
+
+@utility site-layout {
+  @apply flex w-page mx-auto;
+}
+
+@utility site-layout-sidebar {
+  @apply w-global-sidebar shrink-0 border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
+}
+
+@utility site-layout-content {
+  @apply grow;
+}
+
+@utility sidebar {
+  @apply py-3;
+}
+
+@utility sidebar-menu-item {
+  @apply rounded-none;
+}
+
+@utility main-content {
+  @apply flex gap-3;
+}
+
+@utility main-content-body {
+  @apply relative grow mb-14;
+}
+
+@utility main-content-aside {
+  @apply min-w-[250px];
+}
+
+@utility main-content-aside-inner {
+  @apply sticky top-navbar flex flex-col gap-2 py-3;
+}
+
+@utility aside-panel {
+  @apply bg-content border border-content rounded-sm;
+}
+
+@utility aside-panel-header {
+  @apply p-3 text-base border-bt;
+}
+
+@utility aside-panel-body {
+  @apply p-3;
+}
+
+@utility modal {
+  @apply h-full w-full fixed z-40 top-0 transition-all;
+}
+
+@utility modal-wrapper {
+  @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
+}
+
+@utility modal-inner {
+  @apply bg-content flex flex-col rounded-sm shadow-sm;
+}
+
+@utility modal-header {
+  @apply p-3 border-bt flex justify-between;
+}
+
+@utility modal-body {
+  @apply p-3;
+}
+
+@utility tabs {
+  @apply px-3 border-bt flex gap-2;
+}
+
+@utility tab-item {
+  @apply text-base py-3 relative;
+
+  &:hover {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  &:focus-within {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  & .router-link-exact-active {
+    @apply text-primary;
+  }
+
+  & .router-link-exact-active::after {
+    @apply bg-primary-600 absolute bottom-0 left-0 h-1 w-full;
+
+    content: '';
+  }
+}
+
+@utility message-container {
+  @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
+}
+
+@utility message-item {
+  @apply rounded-sm p-3 shadow-md text-center min-w-[150px];
+}
+
+@utility item {
+  &:not(:last-child) {
+    @apply border-bt;
+  }
+}
+
+@utility html-rendered {
+  @apply text-base;
+}
+
+@utility popover {
+  @apply shadow-lg rounded-sm bg-content border border-content;
+}
+
+@utility tooltip {
+  @apply p-3;
+}
+
+@utility visit-log {
+  @apply item p-3;
+}
+
+@utility visit-log-info {
+  @apply flex gap-1;
+}
+
+@utility visit-log-title {
+  @apply text-lg;
+}
+
+@utility topic-visit-log {
+  @apply flex flex-col gap-1;
+}
+
+@utility user-visit-log {
+  @apply flex flex-col gap-1;
+}
+
+@utility cropper {
+  @apply flex flex-col gap-2;
+}
+
+@utility cropper-area {
+  @apply relative cursor-move select-none;
+}
+
+@utility cropper-wrapper {
+  @apply absolute overflow-hidden z-0 top-0 w-full h-full;
+}
+
+@utility cropper-mask {
+  @apply z-10 rounded-full shadow-full absolute border border-white border-dashed box-border inset-0 touch-none;
+}
+
+@utility editor-toolbar {
+  @apply bg-content flex gap-2 z-30 max-sm:editor-toolbar-mobile lg:editor-toolbar-desktop;
+
+  & i {
+    @apply text-2xl;
+  }
+}
+
+@utility editor-toolbar-desktop {
+  @apply sticky top-navbar mb-3;
+}
+
+@utility editor-toolbar-mobile {
+  @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content;
+}
+
+@utility text-primary {
+  @apply text-indigo-600 dark:text-indigo-400;
+}
+
+@utility text-danger {
+  @apply text-red-600;
+}
+
+@utility text-content {
+  @apply text-gray-900 dark:text-gray-300;
+}
+
+@utility bg-primary-50 {
+  @apply bg-indigo-50;
+}
+
+@utility bg-primary-100 {
+  @apply bg-indigo-100;
+}
+
+@utility bg-primary-200 {
+  @apply bg-indigo-200;
+}
+
+@utility bg-primary-300 {
+  @apply bg-indigo-300;
+}
+
+@utility bg-primary-400 {
+  @apply bg-indigo-400;
+}
+
+@utility bg-primary-500 {
+  @apply bg-indigo-500;
+}
+
+@utility bg-primary-600 {
+  @apply bg-indigo-600;
+}
+
+@utility bg-primary-700 {
+  @apply bg-indigo-700;
+}
+
+@utility bg-primary-800 {
+  @apply bg-indigo-800;
+}
+
+@utility bg-primary-900 {
+  @apply bg-indigo-900;
+}
+
+@utility bg-primary-950 {
+  @apply bg-indigo-950;
+}
+
+@utility bg-content {
+  @apply bg-white dark:bg-[#16181C];
+}
+
+@utility border-primary {
+  @apply border-indigo-600;
+}
+
+@utility border-content {
+  @apply border-gray-300 dark:border-gray-700;
+}
+
+@utility border-form {
+  @apply border-gray-500 dark:border-gray-700;
+}
+
+@utility outline-primary {
+  @apply outline-indigo-600;
+}
+
+@utility text-muted {
+  @apply text-gray-500 dark:text-gray-400;
+}
+
+@utility border-bt {
+  @apply border-b border-content;
+}
+
+@utility border-tp {
+  @apply border-t border-content;
+}
+
+@utility w-page {
+  @apply max-w-[1260px];
+}
+
+@utility w-global-sidebar {
+  @apply w-[250px];
+}
+
+@utility h-screen-without-navbar {
+  height: calc(100vh - 53px);
+}
+
+@utility h-navbar {
+  @apply h-[52px];
+}
+
+@utility top-navbar {
+  @apply top-[52px];
+}
+
+@utility hoverable {
+  @apply hover:bg-gray-200 dark:hover:bg-gray-800;
+}
+
+@utility shadow-full {
+  box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
+}
+
+@utility icon {
+  @apply text-xl;
+}
+
+@utility icon-2xl {
+  @apply text-2xl;
+}
+
+@utility icon-3xl {
+  @apply text-3xl;
+}
+
+@utility icon-4xl {
+  @apply text-4xl;
+}
+
+@utility icon-5xl {
+  @apply text-5xl;
+}
 
 @layer base {
   h1 {
@@ -58,7 +506,7 @@
   }
 
   input:focus-visible {
-    @apply outline-none;
+    @apply outline-hidden;
   }
 
   input,
@@ -73,413 +521,6 @@
 
   [role='tooltip'] {
     z-index: 100;
-  }
-}
-
-@layer components {
-  .btn {
-    @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
-  }
-
-  .btn-primary {
-    @apply rounded text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-60 disabled:hover:opacity-60;
-  }
-
-  .btn-air {
-    @apply rounded text-black bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800 dark:text-white;
-  }
-
-  .btn-text {
-    @apply rounded text-content hover:text-primary disabled:opacity-50;
-  }
-
-  .btn-text-active {
-    @apply text-primary outline outline-2 outline-primary;
-  }
-
-  .btn-sm {
-    @apply h-7 px-3;
-  }
-
-  .btn-md {
-    @apply h-10 px-6;
-  }
-
-  .form {
-    @apply flex flex-col;
-  }
-
-  .form-item {
-    @apply flex flex-col gap-1;
-  }
-
-  .form-item-required {
-    @apply text-danger;
-  }
-
-  .form-item-error {
-    @apply text-danger;
-  }
-
-  .form-default-submit {
-    @apply mt-3;
-  }
-
-  .input {
-    @apply border outline outline-transparent outline-2 border-form rounded h-10 px-2 flex focus-within:border-transparent focus-within:outline-primary;
-  }
-
-  .input-status-error {
-    @apply !border-red-600;
-  }
-
-  .input-widget {
-    @apply grow text-base;
-  }
-
-  .navbar {
-    @apply z-10 flex items-center sticky top-0 bg-content border-bt justify-center h-navbar;
-  }
-
-  .navbar-inner {
-    @apply flex justify-between items-center grow px-3 w-page;
-  }
-
-  .navbar-user-panel {
-    @apply w-[350px] max-w-full;
-  }
-
-  .mobile-navbar {
-    @apply border-tp bg-content h-navbar fixed left-0 right-0 bottom-0 flex justify-around items-center;
-  }
-
-  .route.router-link-exact-active {
-    @apply text-primary;
-  }
-
-  .menu-item {
-    @apply flex items-center gap-2 btn-md px-3 rounded hoverable;
-  }
-
-  .menu-item.router-link-exact-active {
-    @apply bg-primary-600 hover:bg-primary-600 text-white;
-  }
-
-  .route-menu {
-    @apply flex flex-col;
-  }
-
-  .route-menu-item {
-    @apply p-3 w-full hoverable;
-  }
-
-  .page-title {
-    @apply sticky top-0 p-3 border-bt bg-content flex items-center justify-between z-20 md:static;
-  }
-
-  .site-layout {
-    @apply flex w-page mx-auto;
-  }
-
-  .site-layout-sidebar {
-    @apply w-global-sidebar shrink-0 border-r border-content h-screen-without-navbar sticky top-navbar bg-content;
-  }
-
-  .site-layout-content {
-    @apply flex-grow;
-  }
-
-  .sidebar {
-    @apply py-3;
-  }
-
-  .sidebar-menu-item {
-    @apply rounded-none;
-  }
-
-  .main-content {
-    @apply flex gap-3;
-  }
-
-  .main-content-body {
-    @apply relative grow mb-14;
-  }
-
-  .main-content-aside {
-    @apply min-w-[250px];
-  }
-
-  .main-content-aside-inner {
-    @apply sticky top-navbar flex flex-col gap-2 py-3;
-  }
-
-  .aside-panel {
-    @apply bg-content border border-content rounded;
-  }
-
-  .aside-panel-header {
-    @apply p-3 text-base border-bt;
-  }
-
-  .aside-panel-body {
-    @apply p-3;
-  }
-
-  .modal {
-    @apply h-full w-full fixed z-40 top-0 transition-all;
-  }
-
-  .modal-wrapper {
-    @apply h-full w-full absolute flex flex-col items-center top-0 justify-center;
-  }
-
-  .modal-inner {
-    @apply bg-content flex flex-col rounded shadow;
-  }
-
-  .modal-header {
-    @apply p-3 border-bt flex justify-between;
-  }
-
-  .modal-body {
-    @apply p-3;
-  }
-
-  .tabs {
-    @apply px-3 border-bt flex gap-2;
-  }
-
-  .tab-item {
-    @apply text-base py-3 relative;
-  }
-
-  .tab-item:hover,
-  .tab-item:focus-within {
-    @apply bg-gray-100 dark:bg-gray-800;
-  }
-
-  .tab-item .router-link-exact-active {
-    @apply text-primary;
-  }
-
-  .tab-item .router-link-exact-active::after {
-    @apply bg-primary-600 absolute bottom-0 left-0 h-1 w-full;
-
-    content: '';
-  }
-
-  .message-container {
-    @apply fixed top-6 z-50 w-full flex flex-col gap-2 items-center h-0 text-black;
-  }
-
-  .message-item {
-    @apply rounded p-3 shadow-md text-center min-w-[150px];
-  }
-
-  .item:not(:last-child) {
-    @apply border-bt;
-  }
-
-  .html-rendered {
-    @apply text-base;
-  }
-
-  .popover {
-    @apply shadow-lg rounded bg-content border border-content;
-  }
-
-  .tooltip {
-    @apply p-3;
-  }
-
-  .visit-log {
-    @apply item p-3;
-  }
-
-  .visit-log-info {
-    @apply flex gap-1;
-  }
-
-  .visit-log-title {
-    @apply text-lg;
-  }
-
-  .topic-visit-log {
-    @apply flex flex-col gap-1;
-  }
-
-  .user-visit-log {
-    @apply flex flex-col gap-1;
-  }
-
-  .cropper {
-    @apply flex flex-col gap-2;
-  }
-
-  .cropper-area {
-    @apply relative cursor-move select-none;
-  }
-
-  .cropper-wrapper {
-    @apply absolute overflow-hidden z-0 top-0 w-full h-full;
-  }
-
-  .cropper-mask {
-    @apply z-10 rounded-full shadow-full absolute border border-white border-dashed box-border inset-0 touch-none;
-  }
-
-  .editor-toolbar {
-    @apply bg-content flex gap-2 z-30 max-sm:editor-toolbar-mobile lg:editor-toolbar-desktop;
-  }
-
-  .editor-toolbar-desktop {
-    @apply sticky top-navbar mb-3;
-  }
-
-  .editor-toolbar-mobile {
-    @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content;
-  }
-
-  .editor-toolbar i {
-    @apply text-2xl;
-  }
-}
-
-@layer utilities {
-  .text-primary {
-    @apply text-indigo-600 dark:text-indigo-400;
-  }
-
-  .text-danger {
-    @apply text-red-600;
-  }
-
-  .text-content {
-    @apply text-gray-900 dark:text-gray-300;
-  }
-
-  .bg-primary-50 {
-    @apply bg-indigo-50;
-  }
-
-  .bg-primary-100 {
-    @apply bg-indigo-100;
-  }
-
-  .bg-primary-200 {
-    @apply bg-indigo-200;
-  }
-
-  .bg-primary-300 {
-    @apply bg-indigo-300;
-  }
-
-  .bg-primary-400 {
-    @apply bg-indigo-400;
-  }
-
-  .bg-primary-500 {
-    @apply bg-indigo-500;
-  }
-
-  .bg-primary-600 {
-    @apply bg-indigo-600;
-  }
-
-  .bg-primary-700 {
-    @apply bg-indigo-700;
-  }
-
-  .bg-primary-800 {
-    @apply bg-indigo-800;
-  }
-
-  .bg-primary-900 {
-    @apply bg-indigo-900;
-  }
-
-  .bg-primary-950 {
-    @apply bg-indigo-950;
-  }
-
-  .bg-content {
-    @apply bg-white dark:bg-[#16181C];
-  }
-
-  .border-primary {
-    @apply border-indigo-600;
-  }
-
-  .border-content {
-    @apply border-gray-300 dark:border-gray-700;
-  }
-
-  .border-form {
-    @apply border-gray-500 dark:border-gray-700;
-  }
-
-  .outline-primary {
-    @apply outline-indigo-600;
-  }
-
-  .text-muted {
-    @apply text-gray-500 dark:text-gray-400;
-  }
-
-  .border-bt {
-    @apply border-b border-content;
-  }
-
-  .border-tp {
-    @apply border-t border-content;
-  }
-
-  .w-page {
-    @apply max-w-[1260px];
-  }
-
-  .w-global-sidebar {
-    @apply w-[250px];
-  }
-
-  .h-screen-without-navbar {
-    height: calc(100vh - 53px);
-  }
-
-  .h-navbar {
-    @apply h-[52px];
-  }
-
-  .top-navbar {
-    @apply top-[52px];
-  }
-
-  .hoverable {
-    @apply hover:bg-gray-200 dark:hover:bg-gray-800;
-  }
-
-  .shadow-full {
-    box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.3);
-  }
-
-  .icon {
-    @apply text-xl;
-  }
-
-  .icon-2xl {
-    @apply text-2xl;
-  }
-
-  .icon-3xl {
-    @apply text-3xl;
-  }
-
-  .icon-4xl {
-    @apply text-4xl;
-  }
-
-  .icon-5xl {
-    @apply text-5xl;
   }
 }
 

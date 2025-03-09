@@ -1,6 +1,6 @@
 <template>
   <img
-    :class="{ 'rounded-full': rounded, rounded: !rounded }"
+    :class="{ 'rounded-full': rounded, 'rounded-sm': !rounded }"
     :src="src"
     :alt="alt || $t('avatar')"
   />
