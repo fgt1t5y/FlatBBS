@@ -43,9 +43,14 @@ class Request extends \Webman\Http\Request
         return $this->user;
     }
 
+    public function isLoggined()
+    {
+        return session()->has('id');
+    }
+
     public function assertLogin()
     {
-        if (!session()->has('id')) {
+        if (!$this->isLoggined()) {
             throw new UnauthorizedException;
         }
     }

@@ -29,12 +29,9 @@ class MeController
     #[Inject]
     protected UserVisitLogService $userVisitLog;
 
-    public function logs(Request $request)
+    public function logs(Request $request, int $page, int $limit)
     {
         $request->assertLogin();
-
-        $page = $request->get('page');
-        $limit = $request->get('limit');
 
         return ok($this->userVisitLog->getVisitLogs(
             $request->getUser(),

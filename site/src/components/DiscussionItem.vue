@@ -8,7 +8,7 @@
         }"
       >
         <Avatar
-          class="size-8 md:size-12"
+          class="user-avatar"
           :src="discussion.author.avatar_uri"
           rounded
         />

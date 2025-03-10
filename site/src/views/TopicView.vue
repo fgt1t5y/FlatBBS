@@ -11,7 +11,7 @@
             }"
           >
             <Avatar
-              class="size-8 md:size-12"
+              class="user-avatar"
               :src="topic.author.avatar_uri"
               rounded
             />
@@ -59,7 +59,7 @@
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="loadDiscussions" />
     <RequestPlaceholder
-      :loading="loading"
+      :loading="discussionsLoading"
       :error="error"
       @retry="loadDiscussions"
     />
@@ -69,7 +69,7 @@
       </div>
       <div v-if="user.isLogin" class="p-3 flex gap-2">
         <Avatar
-          class="size-8 md:size-12"
+          class="user-avatar"
           :src="user.info?.avatar_uri"
           rounded
         />
@@ -172,7 +172,7 @@ const { data: likeCount, send: likeOrUnlike } = useRequest(
 })
 
 const {
-  loading,
+  loading: discussionsLoading,
   data: discussions,
   isLastPage,
   error,

@@ -16,7 +16,7 @@ class BoardController
         return ok($this->board->getAllBoards());
     }
 
-    public function info(Request $request, string $boardSlug)
+    public function info(string $boardSlug)
     {
         $result = $this->board->getBoardInfo($boardSlug);
 
@@ -27,11 +27,8 @@ class BoardController
         return ok($result);
     }
 
-    public function topics(Request $request, string $boardSlug)
+    public function topics(string $boardSlug, int $page, int $limit)
     {
-        $page = $request->get('page');
-        $limit = $request->get('limit');
-
         return ok(
             $this->board->getTopics($boardSlug, $page, $limit)
         );

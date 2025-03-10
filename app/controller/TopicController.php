@@ -16,13 +16,10 @@ class TopicController
     #[Inject]
     protected UserVisitLogService $visitLog;
 
-    public function all(Request $request)
+    public function all(int $last, int $limit)
     {
-        $lastId = $request->get('last');
-        $limit = $request->get('limit');
-
         return ok(
-            $this->topic->getAllTopics($lastId, $limit)
+            $this->topic->getAllTopics($last, $limit)
         );
     }
 
@@ -63,10 +60,8 @@ class TopicController
     {
         $result = $this->topic->getTopicDetail($topicId);
 
-        $user = $request->getUser();
-
-        if (!$user->isGuest()) {
-            $this->visitLog->pushVisitLog($user, $result);
+        if ($request->isLoggined()) {
+            $this->visitLog->pushVisitLog($request->getUser(), $result);
         }
 
         if (!$result) {

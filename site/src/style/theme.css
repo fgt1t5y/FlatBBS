@@ -22,6 +22,9 @@
   }
 }
 
+/*
+ * Component
+ */
 @utility btn {
   @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
 }
@@ -316,6 +319,13 @@
   @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content;
 }
 
+@utility user-avatar {
+  @apply size-8 md:size-12;
+}
+
+/*
+ * Utility
+ */
 @utility text-primary {
   @apply text-indigo-600 dark:text-indigo-400;
 }

@@ -14,7 +14,7 @@ class UserController
     #[Inject]
     protected AuthService $auth;
 
-    public function info(Request $request, string $username)
+    public function info(string $username)
     {
         $result = $this->user->getUserByUsername($username);
 
@@ -25,23 +25,17 @@ class UserController
         return ok($result);
     }
 
-    public function topics(Request $request, string $username)
+    public function topics(string $username, int $last, int $limit)
     {
-        $lastId = $request->get('last');
-        $limit = $request->get('limit');
-
         return ok(
-            $this->user->getUserTopics($username, $lastId, $limit)
+            $this->user->getUserTopics($username, $last, $limit)
         );
     }
 
-    public function liked(Request $request, string $username)
+    public function liked(string $username, int $last, int $limit)
     {
-        $lastId = $request->get('last');
-        $limit = $request->get('limit');
-
         return ok(
-            $this->user->getLikedTopics($username, $lastId, $limit)
+            $this->user->getLikedTopics($username, $last, $limit)
         );
     }
 }
