@@ -63,7 +63,6 @@ import { modifyUserAvatar } from '@/services'
 import { blobToFile } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import { useRequest } from 'alova/client'
-import { userInfoChangeEvent } from '@/constants'
 
 const user = useUserStore()
 const ms = useMessage()
@@ -82,7 +81,7 @@ const { loading: uploading, send } = useRequest(
 )
   .onSuccess(() => {
     ms.success(t('message.upload_avatar_success'))
-    document.dispatchEvent(userInfoChangeEvent)
+    user.fetch()
     closeAvatarCrop()
   })
   .onError(() => {

@@ -25,18 +25,12 @@ export const useUserStore = defineStore('user', () => {
     return true;
   };
 
-  const _addListeners = () => {
-    // refetch user info when userInfoChange event is triggered
-    document.addEventListener('userInfoChange', fetch);
-  };
-
   const fetch = async () => {
     const response = await getSessionUserInfo();
 
     if (response && _verifyUser(response)) {
       isLogin.value = true;
       info.value = response;
-      _addListeners();
     } else {
       const ms = useMessage();
       // clearToken();

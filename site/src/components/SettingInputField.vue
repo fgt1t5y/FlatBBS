@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { modifyUserInfo } from '@/services'
-import { useMessage } from '@/stores'
+import { useMessage, useUserStore } from '@/stores'
 import { useI18n } from 'vue-i18n'
 
 defineOptions({
@@ -39,6 +39,7 @@ const props = withDefaults(defineProps<SettingInputFieldProps>(), {
 })
 const valueNow = ref<string>(props.inputValue)
 const isChanged = ref<boolean>(false)
+const user = useUserStore()
 const ms = useMessage()
 const { t } = useI18n()
 
@@ -51,6 +52,7 @@ const onConfirm = () => {
   modifyUserInfo(props.field, valueNow.value)
     .then(() => {
       ms.success(t('message.modify_profile_success'))
+      user.fetch()
       isChanged.value = false
     })
     .catch(() => {
@@ -62,13 +64,6 @@ watch(
   () => valueNow.value,
   (v) => {
     isChanged.value = props.inputValue !== v
-  },
-)
-
-watch(
-  () => props.inputValue,
-  (v) => {
-    isChanged.value = valueNow.value === v
   },
 )
 </script>
