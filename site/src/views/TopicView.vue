@@ -78,16 +78,17 @@
             ref="discussionEditorRef"
             v-model:text="discussionEditorText"
             v-model:html="discussionEditorContent"
+            show-toolbar
           />
         </div>
       </div>
       <div v-else class="p-3 text-center text-muted">
         {{ $t('message.login_for_publish_discussion') }}
       </div>
-      <div v-if="discussionEditorText" class="p-3 flex justify-end">
+      <div class="p-3 flex justify-end">
         <button
           class="btn-primary btn-md"
-          :disabled="discussionPublishing"
+          :disabled="discussionPublishing || discussionEditorText === ''"
           @click="handlePublishDiscussion"
         >
           {{ $t('discussion.publish') }}

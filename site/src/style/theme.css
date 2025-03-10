@@ -87,7 +87,7 @@
 }
 
 @utility navbar-inner {
-  @apply flex justify-between items-center grow px-3 w-page;
+  @apply flex justify-between items-center grow px-3;
 }
 
 @utility navbar-user-panel {
@@ -145,7 +145,7 @@
 }
 
 @utility site-layout {
-  @apply flex w-page mx-auto;
+  @apply flex mx-auto;
 }
 
 @utility site-layout-sidebar {
@@ -153,7 +153,7 @@
 }
 
 @utility site-layout-content {
-  @apply grow;
+  @apply grow w-page mx-auto;
 }
 
 @utility sidebar {
@@ -405,7 +405,7 @@
 }
 
 @utility w-page {
-  @apply max-w-[1260px];
+  @apply max-w-[1050px];
 }
 
 @utility w-global-sidebar {
@@ -498,15 +498,11 @@
   }
 
   button {
-    @apply whitespace-nowrap inline-flex justify-center items-center gap-1;
+    @apply whitespace-nowrap inline-flex justify-center items-center gap-1 cursor-pointer;
   }
 
   button:disabled {
     @apply cursor-not-allowed;
-  }
-
-  input:focus-visible {
-    @apply outline-hidden;
   }
 
   input,
@@ -544,7 +540,7 @@
 }
 
 .ProseMirror-selectednode {
-  @apply outline outline-2 outline-primary;
+  @apply outline-2 outline-primary;
 }
 
 /** Transitions */
