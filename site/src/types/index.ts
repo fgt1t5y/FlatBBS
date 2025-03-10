@@ -94,20 +94,20 @@ export interface Discussion {
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
 
-export interface IMessage {
+export interface Message {
   i: number;
   message: string;
   type?: 'info' | 'success' | 'error';
   time?: number;
 }
 
-export interface IRouteTab {
+export interface RouteTab {
   routeName: string;
   label: string;
   params: any;
 }
 
-export type IRouteMenuItem = IRouteTab;
+export type RouteMenuItem = RouteTab;
 
 export interface IFormContext {
   rules: Ref<Rules>;

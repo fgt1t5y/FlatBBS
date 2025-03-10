@@ -12,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import type { IRouteMenuItem } from '@/types'
+import type { RouteMenuItem } from '@/types'
 
 defineOptions({
   name: 'CommonRouteTabs',
 })
 
 interface CommonRouteTabsProps {
-  items: IRouteMenuItem[]
+  items: RouteMenuItem[]
 }
 
 const props = defineProps<CommonRouteTabsProps>()

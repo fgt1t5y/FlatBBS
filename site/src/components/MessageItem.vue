@@ -8,14 +8,14 @@
 import { computed, onBeforeMount, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { IMessage } from '@/types'
+import type { Message } from '@/types'
 
 defineOptions({
   name: 'MessageItem',
 })
 
 const props = defineProps<{
-  message: IMessage
+  message: Message
 }>()
 
 const emits = defineEmits<{

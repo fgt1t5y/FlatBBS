@@ -9,14 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import type { IRouteTab } from '@/types'
+import type { RouteTab } from '@/types'
 
 defineOptions({
   name: 'CommonRouteTabs',
 })
 
 interface CommonRouteTabsProps {
-  tabs: IRouteTab[]
+  tabs: RouteTab[]
 }
 
 const props = defineProps<CommonRouteTabsProps>()
