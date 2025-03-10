@@ -75,7 +75,9 @@
 
     "login_for_publish_discussion": "Please login for publish a discussion.",
 
-    "current_avatar": "Your current avatar"
+    "current_avatar": "Your current avatar",
+
+    "need_refresh_to_apply_setting": "Refresh page to apply settings"
   },
 
   "action": {
@@ -110,7 +112,9 @@
     "light": "Light Mode",
     "dark": "Dark Mode",
 
-    "language": "Language"
+    "language": "Language",
+
+    "timezone": "Timezone"
   },
 
   "exception": {

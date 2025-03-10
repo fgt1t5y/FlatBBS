@@ -1,13 +1,13 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { ref } from 'vue';
 
-import type { IMessage } from '@/types';
+import type { Message } from '@/types';
 
 export const useMessage = defineStore('message', () => {
   let index = 0;
-  const messages = ref<IMessage[]>([]);
+  const messages = ref<Message[]>([]);
 
-  const add = (option: IMessage) => {
+  const add = (option: Message) => {
     if (messages.value.length >= 16) {
       console.warn('Max message count is 16.');
       return;

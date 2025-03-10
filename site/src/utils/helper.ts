@@ -1,4 +1,3 @@
-import { config } from '@/global';
 import { useBreakpoints, breakpointsTailwind } from '@vueuse/core';
 import dayjs from 'dayjs';
 import Cookies from 'js-cookie';
@@ -48,7 +47,7 @@ export const blobToFile = (blob: Blob, fileName: string) => {
 };
 
 export const formatTime = (datetime: string) => {
-  const localTime = dayjs.utc(datetime).tz(config.timezone);
+  const localTime = dayjs.utc(datetime).tz();
   return [localTime.format('LLL'), localTime.fromNow()];
 };
 

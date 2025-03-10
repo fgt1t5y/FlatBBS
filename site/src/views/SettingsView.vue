@@ -63,6 +63,18 @@
           <option value="dark">{{ $t('settings.dark') }}</option>
         </select>
       </SettingItem>
+      <SettingItem
+        :title="$t('settings.timezone')"
+        :subtitle="$t('message.need_refresh_to_apply_setting')"
+      >
+        <select v-model="timezoneSwitcherValue" class="input">
+          <option
+            v-for="(timezone, location) in timezoneList"
+            :value="location"
+            v-text="timezone"
+          ></option>
+        </select>
+      </SettingItem>
     </SettingGroup>
   </MainContent>
 </template>
@@ -72,17 +84,26 @@ import SettingInputField from '@/components/SettingInputField.vue'
 import SettingItem from '@/components/SettingItem.vue'
 import SettingGroup from '@/components/SettingGroup.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { useTheme, useUserStore } from '@/stores'
+import { useTheme, useUserStore, useLocalSettings } from '@/stores'
 import { ref, watch } from 'vue'
 import MainContent from '@/components/MainContent.vue'
 import Avatar from '@/components/Avatar.vue'
 import { useI18n } from 'vue-i18n'
+import { timezoneList } from '@/constants'
 
 const user = useUserStore()
+const settings = useLocalSettings()
 const { locale, availableLocales } = useI18n()
 const { switchTo, theme } = useTheme()
 
 const themeSwitcherValue = ref(theme.value)
+const timezoneSwitcherValue = ref(settings.timezone)
 
 watch(() => themeSwitcherValue.value, switchTo)
+watch(
+  () => timezoneSwitcherValue.value,
+  (newTimezone) => {
+    settings.timezone = newTimezone
+  },
+)
 </script>

@@ -75,7 +75,9 @@
 
     "login_for_publish_discussion": "登录以发表讨论",
 
-    "current_avatar": "当前头像"
+    "current_avatar": "当前头像",
+
+    "need_refresh_to_apply_setting": "需要刷新页面来应用设置"
   },
 
   "action": {
@@ -111,7 +113,9 @@
     "light": "亮色模式",
     "dark": "暗色模式",
 
-    "language": "语言（Language）"
+    "language": "语言（Language）",
+
+    "timezone": "时区"
   },
 
   "exception": {

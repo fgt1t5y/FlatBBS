@@ -9,9 +9,11 @@ export const useTheme = defineStore('theme', () => {
   const currentTheme = ref<ThemeMode>(
     getOrSet(KEY_THEME_MODE, 'auto') as ThemeMode,
   );
+
   const theme = computed(() => {
     return currentTheme;
   });
+  
   const sysMedia = window.matchMedia('(prefers-color-scheme: dark)');
   let systemIsDark = sysMedia.matches;
 

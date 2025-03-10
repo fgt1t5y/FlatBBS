@@ -7,14 +7,12 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { useTheme } from './stores'
-import { getOrSet, set } from './utils'
+import { useTheme, useLocalSettings } from './stores'
 import { isDesktop } from '@/utils'
 import Navbar from '@/components/Navbar.vue'
 import NavbarMobile from '@/components/NavbarMobile.vue'
 import MessageContainer from '@/components/MessageContainer.vue'
 import { useI18n } from 'vue-i18n'
-import { languageAliasMap } from './i18n'
 import { watch } from 'vue'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -23,29 +21,27 @@ import utc from 'dayjs/plugin/utc'
 import LocalizedFormat from 'dayjs/plugin/localizedFormat'
 
 const theme = useTheme()
-theme.init()
-
+const settings = useLocalSettings()
 const { locale } = useI18n()
-const preferLang = window.navigator.language.replace('-', '_')
 
-if (preferLang in languageAliasMap) {
-  locale.value = getOrSet('flat_language', preferLang)
-}
+theme.init()
+settings.init()
+settings.$subscribe(settings.save)
 
-const documentLang = (languageAliasMap[locale.value] as string) || 'en'
+locale.value = settings.language
+document.documentElement.lang = settings.timezone
 
-document.documentElement.lang = locale.value
-
-dayjs.locale(documentLang.toLocaleLowerCase())
+dayjs.locale(settings.language.toLocaleLowerCase())
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 dayjs.extend(LocalizedFormat)
+dayjs.tz.setDefault(settings.timezone)
 
 watch(
   () => locale.value,
   (lang) => {
-    set('flat_language', lang)
+    settings.language = lang
   },
 )
 </script>
