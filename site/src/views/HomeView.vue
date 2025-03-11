@@ -1,6 +1,6 @@
 <template>
   <MainContent :title="$t('page.home')">
-    <PageTitle :title="$t('page.home')" />
+    <PageTitle :title="$t('page.latest_topics')" />
     <CommonList :items="topics" :is-end="isLastPage">
       <template #default="{ item }">
         <TopicItem :topic="item" />

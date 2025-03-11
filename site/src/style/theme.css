@@ -220,15 +220,7 @@
 }
 
 @utility tab-item {
-  @apply text-base py-3 relative;
-
-  &:hover {
-    @apply bg-gray-100 dark:bg-gray-800;
-  }
-
-  &:focus-within {
-    @apply bg-gray-100 dark:bg-gray-800;
-  }
+  @apply text-base p-3 relative hoverable;
 
   & .router-link-exact-active {
     @apply text-primary;
@@ -478,10 +470,6 @@
   p a {
     @apply text-primary underline;
   }
-
-  /* p:has(img) {
-    @apply flex flex-col items-center text-muted;
-  } */
 
   p:first-child {
     @apply mt-0;
