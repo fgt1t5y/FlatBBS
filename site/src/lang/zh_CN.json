@@ -139,6 +139,7 @@
 
   "editor": {
     "default_placeholder": "点击输入内容...",
+    "image_figcaption_placeholder": "点击输入图片题注...",
 
     "tool": {
       "heading_1": "一级标题",

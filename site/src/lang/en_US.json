@@ -138,6 +138,7 @@
 
   "editor": {
     "default_placeholder": "Type content here...",
+    "image_figcaption_placeholder": "Add figcaption here...",
 
     "tool": {
       "heading_1": "Heading 1",

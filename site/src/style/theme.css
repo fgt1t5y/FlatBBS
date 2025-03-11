@@ -531,6 +531,13 @@
     figcaption {
       @apply w-full text-center;
     }
+
+    &.is-empty::after {
+      content: attr(data-placeholder);
+      position: absolute;
+      bottom: 0px;
+      cursor: text;
+    }
   }
 
   [role='tooltip'] {

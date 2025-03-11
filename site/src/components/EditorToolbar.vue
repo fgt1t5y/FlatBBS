@@ -121,6 +121,11 @@ const editorTools = [
     name: 'image',
     icon: 'ti ti-photo',
     onClick: () => imageInput.value!.click(),
+    // For debug
+    // onClick: () =>
+    //   props?.editor.commands.setImage({
+    //     src: 'http://localhost:3901/backend/usercontent/frv0NIkOTLW8klst.jpg',
+    //   }),
     isActive: () => false,
     enable: () => true,
   },

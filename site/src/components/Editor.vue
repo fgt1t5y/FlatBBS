@@ -39,7 +39,14 @@ const editor = useEditor({
       },
     }),
     Placeholder.configure({
-      placeholder: t('editor.default_placeholder'),
+      placeholder: ({ node }) => {
+        if (node.type.name === 'image') {
+          return t('editor.image_figcaption_placeholder')
+        }
+
+        return t('editor.default_placeholder')
+      },
+      includeChildren: true,
     }),
     Link.configure({
       openOnClick: false,
