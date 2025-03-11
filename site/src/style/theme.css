@@ -316,7 +316,7 @@
 }
 
 @utility editor-toolbar-mobile {
-  @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content;
+  @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content gap-3;
 }
 
 @utility user-avatar {
@@ -479,9 +479,9 @@
     @apply text-primary underline;
   }
 
-  p:has(img) {
+  /* p:has(img) {
     @apply flex flex-col items-center text-muted;
-  }
+  } */
 
   p:first-child {
     @apply mt-0;
@@ -523,6 +523,14 @@
 
   body {
     @apply text-content text-sm bg-content;
+  }
+
+  figure {
+    @apply flex flex-col items-center gap-2 text-muted;
+
+    figcaption {
+      @apply w-full text-center;
+    }
   }
 
   [role='tooltip'] {

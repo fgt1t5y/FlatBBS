@@ -179,6 +179,8 @@ export const sanitizer = (doc: any) => {
       'strong',
       'em',
       'blockquote',
+      'figure',
+      'figcaption'
     ],
   })(doc);
 };

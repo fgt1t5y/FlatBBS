@@ -1,5 +1,13 @@
 <template>
   <div class="editor-toolbar">
+    <input
+      ref="imageInputRef"
+      type="file"
+      name="avatar"
+      accept=".jpg,.png,.jpeg,.gif"
+      style="display: none"
+      @change="uploadAndInsertImage"
+    />
     <button
       v-for="(tool, index) in editorTools"
       :key="index"
@@ -17,6 +25,9 @@
 </template>
 
 <script setup lang="ts">
+import { uploadImage } from '@/services'
+import { useTemplateRef } from 'vue'
+
 import type { Editor } from '@tiptap/vue-3'
 
 defineOptions({
@@ -36,6 +47,23 @@ interface EditorTools {
 }
 
 const props = defineProps<EditorToolbarProps>()
+
+const imageInput = useTemplateRef<HTMLInputElement>('imageInputRef')
+
+const uploadAndInsertImage = async () => {
+  if (!imageInput.value?.files?.length) {
+    return
+  }
+
+  const image = imageInput.value.files[0]
+  const imageUri = await uploadImage(image)
+
+  if (imageUri) {
+    props?.editor.commands.setImage({
+      src: imageUri,
+    })
+  }
+}
 
 const editorTools = [
   {
@@ -89,13 +117,13 @@ const editorTools = [
     isActive: () => props?.editor.isActive('blockquote'),
     enable: () => true,
   },
-  // {
-  //   name: 'image',
-  //   icon: 'ti ti-h-1',
-  //   onClick: () => imageInput.value!.click(),
-  //   isActive: () => false,
-  //   enable: () => true,
-  // },
+  {
+    name: 'image',
+    icon: 'ti ti-photo',
+    onClick: () => imageInput.value!.click(),
+    isActive: () => false,
+    enable: () => true,
+  },
   {
     name: 'undo',
     icon: 'ti ti-arrow-back-up',

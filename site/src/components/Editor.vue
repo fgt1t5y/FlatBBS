@@ -7,8 +7,8 @@
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
-import Image from '@tiptap/extension-image'
 import Link from '@tiptap/extension-link'
+import { Image } from '@/third-party/editor-plugins/image'
 import { onBeforeUnmount } from 'vue'
 import EditorToolbar from './EditorToolbar.vue'
 import { useI18n } from 'vue-i18n'
@@ -44,9 +44,7 @@ const editor = useEditor({
     Link.configure({
       openOnClick: false,
     }),
-    Image.configure({
-      inline: true,
-    }),
+    Image.configure(),
   ],
   onUpdate: ({ editor }) => {
     textValue.value = editor.getText()
