@@ -46,7 +46,6 @@ const editor = useEditor({
 
         return t('editor.default_placeholder')
       },
-      includeChildren: true,
     }),
     Link.configure({
       openOnClick: false,

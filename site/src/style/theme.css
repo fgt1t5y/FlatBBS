@@ -526,7 +526,7 @@
   }
 
   figure {
-    @apply flex flex-col items-center gap-2 text-muted;
+    @apply flex flex-col items-center gap-2 text-muted relative;
 
     figcaption {
       @apply w-full text-center;
