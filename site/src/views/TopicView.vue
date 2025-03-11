@@ -52,27 +52,24 @@
     <div class="p-3 text-base font-bold">
       {{ $t('discussion.count', { count: topic.discussion_count }) }}
     </div>
-    <CommonList :items="discussions" :is-end="isLastPage">
+    <CommonList
+      :items="discussions"
+      :is-end="isLastPage"
+      :loading="discussionsLoading"
+      :error="error"
+      @retry="loadDiscussions"
+    >
       <template #default="{ item, index }">
         <DiscussionItem :discussion="item" :index="index" />
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="loadDiscussions" />
-    <RequestPlaceholder
-      :loading="discussionsLoading"
-      :error="error"
-      @retry="loadDiscussions"
-    />
     <div v-if="topic" class="border-bt">
       <div class="p-3 text-base font-bold">
         {{ $t('discussion.publish') }}
       </div>
       <div v-if="user.isLogin" class="p-3 flex gap-2">
-        <Avatar
-          class="user-avatar"
-          :src="user.info?.avatar_uri"
-          rounded
-        />
+        <Avatar class="user-avatar" :src="user.info?.avatar_uri" rounded />
         <div class="grow">
           <Editor
             ref="discussionEditorRef"
@@ -80,19 +77,19 @@
             v-model:html="discussionEditorContent"
             show-toolbar
           />
+          <div class="flex justify-end">
+            <button
+              class="btn-primary btn-md"
+              :disabled="discussionPublishing || discussionEditorText === ''"
+              @click="handlePublishDiscussion"
+            >
+              {{ $t('discussion.publish') }}
+            </button>
+          </div>
         </div>
       </div>
       <div v-else class="p-3 text-center text-muted">
         {{ $t('message.login_for_publish_discussion') }}
-      </div>
-      <div class="p-3 flex justify-end">
-        <button
-          class="btn-primary btn-md"
-          :disabled="discussionPublishing || discussionEditorText === ''"
-          @click="handlePublishDiscussion"
-        >
-          {{ $t('discussion.publish') }}
-        </button>
       </div>
     </div>
   </MainContent>
@@ -110,7 +107,6 @@ import {
   publishDiscussion,
 } from '@/services'
 import { useRoute } from 'vue-router'
-import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { usePagination, useRequest } from 'alova/client'
 import { useTitle } from '@/utils'

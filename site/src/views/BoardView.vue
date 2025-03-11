@@ -16,17 +16,18 @@
         <span class="text-muted">{{ $t('board.topic_count') }}</span>
       </div>
     </CommonDetail>
-    <CommonList :items="topics" :is-end="isLastPage">
+    <CommonList
+      :items="topics"
+      :is-end="isLastPage"
+      :loading="topicsLoading"
+      :error="topicsError"
+      @retry="loadTopics"
+    >
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="nextPage" />
-    <RequestPlaceholder
-      :loading="topicsLoading"
-      :error="topicsError"
-      @retry="loadTopics"
-    />
     <template #aside>
       <RouterLink
         class="btn btn-primary btn-md w-full"
@@ -42,7 +43,6 @@
 import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
-import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'

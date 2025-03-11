@@ -1,22 +1,22 @@
 <template>
-  <CommonList :items="topics" :is-end="isLastPage">
+  <CommonList
+    :items="topics"
+    :is-end="isLastPage"
+    :loading="topicsLoading"
+    :error="topicsError"
+    @retry="loadTopics"
+  >
     <template #default="{ item }">
       <TopicItem :topic="item" />
     </template>
   </CommonList>
   <IntersectionObserver :disabled="isLastPage" @reach="loadTopics" />
-  <RequestPlaceholder
-    :loading="topicsLoading"
-    :error="topicsError"
-    @retry="loadTopics"
-  />
 </template>
 
 <script setup lang="ts">
 import CommonList from '@/components/CommonList.vue'
 import TopicItem from '@/components/TopicItem.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
-import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import { getLikedTopicsByUsername } from '@/services'
 import { usePagination } from 'alova/client'
 import { useRoute } from 'vue-router'

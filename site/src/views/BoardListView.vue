@@ -1,7 +1,13 @@
 <template>
   <MainContent disable-panels :title="$t('page.boards')">
     <PageTitle :title="$t('page.boards')" :show-back="false" />
-    <CommonList :items="boards" :is-end="true">
+    <CommonList
+      :items="boards"
+      :is-end="true"
+      :loading="loading"
+      :error="error"
+      @retry="send"
+    >
       <template #default="{ item }">
         <div class="item p-3 flex gap-2 items-center">
           <Avatar class="size-9" :src="item.avatar_uri" />
@@ -11,7 +17,6 @@
         </div>
       </template>
     </CommonList>
-    <RequestPlaceholder :loading="loading" :error="error" @retry="send" />
   </MainContent>
 </template>
 
@@ -19,7 +24,6 @@
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import CommonList from '@/components/CommonList.vue'
-import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import { getBoards } from '@/services'
 import { usePagination } from 'alova/client'
 import Avatar from '@/components/Avatar.vue'

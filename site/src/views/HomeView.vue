@@ -1,17 +1,18 @@
 <template>
   <MainContent :title="$t('page.home')">
     <PageTitle :title="$t('page.latest_topics')" />
-    <CommonList :items="topics" :is-end="isLastPage">
+    <CommonList
+      :items="topics"
+      :is-end="isLastPage"
+      :loading="topicsLoading"
+      :error="topicsError"
+      @retry="send"
+    >
       <template #default="{ item }">
         <TopicItem :topic="item" />
       </template>
     </CommonList>
     <IntersectionObserver :disabled="isLastPage" @reach="send" />
-    <RequestPlaceholder
-      :loading="topicsLoading"
-      :error="topicsError"
-      @retry="send"
-    />
   </MainContent>
 </template>
 
@@ -19,7 +20,6 @@
 import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
-import RequestPlaceholder from '@/components/RequestPlaceholder.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import CommonList from '@/components/CommonList.vue'
 import { getAllTopics } from '@/services'
