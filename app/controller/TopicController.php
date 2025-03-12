@@ -30,14 +30,13 @@ class TopicController
         );
     }
 
-    public function publish(Request $request)
+    public function publish(Request $request, int $boardId)
     {
         $request->assertLogin();
 
         $title = $request->post('title');
         $text = $request->post('text');
         $content = $request->post('content');
-        $boardId = (int) $request->post('board_id');
 
         if (empty($title)) {
             return no(STATUS_BAD_REQUEST, '$exception.fill_out_form_completely');

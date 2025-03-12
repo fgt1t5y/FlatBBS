@@ -28,9 +28,9 @@ export const modifyUserAvatar = (file: File) => {
   return alovaInstance.Post<string[]>('/me/avatar', form);
 };
 
-export const modifyPassword = (old_password: string, new_password: string) => {
+export const modifyPassword = (oldPassword: string, newPassword: string) => {
   return alovaInstance.Post<string[]>('/me/password', {
-    old_password,
-    new_password,
+    oldPassword,
+    newPassword,
   });
 };

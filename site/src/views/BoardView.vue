@@ -83,6 +83,7 @@ const {
   send: loadTopics,
 } = usePagination((page, limit) => getTopicsByBoardSlug(page, limit, slug), {
   append: true,
+  preloadNextPage: false,
   initialPageSize: 10,
   immediate: false,
   total: () => board.value.topic_count,

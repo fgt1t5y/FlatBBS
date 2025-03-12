@@ -16,6 +16,8 @@ use Webman\Route;
 
 
 // API routes
+Route::get('/boards', [app\controller\BoardController::class, 'all']);
+Route::get('/topics', [app\controller\TopicController::class, 'all']);
 
 Route::group('/auth', function () {
     Route::post('/login', [app\controller\AuthController::class, 'login']);
@@ -23,9 +25,6 @@ Route::group('/auth', function () {
     Route::post('/forget', [app\controller\AuthController::class, 'forget']);
 });
 
-Route::group('/boards', function () {
-    Route::get('/all', [app\controller\BoardController::class, 'all']);
-});
 
 Route::group('/board/{boardSlug}', function () {
     Route::get('/info', [app\controller\BoardController::class, 'info']);
@@ -48,10 +47,7 @@ Route::group('/me', function () {
     Route::post('/password', [app\controller\MeController::class, 'password']);
 });
 
-Route::group('/topics', function () {
-    Route::get('/all', [app\controller\TopicController::class, 'all']);
-    Route::post('/publish', [app\controller\TopicController::class, 'publish']);
-});
+Route::post('/topic/publish', [app\controller\TopicController::class, 'publish']);
 
 Route::group('/topic/{topicId:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
@@ -66,11 +62,9 @@ Route::group('/user/{username}', function () {
 });
 
 // Fallback Route
-
 Route::fallback(function () {
     return no(STATUS_NOT_FOUND, 'Route Not Found.');
 });
 
 // Disable auto route
-
 Route::disableDefaultRoute();

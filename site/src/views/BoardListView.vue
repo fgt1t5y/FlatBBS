@@ -24,9 +24,9 @@
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import CommonList from '@/components/CommonList.vue'
-import { getBoards } from '@/services'
+import { getAllBoards } from '@/services'
 import { usePagination } from 'alova/client'
 import Avatar from '@/components/Avatar.vue'
 
-const { data: boards, error, loading, send } = usePagination(getBoards)
+const { data: boards, error, loading, send } = usePagination(getAllBoards)
 </script>

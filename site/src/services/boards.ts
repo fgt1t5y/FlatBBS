@@ -1,8 +1,8 @@
 import type { Board, Topic, Result } from '@/types';
 import { alovaInstance } from './instance';
 
-export const getBoards = () => {
-  return alovaInstance.Get<Result<Board[]>>('/boards/all');
+export const getAllBoards = () => {
+  return alovaInstance.Get<Result<Board[]>>('/boards');
 };
 
 export const getBoardInfo = (board_slug: string) => {
@@ -12,9 +12,9 @@ export const getBoardInfo = (board_slug: string) => {
 export const getTopicsByBoardSlug = (
   page: number,
   limit: number,
-  board_slug: string,
+  boardSlug: string,
 ) => {
-  return alovaInstance.Get<Result<Topic[]>>(`/board/${board_slug}/topics`, {
+  return alovaInstance.Get<Result<Topic[]>>(`/board/${boardSlug}/topics`, {
     params: {
       page,
       limit,

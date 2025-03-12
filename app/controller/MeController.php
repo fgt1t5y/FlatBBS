@@ -112,8 +112,8 @@ class MeController
     {
         $request->assertLogin();
 
-        $oldPassword = $request->post('old_password');
-        $newPassword = $request->post('new_password');
+        $oldPassword = $request->post('oldPassword');
+        $newPassword = $request->post('newPassword');
 
         if (!all([$oldPassword, $newPassword]) || $oldPassword === $newPassword) {
             return no(STATUS_BAD_REQUEST);

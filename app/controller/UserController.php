@@ -4,7 +4,6 @@ namespace app\controller;
 
 use app\service\UserService;
 use app\service\AuthService;
-use support\Request;
 use DI\Attribute\Inject;
 
 class UserController

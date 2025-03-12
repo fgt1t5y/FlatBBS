@@ -3,7 +3,7 @@ import { alovaInstance } from './instance';
 import type { Topic, Result, Discussion } from '@/types';
 
 export const getAllTopics = (last: number, limit: number) => {
-  return alovaInstance.Get<Result<Topic[]>, Topic>('/topics/all', {
+  return alovaInstance.Get<Result<Topic[]>, Topic>('/topics', {
     params: {
       last,
       limit,
@@ -14,10 +14,10 @@ export const getAllTopics = (last: number, limit: number) => {
 export const getDiscussionsByTopicId = (
   page: number,
   limit: number,
-  topic_id: number,
+  topicId: number,
 ) => {
   return alovaInstance.Get<Result<Discussion[]>>(
-    `/topic/${topic_id}/discussions`,
+    `/topic/${topicId}/discussions`,
     {
       params: {
         page,
@@ -27,21 +27,21 @@ export const getDiscussionsByTopicId = (
   );
 };
 
-export const getTopic = (topic_id: number) => {
-  return alovaInstance.Get<Topic>(`/topic/${topic_id}/detail`);
+export const getTopic = (topicId: number) => {
+  return alovaInstance.Get<Topic>(`/topic/${topicId}/detail`);
 };
 
 export const publishTopic = (
   title: string,
   text: string,
   content: string,
-  board_id: number,
+  boardId: number,
 ) => {
-  return alovaInstance.Post<Topic>(`/topics/publish`, {
+  return alovaInstance.Post<Topic>(`/topic/publish`, {
     title,
     text,
     content,
-    board_id,
+    boardId,
   });
 };
 
