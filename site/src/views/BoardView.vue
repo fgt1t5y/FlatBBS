@@ -6,16 +6,21 @@
     @retry="loadBoardInfo"
   >
     <PageTitle :title="board.name" />
-    <CommonDetail
-      :avatar-uri="board.avatar_uri"
-      :name="board.name"
-      :introduction="board.description"
-    >
+    <div class="p-3 flex flex-col gap-2 border-bt">
+      <div class="flex justify-between items-end">
+        <Avatar class="size-16 md:size-24" :src="board.avatar_uri" />
+      </div>
+      <div>
+        <div class="text-lg font-bold">
+          {{ board.name }}
+        </div>
+        <div class="text-base text-muted">{{ board.description }}</div>
+      </div>
       <div class="flex gap-2 text-base">
         <span class="font-bold">{{ board.topic_count }}</span>
         <span class="text-muted">{{ $t('board.topic_count') }}</span>
       </div>
-    </CommonDetail>
+    </div>
     <CommonList
       :items="topics"
       :is-end="isLastPage"
@@ -44,9 +49,9 @@ import TopicItem from '@/components/TopicItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import MainContent from '@/components/MainContent.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
+import Avatar from '@/components/Avatar.vue'
 import { useRoute } from 'vue-router'
 import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
-import CommonDetail from '@/components/CommonDetail.vue'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest, usePagination } from 'alova/client'
 import { useTitle } from '@/utils'

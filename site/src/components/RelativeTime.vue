@@ -14,7 +14,7 @@ defineOptions({
 })
 
 interface RelativeTimeProps {
-  time: string
+  time?: string
 }
 
 const props = withDefaults(defineProps<RelativeTimeProps>(), {
@@ -23,5 +23,7 @@ const props = withDefaults(defineProps<RelativeTimeProps>(), {
 
 const id = useId()
 
-const relativeTime = computed(() => formatTime(props.time))
+const relativeTime = computed(() =>
+  formatTime(props.time || new Date().toISOString()),
+)
 </script>

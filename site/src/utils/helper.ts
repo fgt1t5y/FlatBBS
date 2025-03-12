@@ -51,6 +51,10 @@ export const formatTime = (datetime: string) => {
   return [localTime.format('LLL'), localTime.fromNow()];
 };
 
+export const formatDate = (datetime: string) => {
+  return dayjs.utc(datetime).tz().format('LL');
+};
+
 export const breakpoint = useBreakpoints(breakpointsTailwind);
 
 export const resolveParagraph = (value: string) => {
