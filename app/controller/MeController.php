@@ -3,11 +3,11 @@
 namespace app\controller;
 
 use support\Request;
+use support\Storage;
 use app\service\AuthService;
 use app\service\UserService;
 use app\service\UserVisitLogService;
 use app\service\SettingService;
-use app\service\StorageService;
 use DI\Attribute\Inject;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
@@ -22,9 +22,6 @@ class MeController
 
     #[Inject]
     protected SettingService $setting;
-
-    #[Inject]
-    protected StorageService $storage;
 
     #[Inject]
     protected UserVisitLogService $userVisitLog;
@@ -85,7 +82,7 @@ class MeController
         }
 
         $avatarUri = Str::random();
-        $basePath = $this->storage->getStorageRoot('user-content');
+        $basePath = Storage::getStorageRoot('user-content');
 
         try {
             $image = ImageManager::gd()->read($file->getPathname());

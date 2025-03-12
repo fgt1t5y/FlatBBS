@@ -2,10 +2,10 @@
 
 namespace app\controller;
 
-use DI\Attribute\Inject;
 use support\Request;
+use support\Storage;
+use DI\Attribute\Inject;
 use app\service\SettingService;
-use app\service\StorageService;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Str;
 
@@ -13,9 +13,6 @@ class FileController
 {
     #[Inject]
     protected SettingService $setting;
-
-    #[Inject]
-    protected StorageService $storage;
 
     public function image(Request $request)
     {
@@ -37,7 +34,7 @@ class FileController
         }
 
         $filename = Str::random();
-        $basePath = $this->storage->getStorageRoot('user-content');
+        $basePath = Storage::getStorageRoot('user-content');
 
         try {
             $image = ImageManager::gd()->read($file->getPathname());
@@ -53,6 +50,6 @@ class FileController
             return no(STATUS_INTERNAL_ERROR, $e->getMessage());
         }
 
-        return ok($this->storage->use('user-content')->publicUrl($filename));
+        return ok(Storage::use('user-content')->publicUrl($filename));
     }
 }
