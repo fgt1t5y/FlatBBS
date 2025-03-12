@@ -1,7 +1,7 @@
 <template>
-  <div class="html-rendered">
+  <component :is="is || 'article'" class="html-rendered">
     <component :is="vnode" />
-  </div>
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -18,6 +18,7 @@ defineOptions({
 
 const props = defineProps<{
   html: string
+  is?: string
 }>()
 
 const treeToVNode = (input: Node): VNode | string | null => {

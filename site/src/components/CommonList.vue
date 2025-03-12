@@ -2,17 +2,18 @@
   <div class="list">
     <slot v-for="(item, index) of items" :item="item" :index="index" />
   </div>
-  <RequestPlaceholder :loading="loading" :error="error" @retry="emits('retry')" />
-  <div
-    v-if="isEnd && !loading"
-    class="text-center text-muted p-3 border-bt"
-  >
+  <RequestPlaceholder
+    :loading="loading"
+    :error="error"
+    @retry="emits('retry')"
+  />
+  <div v-if="isEnd && !loading" class="list-no-more">
     {{ $t('message.list_no_more') }}
   </div>
 </template>
 
 <script setup lang="ts" generic="T extends { id: number }">
-import RequestPlaceholder from './RequestPlaceholder.vue';
+import RequestPlaceholder from './RequestPlaceholder.vue'
 
 defineOptions({
   name: 'CommonList',
@@ -32,7 +33,7 @@ type CommonListProps = {
 const props = withDefaults(defineProps<CommonListProps>(), {
   isEnd: false,
   loading: false,
-  error: undefined
+  error: undefined,
 })
 const emits = defineEmits<{
   (e: 'retry'): any

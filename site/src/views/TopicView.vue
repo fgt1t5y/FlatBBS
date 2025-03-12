@@ -1,7 +1,7 @@
 <template>
   <MainContent :loading="topicLoading" :error="topicError" @retry="loadTopic">
     <PageTitle :title="topic.title" />
-    <div class="item p-3 border-bt flex flex-col gap-2">
+    <div class="p-3 border-bt flex flex-col gap-2">
       <div class="flex gap-2 items-start">
         <UserPopover :username="topic.author.username">
           <RouterLink
@@ -59,7 +59,10 @@
         <DiscussionItem :discussion="item" :index="index" />
       </template>
     </CommonList>
-    <IntersectionObserver :disabled="isLastPage" @reach="loadDiscussions" />
+    <IntersectionObserver
+      :disabled="isLastPage && discussions.length > 0"
+      @reach="loadDiscussions"
+    />
     <div v-if="topic" class="border-bt">
       <div class="p-3 text-base font-bold">
         {{ $t('discussion.publish') }}
@@ -135,7 +138,6 @@ const {
   send: loadTopic,
 } = useRequest(() => getTopic(topicId)).onSuccess(() => {
   setTitle(topic.value?.title)
-  loadDiscussions()
 
   const likedUsers = topic.value.likes
 
