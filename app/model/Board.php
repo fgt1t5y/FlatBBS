@@ -9,6 +9,7 @@ use app\cast\FullPath;
 class Board extends AbstractModel
 {
     protected $table = 'boards';
+
     protected $casts = [
         'avatar_uri' => FullPath::class,
     ];

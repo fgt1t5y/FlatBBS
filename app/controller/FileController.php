@@ -41,6 +41,7 @@ class FileController
 
         try {
             $image = ImageManager::gd()->read($file->getPathname());
+
             if ($image->isAnimated()) {
                 $filename .= '.gif';
                 $image->save("{$basePath}/{$filename}", 100, 'gif');
