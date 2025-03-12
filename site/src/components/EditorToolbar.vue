@@ -59,9 +59,7 @@ const uploadAndInsertImage = async () => {
   const imageUri = await uploadImage(image)
 
   if (imageUri) {
-    props?.editor.commands.setImage({
-      src: imageUri,
-    })
+    props?.editor.chain().focus().setImage({ src: imageUri }).run()
   }
 }
 
