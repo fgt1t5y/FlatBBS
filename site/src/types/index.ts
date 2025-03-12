@@ -17,6 +17,7 @@ export interface User {
   roles: Role[];
   created_at?: string;
   allow_login?: number;
+  topic_count: number
 }
 
 export interface Role {

@@ -11,6 +11,10 @@
         <i class="icon ti ti-ban"></i>
         <span>{{ $t('message.this_user_has_been_banned') }}</span>
       </div>
+      <div class="flex gap-2 text-base">
+        <span class="font-bold">{{ user.topic_count }}</span>
+        <span class="text-muted">{{ $t('board.topic_count') }}</span>
+      </div>
     </CommonDetail>
     <CommonRouteTabs
       :tabs="[

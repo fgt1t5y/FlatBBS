@@ -10,7 +10,7 @@
       <TopicItem :topic="item" />
     </template>
   </CommonList>
-  <IntersectionObserver :disabled="isLastPage" @reach="loadTopics" />
+  <IntersectionObserver :disabled="isLastPage" @reach="nextPage" />
 </template>
 
 <script setup lang="ts">
@@ -25,26 +25,22 @@ const route = useRoute()
 
 const username = route.params.username as string
 
-let lastItemId = 0
-
 const {
   loading: topicsLoading,
   data: topics,
   isLastPage,
+  page,
   error: topicsError,
   send: loadTopics,
 } = usePagination(
-  (page, limit) => getTopicsByUsername(lastItemId, limit, username),
+  (page, limit) => getTopicsByUsername(page, limit, username),
   {
     append: true,
     initialPageSize: 10,
   },
-).onSuccess(() => {
-  const items = topics.value
-  if (!items) {
-    return
-  }
+)
 
-  lastItemId = items[items.length - 1].id
-})
+const nextPage = () => {
+  page.value++
+}
 </script>

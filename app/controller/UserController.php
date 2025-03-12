@@ -25,17 +25,17 @@ class UserController
         return ok($result);
     }
 
-    public function topics(string $username, int $last, int $limit)
+    public function topics(string $username, int $page, int $limit)
     {
         return ok(
-            $this->user->getUserTopics($username, $last, $limit)
+            $this->user->getUserTopics($username, $page, $limit)
         );
     }
 
-    public function liked(string $username, int $last, int $limit)
+    public function liked(string $username, int $page, int $limit)
     {
         return ok(
-            $this->user->getLikedTopics($username, $last, $limit)
+            $this->user->getLikedTopics($username, $page, $limit)
         );
     }
 }

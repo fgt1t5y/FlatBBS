@@ -18,25 +18,25 @@ class UserService
         return User::where('username', $username)->first();
     }
 
-    public function getUserTopics(string $username, int $lastId, int $limit)
+    public function getUserTopics(string $username, int $page, int $limit)
     {
         return User::where('username', $username)
-            ->firstOrFail()
+            ->first()
             ->topics()
-            ->limit(min($limit, 50))
-            ->where('id', '>', $lastId)
             ->orderByDesc('created_at')
+            ->limit(min($limit, 50))
+            ->offset(($page - 1) * $limit)
             ->get();
     }
 
-    public function getLikedTopics(string $username, int $lastId, int $limit)
+    public function getLikedTopics(string $username, int $page, int $limit)
     {
         return User::where('username', $username)
             ->first()
             ->liked_topics()
-            ->limit(min($limit, 50))
-            ->where('topic_id', '>', $lastId)
             ->orderByDesc('created_at')
+            ->limit(min($limit, 50))
+            ->offset(($page - 1) * $limit)
             ->get();
     }
 

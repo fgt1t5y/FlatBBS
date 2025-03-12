@@ -7,26 +7,26 @@ export const getUserDetailByUsername = (username: string) => {
 };
 
 export const getTopicsByUsername = (
-  last: number,
+  page: number,
   limit: number,
   username: string,
 ) => {
   return alovaInstance.Get<Result<Topic[]>>(`/user/${username}/topics`, {
     params: {
-      last,
+      page,
       limit,
     },
   });
 };
 
 export const getLikedTopicsByUsername = (
-  last: number,
+  page: number,
   limit: number,
   username: string,
 ) => {
   return alovaInstance.Get<Result<Topic[]>>(`/user/${username}/liked`, {
     params: {
-      last,
+      page,
       limit,
     },
   });
