@@ -9,7 +9,7 @@
             params: { username: topic.author.username },
           }"
         >
-          <Avatar class="size-5" :src="topic.author.avatar_uri" rounded />
+          <Avatar class="user-avatar size-5" :src="topic.author.avatar_uri" />
           <span>{{ topic.author.display_name }}</span>
         </RouterLink>
       </UserPopover>

@@ -10,11 +10,7 @@
               params: { username: topic.author.username },
             }"
           >
-            <Avatar
-              class="user-avatar"
-              :src="topic.author.avatar_uri"
-              rounded
-            />
+            <Avatar class="user-avatar" :src="topic.author.avatar_uri" />
           </RouterLink>
         </UserPopover>
         <RouterLink
@@ -69,7 +65,7 @@
         {{ $t('discussion.publish') }}
       </div>
       <div v-if="user.isLogin" class="p-3 flex gap-2">
-        <Avatar class="user-avatar" :src="user.info?.avatar_uri" rounded />
+        <Avatar class="user-avatar" :src="user.info?.avatar_uri" />
         <div class="grow">
           <Editor
             ref="discussionEditorRef"

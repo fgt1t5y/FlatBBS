@@ -311,8 +311,12 @@
   @apply fixed left-0 bottom-0 w-full overflow-scroll p-3 border-t border-content gap-3;
 }
 
+@utility avatar {
+  @apply rounded-sm;
+}
+
 @utility user-avatar {
-  @apply size-8 md:size-12;
+  @apply size-8 md:size-12 rounded-full!;
 }
 
 /*

@@ -14,7 +14,7 @@
           @click-outside="closeUserPanel"
         >
           <button :title="$t('user_menu')" @click="openUserPanel = true">
-            <Avatar class="size-10" :src="user.info.avatar_uri" rounded />
+            <Avatar class="user-avatar size-10" :src="user.info.avatar_uri" />
           </button>
           <template #body>
             <div class="navbar-user-panel">

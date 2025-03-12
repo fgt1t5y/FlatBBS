@@ -36,7 +36,7 @@
       class="flex flex-col items-center gap-2 border-bt p-3"
     >
       <span class="font-bold">{{ $t('message.current_avatar') }}</span>
-      <Avatar class="size-24" :src="user.info?.avatar_uri" rounded />
+      <Avatar class="user-avatar size-24" :src="user.info?.avatar_uri" />
       <button class="btn-primary btn-md" @click="onePickImageClick">
         {{ $t('action.pick_image') }}
       </button>

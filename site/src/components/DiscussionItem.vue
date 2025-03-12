@@ -7,11 +7,7 @@
           params: { username: discussion.author.username },
         }"
       >
-        <Avatar
-          class="user-avatar"
-          :src="discussion.author.avatar_uri"
-          rounded
-        />
+        <Avatar class="user-avatar" :src="discussion.author.avatar_uri" />
       </RouterLink>
     </UserPopover>
     <div class="flex flex-col gap-2">

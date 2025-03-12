@@ -4,7 +4,7 @@
     <SettingGroup :title="$t('settings.user_profile')">
       <SettingItem :title="$t('settings.my_avatar')">
         <div class="flex justify-between">
-          <Avatar class="size-16" :src="user.info?.avatar_uri" rounded />
+          <Avatar class="user-avatar size-16" :src="user.info?.avatar_uri" />
           <RouterLink
             class="btn btn-primary btn-md"
             :to="{ name: 'modify_avatar' }"

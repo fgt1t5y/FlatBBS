@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-2">
     <div class="flex gap-2">
-      <Avatar class="size-16" :src="user?.avatar_uri" rounded />
+      <Avatar class="user-avatar size-16" :src="user?.avatar_uri" />
       <div>
         <div class="text-base font-bold">{{ user?.display_name }}</div>
         <div class="text-base text-muted">@{{ user?.username }}</div>
