@@ -16,7 +16,7 @@ class BoardController
         return ok($this->board->getAllBoards());
     }
 
-    public function info(string $boardSlug)
+    public function detail(string $boardSlug)
     {
         return ok($this->board->getBoard($boardSlug));
     }

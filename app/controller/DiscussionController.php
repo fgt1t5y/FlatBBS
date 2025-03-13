@@ -37,4 +37,9 @@ class DiscussionController
 
         return ok(Discussion::find($discussion->id));
     }
+
+    public function replies(int $discussionId, int $page, int $limit)
+    {
+        return ok($this->discussion->getReplies($discussionId, $page, $limit));
+    }
 }

@@ -6,7 +6,7 @@ export const getAllBoards = () => {
 };
 
 export const getBoardInfo = (board_slug: string) => {
-  return alovaInstance.Get<Board>(`/board/${board_slug}/info`);
+  return alovaInstance.Get<Board>(`/board/${board_slug}/detail`);
 };
 
 export const getTopicsByBoardSlug = (

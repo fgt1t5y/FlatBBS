@@ -25,14 +25,15 @@ Route::group('/auth', function () {
     Route::post('/forget', [app\controller\AuthController::class, 'forget']);
 });
 
-
 Route::group('/board/{boardSlug}', function () {
-    Route::get('/info', [app\controller\BoardController::class, 'info']);
+    Route::get('/detail', [app\controller\BoardController::class, 'detail']);
     Route::get('/topics', [app\controller\BoardController::class, 'topics']);
 });
 
-Route::group('/discussion/{topicId:\d+}', function () {
-    Route::post('/publish', [app\controller\DiscussionController::class, 'publish']);
+Route::post('/discussion/publish', [app\controller\DiscussionController::class, 'publish']);
+
+Route::group('/discussion/{discussionId:\d+}', function () {
+    Route::get('/replies', [app\controller\DiscussionController::class, 'replies']);
 });
 
 Route::group('/file', function () {

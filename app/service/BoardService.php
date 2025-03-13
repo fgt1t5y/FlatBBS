@@ -24,7 +24,7 @@ class BoardService
 
     public function getTopics(string $boardSlug, int $page, int $limit)
     {
-        return Board::where('slug', $boardSlug)
+        return $this->getBoard($boardSlug)
             ->first()
             ->topics()
             ->orderByDesc('last_reply_at')

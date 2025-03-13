@@ -7,7 +7,7 @@ use support\AbstractModel;
 
 class DiscussionReply extends AbstractModel
 {
-    protected $table = 'discussion_replied';
+    protected $table = 'discussion_replies';
 
     protected $with = [
         'author:id,username,display_name,avatar_uri',

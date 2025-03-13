@@ -126,6 +126,7 @@
     "user_not_found": "此用户不存在",
     "board_not_found": "此板块不存在",
     "topic_not_found": "此话题不存在",
+    "discussion_not_found": "此讨论不存在",
 
     "you_are_logged_in": "你已经登录过了",
     "password_is_wrong": "密码错误",

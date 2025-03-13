@@ -21,7 +21,7 @@ class TopicService
 
     public function getDiscussions(int $topicId, int $page, int $limit)
     {
-        return Topic::find($topicId)
+        return $this->getTopic($topicId)
             ->discussions()
             ->orderBy('updated_at')
             ->limit(min($limit, 50))

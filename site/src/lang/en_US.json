@@ -125,6 +125,7 @@
     "user_not_found": "User Not Found",
     "board_not_found": "Board Not Found",
     "topic_not_found": "Topic Not Found",
+    "discussion_not_found": "Discussion Not Found",
 
     "you_are_logged_in": "You are already logged in",
     "password_is_wrong": "Password is wrong",
