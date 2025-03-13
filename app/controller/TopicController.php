@@ -63,10 +63,6 @@ class TopicController
         //     $this->visitLog->pushVisitLog($request->getUser(), $result);
         // }
 
-        if (!$result) {
-            return no(STATUS_NOT_FOUND, '$exception.topic_not_found');
-        }
-
         return ok($result);
     }
 
@@ -89,10 +85,6 @@ class TopicController
         $text = $request->post('text');
         $content = $request->post('content');
         $topic = $this->topic->getTopic($topicId);
-
-        if (!$topic) {
-            return no(STATUS_NOT_FOUND, '$exception.topic_not_found');
-        }
 
         $topic->setAttribute('title', $title);
         $topic->setAttribute('text', $text);

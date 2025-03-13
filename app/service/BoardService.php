@@ -3,6 +3,8 @@
 namespace app\service;
 
 use app\Model\Board;
+use support\exception\NotFoundException;
+use Illuminate\Database\RecordsNotFoundException;
 
 class BoardService
 {
@@ -11,9 +13,13 @@ class BoardService
         return Board::orderBy('id')->get();
     }
 
-    public function getBoardInfo(string $value)
+    public function getBoard(string $value)
     {
-        return Board::where('slug', $value)->first();
+        try {
+            return Board::where('slug', $value)->firstOrFail();
+        } catch (RecordsNotFoundException $e) {
+            throw new NotFoundException('$exception.board_not_found');
+        }
     }
 
     public function getTopics(string $boardSlug, int $page, int $limit)

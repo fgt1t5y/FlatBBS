@@ -3,6 +3,8 @@
 namespace app\service;
 
 use app\model\User;
+use support\exception\NotFoundException;
+use Illuminate\Database\RecordsNotFoundException;
 
 class UserService
 {
@@ -15,7 +17,11 @@ class UserService
 
     public function getUserByUsername(string $username): ?User
     {
-        return User::where('username', $username)->first();
+        try {
+            return User::where('username', $username)->first();
+        } catch (RecordsNotFoundException $e) {
+            throw new NotFoundException('$exception.user_not_found');
+        }
     }
 
     public function getUserTopics(string $username, int $page, int $limit)

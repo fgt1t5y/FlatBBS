@@ -10,8 +10,10 @@ class AuthService
     {
         $sessions = Redis::sMembers("flat_sess_{$userId}");
 
-        if (!$sessions || count($sessions) === 0)
+        if (!$sessions || count($sessions) === 0) {
             return;
+        }
+
 
         foreach ($sessions as $session) {
             Redis::del("flat_sess_{$session}");

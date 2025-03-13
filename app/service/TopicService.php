@@ -5,7 +5,9 @@ namespace app\service;
 use app\model\Topic;
 use app\model\Board;
 use app\model\User;
+use support\exception\NotFoundException;
 use Carbon\Carbon;
+use Illuminate\Database\RecordsNotFoundException;
 
 class TopicService
 {
@@ -43,7 +45,11 @@ class TopicService
 
     public function getTopic(int $topicId)
     {
-        return Topic::find($topicId);
+        try {
+            return Topic::findOrFail($topicId);
+        } catch (RecordsNotFoundException $e) {
+            throw new NotFoundException('$exception.topic_not_found');
+        }
     }
 
     public function toggleLike(int $topicId, int $userId): int

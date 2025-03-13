@@ -9,6 +9,7 @@ use support\Log;
 use support\exception\UnauthorizedException;
 use support\exception\ForbiddenException;
 use support\exception\BadRequestException;
+use support\exception\NotFoundException;
 use Webman\Exception\ExceptionHandler;
 
 class Exception extends ExceptionHandler
@@ -29,6 +30,10 @@ class Exception extends ExceptionHandler
         }
 
         if ($exception instanceof BadRequestException) {
+            return no(STATUS_BAD_REQUEST, $exception->getMessage());
+        }
+
+        if ($exception instanceof NotFoundException) {
             return no(STATUS_BAD_REQUEST, $exception->getMessage());
         }
 

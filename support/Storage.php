@@ -3,9 +3,11 @@
 namespace support;
 
 use InvalidArgumentException;
+use Webman\Bootstrap;
+use Workerman\Worker;
 use app\interface\FilesystemBuilder;
 
-class Storage
+class Storage implements Bootstrap
 {
     private static array $filesystemConfig = [];
 
@@ -13,19 +15,14 @@ class Storage
 
     private static bool $inited = false;
 
-    public static function init()
+    public static function start(?Worker $worker)
     {
         self::$filesystemConfig = config('fs');
         self::$storageConfig = config('storage');
-        self::$inited = true;
     }
 
     public static function use(string $storage)
     {
-        if (!self::$inited) {
-            self::init();
-        }
-
         $storageConfig = self::$storageConfig[$storage];
 
         if (!$storageConfig) {
@@ -43,10 +40,6 @@ class Storage
 
     public static function getStorageRoot(string $storage): string
     {
-        if (!self::$inited) {
-            self::init();
-        }
-
         $storageConfig = self::$storageConfig[$storage];
 
         if (!$storageConfig) {

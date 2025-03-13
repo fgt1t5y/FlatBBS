@@ -15,13 +15,7 @@ class UserController
 
     public function info(string $username)
     {
-        $result = $this->user->getUserByUsername($username);
-
-        if (!$result) {
-            return no(STATUS_NOT_FOUND, '$exception.user_not_found');
-        }
-
-        return ok($result);
+        return ok($this->user->getUserByUsername($username));
     }
 
     public function topics(string $username, int $page, int $limit)

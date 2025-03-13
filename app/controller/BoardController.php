@@ -18,13 +18,7 @@ class BoardController
 
     public function info(string $boardSlug)
     {
-        $result = $this->board->getBoardInfo($boardSlug);
-
-        if (!$result) {
-            return no(STATUS_NOT_FOUND, '$exception.board_not_found');
-        }
-
-        return ok($result);
+        return ok($this->board->getBoard($boardSlug));
     }
 
     public function topics(string $boardSlug, int $page, int $limit)
