@@ -57,11 +57,11 @@ class TopicController
 
     public function detail(Request $request, int $topicId)
     {
-        $result = $this->topic->getTopicDetail($topicId);
+        $result = $this->topic->getTopic($topicId);
 
-        if ($request->isLoggined()) {
-            $this->visitLog->pushVisitLog($request->getUser(), $result);
-        }
+        // if ($request->isLoggined()) {
+        //     $this->visitLog->pushVisitLog($request->getUser(), $result);
+        // }
 
         if (!$result) {
             return no(STATUS_NOT_FOUND, '$exception.topic_not_found');
@@ -79,5 +79,29 @@ class TopicController
         return ok(
             $this->topic->toggleLike($topicId, $userId)
         );
+    }
+
+    public function edit(Request $request, int $topicId)
+    {
+        $request->assertLogin();
+
+        $title = $request->post('title');
+        $text = $request->post('text');
+        $content = $request->post('content');
+        $topic = $this->topic->getTopic($topicId);
+
+        if (!$topic) {
+            return no(STATUS_NOT_FOUND, '$exception.topic_not_found');
+        }
+
+        $topic->setAttribute('title', $title);
+        $topic->setAttribute('text', $text);
+        $topic->setAttribute('content', $content);
+
+        if ($topic->isDirty()) {
+            return ok($topic->save());
+        } else {
+            return ok(true);
+        }
     }
 }

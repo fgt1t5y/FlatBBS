@@ -42,13 +42,13 @@ import Editor from '@/components/Editor.vue'
 import { useRequest } from 'alova/client'
 import { getBoardInfo, publishTopic } from '@/services'
 import { onActivated, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useTitle } from '@/utils'
-import router from '@/router'
 import { useMessage } from '@/stores'
 import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
+const router = useRouter()
 const ms = useMessage()
 const { t } = useI18n()
 const { setTitle } = useTitle(t('action.publish'))

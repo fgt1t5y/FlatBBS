@@ -17,6 +17,7 @@
     "latest_topics": "Latest Topics",
     "boards": "Boards",
     "publish_topic": "Publish Topic",
+    "edit_topic": "Topic Topic",
     "modify_password": "Modify Password",
     "modify_avatar": "Modify Avatar",
     "not_found": "Page Not Found",
@@ -57,6 +58,7 @@
   "message": {
     "fill_topic_title": "Fill in the topic title please.",
     "publish_topic_success": "The topic was successfully published",
+    "edit_topic_success": "The topic was successfully saved",
     "publish_discussion_success": "The discussion was successfully published",
     "logout_all_session_if_modify_password": "All sessions will be logged out if you modify password.",
     "upload_avatar_success": "New avatar was successfully uploaded.",
@@ -91,6 +93,7 @@
     "retry": "Retry",
     "login": "Login",
     "like": "Like",
+    "edit": "Edit",
 
     "publish_topic": "Publish Topic",
     "crop_avatar": "Crop Avatar"

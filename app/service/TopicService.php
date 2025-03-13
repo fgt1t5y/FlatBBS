@@ -41,7 +41,7 @@ class TopicService
         return $topic;
     }
 
-    public function getTopicDetail(int $topicId)
+    public function getTopic(int $topicId)
     {
         return Topic::find($topicId);
     }

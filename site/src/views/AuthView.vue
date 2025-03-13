@@ -32,8 +32,7 @@
 import { login } from '@/services'
 import { useUserStore } from '@/stores'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
-import router from '@/router'
+import { useRoute, useRouter } from 'vue-router'
 import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import CommonForm from '@/components/CommonForm.vue'
@@ -47,6 +46,7 @@ const inputForm = ref({
 
 const user = useUserStore()
 const route = useRoute()
+const router = useRouter()
 
 const { loading, send: handleLogin } = useRequest(
   () => login(inputForm.value.email, inputForm.value.password),

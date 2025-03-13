@@ -25,13 +25,24 @@
       </div>
       <ContentRenderer :html="topic.content" />
       <div class="flex justify-between">
-        <RouterLink
-          class="btn btn-air btn-sm rounded-3xl"
-          :to="{ name: 'board', params: { slug: topic.board.slug } }"
-        >
-          {{ topic.board.name }}
-        </RouterLink>
+        <div class="flex gap-2">
+          <RouterLink
+            class="btn btn-air btn-sm rounded-3xl"
+            :to="{ name: 'board', params: { slug: topic.board.slug } }"
+          >
+            {{ topic.board.name }}
+          </RouterLink>
+          <RouterLink
+            v-if="topic.author_id === user.info?.id"
+            class="btn btn-air btn-sm rounded-3xl"
+            :to="{ name: 'topic_edit', params: { topicId: topic.id } }"
+          >
+            <i class="icon ti ti-edit"></i>
+            {{ $t('action.edit') }}
+          </RouterLink>
+        </div>
         <button
+          v-if="user.isLogin"
           :class="{
             'btn-sm rounded-3xl': true,
             'btn-primary': isTopicLiked,
@@ -129,7 +140,7 @@ const discussionEditor = useTemplateRef('discussionEditorRef')
 const { t } = useI18n()
 const { setTitle } = useTitle(t('topic.topic'))
 
-const topicId = Number(route.params.topic_id)
+const topicId = Number(route.params.topicId)
 
 const {
   loading: topicLoading,

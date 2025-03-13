@@ -31,9 +31,14 @@ export const siteRoute = {
       },
     },
     {
-      path: 'topic/:topic_id(\\d+)',
+      path: 'topic/:topicId(\\d+)',
       name: 'topic',
       component: () => import('@/views/TopicView.vue'),
+    },
+    {
+      path: 'topic/:topicId(\\d+)/edit',
+      name: 'topic_edit',
+      component: () => import('@/views/EditTopicView.vue'),
     },
     {
       path: 'settings',

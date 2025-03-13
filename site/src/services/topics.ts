@@ -45,6 +45,19 @@ export const publishTopic = (
   });
 };
 
-export const likeTopic = (topic_id: number) => {
-  return alovaInstance.Post<number>(`/topic/${topic_id}/like`);
+export const likeTopic = (topicId: number) => {
+  return alovaInstance.Post<number>(`/topic/${topicId}/like`);
+};
+
+export const editTopic = (
+  title: string,
+  text: string,
+  content: string,
+  topicId: number,
+) => {
+  return alovaInstance.Post<number>(`/topic/${topicId}/edit`, {
+    title,
+    text,
+    content,
+  });
 };

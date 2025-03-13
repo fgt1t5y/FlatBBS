@@ -53,6 +53,7 @@ Route::group('/topic/{topicId:\d+}', function () {
     Route::get('/detail', [app\controller\TopicController::class, 'detail']);
     Route::get('/discussions', [app\controller\TopicController::class, 'discussions']);
     Route::post('/like', [app\controller\TopicController::class, 'like']);
+    Route::post('/edit', [app\controller\TopicController::class, 'edit']);
 });
 
 Route::group('/user/{username}', function () {

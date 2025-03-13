@@ -17,7 +17,7 @@
     </div>
     <div class="text-lg">
       <RouterLink
-        :to="{ name: 'topic', params: { topic_id: topic.id } }"
+        :to="{ name: 'topic', params: { topicId: topic.id } }"
         :title="topic.title"
       >
         {{ topic.title }}

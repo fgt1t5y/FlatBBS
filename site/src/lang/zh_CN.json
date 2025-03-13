@@ -17,6 +17,7 @@
     "latest_topics": "最新话题",
     "boards": "板块",
     "publish_topic": "发布话题",
+    "edit_topic": "编辑话题",
     "modify_password": "更改密码",
     "modify_avatar": "更改头像",
     "not_found": "页面不存在",
@@ -58,6 +59,7 @@
     "fill_topic_title": "请填写话题标题",
     "publish_topic_success": "话题发布成功",
     "publish_discussion_success": "讨论发布成功",
+    "edit_discussion_success": "讨论保存成功",
     "logout_all_session_if_modify_password": "更改密码将会退出所有设备上的登录",
     "upload_avatar_success": "头像上传成功",
     "upload_avatar_fail": "头像上传失败",
@@ -91,6 +93,7 @@
     "retry": "重试",
     "login": "登录",
     "like": "喜欢",
+    "edit": "编辑",
 
     "publish_topic": "发布话题",
     "crop_avatar": "裁剪头像",

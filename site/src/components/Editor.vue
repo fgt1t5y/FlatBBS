@@ -28,7 +28,7 @@ const textValue = defineModel<string>('text', { default: '' })
 
 const { t } = useI18n()
 const editor = useEditor({
-  content: '',
+  content: htmlValue.value,
   extensions: [
     StarterKit.configure({
       heading: {
