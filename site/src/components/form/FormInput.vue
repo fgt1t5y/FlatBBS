@@ -33,7 +33,7 @@
 import { computed, inject, onMounted, useId } from 'vue'
 import { formContextKey } from '@/utils'
 
-import type { IFormContext } from '@/types'
+import type { FormContext } from '@/types'
 import type {
   RuleType,
   SyncValidateFunction,
@@ -78,7 +78,7 @@ const inputValue = defineModel<string>('modelValue', { default: '' })
 const inputId = useId()
 const inputErrorMessageId = useId()
 
-const context = inject<IFormContext>(formContextKey)
+const context = inject<FormContext>(formContextKey)
 
 const errorMessage = computed(() => {
   if (

@@ -16,6 +16,7 @@ export interface User {
   introduction: string;
   roles: Role[];
   created_at?: string;
+  updated_at?: string;
   allow_login?: number;
   topic_count: number
 }
@@ -110,7 +111,7 @@ export interface RouteTab {
 
 export type RouteMenuItem = RouteTab;
 
-export interface IFormContext {
+export interface FormContext {
   rules: Ref<Rules>;
   disabled: boolean;
   errorMessages: Ref<ValidateErrorMap>;

@@ -19,7 +19,7 @@ import { formContextKey } from '@/utils'
 import { Schema } from '@/third-party/async-validator'
 import { useI18n } from 'vue-i18n'
 
-import type { IFormContext } from '@/types'
+import type { FormContext } from '@/types'
 import type {
   Rules,
   Values,
@@ -96,7 +96,7 @@ const onFormItemBlur = (ev: FocusEvent) => {
   validateByName(inputEl.name)
 }
 
-provide<IFormContext>(formContextKey, {
+provide<FormContext>(formContextKey, {
   rules,
   disabled: props.disabled,
   errorMessages,

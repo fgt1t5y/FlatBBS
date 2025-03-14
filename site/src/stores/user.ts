@@ -2,6 +2,7 @@ import { getSessionUserInfo, logout } from '@/services';
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { useMessage } from './message';
+import { UserRole } from '@/constants';
 
 import type { User } from '@/types';
 
@@ -14,27 +15,18 @@ export const useUserStore = defineStore('user', () => {
       return false;
     }
 
-    return info.value.roles.findIndex((r) => r.name === 'Administrator') !== -1;
+    return info.value.roles.findIndex((r) => r.id === UserRole.ADMIN) !== -1;
   });
 
-  const _verifyUser = (user: User) => {
-    if (!user || !Array.isArray(user.roles) || !user.roles.length) {
-      return false;
-    }
-
-    return true;
-  };
-
   const fetch = async () => {
-    const response = await getSessionUserInfo();
+    const user = await getSessionUserInfo();
 
-    if (response && _verifyUser(response)) {
+    if (user && Array.isArray(user.roles) && user.roles.length) {
       isLogin.value = true;
-      info.value = response;
+      info.value = user;
     } else {
       const ms = useMessage();
-      // clearToken();
-      ms.error('{{message.fetch_user_profile_fail}}');
+      ms.error('$message.fetch_user_profile_fail');
     }
   };
 

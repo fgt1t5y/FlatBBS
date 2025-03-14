@@ -52,18 +52,21 @@ class TopicController
         $board->topic_count++;
         $board->save();
 
+        $author->topic_count++;
+        $author->save();
+
         return ok($topic);
     }
 
     public function detail(Request $request, int $topicId)
     {
-        $result = $this->topic->getTopic($topicId);
+        $topic = $this->topic->getTopic($topicId);
 
-        // if ($request->isLoggined()) {
-        //     $this->visitLog->pushVisitLog($request->getUser(), $result);
-        // }
+        if ($request->isLoggined()) {
+            $this->visitLog->pushVisitLog($request->getUser(), $topic);
+        }
 
-        return ok($result);
+        return ok($topic);
     }
 
     public function like(Request $request, int $topicId)
