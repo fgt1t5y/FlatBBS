@@ -40,7 +40,7 @@ import MainContent from '@/components/MainContent.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import Editor from '@/components/Editor.vue'
 import { useRequest } from 'alova/client'
-import { getBoardInfo, publishTopic } from '@/services'
+import { getBoard, publishTopic } from '@/services'
 import { onActivated, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTitle } from '@/utils'
@@ -59,7 +59,7 @@ const topicDraft = ref({
   content: '',
 })
 
-const slug = route.params.slug as string
+const boardSlug = route.params.boardSlug as string
 
 const checkForm = () => {
   if (!topicDraft.value.title.trim()) {
@@ -74,7 +74,7 @@ const {
   data: boardInfo,
   error: boardInfoError,
   send: loadBoardInfo,
-} = useRequest(() => getBoardInfo(slug)).onSuccess(() => {
+} = useRequest(() => getBoard(boardSlug)).onSuccess(() => {
   setTitle(boardInfo.value.name)
 })
 

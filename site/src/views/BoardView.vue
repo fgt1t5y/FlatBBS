@@ -36,7 +36,7 @@
     <template #aside>
       <RouterLink
         class="btn btn-primary btn-md w-full"
-        :to="{ name: 'board_publish', params: { slug: slug } }"
+        :to="{ name: 'board_publish', params: { boardSlug } }"
       >
         {{ $t('action.publish_topic') }}
       </RouterLink>
@@ -51,7 +51,7 @@ import MainContent from '@/components/MainContent.vue'
 import IntersectionObserver from '@/components/IntersectionObserver.vue'
 import Avatar from '@/components/Avatar.vue'
 import { useRoute } from 'vue-router'
-import { getTopicsByBoardSlug, getBoardInfo } from '@/services'
+import { getTopics, getBoard } from '@/services'
 import CommonList from '@/components/CommonList.vue'
 import { useRequest, usePagination } from 'alova/client'
 import { useTitle } from '@/utils'
@@ -62,14 +62,14 @@ const route = useRoute()
 const { t } = useI18n()
 const { setTitle } = useTitle(t('board.board'))
 
-const slug = route.params.slug as string
+const boardSlug = route.params.boardSlug as string
 
 const {
   loading: boardLoading,
   data: board,
   error: boardError,
   send: loadBoardInfo,
-} = useRequest(() => getBoardInfo(slug)).onSuccess(() => {
+} = useRequest(() => getBoard(boardSlug)).onSuccess(() => {
   setTitle(board.value?.name)
   loadTopics()
 })
@@ -81,7 +81,7 @@ const {
   page: topicPage,
   error: topicsError,
   send: loadTopics,
-} = usePagination((page, limit) => getTopicsByBoardSlug(page, limit, slug), {
+} = usePagination((page, limit) => getTopics(page, limit, boardSlug), {
   append: true,
   preloadNextPage: false,
   initialPageSize: 10,

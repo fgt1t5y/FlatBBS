@@ -111,7 +111,7 @@ import CommonList from '@/components/CommonList.vue'
 import DiscussionItem from '@/components/DiscussionItem.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import {
-  getDiscussionsByTopicId,
+  getDiscussions,
   getTopic,
   likeTopic,
   publishDiscussion,
@@ -184,7 +184,7 @@ const {
   send: loadDiscussions,
   insert: insertDiscussion,
 } = usePagination(
-  (page, limit) => getDiscussionsByTopicId(page, limit, topicId),
+  (page, limit) => getDiscussions(page, limit, topicId),
   {
     append: true,
     initialPageSize: 10,

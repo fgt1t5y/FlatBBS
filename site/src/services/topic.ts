@@ -11,7 +11,7 @@ export const getAllTopics = (last: number, limit: number) => {
   });
 };
 
-export const getDiscussionsByTopicId = (
+export const getDiscussions = (
   page: number,
   limit: number,
   topicId: number,

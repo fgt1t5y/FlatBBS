@@ -5,11 +5,11 @@ export const getAllBoards = () => {
   return alovaInstance.Get<Result<Board[]>>('/boards');
 };
 
-export const getBoardInfo = (board_slug: string) => {
+export const getBoard = (board_slug: string) => {
   return alovaInstance.Get<Board>(`/board/${board_slug}/detail`);
 };
 
-export const getTopicsByBoardSlug = (
+export const getTopics = (
   page: number,
   limit: number,
   boardSlug: string,

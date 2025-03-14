@@ -18,12 +18,12 @@ export const siteRoute = {
       },
     },
     {
-      path: 'board/:slug',
+      path: 'board/:boardSlug',
       name: 'board',
       component: BoardView,
     },
     {
-      path: 'board/:slug/publish',
+      path: 'board/:boardSlug/publish',
       name: 'board_publish',
       component: () => import('@/views/BoardPublishView.vue'),
       meta: {
