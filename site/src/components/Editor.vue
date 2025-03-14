@@ -8,8 +8,7 @@ import { EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Link from '@tiptap/extension-link'
-import { Image } from '@/third-party/editor-plugins/image'
-import { onBeforeUnmount } from 'vue'
+import { Image } from '@/third-party/editor-plugins'
 import EditorToolbar from './EditorToolbar.vue'
 import { useI18n } from 'vue-i18n'
 
@@ -56,12 +55,6 @@ const editor = useEditor({
     textValue.value = editor.getText()
     htmlValue.value = editor.getHTML()
   },
-})
-
-onBeforeUnmount(() => {
-  if (editor.value) {
-    editor.value.destroy()
-  }
 })
 
 defineExpose({
