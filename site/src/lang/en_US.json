@@ -55,6 +55,10 @@
     "publish": "Publish"
   },
 
+  "reply": {
+    "load_rest": "Load rest {count} reply(s)"
+  },
+
   "message": {
     "fill_topic_title": "Fill in the topic title please.",
     "publish_topic_success": "The topic was successfully published",
@@ -94,6 +98,7 @@
     "login": "Login",
     "like": "Like",
     "edit": "Edit",
+    "reply": "Reply",
 
     "publish_topic": "Publish Topic",
     "crop_avatar": "Crop Avatar"

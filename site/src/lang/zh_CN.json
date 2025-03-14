@@ -55,6 +55,10 @@
     "publish": "发布讨论"
   },
 
+  "reply": {
+    "load_rest": "加载剩余 {count} 条评论"
+  },
+
   "message": {
     "fill_topic_title": "请填写话题标题",
     "publish_topic_success": "话题发布成功",
@@ -94,6 +98,7 @@
     "login": "登录",
     "like": "喜欢",
     "edit": "编辑",
+    "reply": "回复",
 
     "publish_topic": "发布话题",
     "crop_avatar": "裁剪头像",

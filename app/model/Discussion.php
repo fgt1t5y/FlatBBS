@@ -11,7 +11,7 @@ class Discussion extends AbstractModel
 {
     protected $table = 'discussions';
 
-    protected $with = ['author:id,username,display_name,avatar_uri'];
+    protected $with = ['author:id,username,display_name,avatar_uri', 'top_replies'];
 
     public function author(): BelongsTo
     {
@@ -21,5 +21,10 @@ class Discussion extends AbstractModel
     public function replies(): HasMany
     {
         return $this->hasMany(DiscussionReply::class);
+    }
+
+    public function top_replies(): HasMany
+    {
+        return $this->hasMany(DiscussionReply::class)->limit(5);
     }
 }

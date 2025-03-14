@@ -10,7 +10,7 @@
         <Avatar class="user-avatar" :src="discussion.author.avatar_uri" />
       </RouterLink>
     </UserPopover>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 grow">
       <div class="flex gap-2">
         <RouterLink
           :to="{
@@ -22,8 +22,30 @@
         </RouterLink>
         <RelativeTime :time="discussion.created_at" />
       </div>
-      <div>
-        <ContentRenderer :html="discussion.content" />
+      <ContentRenderer :html="discussion.content" />
+      <div
+        v-if="replies.length || repliesLoading"
+        class="border border-content rounded-sm"
+      >
+        <CommonList
+          :items="replies"
+          :loading="repliesLoading"
+          :error="repliesError"
+          @retry="loadReplies"
+        >
+          <template #default="{ item }">
+            <DiscussionReplyItem :reply="item" />
+          </template>
+        </CommonList>
+      </div>
+      <div v-if="hasMoreReply">
+        <button
+          class="btn-air btn-sm"
+          :disabled="repliesLoading"
+          @click="nextPage"
+        >
+          {{ $t('reply.load_rest', { count: restReplyCount }) }}
+        </button>
       </div>
     </div>
   </div>
@@ -33,18 +55,56 @@
 import RelativeTime from './RelativeTime.vue'
 import Avatar from './Avatar.vue'
 import ContentRenderer from './ContentRenderer.vue'
+import UserPopover from './UserPopover.vue'
+import CommonList from './CommonList.vue'
+import DiscussionReplyItem from './DiscussionReplyItem.vue'
+import { getDiscussionReplies } from '@/services'
+import { usePagination } from 'alova/client'
 
 import type { Discussion } from '@/types'
-import UserPopover from './UserPopover.vue'
+import { computed, onMounted } from 'vue'
 
 defineOptions({
   name: 'DiscussionItem',
 })
 
-interface TopicListProps {
+const props = defineProps<{
   discussion: Discussion
-  index: number
+}>()
+
+const {
+  loading: repliesLoading,
+  data: replies,
+  error: repliesError,
+  page: replyPage,
+  send: loadReplies,
+} = usePagination(
+  (page, limit) => getDiscussionReplies(page, limit, props.discussion.id),
+  {
+    append: true,
+    preloadPreviousPage: false,
+    initialPageSize: 5,
+    immediate: false,
+  },
+)
+
+const nextPage = () => {
+  replyPage.value++
 }
 
-const props = defineProps<TopicListProps>()
+const hasMoreReply = computed(() => {
+  return replies.value.length < props.discussion.reply_count
+})
+
+const restReplyCount = computed(() => {
+  if (!hasMoreReply.value) {
+    return 0
+  }
+
+  return props.discussion.reply_count - replies.value.length
+})
+
+onMounted(() => {
+  replies.value = props.discussion.top_replies
+})
 </script>

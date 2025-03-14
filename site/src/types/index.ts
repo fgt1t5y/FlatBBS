@@ -18,7 +18,7 @@ export interface User {
   created_at?: string;
   updated_at?: string;
   allow_login?: number;
-  topic_count: number
+  topic_count: number;
 }
 
 export interface Role {
@@ -92,6 +92,22 @@ export interface Discussion {
   created_at: string;
   author: User;
   like_count: number;
+  reply_count: number;
+  top_replies: DiscussionReply[];
+}
+
+export interface DiscussionReply {
+  id: number;
+  discussion_id: number;
+  author_id: number;
+  author: User;
+  reply_to_user_id?: number;
+  reply_to_user?: User;
+  like_count: number;
+  score: number;
+  content: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export type ThemeMode = 'auto' | 'light' | 'dark';
@@ -129,5 +145,5 @@ export interface UserVisitLog<T = unknown> {
 }
 
 export type StringComponentMap = {
-  [string: string]: Component
-}
+  [string: string]: Component;
+};
