@@ -60,7 +60,12 @@ export const Image = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'img[src]',
+        tag: 'figure',
+        contentElement: 'figcaption',
+        getAttrs(node) {
+          const img = node.querySelector('img')
+          return { src: img?.src }
+        },
       },
     ];
   },
