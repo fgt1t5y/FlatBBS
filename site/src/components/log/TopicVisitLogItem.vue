@@ -20,7 +20,7 @@
     <div class="flex justify-between">
       <RouterLink
         class="btn btn-air btn-sm rounded-3xl"
-        :to="{ name: 'board', params: { slug: item.visitable.board.slug } }"
+        :to="{ name: 'board', params: { boardSlug: item.visitable.board.slug } }"
       >
         {{ item.visitable.board.name }}
       </RouterLink>

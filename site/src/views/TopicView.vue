@@ -28,7 +28,7 @@
         <div class="flex gap-2">
           <RouterLink
             class="btn btn-air btn-sm rounded-3xl"
-            :to="{ name: 'board', params: { slug: topic.board.slug } }"
+            :to="{ name: 'board', params: { boardSlug: topic.board.slug } }"
           >
             {{ topic.board.name }}
           </RouterLink>

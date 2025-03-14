@@ -11,7 +11,7 @@
       <template #default="{ item }">
         <div class="item p-3 flex gap-2 items-center">
           <Avatar class="size-9" :src="item.avatar_uri" />
-          <RouterLink :to="{ name: 'board', params: { slug: item.slug } }">
+          <RouterLink :to="{ name: 'board', params: { boardSlug: item.slug } }">
             <div class="text-base">{{ item.name }}</div>
           </RouterLink>
         </div>
