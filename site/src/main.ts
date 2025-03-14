@@ -7,8 +7,8 @@ import App from './App.vue';
 import router from './router';
 import { statusCode } from '@/constants';
 import i18n from './i18n';
-import { hasToken } from './utils';
-import { useUserStore } from './stores';
+import { hasToken } from '@/utils';
+import { useUserStore } from '@/stores';
 
 const app = createApp(App);
 
