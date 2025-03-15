@@ -67,7 +67,7 @@ class TopicService
             $topic->like_count--;
             $topic->save();
         } else {
-            $topic->likes()->attach($userId, ['type' => 1]);
+            $topic->likes()->attach($userId);
             $topic->like_count++;
             $topic->save();
         }

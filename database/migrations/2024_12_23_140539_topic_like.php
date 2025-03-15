@@ -8,10 +8,8 @@ return new class {
     public function up(Builder $schema): void
     {
         $schema->create('topic_like', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('topic_id');
             $table->foreignId('user_id');
-            $table->integer('type', false, true)->default(1);
             $table->datetimes();
         });
     }
