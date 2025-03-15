@@ -7,7 +7,7 @@
   >
     <slot />
     <template #body>
-      <div class="p-3" style="max-width: 400px">
+      <div class="p-3" style="width: 350px">
         <div v-if="loading" class="flex justify-center">
           <i class="icon-5xl ti ti-loader animate-spin"></i>
         </div>
